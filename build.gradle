@@ -22,7 +22,7 @@ plugins {
 	id 'maven-publish'
 }
 
-def minecraft_version = "20w07a"
+def minecraft_version = "1.8.9"
 
 def ENV = System.getenv()
 // Fetch build number from Jenkins
@@ -186,7 +186,7 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 
 task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
-	def url = "https://github.com/FabricMC/intermediary/raw/master/mappings/${minecraft_version}.tiny"
+	def url = "https://gist.githubusercontent.com/hYdos/33c70aeca0f54eb031874bf78d8bd50d/raw/6723e56ecdddc9e1101be1a1cf7aa60e3367f72e/1.8.9_intermediary.tiny"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
 }
@@ -235,7 +235,9 @@ task downloadMcLibs(dependsOn: downloadWantedVersionManifest) {
 		}
 
 		version.libraries.each {
-			def downloadUrl = it.downloads.artifact.url
+			def artifact = it.downloads.artifact
+            if(artifact == null) return
+            def downloadUrl = artifact.url
 
 			download {
 				src downloadUrl
