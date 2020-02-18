@@ -1,19 +1,23 @@
 CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2518 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_2519 mojangLogoPng Lnet/minecraft/class_1605;
-	FIELD field_2520 displayModes Ljava/util/List;
+	FIELD field_2520 macDisplayModes Ljava/util/List;
 	FIELD field_2521 resourcePackDir Ljava/io/File;
 	FIELD field_2522 twitchPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
 	FIELD field_2523 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
+	FIELD field_2524 clientInfo Lnet/minecraft/class_910;
 	FIELD field_2525 renderEngine Lnet/minecraft/class_1232;
 	FIELD field_2526 INSTANCE Lnet/minecraft/class_669;
 	FIELD field_2527 fullscreen Z
 	FIELD field_2530 crashReport Lnet/minecraft/class_825;
+	FIELD field_2532 timer Lnet/minecraft/class_676;
+	FIELD field_2533 playerSnooper Lnet/minecraft/class_1728;
 	FIELD field_2544 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_2548 mainThread Ljava/lang/Thread;
 	FIELD field_2551 openProfilerSection Ljava/lang/String;
 	FIELD field_2552 isMac Z
 	FIELD field_2557 session Lnet/minecraft/class_677;
+	FIELD field_2558 paused Z
 	FIELD field_2563 assetDirectory Ljava/io/File;
 	FIELD field_2564 gameVersion Ljava/lang/String;
 	FIELD field_2565 netProxy Ljava/net/Proxy;
@@ -22,12 +26,15 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2573 isDemo Z
 	FIELD field_2579 memoryReservedForCrash [B
 	FIELD field_2588 fontRenderer Lnet/minecraft/class_679;
+	FIELD field_2589 standardFontRenderer Lnet/minecraft/class_679;
+	FIELD field_2590 currentScreen Lnet/minecraft/class_754;
 	FIELD field_2597 gameOptions Lnet/minecraft/class_671;
 	FIELD field_2599 runDirectory Ljava/io/File;
 	METHOD <init> (Lnet/minecraft/class_842;)V
 		ARG 1 args
 	METHOD method_2232 getSession ()Lnet/minecraft/class_677;
 	METHOD method_2235 getProxy ()Ljava/net/Proxy;
+	METHOD method_2253 displayScreen (Lnet/minecraft/class_754;)V
 	METHOD method_2266 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_2277 startClient ()V
 	METHOD method_2280 setupDisplay ()V
@@ -36,4 +43,5 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2298 printCrashReport (Lnet/minecraft/class_825;)V
 		ARG 1 crashReport
 	METHOD method_2302 stop ()V
+	METHOD method_2307 cleanupMemory ()V
 	METHOD method_2315 isDemo ()Z
