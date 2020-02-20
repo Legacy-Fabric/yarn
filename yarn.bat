@@ -1,1 +1,1 @@
-gradlew yarn
+gradlew --offline yarn
