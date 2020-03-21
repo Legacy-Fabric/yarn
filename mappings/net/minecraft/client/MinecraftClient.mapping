@@ -13,7 +13,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2522 twitchPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
 	FIELD field_2523 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
 	FIELD field_2524 clientInfo Lnet/minecraft/class_910;
-	FIELD field_2525 renderEngine Lnet/minecraft/class_1232;
+	FIELD field_2525 textureManager Lnet/minecraft/class_1232;
 	FIELD field_2526 INSTANCE Lnet/minecraft/class_669;
 	FIELD field_2527 fullscreen Z
 	FIELD field_2528 glErrorTracking Z
@@ -38,7 +38,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2549 modelManager Lnet/minecraft/class_1292;
 	FIELD field_2550 blockRenderJobDispatcher Lnet/minecraft/class_1048;
 	FIELD field_2551 openProfilerSection Ljava/lang/String;
-	FIELD field_2552 isMac Z
+	FIELD field_2552 mac Z
 	FIELD field_2553 renderManager Lnet/minecraft/class_1135;
 	FIELD field_2554 renderItem Lnet/minecraft/class_1150;
 	FIELD field_2555 itemRenderer Lnet/minecraft/class_1033;
@@ -92,19 +92,31 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2603 nanoTime J
 	METHOD <init> (Lnet/minecraft/class_842;)V
 		ARG 1 args
+	METHOD method_2221 getInstance ()Lnet/minecraft/class_669;
 	METHOD method_2230 getSystemsTime ()J
 	METHOD method_2232 getSession ()Lnet/minecraft/class_677;
 	METHOD method_2235 getProxy ()Ljava/net/Proxy;
+	METHOD method_2236 getTextureManagter ()Lnet/minecraft/class_1232;
 	METHOD method_2253 displayScreen (Lnet/minecraft/class_754;)V
+	METHOD method_2254 crash (Lnet/minecraft/class_825;)V
+		ARG 1 crash
+	METHOD method_2258 renderSplashScreen (Lnet/minecraft/class_1232;)V
+		ARG 1 textureManager
+	METHOD method_2259 readImgToBuffer (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
 	METHOD method_2266 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_2277 startClient ()V
 	METHOD method_2280 setupDisplay ()V
 	METHOD method_2281 setDisplaySize ()V
 	METHOD method_2283 Jvm64Bit ()Z
+	METHOD method_2284 startTimerHack ()V
+	METHOD method_2291 getFBO ()Lnet/minecraft/class_1040;
 	METHOD method_2294 addComputerInfo (Lnet/minecraft/class_825;)Lnet/minecraft/class_825;
 	METHOD method_2295 setGlError (Ljava/lang/String;)V
+	METHOD method_2297 getGameVersion ()Ljava/lang/String;
 	METHOD method_2298 printCrashReport (Lnet/minecraft/class_825;)V
 		ARG 1 crashReport
+	METHOD method_2299 unicode ()Z
+	METHOD method_2300 reloadResources ()V
 	METHOD method_2302 stop ()V
 	METHOD method_2307 cleanupMemory ()V
 	METHOD method_2315 isDemo ()Z
