@@ -14,7 +14,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2523 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
 	FIELD field_2524 clientInfo Lnet/minecraft/class_910;
 	FIELD field_2525 textureManager Lnet/minecraft/class_1232;
-	FIELD field_2526 INSTANCE Lnet/minecraft/class_669;
+	FIELD field_2526 instance Lnet/minecraft/class_669;
 	FIELD field_2527 fullscreen Z
 	FIELD field_2528 glErrorTracking Z
 	FIELD field_2529 crashed Z
@@ -23,13 +23,13 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2533 snooper Lnet/minecraft/class_1728;
 	FIELD field_2534 defaultResourcepacks Ljava/util/List;
 	FIELD field_2535 mainResourcePack Lnet/minecraft/class_1249;
-	FIELD field_2536 resourcepackFolder Lnet/minecraft/class_1262;
+	FIELD field_2536 resourcePackManager Lnet/minecraft/class_1262;
 	FIELD field_2537 languageManager Lnet/minecraft/class_1270;
 	FIELD field_2538 stream Lnet/minecraft/class_1349;
 	FIELD field_2539 frameBuffer Lnet/minecraft/class_1040;
 	FIELD field_2540 textureMapper Lnet/minecraft/class_1230;
 	FIELD field_2541 soundManager Lnet/minecraft/class_1328;
-	FIELD field_2542 musicCounter Lnet/minecraft/class_1322;
+	FIELD field_2542 musicTracker Lnet/minecraft/class_1322;
 	FIELD field_2543 mojang Lnet/minecraft/class_1605;
 	FIELD field_2544 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_2545 skinTracker Lnet/minecraft/class_1266;
@@ -74,7 +74,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2585 player Lnet/minecraft/class_996;
 	FIELD field_2586 appointedEntity Lnet/minecraft/class_1745;
 	FIELD field_2587 effectRenderer Lnet/minecraft/class_959;
-	FIELD field_2588 fontRenderer Lnet/minecraft/class_679;
+	FIELD field_2588 textRenderer Lnet/minecraft/class_679;
 	FIELD field_2589 standardFontRenderer Lnet/minecraft/class_679;
 	FIELD field_2590 currentScreen Lnet/minecraft/class_754;
 	FIELD field_2591 loadingScreen Lnet/minecraft/class_673;
@@ -99,8 +99,9 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2230 getMeasuringTimeMs ()J
 	METHOD method_2232 getSession ()Lnet/minecraft/class_677;
 	METHOD method_2235 getProxy ()Ljava/net/Proxy;
-	METHOD method_2236 getTextureManagter ()Lnet/minecraft/class_1232;
+	METHOD method_2236 getTextureManager ()Lnet/minecraft/class_1232;
 	METHOD method_2243 getSoundManager ()Lnet/minecraft/class_1328;
+	METHOD method_2244 getMusicType ()Lnet/minecraft/class_1322$class_1323;
 	METHOD method_2246 handleKeyboardInputs ()V
 	METHOD method_2253 openScreen (Lnet/minecraft/class_754;)V
 		ARG 1 screen
@@ -109,6 +110,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2258 renderSplashScreen (Lnet/minecraft/class_1232;)V
 		ARG 1 textureManager
 	METHOD method_2259 readImgToBuffer (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
+	METHOD method_2265 getCurrentAction ()Ljava/lang/String;
 	METHOD method_2266 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_2267 getSkinProvider ()Lnet/minecraft/class_1266;
 	METHOD method_2268 getCameraEntity ()Lnet/minecraft/class_1745;
@@ -135,5 +137,6 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2308 scheduleStop ()V
 	METHOD method_2309 unpauseGame ()V
 	METHOD method_2310 pauseGame ()V
+	METHOD method_2313 getMusicTracker ()Lnet/minecraft/class_1322;
 	METHOD method_2314 tick ()V
 	METHOD method_2315 isDemo ()Z
