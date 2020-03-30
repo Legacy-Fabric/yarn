@@ -1,6 +1,6 @@
 CLASS net/minecraft/class_378 net/minecraft/state/StateManager
 	FIELD field_1501 JOINER Lcom/google/common/base/Joiner;
-	FIELD field_1503 owner Lnet/minecraft/class_160;
+	FIELD field_1503 block Lnet/minecraft/class_160;
 	FIELD field_1504 properties Lcom/google/common/collect/ImmutableList;
 	FIELD field_1505 states Lcom/google/common/collect/ImmutableList;
 	METHOD <init> (Lnet/minecraft/class_160;[Lnet/minecraft/class_392;)V
@@ -8,11 +8,14 @@ CLASS net/minecraft/class_378 net/minecraft/state/StateManager
 		ARG 2 properties
 	METHOD method_1228 getStates ()Lcom/google/common/collect/ImmutableList;
 	METHOD method_1229 getDefaultState ()Lnet/minecraft/class_376;
-	METHOD method_1230 getOwner ()Lnet/minecraft/class_160;
+	METHOD method_1230 getBlock ()Lnet/minecraft/class_160;
 	METHOD method_1231 getProperties ()Ljava/util/Collection;
 	CLASS class_379 ImmutableState
 		FIELD field_1507 block Lnet/minecraft/class_160;
+		FIELD field_1508 propertiesMap Lcom/google/common/collect/ImmutableMap;
 		METHOD <init> (Lnet/minecraft/class_160;Lcom/google/common/collect/ImmutableMap;)V
 			ARG 1 block
+			ARG 2 propertiesMap
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
+		METHOD method_1236 createMapWithNewProperty (Lnet/minecraft/class_392;Ljava/lang/Comparable;)Ljava/util/Map;
