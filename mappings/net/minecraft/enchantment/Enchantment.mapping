@@ -1,12 +1,12 @@
 CLASS net/minecraft/class_64 net/minecraft/enchantment/Enchantment
 	FIELD field_112 lure Lnet/minecraft/class_64;
-	FIELD field_113 id I
-	FIELD field_114 target Lnet/minecraft/class_65;
-	FIELD field_115 name Ljava/lang/String;
-	FIELD field_116 ID_TO_ENCHANTMENT_MAP Ljava/util/Map;
+	FIELD field_113 effectId I
+	FIELD field_114 type Lnet/minecraft/class_65;
+	FIELD field_115 translationKey Ljava/lang/String;
+	FIELD field_116 locationEnchantments Ljava/util/Map;
 	FIELD field_117 weight I
-	FIELD field_118 ENCHANTMENTS [Lnet/minecraft/class_64;
-	FIELD field_119 enchantmentBooks [Lnet/minecraft/class_64;
+	FIELD field_118 enchantmentsList [Lnet/minecraft/class_64;
+	FIELD field_119 enchantmentsBookList [Lnet/minecraft/class_64;
 	FIELD field_120 protection Lnet/minecraft/class_64;
 	FIELD field_121 fireProtection Lnet/minecraft/class_64;
 	FIELD field_122 featherFalling Lnet/minecraft/class_64;
@@ -31,23 +31,36 @@ CLASS net/minecraft/class_64 net/minecraft/enchantment/Enchantment
 	FIELD field_141 flame Lnet/minecraft/class_64;
 	FIELD field_142 infinity Lnet/minecraft/class_64;
 	FIELD field_143 luckOfTheSea Lnet/minecraft/class_64;
-	METHOD <init> (ILnet/minecraft/class_1605;ILnet/minecraft/class_65;)V
-		ARG 1 id
-		ARG 2 name
-		ARG 3 weight
-		ARG 4 target
 	METHOD method_79 getTranslationKey ()Ljava/lang/String;
+	METHOD method_80 getMinimumPower (I)I
+		ARG 1 level
+	METHOD method_81 getProtectionAmount (ILnet/minecraft/class_1733;)I
+		ARG 1 level
+		ARG 2 source
+	METHOD method_82 getAttackDamage (ILnet/minecraft/class_1758;)F
+		ARG 1 level
+		ARG 2 group
 	METHOD method_83 differs (Lnet/minecraft/class_64;)Z
 		ARG 1 other
+	METHOD method_84 onTargetDamaged (Lnet/minecraft/class_1752;Lnet/minecraft/class_1745;I)V
+		ARG 1 user
+		ARG 2 target
+		ARG 3 level
 	METHOD method_85 isAcceptableItem (Lnet/minecraft/class_2056;)Z
 		ARG 1 stack
-	METHOD method_88 getEnchantmentById (Ljava/lang/String;)Lnet/minecraft/class_64;
-		ARG 0 id
-	METHOD method_90 getIds ()Ljava/util/Set;
-	METHOD method_91 getEnchantmentFromId (I)Lnet/minecraft/class_64;
+	METHOD method_86 getMaximumLevel ()I
+	METHOD method_87 getMaximumPower (I)I
+		ARG 1 level
+	METHOD method_88 getEnchantmentByLocation (Ljava/lang/String;)Lnet/minecraft/class_64;
+	METHOD method_89 onUserDamaged (Lnet/minecraft/class_1752;Lnet/minecraft/class_1745;I)V
+		ARG 1 user
+		ARG 2 attacker
+		ARG 3 level
+	METHOD method_90 func_181077_c ()Ljava/util/Set;
+	METHOD method_91 byRawId (I)Lnet/minecraft/class_64;
 		ARG 0 id
 	METHOD method_92 setName (Ljava/lang/String;)Lnet/minecraft/class_64;
-		ARG 1 name
 	METHOD method_93 getWeight ()I
 	METHOD method_94 getName (I)Ljava/lang/String;
 		ARG 1 level
+	METHOD method_95 getMinimumLevel ()I

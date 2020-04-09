@@ -1,0 +1,36 @@
+CLASS net/minecraft/class_627 net/minecraft/item/map/MapState
+	FIELD field_2316 xCenter I
+	FIELD field_2317 zCenter I
+	FIELD field_2318 dimension B
+	FIELD field_2319 scale B
+	FIELD field_2320 colors [B
+	FIELD field_2321 playersArrayList Ljava/util/List;
+	FIELD field_2322 mapDecorations Ljava/util/Map;
+	FIELD field_2323 playersHashMap Ljava/util/Map;
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 key
+	METHOD a fromTag (Lnet/minecraft/class_1405;)V
+	METHOD b toTag (Lnet/minecraft/class_1405;)V
+	METHOD method_1898 calculateMapCenter (DDI)V
+	METHOD method_1899 updateMapData (II)V
+	METHOD method_1900 updateDecorations (ILnet/minecraft/class_99;Ljava/lang/String;DDD)V
+	METHOD method_1901 getMapInfo (Lnet/minecraft/class_1963;)Lnet/minecraft/class_627$class_628;
+	METHOD method_1902 updateVisiblePlayers (Lnet/minecraft/class_1963;Lnet/minecraft/class_2056;)V
+	METHOD method_1903 getMapPacket (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_1457;
+	CLASS class_628 PlayerUpdateTracker
+		FIELD field_2324 player Lnet/minecraft/class_1963;
+		FIELD field_2325 field_131 I
+		FIELD field_2326 field_132 Lnet/minecraft/class_627;
+		FIELD field_2327 dirty Z
+		FIELD field_2328 startX I
+		FIELD field_2329 startZ I
+		FIELD field_2330 endX I
+		FIELD field_2331 endZ I
+		FIELD field_2332 emptyPacketsRequested I
+		METHOD <init> (Lnet/minecraft/class_627;Lnet/minecraft/class_1963;)V
+			ARG 1 player
+		METHOD method_1904 markDirty (II)V
+			ARG 1 x
+			ARG 2 z
+		METHOD method_1905 getPacket (Lnet/minecraft/class_2056;)Lnet/minecraft/class_1457;
+			ARG 1 stack

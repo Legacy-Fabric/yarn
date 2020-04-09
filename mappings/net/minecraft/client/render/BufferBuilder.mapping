@@ -1,26 +1,74 @@
 CLASS net/minecraft/class_1002 net/minecraft/client/render/BufferBuilder
-	FIELD field_4192 byteBuffer Ljava/nio/ByteBuffer;
-	FIELD field_4193 intBuffer Ljava/nio/IntBuffer;
-	FIELD field_4195 floatBuffer Ljava/nio/FloatBuffer;
-	FIELD field_4196 vertCount I
-	FIELD field_4199 update Z
-	FIELD field_4205 drawing Z
+	FIELD field_4192 buffer Ljava/nio/ByteBuffer;
+	FIELD field_4193 rawIntBuffer Ljava/nio/IntBuffer;
+	FIELD field_4194 rawShortBuffer Ljava/nio/ShortBuffer;
+	FIELD field_4195 rawFloatBuffer Ljava/nio/FloatBuffer;
+	FIELD field_4196 vertexCount I
+	FIELD field_4197 currentElement Lnet/minecraft/class_1242;
+	FIELD field_4198 vertexFormatIndex I
+	FIELD field_4199 noColor Z
+	FIELD field_4200 drawMode I
+	FIELD field_4201 xOffset D
+	FIELD field_4202 yOffset D
+	FIELD field_4203 zOffset D
+	FIELD field_4204 vertexFormat Lnet/minecraft/class_1241;
+	FIELD field_4205 building Z
 	METHOD <init> (I)V
-		ARG 1 bufferSize
-	METHOD method_3303 texture (DD)Lnet/minecraft/class_1002;
+		ARG 1 initialCapacity
+	METHOD method_3302 getVertexState ()Lnet/minecraft/class_1002$class_1003;
+	METHOD method_3303 tex (DD)Lnet/minecraft/class_1002;
+	METHOD method_3304 putPosition (DDD)V
+	METHOD method_3305 sortQuads (FFF)V
+		ARG 1 cameraX
+		ARG 2 cameraY
+		ARG 3 cameraZ
 	METHOD method_3306 color (FFFF)Lnet/minecraft/class_1002;
-		ARG 1 red
-		ARG 2 green
-		ARG 3 blue
-		ARG 4 alpha
+	METHOD method_3307 putColorMultiplier (FFFI)V
+	METHOD method_3308 putColor4 (I)V
+	METHOD method_3309 lightmap (II)Lnet/minecraft/class_1002;
+	METHOD method_3310 putBrightness4 (IIII)V
+	METHOD method_3311 putColorRGBA (IIIII)V
 	METHOD method_3312 begin (ILnet/minecraft/class_1241;)V
-	METHOD method_3317 vertex (DDD)Lnet/minecraft/class_1002;
+		ARG 1 drawMode
+		ARG 2 format
+	METHOD method_3313 setVertexState (Lnet/minecraft/class_1002$class_1003;)V
+	METHOD method_3314 getDistanceSq (Ljava/nio/FloatBuffer;FFFII)F
+		ARG 0 buffer
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_3315 addVertexData ([I)V
+	METHOD method_3316 reset ()V
+	METHOD method_3317 pos (DDD)Lnet/minecraft/class_1002;
+	METHOD method_3318 putNormal (FFF)V
+	METHOD method_3319 putColorRGB_F (FFFI)V
+	METHOD method_3320 grow (I)V
+		ARG 1 size
+	METHOD method_3321 putColor (II)V
 	METHOD method_3322 color (IIII)Lnet/minecraft/class_1002;
-		ARG 1 red
-		ARG 2 green
-		ARG 3 blue
-		ARG 4 alpha
+	METHOD method_3323 noColor ()V
+	METHOD method_3324 setTranslation (DDD)V
+	METHOD method_3325 normal (FFF)Lnet/minecraft/class_1002;
+	METHOD method_3326 getColorIndex (I)I
 	METHOD method_3327 next ()V
-	CLASS class_1003
+	METHOD method_3328 putColorRGB_F4 (FFF)V
+	METHOD method_3329 end ()V
+	METHOD method_3330 getByteBuffer ()Ljava/nio/ByteBuffer;
+	METHOD method_3331 getVertexFormat ()Lnet/minecraft/class_1241;
+	METHOD method_3332 getVertexCount ()I
+	METHOD method_3333 getDrawMode ()I
+	METHOD method_3334 getBufferSize ()I
+	METHOD method_3335 nextVertexFormatIndex ()V
+	CLASS 1
+		FIELD field_4206 field_181659_a [F
+		FIELD field_4207 field_181660_b Lnet/minecraft/class_1002;
+		METHOD method_3336 compare (Ljava/lang/Integer;Ljava/lang/Integer;)I
+	CLASS 2
+		FIELD field_4208 field_181661_a [I
+	CLASS class_1003 DrawArrayParameters
+		FIELD field_4209 field_179021_a Lnet/minecraft/class_1002;
 		FIELD field_4210 stateRawBuffer [I
+		FIELD field_4211 stateVertexFormat Lnet/minecraft/class_1241;
+		METHOD method_3337 getRawBuffer ()[I
 		METHOD method_3338 getVertexCount ()I
+		METHOD method_3339 getVertexFormat ()Lnet/minecraft/class_1241;

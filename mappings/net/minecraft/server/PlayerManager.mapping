@@ -1,0 +1,122 @@
+CLASS net/minecraft/class_1656 net/minecraft/server/PlayerManager
+	FIELD field_6809 BANNED_PLAYERS_FILE Ljava/io/File;
+	FIELD field_6810 BANNED_IPS_FILE Ljava/io/File;
+	FIELD field_6811 OPERATORS_FILE Ljava/io/File;
+	FIELD field_6812 WHITELIST_FILE Ljava/io/File;
+	FIELD field_6813 maxPlayers I
+	FIELD field_6814 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_6815 DATE_FORMATTER Ljava/text/SimpleDateFormat;
+	FIELD field_6816 server Lnet/minecraft/server/MinecraftServer;
+	FIELD field_6817 players Ljava/util/List;
+	FIELD field_6818 playerMap Ljava/util/Map;
+	FIELD field_6819 bannedProfiles Lnet/minecraft/class_1663;
+	FIELD field_6820 bannedIps Lnet/minecraft/class_1652;
+	FIELD field_6821 ops Lnet/minecraft/class_1657;
+	FIELD field_6822 whitelist Lnet/minecraft/class_1665;
+	FIELD field_6823 advancementTrackers Ljava/util/Map;
+	FIELD field_6824 saveHandler Lnet/minecraft/class_640;
+	FIELD field_6825 whitelistEnabled Z
+	FIELD field_6826 viewDistance I
+	FIELD field_6827 gameMode Lnet/minecraft/class_102$class_103;
+	FIELD field_6828 cheatsAllowed Z
+	FIELD field_6829 latencyUpdateTimer I
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
+		ARG 1 server
+	METHOD method_6187 reloadWhitelist ()V
+	METHOD method_6188 sendToAllNear (DDDDILnet/minecraft/class_1457;)V
+	METHOD method_6189 setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD method_6190 setGameMode (Lnet/minecraft/class_102$class_103;)V
+	METHOD method_6191 addToOperators (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_6192 onPlayerConnect (Lnet/minecraft/class_1432;Lnet/minecraft/class_1637;)V
+		ARG 1 connection
+		ARG 2 player
+	METHOD method_6193 sendToAll (Lnet/minecraft/class_1444;)V
+	METHOD method_6194 broadcastChatMessage (Lnet/minecraft/class_1444;Z)V
+		ARG 2 system
+	METHOD method_6195 sendToAll (Lnet/minecraft/class_1457;)V
+	METHOD method_6196 sendPacketToAllPlayersInDimension (Lnet/minecraft/class_1457;I)V
+	METHOD method_6197 getPlayer (Ljava/lang/String;)Lnet/minecraft/class_1637;
+	METHOD method_6198 checkCanJoin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;
+	METHOD method_6199 getPlayer (Ljava/util/UUID;)Lnet/minecraft/class_1637;
+		ARG 1 uuid
+	METHOD method_6200 sendScoreboard (Lnet/minecraft/class_1616;Lnet/minecraft/class_1637;)V
+		ARG 1 scoreboard
+		ARG 2 player
+	METHOD method_6201 loadPlayerData (Lnet/minecraft/class_1637;)Lnet/minecraft/class_1405;
+		ARG 1 player
+	METHOD method_6202 transferPlayerToDimension (Lnet/minecraft/class_1637;I)V
+	METHOD method_6203 respawnPlayer (Lnet/minecraft/class_1637;IZ)Lnet/minecraft/class_1637;
+		ARG 1 player
+		ARG 3 alive
+	METHOD method_6204 preparePlayer (Lnet/minecraft/class_1637;Lnet/minecraft/class_1635;)V
+	METHOD method_6205 setGameMode (Lnet/minecraft/class_1637;Lnet/minecraft/class_1637;Lnet/minecraft/class_99;)V
+		ARG 1 player
+		ARG 2 oldPlayer
+	METHOD method_6206 transferEntityToWorld (Lnet/minecraft/class_1745;ILnet/minecraft/class_1635;Lnet/minecraft/class_1635;)V
+	METHOD method_6207 createStatHandler (Lnet/minecraft/class_1963;)Lnet/minecraft/class_1680;
+		ARG 1 player
+	METHOD method_6208 sendToAround (Lnet/minecraft/class_1963;DDDDILnet/minecraft/class_1457;)V
+		ARG 1 player
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD method_6209 sendToTeam (Lnet/minecraft/class_1963;Lnet/minecraft/class_1444;)V
+		ARG 1 source
+	METHOD method_6210 setWhitelistEnabled (Z)V
+		ARG 1 whitelistEnabled
+	METHOD method_6211 setPlayerManager ([Lnet/minecraft/class_1635;)V
+	METHOD method_6212 removeFromOperators (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_6213 getPlayersByIp (Ljava/lang/String;)Ljava/util/List;
+	METHOD method_6214 savePlayerData (Lnet/minecraft/class_1637;)V
+		ARG 1 player
+	METHOD method_6215 sendWorldInfo (Lnet/minecraft/class_1637;Lnet/minecraft/class_1635;)V
+		ARG 1 player
+		ARG 2 world
+	METHOD method_6216 sendToOtherTeams (Lnet/minecraft/class_1963;Lnet/minecraft/class_1444;)V
+		ARG 1 source
+	METHOD method_6217 func_181058_b (Z)Ljava/lang/String;
+	METHOD method_6218 getServer ()Lnet/minecraft/server/MinecraftServer;
+	METHOD method_6219 removePlayerFromWhitelist (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_6220 playerLoggedIn (Lnet/minecraft/class_1637;)V
+	METHOD method_6221 setCheatsAllowed (Z)V
+		ARG 1 cheatsAllowed
+	METHOD method_6222 getEntityViewDistance ()I
+	METHOD method_6223 addWhitelistedPlayer (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_6224 serverUpdateMountedMovingPlayer (Lnet/minecraft/class_1637;)V
+	METHOD method_6225 updatePlayerLatency ()V
+	METHOD method_6226 isWhitelisted (Lcom/mojang/authlib/GameProfile;)Z
+	METHOD method_6227 remove (Lnet/minecraft/class_1637;)V
+		ARG 1 player
+	METHOD method_6228 getPlayerNames ()[Ljava/lang/String;
+	METHOD method_6229 canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
+	METHOD method_6230 method_14594 (Lnet/minecraft/class_1637;)V
+		ARG 1 player
+	METHOD method_6231 getAllProfiles ()[Lcom/mojang/authlib/GameProfile;
+	METHOD method_6232 createPlayer (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/class_1637;
+		ARG 1 profile
+	METHOD method_6233 getUserBanList ()Lnet/minecraft/class_1663;
+	METHOD method_6234 isOperator (Lcom/mojang/authlib/GameProfile;)Z
+	METHOD method_6235 getIpBanList ()Lnet/minecraft/class_1652;
+	METHOD method_6236 saveAllPlayerData ()V
+	METHOD method_6237 getWhitelist ()Lnet/minecraft/class_1665;
+	METHOD method_6238 getWhitelistedNames ()[Ljava/lang/String;
+	METHOD method_6239 getOpList ()Lnet/minecraft/class_1657;
+	METHOD method_6240 getOpNames ()[Ljava/lang/String;
+	METHOD method_6241 getCurrentPlayerCount ()I
+	METHOD method_6242 getMaxPlayerCount ()I
+	METHOD method_6243 getAvailablePlayerDat ()[Ljava/lang/String;
+	METHOD method_6244 isWhitelistEnabled ()Z
+	METHOD method_6245 getViewDistance ()I
+	METHOD method_6246 getUserData ()Lnet/minecraft/class_1405;
+	METHOD method_6247 disconnectAllPlayers ()V
+	METHOD method_6248 getPlayerList ()Ljava/util/List;
+	CLASS 1 1
+		FIELD field_6830 field_14365 Lnet/minecraft/class_1656;
+		METHOD a onSizeChange (Lnet/minecraft/class_395;D)V
+		METHOD a onCenterChanged (Lnet/minecraft/class_395;DD)V
+		METHOD a onInterpolateSize (Lnet/minecraft/class_395;DDJ)V
+		METHOD a onWarningTimeChanged (Lnet/minecraft/class_395;I)V
+		METHOD b onDamageAmountChanged (Lnet/minecraft/class_395;D)V
+		METHOD b onWarningBlocksChanged (Lnet/minecraft/class_395;I)V
+		METHOD c onDamageBufferChanged (Lnet/minecraft/class_395;D)V

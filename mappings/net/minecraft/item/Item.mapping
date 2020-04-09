@@ -1,79 +1,163 @@
 CLASS net/minecraft/class_2054 net/minecraft/item/Item
-	FIELD field_8629 BLOCK_TO_ITEM_MAP Ljava/util/Map;
-	FIELD field_8630 group Lnet/minecraft/class_2029;
+	FIELD field_8629 BLOCK_ITEMS Ljava/util/Map;
+	FIELD field_8630 tabToDisplayOn Lnet/minecraft/class_2029;
 	FIELD field_8631 maxDamage I
-	FIELD field_8633 REGISTRY Lnet/minecraft/class_1393;
-	FIELD field_8635 random Ljava/util/Random;
+	FIELD field_8632 recipeRemainder Lnet/minecraft/class_2054;
+	FIELD field_8633 itemRegistry Lnet/minecraft/class_1393;
+	FIELD field_8634 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
+	FIELD field_8635 RANDOM Ljava/util/Random;
 	FIELD field_8636 maxCount I
-	FIELD field_8640 name Ljava/lang/String;
-	METHOD method_8246 getUnlocalisedName ()Ljava/lang/String;
+	FIELD field_8637 bFull3D Z
+	FIELD field_8638 hasSubtypes Z
+	FIELD field_8639 potionEffect Ljava/lang/String;
+	FIELD field_8640 unlocalizedName Ljava/lang/String;
+	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
+	METHOD method_8247 getMetadata (I)I
 	METHOD method_8248 registerItem (ILjava/lang/String;Lnet/minecraft/class_2054;)V
-		ARG 0 index
-		ARG 1 id
-		ARG 2 item
-	METHOD method_8249 register (ILnet/minecraft/class_1605;Lnet/minecraft/class_2054;)V
-		ARG 0 index
-		ARG 1 id
-		ARG 2 item
+	METHOD method_8249 registerItem (ILnet/minecraft/class_1605;Lnet/minecraft/class_2054;)V
 	METHOD method_8250 rayTrace (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;Z)Lnet/minecraft/class_647;
-		ARG 1 world
-		ARG 2 player
-	METHOD method_8251 getItemByBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
+		ARG 2 fluidHandling
+	METHOD method_8251 fromBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
 		ARG 0 block
-	METHOD method_8252 registerBlockItem (Lnet/minecraft/class_160;Lnet/minecraft/class_2054;)V
-		ARG 0 block
-		ARG 1 item
-	METHOD method_8254 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_2054;
-		ARG 1 group
+	METHOD method_8252 registerItemBlock (Lnet/minecraft/class_160;Lnet/minecraft/class_2054;)V
+	METHOD method_8253 postProcessTag (Lnet/minecraft/class_1405;)Z
+		ARG 1 tag
+	METHOD method_8254 setCreativeTab (Lnet/minecraft/class_2029;)Lnet/minecraft/class_2054;
 	METHOD method_8255 appendStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
-		ARG 1 item
-		ARG 2 group
-		ARG 3 stacks
+	METHOD method_8256 getName (Lnet/minecraft/class_2056;)Ljava/lang/String;
+		ARG 1 stack
+	METHOD method_8257 getColorFromItemStack (Lnet/minecraft/class_2056;I)I
 	METHOD method_8258 postMine (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1752;)Z
 		ARG 1 stack
 		ARG 2 world
-	METHOD method_8260 onRightClick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
-		ARG 1 item
-		ARG 3 player
+		ARG 3 state
+		ARG 4 pos
+		ARG 5 miner
+	METHOD method_8259 inventoryTick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 entity
+		ARG 4 slot
+		ARG 5 selected
+	METHOD method_8260 onItemRightClick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8261 onStoppedUsing (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 user
+		ARG 4 remainingUseTicks
 	METHOD method_8262 getMiningSpeed (Lnet/minecraft/class_2056;Lnet/minecraft/class_160;)F
 		ARG 1 stack
-		ARG 2 block
-	METHOD method_8264 onItemInteract (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
-		ARG 1 item
-		ARG 2 player
-		ARG 3 world
-		ARG 4 pos
-		ARG 5 blockSide
-		ARG 6 x
-		ARG 7 y
-		ARG 8 z
-	METHOD method_8266 (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
-		ARG 2 player
-		ARG 3 targetEntitiy
+		ARG 2 state
+	METHOD method_8263 postHit (Lnet/minecraft/class_2056;Lnet/minecraft/class_1752;Lnet/minecraft/class_1752;)Z
+		ARG 1 stack
+		ARG 2 target
+		ARG 3 attacker
+	METHOD method_8264 useOnBlock (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
+	METHOD method_8265 addInformation (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Ljava/util/List;Z)V
+	METHOD method_8266 useOnEntity (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
+		ARG 1 stack
+		ARG 2 user
+		ARG 3 entity
 	METHOD method_8267 canRepair (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
+		ARG 1 stack
+		ARG 2 ingredient
+	METHOD method_8268 setHasSubtypes (Z)Lnet/minecraft/class_2054;
 	METHOD method_8269 getEnchantability ()I
-	METHOD method_8270 getItemById (I)Lnet/minecraft/class_2054;
+	METHOD method_8270 byRawId (I)Lnet/minecraft/class_2054;
 		ARG 0 id
 	METHOD method_8271 isEffectiveOn (Lnet/minecraft/class_160;)Z
-		ARG 1 block
-	METHOD method_8272 getItemId (Lnet/minecraft/class_2054;)I
+		ARG 1 state
+	METHOD method_8272 getRawId (Lnet/minecraft/class_2054;)I
 		ARG 0 item
-	METHOD method_8274 getGroup ()Lnet/minecraft/class_2029;
-	METHOD method_8275 setMaxCount (I)Lnet/minecraft/class_2054;
-		ARG 1 maxCount
-	METHOD method_8276 registerBlockItem (Lnet/minecraft/class_160;)V
-		ARG 0 block
-	METHOD method_8277 setUnlocalisedName (Ljava/lang/String;)Lnet/minecraft/class_2054;
-		ARG 1 name
+	METHOD method_8273 onItemUseFinish (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8274 getCreativeTab ()Lnet/minecraft/class_2029;
+	METHOD method_8275 setMaxStackSize (I)Lnet/minecraft/class_2054;
+	METHOD method_8276 registerItemBlock (Lnet/minecraft/class_160;)V
+	METHOD method_8277 setUnlocalizedName (Ljava/lang/String;)Lnet/minecraft/class_2054;
+	METHOD method_8278 setContainerItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_2054;
 	METHOD method_8279 setMaxDamage (I)Lnet/minecraft/class_2054;
-		ARG 1 maxDamage
-	METHOD method_8280 getItemById (Ljava/lang/String;)Lnet/minecraft/class_2054;
-		ARG 0 id
-	METHOD method_8281 getMaxDurability (Lnet/minecraft/class_2056;)I
-		ARG 1 item
-	METHOD method_8286 getUnlocalisedName (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	METHOD method_8280 getByNameOrId (Ljava/lang/String;)Lnet/minecraft/class_2054;
+	METHOD method_8281 getMaxUseTime (Lnet/minecraft/class_2056;)I
 		ARG 1 stack
-	METHOD method_8291 getModifiers ()Lcom/google/common/collect/Multimap;
+	METHOD method_8282 onCraft (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 player
+	METHOD method_8283 shouldRotateAroundWhenRendering ()Z
+	METHOD method_8284 setPotionEffect (Ljava/lang/String;)Lnet/minecraft/class_2054;
+	METHOD method_8285 getUseAction (Lnet/minecraft/class_2056;)Lnet/minecraft/class_30;
+		ARG 1 stack
+	METHOD method_8286 getUnlocalizedName (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	METHOD method_8287 isNetworkSynced ()Z
+	METHOD method_8288 hasEnchantmentGlint (Lnet/minecraft/class_2056;)Z
+		ARG 1 stack
+	METHOD method_8289 isEnchantable (Lnet/minecraft/class_2056;)Z
+		ARG 1 stack
+	METHOD method_8290 getRarity (Lnet/minecraft/class_2056;)Lnet/minecraft/class_12;
+	METHOD method_8291 getItemAttributeModifiers ()Lcom/google/common/collect/Multimap;
 	METHOD method_8292 getMaxCount ()I
+	METHOD method_8293 getPotionEffect (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	METHOD method_8294 getHasSubtypes ()Z
+	METHOD method_8295 getUnlocalizedNameInefficiently (Lnet/minecraft/class_2056;)Ljava/lang/String;
 	METHOD method_8296 getMaxDamage ()I
+	METHOD method_8297 isPotionIngredient (Lnet/minecraft/class_2056;)Z
+	METHOD method_8298 isDamageable ()Z
+	METHOD method_8299 setFull3D ()Lnet/minecraft/class_2054;
+	METHOD method_8300 shouldSyncTagToClient ()Z
+	METHOD method_8301 getRecipeRemainder ()Lnet/minecraft/class_2054;
+	METHOD method_8302 isFood ()Z
+	METHOD method_8303 canItemEditBlocks ()Z
 	METHOD method_8304 registerItems ()V
+	METHOD method_8305 isFull3D ()Z
+	CLASS 1
+		METHOD method_8306 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 2
+		METHOD method_8315 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 3
+		METHOD method_8316 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 4
+		METHOD method_8317 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 5
+		METHOD method_8318 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 6
+		METHOD method_8319 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 7
+		METHOD method_8320 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 8
+		METHOD method_8321 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 9
+		METHOD method_8322 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 10
+		METHOD method_8307 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 11
+		METHOD method_8308 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 12
+		METHOD method_8309 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 13
+		METHOD method_8310 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 14
+		METHOD method_8311 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 15
+		METHOD method_8312 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 16
+		METHOD method_8313 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS 17
+		METHOD method_8314 apply (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	CLASS class_2055
+		FIELD field_8641 WOOD Lnet/minecraft/class_2054$class_2055;
+		FIELD field_8642 STONE Lnet/minecraft/class_2054$class_2055;
+		FIELD field_8643 IRON Lnet/minecraft/class_2054$class_2055;
+		FIELD field_8644 EMERALD Lnet/minecraft/class_2054$class_2055;
+		FIELD field_8645 GOLD Lnet/minecraft/class_2054$class_2055;
+		FIELD field_8646 harvestLevel I
+		FIELD field_8647 maxUses I
+		FIELD field_8648 efficiencyOnProperMaterial F
+		FIELD field_8649 damageVsEntity F
+		FIELD field_8650 enchantability I
+		FIELD field_8651 $VALUES [Lnet/minecraft/class_2054$class_2055;
+		METHOD method_8323 getMaxUses ()I
+		METHOD method_8324 getEfficiencyOnProperMaterial ()F
+		METHOD method_8325 getDamageVsEntity ()F
+		METHOD method_8326 getHarvestLevel ()I
+		METHOD method_8327 getEnchantability ()I
+		METHOD method_8328 getRepairItem ()Lnet/minecraft/class_2054;
