@@ -1,73 +1,9 @@
 CLASS net/minecraft/class_1432 net/minecraft/network/ClientConnection
-	FIELD field_5952 MARKER_NETWORK Lorg/apache/logging/log4j/Marker;
-	FIELD field_5953 MARKER_NETWORK_PACKETS Lorg/apache/logging/log4j/Marker;
-	FIELD field_5954 ATTR_KEY_PROTOCOL Lio/netty/util/AttributeKey;
-	FIELD field_5955 CLIENT_IO_GROUP Lnet/minecraft/class_1699;
-	FIELD field_5956 CLIENT_IO_GROUP_EPOLL Lnet/minecraft/class_1699;
-	FIELD field_5957 CLIENT_IO_GROUP_LOCAL Lnet/minecraft/class_1699;
-	FIELD field_5958 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_5959 side Lnet/minecraft/class_1458;
-	FIELD field_5960 packetQueue Ljava/util/Queue;
-	FIELD field_5961 readWriteLock Ljava/util/concurrent/locks/ReentrantReadWriteLock;
-	FIELD field_5962 channel Lio/netty/channel/Channel;
-	FIELD field_5963 address Ljava/net/SocketAddress;
-	FIELD field_5964 packetListener Lnet/minecraft/class_1438;
-	FIELD field_5965 disconnectReason Lnet/minecraft/class_1444;
-	FIELD field_5966 encrypted Z
-	FIELD field_5967 disconnected Z
-	METHOD method_5092 processReceivedPackets ()V
-	METHOD method_5093 setCompressionThreshold (I)V
-		ARG 1 compressionThreshold
-	METHOD method_5094 access$000 (Lnet/minecraft/class_1432;)Lio/netty/channel/Channel;
-	METHOD method_5095 setState (Lnet/minecraft/class_1434;)V
-		ARG 1 state
-	METHOD method_5096 setPacketListener (Lnet/minecraft/class_1438;)V
-		ARG 1 listener
-	METHOD method_5097 disconnect (Lnet/minecraft/class_1444;)V
-		ARG 1 disconnectReason
-	METHOD method_5098 sendPacket (Lnet/minecraft/class_1457;)V
-	METHOD method_5099 sendPacket (Lnet/minecraft/class_1457;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V
-	METHOD method_5100 sendImmediately (Lnet/minecraft/class_1457;[Lio/netty/util/concurrent/GenericFutureListener;)V
-		ARG 1 packet
-	METHOD method_5101 channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/class_1457;)V
-	METHOD method_5102 connect (Ljava/net/InetAddress;IZ)Lnet/minecraft/class_1432;
-		ARG 0 address
-		ARG 1 port
-		ARG 2 shouldUseNativeTransport
-	METHOD method_5103 connectLocal (Ljava/net/SocketAddress;)Lnet/minecraft/class_1432;
-		ARG 0 address
-	METHOD method_5104 setupEncryption (Ljavax/crypto/SecretKey;)V
-	METHOD method_5105 getAddress ()Ljava/net/SocketAddress;
-	METHOD method_5106 isLocal ()Z
-	METHOD method_5107 isEncrypted ()Z
-	METHOD method_5108 isOpen ()Z
-	METHOD method_5109 hasChannel ()Z
-	METHOD method_5110 getPacketListener ()Lnet/minecraft/class_1438;
-	METHOD method_5111 getDisconnectReason ()Lnet/minecraft/class_1444;
-	METHOD method_5112 disableAutoRead ()V
-	METHOD method_5113 handleDisconnection ()V
-	METHOD method_5114 sendQueuedPackets ()V
-	CLASS 1
-		METHOD b load ()Ljava/lang/Object;
-		METHOD method_5115 load ()Lio/netty/channel/nio/NioEventLoopGroup;
-	CLASS 2
-		METHOD b load ()Ljava/lang/Object;
-		METHOD method_5116 load ()Lio/netty/channel/epoll/EpollEventLoopGroup;
-	CLASS 3
-		METHOD b load ()Ljava/lang/Object;
-		METHOD method_5117 load ()Lio/netty/channel/local/LocalEventLoopGroup;
-	CLASS 4
-		FIELD field_5968 field_181130_a Lnet/minecraft/class_1434;
-		FIELD field_5969 field_181131_b Lnet/minecraft/class_1434;
-		FIELD field_5970 field_181132_c Lnet/minecraft/class_1457;
-		FIELD field_5971 field_181133_d [Lio/netty/util/concurrent/GenericFutureListener;
-		FIELD field_5972 field_181134_e Lnet/minecraft/class_1432;
-	CLASS 5 1
-		FIELD field_5973 field_11663 Lnet/minecraft/class_1432;
-	CLASS 6 2
-		FIELD field_5974 field_11664 Lnet/minecraft/class_1432;
-	CLASS class_1433 PacketWrapper
-		FIELD field_5975 packet Lnet/minecraft/class_1457;
-		FIELD field_5976 futureListeners [Lio/netty/util/concurrent/GenericFutureListener;
-		METHOD method_5118 method_10773 (Lnet/minecraft/class_1432$class_1433;)Lnet/minecraft/class_1457;
-		METHOD method_5119 method_10774 (Lnet/minecraft/class_1432$class_1433;)[Lio/netty/util/concurrent/GenericFutureListener;
+	FIELD field_5952 networkMarker Lorg/apache/logging/log4j/Marker;
+	FIELD field_5953 packetMarker Lorg/apache/logging/log4j/Marker;
+	FIELD field_5954 connectionState Lio/netty/util/AttributeKey;
+	FIELD field_5958 logger Lorg/apache/logging/log4j/Logger;
+	METHOD <init> (Lnet/minecraft/class_1458;)V
+		ARG 1 direction
+	METHOD channelActive channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 channelHandler

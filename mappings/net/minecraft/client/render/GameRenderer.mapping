@@ -1,118 +1,29 @@
 CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
-	FIELD field_4247 bossColorModifierPrev F
-	FIELD field_4248 cloudFog Z
-	FIELD field_4249 renderHand Z
-	FIELD field_4250 blockOutlineEnabled Z
-	FIELD field_4251 prevFrameTime J
-	FIELD field_4252 renderEndNanoTime J
-	FIELD field_4253 lightmapTexture Lnet/minecraft/class_1219;
-	FIELD field_4254 lightmapColors [I
-	FIELD field_4255 locationLightMap Lnet/minecraft/class_1605;
-	FIELD field_4256 shadersEnabled Z
-	FIELD field_4257 torchFlickerX F
-	FIELD field_4258 torchFlickerDX F
-	FIELD field_4259 rainSoundCounter I
-	FIELD field_4260 rainXCoords [F
-	FIELD field_4261 rainYCoords [F
-	FIELD field_4262 fogColorBuffer Ljava/nio/FloatBuffer;
-	FIELD field_4263 fogColorRed F
-	FIELD field_4264 fogColorGreen F
-	FIELD field_4265 fogColorBlue F
-	FIELD field_4266 fogColor2 F
-	FIELD field_4267 fogColor1 F
-	FIELD field_4268 debugViewDirection I
-	FIELD field_4269 debugView Z
-	FIELD field_4270 zoom D
-	FIELD field_4271 zoomX D
-	FIELD field_4272 zoomY D
-	FIELD field_4273 anaglyphEnable Z
 	FIELD field_4274 shader Lnet/minecraft/class_1212;
 	FIELD field_4275 SHADERS_LOCATIONS [Lnet/minecraft/class_1605;
 	FIELD field_4276 forcedShaderIndex I
-	FIELD field_4277 useShader Z
-	FIELD field_4278 frameCount I
-	FIELD field_4279 anaglyphField I
-	FIELD field_4280 firstPersonRenderer Lnet/minecraft/class_1033;
+	FIELD field_4277 shadersEnabled Z
+	FIELD field_4280 itemRenderer Lnet/minecraft/class_1033;
 	FIELD field_4281 SHADER_COUNT I
 	FIELD field_4282 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_4283 locationRainPng Lnet/minecraft/class_1605;
-	FIELD field_4284 locationSnowPng Lnet/minecraft/class_1605;
+	FIELD field_4283 RAIN Lnet/minecraft/class_1605;
+	FIELD field_4284 SNOW Lnet/minecraft/class_1605;
 	FIELD field_4285 client Lnet/minecraft/class_669;
-	FIELD field_4286 resourceContainer Lnet/minecraft/class_1258;
+	FIELD field_4286 resourceManager Lnet/minecraft/class_1258;
 	FIELD field_4287 random Ljava/util/Random;
-	FIELD field_4288 viewDistance F
+	FIELD field_4288 distanceOfFarPlane F
 	FIELD field_4289 mapRenderer Lnet/minecraft/class_682;
-	FIELD field_4290 ticks I
-	FIELD field_4291 pointedEntity Lnet/minecraft/class_1745;
-	FIELD field_4292 mouseFilterXAxis Lnet/minecraft/class_1708;
-	FIELD field_4293 mouseFilterYAxis Lnet/minecraft/class_1708;
-	FIELD field_4294 thirdPersonDistance F
-	FIELD field_4295 thirdPersonDistanceTemp F
-	FIELD field_4296 smoothCamYaw F
-	FIELD field_4297 smoothCamPitch F
-	FIELD field_4298 smoothCamFilterX F
-	FIELD field_4299 smoothCamFilterY F
-	FIELD field_4300 lastSkyDarkness F
-	FIELD field_4301 movementFovMultiplier F
-	FIELD field_4302 lastMovementFovMultiplier F
-	FIELD field_4303 bossColorModifier F
+	FIELD field_4303 skyDarkness F
 	METHOD <init> (Lnet/minecraft/class_669;Lnet/minecraft/class_1258;)V
 		ARG 1 client
-	METHOD a apply (Lnet/minecraft/class_1258;)V
-	METHOD method_3352 isShaderActive ()Z
+		ARG 2 resourceManager
+	METHOD method_3352 hasShader ()Z
 	METHOD method_3353 updateTargetedEntity (F)V
 		ARG 1 tickDelta
-	METHOD method_3354 setFogColorBuffer (FFFF)Ljava/nio/FloatBuffer;
-	METHOD method_3355 setupCameraTransform (FI)V
-	METHOD method_3356 render (FJ)V
-		ARG 1 tickDelta
-		ARG 2 startTime
-	METHOD method_3357 getFov (FZ)F
-	METHOD method_3358 setupFog (IF)V
-	METHOD method_3359 renderWorldPass (IFJ)V
-	METHOD method_3360 onResized (II)V
-	METHOD method_3361 access$000 (Lnet/minecraft/class_1012;)Lnet/minecraft/class_669;
-	METHOD method_3362 renderCloudsCheck (Lnet/minecraft/class_1036;FI)V
 	METHOD method_3363 loadShader (Lnet/minecraft/class_1605;)V
+		ARG 1 shaderId
 	METHOD method_3364 onCameraEntitySet (Lnet/minecraft/class_1745;)V
-	METHOD method_3365 getNightVisionBrightness (Lnet/minecraft/class_1752;F)F
+		ARG 1 entity
 	METHOD method_3366 disableShader ()V
-	METHOD method_3367 renderStreamIndicator (F)V
-	METHOD method_3368 renderHand (FI)V
-	METHOD method_3369 renderWorld (FJ)V
-		ARG 1 tickDelta
-		ARG 2 limitTime
-	METHOD method_3370 toggleShadersEnabled ()V
-	METHOD method_3371 renderRainSnow (F)V
-	METHOD method_3372 activateNextShader ()V
-	METHOD method_3373 bobViewWhenHurt (F)V
 	METHOD method_3374 tick ()V
-	METHOD method_3375 bobView (F)V
 	METHOD method_3376 getShader ()Lnet/minecraft/class_1212;
-	METHOD method_3377 orientCamera (F)V
-	METHOD method_3378 updateLightmap (F)V
-	METHOD method_3379 disableLightmap ()V
-	METHOD method_3380 renderWorldDirections (F)V
-	METHOD method_3381 enableLightmap ()V
-	METHOD method_3382 updateFogColor (F)V
-	METHOD method_3383 setupOverlayRendering ()V
-	METHOD method_3384 getMapRenderer ()Lnet/minecraft/class_682;
-	METHOD method_3385 updateMovementFovMultiplier ()V
-	METHOD method_3386 updateTorchFlicker ()V
-	METHOD method_3387 shouldRenderBlockOutline ()Z
-	METHOD method_3388 addRainParticles ()V
-	CLASS 1
-		FIELD field_4304 field_90032_a Lnet/minecraft/class_1012;
-		METHOD method_3389 apply (Lnet/minecraft/class_1745;)Z
-	CLASS 2
-		FIELD field_4305 field_90025_c Lnet/minecraft/class_1012;
-		METHOD method_3390 call ()Ljava/lang/String;
-	CLASS 3
-		FIELD field_4306 field_181048_a I
-		FIELD field_4307 field_181049_b I
-		FIELD field_4308 field_90028_b Lnet/minecraft/class_1012;
-		METHOD method_3391 call ()Ljava/lang/String;
-	CLASS 4
-		FIELD field_4309 field_181046_a Lnet/minecraft/class_684;
-		FIELD field_4310 field_181047_b Lnet/minecraft/class_1012;
-		METHOD method_3392 call ()Ljava/lang/String;
