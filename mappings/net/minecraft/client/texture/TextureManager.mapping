@@ -1,23 +1,26 @@
-CLASS net/minecraft/class_1232 net/minecraft/client/texture/TextureManager
-	FIELD field_5149 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_5150 textures Ljava/util/Map;
-	FIELD field_5151 tickListeners Ljava/util/List;
-	FIELD field_5152 dynamicIdCounters Ljava/util/Map;
-	FIELD field_5153 resourceManager Lnet/minecraft/class_1258;
-	METHOD <init> (Lnet/minecraft/class_1258;)V
+CLASS net/minecraft/class_1060 net/minecraft/client/texture/TextureManager
+	FIELD field_5283 dynamicIdCounters Ljava/util/Map;
+	FIELD field_5284 tickListeners Ljava/util/Set;
+	FIELD field_5285 MISSING_IDENTIFIER Lnet/minecraft/class_2960;
+	FIELD field_5286 textures Ljava/util/Map;
+	FIELD field_5287 resourceContainer Lnet/minecraft/class_3300;
+	FIELD field_5288 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD <init> (Lnet/minecraft/class_3300;)V
 		ARG 1 resourceManager
-	METHOD method_4269 registerDynamicTexture (Ljava/lang/String;Lnet/minecraft/class_1219;)Lnet/minecraft/class_1605;
+	METHOD method_18168 loadTextureAsync (Lnet/minecraft/class_2960;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 id
+		ARG 2 executor
+	METHOD method_22812 runOnRenderThread (Ljava/lang/Runnable;)V
+		ARG 0 runnable
+	METHOD method_22813 bindTexture (Lnet/minecraft/class_2960;)V
+		ARG 1 id
+	METHOD method_4615 destroyTexture (Lnet/minecraft/class_2960;)V
+		ARG 1 id
+	METHOD method_4616 registerTexture (Lnet/minecraft/class_2960;Lnet/minecraft/class_1044;)V
+	METHOD method_4617 registerDynamicTexture (Ljava/lang/String;Lnet/minecraft/class_1043;)Lnet/minecraft/class_2960;
 		ARG 1 prefix
 		ARG 2 texture
-	METHOD method_4270 bindTexture (Lnet/minecraft/class_1605;)V
-		ARG 1 texture
-	METHOD method_4271 registerTexture (Lnet/minecraft/class_1605;Lnet/minecraft/class_1233;)Z
+	METHOD method_4618 bindTextureInner (Lnet/minecraft/class_2960;)V
 		ARG 1 id
-		ARG 2 texture
-	METHOD method_4272 registerTickableTexture (Lnet/minecraft/class_1605;Lnet/minecraft/class_1236;)Z
-		ARG 1 location
-		ARG 2 texture
-	METHOD method_4273 getTexture (Lnet/minecraft/class_1605;)Lnet/minecraft/class_1233;
-		ARG 1 id
-	METHOD method_4274 destroyTexture (Lnet/minecraft/class_1605;)V
+	METHOD method_4619 getTexture (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1044;
 		ARG 1 id
