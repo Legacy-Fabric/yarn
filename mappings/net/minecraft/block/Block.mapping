@@ -1,8 +1,30 @@
 CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_590 translationKey Ljava/lang/String;
+	FIELD field_591 AIR_ID Lnet/minecraft/class_1605;
+	FIELD field_593 REGISTRY Lnet/minecraft/class_1381;
+	FIELD field_595 STONE Lnet/minecraft/class_160$class_162;
+	FIELD field_596 WOOD Lnet/minecraft/class_160$class_162;
+	FIELD field_597 GRAVEL Lnet/minecraft/class_160$class_162;
+	FIELD field_598 GRASS Lnet/minecraft/class_160$class_162;
+	FIELD field_601 GLASS Lnet/minecraft/class_160$class_162;
+	FIELD field_602 CLOTH Lnet/minecraft/class_160$class_162;
+	FIELD field_603 SAND Lnet/minecraft/class_160$class_162;
+	FIELD field_604 SNOW Lnet/minecraft/class_160$class_162;
+	FIELD field_605 LADDER Lnet/minecraft/class_160$class_162;
+	FIELD field_606 ANVIL Lnet/minecraft/class_160$class_162;
+	FIELD field_607 SLIME Lnet/minecraft/class_160$class_162;
+	METHOD <init> (Lnet/minecraft/class_591;)V
+		ARG 1 material
+	METHOD <init> (Lnet/minecraft/class_591;Lnet/minecraft/class_592;)V
+		ARG 1 material
+		ARG 2 color
 	METHOD method_631 getDefaultState ()Lnet/minecraft/class_376;
 	METHOD method_632 getOffsetType ()Lnet/minecraft/class_160$class_161;
 	METHOD method_634 getTranslationKey ()Ljava/lang/String;
+	METHOD method_638 registerBlock (ILjava/lang/String;Lnet/minecraft/class_160;)V
+		ARG 0 id
+	METHOD method_640 registerBlock (ILnet/minecraft/class_1605;Lnet/minecraft/class_160;)V
+		ARG 0 id
 	METHOD method_641 shouldDropItemsOnExplosion (Lnet/minecraft/class_93;)Z
 		ARG 1 explosion
 	METHOD method_644 onDestroyedByExplosion (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_93;)V
@@ -23,12 +45,19 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 entity
 		ARG 4 distance
+	METHOD method_670 getBlockId (Lnet/minecraft/class_160;)I
+		ARG 0 block
 	METHOD method_681 getBlockFromItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
 		ARG 0 item
 	METHOD method_687 dropExperience (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;I)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 size
+	METHOD method_701 byId (I)Lnet/minecraft/class_160;
+		ARG 0 id
+	METHOD method_702 getPickItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_2054;
+		ARG 1 world
+		ARG 2 pos
 	METHOD method_710 getStateFromRawId (I)Lnet/minecraft/class_376;
 		ARG 0 stateId
 	METHOD method_718 canMobSpawnInside ()Z
@@ -38,3 +67,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 	CLASS class_161 OffsetType
+	CLASS class_162 Sound
+		FIELD field_621 id Ljava/lang/String;
+		FIELD field_622 volume F
+		FIELD field_623 pitch F
+		METHOD <init> (Ljava/lang/String;FF)V
+			ARG 1 id
+			ARG 2 volume
+			ARG 3 pitch
+		METHOD method_744 getDigSound ()Ljava/lang/String;
+		METHOD method_746 getStepSound ()Ljava/lang/String;
+		METHOD method_747 getVolume ()F
+		METHOD method_748 getPitch ()F

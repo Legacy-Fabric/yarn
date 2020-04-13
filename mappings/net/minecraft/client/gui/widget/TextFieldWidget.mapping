@@ -1,4 +1,10 @@
 CLASS net/minecraft/class_689 net/minecraft/client/gui/widget/TextFieldWidget
+	FIELD field_2903 x I
+	FIELD field_2904 y I
+	FIELD field_2905 id I
+	FIELD field_2906 textRenderer Lnet/minecraft/class_679;
+	FIELD field_2907 width I
+	FIELD field_2908 height I
 	FIELD field_2909 text Ljava/lang/String;
 	FIELD field_2910 maxLength I
 	FIELD field_2911 focusedTicks I
@@ -11,7 +17,16 @@ CLASS net/minecraft/class_689 net/minecraft/client/gui/widget/TextFieldWidget
 	FIELD field_2918 selectionEnd I
 	FIELD field_2919 editableColor I
 	FIELD field_2920 uneditableColor I
+	FIELD field_2923 textPredicate Lcom/google/common/base/Predicate;
+	METHOD <init> (ILnet/minecraft/class_679;IIII)V
+		ARG 1 id
+		ARG 2 textRenderer
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
 	METHOD method_2511 tick ()V
+	METHOD method_2512 keyPressed (CI)Z
 	METHOD method_2513 eraseWords (I)V
 		ARG 1 wordOffset
 	METHOD method_2514 getWordSkipPosition (II)I
@@ -21,6 +36,7 @@ CLASS net/minecraft/class_689 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 1 wordOffset
 		ARG 2 cursorPosition
 		ARG 3 skipOverSpaces
+	METHOD method_2518 setTextPredicate (Lcom/google/common/base/Predicate;)V
 	METHOD method_2519 setText (Ljava/lang/String;)V
 		ARG 1 text
 	METHOD method_2520 setSelected (Z)V
@@ -47,6 +63,7 @@ CLASS net/minecraft/class_689 net/minecraft/client/gui/widget/TextFieldWidget
 	METHOD method_2535 setCursorToEnd ()V
 	METHOD method_2536 setMaxLength (I)V
 		ARG 1 maximumLength
+	METHOD method_2537 render ()V
 	METHOD method_2538 setEditableColor (I)V
 		ARG 1 color
 	METHOD method_2539 getMaxLength ()I
