@@ -5,14 +5,16 @@ buildscript {
 			name "Fabric Repository"
 			url 'https://maven.fabricmc.net'
 		}
+		mavenLocal()
 	}
 	dependencies {
 		classpath "cuchaz:enigma:0.15.153"
-		classpath "net.fabricmc:stitch:0.4.3.71"
+		classpath "net.fabricmc:stitch:0.4.5+202004130809"
 		classpath "commons-io:commons-io:2.6"
 		classpath "com.google.guava:guava:28.0-jre"
 		classpath 'de.undercouch:gradle-download-task:4.0.2'
 		classpath 'net.fabricmc:tiny-remapper:0.2.1.63'
+		classpath 'net.fabricmc:mappingpoet:0.1.0+build.1'
 	}
 }
 
@@ -20,6 +22,7 @@ plugins {
 	id 'de.undercouch.download' version '3.4.3'
 	id 'base'
 	id 'maven-publish'
+	id 'java' // for jd gen
 	id 'maven'
 	id 'signing'
 	id 'com.jfrog.bintray' version '1.8.4'
@@ -43,6 +46,7 @@ repositories {
 		name "Fabric Repository"
 		url 'https://maven.fabricmc.net'
 	}
+	mavenLocal()
 }
 
 configurations {
@@ -52,11 +56,14 @@ configurations {
 			cacheChangingModulesFor 0, "seconds"
 		}
 	}
+	javadocClasspath
 }
 
 dependencies {
-	enigmaRuntime "net.fabricmc:stitch:0.4.3.71"
-	enigmaRuntime "cuchaz:enigma:0.14.3.147"
+	enigmaRuntime "net.fabricmc:stitch:0.4.5+202004130809"
+	enigmaRuntime "cuchaz:enigma:0.15.153"
+	javadocClasspath "net.fabricmc:fabric-loader:0.8.2+build.194"
+	javadocClasspath "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 def setupGroup = "jar setup"
@@ -76,7 +83,6 @@ def serverJar = new File(cacheFilesMinecraft, "${minecraft_version}-server.jar")
 def libraries = new File(cacheFilesMinecraft, "libraries")
 def libs = new File("build/libs/")
 
-
 import com.google.common.hash.Hashing
 import com.google.common.collect.Iterables
 import cuchaz.enigma.command.CheckMappingsCommand
@@ -90,6 +96,8 @@ import net.fabricmc.stitch.commands.CommandProposeFieldNames
 import net.fabricmc.stitch.commands.CommandReorderTiny
 import net.fabricmc.stitch.commands.CommandRewriteIntermediary
 import net.fabricmc.stitch.commands.tinyv2.CommandProposeV2FieldNames
+import net.fabricmc.stitch.commands.tinyv2.CommandMergeTinyV2
+import net.fabricmc.stitch.commands.tinyv2.CommandReorderTinyV2
 import net.fabricmc.stitch.merge.JarMerger
 import net.fabricmc.tinyremapper.OutputConsumerPath
 import net.fabricmc.tinyremapper.TinyRemapper
@@ -179,24 +187,41 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 
 		logger.lifecycle(":downloading minecraft jars")
 
-		if (!clientJar.exists() || !validateChecksum(clientJar, version.downloads.client.sha1)) {
-			logger.lifecycle(":downloading minecraft client")
-			FileUtils.copyURLToFile(new URL(version.downloads.client.url), clientJar)
+		download {
+			src new URL(version.downloads.client.url)
+			dest clientJar
+			overwrite false
 		}
 
-		if (!serverJar.exists() || !validateChecksum(serverJar, version.downloads.server.sha1)) {
-			logger.lifecycle(":downloading minecraft server")
-			FileUtils.copyURLToFile(new URL(version.downloads.server.url), serverJar)
+		download {
+			src new URL(version.downloads.server.url)
+			dest serverJar
+			overwrite false
 		}
 	}
 }
 
 task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
-//	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/${minecraft_version}.tiny"
-	def url = "https://gist.github.com/shedaniel/be0606b3100c21d8a4599e9f6952c33e/raw/855a4d7429b7d60971ffffef3801b7124caf2e6c/1.8.9.tiny"
+	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/${minecraft_version}.tiny"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
+}
+
+task downloadIntermediaryV2(type: Download) {
+	group = buildMappingGroup
+	def url = "https://dl.bintray.com/legacy-fabric/Legacy-Fabric-Maven/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
+	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
+	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
+}
+
+task extractIntermediaryV2(dependsOn: downloadIntermediaryV2, type: Copy) {
+	def output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.tiny")
+	from({ zipTree(downloadIntermediaryV2.dest) }) {
+		include 'mappings/mappings.tiny'
+		rename 'mappings.tiny', "../${output.name}"
+	}
+	into output.parentFile
 }
 
 task mergeJars(dependsOn: downloadMcJars) {
@@ -278,9 +303,31 @@ task invertIntermediary(dependsOn: downloadIntermediary, type: FileOutput) {
 	}
 }
 
+task invertIntermediaryv2(dependsOn: extractIntermediaryV2, type: FileOutput) {
+	group = buildMappingGroup
+	def v2Input = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.tiny")
+
+	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-inverted-v2.tiny")
+	outputs.file(output)
+
+	outputs.upToDateWhen { false }
+
+	doLast {
+		logger.lifecycle(":building inverted intermediary v2")
+
+		String[] v2Args = [
+				v2Input.getAbsolutePath(),
+				output.getAbsolutePath(),
+				"intermediary", "official"
+		]
+
+		new CommandReorderTinyV2().run(v2Args)
+	}
+}
+
 task patchIntermediary(dependsOn: [mergeJars, downloadIntermediary]) {
 	group = buildMappingGroup
-	def intermediaryTinyInput = downloadIntermediary.dest
+	def intermediaryTinyInput = downloadIntermediary.outputs.files.singleFile
 
 	def outputFile = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-full.tiny")
 	outputs.file(outputFile)
@@ -371,18 +418,18 @@ task buildYarnTiny(dependsOn: mapIntermediaryJar, type: WithV2FileOutput) {
 		logger.lifecycle(":generating tiny mappings")
 
 		new MapSpecializedMethodsCommand().run(
-			intermediaryJar.getAbsolutePath(),
-			"enigma",
-			mappingsDir.getAbsolutePath(),
-			"tinyv2:intermediary:named",
-			v2Output.getAbsolutePath()
+				intermediaryJar.getAbsolutePath(),
+				"enigma",
+				mappingsDir.getAbsolutePath(),
+				"tinyv2:intermediary:named",
+				v2Output.getAbsolutePath()
 		)
 
 		new ConvertMappingsCommand().run(
-			"tinyv2",
-			v2Output.getAbsolutePath(),
-			"tiny:intermediary:named",
-			v1Output.getAbsolutePath())
+				"tinyv2",
+				v2Output.getAbsolutePath(),
+				"tiny:intermediary:named",
+				v1Output.getAbsolutePath())
 	}
 }
 
@@ -464,7 +511,7 @@ clean.doFirst {
 	delete tempDir, cacheFilesMinecraft
 }
 
-tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar"
+tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar"
 
 task mapYarnJar(dependsOn: [compressTiny, mapIntermediaryJar]) {
 	group = mapJarGroup
@@ -576,6 +623,36 @@ task insertAutoGeneratedEnumMappings(dependsOn : [buildYarnTiny,mapIntermediaryJ
 	}
 }
 
+task mergeV2(dependsOn: ["v2UnmergedYarnJar", "invertIntermediaryv2"], type: FileOutput) {
+	def mergedV2 = new File(tempDir, "merged-v2.tiny");
+
+	output = new File(tempDir, "merged-reordered-v2.tiny")
+	outputs.upToDateWhen { false }
+
+	doLast {
+		logger.lifecycle(":merging yarn and intermediary v2")
+		String[] args = [
+				invertIntermediaryv2.output.getAbsolutePath(),
+				insertAutoGeneratedEnumMappings.output.getAbsolutePath(),
+				mergedV2.getAbsolutePath(),
+				"intermediary",
+				"official"
+		]
+
+		new CommandMergeTinyV2().run(args)
+
+		//Reorder the mappings to match the output of loom
+		args = [
+				mergedV2.getAbsolutePath(),
+				output.getAbsolutePath(),
+				"official",
+				"intermediary",
+				"named"
+		]
+		new CommandReorderTinyV2().run(args)
+	}
+}
+
 task v2UnmergedYarnJar(dependsOn: insertAutoGeneratedEnumMappings, type: Jar) {
 	def mappings = insertAutoGeneratedEnumMappings.output
 	group = "mapping build"
@@ -586,6 +663,78 @@ task v2UnmergedYarnJar(dependsOn: insertAutoGeneratedEnumMappings, type: Jar) {
 		rename mappings.name, "mappings/mappings.tiny"
 	}
 	destinationDirectory.set(file("build/libs"))
+}
+
+task v2MergedYarnJar(dependsOn: ["mergeV2"], type: Jar) {
+	def mappings = mergeV2.output
+	group = "mapping build"
+	outputs.upToDateWhen { false }
+	archiveFileName = "yarn-${yarnVersion}-mergedv2.jar"
+
+	from(file(mappings)) {
+		rename mappings.name, "mappings/mappings.tiny"
+	}
+	destinationDirectory.set(file("build/libs"))
+}
+
+def fakeSourceDir = file(".gradle/temp/fakeSource")
+task genFakeSource(dependsOn: ["buildYarnTiny", "mapNamedJar"]) {
+	group = "javadoc generation"
+	outputs.upToDateWhen { false }
+
+	doLast {
+		String[] args = [
+				buildYarnTiny.v2Output.getAbsolutePath(),
+				namedJar.getAbsolutePath(),
+				fakeSourceDir.getAbsolutePath()
+		]
+
+		net.fabricmc.mappingpoet.Main.main(args)
+
+		logger.lifecycle ":Fake source generated"
+	}
+}
+
+tasks.getByName("javadoc") {
+	dependsOn genFakeSource
+	dependsOn downloadMcLibs
+	group = "javadoc generation"
+	outputs.upToDateWhen { false }
+	options {
+		source = "8"
+		encoding = 'UTF-8'
+		charSet = 'UTF-8'
+		memberLevel = JavadocMemberLevel.PRIVATE
+		links(
+				'https://guava.dev/releases/21.0/api/docs/',
+				'https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/',
+				'https://logging.apache.org/log4j/2.x/log4j-api/apidocs/',
+				// jsr305 need to come before jdk or the anno links are broken
+				'https://www.javadoc.io/doc/com.google.code.findbugs/jsr305/3.0.2/',
+				'https://javadoc.lwjgl.org/',
+				'http://fastutil.di.unimi.it/docs/',
+				'https://commons.apache.org/proper/commons-logging/javadocs/api-1.1.3/',
+				'https://commons.apache.org/proper/commons-lang/javadocs/api-3.5',
+				'https://commons.apache.org/proper/commons-io/javadocs/api-2.5',
+				'https://commons.apache.org/proper/commons-codec/archives/1.10/apidocs',
+				'https://commons.apache.org/proper/commons-compress/javadocs/api-1.8.1/',
+				'https://docs.oracle.com/javase/8/docs/api/'
+				// Need to add loader jd publication for env annotations!
+		)
+		// Disable the crazy super-strict doclint tool in Java 8
+		addStringOption('Xdoclint:none', '-quiet')
+	}
+	source fakeSourceDir
+	classpath = configurations.javadocClasspath.plus downloadMcLibs.outputs.files.asFileTree
+}
+
+task javadocJar(type: Jar, dependsOn: ["javadoc"]) {
+	group = "javadoc generation"
+
+	from javadoc.destinationDir
+
+	archiveVersion.set yarnVersion
+	classifier = 'javadoc'
 }
 
 bintray {
@@ -628,6 +777,10 @@ publishing {
 			artifact(v2UnmergedYarnJar) {
 				classifier "v2"
 			}
+			artifact(v2MergedYarnJar) {
+				classifier "mergedv2"
+			}
+			artifact javadocJar
 		}
 
 	}
