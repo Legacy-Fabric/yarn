@@ -1,5 +1,7 @@
 # Yarn
 
+![Java CI](https://github.com/Legacy-Fabric/yarn-1.8.9/workflows/Java%20CI/badge.svg)
+
 Yarn is a set of open, unencumbered Minecraft mappings, free for everyone to use under the Creative Commons Zero license. The intention is to let 
 everyone mod Minecraft freely and openly, while also being able to innovate and process the mappings as they see fit.
 
