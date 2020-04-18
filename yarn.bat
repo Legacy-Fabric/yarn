@@ -1,1 +1,1 @@
-gradle yarn
+gradlew yarn
