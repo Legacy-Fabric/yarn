@@ -17,24 +17,36 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 	FIELD field_3010 headerHeight I
 	FIELD field_3011 HomeButtonId I
 	FIELD field_3012 endButtonId I
+	FIELD field_3013 dragging Z
 	METHOD <init> (Lnet/minecraft/class_669;IIIII)V
 		ARG 1 client
 		ARG 2 width
 		ARG 3 height
 		ARG 4 top
 		ARG 5 bottom
-	METHOD method_2629 isSelectedItem (I)Z
+		ARG 6 entryHeight
+	METHOD method_2629 isEntrySelected (I)Z
+		ARG 1 index
 	METHOD method_2631 render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 delta
 	METHOD method_2632 updateItemPosition (III)V
+		ARG 1 index
+		ARG 2 x
+		ARG 3 y
 	METHOD method_2633 updateBounds (IIII)V
 		ARG 1 right
 		ARG 2 height
 		ARG 3 top
 		ARG 4 bottom
 	METHOD method_2634 renderItem (IIIIII)V
+		ARG 1 index
+		ARG 2 x
+		ARG 3 y
+		ARG 4 rowHeight
+		ARG 5 mouseX
+		ARG 6 mouseY
 	METHOD method_2635 renderHeader (IILnet/minecraft/class_1041;)V
 	METHOD method_2637 buttonClicked (Lnet/minecraft/class_685;)V
 		ARG 1 buttonWidget
@@ -46,12 +58,15 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 		ARG 3 mouseX
 		ARG 4 mouseY
 	METHOD method_2643 getRowWidth ()I
+	METHOD method_2644 getEntryAt (II)I
 	METHOD method_2645 renderHoleBackground (IIII)V
 		ARG 1 top
 		ARG 2 bottom
 		ARG 3 topAlpha
 		ARG 4 bottomAlpha
 	METHOD method_2646 getScrollbarPosition ()I
+	METHOD method_2648 setDragging (Z)V
+		ARG 1 dragging
 	METHOD method_2649 isMouseInList (I)Z
 		ARG 1 mouseY
 	METHOD method_2650 scroll (I)V
@@ -63,4 +78,5 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 	METHOD method_2654 getMaxScroll ()I
 	METHOD method_2655 getScrollAmount ()I
 	METHOD method_2656 handleMouse ()V
+	METHOD method_2657 isDragging ()Z
 	METHOD method_2658 getItemHeight ()I
