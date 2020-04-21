@@ -2,13 +2,28 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	FIELD field_8652 MODIFIER_FORMAT Ljava/text/DecimalFormat;
 	FIELD field_8653 count I
 	FIELD field_8655 item Lnet/minecraft/class_2054;
-	FIELD field_8656 compound Lnet/minecraft/class_1405;
+	FIELD field_8656 tag Lnet/minecraft/class_1405;
 	FIELD field_8657 damage I
 	FIELD field_8660 lastDestroyResult Z
 	FIELD field_8662 lastPlaceOnResult Z
+	METHOD <init> (Lnet/minecraft/class_160;)V
+		ARG 1 block
+	METHOD <init> (Lnet/minecraft/class_160;I)V
+		ARG 1 block
+		ARG 2 count
+	METHOD <init> (Lnet/minecraft/class_160;II)V
+		ARG 1 block
+		ARG 2 count
+		ARG 3 damage
+	METHOD <init> (Lnet/minecraft/class_2054;)V
+		ARG 1 item
+	METHOD <init> (Lnet/minecraft/class_2054;I)V
+		ARG 1 item
+		ARG 2 count
 	METHOD <init> (Lnet/minecraft/class_2054;II)V
 		ARG 1 item
 		ARG 2 count
+		ARG 3 damage
 	METHOD method_8329 getRepairCost ()I
 	METHOD method_8330 getAttributes ()Lcom/google/common/collect/Multimap;
 	METHOD method_8331 toHoverableText ()Lnet/minecraft/class_1444;
@@ -30,11 +45,21 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 		ARG 2 player
 		ARG 3 amount
 	METHOD method_8342 fromTag (Lnet/minecraft/class_1405;)Lnet/minecraft/class_2056;
+		ARG 0 tag
 	METHOD method_8343 putSubTag (Ljava/lang/String;Lnet/minecraft/class_1419;)V
 		ARG 1 key
 		ARG 2 tag
+	METHOD method_8344 getSubTag (Ljava/lang/String;Z)Lnet/minecraft/class_1405;
+		ARG 1 name
+		ARG 2 createIfNull
 	METHOD method_8349 getTooltip (Lnet/minecraft/class_1963;Z)Ljava/util/List;
-	METHOD method_8352 areTagsEqual (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
+		ARG 1 player
+		ARG 2 advanced
+	METHOD method_8350 setItem (Lnet/minecraft/class_2054;)V
+		ARG 1 item
+	METHOD method_8351 equalsIgnoreTags (Lnet/minecraft/class_2056;)Z
+		ARG 1 stack
+	METHOD method_8352 equalsIgnoreDamage (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
 		ARG 0 left
 		ARG 1 right
 	METHOD method_8353 getItem ()Lnet/minecraft/class_2054;
@@ -47,22 +72,29 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 		ARG 2 player
 	METHOD method_8358 toTag (Lnet/minecraft/class_1405;)Lnet/minecraft/class_1405;
 		ARG 1 tag
-	METHOD method_8360 areEqualIgnoreDamage (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
+	METHOD method_8359 copyOf (Lnet/minecraft/class_2056;)Lnet/minecraft/class_2056;
+		ARG 0 stack
+	METHOD method_8360 equalsAll (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
 		ARG 0 left
 		ARG 1 right
 	METHOD method_8361 getMaxCount ()I
+	METHOD method_8362 setRepairCost (I)V
+		ARG 1 cost
 	METHOD method_8364 writeTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
-	METHOD method_8367 areItemsEqualIgnoreDamage (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
+	METHOD method_8365 setCustomName (Ljava/lang/String;)Lnet/minecraft/class_2056;
+		ARG 1 name
+	METHOD method_8366 (Lnet/minecraft/class_2056;)Z
+		ARG 1 stack
+	METHOD method_8367 equalsIgnoreTags (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
 		ARG 0 left
 		ARG 1 right
 	METHOD method_8368 isDamaged ()Z
 	METHOD method_8370 setTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
-	METHOD method_8371 isEqualIgnoreDamage (Lnet/minecraft/class_2056;)Z
+	METHOD method_8371 equalsAll (Lnet/minecraft/class_2056;)Z
 		ARG 1 stack
 	METHOD method_8372 isDamageable ()Z
-	METHOD method_8373 hasTag ()Z
 	METHOD method_8374 isEmpty ()Z
 	METHOD method_8375 getDamage ()I
 	METHOD method_8376 getMeta ()I
@@ -70,13 +102,13 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8378 copy ()Lnet/minecraft/class_2056;
 	METHOD method_8379 getMaxUseTime ()I
 	METHOD method_8380 getUseAction ()Lnet/minecraft/class_30;
+	METHOD method_8381 hasTag ()Z
 	METHOD method_8382 getTag ()Lnet/minecraft/class_1405;
 	METHOD method_8383 getEnchantments ()Lnet/minecraft/class_1411;
+	METHOD method_8384 getName ()Ljava/lang/String;
 	METHOD method_8385 removeCustomName ()V
 	METHOD method_8386 hasCustomName ()Z
 	METHOD method_8387 hasEnchantmentGlint ()Z
 	METHOD method_8388 getRarity ()Lnet/minecraft/class_12;
 	METHOD method_8389 isEnchantable ()Z
 	METHOD method_8390 hasEnchantments ()Z
-	METHOD method_8391 isFood ()Z
-	METHOD method_8392 isInFrame ()Z
