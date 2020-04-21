@@ -3,13 +3,15 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	FIELD field_8630 group Lnet/minecraft/class_2029;
 	FIELD field_8631 maxDamage I
 	FIELD field_8632 item Lnet/minecraft/class_2054;
-	FIELD field_8633 registry Lnet/minecraft/class_1393;
+	FIELD field_8633 REGISTRY Lnet/minecraft/class_1393;
 	FIELD field_8634 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
 	FIELD field_8635 RANDOM Ljava/util/Random;
 	FIELD field_8636 maxCount I
+	FIELD field_8638 damageable Z
 	FIELD field_8640 translationKey Ljava/lang/String;
 	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
 	METHOD method_8248 register (ILjava/lang/String;Lnet/minecraft/class_2054;)V
+	METHOD method_8250 onHit (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;Z)Lnet/minecraft/class_647;
 	METHOD method_8251 fromBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
 		ARG 0 block
 	METHOD method_8252 registerBlockItem (Lnet/minecraft/class_160;Lnet/minecraft/class_2054;)V
@@ -34,14 +36,21 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8267 canRepair (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
 		ARG 1 stack
 		ARG 2 ingredient
+	METHOD method_8268 setUnbreakable (Z)Lnet/minecraft/class_2054;
+		ARG 1 unbreakable
 	METHOD method_8269 getEnchantability ()I
 	METHOD method_8270 byRawId (I)Lnet/minecraft/class_2054;
 		ARG 0 id
 	METHOD method_8272 getRawId (Lnet/minecraft/class_2054;)I
 		ARG 0 item
+	METHOD method_8275 setMaxCount (I)Lnet/minecraft/class_2054;
+		ARG 1 count
 	METHOD method_8276 registerBlockItem (Lnet/minecraft/class_160;)V
 	METHOD method_8277 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_2054;
 		ARG 1 translationKey
+	METHOD method_8278 setItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_2054;
+	METHOD method_8279 setMaxDamage (I)Lnet/minecraft/class_2054;
+		ARG 1 damage
 	METHOD method_8281 getMaxUseTime (Lnet/minecraft/class_2056;)I
 		ARG 1 stack
 	METHOD method_8282 onCraft (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)V
@@ -58,6 +67,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		ARG 1 stack
 	METHOD method_8290 getRarity (Lnet/minecraft/class_2056;)Lnet/minecraft/class_12;
 	METHOD method_8292 getMaxCount ()I
+	METHOD method_8294 isUnbreakable ()Z
+	METHOD method_8295 getItemstackTranslationKey (Lnet/minecraft/class_2056;)Ljava/lang/String;
 	METHOD method_8296 getMaxDamage ()I
 	METHOD method_8298 isDamageable ()Z
 	METHOD method_8300 shouldSyncTagToClient ()Z
