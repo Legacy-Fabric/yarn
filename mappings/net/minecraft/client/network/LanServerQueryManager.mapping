@@ -1,7 +1,18 @@
 CLASS net/minecraft/class_1317 net/minecraft/client/network/LanServerQueryManager
 	FIELD field_5455 THREAD_ID Ljava/util/concurrent/atomic/AtomicInteger;
 	FIELD field_5456 LOGGER Lorg/apache/logging/log4j/Logger;
+	CLASS class_1318 LanServerInfo
+		FIELD field_5457 motd Ljava/lang/String;
+		FIELD field_5458 addressPort Ljava/lang/String;
+		FIELD field_5459 lastTimeMillis J
+		METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
+			ARG 1 motd
+			ARG 2 addressPort
+		METHOD method_4555 getMotd ()Ljava/lang/String;
+		METHOD method_4556 getAddressPort ()Ljava/lang/String;
+		METHOD method_4557 updateLastTime ()V
 	CLASS class_1319 LanServerDetector
+		FIELD field_5460 entryList Lnet/minecraft/class_1317$class_1320;
 		FIELD field_5461 multicastAddress Ljava/net/InetAddress;
 		FIELD field_5462 socket Ljava/net/MulticastSocket;
 	CLASS class_1320 LanServerEntryList
@@ -10,3 +21,4 @@ CLASS net/minecraft/class_1317 net/minecraft/client/network/LanServerQueryManage
 		METHOD method_4558 needsUpdate ()Z
 		METHOD method_4559 addServer (Ljava/lang/String;Ljava/net/InetAddress;)V
 		METHOD method_4560 markClean ()V
+		METHOD method_4561 getServers ()Ljava/util/List;
