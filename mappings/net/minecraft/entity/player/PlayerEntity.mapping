@@ -10,7 +10,6 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	FIELD field_8332 reducedDebugInfo Z
 	FIELD field_8334 inventory Lnet/minecraft/class_1962;
 	FIELD field_8335 playerContainer Lnet/minecraft/class_1983;
-	FIELD field_8336 container Lnet/minecraft/class_1983;
 	FIELD field_8337 hungerManager Lnet/minecraft/class_1982;
 	FIELD field_8341 experiencePickUpDelay I
 	FIELD field_8353 spawnForced Z
@@ -21,6 +20,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 2 profile
 	METHOD method_7972 addExhaustion (F)V
 		ARG 1 exhaustion
+	METHOD method_7976 findRespawnPosition (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Z)Lnet/minecraft/class_1372;
 	METHOD method_7977 setGameMode (Lnet/minecraft/class_102$class_103;)V
 		ARG 1 gameMode
 	METHOD method_7979 openEditSignScreen (Lnet/minecraft/class_366;)V
@@ -31,26 +31,18 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7990 openHorseInventory (Lnet/minecraft/class_1850;Lnet/minecraft/class_1718;)V
 	METHOD method_7992 shouldDamagePlayer (Lnet/minecraft/class_1963;)Z
 		ARG 1 player
+	METHOD method_7993 copyFrom (Lnet/minecraft/class_1963;Z)V
 	METHOD method_7994 isPartVisible (Lnet/minecraft/class_1966;)Z
 		ARG 1 modelPart
-	METHOD method_7995 openEditBookScreen (Lnet/minecraft/class_2056;)V
-		ARG 1 book
 	METHOD method_7997 dropItem (Lnet/minecraft/class_2056;Z)Lnet/minecraft/class_1893;
 		ARG 1 stack
 	METHOD method_7999 (Z)Lnet/minecraft/class_1893;
 		ARG 1 dropAll
-	METHOD method_8000 wakeUp (ZZZ)V
-	METHOD method_8003 addChatMessage (Lnet/minecraft/class_1444;)V
-		ARG 1 message
 	METHOD method_8004 getOfflinePlayerUuid (Ljava/lang/String;)Ljava/util/UUID;
 		ARG 0 nickname
 	METHOD method_8005 incrementStat (Lnet/minecraft/class_1681;)V
 	METHOD method_8006 addCritParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 target
-	METHOD method_8008 getActiveItem ()Lnet/minecraft/class_2056;
-	METHOD method_8010 isUsingItem ()Z
-	METHOD method_8011 getItemUseTime ()I
-	METHOD method_8012 stopUsingItem ()V
 	METHOD method_8015 getScore ()I
 	METHOD method_8018 addEnchantedHitParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 target
@@ -71,7 +63,6 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_8035 getReducedDebugInfo ()Z
 	METHOD method_8036 collideWithEntity (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
-	METHOD method_8038 attack (Lnet/minecraft/class_1745;)V
 	METHOD method_8039 canConsume (Z)Z
 		ARG 1 ignoreHunger
 	METHOD method_8041 setReducedDebugInfo (Z)V
@@ -82,5 +73,4 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_8047 addScore (I)V
 		ARG 1 score
 	METHOD method_8048 sendAbilitiesUpdate ()V
-	METHOD method_8051 isSpectator ()Z
 	CLASS class_1964 SleepFailureReason
