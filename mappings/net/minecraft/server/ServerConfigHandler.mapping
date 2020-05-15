@@ -6,8 +6,13 @@ CLASS net/minecraft/class_1654 net/minecraft/server/ServerConfigHandler
 	FIELD field_6794 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD method_6168 processSimpleListFile (Ljava/io/File;Ljava/util/Map;)Ljava/util/List;
 		ARG 1 valueMap
-	METHOD method_6173 convertBannedPlayers (Lnet/minecraft/server/MinecraftServer;)Z
+	METHOD method_6169 getPlayerUuidByName (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 name
+	METHOD method_6171 checkSuccess (Lnet/minecraft/class_1617;)Z
+	METHOD method_6172 convertPlayerFiles (Lnet/minecraft/class_1620;Lnet/minecraft/class_1617;)Z
 		ARG 0 minecraftServer
+	METHOD method_6173 convertBannedPlayers (Lnet/minecraft/server/MinecraftServer;)Z
+		ARG 0 server
 	METHOD method_6174 lookupProfile (Lnet/minecraft/server/MinecraftServer;Ljava/util/Collection;Lcom/mojang/authlib/ProfileLookupCallback;)V
 		ARG 0 server
 		ARG 1 bannedPlayers
@@ -17,17 +22,51 @@ CLASS net/minecraft/class_1654 net/minecraft/server/ServerConfigHandler
 	METHOD method_6176 stringToDate (Ljava/lang/String;Ljava/util/Date;)Ljava/util/Date;
 		ARG 0 string
 		ARG 1 fallback
+	METHOD method_6177 checkListConversionSuccess (Lnet/minecraft/class_1617;)Z
 	METHOD method_6178 convertBannedIps (Lnet/minecraft/server/MinecraftServer;)Z
-		ARG 0 minecraftServer
+		ARG 0 server
 	METHOD method_6179 markFileConverted (Ljava/io/File;)V
 		ARG 0 file
+	METHOD method_6180 checkPlayerConversionSuccess (Lnet/minecraft/class_1617;)Z
 	METHOD method_6181 convertOperators (Lnet/minecraft/server/MinecraftServer;)Z
-		ARG 0 minecraftServer
+		ARG 0 server
+	METHOD method_6182 getLevelPlayersFolder (Lnet/minecraft/class_1617;)Ljava/io/File;
 	METHOD method_6183 convertWhitelist (Lnet/minecraft/server/MinecraftServer;)Z
-		ARG 0 minecraftServer
+		ARG 0 server
 	CLASS 2
 		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
 			ARG 1 profile
 		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
 			ARG 1 profile
+	CLASS 3
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
+	CLASS 4
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
+	CLASS 5
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
+	CLASS 6
+		METHOD method_6185 getPlayerFileName (Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;
+			ARG 1 profile
+		METHOD method_6186 convertPlayerFile (Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)V
+			ARG 1 playerDataFolder
+			ARG 2 fileName
+			ARG 3 uuid
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
 	CLASS class_1655 ServerConfigException
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 title
+		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+			ARG 1 title
+			ARG 2 other
