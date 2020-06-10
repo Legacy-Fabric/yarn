@@ -1,114 +1,84 @@
-CLASS net/minecraft/class_2054 net/minecraft/item/Item
-	FIELD field_8629 BLOCK_ITEMS Ljava/util/Map;
-	FIELD field_8630 group Lnet/minecraft/class_2029;
-	FIELD field_8631 maxDamage I
-	FIELD field_8632 item Lnet/minecraft/class_2054;
-	FIELD field_8633 REGISTRY Lnet/minecraft/class_1393;
-	FIELD field_8634 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
-	FIELD field_8635 RANDOM Ljava/util/Random;
-	FIELD field_8636 maxCount I
-	FIELD field_8638 damageable Z
-	FIELD field_8640 translationKey Ljava/lang/String;
-	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
-	METHOD method_8248 register (ILjava/lang/String;Lnet/minecraft/class_2054;)V
-	METHOD method_8250 onHit (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;Z)Lnet/minecraft/class_647;
-	METHOD method_8251 fromBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
-		ARG 0 block
-	METHOD method_8252 registerBlockItem (Lnet/minecraft/class_160;Lnet/minecraft/class_2054;)V
-	METHOD method_8253 postProcessTag (Lnet/minecraft/class_1405;)Z
-		ARG 1 tag
-	METHOD method_8254 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_2054;
-		ARG 1 group
-	METHOD method_8259 inventoryTick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 entity
-		ARG 4 slot
-		ARG 5 selected
-	METHOD method_8260 (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
-		ARG 2 world
-		ARG 3 player
-	METHOD method_8264 onUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
-		ARG 1 itemStack
+CLASS net/minecraft/class_1792 net/minecraft/item/Item
+	FIELD field_8001 MODIFIER_SWING_SPEED Ljava/util/UUID;
+	FIELD field_8003 BLOCK_ITEM_MAP Ljava/util/Map;
+	FIELD field_8005 rand Ljava/util/Random;
+	FIELD field_8006 MODIFIER_DAMAGE Ljava/util/UUID;
+	FIELD field_8007 GETTER_COOLDOWN Lnet/minecraft/class_1800;
+	FIELD field_8011 GETTER_HAND Lnet/minecraft/class_1800;
+	METHOD method_7836 onRightClick (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1271;
+		ARG 0 world
+		ARG 1 player
+		ARG 2 hand
+	METHOD method_7837 getEnchantability ()I
+	METHOD method_7840 onItemStopUsing (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;I)V
+		ARG 0 stack
+		ARG 1 world
 		ARG 2 player
-		ARG 3 world
-		ARG 4 pos
-		ARG 5 direction
-	METHOD method_8267 canRepair (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
-		ARG 1 stack
-		ARG 2 ingredient
-	METHOD method_8268 setUnbreakable (Z)Lnet/minecraft/class_2054;
-		ARG 1 unbreakable
-	METHOD method_8269 getEnchantability ()I
-	METHOD method_8270 byRawId (I)Lnet/minecraft/class_2054;
+		ARG 3 remainingTime
+	METHOD method_7841 getDurability ()I
+	METHOD method_7842 isMap ()Z
+	METHOD method_7843 onCrafted (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;)V
+		ARG 0 stack
+		ARG 1 world
+		ARG 2 player
+	METHOD method_7844 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
+		ARG 0 effectiveSlot
+	METHOD method_7845 hasProperties ()Z
+	METHOD method_7846 canDamage ()Z
+	METHOD method_7847 interactWithEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Z
+		ARG 0 stack
+		ARG 1 player
+		ARG 2 target
+		ARG 3 hand
+	METHOD method_7850 addStacksForDisplay (Lnet/minecraft/class_1761;Lnet/minecraft/class_2371;)V
+		ARG 1 items
+	METHOD method_7851 addInformation (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Ljava/util/List;Lnet/minecraft/class_1836;)V
+		ARG 0 stack
+		ARG 2 tooltip
+	METHOD method_7853 getUseAction (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1839;
+		ARG 0 stack
+	METHOD method_7854 getDefaultStack ()Lnet/minecraft/class_1799;
+	METHOD method_7857 hasContainerItem ()Z
+	METHOD method_7858 getContainerItem ()Lnet/minecraft/class_1792;
+	METHOD method_7859 getCreativeTab ()Lnet/minecraft/class_1761;
+	METHOD method_7860 onDeserialize (Lnet/minecraft/class_2487;)Z
+		ARG 0 tag
+	METHOD method_7861 onItemFinishedUsing (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1799;
+		ARG 0 stack
+		ARG 1 world
+		ARG 2 user
+	METHOD method_7863 addProperty (Lnet/minecraft/class_2960;Lnet/minecraft/class_1800;)V
 		ARG 0 id
-	METHOD method_8271 isEffectiveOn (Lnet/minecraft/class_160;)Z
-	METHOD method_8272 getRawId (Lnet/minecraft/class_2054;)I
+		ARG 1 property
+	METHOD method_7867 getItemFromBlock (Lnet/minecraft/class_2248;)Lnet/minecraft/class_1792;
+		ARG 0 block
+	METHOD method_7868 getProperty (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1800;
+		ARG 0 id
+	METHOD method_7870 isTool (Lnet/minecraft/class_1799;)Z
+		ARG 0 stack
+	METHOD method_7872 getHitResult (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Z)Lnet/minecraft/class_239;
+		ARG 0 world
+		ARG 1 player
+		ARG 2 hitLiquids
+	METHOD method_7873 onEntityDamaged (Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
+		ARG 0 stack
+		ARG 1 target
+		ARG 2 user
+	METHOD method_7876 getTranslationKey ()Ljava/lang/String;
+	METHOD method_7878 canRepair (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 0 item
-	METHOD method_8274 getItemGroup ()Lnet/minecraft/class_2029;
-	METHOD method_8275 setMaxCount (I)Lnet/minecraft/class_2054;
-		ARG 1 count
-	METHOD method_8276 registerBlockItem (Lnet/minecraft/class_160;)V
-	METHOD method_8277 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_2054;
-		ARG 1 translationKey
-	METHOD method_8278 setItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_2054;
-	METHOD method_8279 setMaxDamage (I)Lnet/minecraft/class_2054;
-		ARG 1 damage
-	METHOD method_8280 getFromId (Ljava/lang/String;)Lnet/minecraft/class_2054;
-		ARG 0 id
-	METHOD method_8281 getMaxUseTime (Lnet/minecraft/class_2056;)I
-		ARG 1 stack
-	METHOD method_8282 onCraft (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)V
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 player
-	METHOD method_8285 getUseAction (Lnet/minecraft/class_2056;)Lnet/minecraft/class_30;
-		ARG 1 stack
-	METHOD method_8286 getTranslationKey (Lnet/minecraft/class_2056;)Ljava/lang/String;
-		ARG 1 stack
-	METHOD method_8287 isNetworkSynced ()Z
-	METHOD method_8288 hasEnchantmentGlint (Lnet/minecraft/class_2056;)Z
-		ARG 1 stack
-	METHOD method_8289 isEnchantable (Lnet/minecraft/class_2056;)Z
-		ARG 1 stack
-	METHOD method_8290 getRarity (Lnet/minecraft/class_2056;)Lnet/minecraft/class_12;
-		ARG 1 stack
-	METHOD method_8292 getMaxCount ()I
-	METHOD method_8294 isUnbreakable ()Z
-	METHOD method_8295 getItemstackTranslationKey (Lnet/minecraft/class_2056;)Ljava/lang/String;
-		ARG 1 stack
-	METHOD method_8296 getMaxDamage ()I
-	METHOD method_8297 matches (Lnet/minecraft/class_2056;)Z
-	METHOD method_8298 isDamageable ()Z
-	METHOD method_8300 shouldSyncTagToClient ()Z
-	METHOD method_8301 getRecipeRemainder ()Lnet/minecraft/class_2054;
-	METHOD method_8302 isFood ()Z
-	METHOD method_8304 setup ()V
-	CLASS 1
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 4
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 5
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 6
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 9
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 item
-	CLASS 10
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 11
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 12
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 16
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 item
-	CLASS class_2055 MaterialType
+		ARG 1 repairItem
+	METHOD method_7880 getRawIdByItem (Lnet/minecraft/class_1792;)I
+		ARG 0 item
+	METHOD method_7881 getMaxUseTime (Lnet/minecraft/class_1799;)I
+		ARG 0 stack
+	METHOD method_7882 getMaxAmount ()I
+	METHOD method_7886 hasEnchantmentGlow (Lnet/minecraft/class_1799;)Z
+		ARG 0 stack
+	METHOD method_7887 requiresClientSync ()Z
+	METHOD method_7888 onUpdate (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1297;IZ)V
+		ARG 0 stack
+		ARG 1 world
+		ARG 2 entity
+		ARG 3 invSlot
+		ARG 4 held

@@ -1,141 +1,175 @@
-CLASS net/minecraft/class_99 net/minecraft/world/World
-	FIELD field_249 villageState Lnet/minecraft/class_1844;
-	FIELD field_250 profiler Lnet/minecraft/class_1705;
-	FIELD field_251 scoreboard Lnet/minecraft/class_653;
-	FIELD field_252 isClient Z
-	FIELD field_257 ambientDarkness I
-	FIELD field_261 iteratingTickingBlockEntities Z
-	FIELD field_262 border Lnet/minecraft/class_395;
-	FIELD field_264 pendingBlockEntities Ljava/util/List;
-	FIELD field_265 unloadedBlockEntities Ljava/util/List;
-	FIELD field_270 blockEntities Ljava/util/List;
-	FIELD field_271 tickingBlockEntities Ljava/util/List;
-	FIELD field_273 entities Ljava/util/List;
-	FIELD field_274 idToEntity Lnet/minecraft/class_1697;
-	FIELD field_275 lcgBlockSeed I
-	FIELD field_276 unusedIncrement I
-	FIELD field_277 rainGradientPrev F
-	FIELD field_278 rainGradient F
-	FIELD field_279 thunderGradientPrev F
-	FIELD field_280 thunderGradient F
-	FIELD field_281 random Ljava/util/Random;
-	FIELD field_282 dimension Lnet/minecraft/class_411;
-	FIELD field_284 chunkProvider Lnet/minecraft/class_396;
-	FIELD field_286 levelProperties Lnet/minecraft/class_634;
-	METHOD <init> (Lnet/minecraft/class_635;Lnet/minecraft/class_634;Lnet/minecraft/class_411;Lnet/minecraft/class_1705;Z)V
-		ARG 3 dimension
-		ARG 4 profiler
-		ARG 5 client
-	METHOD method_233 getDebugString ()Ljava/lang/String;
-	METHOD method_234 getReceivedRedstonePower (Lnet/minecraft/class_1372;)I
-	METHOD method_235 calculateAmbientDarkness ()V
-	METHOD method_236 setSpawnPos (Lnet/minecraft/class_1372;)V
-		ARG 1 pos
-	METHOD method_237 initWeatherGradients ()V
-	METHOD method_238 hasRain (Lnet/minecraft/class_1372;)Z
-		ARG 1 pos
-	METHOD method_240 hasHighHumidity (Lnet/minecraft/class_1372;)Z
-	METHOD method_245 disconnect ()V
-	METHOD method_248 getTime ()J
-	METHOD method_249 getTimeOfDay ()J
-	METHOD method_250 getSpawnPos ()Lnet/minecraft/class_1372;
-	METHOD method_252 getSaveHandler ()Lnet/minecraft/class_635;
-	METHOD method_253 getLevelProperties ()Lnet/minecraft/class_634;
-	METHOD method_254 getGameRules ()Lnet/minecraft/class_95;
-	METHOD method_255 isThundering ()Z
-	METHOD method_256 isRaining ()Z
-	METHOD method_259 getEffectiveHeight ()I
-	METHOD method_262 getScoreboard ()Lnet/minecraft/class_653;
-	METHOD method_263 getClosestPlayer (DDDD)Lnet/minecraft/class_1963;
-	METHOD method_264 addFireworkParticle (DDDDDDLnet/minecraft/class_1405;)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 velocityX
-		ARG 9 velocityY
-		ARG 11 velocityZ
-		ARG 13 tag
-	METHOD method_269 getChunk (II)Lnet/minecraft/class_399;
+CLASS net/minecraft/class_1937 net/minecraft/world/World
+	FIELD field_9223 border Lnet/minecraft/class_2784;
+	FIELD field_9226 ambientDarkness I
+	FIELD field_9228 players Ljava/util/List;
+	FIELD field_9229 rand Ljava/util/Random;
+	FIELD field_9230 pathingCoordinator Lnet/minecraft/class_1411;
+	FIELD field_9232 properties Lnet/minecraft/class_31;
+	FIELD field_9234 thunderGradient F
+	FIELD field_9235 rainGradient F
+	FIELD field_9236 isRemote Z
+	FIELD field_9237 globalEntities Ljava/util/List;
+	FIELD field_9238 unusedIncrement I
+	FIELD field_9243 saveHandler Lnet/minecraft/class_30;
+	FIELD field_9244 seaLevel I
+	FIELD field_9245 unusedWhite J
+	FIELD field_9251 thunderGradientPrev F
+	FIELD field_9252 listeners Ljava/util/List;
+	FIELD field_9253 rainGradientPrev F
+	FIELD field_9254 villageManager Lnet/minecraft/class_1418;
+	FIELD field_9255 profiler Lnet/minecraft/class_3533;
+	METHOD method_8414 init (Lnet/minecraft/class_1940;)V
+		ARG 0 info
+	METHOD method_8415 unregisterListener (Lnet/minecraft/class_1938;)V
+		ARG 0 listener
+	METHOD method_8416 addGlobalEntity (Lnet/minecraft/class_1297;)Z
+		ARG 0 entity
+	METHOD method_8417 setAmbientDarkness (I)V
+		ARG 0 value
+	METHOD method_8419 isRaining ()Z
+	METHOD method_8420 getPlayerByUuid (Ljava/util/UUID;)Lnet/minecraft/class_1657;
+		ARG 0 uuid
+	METHOD method_8425 doesAreaContainFireSource (Lnet/minecraft/class_238;)Z
+		ARG 0 area
+	METHOD method_8427 addBlockAction (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;II)V
+		ARG 0 pos
+		ARG 1 block
+		ARG 2 first
+		ARG 3 second
+	METHOD method_8429 updateEntities ()V
+	METHOD method_8430 getRainGradient (F)F
+		ARG 0 deltaTicks
+	METHOD method_8431 getEntityCountAsString ()Ljava/lang/String;
+	METHOD method_8434 getPlayerByName (Ljava/lang/String;)Lnet/minecraft/class_1657;
+		ARG 0 name
+	METHOD method_8435 setTimeOfDay (J)V
+		ARG 0 time
+	METHOD method_8437 createExplosion (Lnet/minecraft/class_1297;DDDFZ)Lnet/minecraft/class_1927;
+		ARG 0 entity
 		ARG 1 x
 		ARG 2 y
-	METHOD method_277 setTime (J)V
-		ARG 1 time
-	METHOD method_281 getLuminance (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
-	METHOD method_286 isInsideWorld (Lnet/minecraft/class_395;Lnet/minecraft/class_1745;)Z
-	METHOD method_293 hasEntityIn (Lnet/minecraft/class_646;Lnet/minecraft/class_1745;)Z
-		ARG 1 box
-		ARG 2 exclusion
-	METHOD method_299 isHeightInvalid (Lnet/minecraft/class_1372;)Z
-	METHOD method_306 updateNeighborsExcept (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;Lnet/minecraft/class_1383;)V
-		ARG 1 pos
-		ARG 2 sourceBlock
-	METHOD method_307 setBlockEntity (Lnet/minecraft/class_1372;Lnet/minecraft/class_348;)V
-		ARG 1 pos
-	METHOD method_308 setBlockState (Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)Z
-		ARG 1 pos
-	METHOD method_309 setBlockState (Lnet/minecraft/class_1372;Lnet/minecraft/class_376;I)Z
-	METHOD method_314 addParticle (Lnet/minecraft/class_1394;DDDDDD[I)V
-	METHOD method_325 addBlockEntities (Ljava/util/Collection;)V
-	METHOD method_327 sendEntityStatus (Lnet/minecraft/class_1745;B)V
-		ARG 1 entity
-		ARG 2 status
-	METHOD method_333 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;Lcom/google/common/base/Predicate;)Ljava/util/List;
-		ARG 3 filter
-	METHOD method_334 playSound (Lnet/minecraft/class_1745;Ljava/lang/String;FF)V
-	METHOD method_337 canPlayerModifyAt (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;)Z
-		ARG 1 player
+		ARG 3 z
+		ARG 4 power
+		ARG 5 destroyBlocks
+	METHOD method_8438 addBlockEntity (Lnet/minecraft/class_2586;)Z
+		ARG 0 blockEntity
+	METHOD method_8444 fireWorldEvent (Lnet/minecraft/class_1657;ILnet/minecraft/class_2338;I)V
+		ARG 0 player
+		ARG 1 eventId
 		ARG 2 pos
-	METHOD method_338 extinguishFire (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
-	METHOD method_343 getAmbientDarkness ()I
-	METHOD method_347 getWorldBorder ()Lnet/minecraft/class_395;
-	METHOD method_348 getWorld ()Lnet/minecraft/class_99;
-	METHOD method_354 playLevelEvent (ILnet/minecraft/class_1372;I)V
-	METHOD method_355 setTimeOfDay (J)V
-		ARG 1 time
-	METHOD method_357 getLightLevel (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
-	METHOD method_360 hasEntityIn (Lnet/minecraft/class_646;)Z
-		ARG 1 box
-	METHOD method_361 containsBlockWithMaterial (Lnet/minecraft/class_646;Lnet/minecraft/class_591;)Z
+		ARG 3 data
+	METHOD method_8445 markRegionForRenderUpdate (Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;)V
+	METHOD method_8447 addBlockEntities (Ljava/util/Collection;)V
+		ARG 0 blockEntities
+	METHOD method_8448 updateSleepingStatus ()V
+	METHOD method_8450 getGameRules ()Lnet/minecraft/class_1928;
+	METHOD method_8451 updateAmbientDarkness ()V
+	METHOD method_8455 updateHorizontalAdjacent (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
+		ARG 0 pos
+		ARG 1 changedBlock
+	METHOD method_8459 isEmittingRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
+		ARG 0 pos
+		ARG 1 facingFrom
+	METHOD method_8465 playSound (Lnet/minecraft/class_1657;DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FF)V
+		ARG 0 player
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sound
+		ARG 5 category
+		ARG 6 volume
+		ARG 7 pitch
+	METHOD method_8468 checkSessionLock ()V
+	METHOD method_8469 getEntityById (I)Lnet/minecraft/class_1297;
+		ARG 0 id
+	METHOD method_8472 getClosestVisibleEntityTo (Ljava/lang/Class;Lnet/minecraft/class_238;Lnet/minecraft/class_1297;)Lnet/minecraft/class_1297;
+		ARG 0 clazz
 		ARG 1 area
-		ARG 2 material
-	METHOD method_364 markDirty (Lnet/minecraft/class_1372;Lnet/minecraft/class_348;)V
+		ARG 2 entity
+	METHOD method_8474 fireGlobalWorldEvent (ILnet/minecraft/class_2338;I)V
+		ARG 0 eventId
 		ARG 1 pos
-	METHOD method_365 checkBlockRerender (Lnet/minecraft/class_1372;Lnet/minecraft/class_1372;)V
-	METHOD method_366 isEmittingRedstonePower (Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+		ARG 2 data
+	METHOD method_8478 getThunderGradient (F)F
+		ARG 0 deltaTicks
+	METHOD method_8479 isReceivingRedstonePower (Lnet/minecraft/class_2338;)Z
+		ARG 0 pos
+	METHOD method_8482 getReceivedRedstonePower (Lnet/minecraft/class_2338;)I
+		ARG 0 pos
+	METHOD method_8485 onEntityAdded (Lnet/minecraft/class_1297;)V
+		ARG 0 entity
+	METHOD method_8486 playSound (DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FFZ)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+		ARG 3 sound
+		ARG 4 category
+		ARG 5 volume
+		ARG 6 pitch
+	METHOD method_8488 getReceivedStrongRedstonePower (Lnet/minecraft/class_2338;)I
+		ARG 0 pos
+	METHOD method_8489 markRegionForRenderUpdate (IIIIII)V
+	METHOD method_8492 updateBlock (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V
+		ARG 0 pos
+		ARG 1 sourceBlock
+		ARG 2 sourcePos
+	METHOD method_8493 setSeaLevel (I)V
+		ARG 0 seaLevel
+	METHOD method_8496 setThunderGradient (F)V
+		ARG 0 value
+	METHOD method_8499 getEmittedRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
+		ARG 0 pos
+		ARG 1 facingFrom
+	METHOD method_8503 getServer ()Lnet/minecraft/server/MinecraftServer;
+	METHOD method_8508 updateNeighborsExcept (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2350;)V
+		ARG 0 pos
+		ARG 1 sourceBlock
+		ARG 2 omittedFace
+	METHOD method_8510 getTime ()J
+	METHOD method_8511 updateWeather ()V
+	METHOD method_8512 unloadEntities (Ljava/util/Collection;)V
+		ARG 0 entities
+	METHOD method_8513 setDefaultSpawnClient ()V
+	METHOD method_8516 setTime (J)V
+		ARG 0 time
+	METHOD method_8517 setBlockBreakingProgress (ILnet/minecraft/class_2338;I)V
+		ARG 0 entityId
 		ARG 1 pos
-	METHOD method_373 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
-		ARG 2 box
-	METHOD method_374 tick ()V
-	METHOD method_381 getBlockAt (Lnet/minecraft/class_1372;)Lnet/minecraft/class_160;
+		ARG 2 progress
+	METHOD method_8519 setRainGradient (F)V
+		ARG 0 value
+	METHOD method_8521 registerListener (Lnet/minecraft/class_1938;)V
+		ARG 0 listener
+	METHOD method_8522 sendPacket (Lnet/minecraft/class_2596;)V
+		ARG 0 packet
+	METHOD method_8524 markDirty (Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)V
+		ARG 0 pos
+		ARG 1 entity
+	METHOD method_8526 setBlockEntity (Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)V
+		ARG 0 pos
+		ARG 1 blockEntity
+	METHOD method_8528 isPlayerVisible (DDDD)Z
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+		ARG 3 distance
+	METHOD method_8530 isDaylight ()Z
+	METHOD method_8532 getTimeOfDay ()J
+	METHOD method_8533 calculateAmbientDarkness (F)I
+	METHOD method_8534 isAreaNotEmpty (Lnet/minecraft/class_238;)Z
+		ARG 0 area
+	METHOD method_8535 fireWorldEvent (ILnet/minecraft/class_2338;I)V
+		ARG 0 eventId
 		ARG 1 pos
-	METHOD method_382 updateNeighborsAlways (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
-		ARG 1 pos
-	METHOD method_383 addBlockAction (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;II)V
-		ARG 1 pos
-		ARG 2 block
-		ARG 3 type
-		ARG 4 data
-	METHOD method_384 getEmittedRedstonePower (Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)I
-		ARG 1 pos
-	METHOD method_389 getSkyAngleRadians (F)F
-	METHOD method_394 spawnEntity (Lnet/minecraft/class_1745;)Z
-	METHOD method_396 doesAreaContainFireSource (Lnet/minecraft/class_646;)Z
-	METHOD method_397 blockExists (Lnet/minecraft/class_1372;)Z
-		ARG 1 pos
-	METHOD method_398 updateHorizontalAdjacent (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
-		ARG 1 pos
-	METHOD method_402 getChunk (Lnet/minecraft/class_1372;)Lnet/minecraft/class_399;
-	METHOD method_405 setDefaultSpawnClient ()V
-	METHOD method_407 removeBlock (Lnet/minecraft/class_1372;)Z
-	METHOD method_409 tickBlocks ()V
-	METHOD method_410 getThunderGradient (F)F
-	METHOD method_414 setThunderGradient (F)V
-		ARG 1 thunderGradient
-	METHOD method_416 getRainGradient (F)F
-	METHOD method_419 setRainGradient (F)V
-		ARG 1 rainGradient
-	METHOD method_426 getNextMapId ()I
-	METHOD method_429 removeBlockEntity (Lnet/minecraft/class_1372;)V
-	METHOD method_433 isDay ()Z
-	METHOD method_438 getReceivedStrongRedstonePower (Lnet/minecraft/class_1372;)I
-	METHOD method_440 isReceivingRedstonePower (Lnet/minecraft/class_1372;)Z
+		ARG 2 data
+	METHOD method_8539 onEntityRemoved (Lnet/minecraft/class_1297;)V
+		ARG 0 entity
+	METHOD method_8543 initWeatherGradients ()V
+	METHOD method_8544 removeBlockEntity (Lnet/minecraft/class_2338;)V
+		ARG 0 pos
+	METHOD method_8549 rayTrace (Lnet/minecraft/class_243;Lnet/minecraft/class_243;)Lnet/minecraft/class_239;
+		ARG 0 begin
+		ARG 1 end
+	METHOD method_8554 setSpawnPos (Lnet/minecraft/class_2338;)V
+		ARG 0 pos
+	METHOD method_8557 getVillageManager ()Lnet/minecraft/class_1418;
