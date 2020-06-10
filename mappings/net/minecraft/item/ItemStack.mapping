@@ -2,20 +2,13 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	FIELD field_8029 MODIFIER_FORMAT Ljava/text/DecimalFormat;
 	FIELD field_8030 updateCooldown I
 	FIELD field_8031 amount I
-	FIELD field_8032 lastCheckedCanPlaceBlock Lnet/minecraft/class_2694;
 	FIELD field_8034 lastCheckedCanPlaceResult Z
 	FIELD field_8035 lastCheckedCanHarvestResult Z
 	FIELD field_8036 invalid Z
 	FIELD field_8037 NULL_STACK Lnet/minecraft/class_1799;
 	FIELD field_8038 item Lnet/minecraft/class_1792;
-	FIELD field_8039 lastCheckedCanHarvestBlock Lnet/minecraft/class_2694;
 	FIELD field_8040 tag Lnet/minecraft/class_2487;
 	FIELD field_8041 holdingItemFrame Lnet/minecraft/class_1533;
-	METHOD <init> (Lnet/minecraft/class_1935;)V
-		ARG 0 item
-	METHOD <init> (Lnet/minecraft/class_1935;I)V
-		ARG 1 amount
-	METHOD method_7909 getItem ()Lnet/minecraft/class_1792;
 	METHOD method_7910 onItemFinishedUsing (Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1799;
 		ARG 0 world
 		ARG 1 user
@@ -37,7 +30,6 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		ARG 1 owner
 		ARG 2 invSlot
 		ARG 3 held
-	METHOD method_7919 getDamage ()I
 	METHOD method_7920 interactWithEntity (Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Z
 		ARG 0 user
 		ARG 1 target
@@ -45,13 +37,9 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	METHOD method_7921 getEnchantmentList ()Lnet/minecraft/class_2499;
 	METHOD method_7922 getTranslationKey ()Ljava/lang/String;
 	METHOD method_7923 isEnchantable ()Z
-	METHOD method_7924 getBlockBreakingSpeed (Lnet/minecraft/class_2680;)F
-		ARG 0 state
 	METHOD method_7925 removeDisplayName ()V
 	METHOD method_7926 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
 		ARG 0 effectiveSlot
-	METHOD method_7927 setRepairCost (I)V
-		ARG 0 cost
 	METHOD method_7928 getRepairCost ()I
 	METHOD method_7929 isEqualIgnoreDurability (Lnet/minecraft/class_1799;)Z
 		ARG 0 other
@@ -69,24 +57,14 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	METHOD method_7938 hasDisplayName ()Z
 	METHOD method_7939 setAmount (I)V
 		ARG 0 amount
-	METHOD method_7940 getCustomCanHarvest (Lnet/minecraft/class_3505;Lnet/minecraft/class_2694;)Z
 	METHOD method_7941 getSubTagCompound (Ljava/lang/String;)Lnet/minecraft/class_2487;
 		ARG 0 tagName
 	METHOD method_7942 hasEnchantments ()Z
 	METHOD method_7943 setHoldingItemFrame (Lnet/minecraft/class_1533;)V
 		ARG 0 holdingItemFrame
-	METHOD method_7944 getCustomCanPlace (Lnet/minecraft/class_3505;Lnet/minecraft/class_2694;)Z
 	METHOD method_7945 getHoldingItemFrame ()Lnet/minecraft/class_1533;
 	METHOD method_7946 canBeStacked ()Z
 	METHOD method_7947 getAmount ()I
-	METHOD method_7948 getOrCreateTag ()Lnet/minecraft/class_2487;
-	METHOD method_7951 isEffectiveOn (Lnet/minecraft/class_2680;)Z
-		ARG 0 state
-	METHOD method_7952 onBlockBroken (Lnet/minecraft/class_1937;Lnet/minecraft/class_2680;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;)V
-		ARG 0 world
-		ARG 1 state
-		ARG 2 pos
-		ARG 3 user
 	METHOD method_7953 serialize (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;
 		ARG 0 tag
 	METHOD method_7954 toTextComponent ()Lnet/minecraft/class_2561;
@@ -95,12 +73,8 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	METHOD method_7959 setChildTag (Ljava/lang/String;Lnet/minecraft/class_2520;)V
 		ARG 0 tagName
 		ARG 1 tag
-	METHOD method_7960 isInvalid ()Z
 	METHOD method_7961 isHeldInItemFrame ()Z
-	METHOD method_7962 isEqualIgnoreTags (Lnet/minecraft/class_1799;)Z
-		ARG 0 other
 	METHOD method_7963 hasDurability ()Z
-	METHOD method_7964 getDisplayName ()Lnet/minecraft/class_2561;
 	METHOD method_7965 getUpdateCooldown ()I
 	METHOD method_7968 isEqual (Lnet/minecraft/class_1799;)Z
 		ARG 0 other
@@ -113,13 +87,10 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	METHOD method_7973 areEqual (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 0 a
 		ARG 1 b
-	METHOD method_7974 setDamage (I)V
-		ARG 0 damage
 	METHOD method_7975 areTagsEqual (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 0 a
 		ARG 1 b
 	METHOD method_7976 getUseAction ()Lnet/minecraft/class_1839;
-	METHOD method_7977 setDisplayName (Lnet/minecraft/class_2561;)Lnet/minecraft/class_1799;
 	METHOD method_7978 addEnchantment (Lnet/minecraft/class_1887;I)V
 		ARG 0 enchantment
 		ARG 1 level
@@ -132,12 +103,9 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		ARG 0 world
 		ARG 1 player
 		ARG 2 amount
-	METHOD method_7983 removeSubTag (Ljava/lang/String;)V
-		ARG 0 tagName
 	METHOD method_7984 areEqualIgnoreTags (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 0 a
 		ARG 1 b
-	METHOD method_7985 hasTag ()Z
 	METHOD method_7986 isDamaged ()Z
 	METHOD method_7987 areEqualIgnoreDurability (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 0 a

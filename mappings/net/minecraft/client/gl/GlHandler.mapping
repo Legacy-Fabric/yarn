@@ -17,8 +17,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	FIELD field_5038 activeTexture I
 	FIELD field_5039 fogState Lnet/minecraft/class_1015$class_1029;
 	FIELD field_5040 stencilState Lnet/minecraft/class_1015$class_1035;
-	FIELD field_5041 textureStates [Lnet/minecraft/class_1015$class_1039;
-	METHOD method_4343 blendFuncSeparate (Lnet/minecraft/class_1015$class_1033;Lnet/minecraft/class_1015$class_1027;Lnet/minecraft/class_1015$class_1033;Lnet/minecraft/class_1015$class_1027;)V
 	METHOD method_4344 blendEquation (I)V
 	METHOD method_4345 colorMaterial (II)V
 		ARG 0 face
@@ -77,7 +75,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4395 enableLight (I)V
 	METHOD method_4396 endList ()V
 	METHOD method_4397 enableTexture2D ()V
-	METHOD method_4398 getTexImage (IIIIJ)V
 	METHOD method_4399 getString (I)Ljava/lang/String;
 	METHOD method_4400 shadeModel (I)V
 	METHOD method_4402 texImage2D (IIIIIIIILjava/nio/IntBuffer;)V
@@ -92,7 +89,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4411 colorMask (ZZZZ)V
 	METHOD method_4412 translate (DDD)V
 	METHOD method_4413 depthMask (Z)V
-	METHOD method_4414 readPixels (IIIIIIJ)V
 	METHOD method_4415 newList (II)V
 	METHOD method_4416 fogMode (Lnet/minecraft/class_1015$class_1028;)V
 	METHOD method_4417 lightModel (ILjava/nio/FloatBuffer;)V
@@ -100,9 +96,7 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4419 depthFunc (I)V
 	METHOD method_4420 pixelStore (II)V
 	METHOD method_4421 genTextures ()I
-	METHOD method_4422 blendFunc (Lnet/minecraft/class_1015$class_1033;Lnet/minecraft/class_1015$class_1027;)V
 	METHOD method_4423 vertexPointer (IIILjava/nio/ByteBuffer;)V
-	METHOD method_4424 pixelTransfer (IF)V
 	METHOD method_4425 disableTextureGen (Lnet/minecraft/class_1015$class_1036;)V
 	METHOD method_4426 color (FFF)V
 		ARG 0 red
@@ -124,7 +118,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4440 matrixMode (I)V
 	METHOD method_4441 disableAlphaTest ()V
 	METHOD method_4442 getError ()I
-	METHOD method_4443 rotate (DDDD)V
 	METHOD method_4444 texEnv (IIF)V
 	METHOD method_4445 rotate (FFFF)V
 	METHOD method_4446 disableColorLogicOp ()V
@@ -132,7 +125,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4448 bindTexture (I)V
 	METHOD method_4449 clearColor (FFFF)V
 	METHOD method_4450 ortho (DDDDDD)V
-	METHOD method_4451 normalPointer (III)V
 	METHOD method_4452 logicOp (Lnet/minecraft/class_1015$class_1030;)V
 	METHOD method_4453 scale (DDD)V
 	METHOD method_4454 enableBlend ()V
@@ -145,7 +137,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	METHOD method_4461 pushMatrix ()V
 	METHOD method_4462 viewport (IIII)V
 	METHOD method_4463 disableCullFace ()V
-	METHOD method_4464 texSubImage2D (IIIIIIIIJ)V
 	METHOD method_4465 normalPointer (IILjava/nio/ByteBuffer;)V
 	METHOD method_4466 disableDepthTest ()V
 	METHOD method_4467 texEnv (IILjava/nio/FloatBuffer;)V
@@ -198,22 +189,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 		FIELD field_5074 capState Lnet/minecraft/class_1015$class_1018;
 		FIELD field_5075 func I
 		FIELD field_5076 mask Z
-	CLASS class_1027 DstBlendFactor
-		FIELD field_5077 DST_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5078 ONE Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5079 ONE_MINUS_CONSTANT_ALPHA Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5080 ONE_MINUS_CONSTANT_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5081 SRC_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5082 SRC_ALPHA Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5083 ONE_MINUS_SRC_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5084 ZERO Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5085 ONE_MINUS_DST_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5086 CONSTANT_ALPHA Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5087 ONE_MINUS_DST_ALPHA Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5088 ONE_MINUS_SRC_ALPHA Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5089 glValue I
-		FIELD field_5091 CONSTANT_COLOR Lnet/minecraft/class_1015$class_1027;
-		FIELD field_5092 DST_ALPHA Lnet/minecraft/class_1015$class_1027;
 	CLASS class_1028 FogMode
 		FIELD field_5093 glValue I
 		FIELD field_5095 LINEAR Lnet/minecraft/class_1015$class_1028;
@@ -254,32 +229,6 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 		FIELD field_5128 PLAYER_SKIN Lnet/minecraft/class_1015$class_1032;
 		METHOD method_4472 begin ()V
 		METHOD method_4473 end ()V
-		CLASS 1
-			METHOD a begin ()V
-			METHOD b end ()V
-		CLASS 2
-			METHOD a begin ()V
-			METHOD b end ()V
-		CLASS 3
-			METHOD a begin ()V
-			METHOD b end ()V
-	CLASS class_1033 SrcBlendFactor
-		FIELD field_5130 CONSTANT_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5131 DST_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5132 ONE_MINUS_SRC_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5133 ONE_MINUS_CONSTANT_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5134 ONE_MINUS_CONSTANT_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5135 glValue I
-		FIELD field_5136 CONSTANT_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5137 ONE_MINUS_DST_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5138 SRC_ALPHA Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5139 DST_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5140 ONE Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5142 ONE_MINUS_DST_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5143 ONE_MINUS_SRC_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5144 SRC_ALPHA_SATURATE Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5145 SRC_COLOR Lnet/minecraft/class_1015$class_1033;
-		FIELD field_5146 ZERO Lnet/minecraft/class_1015$class_1033;
 	CLASS class_1034 StencilSubState
 		FIELD field_5148 func I
 	CLASS class_1035 StencilState
@@ -301,9 +250,3 @@ CLASS net/minecraft/class_1015 net/minecraft/client/gl/GlHandler
 	CLASS class_1039 Texture2DState
 		FIELD field_5166 capState Lnet/minecraft/class_1015$class_1018;
 		FIELD field_5167 boundTexture I
-	CLASS class_1040 Viewport
-		FIELD field_5168 height I
-		FIELD field_5169 INSTANCE Lnet/minecraft/class_1015$class_1040;
-		FIELD field_5170 width I
-		FIELD field_5171 y I
-		FIELD field_5172 x I

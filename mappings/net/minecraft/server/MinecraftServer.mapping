@@ -15,7 +15,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_4563 networkIO Lnet/minecraft/class_3242;
 	FIELD field_4564 motd Ljava/lang/String;
 	FIELD field_4565 levelName Ljava/lang/String;
-	FIELD field_4566 recipeManager Lnet/minecraft/class_1863;
 	FIELD field_4568 tickables Ljava/util/List;
 	FIELD field_4569 bonusChest Z
 	FIELD field_4571 serverStartTime J
@@ -23,16 +22,13 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_4573 lastTickLengths [J
 	FIELD field_4574 displayName Ljava/lang/String;
 	FIELD field_4575 spawnAnimals Z
-	FIELD field_4576 dataManager Lnet/minecraft/class_3296;
 	FIELD field_4577 iconFilePresent Z
 	FIELD field_4578 userName Ljava/lang/String;
 	FIELD field_4579 worldHeight I
 	FIELD field_4582 snooper Lnet/minecraft/class_1276;
 	FIELD field_4584 resourcePackHash Ljava/lang/String;
 	FIELD field_4585 serverIp Ljava/lang/String;
-	FIELD field_4586 forceWorldUpgrade Z
 	FIELD field_4588 USER_CACHE_FILE Ljava/io/File;
-	FIELD field_4589 worlds Ljava/util/Map;
 	FIELD field_4590 spawnNpcs Z
 	FIELD field_4593 metadata Lnet/minecraft/class_2926;
 	FIELD field_4594 authService Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;
@@ -44,12 +40,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_4605 gameDir Ljava/io/File;
 	FIELD field_4607 resourcePackUrl Ljava/lang/String;
 	FIELD field_4608 gameProfileRepo Lcom/mojang/authlib/GameProfileRepository;
-	METHOD a registerSprites (Lnet/minecraft/class_1276;)V
-		ARG 0 atlas
-	METHOD a appendCommandFeedback (Lnet/minecraft/class_2561;)V
-		ARG 0 feedback
-	METHOD av isOffThread ()Z
-	METHOD aw isMainThread ()Z
 	METHOD main ([Ljava/lang/String;)V
 		ARG 0 args
 	METHOD method_3716 getKeyPair ()Ljava/security/KeyPair;
@@ -58,7 +48,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_3719 getGameProfileRepo ()Lcom/mojang/authlib/GameProfileRepository;
 	METHOD method_3720 info (Ljava/lang/String;)V
 		ARG 0 msg
-	METHOD method_3721 isSnooperEnabled ()Z
 	METHOD method_3722 getDefaultDifficulty ()Lnet/minecraft/class_1267;
 	METHOD method_3724 isSinglePlayer ()Z
 	METHOD method_3725 getIconFile ()Ljava/io/File;
@@ -68,7 +57,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 0 value
 	METHOD method_3732 shouldBroadcastRconToOps ()Z
 	METHOD method_3736 shouldSpawnNpcs ()Z
-	METHOD method_3738 getWorlds ()Ljava/lang/Iterable;
 	METHOD method_3742 registerTickable (Lnet/minecraft/class_3000;)V
 	METHOD method_3743 warn (Ljava/lang/String;)V
 		ARG 0 msg
@@ -90,13 +78,11 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 0 value
 	METHOD method_3765 getServerMetadata ()Lnet/minecraft/class_2926;
 	METHOD method_3766 isDebuggingEnabled ()Z
-	METHOD method_3767 getGameRules ()Lnet/minecraft/class_1928;
 	METHOD method_3769 setSpawnNpcs (Z)V
 		ARG 0 value
 	METHOD method_3770 log (Ljava/lang/String;)V
 		ARG 0 message
 	METHOD method_3771 hasIconFile ()Z
-	METHOD method_3772 getRecipeManager ()Lnet/minecraft/class_1863;
 	METHOD method_3773 getNetworkCompressionThreshold ()I
 	METHOD method_3775 shouldPreventProxyConnections ()Z
 	METHOD method_3776 setDifficulty (Lnet/minecraft/class_1267;)V
@@ -107,7 +93,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_3779 setServerPort (I)V
 		ARG 0 value
 	METHOD method_3780 getTicks ()I
-	METHOD method_3781 getLevelStorage ()Lnet/minecraft/class_32;
 	METHOD method_3782 shutdown ()V
 	METHOD method_3783 isMonsterSpawningEnabled ()Z
 	METHOD method_3784 getResourcePackUrl ()Ljava/lang/String;
@@ -120,7 +105,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 0 value
 	METHOD method_3795 getSnooper ()Lnet/minecraft/class_1276;
 	METHOD method_3796 shouldSpawnAnimals ()Z
-	METHOD method_3797 setForceWorldUpgrade (Z)V
 	METHOD method_3798 getOpPermissionLevel ()I
 	METHOD method_3799 isDemo ()Z
 	METHOD method_3802 getMaxPlayerCount ()I
@@ -130,7 +114,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_3806 isRunning ()Z
 	METHOD method_3807 setLevelName (Ljava/lang/String;)V
 		ARG 0 value
-	METHOD method_3809 getDataManager ()Lnet/minecraft/class_3296;
 	METHOD method_3811 getUserName ()Ljava/lang/String;
 	METHOD method_3812 areCommandBlocksEnabled ()Z
 	METHOD method_3815 setPvpEnabled (Z)V
@@ -165,7 +148,6 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 1 hash
 	METHOD method_3844 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_3846 setConfigurationManager (Lnet/minecraft/class_3324;)V
-	METHOD method_3847 getWorld (Lnet/minecraft/class_2874;)Lnet/minecraft/class_3218;
 	METHOD method_3849 setServerName (Ljava/lang/String;)V
 		ARG 0 value
 	METHOD method_3850 setWorldHeight (I)V
@@ -183,5 +165,3 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_3865 getLevelName ()Ljava/lang/String;
 	CLASS 1
 		FIELD field_4609 lastProgressUpdate J
-		METHOD a (I)V
-			ARG 0 percentage
