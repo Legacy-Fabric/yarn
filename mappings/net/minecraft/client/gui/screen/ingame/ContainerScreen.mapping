@@ -1,5 +1,7 @@
 CLASS net/minecraft/class_781 net/minecraft/client/gui/screen/ingame/ContainerScreen
+	FIELD field_3376 touchDropOriginSlot Lnet/minecraft/class_2010;
 	FIELD field_3377 touchDropTime J
+	FIELD field_3378 touchDropReturningStack Lnet/minecraft/class_2056;
 	FIELD field_3380 touchDropTimer J
 	FIELD field_3381 heldButtonType I
 	FIELD field_3382 heldButtonCode I
@@ -8,15 +10,22 @@ CLASS net/minecraft/class_781 net/minecraft/client/gui/screen/ingame/ContainerSc
 	FIELD field_3385 lastButtonClickTime J
 	FIELD field_3387 lastClickedButton I
 	FIELD field_3388 isDoubleClicking Z
+	FIELD field_3390 INVENTORY_TEXTURE Lnet/minecraft/class_1605;
 	FIELD field_3391 containerWidth I
 	FIELD field_3392 containerHeight I
+	FIELD field_3393 container Lnet/minecraft/class_1983;
 	FIELD field_3394 x I
 	FIELD field_3395 y I
 	FIELD field_3396 cursorDragSlots Ljava/util/Set;
 	FIELD field_3397 isCursorDragging Z
+	FIELD field_3398 focusedSlot Lnet/minecraft/class_2010;
+	FIELD field_3399 touchDragSlotStart Lnet/minecraft/class_2010;
 	FIELD field_3400 touchIsRightClickDrag Z
+	FIELD field_3401 touchDragStack Lnet/minecraft/class_2056;
 	FIELD field_3402 touchDropX I
 	FIELD field_3403 touchDropY I
+	METHOD <init> (Lnet/minecraft/class_1983;)V
+		ARG 1 container
 	METHOD method_2899 calculateOffset ()V
 	METHOD method_2900 drawBackground (FII)V
 		ARG 1 delta
@@ -24,6 +33,7 @@ CLASS net/minecraft/class_781 net/minecraft/client/gui/screen/ingame/ContainerSc
 		ARG 3 mouseY
 	METHOD method_2901 drawSlot (Lnet/minecraft/class_2010;)V
 		ARG 1 slot
+	METHOD method_2902 isPointOverSlot (Lnet/minecraft/class_2010;II)Z
 	METHOD method_2904 drawItem (Lnet/minecraft/class_2056;IILjava/lang/String;)V
 		ARG 1 stack
 		ARG 2 xPosition
