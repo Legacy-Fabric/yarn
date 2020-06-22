@@ -3,7 +3,7 @@ name: Java CI
 on:
   push:
     branches:
-      - 1.13.2-disabled # we are doing this so this is disabled, for now.
+      - 1.13.2
 
 jobs:
   build:
@@ -18,13 +18,14 @@ jobs:
         with:
           java-version: 11
       - name: Upload With Bintray
-        run: ./gradlew javadoc bintrayUpload
+        run: ./gradlew bintrayUpload
+#        run: ./gradlew javadoc bintrayUpload
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
-      - name: Deploy javadoc 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.PAGE_DEPLOY_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build/docs/javadoc # The folder the action should deploy.
+#      - name: Deploy javadoc 🚀
+#        uses: JamesIves/github-pages-deploy-action@releases/v3
+#        with:
+#          ACCESS_TOKEN: ${{ secrets.PAGE_DEPLOY_TOKEN }}
+#          BRANCH: gh-pages # The branch the action should deploy to.
+#          FOLDER: build/docs/javadoc # The folder the action should deploy.
