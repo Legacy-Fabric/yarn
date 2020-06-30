@@ -26,7 +26,8 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_372 SAVANNA Lnet/minecraft/class_113;
 	FIELD field_373 SAVANNA_PLATEAU Lnet/minecraft/class_113;
 	FIELD field_377 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_378 biomes [Lnet/minecraft/class_113;
+	FIELD field_378 BIOMES [Lnet/minecraft/class_113;
+	FIELD field_379 OTHER Lnet/minecraft/class_113$class_114;
 	FIELD field_380 MESA Lnet/minecraft/class_113;
 	FIELD field_381 MESA_PLATEAU_F Lnet/minecraft/class_113;
 	FIELD field_382 MESA_PLATEAU Lnet/minecraft/class_113;
@@ -39,7 +40,19 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_400 passiveEntries Ljava/util/List;
 	FIELD field_401 waterEntries Ljava/util/List;
 	FIELD field_402 flyingEntries Ljava/util/List;
-	FIELD field_418 BIOMES Ljava/util/Set;
+	FIELD field_406 RIVER_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_407 OCEAN_BIOME Lnet/minecraft/class_113$class_114;
+	FIELD field_408 DEEP_OCEAN_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_409 PLAINS_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_410 TAIGA_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_411 HILLS_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_412 PLATEAU_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_413 EXTREME_HILLS_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_414 MUSHROOM_SHORE_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_415 STONE_BEACH_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_416 MUSHROOM_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_417 SWAMP_HEIGHT Lnet/minecraft/class_113$class_114;
+	FIELD field_418 BIOMESET Ljava/util/Set;
 	FIELD field_419 MUTATED_BIOMES Ljava/util/Map;
 	FIELD field_420 OCEAN Lnet/minecraft/class_113;
 	FIELD field_421 PLAINS Lnet/minecraft/class_113;
@@ -52,6 +65,8 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_428 HELL Lnet/minecraft/class_113;
 	FIELD field_429 THE_END Lnet/minecraft/class_113;
 	FIELD field_430 FROZEN_OCEAN Lnet/minecraft/class_113;
+	METHOD <init> (I)V
+		ARG 1 id
 	METHOD method_512 createBiomePopulator ()Lnet/minecraft/class_122;
 	METHOD method_514 setTempratureAndDownfall (FF)Lnet/minecraft/class_113;
 	METHOD method_516 getBiomeById (ILnet/minecraft/class_113;)Lnet/minecraft/class_113;
@@ -61,11 +76,15 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 		ARG 1 world
 		ARG 2 random
 		ARG 3 pos
+	METHOD method_520 setHeight (Lnet/minecraft/class_113$class_114;)Lnet/minecraft/class_113;
+	METHOD method_521 (Lnet/minecraft/class_113;)Z
+		ARG 1 biome
 	METHOD method_522 getTemperature (Lnet/minecraft/class_1372;)F
 		ARG 1 blockPos
 	METHOD method_523 setName (Ljava/lang/String;)Lnet/minecraft/class_113;
 		ARG 1 name
 	METHOD method_525 pickFlower (Ljava/util/Random;Lnet/minecraft/class_1372;)Lnet/minecraft/class_211$class_212;
+	METHOD method_528 setSeedModifier (I)Lnet/minecraft/class_113;
 	METHOD method_530 getGrassColor (Lnet/minecraft/class_1372;)I
 		ARG 1 pos
 	METHOD method_535 isMutatedBiome ()Z
@@ -75,8 +94,15 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	METHOD method_541 getDownfall ()I
 	METHOD method_542 getRainfall ()F
 	METHOD method_543 hasParent ()Z
+	METHOD method_545 asClass ()Ljava/lang/Class;
+	METHOD method_546 getBiomeTemperature ()Lnet/minecraft/class_113$class_115;
 	METHOD method_547 getBiomes ()[Lnet/minecraft/class_113;
+	CLASS class_114 BiomeHeight
 	CLASS class_115 BiomeTemperature
+		FIELD field_434 OCEAN Lnet/minecraft/class_113$class_115;
+		FIELD field_435 COLD Lnet/minecraft/class_113$class_115;
+		FIELD field_436 MEDIUM Lnet/minecraft/class_113$class_115;
+		FIELD field_437 WARM Lnet/minecraft/class_113$class_115;
 	CLASS class_116 SpawnEntry
 		FIELD field_439 entitiy Ljava/lang/Class;
 		FIELD field_440 minGroupSize I
