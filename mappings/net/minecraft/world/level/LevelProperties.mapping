@@ -21,7 +21,7 @@ CLASS net/minecraft/class_634 net/minecraft/world/level/LevelProperties
 	FIELD field_2363 dayTime J
 	FIELD field_2364 lastPlayed J
 	FIELD field_2365 sizeOnDisk J
-	FIELD field_2366 player Lnet/minecraft/class_1405;
+	FIELD field_2366 playerNbt Lnet/minecraft/class_1405;
 	FIELD field_2367 dimension I
 	FIELD field_2368 levelName Ljava/lang/String;
 	FIELD field_2369 version I
@@ -31,24 +31,120 @@ CLASS net/minecraft/class_634 net/minecraft/world/level/LevelProperties
 	FIELD field_2373 thundering Z
 	FIELD field_2374 thunderTime I
 	FIELD field_2375 gamemode Lnet/minecraft/class_102$class_103;
-	FIELD field_2376 mapFeatures Z
+	FIELD field_2376 structures Z
 	FIELD field_2377 hardcore Z
 	FIELD field_2378 allowCommands Z
 	FIELD field_2379 initialized Z
 	FIELD field_2380 difficulty Lnet/minecraft/class_1721;
+	METHOD <init> (Lnet/minecraft/class_102;Ljava/lang/String;)V
+		ARG 1 info
+		ARG 2 name
 	METHOD <init> (Lnet/minecraft/class_1405;)V
 		ARG 1 worldNbt
+	METHOD <init> (Lnet/minecraft/class_634;)V
+		ARG 1 copy
+	METHOD method_1913 getClearWeatherTIme ()I
+	METHOD method_1914 getGeneratorOptions ()Ljava/lang/String;
+	METHOD method_1915 getBorderCenterX ()D
+	METHOD method_1916 getBorderCenterZ ()D
+	METHOD method_1917 getBorderSize ()D
+	METHOD method_1918 getBorderSizeLerpTIme ()J
+	METHOD method_1919 getBorderSizeLerpTarget ()D
+	METHOD method_1920 getSafeZone ()D
+	METHOD method_1921 getBorderDamagePerBlock ()D
+	METHOD method_1922 getBorderWarningBlocks ()I
+	METHOD method_1923 getBorderWarningTime ()I
 	METHOD method_1924 toTag ()Lnet/minecraft/class_1405;
+	METHOD method_1925 setBorderSize (D)V
+		ARG 1 size
+	METHOD method_1926 setSpawnX (I)V
+		ARG 1 spawnX
+	METHOD method_1927 setGamemode (Lnet/minecraft/class_102$class_103;)V
+		ARG 1 gamemode
+	METHOD method_1928 (Lnet/minecraft/class_102;)V
+		ARG 1 info
+	METHOD method_1929 setLevelGeneratorType (Lnet/minecraft/class_105;)V
+		ARG 1 type
+	METHOD method_1931 (Lnet/minecraft/class_1364;)V
+		ARG 1 section
 	METHOD method_1932 setSpawnPos (Lnet/minecraft/class_1372;)V
+		ARG 1 pos
 	METHOD method_1933 toTag (Lnet/minecraft/class_1405;)Lnet/minecraft/class_1405;
-	METHOD method_1934 (Lnet/minecraft/class_1405;Lnet/minecraft/class_1405;)V
+		ARG 1 nbt
+	METHOD method_1934 putNbt (Lnet/minecraft/class_1405;Lnet/minecraft/class_1405;)V
 		ARG 1 worldNbt
 		ARG 2 playerData
+	METHOD method_1935 setLevelName (Ljava/lang/String;)V
+		ARG 1 name
 	METHOD method_1936 setDifficulty (Lnet/minecraft/class_1721;)V
+		ARG 1 difficulty
+	METHOD method_1937 setThundering (Z)V
+		ARG 1 thundering
 	METHOD method_1938 getSeed ()J
+	METHOD method_1939 setBorderSizeLerpTarget (D)V
+		ARG 1 target
+	METHOD method_1940 setSpawnY (I)V
+		ARG 1 spawnY
 	METHOD method_1941 setTime (J)V
+		ARG 1 time
+	METHOD method_1943 setRaining (Z)V
+		ARG 1 raining
+	METHOD method_1944 getSpawnX ()I
+	METHOD method_1945 setBorderCenterZ (D)V
+		ARG 1 y
+	METHOD method_1946 setSpawnZ (I)V
+		ARG 1 spawnZ
+	METHOD method_1947 setDayTime (J)V
+		ARG 1 time
+	METHOD method_1949 setCheats (Z)V
+		ARG 1 enabled
+	METHOD method_1950 getSpawnY ()I
+	METHOD method_1951 setBorderCenterX (D)V
+		ARG 1 x
+	METHOD method_1953 setInitialized (Z)V
+		ARG 1 true
+	METHOD method_1954 getSpawnZ ()I
+	METHOD method_1955 setSafeZone (D)V
+		ARG 1 zone
+	METHOD method_1956 setVersion (I)V
+		ARG 1 version
+	METHOD method_1957 setBorderSizeLerpTime (J)V
+		ARG 1 time
 	METHOD method_1959 setDifficultyLocked (Z)V
+		ARG 1 difficultyLocked
+	METHOD method_1960 getTime ()J
+	METHOD method_1961 setBorderDamagePerBlock (D)V
+		ARG 1 damage
+	METHOD method_1962 setThunderTime (I)V
+		ARG 1 time
+	METHOD method_1964 setStructures (Z)V
+		ARG 1 structures
+	METHOD method_1965 getDayTime ()J
+	METHOD method_1966 setRainTime (I)V
+		ARG 1 rainTime
+	METHOD method_1968 setHardcore (Z)V
+		ARG 1 hardcore
+	METHOD method_1969 getSizeOnDisk ()J
+	METHOD method_1971 getNbt ()Lnet/minecraft/class_1405;
+	METHOD method_1972 setClearWeatherTime (I)V
+		ARG 1 time
+	METHOD method_1974 setBorderWarningBlocks (I)V
+		ARG 1 blocks
+	METHOD method_1976 getLevelName ()Ljava/lang/String;
+	METHOD method_1977 setBorderWarningTime (I)V
+		ARG 1 time
+	METHOD method_1979 getVersion ()I
+	METHOD method_1981 getLastPlayed ()J
+	METHOD method_1983 isThundering ()Z
+	METHOD method_1985 getThunderTime ()I
+	METHOD method_1987 isRaining ()Z
+	METHOD method_1989 getRainTIme ()I
 	METHOD method_1991 getGameMode ()Lnet/minecraft/class_102$class_103;
 	METHOD method_1992 hasStructures ()Z
 	METHOD method_1993 isHardcore ()Z
 	METHOD method_1994 getGeneratorType ()Lnet/minecraft/class_105;
+	METHOD method_1995 areCheatsEnabled ()Z
+	METHOD method_1996 isInitialized ()Z
+	METHOD method_1997 getGamerules ()Lnet/minecraft/class_95;
+	METHOD method_1998 getDifficulty ()Lnet/minecraft/class_1721;
+	METHOD method_1999 isDifficultyLocked ()Z
