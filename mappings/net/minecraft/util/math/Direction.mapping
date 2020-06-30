@@ -9,13 +9,18 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 	FIELD field_5805 idOpposite I
 	FIELD field_5806 idHorizontal I
 	FIELD field_5807 name Ljava/lang/String;
+	FIELD field_5808 axis Lnet/minecraft/class_1383$class_1384;
 	FIELD field_5809 axisDirection Lnet/minecraft/class_1383$class_1385;
+	FIELD field_5810 vec Lnet/minecraft/class_1400;
+	FIELD field_5813 DIRECTION_MAP Ljava/util/Map;
 	METHOD <init> (Ljava/lang/String;IIIILjava/lang/String;Lnet/minecraft/class_1383$class_1385;Lnet/minecraft/class_1383$class_1384;Lnet/minecraft/class_1400;)V
 		ARG 3 id
 		ARG 4 idHorizontal
 		ARG 5 isOpposite
 		ARG 6 name
 		ARG 7 axisDirection
+		ARG 8 axis
+		ARG 9 vec
 	METHOD method_4911 getId ()I
 	METHOD method_4912 fromRotation (D)Lnet/minecraft/class_1383;
 		ARG 0 rotation
@@ -23,7 +28,7 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
-	METHOD method_4914 byId (I)Lnet/minecraft/class_1383;
+	METHOD method_4914 getById (I)Lnet/minecraft/class_1383;
 		ARG 0 id
 	METHOD method_4916 get (Lnet/minecraft/class_1383$class_1385;Lnet/minecraft/class_1383$class_1384;)Lnet/minecraft/class_1383;
 		ARG 0 direction
@@ -45,6 +50,9 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 	METHOD method_4928 getName ()Ljava/lang/String;
 	METHOD method_4929 getAxis ()Lnet/minecraft/class_1383$class_1384;
 	METHOD method_4930 getVector ()Lnet/minecraft/class_1400;
+	METHOD method_4931 rotateYClockWise ()Lnet/minecraft/class_1383;
+	METHOD method_4932 rotateZClockWise ()Lnet/minecraft/class_1383;
+	METHOD values ()[Lnet/minecraft/class_1383;
 	CLASS class_1384 Axis
 		FIELD field_5818 X Lnet/minecraft/class_1383$class_1384;
 		FIELD field_5819 Y Lnet/minecraft/class_1383$class_1384;
@@ -60,7 +68,10 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 		FIELD field_5825 POSITIVE Lnet/minecraft/class_1383$class_1385;
 		FIELD field_5826 NEGATIVE Lnet/minecraft/class_1383$class_1385;
 		FIELD field_5827 offset I
-		FIELD field_5828 desc Ljava/lang/String;
+		FIELD field_5828 name Ljava/lang/String;
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 offset
+			ARG 4 name
 		METHOD method_4939 offset ()I
 	CLASS class_1386 DirectionType
 		FIELD field_5830 HORIZONTAL Lnet/minecraft/class_1383$class_1386;
