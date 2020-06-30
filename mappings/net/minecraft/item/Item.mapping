@@ -7,16 +7,27 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	FIELD field_8634 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
 	FIELD field_8635 RANDOM Ljava/util/Random;
 	FIELD field_8636 maxCount I
+	FIELD field_8637 handheld Z
 	FIELD field_8638 damageable Z
+	FIELD field_8639 statusEffectString Ljava/lang/String;
 	FIELD field_8640 translationKey Ljava/lang/String;
 	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
 	METHOD method_8248 register (ILjava/lang/String;Lnet/minecraft/class_2054;)V
+		ARG 0 id
+		ARG 1 name
+		ARG 2 item
+	METHOD method_8249 register (ILnet/minecraft/class_1605;Lnet/minecraft/class_2054;)V
+		ARG 0 id
+		ARG 1 name
+		ARG 2 item
 	METHOD method_8250 onHit (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;Z)Lnet/minecraft/class_647;
 		ARG 1 world
 		ARG 2 player
 	METHOD method_8251 fromBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
 		ARG 0 block
 	METHOD method_8252 registerBlockItem (Lnet/minecraft/class_160;Lnet/minecraft/class_2054;)V
+		ARG 0 block
+		ARG 1 blockItem
 	METHOD method_8253 postProcessTag (Lnet/minecraft/class_1405;)Z
 		ARG 1 tag
 	METHOD method_8254 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_2054;
@@ -58,6 +69,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8275 setMaxCount (I)Lnet/minecraft/class_2054;
 		ARG 1 count
 	METHOD method_8276 registerBlockItem (Lnet/minecraft/class_160;)V
+		ARG 0 block
 	METHOD method_8277 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_2054;
 		ARG 1 translationKey
 	METHOD method_8278 setItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_2054;
@@ -72,6 +84,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
+	METHOD method_8284 setStatusEffectString (Ljava/lang/String;)Lnet/minecraft/class_2054;
+		ARG 1 statusEffectString
 	METHOD method_8285 getUseAction (Lnet/minecraft/class_2056;)Lnet/minecraft/class_30;
 		ARG 1 stack
 	METHOD method_8286 getTranslationKey (Lnet/minecraft/class_2056;)Ljava/lang/String;
@@ -90,13 +104,19 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8296 getMaxDamage ()I
 	METHOD method_8297 matches (Lnet/minecraft/class_2056;)Z
 	METHOD method_8298 isDamageable ()Z
+	METHOD method_8299 setHandheld ()Lnet/minecraft/class_2054;
 	METHOD method_8300 shouldSyncTagToClient ()Z
 	METHOD method_8301 getRecipeRemainder ()Lnet/minecraft/class_2054;
 	METHOD method_8302 isFood ()Z
 	METHOD method_8304 setup ()V
+	METHOD method_8305 isHandheld ()Z
 	CLASS 1
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
+	CLASS 2
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+	CLASS 3
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 	CLASS 4
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
@@ -104,6 +124,12 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS 6
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 7
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 8
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS 9
@@ -118,9 +144,20 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	CLASS 12
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
+	CLASS 13
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 14
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 15
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
 	CLASS 16
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 item
+			ARG 1 stack
+	CLASS 17
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 	CLASS class_2055 ToolMaterialType
 		FIELD field_8641 WOOD Lnet/minecraft/class_2054$class_2055;
 		FIELD field_8642 STONE Lnet/minecraft/class_2054$class_2055;
