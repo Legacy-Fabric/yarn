@@ -28,6 +28,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_605 LADDER Lnet/minecraft/class_160$class_162;
 	FIELD field_606 ANVIL Lnet/minecraft/class_160$class_162;
 	FIELD field_607 SLIME Lnet/minecraft/class_160$class_162;
+	FIELD field_608 opaque Z
+	FIELD field_611 lightLevel I
+	FIELD field_616 tickRandomly Z
 	METHOD <init> (Lnet/minecraft/class_591;)V
 		ARG 1 material
 	METHOD <init> (Lnet/minecraft/class_591;Lnet/minecraft/class_592;)V
@@ -38,6 +41,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_632 getOffsetType ()Lnet/minecraft/class_160$class_161;
 	METHOD method_633 setup ()V
 	METHOD method_634 getTranslationKey ()Ljava/lang/String;
+	METHOD method_635 setLightLevel (F)Lnet/minecraft/class_160;
 	METHOD method_636 setBoundingBox (FFFFFF)V
 	METHOD method_637 stateFromData (I)Lnet/minecraft/class_376;
 		ARG 1 data
@@ -117,7 +121,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 facing
 	METHOD method_669 setSound (Lnet/minecraft/class_160$class_162;)Lnet/minecraft/class_160;
-	METHOD method_670 getBlockId (Lnet/minecraft/class_160;)I
+	METHOD method_670 getIdByBlock (Lnet/minecraft/class_160;)I
 		ARG 0 block
 	METHOD method_672 getMeta (Lnet/minecraft/class_376;)I
 		ARG 1 state
@@ -134,6 +138,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 group
 		ARG 3 stacks
 	METHOD method_683 setTickRandomly (Z)Lnet/minecraft/class_160;
+		ARG 1 tickRandomly
 	METHOD method_685 setResistance (F)Lnet/minecraft/class_160;
 	METHOD method_687 dropExperience (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;I)V
 		ARG 1 world
@@ -170,7 +175,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 0 stateId
 	METHOD method_714 appendProperties ()Lnet/minecraft/class_378;
 	METHOD method_716 getTranslatedName ()Ljava/lang/String;
-	METHOD method_717 (Lnet/minecraft/class_376;)I
+	METHOD method_717 getByBlockState (Lnet/minecraft/class_376;)I
 		ARG 0 state
 	METHOD method_718 canMobSpawnInside ()Z
 	METHOD method_720 getMaterialColor (Lnet/minecraft/class_376;)Lnet/minecraft/class_592;
@@ -189,10 +194,14 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_731 getRenderLayer ()Lnet/minecraft/class_91;
+	METHOD method_735 getLightLevel ()I
 	METHOD method_737 getMaterial ()Lnet/minecraft/class_591;
 	METHOD method_738 isFullCube ()Z
 	METHOD method_741 setUnbreakable ()Lnet/minecraft/class_160;
 	CLASS class_161 OffsetType
+		FIELD field_617 NONE Lnet/minecraft/class_160$class_161;
+		FIELD field_618 XZ Lnet/minecraft/class_160$class_161;
+		FIELD field_619 XYZ Lnet/minecraft/class_160$class_161;
 	CLASS class_162 Sound
 		FIELD field_621 id Ljava/lang/String;
 		FIELD field_622 volume F
@@ -202,6 +211,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			ARG 2 volume
 			ARG 3 pitch
 		METHOD method_744 getDigSound ()Ljava/lang/String;
+		METHOD method_745 getSound ()Ljava/lang/String;
 		METHOD method_746 getStepSound ()Ljava/lang/String;
 		METHOD method_747 getVolume ()F
 		METHOD method_748 getPitch ()F
