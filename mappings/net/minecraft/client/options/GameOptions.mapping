@@ -19,6 +19,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2642 streamPreferredServer Ljava/lang/String;
 	FIELD field_2643 streamChatEnabled I
 	FIELD field_2644 streamChatUserFilter I
+	FIELD field_2646 useNativeTransport Z
 	FIELD field_2649 keyForward Lnet/minecraft/class_666;
 	FIELD field_2650 keyLeft Lnet/minecraft/class_666;
 	FIELD field_2652 perspective I
@@ -33,6 +34,14 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2665 language Ljava/lang/String;
 	FIELD field_2667 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_2668 GSON Lcom/google/gson/Gson;
+	FIELD field_2670 GUI_SCALE [Ljava/lang/String;
+	FIELD field_2671 PARTICLES [Ljava/lang/String;
+	FIELD field_2672 AMBIENT_OCCLUSION [Ljava/lang/String;
+	FIELD field_2673 STREAM_COMPRESSION [Ljava/lang/String;
+	FIELD field_2674 STREAM_CHAT_ENABLED [Ljava/lang/String;
+	FIELD field_2675 STREAM_CHAT_USERFILTER [Ljava/lang/String;
+	FIELD field_2676 STREAM_MIC_TIGGLE [Ljava/lang/String;
+	FIELD field_2677 GRAPHICS_LEVEL [Ljava/lang/String;
 	FIELD field_2678 keyBack Lnet/minecraft/class_666;
 	FIELD field_2679 keyRight Lnet/minecraft/class_666;
 	FIELD field_2680 keyJump Lnet/minecraft/class_666;
@@ -60,6 +69,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2702 client Lnet/minecraft/class_669;
 	FIELD field_2703 difficulty Lnet/minecraft/class_1721;
 	FIELD field_2704 invertYMouse Z
+	FIELD field_2705 playerModelParts Ljava/util/Set;
 	FIELD field_2707 optionsFile Ljava/io/File;
 	FIELD field_2708 viewDistance I
 	FIELD field_2709 bobView Z
@@ -112,5 +122,74 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	METHOD method_2352 getValueMessage (Lnet/minecraft/class_671$class_672;)Ljava/lang/String;
 		ARG 1 option
 	METHOD method_2353 getEnabledPlayerModelParts ()Ljava/util/Set;
+	METHOD method_2354 getCloudMode ()I
 	METHOD method_2355 shouldUseNativeTransport ()Z
+	CLASS 1
+		METHOD getActualTypeArguments ()[Ljava/lang/reflect/Type;
+		METHOD getOwnerType ()Ljava/lang/reflect/Type;
+		METHOD getRawType ()Ljava/lang/reflect/Type;
 	CLASS class_672 Option
+		FIELD field_2733 CHAT_WIDTH Lnet/minecraft/class_671$class_672;
+		FIELD field_2734 CHAT_HEIGHT_FOCUSED Lnet/minecraft/class_671$class_672;
+		FIELD field_2735 CHAT_HEIGHT_UNFOCUSED Lnet/minecraft/class_671$class_672;
+		FIELD field_2736 MIPMAP_LEVELS Lnet/minecraft/class_671$class_672;
+		FIELD field_2737 FORCE_UNICODE Lnet/minecraft/class_671$class_672;
+		FIELD field_2738 STREAM_BYTES_PER_PIXEL Lnet/minecraft/class_671$class_672;
+		FIELD field_2739 STREAM_VOLUME_MIC Lnet/minecraft/class_671$class_672;
+		FIELD field_2740 STREAM_VOLUME_SYSTEM Lnet/minecraft/class_671$class_672;
+		FIELD field_2741 STREAM_KBPS Lnet/minecraft/class_671$class_672;
+		FIELD field_2742 STREAM_FPS Lnet/minecraft/class_671$class_672;
+		FIELD field_2743 STREAM_COMPRESSION Lnet/minecraft/class_671$class_672;
+		FIELD field_2744 STREAM_SEND_METADATA Lnet/minecraft/class_671$class_672;
+		FIELD field_2745 STREAM_CHAT_ENABLED Lnet/minecraft/class_671$class_672;
+		FIELD field_2746 STREAM_CHAT_USER_FILTER Lnet/minecraft/class_671$class_672;
+		FIELD field_2747 STREAM_MIC_TOGGLE_BEHAVIOR Lnet/minecraft/class_671$class_672;
+		FIELD field_2748 BLOCK_ALTERNATIVES Lnet/minecraft/class_671$class_672;
+		FIELD field_2749 REDUCED_DEBUG_INFO Lnet/minecraft/class_671$class_672;
+		FIELD field_2750 ENTITY_SHADOWS Lnet/minecraft/class_671$class_672;
+		FIELD field_2751 REALMS_NOTIFICATIONS Lnet/minecraft/class_671$class_672;
+		FIELD field_2754 name Ljava/lang/String;
+		FIELD field_2755 increment F
+		FIELD field_2756 min F
+		FIELD field_2757 max F
+		FIELD field_2759 INVERT_MOUSE Lnet/minecraft/class_671$class_672;
+		FIELD field_2760 SENSITIVITY Lnet/minecraft/class_671$class_672;
+		FIELD field_2761 FIELD_OF_VIEW Lnet/minecraft/class_671$class_672;
+		FIELD field_2762 BRIGHTNESS Lnet/minecraft/class_671$class_672;
+		FIELD field_2763 SATURATION Lnet/minecraft/class_671$class_672;
+		FIELD field_2764 RENDER_DISTANCE Lnet/minecraft/class_671$class_672;
+		FIELD field_2765 VIEW_BOBBING Lnet/minecraft/class_671$class_672;
+		FIELD field_2766 ANAGLYPH Lnet/minecraft/class_671$class_672;
+		FIELD field_2767 MAX_FPS Lnet/minecraft/class_671$class_672;
+		FIELD field_2768 FBO_ENABLE Lnet/minecraft/class_671$class_672;
+		FIELD field_2769 SHOW_CLOUDS Lnet/minecraft/class_671$class_672;
+		FIELD field_2770 GRAPHICS Lnet/minecraft/class_671$class_672;
+		FIELD field_2771 AMBIENT_OCCLUSION Lnet/minecraft/class_671$class_672;
+		FIELD field_2772 GUI_SCALE Lnet/minecraft/class_671$class_672;
+		FIELD field_2773 PARTICLES Lnet/minecraft/class_671$class_672;
+		FIELD field_2774 CHAT_VISIBILITY Lnet/minecraft/class_671$class_672;
+		FIELD field_2775 CHAT_COLOR Lnet/minecraft/class_671$class_672;
+		FIELD field_2776 CHAT_LINKS Lnet/minecraft/class_671$class_672;
+		FIELD field_2777 CHAT_OPACITY Lnet/minecraft/class_671$class_672;
+		FIELD field_2778 CHAT_LINKS_PROMPT Lnet/minecraft/class_671$class_672;
+		FIELD field_2779 SNOOPER_ENABLED Lnet/minecraft/class_671$class_672;
+		FIELD field_2780 USE_FULLSCREEN Lnet/minecraft/class_671$class_672;
+		FIELD field_2781 ENABLE_VSYNC Lnet/minecraft/class_671$class_672;
+		FIELD field_2782 USE_VBO Lnet/minecraft/class_671$class_672;
+		FIELD field_2783 TOUCHSCREEN Lnet/minecraft/class_671$class_672;
+		FIELD field_2784 CHAT_SCALE Lnet/minecraft/class_671$class_672;
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;ZZ)V
+			ARG 3 name
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;ZZFFF)V
+			ARG 3 name
+			ARG 6 min
+			ARG 7 max
+			ARG 8 increment
+		METHOD method_2357 setMaxValue (F)V
+			ARG 1 max
+		METHOD method_2358 (I)Lnet/minecraft/class_671$class_672;
+			ARG 0 id
+		METHOD method_2362 getOrdinal ()I
+		METHOD method_2364 getName ()Ljava/lang/String;
+		METHOD method_2367 getMaxValue ()F
+		METHOD values ()[Lnet/minecraft/class_671$class_672;
