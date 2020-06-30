@@ -20,6 +20,8 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2643 streamChatEnabled I
 	FIELD field_2644 streamChatUserFilter I
 	FIELD field_2646 useNativeTransport Z
+	FIELD field_2647 entityShadows Z
+	FIELD field_2648 realmsNotifications Z
 	FIELD field_2649 keyForward Lnet/minecraft/class_666;
 	FIELD field_2650 keyLeft Lnet/minecraft/class_666;
 	FIELD field_2652 perspective I
@@ -32,6 +34,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2663 guiScale I
 	FIELD field_2664 particle I
 	FIELD field_2665 language Ljava/lang/String;
+	FIELD field_2666 forceUnicode Z
 	FIELD field_2667 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_2668 GSON Lcom/google/gson/Gson;
 	FIELD field_2670 GUI_SCALE [Ljava/lang/String;
@@ -75,12 +78,13 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2709 bobView Z
 	FIELD field_2710 anaglyph3d Z
 	FIELD field_2711 fbo Z
-	FIELD field_2712 maxFps I
+	FIELD field_2712 maxFramerate I
 	FIELD field_2713 cloudMode I
 	FIELD field_2714 fancyGraphics Z
 	FIELD field_2715 ao I
 	FIELD field_2716 resourcePacks Ljava/util/List;
 	FIELD field_2717 incompatibleResourcePacks Ljava/util/List;
+	FIELD field_2718 chatVisibilityType Lnet/minecraft/class_1963$class_1965;
 	FIELD field_2719 chatColor Z
 	FIELD field_2720 chatLink Z
 	FIELD field_2721 chatLinkPrompt Z
@@ -89,6 +93,8 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2724 fullscreen Z
 	FIELD field_2725 vsync Z
 	FIELD field_2726 vbo Z
+	FIELD field_2727 alternativeBlocks Z
+	FIELD field_2728 reducedDebugInfo Z
 	FIELD field_2729 hideServerAddress Z
 	FIELD field_2730 advancedItemTooltips Z
 	FIELD field_2731 pauseOnLostFocus Z
@@ -99,11 +105,14 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	METHOD method_2338 setKeyBindingCode (Lnet/minecraft/class_666;I)V
 		ARG 1 binding
 		ARG 2 code
+	METHOD method_2339 getIntValue (Lnet/minecraft/class_671$class_672;)F
+		ARG 1 option
 	METHOD method_2340 setValue (Lnet/minecraft/class_671$class_672;F)V
 		ARG 1 option
 		ARG 2 var
-	METHOD method_2341 (Lnet/minecraft/class_671$class_672;I)V
+	METHOD method_2341 getBooleanValue (Lnet/minecraft/class_671$class_672;I)V
 		ARG 1 option
+		ARG 2 integer
 	METHOD method_2342 getSoundVolume (Lnet/minecraft/class_1306;)F
 		ARG 1 category
 	METHOD method_2343 setSoundVolume (Lnet/minecraft/class_1306;F)V
@@ -115,7 +124,12 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	METHOD method_2346 setPlayerModelPart (Lnet/minecraft/class_1966;Z)V
 		ARG 1 part
 		ARG 2 enabled
+	METHOD method_2347 translateArrayElement ([Ljava/lang/String;I)Ljava/lang/String;
+		ARG 0 array
+		ARG 1 index
 	METHOD method_2348 save ()V
+	METHOD method_2349 getIntVideoOptions (Lnet/minecraft/class_671$class_672;)Z
+		ARG 1 option
 	METHOD method_2350 onPlayerModelPartChange ()V
 	METHOD method_2351 getFormattedNameForKeyCode (I)Ljava/lang/String;
 		ARG 0 code
@@ -124,10 +138,6 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	METHOD method_2353 getEnabledPlayerModelParts ()Ljava/util/Set;
 	METHOD method_2354 getCloudMode ()I
 	METHOD method_2355 shouldUseNativeTransport ()Z
-	CLASS 1
-		METHOD getActualTypeArguments ()[Ljava/lang/reflect/Type;
-		METHOD getOwnerType ()Ljava/lang/reflect/Type;
-		METHOD getRawType ()Ljava/lang/reflect/Type;
 	CLASS class_672 Option
 		FIELD field_2733 CHAT_WIDTH Lnet/minecraft/class_671$class_672;
 		FIELD field_2734 CHAT_HEIGHT_FOCUSED Lnet/minecraft/class_671$class_672;
@@ -192,4 +202,3 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 		METHOD method_2362 getOrdinal ()I
 		METHOD method_2364 getName ()Ljava/lang/String;
 		METHOD method_2367 getMaxValue ()F
-		METHOD values ()[Lnet/minecraft/class_671$class_672;
