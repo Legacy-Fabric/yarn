@@ -1,10 +1,15 @@
 CLASS net/minecraft/class_1325 net/minecraft/client/sound/SoundSystem
 	FIELD field_5490 MARKER Lorg/apache/logging/log4j/Marker;
 	FIELD field_5491 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_5492 manager Lnet/minecraft/class_1328;
+	FIELD field_5493 options Lnet/minecraft/class_671;
 	FIELD field_5495 started Z
 	FIELD field_5496 ticks I
 	FIELD field_5499 sources Ljava/util/Map;
 	FIELD field_5502 startTicks Ljava/util/Map;
+	METHOD <init> (Lnet/minecraft/class_1328;Lnet/minecraft/class_671;)V
+		ARG 1 manager
+		ARG 2 options
 	METHOD method_4576 reloadSounds ()V
 	METHOD method_4577 getSoundVolume (Lnet/minecraft/class_1306;)F
 	METHOD method_4578 updateSoundVolume (Lnet/minecraft/class_1306;F)V
@@ -13,6 +18,8 @@ CLASS net/minecraft/class_1325 net/minecraft/client/sound/SoundSystem
 	METHOD method_4580 play (Lnet/minecraft/class_1311;I)V
 		ARG 1 sound
 		ARG 2 delay
+	METHOD method_4587 (Lnet/minecraft/class_1963;F)V
+		ARG 1 player
 	METHOD method_4588 stop ()V
 	METHOD method_4589 stop (Lnet/minecraft/class_1311;)V
 	METHOD method_4591 stopAll ()V
@@ -21,3 +28,9 @@ CLASS net/minecraft/class_1325 net/minecraft/client/sound/SoundSystem
 	METHOD method_4594 pauseAll ()V
 	METHOD method_4595 resumeAll ()V
 	METHOD method_4598 start ()V
+	CLASS 2
+		METHOD openConnection (Ljava/net/URL;)Ljava/net/URLConnection;
+			ARG 1 url
+		CLASS 1
+			METHOD connect ()V
+			METHOD getInputStream ()Ljava/io/InputStream;

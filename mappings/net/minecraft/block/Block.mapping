@@ -1,10 +1,11 @@
 CLASS net/minecraft/class_160 net/minecraft/block/Block
-	FIELD field_577 boundingBoxX D
-	FIELD field_578 boundingBoxY D
-	FIELD field_579 boundingBoxZ D
-	FIELD field_580 boundingBoxX2 D
-	FIELD field_581 boundingBoxY2 D
-	FIELD field_582 boundingBoxZ2 D
+	COMMENT Air, the filler block
+	FIELD field_577 boundingBoxMinX D
+	FIELD field_578 boundingBoxMinY D
+	FIELD field_579 boundingBoxMinZ D
+	FIELD field_580 boundingBoxMaxX D
+	FIELD field_581 boundingBoxMaxY D
+	FIELD field_582 boundingBoxMaxZ D
 	FIELD field_583 sound Lnet/minecraft/class_160$class_162;
 	FIELD field_585 material Lnet/minecraft/class_591;
 	FIELD field_586 materialColor Lnet/minecraft/class_592;
@@ -30,6 +31,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_607 SLIME Lnet/minecraft/class_160$class_162;
 	FIELD field_608 opaque Z
 	FIELD field_611 lightLevel I
+	FIELD field_613 strength F
+	FIELD field_614 resistance F
 	FIELD field_616 tickRandomly Z
 	METHOD <init> (Lnet/minecraft/class_591;)V
 		ARG 1 material
@@ -43,7 +46,14 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_633 setup ()V
 	METHOD method_634 getTranslationKey ()Ljava/lang/String;
 	METHOD method_635 setLightLevel (F)Lnet/minecraft/class_160;
+		ARG 1 lightLevel
 	METHOD method_636 setBoundingBox (FFFFFF)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
 	METHOD method_637 stateFromData (I)Lnet/minecraft/class_376;
 		ARG 1 data
 	METHOD method_638 register (ILjava/lang/String;Lnet/minecraft/class_160;)V
@@ -54,6 +64,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 explosion
 	METHOD method_642 getTickRate (Lnet/minecraft/class_99;)I
 		ARG 1 world
+	METHOD method_643 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
+		ARG 1 world
+		ARG 2 pos
 	METHOD method_644 onDestroyedByExplosion (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_93;)V
 		ARG 1 world
 		ARG 2 pos
@@ -122,14 +135,20 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 facing
 	METHOD method_669 setSound (Lnet/minecraft/class_160$class_162;)Lnet/minecraft/class_160;
+		ARG 1 sound
 	METHOD method_670 getIdByBlock (Lnet/minecraft/class_160;)I
 		ARG 0 block
 	METHOD method_672 getMeta (Lnet/minecraft/class_376;)I
 		ARG 1 state
-	METHOD method_674 getDropItem (Lnet/minecraft/class_376;Ljava/util/Random;I)Lnet/minecraft/class_2054;
+	METHOD method_673 (Lnet/minecraft/class_376;Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
 		ARG 1 state
+		ARG 3 pos
+	METHOD method_674 getDropItem (Lnet/minecraft/class_376;Ljava/util/Random;I)Lnet/minecraft/class_2054;
+		ARG 1 blockState
 		ARG 2 random
+		ARG 3 state
 	METHOD method_677 getDropCount (Ljava/util/Random;)I
+		ARG 1 rand
 	METHOD method_679 calcBlockBreakingData (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
 	METHOD method_680 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_160;
 	METHOD method_681 getBlockFromItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
@@ -141,6 +160,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_683 setTickRandomly (Z)Lnet/minecraft/class_160;
 		ARG 1 tickRandomly
 	METHOD method_685 setResistance (F)Lnet/minecraft/class_160;
+		ARG 1 resistance
+	METHOD method_686 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_646;
+		ARG 1 world
+		ARG 2 pos
 	METHOD method_687 dropExperience (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;I)V
 		ARG 1 world
 		ARG 2 pos
@@ -179,6 +202,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_717 getByBlockState (Lnet/minecraft/class_376;)I
 		ARG 0 state
 	METHOD method_718 canMobSpawnInside ()Z
+	METHOD method_719 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
+		ARG 1 world
+		ARG 2 pos
 	METHOD method_720 getMaterialColor (Lnet/minecraft/class_376;)Lnet/minecraft/class_592;
 		ARG 1 state
 	METHOD method_721 getAmbientOcclusionLightLevel ()F
@@ -199,6 +225,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_737 getMaterial ()Lnet/minecraft/class_591;
 	METHOD method_738 isFullCube ()Z
 	METHOD method_741 setUnbreakable ()Lnet/minecraft/class_160;
+	METHOD method_742 ticksRandomly ()Z
 	CLASS class_161 OffsetType
 		FIELD field_617 NONE Lnet/minecraft/class_160$class_161;
 		FIELD field_618 XZ Lnet/minecraft/class_160$class_161;
