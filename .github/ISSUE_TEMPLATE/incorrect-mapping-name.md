@@ -18,6 +18,3 @@ Describe what the element does
 
 **Expected name**  
 The expected name
-
-**Do you agree to the note given in CONTRIBUTING.md**  
-No / Yes
