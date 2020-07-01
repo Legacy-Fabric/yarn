@@ -94,6 +94,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 color
 			COMMENT The block's material color
 	METHOD method_615 hasCollision ()Z
+		COMMENT Returns whether a block has collision, i.e. stops entities
+		COMMENT @return Whether a block has collision
 	METHOD method_616 getMinX ()D
 	METHOD method_617 getMaxX ()D
 	METHOD method_618 getMinY ()D
@@ -116,12 +118,19 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 lightLevel
 			COMMENT The block's luminescence
 	METHOD method_636 setBoundingBox (FFFFFF)V
+		COMMENT Sets the block's bounding box. It accepts six parameters: The minimum and maximum for each of the three axes.
 		ARG 1 minX
+			COMMENT Minimum X value
 		ARG 2 minY
+			COMMENT Minimum Y value
 		ARG 3 minZ
+			COMMENT Minimum Z value
 		ARG 4 maxX
+			COMMENT Maximum X value
 		ARG 5 maxY
+			COMMENT Maximum Y value
 		ARG 6 maxZ
+			COMMENT Maximum Z value
 	METHOD method_637 stateFromData (I)Lnet/minecraft/class_376;
 		COMMENT Returns a blockstate of the current block from it's id
 		COMMENT @return The Default state
@@ -141,7 +150,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_641 shouldDropItemsOnExplosion (Lnet/minecraft/class_93;)Z
 		ARG 1 explosion
 	METHOD method_642 getTickRate (Lnet/minecraft/class_99;)I
+		COMMENT Returns the block's tick rate.
+		COMMENT Default is 10.
+		COMMENT @return Tick rate
 		ARG 1 world
+			COMMENT The world that the block is placed in
 	METHOD method_643 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -150,15 +163,26 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 explosion
 	METHOD method_645 getCollisionBox (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)Lnet/minecraft/class_646;
+		COMMENT Returns a box by adding the block's current location and the block's corresponding value in its Bounding Box
+		COMMENT @return The Collision box
 		ARG 1 world
+			COMMENT The world that the block has been placed
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 	METHOD method_646 randomDropAsItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;FI)V
+		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 chance
+			COMMENT The chance (luck factor)
 		ARG 5 id
+			COMMENT Id
 	METHOD method_647 onEvent (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;II)Z
 		ARG 1 world
 		ARG 2 pos
@@ -166,15 +190,26 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 id
 		ARG 5 meta
 	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_160;)V
+		COMMENT Runs when its adjacent blocks are updated.
+		COMMENT It will also run when the block is placed or removed as Air is being updated.
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 block
+			COMMENT The adjacent Block that updated the current block
 	METHOD method_650 onUpdateTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
+		COMMENT Runs when the block is updated
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 rand
+			COMMENT Random object
 	METHOD method_651 onEntityCollision (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_1745;)V
 		ARG 1 world
 		ARG 2 pos
@@ -252,9 +287,14 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 state
 		ARG 4 facing
 	METHOD method_668 isSideInvisible (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+		COMMENT Returns whether the current block has connected sides, i.e its side faces are invisible when covered by other blocks. Used by glass to prevent the white dots from appearing everywhere through adjacent glass blocks.
+		COMMENT @return Whether the current block has connected sides
 		ARG 1 view
+			COMMENT WorldView instance
 		ARG 2 pos
+			COMMENT The current block's position
 		ARG 3 facing
+			COMMENT The direction the block is facing
 	METHOD method_669 setSound (Lnet/minecraft/class_160$class_162;)Lnet/minecraft/class_160;
 		COMMENT Sets the block's sound type. Used in registering blocks.
 		COMMENT @return The current block
@@ -280,22 +320,39 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 pos
 			COMMENT The block's position
 	METHOD method_674 getDropItem (Lnet/minecraft/class_376;Ljava/util/Random;I)Lnet/minecraft/class_2054;
+		COMMENT Returns the item that must be dropped when the block is broken
+		COMMENT @return The Item that drops after the block breaks
 		ARG 1 blockState
+			COMMENT The block's BlockState
 		ARG 2 random
+			COMMENT Random object
 		ARG 3 state
+			COMMENT State
 	METHOD method_675 canCollide (Lnet/minecraft/class_376;Z)Z
+		COMMENT Returns whether entities can collide with the block
+		COMMENT @return Whether the block has collision
 		ARG 1 state
+			COMMENT The block's BlockState
 		ARG 2 bl
 	METHOD method_676 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_677 getDropCount (Ljava/util/Random;)I
+		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
+		COMMENT @return Amount of items to be dropped
 		ARG 1 rand
+			COMMENT Random object
 	METHOD method_678 getBlastResistance (Lnet/minecraft/class_1745;)F
 		ARG 1 entity
 	METHOD method_679 calcBlockBreakingData (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
+		COMMENT Calculates how fast or slow the block must be broken by a Player.
+		COMMENT  Status effects such as Haste and Mining fatigue are taken into consideration.
+		COMMENT @return Speed of breaking
 		ARG 1 player
+			COMMENT The player breaking the block
 		ARG 2 world
+			COMMENT The world that the block is placed in
 		ARG 3 pos
+			COMMENT The block's position
 	METHOD method_680 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_160;
 		ARG 1 group
 	METHOD method_681 getBlockFromItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
@@ -325,19 +382,34 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 size
 	METHOD method_688 onBreaking (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		COMMENT Runs when the block is removed (by an entity or explosion).
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 	METHOD method_689 dropAsItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;I)V
+		COMMENT Runs when the block must be dropped as an item.
+		COMMENT Called when the block is broken or an enderman holding the block dies.
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 id
+			COMMENT Id
 	METHOD method_690 scheduledTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
+		COMMENT Runs when the block is updated as per a schedule
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 rand
+			COMMENT Random object
 	METHOD method_691 canBePlacedAdjacent (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -359,7 +431,6 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The block
 		ARG 0 id
 			COMMENT The block's name
-	METHOD method_699 getBoolean ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
 		COMMENT Sets the current block's strength. Used in registering blocks.
 		COMMENT @return The current block
@@ -374,14 +445,23 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_703 onCreation (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		COMMENT Runs when the block is placed (by a player or enderman).
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 	METHOD method_704 randomDisplayTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
+		COMMENT Runs every random display Tick. Useful for displaying particles around a block, like Redstone Ore.
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 		ARG 4 rand
+			COMMENT Random object
 	METHOD method_706 getData (Lnet/minecraft/class_376;)I
 		COMMENT Returns the data value for a blockstate
 		COMMENT Throws an {@code IllegalArmumentException} as this method does not work
@@ -404,9 +484,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_712 onBreakByPlayer (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		COMMENT Runs when the block is broken by the player
 		ARG 1 world
+			COMMENT The world that the block is placed in
 		ARG 2 pos
+			COMMENT The block's position
 		ARG 3 state
+			COMMENT The block's BlockState
 	METHOD method_714 appendProperties ()Lnet/minecraft/class_378;
 	METHOD method_715 setOpacity (I)Lnet/minecraft/class_160;
 		COMMENT Sets the block's light opacity. Used in registering blocks.
