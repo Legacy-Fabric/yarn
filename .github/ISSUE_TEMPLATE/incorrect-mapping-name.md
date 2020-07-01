@@ -1,6 +1,6 @@
 ---
 name: Incorrect mapping name
-about: Report a mapping name which you might think is incorrect
+about: Report an incorrect mapping name
 title: 
 labels: bug
 assignees: ''
