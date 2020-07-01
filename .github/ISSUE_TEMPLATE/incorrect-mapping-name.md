@@ -18,3 +18,6 @@ Describe what the element does
 
 **Expected name**  
 The expected name
+
+**Additional Context**
+Any additional information
