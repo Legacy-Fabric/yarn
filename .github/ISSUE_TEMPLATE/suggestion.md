@@ -2,7 +2,7 @@
 name: Suggestion
 about: Suggest classes that should be mapped or documented
 title:
-labels: bug
+labels: enhancement
 assignees: ''
 
 ---
