@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_160 net/minecraft/block/Block
-	COMMENT Air, the filler block
+	COMMENT
+	FIELD field_576 blockEntity Z
 	FIELD field_577 boundingBoxMinX D
 	FIELD field_578 boundingBoxMinY D
 	FIELD field_579 boundingBoxMinZ D
@@ -7,8 +8,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_581 boundingBoxMaxY D
 	FIELD field_582 boundingBoxMaxZ D
 	FIELD field_583 sound Lnet/minecraft/class_160$class_162;
+	FIELD field_584 particleGravity F
 	FIELD field_585 material Lnet/minecraft/class_591;
 	FIELD field_586 materialColor Lnet/minecraft/class_592;
+	FIELD field_587 slipperiness F
 	FIELD field_588 stateManager Lnet/minecraft/class_378;
 	FIELD field_589 blockState Lnet/minecraft/class_376;
 	FIELD field_590 translationKey Ljava/lang/String;
@@ -29,18 +32,33 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_605 LADDER Lnet/minecraft/class_160$class_162;
 	FIELD field_606 ANVIL Lnet/minecraft/class_160$class_162;
 	FIELD field_607 SLIME Lnet/minecraft/class_160$class_162;
-	FIELD field_608 opaque Z
+	FIELD field_608 fullBlock Z
+	FIELD field_609 opacity I
+	FIELD field_610 transluscent Z
 	FIELD field_611 lightLevel I
+	FIELD field_612 useNeighbourLight Z
 	FIELD field_613 strength F
 	FIELD field_614 resistance F
-	FIELD field_616 tickRandomly Z
+	FIELD field_615 stats Z
+	FIELD field_616 randomTicks Z
 	METHOD <init> (Lnet/minecraft/class_591;)V
 		ARG 1 material
 	METHOD <init> (Lnet/minecraft/class_591;Lnet/minecraft/class_592;)V
 		ARG 1 material
 		ARG 2 color
+	METHOD method_615 hasCollision ()Z
+	METHOD method_616 getMinX ()D
+	METHOD method_617 getMaxX ()D
+	METHOD method_618 getMinY ()D
+	METHOD method_619 getMaxY ()D
+	METHOD method_620 getMinZ ()D
+	METHOD method_621 getMaxZ ()D
+	METHOD method_623 canSilkTouchHarvest ()Z
+	METHOD method_624 hasStats ()Z
+	METHOD method_625 disableStats ()Lnet/minecraft/class_160;
 	METHOD method_626 getItemGroup ()Lnet/minecraft/class_2029;
 	METHOD method_629 hasComparatorOutput ()Z
+	METHOD method_630 getStateManager ()Lnet/minecraft/class_378;
 	METHOD method_631 getDefaultState ()Lnet/minecraft/class_376;
 	METHOD method_632 getOffsetType ()Lnet/minecraft/class_160$class_161;
 	METHOD method_633 setup ()V
@@ -58,8 +76,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 data
 	METHOD method_638 register (ILjava/lang/String;Lnet/minecraft/class_160;)V
 		ARG 0 id
+		ARG 1 name
+		ARG 2 block
+	METHOD method_639 getBonusDrops (ILjava/util/Random;)I
+		ARG 1 id
+		ARG 2 rand
 	METHOD method_640 register (ILnet/minecraft/class_1605;Lnet/minecraft/class_160;)V
 		ARG 0 id
+		ARG 1 identifier
+		ARG 2 block
 	METHOD method_641 shouldDropItemsOnExplosion (Lnet/minecraft/class_93;)Z
 		ARG 1 explosion
 	METHOD method_642 getTickRate (Lnet/minecraft/class_99;)I
@@ -75,11 +100,28 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
+	METHOD method_646 randomDropAsItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;FI)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 chance
+		ARG 5 id
+	METHOD method_647 onEvent (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;II)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 id
+		ARG 5 meta
 	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_160;)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 block
+	METHOD method_650 onUpdateTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 rand
 	METHOD method_651 onEntityCollision (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_1745;)V
 		ARG 1 world
 		ARG 2 pos
@@ -102,6 +144,22 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 state
 		ARG 4 rplayer
 		ARG 5 direction
+	METHOD method_655 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_647;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 vec1
+		ARG 4 vec2
+	METHOD method_656 getStateFromData (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFFILnet/minecraft/class_1752;)Lnet/minecraft/class_376;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 dir
+		ARG 7 id
+		ARG 8 entity
+	METHOD method_657 canBeReplaced (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;Lnet/minecraft/class_2056;)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 dir
+		ARG 4 stack
 	METHOD method_658 onSteppedOn (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1745;)V
 		ARG 1 world
 		ARG 2 pos
@@ -119,12 +177,22 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 0 world
 		ARG 1 pos
 		ARG 2 item
+	METHOD method_663 setEntityVelocity (Lnet/minecraft/class_99;Lnet/minecraft/class_1745;)V
+		ARG 1 world
+		ARG 2 entity
+	METHOD method_664 harvest (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_348;)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 be
 	METHOD method_665 getOutlineShape (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)V
 		ARG 1 view
 		ARG 2 pos
 	METHOD method_666 getBlockColor (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;I)I
 		ARG 1 view
 		ARG 2 pos
+		ARG 3 id
 	METHOD method_667 getWeakRedstonePower (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_1383;)I
 		ARG 1 view
 		ARG 2 pos
@@ -138,19 +206,34 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 sound
 	METHOD method_670 getIdByBlock (Lnet/minecraft/class_160;)I
 		ARG 0 block
+	METHOD method_671 areBlocksEqual (Lnet/minecraft/class_160;Lnet/minecraft/class_160;)Z
+		ARG 0 one
+		ARG 1 two
 	METHOD method_672 getMeta (Lnet/minecraft/class_376;)I
 		ARG 1 state
-	METHOD method_673 (Lnet/minecraft/class_376;Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
+	METHOD method_673 getBlockState (Lnet/minecraft/class_376;Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
 		ARG 1 state
+		ARG 2 view
 		ARG 3 pos
 	METHOD method_674 getDropItem (Lnet/minecraft/class_376;Ljava/util/Random;I)Lnet/minecraft/class_2054;
 		ARG 1 blockState
 		ARG 2 random
 		ARG 3 state
+	METHOD method_675 canCollide (Lnet/minecraft/class_376;Z)Z
+		ARG 1 state
+		ARG 2 bl
+	METHOD method_676 (Lnet/minecraft/class_649;)Z
+		ARG 1 vec
 	METHOD method_677 getDropCount (Ljava/util/Random;)I
 		ARG 1 rand
+	METHOD method_678 getBlastResistance (Lnet/minecraft/class_1745;)F
+		ARG 1 entity
 	METHOD method_679 calcBlockBreakingData (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
+		ARG 1 player
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_680 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_160;
+		ARG 1 group
 	METHOD method_681 getBlockFromItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
 		ARG 0 item
 	METHOD method_682 appendStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
@@ -159,6 +242,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 stacks
 	METHOD method_683 setTickRandomly (Z)Lnet/minecraft/class_160;
 		ARG 1 tickRandomly
+	METHOD method_684 getRenderType ()I
 	METHOD method_685 setResistance (F)Lnet/minecraft/class_160;
 		ARG 1 resistance
 	METHOD method_686 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_646;
@@ -168,18 +252,39 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 size
+	METHOD method_688 onBreaking (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+	METHOD method_689 dropAsItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;I)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 id
 	METHOD method_690 scheduledTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
+		ARG 4 rand
+	METHOD method_691 canBePlacedAdjacent (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 direction
+	METHOD method_692 blocksMovement (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Z
+		ARG 1 view
+		ARG 2 pos
 	METHOD method_693 getStrongRedstonePower (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_1383;)I
 		ARG 1 view
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 facing
+	METHOD method_695 isEqualTo (Lnet/minecraft/class_160;)Z
+		ARG 1 block
+	METHOD method_697 (Lnet/minecraft/class_649;)Z
+		ARG 1 vec
 	METHOD method_698 get (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 0 id
-	METHOD method_699 isOpaque ()Z
+	METHOD method_699 getBoolean ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
 		ARG 1 strength
 	METHOD method_701 byId (I)Lnet/minecraft/class_160;
@@ -187,45 +292,75 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_702 getPickItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_2054;
 		ARG 1 world
 		ARG 2 pos
+	METHOD method_703 onCreation (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
 	METHOD method_704 randomDisplayTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
+		ARG 4 rand
 	METHOD method_706 getData (Lnet/minecraft/class_376;)I
 		ARG 1 state
+	METHOD method_707 (Lnet/minecraft/class_649;)Z
+		ARG 1 vec
 	METHOD method_708 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 1 translation
+	METHOD method_709 renderAsNormalBlock ()Z
 	METHOD method_710 getStateFromRawId (I)Lnet/minecraft/class_376;
 		ARG 0 stateId
+	METHOD method_711 canBePlacedAtPos (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_712 onBreakByPlayer (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
 	METHOD method_714 appendProperties ()Lnet/minecraft/class_378;
+	METHOD method_715 setOpacity (I)Lnet/minecraft/class_160;
+		ARG 1 opacity
 	METHOD method_716 getTranslatedName ()Ljava/lang/String;
 	METHOD method_717 getByBlockState (Lnet/minecraft/class_376;)I
 		ARG 0 state
 	METHOD method_718 canMobSpawnInside ()Z
-	METHOD method_719 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
+	METHOD method_719 getStrength (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_720 getMaterialColor (Lnet/minecraft/class_376;)Lnet/minecraft/class_592;
 		ARG 1 state
 	METHOD method_721 getAmbientOcclusionLightLevel ()F
+	METHOD method_722 (Lnet/minecraft/class_376;)I
+		ARG 1 state
 	METHOD method_723 emitsRedstonePower ()Z
+	METHOD method_724 createStackFromBlock (Lnet/minecraft/class_376;)Lnet/minecraft/class_2056;
+		ARG 1 state
+	METHOD method_725 setBlockItemBounds ()V
 	METHOD method_726 getMeta (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)I
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_727 setDefaultState (Lnet/minecraft/class_376;)V
 		ARG 1 state
+	METHOD method_728 getPistonInteractionType ()I
 	METHOD method_729 rainTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)V
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_730 getComparatorOutput (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)I
 		ARG 1 world
 		ARG 2 pos
-	METHOD method_731 getRenderLayer ()Lnet/minecraft/class_91;
+	METHOD method_731 getRenderLayerType ()Lnet/minecraft/class_91;
+	METHOD method_732 isFullBlock ()Z
+	METHOD method_733 getOpacity ()I
+	METHOD method_734 isTransluscent ()Z
 	METHOD method_735 getLightLevel ()I
+	METHOD method_736 usesNeighbourLight ()Z
 	METHOD method_737 getMaterial ()Lnet/minecraft/class_591;
-	METHOD method_738 isFullCube ()Z
+	METHOD method_738 isNormalBlock ()Z
+	METHOD method_739 isFullCube ()Z
+	METHOD method_740 isLeafBlock ()Z
 	METHOD method_741 setUnbreakable ()Lnet/minecraft/class_160;
 	METHOD method_742 ticksRandomly ()Z
+	METHOD method_743 hasBlockEntity ()Z
 	CLASS class_161 OffsetType
 		FIELD field_617 NONE Lnet/minecraft/class_160$class_161;
 		FIELD field_618 XZ Lnet/minecraft/class_160$class_161;
