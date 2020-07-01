@@ -84,10 +84,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_616 randomTicks Z
 		COMMENT Specifies whether the current block ticks randomly
 	METHOD <init> (Lnet/minecraft/class_591;)V
+		COMMENT Overloaded Block constructor that calls the other with the default material color
 		ARG 1 material
+			COMMENT The block's material
 	METHOD <init> (Lnet/minecraft/class_591;Lnet/minecraft/class_592;)V
+		COMMENT Block constructor which initializes all fields to their default values and assigns the material and material color to the specified parameters
 		ARG 1 material
+			COMMENT The block's material
 		ARG 2 color
+			COMMENT The block's material color
 	METHOD method_615 hasCollision ()Z
 	METHOD method_616 getMinX ()D
 	METHOD method_617 getMaxX ()D
@@ -106,7 +111,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_633 setup ()V
 	METHOD method_634 getTranslationKey ()Ljava/lang/String;
 	METHOD method_635 setLightLevel (F)Lnet/minecraft/class_160;
+		COMMENT Sets the block's luminescence. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 lightLevel
+			COMMENT The block's luminescence
 	METHOD method_636 setBoundingBox (FFFFFF)V
 		ARG 1 minX
 		ARG 2 minY
@@ -115,7 +123,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 5 maxY
 		ARG 6 maxZ
 	METHOD method_637 stateFromData (I)Lnet/minecraft/class_376;
+		COMMENT Returns a blockstate of the current block from it's id
+		COMMENT @return The Default state
 		ARG 1 data
+			COMMENT The Blockstate's associated data value
 	METHOD method_638 register (ILjava/lang/String;Lnet/minecraft/class_160;)V
 		ARG 0 id
 		ARG 1 name
@@ -245,18 +256,29 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 facing
 	METHOD method_669 setSound (Lnet/minecraft/class_160$class_162;)Lnet/minecraft/class_160;
+		COMMENT Sets the block's sound type. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 sound
+			COMMENT The block's sound type
 	METHOD method_670 getIdByBlock (Lnet/minecraft/class_160;)I
+		COMMENT Returns a certain block's id
+		COMMENT @return Block id
 		ARG 0 block
+			COMMENT The block for which the id is returned
 	METHOD method_671 areBlocksEqual (Lnet/minecraft/class_160;Lnet/minecraft/class_160;)Z
 		ARG 0 one
 		ARG 1 two
 	METHOD method_672 getMeta (Lnet/minecraft/class_376;)I
 		ARG 1 state
 	METHOD method_673 getBlockState (Lnet/minecraft/class_376;Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
+		COMMENT Returns the current block's blockstate at a certain position
+		COMMENT @return state
 		ARG 1 state
+			COMMENT The original blockstate
 		ARG 2 view
+			COMMENT WorldView instance
 		ARG 3 pos
+			COMMENT The block's position
 	METHOD method_674 getDropItem (Lnet/minecraft/class_376;Ljava/util/Random;I)Lnet/minecraft/class_2054;
 		ARG 1 blockState
 		ARG 2 random
@@ -277,16 +299,24 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_680 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_160;
 		ARG 1 group
 	METHOD method_681 getBlockFromItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
+		COMMENT Returns a block by converting a blockitem to a block
+		COMMENT @return The block
 		ARG 0 item
+			COMMENT The item that must be converted to a block
 	METHOD method_682 appendStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
 		ARG 1 item
 		ARG 2 group
 		ARG 3 stacks
 	METHOD method_683 setTickRandomly (Z)Lnet/minecraft/class_160;
+		COMMENT Sets whether the current block has random ticks. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 tickRandomly
-	METHOD method_684 getRenderType ()I
+			COMMENT Whether the current block should have random ticks
 	METHOD method_685 setResistance (F)Lnet/minecraft/class_160;
+		COMMENT Sets the block's resistance. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 resistance
+			COMMENT The block's resistance
 	METHOD method_686 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_646;
 		ARG 1 world
 		ARG 2 pos
@@ -325,12 +355,21 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_697 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_698 get (Ljava/lang/String;)Lnet/minecraft/class_160;
+		COMMENT Returns a block from it's name
+		COMMENT @return The block
 		ARG 0 id
+			COMMENT The block's name
 	METHOD method_699 getBoolean ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
+		COMMENT Sets the current block's strength. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 strength
-	METHOD method_701 byId (I)Lnet/minecraft/class_160;
+			COMMENT The block's strength
+	METHOD method_701 getById (I)Lnet/minecraft/class_160;
+		COMMENT Returns a certain block from its id
+		COMMENT @return The Block
 		ARG 0 id
+			COMMENT The id for which the Block is returned
 	METHOD method_702 getPickItem (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_2054;
 		ARG 1 world
 		ARG 2 pos
@@ -344,14 +383,23 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 state
 		ARG 4 rand
 	METHOD method_706 getData (Lnet/minecraft/class_376;)I
+		COMMENT Returns the data value for a blockstate
+		COMMENT Throws an {@code IllegalArmumentException} as this method does not work
+		COMMENT @return Zero
 		ARG 1 state
+			COMMENT The Blockstate
 	METHOD method_707 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_708 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 1 translation
 	METHOD method_709 renderAsNormalBlock ()Z
+		COMMENT Returns whether the block can be rendered as a normal block
+		COMMENT @return Whether the block can be rendered as a normal block
 	METHOD method_710 getStateFromRawId (I)Lnet/minecraft/class_376;
-		ARG 0 stateId
+		COMMENT Returns a BlockState from it's id
+		COMMENT @return The Blockstate
+		ARG 0 id
+			COMMENT The BlockState's id
 	METHOD method_711 canBePlacedAtPos (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -361,16 +409,30 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 state
 	METHOD method_714 appendProperties ()Lnet/minecraft/class_378;
 	METHOD method_715 setOpacity (I)Lnet/minecraft/class_160;
+		COMMENT Sets the block's light opacity. Used in registering blocks.
+		COMMENT @return The current block
 		ARG 1 opacity
+			COMMENT The block's light opacity
 	METHOD method_716 getTranslatedName ()Ljava/lang/String;
 	METHOD method_717 getByBlockState (Lnet/minecraft/class_376;)I
+		COMMENT Returns a certain Block's id from a blockstate
+		COMMENT @return Block id
 		ARG 0 state
+			COMMENT The BlockState for which the id is returned
 	METHOD method_718 canMobSpawnInside ()Z
 	METHOD method_719 getStrength (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)F
+		COMMENT Returns the current block's strength
+		COMMENT @return The block's strength
 		ARG 1 world
+			COMMENT The world where the block is placed
 		ARG 2 pos
+			COMMENT The block's position
 	METHOD method_720 getMaterialColor (Lnet/minecraft/class_376;)Lnet/minecraft/class_592;
+		COMMENT Returns the block's material color from it's state
+		COMMENT Blockstates can have different material colors
+		COMMENT @return materialColor
 		ARG 1 state
+			COMMENT The Blockstate for which the material color is returned
 	METHOD method_721 getAmbientOcclusionLightLevel ()F
 	METHOD method_722 (Lnet/minecraft/class_376;)I
 		ARG 1 state
@@ -392,17 +454,44 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 pos
 	METHOD method_731 getRenderLayerType ()Lnet/minecraft/class_91;
 	METHOD method_732 isFullBlock ()Z
+		COMMENT Checks whether the current block is a full block
+		COMMENT @return fullBlock
 	METHOD method_733 getOpacity ()I
+		COMMENT Returns the current block's opacity
+		COMMENT @return opacity
 	METHOD method_734 isTransluscent ()Z
+		COMMENT Checks whether the current block is transluscent
+		COMMENT @return transluscent
 	METHOD method_735 getLightLevel ()I
+		COMMENT Returns the block's luminescence
+		COMMENT @return lightLevel
 	METHOD method_736 usesNeighbourLight ()Z
+		COMMENT Checks whether the current block uses light from the adjacent block
+		COMMENT @return useNeighbourLight
 	METHOD method_737 getMaterial ()Lnet/minecraft/class_591;
+		COMMENT Returns the block's material
+		COMMENT @return material
 	METHOD method_738 isNormalBlock ()Z
+		COMMENT Checks whether the block is a normal block.
+		COMMENT A normal block is one that blocks movement and can be rendered as a normal block.
+		COMMENT @return Whether the block is a normal block
 	METHOD method_739 isFullCube ()Z
+		COMMENT Checks whether the current block is a full cube.
+		COMMENT A block is a full cube when it can be rendered as a normal block, does not emit redstone power and is opaque.
+		COMMENT @return Whether the current block is a full cube
 	METHOD method_740 isLeafBlock ()Z
+		COMMENT Checks whether the current block is a normal block (used only by {@code LeavesBlock})
+		COMMENT @return Whether the current block is a normal block
 	METHOD method_741 setUnbreakable ()Lnet/minecraft/class_160;
+		COMMENT Sets the current block as unbreakable. Used in registering blocks.
+		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
+		COMMENT @return The current block
 	METHOD method_742 ticksRandomly ()Z
+		COMMENT Returns whether the current block has random ticks
+		COMMENT @return Whether the current block has random ticks
 	METHOD method_743 hasBlockEntity ()Z
+		COMMENT Returns whether the current block has a block entity
+		COMMENT @return Whether the current block has a block entity
 	CLASS class_161 OffsetType
 		FIELD field_617 NONE Lnet/minecraft/class_160$class_161;
 		FIELD field_618 XZ Lnet/minecraft/class_160$class_161;
