@@ -1,24 +1,44 @@
 CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 	FIELD field_4311 ALPHA_TEST Lnet/minecraft/class_1013$class_1014;
+		COMMENT Stores the alpha test state
 	FIELD field_4312 LIGHTING Lnet/minecraft/class_1013$class_1016;
+		COMMENT Stores the lighting state
 	FIELD field_4313 LIGHTING_STATES [Lnet/minecraft/class_1013$class_1016;
+		COMMENT Stores all lighting states in an array
 	FIELD field_4314 COLOR_MATERIAL Lnet/minecraft/class_1013$class_1021;
+		COMMENT Stores the color material state
 	FIELD field_4315 BLEND Lnet/minecraft/class_1013$class_1015;
+		COMMENT Stores the blend state
 	FIELD field_4316 DEPTH Lnet/minecraft/class_1013$class_1023;
+		COMMENT Stores the depth testing state
 	FIELD field_4317 FOG Lnet/minecraft/class_1013$class_1024;
+		COMMENT Stores the fog state
 	FIELD field_4318 CULL Lnet/minecraft/class_1013$class_1022;
+		COMMENT Stores the cull state
 	FIELD field_4319 POLY_OFFSET Lnet/minecraft/class_1013$class_1025;
+		COMMENT Stores the polygon offset state
 	FIELD field_4320 COLOR_LOGIC Lnet/minecraft/class_1013$class_1019;
+		COMMENT Stores the color logic state
 	FIELD field_4321 TEX_GEN Lnet/minecraft/class_1013$class_1030;
+		COMMENT Stores the texture coordinate generation state
 	FIELD field_4322 CLEAR Lnet/minecraft/class_1013$class_1017;
+		COMMENT Stores the color clear state
 	FIELD field_4323 STENCIL Lnet/minecraft/class_1013$class_1027;
+		COMMENT Stores the stencil state
 	FIELD field_4324 NORMALIZE Lnet/minecraft/class_1013$class_1016;
+		COMMENT Stores the normalization state
 	FIELD field_4325 activeTexture I
+		COMMENT Stores the currently active texture
 	FIELD field_4326 TEXTURES [Lnet/minecraft/class_1013$class_1031;
+		COMMENT Stores all texture states in an array
 	FIELD field_4327 modelShadeMode I
+		COMMENT Stores the shading mode
 	FIELD field_4328 RESCALE_NORMAL Lnet/minecraft/class_1013$class_1016;
+		COMMENT Stores the normal rescale state
 	FIELD field_4329 COLOR_MASK Lnet/minecraft/class_1013$class_1020;
+		COMMENT Stores the color mask state
 	FIELD field_4330 COLOR Lnet/minecraft/class_1013$class_1018;
+		COMMENT Stores the color state in rgba
 	METHOD method_3393 disableNormalize ()V
 		COMMENT Disables Normalize
 	METHOD method_3394 enableRescaleNormal ()V
@@ -26,19 +46,25 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_3395 disableRescaleNormal ()V
 		COMMENT Disables rescale
 	METHOD method_3396 loadIdentity ()V
+		COMMENT Replaces the current matrix with the identity matrix
 	METHOD method_3397 pushMatrix ()V
+		COMMENT Pushes the current matrix stack
 	METHOD method_3398 popMatrix ()V
+		COMMENT Pops the current matrix stack
 	METHOD method_3399 clearColor ()V
+		COMMENT Clears the current color
 	METHOD method_3400 pushLightingAttributes ()V
 		COMMENT Pushes the attribute stack
 	METHOD method_3401 clearDepth (D)V
 		COMMENT Sets the clear value for the depth buffer
 		ARG 0 depth
 	METHOD method_3402 scaled (DDD)V
+		COMMENT Multiplies the current matrix by a general scaling matrix
 		ARG 0 x
 		ARG 2 y
 		ARG 4 z
 	METHOD method_3403 ortho (DDDDDD)V
+		COMMENT Multiplies the current matrix with an orthographic matrix
 		ARG 0 l
 		ARG 2 r
 		ARG 4 b
@@ -53,6 +79,7 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 factor
 		ARG 1 units
 	METHOD method_3406 scalef (FFF)V
+		COMMENT Multiplies the current matrix by a general scaling matrix
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
@@ -80,6 +107,7 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 		ARG 2 srcFactorAlpha
 		ARG 3 dstFactorAlpha
 	METHOD method_3412 getFloat (ILjava/nio/FloatBuffer;)V
+		COMMENT Gets a float for a float buffer
 		ARG 0 mode
 		ARG 1 buffer
 	METHOD method_3413 enableTexCoord (Lnet/minecraft/class_1013$class_1028;)V
@@ -95,6 +123,7 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 mode
 		ARG 2 buffer
 	METHOD method_3416 multiMatrix (Ljava/nio/FloatBuffer;)V
+		COMMENT Multiplies the current matrix with the specified matrix
 		ARG 0 buffer
 	METHOD method_3417 depthMask (Z)V
 		COMMENT Enables or disables writing into the depth buffer
@@ -108,6 +137,7 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_3419 popAttributes ()V
 		COMMENT Pops the attribute stack
 	METHOD method_3420 translated (DDD)V
+		COMMENT Multiplies the current matrix by a translation matrix
 		ARG 0 x
 		ARG 2 y
 		ARG 4 z
@@ -115,10 +145,12 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 		COMMENT Sets fog parameters
 		ARG 0 start
 	METHOD method_3422 translatef (FFF)V
+		COMMENT Multiplies the current matrix by a translation matrix
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
 	METHOD method_3423 rotatef (FFFF)V
+		COMMENT Multiplies the current matrix by a rotation matrix
 		ARG 0 angle
 		ARG 1 x
 		ARG 2 y
@@ -145,10 +177,12 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 		COMMENT Sets fog parameters
 		ARG 0 end
 	METHOD method_3430 color3f (FFF)V
+		COMMENT Sets the current color without alpha
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
 	METHOD method_3431 color4f (FFFF)V
+		COMMENT Sets the current color
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
@@ -206,10 +240,12 @@ CLASS net/minecraft/class_1013 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_3452 disableFog ()V
 		COMMENT Disables fog
 	METHOD method_3453 matrixMode (I)V
+		COMMENT Allows specifying which matrix is the current matrix
 		ARG 0 mode
 	METHOD method_3454 enableCull ()V
 		COMMENT Enables culling
 	METHOD method_3455 callList (I)V
+		COMMENT Executes a display list
 		ARG 0 listId
 	METHOD method_3456 disableCull ()V
 		COMMENT Disables Culling
