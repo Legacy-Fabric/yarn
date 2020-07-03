@@ -82,6 +82,12 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 			COMMENT The list of items in the ItemGroup
 	METHOD method_8256 (Lnet/minecraft/class_2056;)Ljava/lang/String;
 		ARG 1 stack
+	METHOD method_8258 (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1752;)Z
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 block
+		ARG 4 pos
+		ARG 5 entity
 	METHOD method_8259 inventoryTick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
 		COMMENT Runs every tick when the item is in an inventory.
 		ARG 1 stack
@@ -98,6 +104,13 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
+	METHOD method_8262 getMiningSpeedForBlock (Lnet/minecraft/class_2056;Lnet/minecraft/class_160;)F
+		ARG 1 stack
+		ARG 2 block
+	METHOD method_8263 (Lnet/minecraft/class_2056;Lnet/minecraft/class_1752;Lnet/minecraft/class_1752;)Z
+		ARG 1 stack
+		ARG 2 entity1
+		ARG 3 entity2
 	METHOD method_8264 onUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
 		COMMENT Runs when the item is <i>used</i>, i.e. in most cases, right clicked when held.
 		COMMENT @return Whether the action was successful
@@ -202,6 +215,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return The rarity of the ItemStack
 		ARG 1 stack
 			COMMENT The item in an ItemStack form
+	METHOD method_8291 getAttributeModifierMap ()Lcom/google/common/collect/Multimap;
+		COMMENT Returns a map containing entity attributes that are modified by the item
 	METHOD method_8292 getMaxCount ()I
 		COMMENT Returns the max stack size of an Item
 		COMMENT @return Max stack Size
