@@ -72,14 +72,14 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return The current Item
 		ARG 1 group
 			COMMENT The ItemGroup
-	METHOD method_8255 addToItemGroup (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
-		COMMENT Adds an item to a specific ItemGroup
+	METHOD method_8255 registerSubItems (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
+		COMMENT Registers an item's sub items
 		ARG 1 item
 			COMMENT The Item instance
 		ARG 2 group
 			COMMENT The ItemGroup
 		ARG 3 list
-			COMMENT The list of items in the ItemGroup
+			COMMENT The list of sub items
 	METHOD method_8256 (Lnet/minecraft/class_2056;)Ljava/lang/String;
 		ARG 1 stack
 	METHOD method_8258 (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1752;)Z
@@ -111,9 +111,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 entity1
 		ARG 3 entity2
-	METHOD method_8264 onUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
-		COMMENT Runs when the item is <i>used</i>, i.e. in most cases, right clicked when held.
-		COMMENT @return Whether the action was successful
+	METHOD method_8264 use (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
 		ARG 1 itemStack
 		ARG 2 player
 		ARG 3 world
@@ -139,10 +137,15 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return Item
 		ARG 0 id
 	METHOD method_8271 isEffectiveOn (Lnet/minecraft/class_160;)Z
+		ARG 1 block
 	METHOD method_8272 getRawId (Lnet/minecraft/class_2054;)I
 		COMMENT Returns a numeric id for an Item
 		COMMENT @return Numeric Id
 		ARG 0 item
+	METHOD method_8273 use (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 player
 	METHOD method_8274 getItemGroup ()Lnet/minecraft/class_2029;
 		COMMENT Returns the itemgroup that the item is in
 	METHOD method_8275 setMaxCount (I)Lnet/minecraft/class_2054;
