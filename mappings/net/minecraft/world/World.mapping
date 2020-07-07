@@ -30,7 +30,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	FIELD field_282 dimension Lnet/minecraft/class_411;
 	FIELD field_283 eventListeners Ljava/util/List;
 	FIELD field_284 chunkProvider Lnet/minecraft/class_396;
-	FIELD field_285 handler Lnet/minecraft/class_635;
+	FIELD field_285 saveHandler Lnet/minecraft/class_635;
 	FIELD field_286 levelProperties Lnet/minecraft/class_634;
 	METHOD <init> (Lnet/minecraft/class_635;Lnet/minecraft/class_634;Lnet/minecraft/class_411;Lnet/minecraft/class_1705;Z)V
 		ARG 1 handler
@@ -47,6 +47,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_238 hasRain (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
 	METHOD method_240 hasHighHumidity (Lnet/minecraft/class_1372;)Z
+	METHOD method_242 getLocalDifficulty (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1722;
+		ARG 1 pos
 	METHOD method_245 disconnect ()V
 	METHOD method_248 getTime ()J
 	METHOD method_249 getTimeOfDay ()J
@@ -57,6 +59,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_255 isThundering ()Z
 	METHOD method_256 isRaining ()Z
 	METHOD method_259 getEffectiveHeight ()I
+	METHOD method_261 getCalenderInstance ()Ljava/util/Calendar;
 	METHOD method_262 getScoreboard ()Lnet/minecraft/class_653;
 	METHOD method_263 getClosestPlayer (DDDD)Lnet/minecraft/class_1963;
 	METHOD method_264 addFireworkParticle (DDDDDDLnet/minecraft/class_1405;)V
@@ -73,6 +76,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 y
 	METHOD method_277 setTime (J)V
 		ARG 1 time
+	METHOD method_279 setPropertiesInitialized (Lnet/minecraft/class_102;)V
+		ARG 1 info
 	METHOD method_281 getLuminance (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
 		ARG 1 type
 		ARG 2 pos
@@ -84,6 +89,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_293 hasEntityIn (Lnet/minecraft/class_646;Lnet/minecraft/class_1745;)Z
 		ARG 1 box
 		ARG 2 exclusion
+	METHOD method_298 addToCrashReport (Lnet/minecraft/class_825;)Lnet/minecraft/class_1364;
+		ARG 1 report
 	METHOD method_299 isHeightInvalid (Lnet/minecraft/class_1372;)Z
 	METHOD method_306 updateNeighborsExcept (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;Lnet/minecraft/class_1383;)V
 		ARG 1 pos
@@ -102,11 +109,16 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_333 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;Lcom/google/common/base/Predicate;)Ljava/util/List;
 		ARG 3 filter
 	METHOD method_334 playSound (Lnet/minecraft/class_1745;Ljava/lang/String;FF)V
+	METHOD method_335 (Lnet/minecraft/class_1745;Z)V
+		ARG 1 entity
+		ARG 2 bl
 	METHOD method_337 canPlayerModifyAt (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;)Z
 		ARG 1 player
 		ARG 2 pos
 	METHOD method_338 extinguishFire (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+	METHOD method_342 getGlobalDifficulty ()Lnet/minecraft/class_1721;
 	METHOD method_343 getAmbientDarkness ()I
+	METHOD method_346 getVillageState ()Lnet/minecraft/class_1844;
 	METHOD method_347 getWorldBorder ()Lnet/minecraft/class_395;
 	METHOD method_348 getWorld ()Lnet/minecraft/class_99;
 	METHOD method_354 playLevelEvent (ILnet/minecraft/class_1372;I)V
@@ -128,6 +140,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_373 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
 		ARG 2 box
 	METHOD method_374 tick ()V
+	METHOD method_376 setAmbientDarkness (I)V
+		ARG 1 ambientDarkness
 	METHOD method_381 getBlockAt (Lnet/minecraft/class_1372;)Lnet/minecraft/class_160;
 		ARG 1 pos
 	METHOD method_382 updateNeighborsAlways (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
@@ -161,6 +175,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_414 setThunderGradient (F)V
 		ARG 1 thunderGradient
 	METHOD method_416 getRainGradient (F)F
+	METHOD method_418 getClientChunkCache ()Lnet/minecraft/class_396;
 	METHOD method_419 setRainGradient (F)V
 		ARG 1 rainGradient
 	METHOD method_420 (Lnet/minecraft/class_1372;)I
@@ -171,6 +186,14 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_426 getNextMapId ()I
 	METHOD method_429 removeBlockEntity (Lnet/minecraft/class_1372;)V
+	METHOD method_431 getDimensionBiomeSource ()Lnet/minecraft/class_123;
 	METHOD method_433 isDay ()Z
+	METHOD method_437 getMoonPhase ()F
 	METHOD method_438 getReceivedStrongRedstonePower (Lnet/minecraft/class_1372;)I
 	METHOD method_440 isReceivingRedstonePower (Lnet/minecraft/class_1372;)Z
+	CLASS 1
+		METHOD call ()Ljava/lang/Object;
+	CLASS 3
+		METHOD call ()Ljava/lang/Object;
+	CLASS 4
+		METHOD call ()Ljava/lang/Object;
