@@ -20,6 +20,9 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7367 velocityDirty Z
 	FIELD field_7368 netherPortalCooldown I
 	FIELD field_7371 dimension I
+	FIELD field_7372 lastPortalBlockPos Lnet/minecraft/class_1372;
+	FIELD field_7373 lastPortalVec3d Lnet/minecraft/class_649;
+	FIELD field_7374 teleportDirection Lnet/minecraft/class_1383;
 	FIELD field_7375 playerUuid Ljava/util/UUID;
 	FIELD field_7378 invulnerable Z
 	FIELD field_7379 commandStats Lnet/minecraft/class_1685;
@@ -87,6 +90,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 3 pitch
 	METHOD method_6933 readCustomDataFromTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
+	METHOD method_6934 setCustomName (Ljava/lang/String;)V
 	METHOD method_6935 playSound (Ljava/lang/String;FF)V
 		ARG 1 id
 		ARG 2 volume
@@ -111,6 +115,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6961 shouldRenderName ()Z
 	METHOD method_6963 getHoverEvent ()Lnet/minecraft/class_1447;
 	METHOD method_6964 getBoundingBox ()Lnet/minecraft/class_646;
+	METHOD method_6965 getEyeHeight ()F
 	METHOD method_6969 isImmuneToExplosion ()Z
 	METHOD method_6972 scheduleVelocityUpdate ()V
 	METHOD method_6973 collides ()Z
@@ -124,13 +129,14 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6983 getMountedHeightOffset ()D
 	METHOD method_6986 getDefaultNetherPortalCooldown ()I
 	METHOD method_6987 animateDamage ()V
+	METHOD method_6988 getArmorStacks ()[Lnet/minecraft/class_2056;
 	METHOD method_6989 isOnFire ()Z
 	METHOD method_6990 hasVehicle ()Z
 	METHOD method_6991 isSneaking ()Z
 	METHOD method_6992 isSprinting ()Z
 	METHOD method_6993 isInvisible ()Z
 	METHOD method_6995 getAir ()I
-	METHOD method_6996 (DDD)V
+	METHOD method_6996 setPos (DDD)V
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z

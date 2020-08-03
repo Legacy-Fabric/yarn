@@ -31,6 +31,12 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8332 getTranslationKey ()Ljava/lang/String;
 	METHOD method_8333 split (I)Lnet/minecraft/class_2056;
 		ARG 1 amount
+	METHOD method_8334 damage (ILjava/util/Random;)Z
+		ARG 1 amount
+		ARG 2 random
+	METHOD method_8335 damage (ILnet/minecraft/class_1752;)V
+		ARG 1 amount
+		ARG 2 entity
 	METHOD method_8336 addEnchantment (Lnet/minecraft/class_64;I)V
 		ARG 1 enchantment
 		ARG 2 level
@@ -39,12 +45,15 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 		ARG 2 entity
 		ARG 3 slot
 		ARG 4 selected
-	METHOD method_8339 (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8339 onStartUse (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+		ARG 1 world
 		ARG 2 player
 	METHOD method_8340 onCraft (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
 		ARG 1 world
 		ARG 2 player
 		ARG 3 amount
+	METHOD method_8341 getMiningSpeedMultiplier (Lnet/minecraft/class_160;)F
+		ARG 1 block
 	METHOD method_8342 fromTag (Lnet/minecraft/class_1405;)Lnet/minecraft/class_2056;
 		ARG 0 tag
 	METHOD method_8343 putSubTag (Ljava/lang/String;Lnet/minecraft/class_1419;)V
@@ -55,6 +64,8 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 		ARG 2 createIfNull
 	METHOD method_8346 setInItemFrame (Lnet/minecraft/class_1883;)V
 		ARG 1 itemFrame
+	METHOD method_8347 (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
+		ARG 1 player
 	METHOD method_8348 (Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
 		ARG 1 player
 		ARG 2 entity
@@ -71,7 +82,8 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8353 getItem ()Lnet/minecraft/class_2054;
 	METHOD method_8354 setDamage (I)V
 		ARG 1 damage
-	METHOD method_8355 (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8355 onFinishUse (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+		ARG 1 world
 		ARG 2 player
 	METHOD method_8356 (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
 		ARG 1 world
@@ -88,6 +100,8 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8361 getMaxCount ()I
 	METHOD method_8362 setRepairCost (I)V
 		ARG 1 cost
+	METHOD method_8363 canDestroy (Lnet/minecraft/class_160;)Z
+		ARG 1 block
 	METHOD method_8364 writeTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_8365 setCustomName (Ljava/lang/String;)Lnet/minecraft/class_2056;
@@ -98,6 +112,8 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 		ARG 0 left
 		ARG 1 right
 	METHOD method_8368 isDamaged ()Z
+	METHOD method_8369 canPlaceOn (Lnet/minecraft/class_160;)Z
+		ARG 1 block
 	METHOD method_8370 setTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_8371 equalsAll (Lnet/minecraft/class_2056;)Z
