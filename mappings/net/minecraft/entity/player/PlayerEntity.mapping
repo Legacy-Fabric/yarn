@@ -9,8 +9,8 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	FIELD field_8331 sleepTimer I
 	FIELD field_8332 reducedDebugInfo Z
 	FIELD field_8334 inventory Lnet/minecraft/class_1962;
-	FIELD field_8335 playerContainer Lnet/minecraft/class_1983;
-	FIELD field_8336 openedContainer Lnet/minecraft/class_1983;
+	FIELD field_8335 playerScreenHandler Lnet/minecraft/class_1983;
+	FIELD field_8336 openedScreenHandler Lnet/minecraft/class_1983;
 	FIELD field_8337 hungerManager Lnet/minecraft/class_1982;
 	FIELD field_8341 experiencePickUpDelay I
 	FIELD field_8348 inBed Z
@@ -41,9 +41,11 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 2 amount
 	METHOD method_7987 openInventory (Lnet/minecraft/class_1718;)V
 		ARG 1 inventory
-	METHOD method_7988 openContainer (Lnet/minecraft/class_1723;)V
-		ARG 1 container
+	METHOD method_7988 openScreenHandler (Lnet/minecraft/class_1723;)V
+		ARG 1 screenHandler
 	METHOD method_7990 openHorseInventory (Lnet/minecraft/class_1850;Lnet/minecraft/class_1718;)V
+		ARG 1 entity
+		ARG 2 inventory
 	METHOD method_7992 shouldDamagePlayer (Lnet/minecraft/class_1963;)Z
 		ARG 1 player
 	METHOD method_7993 copyFrom (Lnet/minecraft/class_1963;Z)V
@@ -51,6 +53,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7994 isPartVisible (Lnet/minecraft/class_1966;)Z
 		ARG 1 modelPart
 	METHOD method_7995 openBookEditScreen (Lnet/minecraft/class_2056;)V
+		ARG 1 stack
 	METHOD method_7996 setUseItem (Lnet/minecraft/class_2056;I)V
 	METHOD method_7997 dropItem (Lnet/minecraft/class_2056;Z)Lnet/minecraft/class_1893;
 		ARG 1 stack
@@ -66,8 +69,10 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 target
 	METHOD method_8012 stopUsingItem ()V
 	METHOD method_8015 getScore ()I
+	METHOD method_8017 getMainHandStack ()Lnet/minecraft/class_2056;
 	METHOD method_8018 addEnchantedHitParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 target
+	METHOD method_8019 removeSelectedSlotStack ()V
 	METHOD method_8020 requestRespawn ()V
 	METHOD method_8021 isMainPlayer ()Z
 	METHOD method_8022 getGameProfile ()Lcom/mojang/authlib/GameProfile;
@@ -89,12 +94,14 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 ignoreHunger
 	METHOD method_8041 setReducedDebugInfo (Z)V
 		ARG 1 reducedDebugInfo
-	METHOD method_8043 closeContainer ()V
+	METHOD method_8043 closeScreenHandler ()V
 	METHOD method_8045 setScore (I)V
 		ARG 1 score
 	METHOD method_8047 addScore (I)V
 		ARG 1 score
 	METHOD method_8048 sendAbilitiesUpdate ()V
+	METHOD method_8050 (Lnet/minecraft/class_1745;)Z
+		ARG 1 entity
 	METHOD method_8051 isSpectator ()Z
 	CLASS class_1964 SleepStatus
 		FIELD field_8360 OK Lnet/minecraft/class_1963$class_1964;
