@@ -33,6 +33,8 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_382 MESA_PLATEAU Lnet/minecraft/class_113;
 	FIELD field_383 DEFAULT Lnet/minecraft/class_113;
 	FIELD field_387 name Ljava/lang/String;
+	FIELD field_390 topBlock Lnet/minecraft/class_376;
+	FIELD field_391 baseBlock Lnet/minecraft/class_376;
 	FIELD field_395 temperature F
 	FIELD field_396 downfall F
 	FIELD field_397 getWaterColor I
@@ -107,8 +109,14 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	METHOD method_545 asClass ()Ljava/lang/Class;
 	METHOD method_546 getBiomeTemperature ()Lnet/minecraft/class_113$class_115;
 	METHOD method_547 getBiomes ()[Lnet/minecraft/class_113;
-	CLASS class_114 BiomeHeight
-	CLASS class_115 BiomeTemperature
+	CLASS class_114 Height
+		FIELD field_432 baseHeightModifier F
+		FIELD field_433 variationModifier F
+		METHOD <init> (FF)V
+			ARG 1 baseHeightModifier
+			ARG 2 variationModifier
+		METHOD method_548 diminish ()Lnet/minecraft/class_113$class_114;
+	CLASS class_115 Temperature
 		FIELD field_434 OCEAN Lnet/minecraft/class_113$class_115;
 		FIELD field_435 COLD Lnet/minecraft/class_113$class_115;
 		FIELD field_436 MEDIUM Lnet/minecraft/class_113$class_115;
