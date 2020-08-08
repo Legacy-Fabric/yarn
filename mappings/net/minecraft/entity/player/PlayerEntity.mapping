@@ -10,7 +10,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	FIELD field_8332 reducedDebugInfo Z
 	FIELD field_8334 inventory Lnet/minecraft/class_1962;
 	FIELD field_8335 playerContainer Lnet/minecraft/class_1983;
-	FIELD field_8336 openedContainer Lnet/minecraft/class_1983;
+	FIELD field_8336 openContainer Lnet/minecraft/class_1983;
 	FIELD field_8337 hungerManager Lnet/minecraft/class_1982;
 	FIELD field_8341 experiencePickUpDelay I
 	FIELD field_8348 inBed Z
@@ -23,6 +23,8 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 2 profile
 	METHOD method_7972 addExhaustion (F)V
 		ARG 1 exhaustion
+	METHOD method_7973 incrementXp (I)V
+		ARG 1 xp
 	METHOD method_7974 openTradingScreen (Lnet/minecraft/class_83;)V
 		ARG 1 trader
 	METHOD method_7975 openCommandBlockScreen (Lnet/minecraft/class_87;)V
@@ -32,6 +34,8 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 gameMode
 	METHOD method_7979 openEditSignScreen (Lnet/minecraft/class_366;)V
 		ARG 1 sign
+	METHOD method_7980 attemptSleep (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1963$class_1964;
+		ARG 1 pos
 	METHOD method_7981 canModify (Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;Lnet/minecraft/class_2056;)Z
 		ARG 1 pos
 		ARG 2 direction
@@ -64,6 +68,10 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 stack
 	METHOD method_7999 dropSelectedItem (Z)Lnet/minecraft/class_1893;
 		ARG 1 dropAll
+	METHOD method_8000 awaken (ZZZ)V
+		ARG 3 setSpawn
+	METHOD method_8001 decrementXp (I)V
+		ARG 1 xp
 	METHOD method_8003 addMessage (Lnet/minecraft/class_1444;)V
 		ARG 1 text
 	METHOD method_8004 getOfflinePlayerUuid (Ljava/lang/String;)Ljava/util/UUID;
@@ -99,7 +107,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 ignoreHunger
 	METHOD method_8041 setReducedDebugInfo (Z)V
 		ARG 1 reducedDebugInfo
-	METHOD method_8043 closeContainer ()V
+	METHOD method_8043 closeContainerScreen ()V
 	METHOD method_8045 setScore (I)V
 		ARG 1 score
 	METHOD method_8047 addScore (I)V
@@ -127,3 +135,4 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		METHOD method_8053 getById (I)Lnet/minecraft/class_1963$class_1965;
 			ARG 0 id
 		METHOD method_8054 getName ()Ljava/lang/String;
+		METHOD values ()[Lnet/minecraft/class_1963$class_1965;
