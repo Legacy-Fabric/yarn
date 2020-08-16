@@ -1,15 +1,10 @@
 name: Java CI
 
 on:
-  push:
-    branches:
-      - 1.12.2
+  push
 
 jobs:
   build:
-    strategy:
-      matrix:
-        java-version: [1.8, 11, 14]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,9 +14,12 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 11
       - name: Upload With Bintray
-        run: ./gradlew javadoc bintrayUpload
-        env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+        run: reznikmm/upload-bintray-action@v2
+        with:
+          repo: Yarn
+          package: yarn
+          subject: halotroop
+          username: ${{ secrets.BINTRAY_USER }}
+          apiKey: ${{ secrets.BINTRAY_KEY }}
