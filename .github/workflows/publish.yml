@@ -3,30 +3,29 @@ name: Java CI
 on:
   push:
     branches:
-      - master
       - 1.12.2
-      - 1.12d
 
 jobs:
   build:
+    strategy:
+      matrix:
+        java-version: [1.8, 11, 14]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: Set up JDK 11
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ matrix.java-version }}
+      - uses: eskatos/gradle-command-action@v1.3.2
+        with:
+          gradle-version: wrapper
+          arguments: build javadocJar checkMappings --stacktrace
       - name: Upload With Bintray
         run: ./gradlew javadoc bintrayUpload
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
-      - name: Deploy javadoc 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.PAGE_DEPLOY_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build/docs/javadoc # The folder the action should deploy.
