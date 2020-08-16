@@ -20,10 +20,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java-version }}
-      - uses: eskatos/gradle-command-action@v1.3.2
-        with:
-          gradle-version: wrapper
-          arguments: build javadocJar checkMappings --stacktrace
       - name: Upload With Bintray
         run: ./gradlew javadoc bintrayUpload
         env:
