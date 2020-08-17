@@ -1,4 +1,6 @@
 CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
+	FIELD field_1562 chunkX I
+	FIELD field_1563 chunkZ I
 	FIELD field_1564 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_1570 world Lnet/minecraft/class_99;
 	FIELD field_1571 heightmap [I
@@ -7,8 +9,13 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	FIELD field_1584 blocks Ljava/util/concurrent/ConcurrentLinkedQueue;
 	METHOD <init> (Lnet/minecraft/class_99;II)V
 		ARG 1 world
+		ARG 2 chunkX
+		ARG 3 chunkZ
 	METHOD <init> (Lnet/minecraft/class_99;Lnet/minecraft/class_416;II)V
 		ARG 1 world
+	METHOD method_1344 isChunkEqual (II)Z
+		ARG 1 chunkX
+		ARG 2 chunkZ
 	METHOD method_1348 getLightAtPos (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
 		ARG 1 type
 		ARG 2 pos
@@ -57,11 +64,13 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	METHOD method_1388 (Lnet/minecraft/class_1372;)V
 		ARG 1 pos
 	METHOD method_1390 isEmpty ()Z
+	METHOD method_1396 getBlockState (Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
+		ARG 1 pos
 	METHOD method_1409 getWorld ()Lnet/minecraft/class_99;
 	METHOD method_1410 getLevelHeightmap ()[I
 	METHOD method_1411 getBlockEntities ()Ljava/util/Map;
 	METHOD method_1412 getEntities ()[Lnet/minecraft/class_1690;
-	CLASS class_400
+	CLASS class_400 Status
 		FIELD field_1593 IMMEDIATE Lnet/minecraft/class_399$class_400;
 		FIELD field_1594 QUEUED Lnet/minecraft/class_399$class_400;
 		FIELD field_1595 CHECK Lnet/minecraft/class_399$class_400;
