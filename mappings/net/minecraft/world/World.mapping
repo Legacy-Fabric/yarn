@@ -50,7 +50,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_242 getLocalDifficulty (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1722;
 		ARG 1 pos
 	METHOD method_245 disconnect ()V
-	METHOD method_248 getTime ()J
+	METHOD method_248 getLastUpdateTime ()J
 	METHOD method_249 getTimeOfDay ()J
 	METHOD method_250 getSpawnPos ()Lnet/minecraft/class_1372;
 	METHOD method_251 getChunkProvider ()Lnet/minecraft/class_396;
@@ -73,8 +73,20 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 11 velocityZ
 		ARG 13 tag
 	METHOD method_265 playSound (DDDLjava/lang/String;FF)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 sound
+		ARG 8 volume
+		ARG 9 pitch
 	METHOD method_266 playSound (DDDLjava/lang/String;FFZ)V
-	METHOD method_268 getEntity (I)Lnet/minecraft/class_1745;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 sound
+		ARG 8 volume
+		ARG 9 pitch
+	METHOD method_268 getEntityById (I)Lnet/minecraft/class_1745;
 	METHOD method_269 getChunk (II)Lnet/minecraft/class_399;
 		ARG 1 x
 		ARG 2 y
@@ -101,8 +113,12 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 3 level
 	METHOD method_284 canBlockBePlaced (Lnet/minecraft/class_160;Lnet/minecraft/class_1372;ZLnet/minecraft/class_1383;Lnet/minecraft/class_1745;Lnet/minecraft/class_2056;)Z
 	METHOD method_286 isInsideWorld (Lnet/minecraft/class_395;Lnet/minecraft/class_1745;)Z
+		ARG 1 border
+		ARG 2 entity
 	METHOD method_288 isRegionLoaded (Lnet/minecraft/class_476;)Z
 		ARG 1 box
+	METHOD method_291 (Lnet/minecraft/class_646;Lnet/minecraft/class_591;)Z
+		ARG 1 boundingBox
 	METHOD method_293 hasEntityIn (Lnet/minecraft/class_646;Lnet/minecraft/class_1745;)Z
 		ARG 1 box
 		ARG 2 exclusion
@@ -151,9 +167,16 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_327 sendEntityStatus (Lnet/minecraft/class_1745;B)V
 		ARG 1 entity
 		ARG 2 status
+	METHOD method_332 doesBoxCollide (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
+		ARG 1 entity
+		ARG 2 boundingBox
 	METHOD method_333 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;Lcom/google/common/base/Predicate;)Ljava/util/List;
 		ARG 3 filter
 	METHOD method_334 playSound (Lnet/minecraft/class_1745;Ljava/lang/String;FF)V
+		ARG 1 entity
+		ARG 2 sound
+		ARG 3 volume
+		ARG 4 pitch
 	METHOD method_335 (Lnet/minecraft/class_1745;Z)V
 		ARG 1 entity
 		ARG 2 bl
@@ -166,6 +189,11 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 player
 		ARG 2 pos
 	METHOD method_338 extinguishFire (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+	METHOD method_339 playSound (Lnet/minecraft/class_1963;Ljava/lang/String;FF)V
+		ARG 1 player
+		ARG 2 sound
+		ARG 3 volume
+		ARG 4 pitch
 	METHOD method_342 getGlobalDifficulty ()Lnet/minecraft/class_1721;
 	METHOD method_343 getAmbientDarkness ()I
 	METHOD method_346 getVillageState ()Lnet/minecraft/class_1844;
@@ -196,6 +224,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_374 tick ()V
 	METHOD method_376 setAmbientDarkness (I)V
 		ARG 1 ambientDarkness
+	METHOD method_380 (Lnet/minecraft/class_646;)Z
+		ARG 1 boundingBox
 	METHOD method_381 getBlockAt (Lnet/minecraft/class_1372;)Lnet/minecraft/class_160;
 		ARG 1 pos
 	METHOD method_382 updateNeighborsAlways (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
@@ -211,15 +241,20 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_385 (Lnet/minecraft/class_1372;Z)I
 		ARG 1 pos
 	METHOD method_389 getSkyAngleRadians (F)F
+	METHOD method_391 (Lnet/minecraft/class_646;)Z
+		ARG 1 boundingBox
 	METHOD method_392 neighbourUpdate (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
 		ARG 1 pos
 		ARG 2 block
 	METHOD method_394 spawnEntity (Lnet/minecraft/class_1745;)Z
 	METHOD method_396 doesAreaContainFireSource (Lnet/minecraft/class_646;)Z
+		ARG 1 boundingbox
 	METHOD method_397 blockExists (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
 	METHOD method_398 updateHorizontalAdjacent (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
 		ARG 1 pos
+	METHOD method_400 removeEntity (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
 	METHOD method_402 getChunk (Lnet/minecraft/class_1372;)Lnet/minecraft/class_399;
 		ARG 1 pos
 	METHOD method_405 setDefaultSpawnClient ()V

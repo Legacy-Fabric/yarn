@@ -12,6 +12,8 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 	FIELD field_5808 axis Lnet/minecraft/class_1383$class_1384;
 	FIELD field_5809 axisDirection Lnet/minecraft/class_1383$class_1385;
 	FIELD field_5810 vec Lnet/minecraft/class_1400;
+	FIELD field_5811 ALL [Lnet/minecraft/class_1383;
+	FIELD field_5812 HORIZONTAL [Lnet/minecraft/class_1383;
 	FIELD field_5813 DIRECTION_MAP Ljava/util/Map;
 	METHOD <init> (Ljava/lang/String;IIIILjava/lang/String;Lnet/minecraft/class_1383$class_1385;Lnet/minecraft/class_1383$class_1384;Lnet/minecraft/class_1400;)V
 		ARG 3 id
@@ -30,6 +32,8 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 		ARG 2 z
 	METHOD method_4914 getById (I)Lnet/minecraft/class_1383;
 		ARG 0 id
+	METHOD method_4915 getClockWiseFacingByAxis (Lnet/minecraft/class_1383$class_1384;)Lnet/minecraft/class_1383;
+		ARG 1 axis
 	METHOD method_4916 get (Lnet/minecraft/class_1383$class_1385;Lnet/minecraft/class_1383$class_1384;)Lnet/minecraft/class_1383;
 		ARG 0 direction
 		ARG 1 axis
@@ -52,18 +56,24 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 	METHOD method_4930 getVector ()Lnet/minecraft/class_1400;
 	METHOD method_4931 rotateYClockWise ()Lnet/minecraft/class_1383;
 	METHOD method_4932 rotateZClockWise ()Lnet/minecraft/class_1383;
-	METHOD values ()[Lnet/minecraft/class_1383;
 	CLASS class_1384 Axis
 		FIELD field_5818 X Lnet/minecraft/class_1383$class_1384;
 		FIELD field_5819 Y Lnet/minecraft/class_1383$class_1384;
 		FIELD field_5820 Z Lnet/minecraft/class_1383$class_1384;
 		FIELD field_5821 BY_NAME Ljava/util/Map;
 		FIELD field_5822 name Ljava/lang/String;
+		FIELD field_5823 directionType Lnet/minecraft/class_1383$class_1386;
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/class_1383$class_1386;)V
+			ARG 3 name
+			ARG 4 directionType
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 dir
 		METHOD method_4933 getName ()Ljava/lang/String;
 		METHOD method_4935 fromName (Ljava/lang/String;)Lnet/minecraft/class_1383$class_1384;
 			ARG 0 name
 		METHOD method_4936 isVertical ()Z
 		METHOD method_4937 isHorizontal ()Z
+		METHOD method_4938 getDirectionType ()Lnet/minecraft/class_1383$class_1386;
 	CLASS class_1385 AxisDirection
 		FIELD field_5825 POSITIVE Lnet/minecraft/class_1383$class_1385;
 		FIELD field_5826 NEGATIVE Lnet/minecraft/class_1383$class_1385;
@@ -76,3 +86,8 @@ CLASS net/minecraft/class_1383 net/minecraft/util/math/Direction
 	CLASS class_1386 DirectionType
 		FIELD field_5830 HORIZONTAL Lnet/minecraft/class_1383$class_1386;
 		FIELD field_5831 VERTICAL Lnet/minecraft/class_1383$class_1386;
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 dir
+		METHOD method_4940 getDirections ()[Lnet/minecraft/class_1383;
+		METHOD method_4942 getRandomDirection (Ljava/util/Random;)Lnet/minecraft/class_1383;
+			ARG 1 random

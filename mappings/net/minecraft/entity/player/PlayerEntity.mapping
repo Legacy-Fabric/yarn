@@ -10,7 +10,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	FIELD field_8332 reducedDebugInfo Z
 	FIELD field_8334 inventory Lnet/minecraft/class_1962;
 	FIELD field_8335 playerContainer Lnet/minecraft/class_1983;
-	FIELD field_8336 openedContainer Lnet/minecraft/class_1983;
+	FIELD field_8336 openContainer Lnet/minecraft/class_1983;
 	FIELD field_8337 hungerManager Lnet/minecraft/class_1982;
 	FIELD field_8341 experiencePickUpDelay I
 	FIELD field_8348 inBed Z
@@ -23,10 +23,19 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 2 profile
 	METHOD method_7972 addExhaustion (F)V
 		ARG 1 exhaustion
+	METHOD method_7973 incrementXp (I)V
+		ARG 1 xp
+	METHOD method_7974 openTradingScreen (Lnet/minecraft/class_83;)V
+		ARG 1 trader
+	METHOD method_7975 openCommandBlockScreen (Lnet/minecraft/class_87;)V
+		ARG 1 executor
 	METHOD method_7976 findRespawnPosition (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Z)Lnet/minecraft/class_1372;
 	METHOD method_7977 setGameMode (Lnet/minecraft/class_102$class_103;)V
 		ARG 1 gameMode
 	METHOD method_7979 openEditSignScreen (Lnet/minecraft/class_366;)V
+		ARG 1 sign
+	METHOD method_7980 attemptSleep (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1963$class_1964;
+		ARG 1 pos
 	METHOD method_7981 canModify (Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;Lnet/minecraft/class_2056;)Z
 		ARG 1 pos
 		ARG 2 direction
@@ -44,6 +53,8 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7988 openContainer (Lnet/minecraft/class_1723;)V
 		ARG 1 container
 	METHOD method_7990 openHorseInventory (Lnet/minecraft/class_1850;Lnet/minecraft/class_1718;)V
+		ARG 1 horse
+		ARG 2 inventory
 	METHOD method_7992 shouldDamagePlayer (Lnet/minecraft/class_1963;)Z
 		ARG 1 player
 	METHOD method_7993 copyFrom (Lnet/minecraft/class_1963;Z)V
@@ -51,11 +62,16 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7994 isPartVisible (Lnet/minecraft/class_1966;)Z
 		ARG 1 modelPart
 	METHOD method_7995 openBookEditScreen (Lnet/minecraft/class_2056;)V
+		ARG 1 stack
 	METHOD method_7996 setUseItem (Lnet/minecraft/class_2056;I)V
 	METHOD method_7997 dropItem (Lnet/minecraft/class_2056;Z)Lnet/minecraft/class_1893;
 		ARG 1 stack
 	METHOD method_7999 dropSelectedItem (Z)Lnet/minecraft/class_1893;
 		ARG 1 dropAll
+	METHOD method_8000 awaken (ZZZ)V
+		ARG 3 setSpawn
+	METHOD method_8001 decrementXp (I)V
+		ARG 1 xp
 	METHOD method_8003 addMessage (Lnet/minecraft/class_1444;)V
 		ARG 1 text
 	METHOD method_8004 getOfflinePlayerUuid (Ljava/lang/String;)Ljava/util/UUID;
@@ -66,8 +82,10 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 target
 	METHOD method_8012 stopUsingItem ()V
 	METHOD method_8015 getScore ()I
+	METHOD method_8017 getMainHandStack ()Lnet/minecraft/class_2056;
 	METHOD method_8018 addEnchantedHitParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 target
+	METHOD method_8019 removeSelectedSlotItem ()V
 	METHOD method_8020 requestRespawn ()V
 	METHOD method_8021 isMainPlayer ()Z
 	METHOD method_8022 getGameProfile ()Lcom/mojang/authlib/GameProfile;
@@ -89,7 +107,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 ignoreHunger
 	METHOD method_8041 setReducedDebugInfo (Z)V
 		ARG 1 reducedDebugInfo
-	METHOD method_8043 closeContainer ()V
+	METHOD method_8043 closeContainerScreen ()V
 	METHOD method_8045 setScore (I)V
 		ARG 1 score
 	METHOD method_8047 addScore (I)V

@@ -40,6 +40,11 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8336 addEnchantment (Lnet/minecraft/class_64;I)V
 		ARG 1 enchantment
 		ARG 2 level
+	METHOD method_8337 onBlockBroken (Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1963;)V
+		ARG 1 world
+		ARG 2 block
+		ARG 3 pos
+		ARG 4 player
 	METHOD method_8338 inventoryTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
 		ARG 1 world
 		ARG 2 entity
@@ -62,11 +67,20 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8344 getSubTag (Ljava/lang/String;Z)Lnet/minecraft/class_1405;
 		ARG 1 name
 		ARG 2 createIfNull
+	METHOD method_8345 onEntityHit (Lnet/minecraft/class_1752;Lnet/minecraft/class_1963;)V
+		ARG 1 entity
+		ARG 2 attacker
 	METHOD method_8346 setInItemFrame (Lnet/minecraft/class_1883;)V
 		ARG 1 itemFrame
-	METHOD method_8347 (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
+	METHOD method_8347 use (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
 		ARG 1 player
-	METHOD method_8348 (Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 direction
+		ARG 5 facingX
+		ARG 6 facingY
+		ARG 7 facingZ
+	METHOD method_8348 canUseOnEntity (Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
 		ARG 1 player
 		ARG 2 entity
 	METHOD method_8349 getTooltip (Lnet/minecraft/class_1963;Z)Ljava/util/List;
@@ -85,9 +99,10 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8355 onFinishUse (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
 		ARG 1 world
 		ARG 2 player
-	METHOD method_8356 (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
+	METHOD method_8356 onUseStopped (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
 		ARG 1 world
 		ARG 2 player
+		ARG 3 timeLeft
 	METHOD method_8357 isEffectiveOn (Lnet/minecraft/class_160;)Z
 		ARG 1 block
 	METHOD method_8358 toTag (Lnet/minecraft/class_1405;)Lnet/minecraft/class_1405;

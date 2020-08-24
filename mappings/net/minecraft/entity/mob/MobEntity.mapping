@@ -1,13 +1,23 @@
 CLASS net/minecraft/class_1753 net/minecraft/entity/mob/MobEntity
+	FIELD field_7492 lookControl Lnet/minecraft/class_1775;
 	FIELD field_7493 ambientSoundChance I
+	FIELD field_7494 bodyControl Lnet/minecraft/class_1773;
 	FIELD field_7495 experiencePoints I
 	FIELD field_7496 attackGoals Lnet/minecraft/class_1790;
 	FIELD field_7497 armorDropChances [F
+	FIELD field_7498 visbilityCache Lnet/minecraft/class_1838;
+	FIELD field_7499 armorInventory [Lnet/minecraft/class_2056;
 	FIELD field_7500 pickUpLoot Z
 	FIELD field_7501 persistent Z
+	FIELD field_7505 attackTarget Lnet/minecraft/class_1752;
+	FIELD field_7506 entityMotionHelper Lnet/minecraft/class_1776;
+	FIELD field_7507 jumpControl Lnet/minecraft/class_1774;
+	FIELD field_7508 navigation Lnet/minecraft/class_1834;
 	FIELD field_7509 goals Lnet/minecraft/class_1790;
 	METHOD method_7183 getDefaultDrop ()Lnet/minecraft/class_2054;
 	METHOD method_7186 mobTick ()V
+	METHOD method_7189 canAttackEntity (Ljava/lang/Class;)Z
+		ARG 1 clazz
 	METHOD method_7190 initEquipment (Lnet/minecraft/class_1722;)V
 		ARG 1 difficulty
 	METHOD method_7191 (Lnet/minecraft/class_1722;Lnet/minecraft/class_1756;)Lnet/minecraft/class_1756;
@@ -30,6 +40,8 @@ CLASS net/minecraft/class_1753 net/minecraft/entity/mob/MobEntity
 		ARG 1 oldAngle
 		ARG 2 newAngle
 		ARG 3 maxChangeInAngle
+	METHOD method_7199 newNavigation (Lnet/minecraft/class_99;)Lnet/minecraft/class_1834;
+		ARG 1 world
 	METHOD method_7200 updateEnchantments (Lnet/minecraft/class_1722;)V
 		ARG 1 difficulty
 	METHOD method_7201 getLookPitchSpeed ()I
@@ -38,14 +50,20 @@ CLASS net/minecraft/class_1753 net/minecraft/entity/mob/MobEntity
 	METHOD method_7208 canPickUpLoot ()Z
 	METHOD method_7209 isPersistent ()Z
 	METHOD method_7211 updateLeash ()V
+	METHOD method_7212 isTameable ()Z
 	METHOD method_7213 hasPositionTarget ()Z
+	METHOD method_7216 setAttackTarget (Lnet/minecraft/class_1752;)V
+		ARG 1 target
 	METHOD method_7217 setCanPickUpLoot (Z)V
 	METHOD method_7218 setAiDisabled (Z)V
 	METHOD method_7220 setForwardSpeed (F)V
 		ARG 1 forwardSpeed
 	METHOD method_7221 getLookControl ()Lnet/minecraft/class_1775;
+	METHOD method_7222 getMotionHelper ()Lnet/minecraft/class_1776;
 	METHOD method_7223 getJumpControl ()Lnet/minecraft/class_1774;
+	METHOD method_7224 getNavigation ()Lnet/minecraft/class_1834;
 	METHOD method_7225 getVisibilityCache ()Lnet/minecraft/class_1838;
+	METHOD method_7226 getAttackTarget ()Lnet/minecraft/class_1752;
 	METHOD method_7227 onEatingGrass ()V
 	METHOD method_7228 getMinAmbientSoundDelay ()I
 	METHOD method_7229 playAmbientSound ()V

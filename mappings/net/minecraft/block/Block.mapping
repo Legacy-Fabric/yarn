@@ -116,6 +116,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_621 getMaxZ ()D
 		COMMENT Returns the block's bounding box' maximum Z value
 		COMMENT @return Maximum Z value
+	METHOD method_622 getColor ()I
 	METHOD method_623 requiresSilkTouch ()Z
 	METHOD method_624 hasStats ()Z
 		COMMENT Returns whether the current block should be tracked for stats
@@ -127,6 +128,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Returns the block's ItemGroup.
 		COMMENT Only called on the client.
 		COMMENT @return The Block's item group
+	METHOD method_627 isFlowerPot ()Z
+	METHOD method_628 isFire ()Z
 	METHOD method_629 hasComparatorOutput ()Z
 		COMMENT Returns whether the block provides comparator output.
 		COMMENT Used in blocks with entities like Chests and Droppers.
@@ -256,6 +259,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 block
 			COMMENT The adjacent Block that updated the current block
+	METHOD method_649 appendCollisionBoxes (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Lnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_1745;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 box
+		ARG 5 list
+		ARG 6 entity
 	METHOD method_650 onUpdateTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;Ljava/util/Random;)V
 		COMMENT Runs when the block is updated
 		ARG 1 world
@@ -496,7 +506,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The block
 		ARG 0 item
 			COMMENT The item that must be converted to a block
-	METHOD method_682 appendStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
+	METHOD method_682 appendItemStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
 		COMMENT Appends ItemStacks to an itemgroup.
 		COMMENT Only called on the client.
 		ARG 1 item
@@ -516,7 +526,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 resistance
 			COMMENT The block's resistance
-	METHOD method_686 (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_646;
+	METHOD method_686 getSelectionBox (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Lnet/minecraft/class_646;
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_687 dropExperience (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;I)V
@@ -580,6 +590,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 facing
 			COMMENT The block's direction
+	METHOD method_694 hasCollision (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
+		ARG 1 worldView
+		ARG 2 pos
+		ARG 3 direction
 	METHOD method_695 isEqualTo (Lnet/minecraft/class_160;)Z
 		COMMENT Returns whether the current block and another block are equal
 		COMMENT @return Whether the current block and the other block are equal
@@ -592,6 +606,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The block
 		ARG 0 id
 			COMMENT The block's name
+	METHOD method_699 hasTransperancy ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
 		COMMENT Sets the current block's strength. Used in registering blocks.
 		COMMENT @return The current block
@@ -626,6 +641,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 rand
 			COMMENT Random object
+	METHOD method_705 getBrightness (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)I
+		ARG 1 worldView
+		ARG 2 pos
 	METHOD method_706 getData (Lnet/minecraft/class_376;)I
 		COMMENT Returns the data value for a blockstate
 		COMMENT Throws an {@code IllegalArmumentException} as this method does not work

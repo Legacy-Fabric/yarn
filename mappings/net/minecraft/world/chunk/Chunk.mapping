@@ -1,14 +1,30 @@
 CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
+	FIELD field_1562 chunkX I
+	FIELD field_1563 chunkZ I
 	FIELD field_1564 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_1565 blockStorage [Lnet/minecraft/class_401;
+	FIELD field_1569 loaded Z
 	FIELD field_1570 world Lnet/minecraft/class_99;
 	FIELD field_1571 heightmap [I
 	FIELD field_1573 blockEntities Ljava/util/Map;
 	FIELD field_1574 entities [Lnet/minecraft/class_1690;
+	FIELD field_1575 terrainPopulated Z
+	FIELD field_1576 lightPopulated Z
+	FIELD field_1578 modified Z
+	FIELD field_1579 containsEntities Z
+	FIELD field_1580 lastSaveTime J
+	FIELD field_1581 minimumHeightMap I
+	FIELD field_1582 inhabitedTime J
 	FIELD field_1584 blocks Ljava/util/concurrent/ConcurrentLinkedQueue;
 	METHOD <init> (Lnet/minecraft/class_99;II)V
 		ARG 1 world
+		ARG 2 chunkX
+		ARG 3 chunkZ
 	METHOD <init> (Lnet/minecraft/class_99;Lnet/minecraft/class_416;II)V
 		ARG 1 world
+	METHOD method_1344 isChunkEqual (II)Z
+		ARG 1 chunkX
+		ARG 2 chunkZ
 	METHOD method_1348 getLightAtPos (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
 		ARG 1 type
 		ARG 2 pos
@@ -17,7 +33,11 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 2 pos
 	METHOD method_1350 (Lnet/minecraft/class_348;)V
 		ARG 1 be
-	METHOD method_1352 (Lnet/minecraft/class_1372;)Lnet/minecraft/class_160;
+	METHOD method_1351 (Lnet/minecraft/class_396;Lnet/minecraft/class_396;II)V
+		ARG 1 provider
+		ARG 3 chunkX
+		ARG 4 chunkZ
+	METHOD method_1352 getBlockAtPos (Lnet/minecraft/class_1372;)Lnet/minecraft/class_160;
 		ARG 1 pos
 	METHOD method_1353 (Lnet/minecraft/class_1372;I)I
 		ARG 1 pos
@@ -46,22 +66,45 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 4 pred
 	METHOD method_1366 setLevelHeightmap ([I)V
 		ARG 1 heightmap
+	METHOD method_1370 setLastSaveTime (J)V
+		ARG 1 lastSaveTime
 	METHOD method_1371 (Lnet/minecraft/class_1372;)I
 		ARG 1 pos
 	METHOD method_1372 (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_1377 setInhabitedTime (J)V
+		ARG 1 inhabitedTime
 	METHOD method_1378 (Lnet/minecraft/class_1372;)I
 		ARG 1 pos
+	METHOD method_1379 setChunkLoaded (Z)V
+		ARG 1 loaded
 	METHOD method_1383 (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
+	METHOD method_1384 setTerrainPopulated (Z)V
+		ARG 1 terrainPopulated
+	METHOD method_1386 updateLight (II)Z
 	METHOD method_1388 (Lnet/minecraft/class_1372;)V
 		ARG 1 pos
+	METHOD method_1389 setLightPopulated (Z)V
+		ARG 1 lightPopulated
 	METHOD method_1390 isEmpty ()Z
+	METHOD method_1393 setModified (Z)V
+		ARG 1 modified
+	METHOD method_1396 getBlockState (Lnet/minecraft/class_1372;)Lnet/minecraft/class_376;
+		ARG 1 pos
+	METHOD method_1397 setHasEntities (Z)V
+		ARG 1 containsEntities
+	METHOD method_1398 getBlockStorage ()[Lnet/minecraft/class_401;
+	METHOD method_1408 isLoaded ()Z
 	METHOD method_1409 getWorld ()Lnet/minecraft/class_99;
 	METHOD method_1410 getLevelHeightmap ()[I
 	METHOD method_1411 getBlockEntities ()Ljava/util/Map;
 	METHOD method_1412 getEntities ()[Lnet/minecraft/class_1690;
-	CLASS class_400
+	METHOD method_1413 isTerrainPopulated ()Z
+	METHOD method_1414 isLightPopulated ()Z
+	METHOD method_1415 getMinimumHeightMap ()I
+	METHOD method_1416 getInhabitedTime ()J
+	CLASS class_400 Status
 		FIELD field_1593 IMMEDIATE Lnet/minecraft/class_399$class_400;
 		FIELD field_1594 QUEUED Lnet/minecraft/class_399$class_400;
 		FIELD field_1595 CHECK Lnet/minecraft/class_399$class_400;
