@@ -26,6 +26,7 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_7074 USER_CACHE_FILE Ljava/io/File;
 	FIELD field_7075 serverThread Ljava/lang/Thread;
 	FIELD field_7076 timeReference J
+	FIELD field_7077 provider Lnet/minecraft/class_1629;
 	FIELD field_7078 profiler Lnet/minecraft/class_1705;
 	FIELD field_7079 worlds [Lnet/minecraft/class_1635;
 	FIELD field_7080 proxy Ljava/net/Proxy;
@@ -35,8 +36,10 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_7085 queue Ljava/util/Queue;
 	FIELD field_7086 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_7087 instance Lnet/minecraft/server/MinecraftServer;
+	FIELD field_7088 saveStorage Lnet/minecraft/class_637;
 	FIELD field_7089 snooper Lnet/minecraft/class_1728;
 	FIELD field_7090 gameDir Ljava/io/File;
+	FIELD field_7091 tickables Ljava/util/List;
 	FIELD field_7092 networkIo Lnet/minecraft/class_1642;
 	FIELD field_7093 serverMetadata Lnet/minecraft/class_1596;
 	FIELD field_7094 random Ljava/util/Random;
@@ -50,8 +53,11 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD <init> (Ljava/io/File;Ljava/net/Proxy;Ljava/io/File;)V
 		ARG 1 gameDir
 		ARG 2 proxy
+		ARG 3 file
 	METHOD <init> (Ljava/net/Proxy;Ljava/io/File;)V
 		ARG 1 proxy
+		ARG 2 file
+	METHOD getServerModName ()Ljava/lang/String;
 	METHOD method_5913 getVersion ()Ljava/lang/String;
 	METHOD method_5914 getCurrentPlayerCount ()I
 	METHOD method_5915 getMaxPlayerCount ()I
@@ -77,7 +83,11 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_6432 isDemo ()Z
 	METHOD method_6434 getWorld (I)Lnet/minecraft/class_1635;
 	METHOD method_6435 isSpawnProtected (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1963;)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 player
 	METHOD method_6436 setDefaultGameMode (Lnet/minecraft/class_102$class_103;)V
+		ARG 1 gamemode
 	METHOD method_6438 setCrashReport (Lnet/minecraft/class_825;)V
 	METHOD method_6439 upgradeWorld (Ljava/lang/String;)V
 		ARG 1 name
@@ -134,6 +144,7 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_6491 setServerPort (I)V
 		ARG 1 serverPort
 	METHOD method_6492 populateCrashReport (Lnet/minecraft/class_825;)Lnet/minecraft/class_825;
+		ARG 1 report
 	METHOD method_6493 setServerId (Ljava/lang/String;)V
 		ARG 1 serverId
 	METHOD method_6494 setDemo (Z)V

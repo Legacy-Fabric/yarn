@@ -32,6 +32,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the translation key of the current Item
 		COMMENT @return Translation key
+	METHOD method_8247 getMeta (I)I
+		ARG 1 i
 	METHOD method_8248 register (ILjava/lang/String;Lnet/minecraft/class_2054;)V
 		COMMENT Overloaded method that registers an Item to the registry
 		ARG 0 id
@@ -55,6 +57,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 			COMMENT The world that the item is in
 		ARG 2 player
 			COMMENT The player holding the item
+		ARG 3 liquid
 	METHOD method_8251 fromBlock (Lnet/minecraft/class_160;)Lnet/minecraft/class_2054;
 		COMMENT Returns a BlockItem from a block
 		COMMENT @return Block
@@ -80,9 +83,12 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 			COMMENT The ItemGroup
 		ARG 3 list
 			COMMENT The list of sub items
-	METHOD method_8256 (Lnet/minecraft/class_2056;)Ljava/lang/String;
+	METHOD method_8256 getDisplayName (Lnet/minecraft/class_2056;)Ljava/lang/String;
 		ARG 1 stack
-	METHOD method_8258 (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1752;)Z
+	METHOD method_8257 getDisplayColor (Lnet/minecraft/class_2056;I)I
+		ARG 1 stack
+		ARG 2 color
+	METHOD method_8258 onBlockBroken (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1752;)Z
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 block
@@ -100,14 +106,19 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 			COMMENT The slot in which the item is placed
 		ARG 5 selected
 			COMMENT Whether the item is currently selected by the entity
-	METHOD method_8260 (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8260 onStartUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
-	METHOD method_8262 getMiningSpeedForBlock (Lnet/minecraft/class_2056;Lnet/minecraft/class_160;)F
+	METHOD method_8261 onUseStopped (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 player
+		ARG 4 remainingTicks
+	METHOD method_8262 getMiningSpeedMultiplier (Lnet/minecraft/class_2056;Lnet/minecraft/class_160;)F
 		ARG 1 stack
 		ARG 2 block
-	METHOD method_8263 (Lnet/minecraft/class_2056;Lnet/minecraft/class_1752;Lnet/minecraft/class_1752;)Z
+	METHOD method_8263 onEntityHit (Lnet/minecraft/class_2056;Lnet/minecraft/class_1752;Lnet/minecraft/class_1752;)Z
 		ARG 1 stack
 		ARG 2 entity1
 		ARG 3 entity2
@@ -117,6 +128,18 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		ARG 3 world
 		ARG 4 pos
 		ARG 5 direction
+		ARG 6 facingX
+		ARG 7 facingY
+		ARG 8 facingZ
+	METHOD method_8265 appendTooltip (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Ljava/util/List;Z)V
+		ARG 1 stack
+		ARG 2 player
+		ARG 3 lines
+		ARG 4 advanced
+	METHOD method_8266 canUseOnEntity (Lnet/minecraft/class_2056;Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
+		ARG 1 stack
+		ARG 2 player
+		ARG 3 entity
 	METHOD method_8267 canRepair (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
 		COMMENT Returns whether the item can be repaired via an anvil or crafting table.
 		ARG 1 stack
@@ -142,7 +165,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT Returns a numeric id for an Item
 		COMMENT @return Numeric Id
 		ARG 0 item
-	METHOD method_8273 use (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8273 onFinishUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
@@ -185,6 +208,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 			COMMENT The world where the crafting happened
 		ARG 3 player
 			COMMENT The player who crafted the item
+	METHOD method_8283 shouldRotate ()Z
 	METHOD method_8284 setStatusEffectString (Ljava/lang/String;)Lnet/minecraft/class_2054;
 		COMMENT Sets the status effect string for the current item.
 		COMMENT Used by glowstone, spider eye, sugar, etc.
@@ -256,6 +280,7 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT Returns the current Item's recipe remainder
 		COMMENT @return recipeRemainder
 	METHOD method_8302 isFood ()Z
+	METHOD method_8303 hasSubTypes ()Z
 	METHOD method_8304 setup ()V
 		COMMENT This is the main method in the Item class. Both Items and BlockItems get registered here.
 		COMMENT The Item Ids starts from 256. The fields in the class Items can not be accessed before this method is called.
@@ -263,6 +288,12 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8305 isHandheld ()Z
 		COMMENT Returns whether the item is supposed to look as handheld.
 	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 2
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 3
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS 4
@@ -302,6 +333,9 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS 16
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 17
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS class_2055 ToolMaterialType

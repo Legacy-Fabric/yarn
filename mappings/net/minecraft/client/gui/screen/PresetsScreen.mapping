@@ -1,11 +1,48 @@
 CLASS net/minecraft/class_748 net/minecraft/client/gui/screen/PresetsScreen
 	FIELD field_3179 presets Ljava/util/List;
+	FIELD field_3180 parent Lnet/minecraft/class_729;
 	FIELD field_3181 titleText Ljava/lang/String;
 	FIELD field_3182 shareText Ljava/lang/String;
 	FIELD field_3183 listText Ljava/lang/String;
 	FIELD field_3184 listWidget Lnet/minecraft/class_748$class_750;
+	FIELD field_3185 selectButton Lnet/minecraft/class_685;
 	FIELD field_3186 customPresetField Lnet/minecraft/class_689;
-	CLASS class_749 SuperflatPreset
+	METHOD <init> (Lnet/minecraft/class_729;)V
+		ARG 1 parent
+	METHOD method_2768 addOverworldPreset (Ljava/lang/String;Lnet/minecraft/class_2054;ILnet/minecraft/class_113;Ljava/util/List;[Lnet/minecraft/class_475;)V
+		ARG 0 name
+		ARG 1 icon
+		ARG 2 iconDamge
+		ARG 3 biome
+		ARG 5 layers
+	METHOD method_2769 addPreset (Ljava/lang/String;Lnet/minecraft/class_2054;Lnet/minecraft/class_113;Ljava/util/List;[Lnet/minecraft/class_475;)V
+		ARG 0 name
+		ARG 1 icon
+		ARG 2 biome
+		ARG 4 layers
+	METHOD method_2770 addRedstonePreset (Ljava/lang/String;Lnet/minecraft/class_2054;Lnet/minecraft/class_113;[Lnet/minecraft/class_475;)V
+		ARG 0 name
+		ARG 1 icon
+		ARG 2 iconDamage
+	CLASS class_749 PresetEntry
+		FIELD field_3187 icon Lnet/minecraft/class_2054;
+		FIELD field_3188 iconDamage I
 		FIELD field_3189 name Ljava/lang/String;
 		FIELD field_3190 config Ljava/lang/String;
-	CLASS class_750 SuperflatPresetsListWidget
+		METHOD <init> (Lnet/minecraft/class_2054;ILjava/lang/String;Ljava/lang/String;)V
+			ARG 1 icon
+			ARG 2 iconDamage
+			ARG 3 name
+			ARG 4 config
+	CLASS class_750 PresetsListWidget
+		FIELD field_3191 selectedEntryIndex I
+		METHOD method_2778 renderEntry (IILnet/minecraft/class_2054;I)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 item
+			ARG 4 damage
+		METHOD method_2779 (IIII)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 u
+			ARG 4 v
