@@ -1,9 +1,13 @@
 CLASS net/minecraft/class_1635 net/minecraft/server/world/ServerWorld
 	FIELD field_6620 server Lnet/minecraft/server/MinecraftServer;
+	FIELD field_6621 entityTracker Lnet/minecraft/class_1630;
+	FIELD field_6622 playerManager Lnet/minecraft/class_1632;
 	FIELD field_6623 entityNavigations Ljava/util/Set;
 	FIELD field_6625 entitiesByUuid Ljava/util/Map;
 	FIELD field_6626 ready Z
 	FIELD field_6627 idleTimeout I
+	FIELD field_6628 portalTeleporter Lnet/minecraft/class_108;
+	FIELD field_6632 BONUS_CHEST_LOOT_TABLE Ljava/util/List;
 	FIELD field_6633 players Ljava/util/List;
 	FIELD field_6634 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_6636 savingDisabled Z
@@ -11,11 +15,39 @@ CLASS net/minecraft/class_1635 net/minecraft/server/world/ServerWorld
 		ARG 1 server
 		ARG 2 handler
 		ARG 3 properties
+	METHOD method_6036 addParticle (Lnet/minecraft/class_1394;DDDIDDDD[I)V
+		ARG 1 type
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 count
+		ARG 9 offsetX
+		ARG 11 offsetY
+		ARG 13 offsetZ
+		ARG 15 speed
+		ARG 17 args
+	METHOD method_6037 addParticle (Lnet/minecraft/class_1394;ZDDDIDDDD[I)V
+		ARG 1 type
+		ARG 2 longDistance
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 count
+		ARG 10 offsetX
+		ARG 12 offsetY
+		ARG 14 offsetZ
+		ARG 16 speed
+		ARG 18 args
 	METHOD method_6038 getEntity (Ljava/util/UUID;)Lnet/minecraft/class_1745;
+		ARG 1 uuid
+	METHOD method_6041 (ZLnet/minecraft/class_1707;)V
+		ARG 2 listener
 	METHOD method_6042 resetWeather ()V
 	METHOD method_6049 isReady ()Z
 	METHOD method_6050 resetIdleTimeout ()V
 	METHOD method_6051 placeBonusChest ()V
 	METHOD method_6052 getForcedSpawnPoint ()Lnet/minecraft/class_1372;
+	METHOD method_6055 getServer ()Lnet/minecraft/server/MinecraftServer;
 	METHOD method_6056 getEntityTracker ()Lnet/minecraft/class_1630;
-	METHOD method_6057 getChunkManager ()Lnet/minecraft/class_1632;
+	METHOD method_6057 getPlayerManager ()Lnet/minecraft/class_1632;
+	METHOD method_6058 getPortalTeleporter ()Lnet/minecraft/class_108;

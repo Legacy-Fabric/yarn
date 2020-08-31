@@ -16,7 +16,7 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	FIELD field_7062 resourcePackUrl Ljava/lang/String;
 	FIELD field_7063 resourcePackHash Ljava/lang/String;
 	FIELD field_7064 loading Z
-	FIELD field_7066 serverId Ljava/lang/String;
+	FIELD field_7066 serverOperation Ljava/lang/String;
 	FIELD field_7068 forceGameMode Z
 	FIELD field_7069 authService Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;
 	FIELD field_7070 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
@@ -149,8 +149,8 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 1 serverPort
 	METHOD method_6492 populateCrashReport (Lnet/minecraft/class_825;)Lnet/minecraft/class_825;
 		ARG 1 report
-	METHOD method_6493 setServerId (Ljava/lang/String;)V
-		ARG 1 serverId
+	METHOD method_6493 setServerOperation (Ljava/lang/String;)V
+		ARG 1 operation
 	METHOD method_6494 setDemo (Z)V
 		ARG 1 demo
 	METHOD method_6495 setWorldHeight (I)V
@@ -177,6 +177,7 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 1 userName
 	METHOD method_6508 setForceGameMode (Z)V
 		ARG 1 forceGameMode
+	METHOD method_6509 getServerOperation ()Ljava/lang/String;
 	METHOD method_6510 setLevelName (Ljava/lang/String;)V
 	METHOD method_6511 prepareWorlds ()V
 	METHOD method_6512 setServerName (Ljava/lang/String;)V
@@ -190,12 +191,13 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_6518 getOpPermissionLevel ()I
 	METHOD method_6519 shouldBroadcastRconToOps ()Z
 	METHOD method_6520 isRemote ()Z
-	METHOD method_6522 stopWorlds ()V
+	METHOD method_6522 stopServer ()V
 	METHOD method_6523 getServerIp ()Ljava/lang/String;
 	METHOD method_6524 isRunning ()Z
 	METHOD method_6525 stopRunning ()V
 	METHOD method_6526 setInstance ()V
 	METHOD method_6527 getRunDirectory ()Ljava/io/File;
 	METHOD method_6528 exit ()V
+	METHOD run ()V
 	CLASS 1
 		FIELD field_7103 lastProgressUpdate J
