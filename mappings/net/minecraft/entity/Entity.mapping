@@ -8,6 +8,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7338 velocityModified Z
 	FIELD field_7339 inLava Z
 	FIELD field_7340 removed Z
+	FIELD field_7342 eyeHeight F
 	FIELD field_7343 prevHorizontalSpeed F
 	FIELD field_7344 horizontalSpeed F
 	FIELD field_7346 fallDistance F
@@ -61,6 +62,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 world
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 object
+	METHOD method_6770 hasCustomName ()Z
 	METHOD method_6895 getEntityId ()I
 	METHOD method_6896 kill ()V
 	METHOD method_6897 getDataTracker ()Lnet/minecraft/class_1761;
@@ -108,6 +110,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 pos
 		ARG 2 yaw
 		ARG 3 pitch
+	METHOD method_6932 (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
+		ARG 1 pos
 	METHOD method_6933 deserialize (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_6934 setCustomName (Ljava/lang/String;)V
@@ -124,6 +128,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 entity
 	METHOD method_6940 (Lnet/minecraft/class_1752;Lnet/minecraft/class_1745;)V
 		ARG 2 entity
+	METHOD method_6941 onLightningStrike (Lnet/minecraft/class_1890;)V
+		ARG 1 lightning
 	METHOD method_6946 toListTag ([D)Lnet/minecraft/class_1411;
 		ARG 1 values
 	METHOD method_6947 toListTag ([F)Lnet/minecraft/class_1411;
@@ -136,6 +142,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6955 canAvoidTraps ()Z
 	METHOD method_6957 getUuid ()Ljava/util/UUID;
 	METHOD method_6958 canFly ()Z
+	METHOD method_6959 getCustomName ()Ljava/lang/String;
 	METHOD method_6960 isCustomNameVisible ()Z
 	METHOD method_6961 shouldRenderName ()Z
 	METHOD method_6963 getHoverEvent ()Lnet/minecraft/class_1447;
@@ -228,6 +235,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
 	METHOD method_7027 writePlayerData (Lnet/minecraft/class_1405;)V
+	METHOD method_7028 openInventory (Lnet/minecraft/class_1963;)Z
+		ARG 1 player
 	METHOD method_7029 setInvisible (Z)V
 		ARG 1 invisible
 	METHOD method_7031 setHeadYaw (F)V
