@@ -8,6 +8,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7338 velocityModified Z
 	FIELD field_7339 inLava Z
 	FIELD field_7340 removed Z
+	FIELD field_7341 width F
+	FIELD field_7342 height F
 	FIELD field_7343 prevHorizontalSpeed F
 	FIELD field_7344 horizontalSpeed F
 	FIELD field_7346 fallDistance F
@@ -41,6 +43,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7383 serverZ I
 	FIELD field_7384 entityId I
 	FIELD field_7385 boundingBox Lnet/minecraft/class_646;
+	FIELD field_7386 outsideWorldborder Z
 	FIELD field_7387 netherPortalTime I
 	FIELD field_7388 fireTicks I
 	FIELD field_7391 rider Lnet/minecraft/class_1745;
@@ -58,9 +61,14 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7404 yaw F
 	FIELD field_7405 pitch F
 	METHOD <init> (Lnet/minecraft/class_99;)V
+		COMMENT All classes that extend Entity <b>must<b> have a constructor
+		COMMENT that takes in one, and only one {@link net.minecraft.world.World} parameter.
+		COMMENT This is due to the fact that entity constructors are called reflectively
+		COMMENT from {@link net.minecraft.entity.EntityDispatcher}
 		ARG 1 world
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 object
+	METHOD method_6770 hasCustomName ()Z
 	METHOD method_6895 getEntityId ()I
 	METHOD method_6896 kill ()V
 	METHOD method_6897 getDataTracker ()Lnet/minecraft/class_1761;
@@ -94,10 +102,14 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
+	METHOD method_6921 rayTrace (DF)Lnet/minecraft/class_647;
 	METHOD method_6922 updateFall (DZLnet/minecraft/class_160;Lnet/minecraft/class_1372;)V
 		ARG 1 y
 		ARG 4 block
 		ARG 5 pos
+	METHOD method_6923 setBounds (FF)V
+		ARG 1 width
+		ARG 2 height
 	METHOD method_6927 setWorld (Lnet/minecraft/class_99;)V
 		ARG 1 world
 	METHOD method_6929 setBoundingBox (Lnet/minecraft/class_646;)V
@@ -111,6 +123,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6933 deserialize (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_6934 setCustomName (Ljava/lang/String;)V
+		ARG 1 name
 	METHOD method_6935 playSound (Ljava/lang/String;FF)V
 		ARG 1 id
 		ARG 2 volume
@@ -136,11 +149,15 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6955 canAvoidTraps ()Z
 	METHOD method_6957 getUuid ()Ljava/util/UUID;
 	METHOD method_6958 canFly ()Z
+	METHOD method_6959 getCustomName ()Ljava/lang/String;
 	METHOD method_6960 isCustomNameVisible ()Z
 	METHOD method_6961 shouldRenderName ()Z
+	METHOD method_6962 getHorizontalDirection ()Lnet/minecraft/class_1383;
 	METHOD method_6963 getHoverEvent ()Lnet/minecraft/class_1447;
 	METHOD method_6964 getBoundingBox ()Lnet/minecraft/class_646;
 	METHOD method_6965 getEyeHeight ()F
+	METHOD method_6966 isOutsideWorldborder ()Z
+	METHOD method_6967 getCommandStats ()Lnet/minecraft/class_1685;
 	METHOD method_6969 isImmuneToExplosion ()Z
 	METHOD method_6970 getSplashSound ()Ljava/lang/String;
 	METHOD method_6972 scheduleVelocityUpdate ()V
@@ -180,7 +197,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 2 value
 	METHOD method_7001 doesNotCollide (Lnet/minecraft/class_646;)Z
 		ARG 1 box
-	METHOD method_7002 (Lnet/minecraft/class_1372;)D
+	METHOD method_7002 squaredDistanceTo (Lnet/minecraft/class_1372;)D
 		ARG 1 pos
 	METHOD method_7003 serialize (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
@@ -197,7 +214,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 2 pitch
 	METHOD method_7010 teleportToDimension (I)V
 		ARG 1 dimensionId
-	METHOD method_7012 (Lnet/minecraft/class_1372;)D
+	METHOD method_7012 squaredDistanceToCenter (Lnet/minecraft/class_1372;)D
 		ARG 1 pos
 	METHOD method_7013 saveSelfToTag (Lnet/minecraft/class_1405;)Z
 		ARG 1 tag
@@ -207,6 +224,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 velocityX
 		ARG 3 velocityY
 		ARG 5 velocityZ
+	METHOD method_7016 getRotationVector (F)Lnet/minecraft/class_649;
 	METHOD method_7017 setEntityId (I)V
 		ARG 1 id
 	METHOD method_7018 equip (ILnet/minecraft/class_2056;)Z
@@ -228,8 +246,13 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
 	METHOD method_7027 writePlayerData (Lnet/minecraft/class_1405;)V
+		ARG 1 tag
 	METHOD method_7029 setInvisible (Z)V
 		ARG 1 invisible
+	METHOD method_7030 squaredDistanceTo (DDD)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_7031 setHeadYaw (F)V
 		ARG 1 headYaw
 	METHOD method_7032 getRotationVector (FF)Lnet/minecraft/class_649;
@@ -243,18 +266,30 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 player
 	METHOD method_7036 setSwimming (Z)V
 		ARG 1 swimming
+	METHOD method_7037 incrementVelocity (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_7038 setYaw (F)V
 		ARG 1 yaw
 	METHOD method_7039 getFlag (I)Z
 		ARG 1 index
+	METHOD method_7040 fromClientTag (Lnet/minecraft/class_1405;)V
+	METHOD method_7041 squaredDistanceToEntity (Lnet/minecraft/class_1745;)F
+		ARG 1 entity
 	METHOD method_7042 setCustomNameVisible (Z)V
 		ARG 1 visible
 	METHOD method_7043 initDataTracker ()V
+	METHOD method_7044 shouldRender (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_7045 setAir (I)V
 		ARG 1 air
 	METHOD method_7046 squaredDistanceTo (Lnet/minecraft/class_1745;)D
-	METHOD method_7047 setInvulnerable (Z)V
-		ARG 1 invulnerable
+		ARG 1 entity
+	METHOD method_7047 setOutsideWorldborder (Z)V
+		ARG 1 value
 	METHOD method_7048 setVelocityClient (DDD)V
 		ARG 1 x
 		ARG 3 y

@@ -98,6 +98,11 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_269 getChunk (II)Lnet/minecraft/class_399;
 		ARG 1 x
 		ARG 2 y
+	METHOD method_271 (IIII)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 minY
+		ARG 4 maxY
 	METHOD method_272 isRegionLoaded (IIIIIIZ)Z
 		ARG 1 minX
 		ARG 2 minY
@@ -108,8 +113,12 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_274 isChunkLoaded (IIZ)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD method_276 addParticle (IZDDDDDD[I)V
+		ARG 1 id
 	METHOD method_277 setTime (J)V
 		ARG 1 time
+	METHOD method_278 addListener (Lnet/minecraft/class_101;)V
+		ARG 1 listener
 	METHOD method_279 setPropertiesInitialized (Lnet/minecraft/class_102;)V
 		ARG 1 info
 	METHOD method_280 isOpaque (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)Z
@@ -125,6 +134,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 border
 		ARG 2 entity
 	METHOD method_288 isRegionLoaded (Lnet/minecraft/class_476;)Z
+		ARG 1 box
+	METHOD method_290 (Lnet/minecraft/class_646;)Ljava/util/List;
 		ARG 1 box
 	METHOD method_291 (Lnet/minecraft/class_646;Lnet/minecraft/class_591;)Z
 		ARG 1 boundingBox
@@ -168,9 +179,15 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_311 isRegionLoaded (Lnet/minecraft/class_1372;Lnet/minecraft/class_1372;Z)Z
 		ARG 1 start
 		ARG 2 end
+	METHOD method_312 playMusicDisc (Lnet/minecraft/class_1372;Ljava/lang/String;)V
+		ARG 1 pos
+		ARG 2 id
 	METHOD method_313 isLoaded (Lnet/minecraft/class_1372;Z)Z
 		ARG 1 pos
 	METHOD method_314 addParticle (Lnet/minecraft/class_1394;DDDDDD[I)V
+		ARG 1 type
+	METHOD method_315 addParticle (Lnet/minecraft/class_1394;ZDDDDDD[I)V
+		ARG 1 type
 	METHOD method_317 getEntitiesInBox (Ljava/lang/Class;Lnet/minecraft/class_646;)Ljava/util/List;
 		ARG 1 except
 		ARG 2 box
@@ -183,6 +200,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 structureName
 		ARG 2 pos
 	METHOD method_325 addBlockEntities (Ljava/util/Collection;)V
+	METHOD method_326 onEntitySpawned (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
 	METHOD method_327 sendEntityStatus (Lnet/minecraft/class_1745;B)V
 		ARG 1 entity
 		ARG 2 status
@@ -201,7 +220,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_335 (Lnet/minecraft/class_1745;Z)V
 		ARG 1 entity
 		ARG 2 bl
-	METHOD method_336 playWorldEvent (Lnet/minecraft/class_1963;ILnet/minecraft/class_1372;I)V
+	METHOD method_336 (Lnet/minecraft/class_1963;ILnet/minecraft/class_1372;I)V
 		ARG 1 player
 		ARG 2 type
 		ARG 3 pos
@@ -226,10 +245,19 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 5 z
 	METHOD method_351 setSeaLevel (I)V
 		ARG 1 seaLevel
-	METHOD method_354 playWorldEvent (ILnet/minecraft/class_1372;I)V
+	METHOD method_353 onRenderRegionUpdate (IIIIII)V
+		ARG 1 x1
+		ARG 2 y1
+		ARG 3 z1
+		ARG 4 x2
+		ARG 5 y2
+		ARG 6 z2
+	METHOD method_354 (ILnet/minecraft/class_1372;I)V
 		ARG 2 pos
 	METHOD method_355 setTimeOfDay (J)V
 		ARG 1 time
+	METHOD method_356 removeListener (Lnet/minecraft/class_101;)V
+		ARG 1 listener
 	METHOD method_357 getLightAtPos (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)I
 		ARG 1 type
 		ARG 2 pos
@@ -242,7 +270,9 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 material
 	METHOD method_364 markDirty (Lnet/minecraft/class_1372;Lnet/minecraft/class_348;)V
 		ARG 1 pos
-	METHOD method_365 checkBlockRerender (Lnet/minecraft/class_1372;Lnet/minecraft/class_1372;)V
+	METHOD method_365 onRenderRegionUpdate (Lnet/minecraft/class_1372;Lnet/minecraft/class_1372;)V
+		ARG 1 pos1
+		ARG 2 pos2
 	METHOD method_366 isEmittingRedstonePower (Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;)Z
 		ARG 1 pos
 		ARG 2 dir
@@ -250,6 +280,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_371 getPlayerByUuid (Ljava/util/UUID;)Lnet/minecraft/class_1963;
 		ARG 1 uuid
+	METHOD method_372 onEntityRemoved (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
 	METHOD method_373 getEntitiesIn (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
 		ARG 2 box
 	METHOD method_374 tick ()V
@@ -275,6 +307,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 dir
 	METHOD method_385 (Lnet/minecraft/class_1372;Z)I
 		ARG 1 pos
+	METHOD method_387 addEntity (Lnet/minecraft/class_1745;)Z
+		ARG 1 entity
 	METHOD method_389 getSkyAngleRadians (F)F
 	METHOD method_391 (Lnet/minecraft/class_646;)Z
 		ARG 1 boundingBox
@@ -282,6 +316,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 pos
 		ARG 2 block
 	METHOD method_394 spawnEntity (Lnet/minecraft/class_1745;)Z
+		ARG 1 entity
 	METHOD method_396 doesAreaContainFireSource (Lnet/minecraft/class_646;)Z
 		ARG 1 boundingbox
 	METHOD method_397 blockExists (Lnet/minecraft/class_1372;)Z
@@ -298,6 +333,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_409 tickBlocks ()V
 	METHOD method_410 getThunderGradient (F)F
 		ARG 1 offset
+	METHOD method_411 onUpdateBlock (Lnet/minecraft/class_1372;)V
+		ARG 1 pos
 	METHOD method_412 loadEntity (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
 	METHOD method_414 setThunderGradient (F)V
@@ -316,6 +353,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_421 (Lnet/minecraft/class_1372;)I
 		ARG 1 pos
 	METHOD method_422 (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1372;
+		ARG 1 pos
+	METHOD method_423 onUpdateLight (Lnet/minecraft/class_1372;)V
 		ARG 1 pos
 	METHOD method_426 getNextMapId ()I
 	METHOD method_429 removeBlockEntity (Lnet/minecraft/class_1372;)V
