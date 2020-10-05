@@ -1,10 +1,13 @@
 CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7437 health I
 	FIELD field_7442 bodyYaw F
+	FIELD field_7443 prevBodyYaw F
 	FIELD field_7444 headYaw F
 	FIELD field_7445 prevHeadYaw F
 	FIELD field_7446 UUID Ljava/util/UUID;
 	FIELD field_7448 player Lnet/minecraft/class_1963;
+	FIELD field_7454 distanceTravelled F
+	FIELD field_7455 prevDistanceTravelled F
 	FIELD field_7460 sidewaysSpeed F
 	FIELD field_7464 hurtTime I
 	FIELD field_7467 deathTime I
@@ -41,6 +44,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7120 getAbsorption ()F
 	METHOD method_7121 getScoreboardTeam ()Lnet/minecraft/class_655;
 	METHOD method_7125 getRandom ()Ljava/util/Random;
+	METHOD method_7127 getLastHurtTimestamp ()I
 	METHOD method_7133 clearStatusEffects ()V
 	METHOD method_7135 isAffectedBySmite ()Z
 	METHOD method_7136 getHealth ()F
@@ -55,7 +59,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7148 getDamageEnchantmentTarget ()Lnet/minecraft/class_1758;
 	METHOD method_7150 addStatusEffect (Lnet/minecraft/class_1742;)V
 		ARG 1 instance
-	METHOD method_7151 isInTeam (Lnet/minecraft/class_1752;)Z
+	METHOD method_7151 isInSameTeam (Lnet/minecraft/class_1752;)Z
 		ARG 1 entity
 	METHOD method_7152 applyDamage (Lnet/minecraft/class_1733;F)V
 		ARG 1 source

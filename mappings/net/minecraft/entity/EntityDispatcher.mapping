@@ -10,6 +10,8 @@ CLASS net/minecraft/class_1746 net/minecraft/entity/EntityDispatcher
 	METHOD method_7066 getEntityById (I)Ljava/lang/Class;
 		ARG 0 id
 	METHOD method_7067 createInstanceFromId (ILnet/minecraft/class_99;)Lnet/minecraft/class_1745;
+		ARG 0 id
+		ARG 1 world
 	METHOD method_7068 createInstanceFromTag (Lnet/minecraft/class_1405;Lnet/minecraft/class_99;)Lnet/minecraft/class_1745;
 		ARG 0 nbt
 		ARG 1 world
@@ -21,6 +23,8 @@ CLASS net/minecraft/class_1746 net/minecraft/entity/EntityDispatcher
 		ARG 0 clazz
 		ARG 1 name
 		ARG 2 id
+		ARG 3 foregroundColor
+		ARG 4 backgroundColor
 	METHOD method_7071 getIdByName (Ljava/lang/String;)I
 		ARG 0 name
 	METHOD method_7072 createInstanceFromName (Ljava/lang/String;Lnet/minecraft/class_99;)Lnet/minecraft/class_1745;
@@ -31,15 +35,18 @@ CLASS net/minecraft/class_1746 net/minecraft/entity/EntityDispatcher
 	METHOD method_7074 equals (Lnet/minecraft/class_1745;Ljava/lang/String;)Z
 		ARG 0 entity
 		ARG 1 string
+	METHOD method_7075 getEntityNames ()Ljava/util/List;
 	METHOD method_7076 getEntityName (I)Ljava/lang/String;
 		ARG 0 id
-	METHOD method_7077 isPlayer (Ljava/lang/String;)Z
+	METHOD method_7077 isEntityRegistered (Ljava/lang/String;)Z
 		ARG 0 name
 	METHOD method_7078 getEntityName (Lnet/minecraft/class_1745;)Ljava/lang/String;
 		ARG 0 entity
 	CLASS class_1747 SpawnEggData
-		FIELD field_7417 foregroundColor I
-		FIELD field_7418 backgroundColor I
+		FIELD field_7417 id I
+		FIELD field_7418 foregroundColor I
+		FIELD field_7419 backgroundColor I
 		METHOD <init> (III)V
-			ARG 1 foregroundColor
-			ARG 2 backgroundColor
+			ARG 1 id
+			ARG 2 foregroundColor
+			ARG 3 backgroundColor
