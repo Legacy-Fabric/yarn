@@ -2,6 +2,7 @@ CLASS net/minecraft/class_1850 net/minecraft/entity/passive/HorseBaseEntity
 	FIELD field_7894 eatingGrassTicks I
 	FIELD field_7895 eatingTicks I
 	FIELD field_7896 angryTicks I
+	FIELD field_7897 inventory Lnet/minecraft/class_1984;
 	FIELD field_7899 jumping Z
 	FIELD field_7900 eatingGrassAnimationProgress F
 	FIELD field_7901 lastEatingGrassAnimationProgress F
@@ -13,19 +14,32 @@ CLASS net/minecraft/class_1850 net/minecraft/entity/passive/HorseBaseEntity
 	FIELD field_7912 inAir Z
 	FIELD field_7913 temper I
 	FIELD field_7914 jumpStrength F
+	FIELD field_7915 EATING_GRASS_ENTITY_PREDICATE Lcom/google/common/base/Predicate;
+	FIELD field_7916 JUMP_STRENGTH_ATTRIBUTE Lnet/minecraft/class_1765;
+	FIELD field_7917 HORSE_ARMOR_TEXTURES [Ljava/lang/String;
+	FIELD field_7920 HORSE_TEXTURES [Ljava/lang/String;
+	FIELD field_7922 HORSE_MARKINGS_TEXTURES [Ljava/lang/String;
+	METHOD method_7525 isHorseArmor (Lnet/minecraft/class_2054;)Z
+		ARG 0 item
 	METHOD method_7527 setHorseFlag (IZ)V
 		ARG 1 bitmask
 		ARG 2 flag
-	METHOD method_7528 isEatingGrass ()Z
+	METHOD method_7528 isReadyToBreed ()Z
+	METHOD method_7529 hasBred ()Z
 	METHOD method_7530 getTemper ()I
 	METHOD method_7533 getJumpStrength ()D
 	METHOD method_7534 isSaddled ()Z
 	METHOD method_7536 getMaxTemper ()I
+	METHOD method_7541 drawHoverEffect ()Z
 	METHOD method_7545 playAngrySound ()V
 	METHOD method_7547 playEatingAnimation ()V
+	METHOD method_7549 getType ()I
+	METHOD method_7550 getVariant ()I
 	METHOD method_7552 isTame ()Z
+	METHOD method_7554 getOwnerUuid ()Ljava/lang/String;
 	METHOD method_7556 isInAir ()Z
-	METHOD method_7557 isBred ()Z
+	METHOD method_7557 hasChest ()Z
+	METHOD method_7559 isEating ()Z
 	METHOD method_7560 isAngry ()Z
 	METHOD method_7562 updateSaddle ()V
 	METHOD method_7566 setEating ()V
@@ -44,13 +58,19 @@ CLASS net/minecraft/class_1850 net/minecraft/entity/passive/HorseBaseEntity
 	METHOD method_7578 setInAir (Z)V
 		ARG 1 inAir
 	METHOD method_7579 setBred (Z)V
+	METHOD method_7580 setHasChest (Z)V
+	METHOD method_7582 setHasBred (Z)V
 	METHOD method_7583 getAngryAnimationProgress (F)F
 		ARG 1 tickDelta
 	METHOD method_7584 setSaddled (Z)V
 	METHOD method_7585 getEatingAnimationProgress (F)F
 		ARG 1 tickDelta
+	METHOD method_7586 setType (I)V
+		ARG 1 type
 	METHOD method_7587 setEatingGrass (Z)V
 		ARG 1 eatingGrass
+	METHOD method_7588 setVariant (I)V
+		ARG 1 variant
 	METHOD method_7589 setAngry (Z)V
 		ARG 1 angry
 	METHOD method_7590 setTemper (I)V
@@ -59,3 +79,6 @@ CLASS net/minecraft/class_1850 net/minecraft/entity/passive/HorseBaseEntity
 		ARG 1 positive
 	METHOD method_7592 addTemper (I)I
 		ARG 1 difference
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 horse
