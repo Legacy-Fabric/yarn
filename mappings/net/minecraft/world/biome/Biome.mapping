@@ -32,9 +32,12 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_381 MESA_PLATEAU_F Lnet/minecraft/class_113;
 	FIELD field_382 MESA_PLATEAU Lnet/minecraft/class_113;
 	FIELD field_383 DEFAULT Lnet/minecraft/class_113;
+	FIELD field_386 DOUBLE_PLANT_FEATURE Lnet/minecraft/class_440;
 	FIELD field_387 name Ljava/lang/String;
 	FIELD field_390 topBlock Lnet/minecraft/class_376;
 	FIELD field_391 baseBlock Lnet/minecraft/class_376;
+	FIELD field_393 baseHeightModifier F
+	FIELD field_394 variationModifier F
 	FIELD field_395 temperature F
 	FIELD field_396 downfall F
 	FIELD field_397 getWaterColor I
@@ -73,6 +76,8 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 		ARG 1 id
 	METHOD method_512 createBiomePopulator ()Lnet/minecraft/class_122;
 	METHOD method_514 setTempratureAndDownfall (FF)Lnet/minecraft/class_113;
+		ARG 1 temperature
+		ARG 2 downfall
 	METHOD method_516 getBiomeById (ILnet/minecraft/class_113;)Lnet/minecraft/class_113;
 		ARG 0 id
 		ARG 1 fallback
@@ -82,6 +87,7 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 		ARG 2 random
 		ARG 3 pos
 	METHOD method_520 setHeight (Lnet/minecraft/class_113$class_114;)Lnet/minecraft/class_113;
+		ARG 1 height
 	METHOD method_521 (Lnet/minecraft/class_113;)Z
 		ARG 1 biome
 	METHOD method_522 getTemperature (Lnet/minecraft/class_1372;)F
@@ -99,7 +105,7 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 		ARG 1 pos
 	METHOD method_535 isMutatedBiome ()Z
 	METHOD method_536 getMutatedVariant (I)Lnet/minecraft/class_113;
-	METHOD method_538 getBiomeById (I)Lnet/minecraft/class_113;
+	METHOD method_538 byId (I)Lnet/minecraft/class_113;
 		ARG 0 id
 	METHOD method_539 hasHighHumidity ()Z
 	METHOD method_540 getMaxSpawnLimit ()F

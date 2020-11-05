@@ -14,6 +14,7 @@ CLASS net/minecraft/class_1637 net/minecraft/server/network/ServerPlayerEntity
 	FIELD field_6652 chatColors Z
 	FIELD field_6653 lastActionTime J
 	FIELD field_6654 spectatingEntity Lnet/minecraft/class_1745;
+	FIELD field_6655 screenHandlerSyncId I
 	FIELD field_6656 interactionManager Lnet/minecraft/class_1638;
 	FIELD field_6657 serverPosX D
 	FIELD field_6658 serverPosZ D
@@ -33,13 +34,15 @@ CLASS net/minecraft/class_1637 net/minecraft/server/network/ServerPlayerEntity
 		ARG 1 distance
 	METHOD method_6066 updateBlockEntity (Lnet/minecraft/class_348;)V
 		ARG 1 blockEntity
-	METHOD method_6069 openContainer (Lnet/minecraft/class_1983;)V
+	METHOD method_6069 updateScreenHandler (Lnet/minecraft/class_1983;)V
+		ARG 1 handler
 	METHOD method_6070 isPvpEnabled ()Z
+	METHOD method_6071 incrementSyncId ()V
 	METHOD method_6072 stopTracking (Lnet/minecraft/class_1745;)V
-	METHOD method_6074 listenToContainer ()V
+	METHOD method_6074 listenToScreenHandler ()V
 	METHOD method_6075 updateExploreredBiomes ()V
 	METHOD method_6076 tickPlayer ()V
-	METHOD method_6078 closeContainer ()V
+	METHOD method_6078 closeOpenedScreenHandler ()V
 	METHOD method_6080 markHealthDirty ()V
 	METHOD method_6081 getServerWorld ()Lnet/minecraft/class_1635;
 	METHOD method_6082 getIp ()Ljava/lang/String;
