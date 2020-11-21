@@ -450,7 +450,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return Whether two blocks are equal
 		ARG 0 one
 		ARG 1 two
-	METHOD method_672 getMeta (Lnet/minecraft/class_376;)I
+	METHOD method_672 getItemMeta (Lnet/minecraft/class_376;)I
 		COMMENT Returns the metadata value for a certain BlockState
 		COMMENT @return Metadata value
 		ARG 1 state
@@ -599,7 +599,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 worldView
 		ARG 2 pos
 		ARG 3 direction
-	METHOD method_695 isEqualTo (Lnet/minecraft/class_160;)Z
+	METHOD method_695 is (Lnet/minecraft/class_160;)Z
 		COMMENT Returns whether the current block and another block are equal
 		COMMENT @return Whether the current block and the other block are equal
 		ARG 1 block
@@ -649,9 +649,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_705 getBrightness (Lnet/minecraft/class_104;Lnet/minecraft/class_1372;)I
 		ARG 1 worldView
 		ARG 2 pos
-	METHOD method_706 getData (Lnet/minecraft/class_376;)I
-		COMMENT Returns the data value for a blockstate
-		COMMENT Throws an {@code IllegalArmumentException} as this method does not work
+	METHOD method_706 getMeta (Lnet/minecraft/class_376;)I
+		COMMENT Returns the meta value for a blockstate
+		COMMENT Throws an {@code IllegalArmumentException} unless overridden
 		COMMENT @return Zero
 		ARG 1 state
 			COMMENT The Blockstate
@@ -670,9 +670,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The Blockstate
 		ARG 0 id
 			COMMENT The BlockState's id
-	METHOD method_711 canBePlacedAtPos (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
-		COMMENT Returns whether the current block can be placed at a certain {@code BlockPos}
-		COMMENT @return Whether the current block can be placed at a BlockPos
+	METHOD method_711 canPlaceAt (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;)Z
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_712 onBreakByPlayer (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)V

@@ -3,18 +3,23 @@ CLASS net/minecraft/class_1635 net/minecraft/server/world/ServerWorld
 	FIELD field_6621 entityTracker Lnet/minecraft/class_1630;
 	FIELD field_6622 playerWorldManager Lnet/minecraft/class_1632;
 	FIELD field_6623 entityNavigations Ljava/util/Set;
+	FIELD field_6624 tickables Ljava/util/TreeSet;
 	FIELD field_6625 entitiesByUuid Ljava/util/Map;
 	FIELD field_6626 ready Z
 	FIELD field_6627 idleTimeout I
 	FIELD field_6628 portalTeleporter Lnet/minecraft/class_108;
+	FIELD field_6629 mobSpawnHelper Lnet/minecraft/class_107;
 	FIELD field_6632 BONUS_CHEST_LOOT_TABLE Ljava/util/List;
 	FIELD field_6633 players Ljava/util/List;
 	FIELD field_6634 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_6636 savingDisabled Z
+	FIELD field_6637 zombieSiegeManager Lnet/minecraft/class_1843;
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_635;Lnet/minecraft/class_634;ILnet/minecraft/class_1705;)V
 		ARG 1 server
 		ARG 2 handler
 		ARG 3 properties
+		ARG 4 dimensionId
+		ARG 5 profiler
 	METHOD method_6036 addParticle (Lnet/minecraft/class_1394;DDDIDDDD[I)V
 		ARG 1 type
 		ARG 2 x
@@ -40,6 +45,8 @@ CLASS net/minecraft/class_1635 net/minecraft/server/world/ServerWorld
 		ARG 18 args
 	METHOD method_6038 getEntity (Ljava/util/UUID;)Lnet/minecraft/class_1745;
 		ARG 1 uuid
+	METHOD method_6040 (Lnet/minecraft/class_1755;Lnet/minecraft/class_1372;)Lnet/minecraft/class_113$class_116;
+		ARG 1 category
 	METHOD method_6041 (ZLnet/minecraft/class_1707;)V
 		ARG 2 listener
 	METHOD method_6042 resetWeather ()V
@@ -51,3 +58,4 @@ CLASS net/minecraft/class_1635 net/minecraft/server/world/ServerWorld
 	METHOD method_6056 getEntityTracker ()Lnet/minecraft/class_1630;
 	METHOD method_6057 getPlayerWorldManager ()Lnet/minecraft/class_1632;
 	METHOD method_6058 getPortalTeleporter ()Lnet/minecraft/class_108;
+	CLASS class_1636 BlockActionList
