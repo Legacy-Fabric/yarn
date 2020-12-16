@@ -1,64 +1,42 @@
-CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
-	FIELD field_11639 MARKER_NETWORK_PACKETS Lorg/apache/logging/log4j/Marker;
-	FIELD field_11640 errored Z
-	FIELD field_11641 MARKER_NETWORK Lorg/apache/logging/log4j/Marker;
-	FIELD field_11642 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_11643 side Lnet/minecraft/class_2598;
-	FIELD field_11644 packetQueue Ljava/util/Queue;
-	FIELD field_11645 address Ljava/net/SocketAddress;
-	FIELD field_11646 disconnected Z
-	FIELD field_11647 encrypted Z
-	FIELD field_11648 ATTR_KEY_PROTOCOL Lio/netty/util/AttributeKey;
-	FIELD field_11649 CLIENT_IO_GROUP_LOCAL Lnet/minecraft/class_3528;
-	FIELD field_11650 CLIENT_IO_GROUP Lnet/minecraft/class_3528;
-	FIELD field_11651 channel Lio/netty/channel/Channel;
-	FIELD field_11652 packetListener Lnet/minecraft/class_2547;
-	FIELD field_11653 avgPacketsSent F
-	FIELD field_11654 avgPacketsReceived F
-	FIELD field_11655 ticks I
-	FIELD field_11656 packetsSentCounter I
-	FIELD field_11657 CLIENT_IO_GROUP_EPOLL Lnet/minecraft/class_3528;
-	FIELD field_11658 packetsReceivedCounter I
-	FIELD field_11660 disconnectReason Lnet/minecraft/class_2561;
-	METHOD method_10743 send (Lnet/minecraft/class_2596;)V
-		ARG 1 packet
-	METHOD method_10744 getPacketListener ()Lnet/minecraft/class_2547;
-	METHOD method_10745 getAveragePacketsSent ()F
-	METHOD method_10746 setupEncryption (Ljavax/crypto/SecretKey;)V
-	METHOD method_10747 disconnect (Lnet/minecraft/class_2561;)V
-		ARG 1 disconnectReason
-	METHOD method_10748 getDisconnectReason ()Lnet/minecraft/class_2561;
-	METHOD method_10750 setState (Lnet/minecraft/class_2539;)V
+CLASS net/minecraft/class_6230 net/minecraft/network/ClientConnection
+	FIELD field_30812 MARKER_NETWORK Lorg/apache/logging/log4j/Marker;
+	FIELD field_30813 MARKER_NETWORK_PACKETS Lorg/apache/logging/log4j/Marker;
+	FIELD field_30814 ATTR_KEY_PROTOCOL Lio/netty/util/AttributeKey;
+	FIELD field_30815 CLIENT_IO_GROUP Lnet/minecraft/class_2620;
+	FIELD field_30816 CLIENT_IO_GROUP_EPOLL Lnet/minecraft/class_2620;
+	FIELD field_30818 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_30819 side Lnet/minecraft/class_6258;
+	FIELD field_30820 packetQueue Ljava/util/Queue;
+	FIELD field_30822 channel Lio/netty/channel/Channel;
+	FIELD field_30823 address Ljava/net/SocketAddress;
+	FIELD field_30824 packetListener Lnet/minecraft/class_6237;
+	FIELD field_30825 disconnectReason Lnet/minecraft/class_6244;
+	FIELD field_30826 encrypted Z
+	FIELD field_30827 disconnected Z
+	METHOD method_32189 setCompressionThreshold (I)V
+		ARG 1 compressionThreshold
+	METHOD method_32191 setState (Lnet/minecraft/class_6232;)V
 		ARG 1 state
-	METHOD method_10751 sendQueuedPackets ()V
-	METHOD method_10752 send (Lnet/minecraft/class_2596;Lio/netty/util/concurrent/GenericFutureListener;)V
-		ARG 1 packet
-		ARG 2 callback
-	METHOD method_10753 connect (Ljava/net/InetAddress;IZ)Lnet/minecraft/class_2535;
+	METHOD method_32192 setPacketListener (Lnet/minecraft/class_6237;)V
+		ARG 1 listener
+	METHOD method_32193 disconnect (Lnet/minecraft/class_6244;)V
+		ARG 1 disconnectReason
+	METHOD method_32198 connect (Ljava/net/InetAddress;IZ)Lnet/minecraft/class_6230;
 		ARG 0 address
 		ARG 1 port
 		ARG 2 shouldUseNativeTransport
-	METHOD method_10754 tick ()V
-	METHOD method_10755 getAddress ()Ljava/net/SocketAddress;
-	METHOD method_10756 isLocal ()Z
-	METHOD method_10757 disableAutoRead ()V
-	METHOD method_10758 isOpen ()Z
-	METHOD method_10759 handlePacket (Lnet/minecraft/class_2596;Lnet/minecraft/class_2547;)V
-		ARG 0 packet
-		ARG 1 listener
-	METHOD method_10760 setCompressionThreshold (I)V
-		ARG 1 compressionThreshold
-	METHOD method_10762 getAveragePacketsReceived ()F
-	METHOD method_10763 setPacketListener (Lnet/minecraft/class_2547;)V
-		ARG 1 listener
-	METHOD method_10764 sendImmediately (Lnet/minecraft/class_2596;Lio/netty/util/concurrent/GenericFutureListener;)V
-		ARG 1 packet
-		ARG 2 callback
-	METHOD method_10768 handleDisconnection ()V
-	METHOD method_10769 connectLocal (Ljava/net/SocketAddress;)Lnet/minecraft/class_2535;
+	METHOD method_32199 connectLocal (Ljava/net/SocketAddress;)Lnet/minecraft/class_6230;
 		ARG 0 address
-	METHOD method_10771 isEncrypted ()Z
-	METHOD method_10772 hasChannel ()Z
-	CLASS class_2536 PacketWrapper
-		FIELD field_11661 packet Lnet/minecraft/class_2596;
-		FIELD field_11662 listener Lio/netty/util/concurrent/GenericFutureListener;
+	METHOD method_32200 setupEncryption (Ljavax/crypto/SecretKey;)V
+	METHOD method_32201 getAddress ()Ljava/net/SocketAddress;
+	METHOD method_32202 isLocal ()Z
+	METHOD method_32203 isEncrypted ()Z
+	METHOD method_32204 isOpen ()Z
+	METHOD method_32205 hasChannel ()Z
+	METHOD method_32206 getPacketListener ()Lnet/minecraft/class_6237;
+	METHOD method_32207 getDisconnectReason ()Lnet/minecraft/class_6244;
+	METHOD method_32208 disableAutoRead ()V
+	METHOD method_32209 handleDisconnection ()V
+	METHOD method_32210 sendQueuedPackets ()V
+	CLASS class_6231 PacketWrapper
+		FIELD field_30835 packet Lnet/minecraft/class_6257;

@@ -1,74 +1,51 @@
-CLASS net/minecraft/class_1408 net/minecraft/entity/ai/pathing/EntityNavigation
-	FIELD field_20293 currentTarget Lnet/minecraft/class_2338;
-	FIELD field_20294 currentDistance I
-	FIELD field_21642 rangeMultiplier F
-	FIELD field_6668 speed D
-	FIELD field_6671 followRange Lnet/minecraft/class_1324;
-	FIELD field_6673 pathNodeNavigator Lnet/minecraft/class_13;
-	FIELD field_6675 tickCount I
-	FIELD field_6677 world Lnet/minecraft/class_1937;
-	FIELD field_6678 nodeMaker Lnet/minecraft/class_8;
-	FIELD field_6679 shouldRecalculate Z
-	FIELD field_6681 currentPath Lnet/minecraft/class_11;
-	FIELD field_6683 nodeReachProximity F
+CLASS net/minecraft/class_6512 net/minecraft/entity/ai/pathing/EntityNavigation
+	FIELD field_33613 entity Lnet/minecraft/class_2268;
+	FIELD field_33614 world Lnet/minecraft/class_5086;
+	FIELD field_33615 currentPath Lnet/minecraft/class_5502;
+	FIELD field_33616 speed D
+	FIELD field_33617 tickCount I
+	FIELD field_33618 nodeReachProximity F
 		COMMENT If the Chebyshev distance from the entity to the next node is less than
 		COMMENT or equal to this value, the entity is considered "reached" the node.
-	FIELD field_6684 entity Lnet/minecraft/class_1308;
-	FIELD field_6685 lastRecalculateTime J
-	METHOD method_18416 findPathToAny (Ljava/util/Set;IZI)Lnet/minecraft/class_11;
-		ARG 1 positions
-		ARG 2 range
-		ARG 4 distance
-	METHOD method_21643 findPathToAny (Ljava/util/stream/Stream;I)Lnet/minecraft/class_11;
-		ARG 1 positions
-		ARG 2 distance
-	METHOD method_23964 setRangeMultiplier (F)V
-		ARG 1 rangeMultiplier
-	METHOD method_23965 resetRangeMultiplier ()V
-	METHOD method_6333 isValidPosition (Lnet/minecraft/class_2338;)Z
-		ARG 1 pos
-	METHOD method_6334 startMovingAlong (Lnet/minecraft/class_11;D)Z
-		ARG 1 path
-		ARG 2 speed
-	METHOD method_6335 startMovingTo (Lnet/minecraft/class_1297;D)Z
-		ARG 1 entity
-		ARG 2 speed
-	METHOD method_6336 createPathNodeNavigator (I)Lnet/minecraft/class_13;
-	METHOD method_6337 startMovingTo (DDDD)Z
+	FIELD field_33619 shouldRecalculate Z
+	FIELD field_33620 nodeMaker Lnet/minecraft/class_5501;
+	FIELD field_33621 followRange Lnet/minecraft/class_2718;
+	FIELD field_33628 lastRecalculateTime J
+	METHOD method_35024 setSpeed (D)V
+		ARG 1 speed
+	METHOD method_35025 findPathTo (DDD)Lnet/minecraft/class_5502;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_35026 startMovingTo (DDDD)Z
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 		ARG 7 speed
-	METHOD method_6340 stop ()V
-	METHOD method_6341 canPathDirectlyThrough (Lnet/minecraft/class_243;Lnet/minecraft/class_243;III)Z
+	METHOD method_35027 startMovingAlong (Lnet/minecraft/class_5502;D)Z
+		ARG 1 path
+		ARG 2 speed
+	METHOD method_35029 canPathDirectlyThrough (Lnet/minecraft/class_5559;Lnet/minecraft/class_5559;III)Z
 		ARG 1 origin
 		ARG 2 target
 		ARG 3 sizeX
 		ARG 4 sizeY
 		ARG 5 sizeZ
-	METHOD method_6342 getNodeMaker ()Lnet/minecraft/class_8;
-	METHOD method_6343 shouldRecalculatePath ()Z
-	METHOD method_6344 setSpeed (D)V
-		ARG 1 speed
-	METHOD method_6345 getCurrentPath ()Lnet/minecraft/class_11;
-	METHOD method_6347 getPos ()Lnet/minecraft/class_243;
-	METHOD method_6348 findPathTo (Lnet/minecraft/class_2338;I)Lnet/minecraft/class_11;
-		ARG 1 target
-		ARG 2 distance
-	METHOD method_6349 findPathTo (Lnet/minecraft/class_1297;I)Lnet/minecraft/class_11;
+	METHOD method_35030 isValidPosition (Lnet/minecraft/class_6183;)Z
+	METHOD method_35031 findPathTo (Lnet/minecraft/class_2239;)Lnet/minecraft/class_5502;
 		ARG 1 entity
-		ARG 2 distance
-	METHOD method_6350 canSwim ()Z
-	METHOD method_6351 isInLiquid ()Z
-	METHOD method_6352 findPathTo (DDDI)Lnet/minecraft/class_11;
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 distance
-	METHOD method_6354 setCanSwim (Z)V
-		ARG 1 canSwim
-	METHOD method_6355 getTargetPos ()Lnet/minecraft/class_2338;
-	METHOD method_6356 recalculatePath ()V
-	METHOD method_6357 isIdle ()Z
-	METHOD method_6358 isAtValidPosition ()Z
-	METHOD method_6360 tick ()V
+	METHOD method_35032 startMovingTo (Lnet/minecraft/class_2239;D)Z
+		ARG 1 entity
+		ARG 2 speed
+	METHOD method_35033 isAtValidPosition ()Z
+	METHOD method_35034 findPathTo (Lnet/minecraft/class_6183;)Lnet/minecraft/class_5502;
+		ARG 1 target
+	METHOD method_35035 getPos ()Lnet/minecraft/class_5559;
+	METHOD method_35036 tick ()V
+	METHOD method_35038 shouldRecalculatePath ()Z
+	METHOD method_35039 recalculatePath ()V
+	METHOD method_35040 getCurrentPath ()Lnet/minecraft/class_5502;
+	METHOD method_35043 isIdle ()Z
+	METHOD method_35044 stop ()V
+	METHOD method_35045 isInLiquid ()Z
+	METHOD method_35047 getNodeMaker ()Lnet/minecraft/class_5501;
