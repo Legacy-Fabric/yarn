@@ -1,15 +1,29 @@
 CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26807 startupTime J
+	FIELD field_26808 profiler Lnet/minecraft/class_2626;
+	FIELD field_26809 running Z
 	FIELD field_26810 fpsDebugString Ljava/lang/String;
 	FIELD field_26811 chunkCullingEnabled Z
 	FIELD field_26813 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_26814 MOJANG_LOGO Lnet/minecraft/class_4523;
+	FIELD field_26815 DISPLAY_MODES Ljava/util/List;
+	FIELD field_26816 resourcePackDir Ljava/io/File;
 	FIELD field_26818 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
 	FIELD field_26821 instance Lnet/minecraft/class_1321;
 	FIELD field_26822 dataFixer Lnet/minecraft/class_2656;
+	FIELD field_26825 crashed Z
 	FIELD field_26826 crashReport Lnet/minecraft/class_5342;
 	FIELD field_26827 connectedToRealms Z
 	FIELD field_26828 renderTickCounter Lnet/minecraft/class_1325;
 	FIELD field_26829 snooper Lnet/minecraft/class_2179;
+	FIELD field_26831 resourceManager Lnet/minecraft/class_1726;
+	FIELD field_26833 resourcePacks Ljava/util/List;
+	FIELD field_26834 defaultResourcePack Lnet/minecraft/class_6037;
+	FIELD field_26835 resourcePackProvider Lnet/minecraft/class_6045;
+	FIELD field_26836 languageManager Lnet/minecraft/class_6052;
+	FIELD field_26837 blockColorMap Lnet/minecraft/class_1327;
+	FIELD field_26841 soundManager Lnet/minecraft/class_6109;
+	FIELD field_26842 musicTracker Lnet/minecraft/class_6104;
 	FIELD field_26844 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_26850 toastManager Lnet/minecraft/class_5611;
 	FIELD field_26852 fpsCounter I
@@ -17,6 +31,9 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26854 tutorialManager Lnet/minecraft/class_6119;
 	FIELD field_26855 IS_SYSTEM_MAC Z
 	FIELD field_26856 openProfilerSection Ljava/lang/String;
+	FIELD field_26857 entityRenderDispatcher Lnet/minecraft/class_5957;
+	FIELD field_26858 itemRenderer Lnet/minecraft/class_1640;
+	FIELD field_26859 heldItemRenderer Lnet/minecraft/class_1498;
 	FIELD field_26860 cameraEntity Lnet/minecraft/class_2239;
 	FIELD field_26861 searchManager Lnet/minecraft/class_6092;
 	FIELD field_26862 session Lnet/minecraft/class_5572;
@@ -24,6 +41,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26864 pausedTickDelta F
 	FIELD field_26865 attackCooldown I
 	FIELD field_26868 server Lnet/minecraft/class_6097;
+	FIELD field_26869 assetDir Ljava/io/File;
 	FIELD field_26870 gameVersion Ljava/lang/String;
 	FIELD field_26871 versionType Ljava/lang/String;
 	FIELD field_26872 netProxy Ljava/net/Proxy;
@@ -35,13 +53,26 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26882 isIntegratedServerRunning Z
 	FIELD field_26883 memoryReservedForCrash [B
 	FIELD field_26884 interactionManager Lnet/minecraft/class_4142;
+	FIELD field_26887 world Lnet/minecraft/class_5768;
+	FIELD field_26888 worldRenderer Lnet/minecraft/class_3986;
 	FIELD field_26889 player Lnet/minecraft/class_5840;
 	FIELD field_26890 targetedEntity Lnet/minecraft/class_2239;
+	FIELD field_26891 particleManager Lnet/minecraft/class_4158;
+	FIELD field_26892 textRenderer Lnet/minecraft/class_5575;
+	FIELD field_26893 enchantmentTextRenderer Lnet/minecraft/class_5575;
 	FIELD field_26894 currentScreen Lnet/minecraft/class_5641;
+	FIELD field_26895 splashScreen Lnet/minecraft/class_1324;
+	FIELD field_26896 gameRenderer Lnet/minecraft/class_1481;
+	FIELD field_26897 debugRenderer Lnet/minecraft/class_1559;
+	FIELD field_26898 inGameHud Lnet/minecraft/class_5576;
 	FIELD field_26899 skipGameRender Z
 	FIELD field_26900 crosshairTarget Lnet/minecraft/class_1307;
+	FIELD field_26901 options Lnet/minecraft/class_1320;
+	FIELD field_26902 hotbarStorage Lnet/minecraft/class_4050;
 	FIELD field_26904 runDirectory Ljava/io/File;
 	FIELD field_26907 metricsData Lnet/minecraft/class_2610;
+	METHOD <init> (Lnet/minecraft/class_5731;)V
+		ARG 1 args
 	METHOD method_28761 getCurrentServerEntry ()Lnet/minecraft/class_5770;
 	METHOD method_28762 isInSingleplayer ()Z
 	METHOD method_28763 isIntegratedServerRunning ()Z
@@ -63,6 +94,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28783 getSkinProvider ()Lnet/minecraft/class_6048;
 	METHOD method_28784 run ()V
 	METHOD method_28792 setCrashReport (Lnet/minecraft/class_5342;)V
+		ARG 1 crash
 	METHOD method_28794 openScreen (Lnet/minecraft/class_5641;)V
 		ARG 1 screen
 	METHOD method_28798 setCurrentServerEntry (Lnet/minecraft/class_5770;)V
@@ -92,14 +124,20 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28828 hasReducedDebugInfo ()Z
 	METHOD method_28829 getToastManager ()Lnet/minecraft/class_5611;
 	METHOD method_28830 getTutorialManager ()Lnet/minecraft/class_6119;
+	METHOD method_28831 initializeGame ()V
 	METHOD method_28837 checkIs64Bit ()Z
 	METHOD method_28838 startTimerHackThread ()V
+	METHOD method_28840 render ()V
 	METHOD method_28841 getFramebuffer ()Lnet/minecraft/class_5873;
 	METHOD method_28849 handleBlockBreaking (Z)V
 	METHOD method_28850 getGameVersion ()Ljava/lang/String;
 	METHOD method_28852 printCrashReport (Lnet/minecraft/class_5342;)V
+		ARG 1 crash
 	METHOD method_28854 getVersionType ()Ljava/lang/String;
+	METHOD method_28855 useUnicodeFont ()Z
+	METHOD method_28856 reloadResources ()V
 	METHOD method_28857 getLevelStorage ()Lnet/minecraft/class_1271;
+	METHOD method_28858 stop ()V
 	METHOD method_28861 getFramerateLimit ()I
 	METHOD method_28863 cleanUpAfterCrash ()V
 	METHOD method_28864 scheduleStop ()V

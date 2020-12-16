@@ -2,21 +2,63 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	FIELD field_26929 mainArm Lnet/minecraft/class_2257;
 	FIELD field_26932 heldItemTooltips Z
 	FIELD field_26938 useNativeTransport Z
+	FIELD field_26940 glDebugVerbosity I
 	FIELD field_26945 tutorialStep Lnet/minecraft/class_6121;
+	FIELD field_26946 keyForward Lnet/minecraft/class_4094;
+	FIELD field_26947 keyLeft Lnet/minecraft/class_4094;
+	FIELD field_26948 keyBack Lnet/minecraft/class_4094;
+	FIELD field_26949 keyRight Lnet/minecraft/class_4094;
+	FIELD field_26950 keyJump Lnet/minecraft/class_4094;
+	FIELD field_26951 keySneak Lnet/minecraft/class_4094;
+	FIELD field_26952 keySprint Lnet/minecraft/class_4094;
 	FIELD field_26953 lastServer Ljava/lang/String;
 	FIELD field_26954 smoothCameraEnabled Z
+	FIELD field_26956 fov F
 	FIELD field_26959 guiScale I
+	FIELD field_26960 particles I
 	FIELD field_26962 language Ljava/lang/String;
+	FIELD field_26963 forceUnicodeFont Z
 	FIELD field_26964 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_26965 COLON_SPLITTER Lcom/google/common/base/Splitter;
 	FIELD field_26966 GSON Lcom/google/gson/Gson;
 	FIELD field_26967 STRING_LIST_TYPE Ljava/lang/reflect/Type;
+	FIELD field_26975 optionsFile Ljava/io/File;
+	FIELD field_26976 keyInventory Lnet/minecraft/class_4094;
+	FIELD field_26977 keySwapHands Lnet/minecraft/class_4094;
+	FIELD field_26978 keyDrop Lnet/minecraft/class_4094;
+	FIELD field_26979 keyUse Lnet/minecraft/class_4094;
+	FIELD field_26980 keyAttack Lnet/minecraft/class_4094;
+	FIELD field_26981 keyPickItem Lnet/minecraft/class_4094;
+	FIELD field_26982 keyChat Lnet/minecraft/class_4094;
+	FIELD field_26983 keyPlayerList Lnet/minecraft/class_4094;
+	FIELD field_26984 keyCommand Lnet/minecraft/class_4094;
+	FIELD field_26985 keyScreenshot Lnet/minecraft/class_4094;
+	FIELD field_26986 keyTogglePerspective Lnet/minecraft/class_4094;
+	FIELD field_26987 keySmoothCamera Lnet/minecraft/class_4094;
+	FIELD field_26988 keyFullscreen Lnet/minecraft/class_4094;
+	FIELD field_26989 keySpectatorOutlines Lnet/minecraft/class_4094;
+	FIELD field_26990 keyAdvancements Lnet/minecraft/class_4094;
+	FIELD field_26991 keysHotbar [Lnet/minecraft/class_4094;
+	FIELD field_26992 keySaveToolbarActivator Lnet/minecraft/class_4094;
+	FIELD field_26993 keyLoadToolbarActivator Lnet/minecraft/class_4094;
+	FIELD field_26994 keysAll [Lnet/minecraft/class_4094;
+	FIELD field_26995 client Lnet/minecraft/class_1321;
 	FIELD field_26996 difficulty Lnet/minecraft/class_2148;
 	FIELD field_26998 perspective I
 	FIELD field_26999 debugEnabled Z
+	FIELD field_27005 viewDistance I
+	FIELD field_27006 viewBobbing Z
+	FIELD field_27007 anaglyph Z
+	FIELD field_27008 fboEnable Z
+	FIELD field_27010 renderClouds I
+	FIELD field_27011 graphics Z
 	FIELD field_27015 chatVisibility Lnet/minecraft/class_4890$class_4892;
 	FIELD field_27025 hideServerAddress Z
 	FIELD field_27026 advancedItemTooltips Z
+	METHOD <init> (Lnet/minecraft/class_1321;Ljava/io/File;)V
+		ARG 1 client
+		ARG 2 optionsFile
+	METHOD method_28893 load ()V
 	METHOD method_28895 togglePlayerModelPart (Lnet/minecraft/class_2980;)V
 		ARG 1 part
 	METHOD method_28896 setPlayerModelPart (Lnet/minecraft/class_2980;Z)V
@@ -24,6 +66,8 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 		ARG 2 enabled
 	METHOD method_28898 setKeyCode (Lnet/minecraft/class_4094;I)V
 		ARG 1 key
+	METHOD method_28901 loadOption (Lnet/minecraft/class_1320$class_5571;I)V
+		ARG 1 option
 	METHOD method_28902 update (Lnet/minecraft/class_2335;)Lnet/minecraft/class_2335;
 		ARG 1 tag
 	METHOD method_28903 parseFloat (Ljava/lang/String;)F
@@ -40,3 +84,4 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 		FIELD field_27044 key Ljava/lang/String;
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;ZZFFF)V
 			ARG 1 key
+		METHOD method_28915 setMax (F)V
