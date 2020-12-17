@@ -65,7 +65,8 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 spawnAnimals
 	METHOD method_33180 getRunDirectory ()Ljava/io/File;
 	METHOD method_33181 exit ()V
-	METHOD method_33185 startServer ()V
+	METHOD method_33182 tick ()V
+	METHOD method_33185 runServer ()V
 	METHOD method_33186 getVersion ()Ljava/lang/String;
 	METHOD method_33187 getCurrentPlayerCount ()I
 	METHOD method_33188 getMaxPlayerCount ()I
@@ -89,18 +90,27 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 gamemode
 	METHOD method_33208 isSpawnProtected (Lnet/minecraft/class_5086;Lnet/minecraft/class_6183;Lnet/minecraft/class_4890;)Z
 	METHOD method_33209 setCrashReport (Lnet/minecraft/class_5342;)V
+		ARG 1 crashReport
 	METHOD method_33211 convertLevel (Ljava/lang/String;)V
 		ARG 1 levelName
 	METHOD method_33212 loadWorldResourcePack (Ljava/lang/String;Lnet/minecraft/class_1268;)V
 		ARG 1 worldName
 		ARG 2 worldSaveHandler
-	METHOD method_33213 (Ljava/lang/String;Ljava/lang/String;JLnet/minecraft/class_5091;Ljava/lang/String;)V
+	METHOD method_33213 createWorlds (Ljava/lang/String;Ljava/lang/String;JLnet/minecraft/class_5091;Ljava/lang/String;)V
 		ARG 1 levelName
+		ARG 2 name
+	METHOD method_33214 getPlayerByUuid (Ljava/util/UUID;)Lnet/minecraft/class_2239;
+		ARG 1 uuid
+	METHOD method_33215 addTask (Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+		ARG 1 callable
 	METHOD method_33216 setFavicon (Lnet/minecraft/class_4692;)V
 		ARG 1 metadata
+	METHOD method_33219 getSpawnRadius (Lnet/minecraft/class_2516;)I
+		ARG 1 world
 	METHOD method_33220 setPlayerManager (Lnet/minecraft/class_2545;)V
 	METHOD method_33221 setDifficulty (Lnet/minecraft/class_2148;)V
 		ARG 1 difficulty
+	METHOD method_33222 save (Z)V
 	METHOD method_33223 getGameProfileRepo ()Lcom/mojang/authlib/GameProfileRepository;
 	METHOD method_33224 getUserCache ()Lnet/minecraft/class_6387;
 	METHOD method_33225 getServerMetadata ()Lnet/minecraft/class_4692;
@@ -108,7 +118,11 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_33227 getMaxWorldBorderRadius ()I
 	METHOD method_33228 getNetworkCompressionThreshold ()I
 	METHOD method_33229 getServerStartTime ()J
-	METHOD method_33233 reload ()V
+	METHOD method_33230 getServerThread ()Ljava/lang/Thread;
+	METHOD method_33233 reloadResources ()V
+	METHOD method_33235 logPercentage (Ljava/lang/String;I)V
+		ARG 1 text
+		ARG 2 percentage
 	METHOD method_33236 setResourcePack (Ljava/lang/String;Ljava/lang/String;)V
 		ARG 1 url
 		ARG 2 hash
@@ -150,6 +164,7 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_33271 getServerId ()Ljava/lang/String;
 	METHOD method_33272 setServerName (Ljava/lang/String;)V
 		ARG 1 serverName
+	METHOD method_33273 prepareStartRegion ()V
 	METHOD method_33274 setMotd (Ljava/lang/String;)V
 		ARG 1 motd
 	METHOD method_33275 shouldGenerateStructures ()Z
@@ -185,3 +200,5 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 forceGameMode
 	CLASS 1
 		FIELD field_4609 lastProgressUpdate J
+	CLASS 2
+		METHOD run ()V
