@@ -1,7 +1,6 @@
 CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26807 startupTime J
 	FIELD field_26808 profiler Lnet/minecraft/class_2626;
-	FIELD field_26809 running Z
 	FIELD field_26810 fpsDebugString Ljava/lang/String;
 	FIELD field_26811 chunkCullingEnabled Z
 	FIELD field_26813 LOGGER Lorg/apache/logging/log4j/Logger;
@@ -9,8 +8,11 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26815 DISPLAY_MODES Ljava/util/List;
 	FIELD field_26816 resourcePackDir Ljava/io/File;
 	FIELD field_26818 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
+	FIELD field_26819 serverInfo Lnet/minecraft/class_5770;
+	FIELD field_26820 textureManager Lnet/minecraft/class_4169;
 	FIELD field_26821 instance Lnet/minecraft/class_1321;
 	FIELD field_26822 dataFixer Lnet/minecraft/class_2656;
+	FIELD field_26823 running Z
 	FIELD field_26825 crashed Z
 	FIELD field_26826 crashReport Lnet/minecraft/class_5342;
 	FIELD field_26827 connectedToRealms Z
@@ -22,9 +24,12 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26835 resourcePackProvider Lnet/minecraft/class_6045;
 	FIELD field_26836 languageManager Lnet/minecraft/class_6052;
 	FIELD field_26837 blockColorMap Lnet/minecraft/class_1327;
+	FIELD field_26838 itemColors Lnet/minecraft/class_5574;
 	FIELD field_26841 soundManager Lnet/minecraft/class_6109;
 	FIELD field_26842 musicTracker Lnet/minecraft/class_6104;
 	FIELD field_26844 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
+	FIELD field_26845 skinProvider Lnet/minecraft/class_6048;
+	FIELD field_26849 blockRenderManager Lnet/minecraft/class_1512;
 	FIELD field_26850 toastManager Lnet/minecraft/class_5611;
 	FIELD field_26852 fpsCounter I
 	FIELD field_26853 windowFocused Z
@@ -77,6 +82,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28762 isInSingleplayer ()Z
 	METHOD method_28763 isIntegratedServerRunning ()Z
 	METHOD method_28764 getServer ()Lnet/minecraft/class_6097;
+	METHOD method_28765 shutdown ()V
 	METHOD method_28766 getSnooper ()Lnet/minecraft/class_2179;
 	METHOD method_28768 isRunning ()Z
 	METHOD method_28769 getSession ()Lnet/minecraft/class_5572;
@@ -115,6 +121,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28818 getEntityRenderManager ()Lnet/minecraft/class_5957;
 	METHOD method_28819 getItemRenderer ()Lnet/minecraft/class_1640;
 	METHOD method_28820 getHeldItemRenderer ()Lnet/minecraft/class_1498;
+	METHOD method_28821 getFps ()I
 	METHOD method_28822 getMetricsData ()Lnet/minecraft/class_2610;
 	METHOD method_28823 isConnectedToRealms ()Z
 	METHOD method_28824 getDataFixer ()Lnet/minecraft/class_2656;

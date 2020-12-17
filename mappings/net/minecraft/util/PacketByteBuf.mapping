@@ -1,5 +1,10 @@
 CLASS net/minecraft/class_6233 net/minecraft/util/PacketByteBuf
 	FIELD field_30846 parent Lio/netty/buffer/ByteBuf;
+	METHOD alloc ()Lio/netty/buffer/ByteBufAllocator;
+	METHOD capacity ()I
+	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 size
+	METHOD maxCapacity ()I
 	METHOD method_32222 readByteArray ()[B
 	METHOD method_32223 getVarIntSizeBytes (I)I
 	METHOD method_32224 writeItemStack (Lnet/minecraft/class_5013;)Lnet/minecraft/class_6233;
@@ -9,9 +14,13 @@ CLASS net/minecraft/class_6233 net/minecraft/util/PacketByteBuf
 		ARG 1 text
 	METHOD method_32228 readEnumConstant (Ljava/lang/Class;)Ljava/lang/Enum;
 	METHOD method_32229 writeEnumConstant (Ljava/lang/Enum;)Lnet/minecraft/class_6233;
+	METHOD method_32230 writeString (Ljava/lang/String;)Lnet/minecraft/class_6233;
+		ARG 1 string
 	METHOD method_32231 writeDate (Ljava/util/Date;)Lnet/minecraft/class_6233;
+		ARG 1 date
 	METHOD method_32232 writeUuid (Ljava/util/UUID;)Lnet/minecraft/class_6233;
 	METHOD method_32233 writeIdentifier (Lnet/minecraft/class_4523;)Lnet/minecraft/class_6233;
+		ARG 1 identifier
 	METHOD method_32234 writeByteArray ([B)Lnet/minecraft/class_6233;
 	METHOD method_32235 writeIntArray ([I)Lnet/minecraft/class_6233;
 	METHOD method_32236 writeLongArray ([J)Lnet/minecraft/class_6233;
@@ -33,3 +42,12 @@ CLASS net/minecraft/class_6233 net/minecraft/util/PacketByteBuf
 	METHOD method_32251 readItemStack ()Lnet/minecraft/class_5013;
 	METHOD method_32252 readIdentifier ()Lnet/minecraft/class_4523;
 	METHOD method_32253 readDate ()Ljava/util/Date;
+	METHOD readLong ()J
+	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
+	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
+	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index

@@ -3,12 +3,15 @@ CLASS net/minecraft/server/MinecraftServer
 	FIELD field_31533 profilerStartQueued Z
 	FIELD field_31534 userCache Lnet/minecraft/class_6387;
 	FIELD field_31535 USER_CACHE_FILE Ljava/io/File;
+	FIELD field_31536 serverThread Ljava/lang/Thread;
 	FIELD field_31537 timeReference J
 	FIELD field_31538 iconFilePresent Z
 	FIELD field_31539 worldGenerationProgressListenerFactory Lnet/minecraft/class_5629;
 	FIELD field_31540 profiler Lnet/minecraft/class_2626;
+	FIELD field_31541 worlds [Lnet/minecraft/class_2516;
 	FIELD field_31542 proxy Ljava/net/Proxy;
 	FIELD field_31545 lastTickLengths [J
+	FIELD field_31547 tasks Ljava/util/Queue;
 	FIELD field_31548 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_31549 levelStorage Lnet/minecraft/class_1271;
 	FIELD field_31550 snooper Lnet/minecraft/class_2179;
@@ -49,6 +52,9 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD <init> (Ljava/io/File;Ljava/net/Proxy;Lnet/minecraft/class_2656;Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/class_6387;)V
 		ARG 1 gameDir
 		ARG 2 proxy
+		ARG 4 authService
+		ARG 5 sessionService
+		ARG 7 userCache
 	METHOD main ([Ljava/lang/String;)V
 		ARG 0 args
 	METHOD method_17819 setServerId (Ljava/lang/String;)V
@@ -59,6 +65,7 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 spawnAnimals
 	METHOD method_33180 getRunDirectory ()Ljava/io/File;
 	METHOD method_33181 exit ()V
+	METHOD method_33185 startServer ()V
 	METHOD method_33186 getVersion ()Ljava/lang/String;
 	METHOD method_33187 getCurrentPlayerCount ()I
 	METHOD method_33188 getMaxPlayerCount ()I
@@ -71,11 +78,15 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_33197 isSinglePlayer ()Z
 	METHOD method_33198 getLevelName ()Ljava/lang/String;
 	METHOD method_33199 getServerName ()Ljava/lang/String;
+	METHOD method_33200 shouldSpawnMonsters ()Z
 	METHOD method_33201 isDemo ()Z
 	METHOD method_33202 getLevelStorage ()Lnet/minecraft/class_1271;
 	METHOD method_33203 getResourcePackUrl ()Ljava/lang/String;
 	METHOD method_33204 getResourcePackHash ()Ljava/lang/String;
+	METHOD method_33205 getWorldById (I)Lnet/minecraft/class_2516;
+		ARG 1 id
 	METHOD method_33206 setDefaultGameMode (Lnet/minecraft/class_5084;)V
+		ARG 1 gamemode
 	METHOD method_33208 isSpawnProtected (Lnet/minecraft/class_5086;Lnet/minecraft/class_6183;Lnet/minecraft/class_4890;)Z
 	METHOD method_33209 setCrashReport (Lnet/minecraft/class_5342;)V
 	METHOD method_33211 convertLevel (Ljava/lang/String;)V
@@ -83,9 +94,13 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_33212 loadWorldResourcePack (Ljava/lang/String;Lnet/minecraft/class_1268;)V
 		ARG 1 worldName
 		ARG 2 worldSaveHandler
+	METHOD method_33213 (Ljava/lang/String;Ljava/lang/String;JLnet/minecraft/class_5091;Ljava/lang/String;)V
+		ARG 1 levelName
 	METHOD method_33216 setFavicon (Lnet/minecraft/class_4692;)V
 		ARG 1 metadata
 	METHOD method_33220 setPlayerManager (Lnet/minecraft/class_2545;)V
+	METHOD method_33221 setDifficulty (Lnet/minecraft/class_2148;)V
+		ARG 1 difficulty
 	METHOD method_33223 getGameProfileRepo ()Lcom/mojang/authlib/GameProfileRepository;
 	METHOD method_33224 getUserCache ()Lnet/minecraft/class_6387;
 	METHOD method_33225 getServerMetadata ()Lnet/minecraft/class_4692;
@@ -132,6 +147,7 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_33268 setOnlineMode (Z)V
 		ARG 1 onlineMode
 	METHOD method_33270 setupServer ()Z
+	METHOD method_33271 getServerId ()Ljava/lang/String;
 	METHOD method_33272 setServerName (Ljava/lang/String;)V
 		ARG 1 serverName
 	METHOD method_33274 setMotd (Ljava/lang/String;)V
@@ -164,6 +180,7 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_3842 setServerIp (Ljava/lang/String;)V
 		ARG 1 serverIp
 	METHOD method_3853 setKeyPair (Ljava/security/KeyPair;)V
+		ARG 1 keyPair
 	METHOD method_3864 setForceGameMode (Z)V
 		ARG 1 forceGameMode
 	CLASS 1
