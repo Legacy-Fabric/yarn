@@ -5,8 +5,6 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	FIELD field_8656 tag Lnet/minecraft/class_1405;
 	FIELD field_8657 damage I
 	FIELD field_8658 itemFrame Lnet/minecraft/class_1883;
-	FIELD field_8660 lastDestroyResult Z
-	FIELD field_8662 lastPlaceOnResult Z
 	METHOD <init> (Lnet/minecraft/class_160;)V
 		ARG 1 block
 	METHOD <init> (Lnet/minecraft/class_160;I)V
@@ -40,20 +38,18 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8336 addEnchantment (Lnet/minecraft/class_64;I)V
 		ARG 1 enchantment
 		ARG 2 level
-	METHOD method_8337 onBlockBroken (Lnet/minecraft/class_99;Lnet/minecraft/class_160;Lnet/minecraft/class_1372;Lnet/minecraft/class_1963;)V
+	METHOD method_8337 onBlockBroken (Lnet/minecraft/class_99;Lnet/minecraft/class_160;IIILnet/minecraft/class_2674;)V
 		ARG 1 world
 		ARG 2 block
-		ARG 3 pos
-		ARG 4 player
 	METHOD method_8338 inventoryTick (Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
 		ARG 1 world
 		ARG 2 entity
 		ARG 3 slot
 		ARG 4 selected
-	METHOD method_8339 onStartUse (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8339 onStartUse (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;)Lnet/minecraft/class_2056;
 		ARG 1 world
 		ARG 2 player
-	METHOD method_8340 onCraft (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
+	METHOD method_8340 onCraft (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;I)V
 		ARG 1 world
 		ARG 2 player
 		ARG 3 amount
@@ -64,28 +60,17 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8343 putSubTag (Ljava/lang/String;Lnet/minecraft/class_1419;)V
 		ARG 1 key
 		ARG 2 tag
-	METHOD method_8344 getSubTag (Ljava/lang/String;Z)Lnet/minecraft/class_1405;
-		ARG 1 name
-		ARG 2 createIfNull
-	METHOD method_8345 onEntityHit (Lnet/minecraft/class_1752;Lnet/minecraft/class_1963;)V
+	METHOD method_8345 onEntityHit (Lnet/minecraft/class_1752;Lnet/minecraft/class_2674;)V
 		ARG 1 entity
 		ARG 2 attacker
 	METHOD method_8346 setInItemFrame (Lnet/minecraft/class_1883;)V
 		ARG 1 itemFrame
-	METHOD method_8347 use (Lnet/minecraft/class_1963;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_1383;FFF)Z
+	METHOD method_8347 use (Lnet/minecraft/class_2674;Lnet/minecraft/class_99;IIIIFFF)Z
 		ARG 1 player
 		ARG 2 world
-		ARG 3 pos
-		ARG 4 direction
-		ARG 5 facingX
-		ARG 6 facingY
-		ARG 7 facingZ
-	METHOD method_8348 canUseOnEntity (Lnet/minecraft/class_1963;Lnet/minecraft/class_1752;)Z
+	METHOD method_8348 canUseOnEntity (Lnet/minecraft/class_2674;Lnet/minecraft/class_1752;)Z
 		ARG 1 player
 		ARG 2 entity
-	METHOD method_8349 getTooltip (Lnet/minecraft/class_1963;Z)Ljava/util/List;
-		ARG 1 player
-		ARG 2 advanced
 	METHOD method_8350 setItem (Lnet/minecraft/class_2054;)V
 		ARG 1 item
 	METHOD method_8351 equalsIgnoreTags (Lnet/minecraft/class_2056;)Z
@@ -96,10 +81,10 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8353 getItem ()Lnet/minecraft/class_2054;
 	METHOD method_8354 setDamage (I)V
 		ARG 1 damage
-	METHOD method_8355 onFinishUse (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;)Lnet/minecraft/class_2056;
+	METHOD method_8355 onFinishUse (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;)Lnet/minecraft/class_2056;
 		ARG 1 world
 		ARG 2 player
-	METHOD method_8356 onUseStopped (Lnet/minecraft/class_99;Lnet/minecraft/class_1963;I)V
+	METHOD method_8356 onUseStopped (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;I)V
 		ARG 1 world
 		ARG 2 player
 		ARG 3 timeLeft
@@ -115,20 +100,11 @@ CLASS net/minecraft/class_2056 net/minecraft/item/ItemStack
 	METHOD method_8361 getMaxCount ()I
 	METHOD method_8362 setRepairCost (I)V
 		ARG 1 cost
-	METHOD method_8363 canDestroy (Lnet/minecraft/class_160;)Z
-		ARG 1 block
 	METHOD method_8364 writeTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_8365 setCustomName (Ljava/lang/String;)Lnet/minecraft/class_2056;
 		ARG 1 name
-	METHOD method_8366 (Lnet/minecraft/class_2056;)Z
-		ARG 1 stack
-	METHOD method_8367 equalsIgnoreTags (Lnet/minecraft/class_2056;Lnet/minecraft/class_2056;)Z
-		ARG 0 left
-		ARG 1 right
 	METHOD method_8368 isDamaged ()Z
-	METHOD method_8369 canPlaceOn (Lnet/minecraft/class_160;)Z
-		ARG 1 block
 	METHOD method_8370 setTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_8371 equalsAll (Lnet/minecraft/class_2056;)Z
