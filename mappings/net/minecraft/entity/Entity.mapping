@@ -33,7 +33,6 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7375 playerUuid Ljava/util/UUID;
 	FIELD field_7378 invulnerable Z
 	FIELD field_7380 entityCount I
-	FIELD field_7384 entityId I
 	FIELD field_7387 netherPortalTime I
 	FIELD field_7388 fireTicks I
 	FIELD field_7391 rider Lnet/minecraft/class_1745;
@@ -56,11 +55,9 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		COMMENT This is due to the fact that entity constructors are called reflectively
 		COMMENT from {@link net.minecraft.entity.EntityDispatcher}
 		ARG 1 world
-	METHOD Y getEyeHeight ()F
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 object
-	METHOD method_6261 getTranslationKey ()Ljava/lang/String;
-	METHOD method_6895 getEntityId ()I
+	METHOD method_11963 getEyeHeight ()F
 	METHOD method_6897 getDataTracker ()Lnet/minecraft/class_1761;
 	METHOD method_6898 afterSpawn ()V
 	METHOD method_6899 remove ()V
@@ -69,7 +66,6 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6902 setOnFireFromLava ()V
 	METHOD method_6903 setInLava ()V
 	METHOD method_6904 destroy ()V
-	METHOD method_6905 getSwimSound ()Ljava/lang/String;
 	METHOD method_6906 checkBlockCollision ()V
 	METHOD method_6908 getBox ()Lnet/minecraft/class_646;
 	METHOD method_6911 isTouchingWater ()Z
@@ -95,7 +91,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 material
 	METHOD method_6930 populateCrashReport (Lnet/minecraft/class_1364;)V
 		ARG 1 section
-	METHOD method_6933 deserialize (Lnet/minecraft/class_1405;)V
+	METHOD method_6933 deserialize (Lnet/minecraft/class_2816;)V
 		ARG 1 tag
 	METHOD method_6935 playSound (Ljava/lang/String;FF)V
 		ARG 1 id
@@ -108,9 +104,9 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 entity
 	METHOD method_6941 onLightningStrike (Lnet/minecraft/class_1890;)V
 		ARG 1 lightning
-	METHOD method_6946 toListTag ([D)Lnet/minecraft/class_1411;
+	METHOD method_6946 toListTag ([D)Lnet/minecraft/class_2820;
 		ARG 1 values
-	METHOD method_6947 toListTag ([F)Lnet/minecraft/class_1411;
+	METHOD method_6947 toListTag ([F)Lnet/minecraft/class_2820;
 		ARG 1 values
 	METHOD method_6950 getHeadRotation ()F
 	METHOD method_6951 isAttackable ()Z
@@ -118,7 +114,6 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6955 canAvoidTraps ()Z
 	METHOD method_6957 getUuid ()Ljava/util/UUID;
 	METHOD method_6958 canFly ()Z
-	METHOD method_6970 getSplashSound ()Ljava/lang/String;
 	METHOD method_6972 scheduleVelocityUpdate ()V
 	METHOD method_6973 collides ()Z
 	METHOD method_6974 isPushable ()Z
@@ -150,14 +145,14 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7000 setFlag (IZ)V
 		ARG 1 index
 		ARG 2 value
-	METHOD method_7003 serialize (Lnet/minecraft/class_1405;)V
+	METHOD method_7003 serialize (Lnet/minecraft/class_2816;)V
 		ARG 1 tag
 	METHOD method_7009 increaseTransforms (FF)V
 		ARG 1 yaw
 		ARG 2 pitch
 	METHOD method_7010 teleportToDimension (I)V
 		ARG 1 dimensionId
-	METHOD method_7013 saveSelfToTag (Lnet/minecraft/class_1405;)Z
+	METHOD method_7013 saveSelfToTag (Lnet/minecraft/class_2816;)Z
 		ARG 1 tag
 	METHOD method_7014 setSneaking (Z)V
 		ARG 1 sneaking
@@ -165,8 +160,6 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 velocityX
 		ARG 3 velocityY
 		ARG 5 velocityZ
-	METHOD method_7017 setEntityId (I)V
-		ARG 1 id
 	METHOD method_7021 onPlayerCollision (Lnet/minecraft/class_2674;)V
 		ARG 1 player
 	METHOD method_7022 setSprinting (Z)V
@@ -178,7 +171,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7025 handleFallDamage (F)V
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
-	METHOD method_7027 writePlayerData (Lnet/minecraft/class_1405;)V
+	METHOD method_7027 writePlayerData (Lnet/minecraft/class_2816;)V
 		ARG 1 tag
 	METHOD method_7028 openInventory (Lnet/minecraft/class_2674;)Z
 		ARG 1 player
@@ -192,7 +185,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 headYaw
 	METHOD method_7033 burn (I)V
 		ARG 1 time
-	METHOD method_7034 fromTag (Lnet/minecraft/class_1405;)V
+	METHOD method_7034 fromTag (Lnet/minecraft/class_2816;)V
 		ARG 1 tag
 	METHOD method_7035 isInvisibleTo (Lnet/minecraft/class_2674;)Z
 		ARG 1 player
@@ -207,10 +200,6 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7041 squaredDistanceToEntity (Lnet/minecraft/class_1745;)F
 		ARG 1 entity
 	METHOD method_7043 initDataTracker ()V
-	METHOD method_7044 shouldRender (DDD)Z
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
 	METHOD method_7045 setAir (I)V
 		ARG 1 air
 	METHOD method_7046 squaredDistanceTo (Lnet/minecraft/class_1745;)D
@@ -229,4 +218,4 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 attacker
 	METHOD method_7059 canClimb ()Z
 	METHOD method_7060 tick ()V
-	METHOD method_8397 getName ()Lnet/minecraft/class_1444;
+	METHOD method_8397 getName ()Ljava/lang/String;

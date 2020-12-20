@@ -23,15 +23,14 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT A description of the brewing recipe for their ingredients
 	FIELD field_8640 translationKey Ljava/lang/String;
 		COMMENT The Item's translation key.
-	FIELD field_8884 REGISTRY Lnet/minecraft/class_1393;
-	METHOD <init> ()V
+	METHOD <init> (I)V
 		COMMENT Sets the max stack size of an Item to 64
 	METHOD method_8246 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the translation key of the current Item
 		COMMENT @return Translation key
 	METHOD method_8247 getMeta (I)I
 		ARG 1 i
-	METHOD method_8250 onHit (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;Z)Lnet/minecraft/class_2253;
+	METHOD method_8250 onHit (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;Z)Lnet/minecraft/class_2714;
 		COMMENT Returns the HitResult for an item when the player's arm is swung while holding the item.
 		COMMENT @return HitResult
 		ARG 1 world
@@ -44,10 +43,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return The current Item
 		ARG 1 group
 			COMMENT The ItemGroup
-	METHOD method_8255 appendItemStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
+	METHOD method_8255 appendItemStacks (ILnet/minecraft/class_2029;Ljava/util/List;)V
 		COMMENT Registers an item's sub items
-		ARG 1 item
-			COMMENT The Item instance
 		ARG 2 group
 			COMMENT The ItemGroup
 		ARG 3 list
@@ -57,10 +54,9 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8257 getDisplayColor (Lnet/minecraft/class_2056;I)I
 		ARG 1 stack
 		ARG 2 color
-	METHOD method_8258 onBlockBroken (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_160;IIILnet/minecraft/class_1752;)Z
+	METHOD method_8258 onBlockBroken (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;IIIILnet/minecraft/class_1752;)Z
 		ARG 1 stack
 		ARG 2 world
-		ARG 3 block
 	METHOD method_8259 inventoryTick (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_1745;IZ)V
 		COMMENT Runs every tick when the item is in an inventory.
 		ARG 1 stack
@@ -118,16 +114,8 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @see net.minecraft.item.ToolItem
 		COMMENT @see net.minecraft.item.ArmorItem
 		COMMENT @return Enchantability
-	METHOD method_8270 byRawId (I)Lnet/minecraft/class_2054;
-		COMMENT Returns an Item for its numeric Id
-		COMMENT @return Item
-		ARG 0 id
 	METHOD method_8271 isEffectiveOn (Lnet/minecraft/class_160;)Z
 		ARG 1 block
-	METHOD method_8272 getRawId (Lnet/minecraft/class_2054;)I
-		COMMENT Returns a numeric id for an Item
-		COMMENT @return Numeric Id
-		ARG 0 item
 	METHOD method_8273 onFinishUse (Lnet/minecraft/class_2056;Lnet/minecraft/class_99;Lnet/minecraft/class_2674;)Lnet/minecraft/class_2056;
 		ARG 1 stack
 		ARG 2 world
@@ -139,11 +127,6 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return The current Item
 		ARG 1 count
 			COMMENT Maximum stack size
-	METHOD method_8277 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_2054;
-		COMMENT Sets the current item's translation key.
-		COMMENT @return The current Item
-		ARG 1 translationKey
-			COMMENT Translation key
 	METHOD method_8278 setRecipeRemainder (Lnet/minecraft/class_2054;)Lnet/minecraft/class_2054;
 		COMMENT Sets the item's recipe remainder
 		COMMENT @return The current Item
@@ -202,10 +185,6 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8292 getMaxCount ()I
 		COMMENT Returns the max stack size of an Item
 		COMMENT @return Max stack Size
-	METHOD method_8293 getStatusEffectString (Lnet/minecraft/class_2056;)Ljava/lang/String;
-		COMMENT Returns the status effect string for the current item.
-		COMMENT @return The status effect string
-		ARG 1 stack
 	METHOD method_8294 isUnbreakable ()Z
 		COMMENT Returns whether the item is unbreakable
 		COMMENT @return Whether the item is unbreakable
@@ -218,10 +197,6 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 	METHOD method_8296 getMaxDamage ()I
 		COMMENT Returns the maximum durability of the current Item.
 		COMMENT @return Max Durability
-	METHOD method_8297 hasStatusEffectString (Lnet/minecraft/class_2056;)Z
-		COMMENT Returns whether the current item has a status effect string
-		COMMENT @return Whether the current item has a status effect string
-		ARG 1 stack
 	METHOD method_8298 isDamageable ()Z
 		COMMENT Returns whether the current item is damageable. Used by tools, armor, bows, etc.
 		COMMENT @see net.minecraft.item.Toolitem
@@ -236,9 +211,5 @@ CLASS net/minecraft/class_2054 net/minecraft/item/Item
 		COMMENT @return recipeRemainder
 	METHOD method_8302 isFood ()Z
 	METHOD method_8303 hasSubTypes ()Z
-	METHOD method_8304 setup ()V
-		COMMENT This is the main method in the Item class. Both Items and BlockItems get registered here.
-		COMMENT The Item Ids starts from 256. The fields in the class Items can not be accessed before this method is called.
-		COMMENT @see net.minecarft.item.Items
 	METHOD method_8305 isHandheld ()Z
 		COMMENT Returns whether the item is supposed to look as handheld.

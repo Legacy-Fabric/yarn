@@ -19,11 +19,9 @@ CLASS net/minecraft/server/MinecraftServer
 	FIELD field_7066 serverOperation Ljava/lang/String;
 	FIELD field_7067 profiling Z
 	FIELD field_7068 forceGameMode Z
-	FIELD field_7071 lastPlayerSampleUpdate J
 	FIELD field_7079 worlds [Lnet/minecraft/class_2571;
 	FIELD field_7081 progressType Ljava/lang/String;
 	FIELD field_7082 progress I
-	FIELD field_7086 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_7095 serverIp Ljava/lang/String;
 	FIELD field_7096 serverPort I
 	FIELD field_7097 playerManager Lnet/minecraft/class_2599;
@@ -31,9 +29,8 @@ CLASS net/minecraft/server/MinecraftServer
 	FIELD field_7099 stopped Z
 	FIELD field_7100 ticks I
 	FIELD field_7101 onlineMode Z
-	METHOD <init> (Ljava/io/File;Ljava/net/Proxy;)V
+	METHOD <init> (Ljava/io/File;)V
 		ARG 1 gameDir
-		ARG 2 proxy
 	METHOD main ([Ljava/lang/String;)V
 		ARG 0 args
 	METHOD method_5910 getIp ()Ljava/lang/String;
@@ -58,7 +55,6 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_6418 setupWorld ()V
 	METHOD method_6419 shutdown ()V
 	METHOD method_6420 isNetherAllowed ()Z
-	METHOD method_6422 getProfiles ()[Lcom/mojang/authlib/GameProfile;
 	METHOD method_6423 getServer ()Lnet/minecraft/server/MinecraftServer;
 	METHOD method_6425 getCommandManager ()Lnet/minecraft/class_1629;
 	METHOD method_6426 getKeyPair ()Ljava/security/KeyPair;
@@ -84,7 +80,6 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 5 generatorType
 	METHOD method_6442 setKeyPair (Ljava/security/KeyPair;)V
 		ARG 1 keyPair
-	METHOD method_6445 setServerMeta (Lnet/minecraft/class_1596;)V
 	METHOD method_6446 addTickable (Lnet/minecraft/class_1618;)V
 		ARG 1 tickable
 	METHOD method_6447 setPlayerManager (Lnet/minecraft/class_2599;)V
@@ -92,12 +87,6 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_6451 saveWorlds (Z)V
 		ARG 1 silent
 	METHOD method_6452 getPlayerIdleTimeout ()I
-	METHOD method_6453 shouldAnnouncePlayerAchievements ()Z
-	METHOD method_6454 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
-	METHOD method_6455 getGameProfileRepo ()Lcom/mojang/authlib/GameProfileRepository;
-	METHOD method_6456 getUserCache ()Lnet/minecraft/class_1649;
-	METHOD method_6457 getServerMetadata ()Lnet/minecraft/class_1596;
-	METHOD method_6458 forcePlayerSampleUpdate ()V
 	METHOD method_6464 logProgress (Ljava/lang/String;I)V
 		ARG 1 progressType
 		ARG 2 worldProgress
@@ -113,7 +102,6 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_6478 getWorldHeight ()I
 	METHOD method_6479 isStopped ()Z
 	METHOD method_6480 getPlayerManager ()Lnet/minecraft/class_2599;
-	METHOD method_6481 getNetworkIo ()Lnet/minecraft/class_2577;
 	METHOD method_6482 isLoading ()Z
 	METHOD method_6483 hasGui ()Z
 	METHOD method_6484 getTicks ()I
@@ -166,10 +154,9 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_6514 setMotd (Ljava/lang/String;)V
 		ARG 1 motd
 	METHOD method_6515 getDefaultGameMode ()Lnet/minecraft/class_2087;
-	METHOD method_6516 getDefaultDifficulty ()Lnet/minecraft/class_1721;
+	METHOD method_6516 getDefaultDifficulty ()I
 	METHOD method_6517 isHardcore ()Z
 	METHOD method_6518 getOpPermissionLevel ()I
-	METHOD method_6519 shouldBroadcastRconToOps ()Z
 	METHOD method_6522 stopServer ()V
 	METHOD method_6523 getServerIp ()Ljava/lang/String;
 	METHOD method_6524 isRunning ()Z

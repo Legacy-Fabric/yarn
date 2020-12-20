@@ -16,33 +16,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Ore sound type
 	FIELD field_596 WOOD Lnet/minecraft/class_162;
 		COMMENT Wood sound type
-	FIELD field_597 GRAVEL Lnet/minecraft/class_162;
-		COMMENT Gravel sound type
 	FIELD field_598 GRASS Lnet/minecraft/class_162;
 		COMMENT Grass sound type
 	FIELD field_599 STONE Lnet/minecraft/class_162;
 		COMMENT Stone sound type
-	FIELD field_600 RAIL Lnet/minecraft/class_162;
-		COMMENT Rail sound type
-	FIELD field_601 GLASS Lnet/minecraft/class_162;
-		COMMENT Glass sound type
-	FIELD field_602 CLOTH Lnet/minecraft/class_162;
-		COMMENT Cloth sound type
-	FIELD field_603 SAND Lnet/minecraft/class_162;
-		COMMENT Sand sound type
-	FIELD field_604 SNOW Lnet/minecraft/class_162;
-		COMMENT Snow sound type
-	FIELD field_605 LADDER Lnet/minecraft/class_162;
-		COMMENT Ladder sound type
-	FIELD field_606 ANVIL Lnet/minecraft/class_162;
-		COMMENT Anvil sound type
-	FIELD field_608 fullBlock Z
-		COMMENT Specifies whether the current block is a full block
-	FIELD field_609 opacity I
-		COMMENT Stores the light opacity of the block
-	FIELD field_611 lightLevel I
-		COMMENT Stores the block's luminescence
-	FIELD field_612 useNeighbourLight Z
 	FIELD field_613 strength F
 		COMMENT Stores the current block's hardness
 	FIELD field_614 resistance F
@@ -51,11 +28,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Specifies whether the current block is tracked for stats
 	FIELD field_616 randomTicks Z
 		COMMENT Specifies whether the current block ticks randomly
-	FIELD field_9207 REGISTRY Lnet/minecraft/class_1393;
-	METHOD <init> (Lnet/minecraft/class_591;)V
+	METHOD <init> (ILnet/minecraft/class_591;)V
 		COMMENT Overloaded Block constructor that calls the other with the default material color
-		ARG 1 material
-			COMMENT The block's material
 	METHOD method_615 hasCollision ()Z
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
@@ -77,16 +51,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Returns whether the block provides comparator output.
 		COMMENT Used in blocks with entities like Chests and Droppers.
 		COMMENT @return Whether the block provides comparator output
-	METHOD method_633 setup ()V
-		COMMENT Registers all blocks
 	METHOD method_634 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
-	METHOD method_635 setLightLevel (F)Lnet/minecraft/class_160;
-		COMMENT Sets the block's luminescence. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 lightLevel
-			COMMENT The block's luminescence
 	METHOD method_636 setBoundingBox (FFFFFF)V
 		COMMENT Sets the block's bounding box. It accepts six parameters: The minimum and maximum for each of the three axes.
 		ARG 1 minX
@@ -136,7 +103,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT Id
 		ARG 5 meta
 			COMMENT Metadata
-	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;IIILnet/minecraft/class_160;)V
+	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;IIII)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
 		ARG 1 world
@@ -157,7 +124,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The world that the block is placed in
 		ARG 5 direction
 			COMMENT The direction that the block is facing
-	METHOD method_655 (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2253;
+	METHOD method_655 (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2714;
 		ARG 1 world
 	METHOD method_658 onSteppedOn (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;)V
 		COMMENT Runs every time an entity steps on the Block.
@@ -178,17 +145,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 sound
 			COMMENT The block's sound type
-	METHOD method_670 getIdByBlock (Lnet/minecraft/class_160;)I
-		COMMENT Returns a certain block's id
-		COMMENT @return Block id
-		ARG 0 block
-			COMMENT The block for which the id is returned
-	METHOD method_671 areBlocksEqual (Lnet/minecraft/class_160;Lnet/minecraft/class_160;)Z
-		COMMENT Returns whether two blocks are equal.
-		COMMENT @return Whether two blocks are equal
-		ARG 0 one
-		ARG 1 two
-	METHOD method_674 getDropItem (ILjava/util/Random;I)Lnet/minecraft/class_2054;
+	METHOD method_674 getDropItem (ILjava/util/Random;I)I
 		COMMENT Returns the item that must be dropped when the block is broken
 		COMMENT @return The Item that drops after the block breaks
 		ARG 2 random
@@ -224,11 +181,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 group
 			COMMENT The itemgroup that the block must be added to
-	METHOD method_682 appendItemStacks (Lnet/minecraft/class_2054;Lnet/minecraft/class_2029;Ljava/util/List;)V
+	METHOD method_682 appendItemStacks (ILnet/minecraft/class_2029;Ljava/util/List;)V
 		COMMENT Appends ItemStacks to an itemgroup.
 		COMMENT Only called on the client.
-		ARG 1 item
-			COMMENT The Item that must be added
 		ARG 2 group
 			COMMENT The ItemGroup that the item must be added to
 		ARG 3 stacks
@@ -255,11 +210,6 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Runs when the block is updated as per a schedule
 		ARG 1 world
 			COMMENT The world that the block is placed in
-	METHOD method_695 isEqualTo (Lnet/minecraft/class_160;)Z
-		COMMENT Returns whether the current block and another block are equal
-		COMMENT @return Whether the current block and the other block are equal
-		ARG 1 block
-			COMMENT The other block
 	METHOD method_697 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_699 hasTransperancy ()Z
@@ -282,18 +232,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_709 renderAsNormalBlock ()Z
 		COMMENT Returns whether the block can be rendered as a normal block
 		COMMENT @return Whether the block can be rendered as a normal block
-	METHOD method_715 setOpacity (I)Lnet/minecraft/class_160;
-		COMMENT Sets the block's light opacity. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 opacity
-			COMMENT The block's light opacity
 	METHOD method_716 getTranslatedName ()Ljava/lang/String;
 		COMMENT Translates and returns the translation key
 		COMMENT @return Translated name
-	METHOD method_721 getAmbientOcclusionLightLevel ()F
-		COMMENT Returns the block's ambient occlusion light level on the basis of whether it is a normal block.
-		COMMENT Only called on the client.
-		COMMENT @return The block's ambient occlusion light level
 	METHOD method_723 emitsRedstonePower ()Z
 		COMMENT Returns whether the current block emits a redstone signal.
 		COMMENT Used by comparators, Redstone Blocks, etc.
@@ -303,32 +244,6 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_728 getPistonInteractionType ()I
 		COMMENT Returns the block's piston interaction type, as provided by it's material.
 		COMMENT @return Current block's piston interaction type
-	METHOD method_732 isFullBlock ()Z
-		COMMENT Checks whether the current block is a full block
-		COMMENT @return fullBlock
-	METHOD method_733 getOpacity ()I
-		COMMENT Returns the current block's opacity
-		COMMENT @return opacity
-	METHOD method_734 isTransluscent ()Z
-		COMMENT Checks whether the current block is transluscent
-		COMMENT @return transluscent
-	METHOD method_735 getLightLevel ()I
-		COMMENT Returns the block's luminescence
-		COMMENT @return lightLevel
-	METHOD method_736 usesNeighbourLight ()Z
-		COMMENT Checks whether the current block uses light from the adjacent block
-		COMMENT @return useNeighbourLight
-	METHOD method_737 getMaterial ()Lnet/minecraft/class_591;
-		COMMENT Returns the block's material
-		COMMENT @return material
-	METHOD method_738 isNormalBlock ()Z
-		COMMENT Checks whether the block is a normal block.
-		COMMENT A normal block is one that blocks movement and can be rendered as a normal block.
-		COMMENT @return Whether the block is a normal block
-	METHOD method_739 isFullCube ()Z
-		COMMENT Checks whether the current block is a full cube.
-		COMMENT A block is a full cube when it can be rendered as a normal block, does not emit redstone power and is opaque.
-		COMMENT @return Whether the current block is a full cube
 	METHOD method_741 setUnbreakable ()Lnet/minecraft/class_160;
 		COMMENT Sets the current block as unbreakable. Used in registering blocks.
 		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
