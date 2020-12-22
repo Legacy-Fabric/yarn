@@ -5,8 +5,9 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 	FIELD field_23010 LEFTHANDED_PROPERTY_GETTER Lnet/minecraft/class_5014;
 	FIELD field_23011 COOLDOWN_PROPERTY_GETTER Lnet/minecraft/class_5014;
 	FIELD field_23012 propertyGetters Lnet/minecraft/class_6211;
-	FIELD field_23014 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
-	FIELD field_23015 ATTACK_SPEED_MODIFIER_UUID Ljava/util/UUID;
+	FIELD field_23013 REGISTRY Lnet/minecraft/class_6206;
+	FIELD field_23014 ATTACK_DAMAGE_MODIFIER_ID Ljava/util/UUID;
+	FIELD field_23015 ATTACK_SPEED_MODIFIER_ID Ljava/util/UUID;
 	FIELD field_23016 RANDOM Ljava/util/Random;
 	FIELD field_23017 maxCount I
 	FIELD field_23020 group Lnet/minecraft/class_4982;
@@ -14,7 +15,13 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 	FIELD field_23022 recipeRemainder Lnet/minecraft/class_5009;
 	FIELD field_23023 translationKey Ljava/lang/String;
 	METHOD method_25478 getTranslationKey ()Ljava/lang/String;
+	METHOD method_25480 register (ILjava/lang/String;Lnet/minecraft/class_5009;)V
+	METHOD method_25481 register (ILnet/minecraft/class_4523;Lnet/minecraft/class_5009;)V
+		ARG 1 id
 	METHOD method_25482 useOnBlock (Lnet/minecraft/class_4890;Lnet/minecraft/class_5086;Lnet/minecraft/class_6183;Lnet/minecraft/class_6438;Lnet/minecraft/class_6196;FFF)Lnet/minecraft/class_2158;
+		ARG 1 player
+		ARG 3 pos
+		ARG 5 facing
 	METHOD method_25483 isIn (Lnet/minecraft/class_4982;)Z
 		ARG 1 group
 	METHOD method_25484 appendStacks (Lnet/minecraft/class_4982;Lnet/minecraft/class_6207;)V
@@ -35,6 +42,7 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 	METHOD method_25489 postMine (Lnet/minecraft/class_5013;Lnet/minecraft/class_5086;Lnet/minecraft/class_4541;Lnet/minecraft/class_6183;Lnet/minecraft/class_2267;)Z
 		ARG 1 stack
 		ARG 2 world
+		ARG 3 state
 		ARG 4 pos
 		ARG 5 miner
 	METHOD method_25490 appendTooltip (Lnet/minecraft/class_5013;Lnet/minecraft/class_5086;Ljava/util/List;Lnet/minecraft/class_3102;)V
@@ -49,6 +57,7 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 		ARG 4 slot
 		ARG 5 selected
 	METHOD method_25492 finishUsing (Lnet/minecraft/class_5013;Lnet/minecraft/class_5086;Lnet/minecraft/class_2267;)Lnet/minecraft/class_5013;
+		ARG 1 stack
 		ARG 2 world
 		ARG 3 user
 	METHOD method_25493 onStoppedUsing (Lnet/minecraft/class_5013;Lnet/minecraft/class_5086;Lnet/minecraft/class_2267;I)V
@@ -56,8 +65,9 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 		ARG 2 world
 		ARG 3 user
 		ARG 4 remainingUseTicks
-	METHOD method_25494 getMiningSpeed (Lnet/minecraft/class_5013;Lnet/minecraft/class_4541;)F
+	METHOD method_25494 getMiningSpeedMultiplier (Lnet/minecraft/class_5013;Lnet/minecraft/class_4541;)F
 		ARG 1 stack
+		ARG 2 state
 	METHOD method_25495 postHit (Lnet/minecraft/class_5013;Lnet/minecraft/class_2267;Lnet/minecraft/class_2267;)Z
 		ARG 1 stack
 		ARG 2 target
@@ -67,9 +77,12 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 		ARG 2 user
 		ARG 3 hand
 	METHOD method_25497 rayTrace (Lnet/minecraft/class_5086;Lnet/minecraft/class_4890;Z)Lnet/minecraft/class_1307;
+		ARG 2 player
 	METHOD method_25498 fromBlock (Lnet/minecraft/class_5149;)Lnet/minecraft/class_5009;
 		ARG 0 block
+	METHOD method_25499 register (Lnet/minecraft/class_5149;Lnet/minecraft/class_5009;)V
 	METHOD method_25500 isEffectiveOn (Lnet/minecraft/class_4541;)Z
+		ARG 1 state
 	METHOD method_25501 postProcessTag (Lnet/minecraft/class_2335;)Z
 		ARG 1 tag
 	METHOD method_25502 getPropertyGetter (Lnet/minecraft/class_4523;)Lnet/minecraft/class_5014;
@@ -80,21 +93,34 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 	METHOD method_25504 getModifiers (Lnet/minecraft/class_6448;)Lcom/google/common/collect/Multimap;
 		ARG 1 slot
 	METHOD method_25506 getGroup ()Lnet/minecraft/class_4982;
+	METHOD method_25507 group (Lnet/minecraft/class_4982;)Lnet/minecraft/class_5009;
+		ARG 1 group
+	METHOD method_25508 recipeRemainder (Lnet/minecraft/class_5009;)Lnet/minecraft/class_5009;
+		ARG 1 recipeRemainder
 	METHOD method_25509 getName (Lnet/minecraft/class_5013;)Ljava/lang/String;
 		ARG 1 stack
 	METHOD method_25510 onCraft (Lnet/minecraft/class_5013;Lnet/minecraft/class_5086;Lnet/minecraft/class_4890;)V
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
+	METHOD method_25511 register (Lnet/minecraft/class_5149;)V
+	METHOD method_25512 get (Ljava/lang/String;)Lnet/minecraft/class_5009;
+		ARG 0 item
 	METHOD method_25513 getEnchantability ()I
 	METHOD method_25514 byRawId (I)Lnet/minecraft/class_5009;
 		ARG 0 id
+	METHOD method_25515 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_5009;
+		ARG 1 key
+	METHOD method_25516 maxCount (I)Lnet/minecraft/class_5009;
+		ARG 1 count
+	METHOD method_25517 maxDamage (I)Lnet/minecraft/class_5009;
+		ARG 1 damage
 	METHOD method_25518 getMaxUseTime (Lnet/minecraft/class_5013;)I
 		ARG 1 stack
 	METHOD method_25519 isNetworkSynced ()Z
 	METHOD method_25520 getUseAction (Lnet/minecraft/class_5013;)Lnet/minecraft/class_5034;
 		ARG 1 stack
-	METHOD method_25521 hasEnchantmentGlint (Lnet/minecraft/class_5013;)Z
+	METHOD method_25521 hasGlint (Lnet/minecraft/class_5013;)Z
 		ARG 1 stack
 	METHOD method_25522 getRarity (Lnet/minecraft/class_5013;)Lnet/minecraft/class_3050;
 		ARG 1 stack
@@ -102,12 +128,14 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 		ARG 1 stack
 	METHOD method_25524 hasPropertyGetters ()Z
 	METHOD method_25525 getMaxCount ()I
+	METHOD method_25526 (Lnet/minecraft/class_5013;)Ljava/lang/String;
+		ARG 1 stack
 	METHOD method_25528 getMaxDamage ()I
 	METHOD method_25529 isDamageable ()Z
 	METHOD method_25531 shouldSyncTagToClient ()Z
 	METHOD method_25532 getRecipeRemainder ()Lnet/minecraft/class_5009;
 	METHOD method_25533 hasRecipeRemainder ()Z
-	METHOD method_25534 isFood ()Z
+	METHOD method_25535 register ()V
 	METHOD method_25536 getStackForRender ()Lnet/minecraft/class_5013;
 	CLASS class_5010 ToolMaterials
 		FIELD field_23029 miningLevel I
@@ -121,3 +149,9 @@ CLASS net/minecraft/class_5009 net/minecraft/item/Item
 			ARG 5 miningSpeed
 			ARG 6 attackDamage
 			ARG 7 enchantibility
+		METHOD method_25537 getDurability ()I
+		METHOD method_25538 getMiningSpeedMultiplier ()F
+		METHOD method_25539 getAttackDamage ()F
+		METHOD method_25540 getMiningLevel ()I
+		METHOD method_25541 getEnchantability ()I
+		METHOD method_25542 getRepairIngredient ()Lnet/minecraft/class_5009;
