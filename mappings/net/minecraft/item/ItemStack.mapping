@@ -6,13 +6,24 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 	FIELD field_23044 item Lnet/minecraft/class_5009;
 	FIELD field_23045 tag Lnet/minecraft/class_2335;
 	FIELD field_23046 empty Z
-	FIELD field_23048 frame Lnet/minecraft/class_4797;
-	FIELD field_23049 lastDestroyPos Lnet/minecraft/class_5149;
+	FIELD field_23047 damage I
+	FIELD field_23048 holder Lnet/minecraft/class_4797;
+	FIELD field_23049 lastDestroyBlock Lnet/minecraft/class_5149;
 	FIELD field_23050 lastDestroyResult Z
-	FIELD field_23051 lastPlaceOnPos Lnet/minecraft/class_5149;
+	FIELD field_23051 lastPlaceOnBlock Lnet/minecraft/class_5149;
 	FIELD field_23052 lastPlaceOnResult Z
+	METHOD <init> (Lnet/minecraft/class_2335;)V
+		ARG 1 tag
 	METHOD <init> (Lnet/minecraft/class_5009;I)V
 		ARG 2 count
+	METHOD <init> (Lnet/minecraft/class_5009;II)V
+		ARG 2 count
+		ARG 3 damage
+	METHOD <init> (Lnet/minecraft/class_5149;I)V
+		ARG 2 count
+	METHOD <init> (Lnet/minecraft/class_5149;II)V
+		ARG 2 count
+		ARG 3 damage
 	METHOD method_25550 getFrame ()Lnet/minecraft/class_4797;
 	METHOD method_25551 getRepairCost ()I
 	METHOD method_25552 toHoverableText ()Lnet/minecraft/class_6244;
@@ -28,11 +39,19 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 		ARG 3 player
 	METHOD method_25559 damage (ILnet/minecraft/class_2267;)V
 		ARG 1 amount
-	METHOD method_25560 setFrame (Lnet/minecraft/class_4797;)V
-		ARG 1 frame
+		ARG 2 entity
+	METHOD method_25560 setHolder (Lnet/minecraft/class_4797;)V
+		ARG 1 holder
 	METHOD method_25561 getTooltip (Lnet/minecraft/class_4890;Lnet/minecraft/class_3102;)Ljava/util/List;
 		ARG 1 player
+		ARG 2 context
 	METHOD method_25562 useOnBlock (Lnet/minecraft/class_4890;Lnet/minecraft/class_5086;Lnet/minecraft/class_6183;Lnet/minecraft/class_6438;Lnet/minecraft/class_6196;FFF)Lnet/minecraft/class_2158;
+		ARG 1 player
+		ARG 3 pos
+		ARG 5 facing
+		ARG 6 x
+		ARG 7 y
+		ARG 8 z
 	METHOD method_25563 useOnEntity (Lnet/minecraft/class_4890;Lnet/minecraft/class_2267;Lnet/minecraft/class_6438;)Z
 		ARG 1 user
 		ARG 2 entity
@@ -54,6 +73,9 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 		ARG 2 user
 		ARG 3 hand
 	METHOD method_25569 postMine (Lnet/minecraft/class_5086;Lnet/minecraft/class_4541;Lnet/minecraft/class_6183;Lnet/minecraft/class_4890;)V
+		ARG 2 state
+		ARG 3 pos
+		ARG 4 miner
 	METHOD method_25570 inventoryTick (Lnet/minecraft/class_5086;Lnet/minecraft/class_2239;IZ)V
 		ARG 1 world
 		ARG 2 entity
@@ -67,7 +89,8 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 		ARG 2 user
 		ARG 3 remainingUseTicks
 	METHOD method_25573 canDestroy (Lnet/minecraft/class_5149;)Z
-	METHOD method_25574 getMiningSpeed (Lnet/minecraft/class_4541;)F
+	METHOD method_25574 getMiningSpeedMultiplier (Lnet/minecraft/class_4541;)F
+		ARG 1 state
 	METHOD method_25575 toTag (Lnet/minecraft/class_2335;)Lnet/minecraft/class_2335;
 		ARG 1 tag
 	METHOD method_25576 putSubTag (Ljava/lang/String;Lnet/minecraft/class_6222;)V
@@ -80,6 +103,8 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 	METHOD method_25579 getAttributeModifiers (Lnet/minecraft/class_6448;)Lcom/google/common/collect/Multimap;
 		ARG 1 slot
 	METHOD method_25580 postHit (Lnet/minecraft/class_2267;Lnet/minecraft/class_4890;)V
+		ARG 1 target
+		ARG 2 attacker
 	METHOD method_25581 isEmpty ()Z
 	METHOD method_25582 setDamage (I)V
 		ARG 1 damage
@@ -90,6 +115,7 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 		ARG 1 right
 	METHOD method_25585 canPlaceOn (Lnet/minecraft/class_5149;)Z
 	METHOD method_25586 isEffectiveOn (Lnet/minecraft/class_4541;)Z
+		ARG 1 state
 	METHOD method_25587 setTag (Lnet/minecraft/class_2335;)V
 		ARG 1 tag
 	METHOD method_25588 getItem ()Lnet/minecraft/class_5009;
@@ -118,11 +144,16 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 	METHOD method_25600 isDamageable ()Z
 	METHOD method_25601 increment (I)V
 		ARG 1 amount
+	METHOD method_25602 (Ljava/lang/String;)Lnet/minecraft/class_5013;
+		ARG 1 name
+	METHOD method_25603 hasVariants ()Z
 	METHOD method_25604 decrement (I)V
 		ARG 1 amount
 	METHOD method_25605 setCustomName (Ljava/lang/String;)Lnet/minecraft/class_5013;
+		ARG 1 name
 	METHOD method_25606 isDamaged ()Z
 	METHOD method_25607 getDamage ()I
+	METHOD method_25608 getMetadata ()I
 	METHOD method_25609 getMaxDamage ()I
 	METHOD method_25610 copy ()Lnet/minecraft/class_5013;
 	METHOD method_25611 getMaxUseTime ()I
@@ -133,7 +164,7 @@ CLASS net/minecraft/class_5013 net/minecraft/item/ItemStack
 	METHOD method_25616 getName ()Ljava/lang/String;
 	METHOD method_25617 removeCustomName ()V
 	METHOD method_25618 hasCustomName ()Z
-	METHOD method_25619 hasEnchantmentGlint ()Z
+	METHOD method_25619 hasGlint ()Z
 	METHOD method_25620 getRarity ()Lnet/minecraft/class_3050;
 	METHOD method_25621 isEnchantable ()Z
 	METHOD method_25622 hasEnchantments ()Z
