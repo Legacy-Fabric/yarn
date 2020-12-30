@@ -13,6 +13,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	FIELD field_9119 profiler Lnet/minecraft/class_1705;
 	FIELD field_9120 isClient Z
 	FIELD field_9123 calendar Ljava/util/Calendar;
+	FIELD field_9131 players Ljava/util/List;
 	FIELD field_9135 difficulty Lnet/minecraft/class_1721;
 	FIELD field_9136 random Ljava/util/Random;
 	FIELD field_9137 dimension Lnet/minecraft/class_411;
@@ -104,6 +105,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 end
 	METHOD method_298 addToCrashReport (Lnet/minecraft/class_825;)Lnet/minecraft/class_1364;
 		ARG 1 report
+	METHOD method_322 getPlayerFromName (Ljava/lang/String;)Lnet/minecraft/class_2674;
 	METHOD method_323 setItemData (Ljava/lang/String;Lnet/minecraft/class_625;)V
 	METHOD method_326 onEntitySpawned (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
@@ -120,7 +122,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_335 (Lnet/minecraft/class_1745;Z)V
 		ARG 1 entity
 		ARG 2 bl
-	METHOD method_336 (Lnet/minecraft/class_2674;IIIII)V
+	METHOD method_336 syncWorldEvent (Lnet/minecraft/class_2674;IIIII)V
 		ARG 1 player
 		ARG 2 type
 		ARG 4 data
@@ -136,6 +138,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 4 x2
 		ARG 5 y2
 		ARG 6 z2
+	METHOD method_354 syncWorldEvent (IIIII)V
 	METHOD method_355 setTimeOfDay (J)V
 		ARG 1 time
 	METHOD method_356 removeListener (Lnet/minecraft/class_101;)V
@@ -179,11 +182,16 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_426 getNextMapId ()I
 	METHOD method_433 isDay ()Z
 	METHOD method_437 getMoonPhase ()F
+	METHOD method_8462 getEntityById (I)Lnet/minecraft/class_1745;
 	METHOD method_8463 isRegionLoaded (IIII)Z
+	METHOD method_8476 getEntitiesByClass (Ljava/lang/Class;Lnet/minecraft/class_646;)Ljava/util/List;
+	METHOD method_8479 playSound (Ljava/lang/String;DDDDDD)V
+	METHOD method_8483 getCollisions (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
+	METHOD method_8501 getOtherEntities (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
 	METHOD method_8502 doesChunkExist (II)Z
 		ARG 1 x
 		ARG 2 y
-	METHOD method_8507 (II)Lnet/minecraft/class_399;
+	METHOD method_8507 getChunkAt (II)Lnet/minecraft/class_399;
 		ARG 1 x
 		ARG 2 y
 	METHOD method_8508 isInsideWorld (III)Z
