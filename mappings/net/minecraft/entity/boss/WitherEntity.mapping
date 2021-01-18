@@ -4,7 +4,9 @@ CLASS net/minecraft/class_2913 net/minecraft/entity/boss/WitherEntity
 	FIELD field_22127 prevSideHeadPitches [F
 	FIELD field_22128 prevSideHeadYaws [F
 	FIELD field_22132 bossBar Lnet/minecraft/class_2512;
+	FIELD field_22133 CAN_ATTACK_PREDICATE Lcom/google/common/base/Predicate;
 	FIELD field_22134 TRACKED_ENTITY_ID_2 Lnet/minecraft/class_4519;
+	FIELD field_22135 TRACKED_ENTITY_IDS [Lnet/minecraft/class_4519;
 	FIELD field_22136 INVUL_TIMER Lnet/minecraft/class_4519;
 	FIELD field_22137 sideHeadPitches [F
 	FIELD field_22138 TRACKED_ENTITY_ID_3 Lnet/minecraft/class_4519;
@@ -15,6 +17,10 @@ CLASS net/minecraft/class_2913 net/minecraft/entity/boss/WitherEntity
 	METHOD method_24588 setTrackedEntityId (II)V
 		ARG 1 headIndex
 		ARG 2 id
+	METHOD method_24589 (ILnet/minecraft/class_2267;)V
+		ARG 2 livingEntity
+	METHOD method_24590 canDestroy (Lnet/minecraft/class_5149;)Z
+		ARG 0 block
 	METHOD method_24592 getNextAngle (FFF)F
 		ARG 1 prevAngle
 		ARG 2 desiredAngle
@@ -22,12 +28,18 @@ CLASS net/minecraft/class_2913 net/minecraft/entity/boss/WitherEntity
 	METHOD method_24593 getHeadPitch (I)F
 		ARG 1 headIndex
 	METHOD method_24594 getInvulnerableTimer ()I
+	METHOD method_24595 shouldRenderOverlay ()Z
 	METHOD method_24596 setInvulTimer (I)V
 		ARG 1 ticks
 	METHOD method_24597 getTrackedEntityId (I)I
 		ARG 1 headIndex
 	METHOD method_24598 getHeadX (I)D
 		ARG 1 headIndex
+	METHOD method_24599 getHeadY (I)D
+		ARG 1 headIndex
 	METHOD method_24601 getHeadZ (I)D
 		ARG 1 headIndex
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 entity
 	CLASS class_4794 DescendAtHalfHealthGoal

@@ -9,12 +9,23 @@ CLASS net/minecraft/class_4913 net/minecraft/entity/vehicle/BoatEntity
 	FIELD field_22678 fallVelocity D
 	FIELD field_22679 DAMAGE_WOBBLE_TICKS Lnet/minecraft/class_4519;
 	FIELD field_22680 yawVelocity F
+	FIELD field_22682 x D
+	FIELD field_22683 y D
+	FIELD field_22684 z D
+	FIELD field_22685 boatYaw D
+	FIELD field_22686 boatPitch D
 	FIELD field_22687 DAMAGE_WOBBLE_SIDE Lnet/minecraft/class_4519;
 	FIELD field_22688 DAMAGE_WOBBLE_STRENGTH Lnet/minecraft/class_4519;
 	FIELD field_22689 BOAT_TYPE Lnet/minecraft/class_4519;
+	FIELD field_22690 PADDLES [Lnet/minecraft/class_4519;
 	FIELD field_22691 paddlePhases [F
 	FIELD field_22692 velocityDecay F
 	FIELD field_22693 ticksUnderwater F
+	METHOD <init> (Lnet/minecraft/class_5086;DDD)V
+		ARG 1 world
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD method_25196 setDamageWobbleStrength (F)V
 		ARG 1 wobbleStrength
 	METHOD method_25197 isPaddleMoving (I)Z
@@ -52,7 +63,13 @@ CLASS net/minecraft/class_4913 net/minecraft/entity/vehicle/BoatEntity
 	CLASS class_4914 Location
 	CLASS class_4915 Type
 		FIELD field_22708 name Ljava/lang/String;
+		FIELD field_22709 meta I
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 name
+			ARG 4 meta
 		METHOD method_25219 getName ()Ljava/lang/String;
 		METHOD method_25220 getType (I)Lnet/minecraft/class_4913$class_4915;
+			ARG 0 id
 		METHOD method_25221 getType (Ljava/lang/String;)Lnet/minecraft/class_4913$class_4915;
-		METHOD method_25222 getBaseBlock ()I
+			ARG 0 name
+		METHOD method_25222 getMeta ()I

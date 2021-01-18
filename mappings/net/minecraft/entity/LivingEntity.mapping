@@ -7,13 +7,16 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	FIELD field_33144 lastLimbDistance F
 	FIELD field_33145 limbDistance F
 	FIELD field_33146 limbAngle F
+	FIELD field_33147 defaultMaxHealth I
+	FIELD field_33148 lastCameraPitch F
+	FIELD field_33149 cameraPitch F
 	FIELD field_33150 randomLargeSeed F
+	FIELD field_33151 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_33152 randomSmallSeed F
 	FIELD field_33153 bodyYaw F
 	FIELD field_33154 prevBodyYaw F
 	FIELD field_33155 headYaw F
 	FIELD field_33156 prevHeadYaw F
-	FIELD field_33157 flyingSpeed F
 	FIELD field_33158 attackingPlayer Lnet/minecraft/class_4890;
 	FIELD field_33159 playerHitTimer I
 	FIELD field_33160 dead Z
@@ -23,7 +26,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	FIELD field_33164 lookDirection F
 	FIELD field_33165 prevLookDirection F
 	FIELD field_33166 LIVING_FLAGS Lnet/minecraft/class_4519;
-	FIELD field_33167 isHandSwinging Z
+	FIELD field_33167 handSwinging Z
 	FIELD field_33168 preferredHand Lnet/minecraft/class_6438;
 	FIELD field_33169 handSwingTicks I
 	FIELD field_33170 stuckArrowTimer I
@@ -37,7 +40,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	FIELD field_33178 lastBlockPos Lnet/minecraft/class_6183;
 	FIELD field_33179 lastDamageSource Lnet/minecraft/class_2188;
 	FIELD field_33180 lastDamageTime J
-	FIELD field_33181 ATTR_SPRINTING_SPEED_BOOST_ID Ljava/util/UUID;
+	FIELD field_33181 SPRINTING_SPEED_BOOST_ID Ljava/util/UUID;
 	FIELD field_33183 scoreAmount I
 	FIELD field_33184 lastDamageTaken F
 	FIELD field_33185 jumping Z
@@ -62,7 +65,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	FIELD field_33205 effectsChanged Z
 	FIELD field_33206 attacker Lnet/minecraft/class_2267;
 	FIELD field_33207 lastAttackedTime I
-	FIELD field_33208 ATTR_SPRINTING_SPEED_BOOST Lnet/minecraft/class_6459;
+	FIELD field_33208 SPRINTING_SPEED_BOOST Lnet/minecraft/class_6459;
 	FIELD field_33209 HEALTH Lnet/minecraft/class_4519;
 	FIELD field_33210 POTION_SWIRLS_COLOR Lnet/minecraft/class_4519;
 	FIELD field_33211 POTION_SWIRLS_AMBIENT Lnet/minecraft/class_4519;
@@ -72,7 +75,16 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 		ARG 1 target
 	METHOD method_34629 pushAway (Lnet/minecraft/class_2239;)V
 		ARG 1 entity
+	METHOD method_34630 canSee (Lnet/minecraft/class_2239;)Z
+		ARG 1 entity
 	METHOD method_34631 updatePotionVisibility ()V
+	METHOD method_34632 travel (FFF)V
+		ARG 1 sideways
+		ARG 2 upward
+		ARG 3 forward
+	METHOD method_34633 canEnterTrapdoor (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;)Z
+		ARG 1 pos
+		ARG 2 state
 	METHOD method_34634 setNearbySongPlaying (Lnet/minecraft/class_6183;Z)V
 		ARG 1 songPosition
 		ARG 2 playing
@@ -83,6 +95,8 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34637 setStackInHand (Lnet/minecraft/class_6438;Lnet/minecraft/class_5013;)V
 		ARG 1 hand
 		ARG 2 stack
+	METHOD method_34638 onDeath (Lnet/minecraft/class_2188;)V
+		ARG 1 source
 	METHOD method_34639 hasStatusEffect (Lnet/minecraft/class_2214;)Z
 		ARG 1 effect
 	METHOD method_34640 onStatusEffectApplied (Lnet/minecraft/class_2233;)V
@@ -90,6 +104,8 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34641 onStatusEffectUpgraded (Lnet/minecraft/class_2233;Z)V
 		ARG 1 effect
 		ARG 2 reapplyEffect
+	METHOD method_34642 takeKnockback (Lnet/minecraft/class_2239;FDD)V
+		ARG 1 entity
 	METHOD method_34643 sendPickup (Lnet/minecraft/class_2239;I)V
 		ARG 1 item
 		ARG 2 count
@@ -99,12 +115,24 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 		ARG 1 attacker
 	METHOD method_34646 getAttributeInstance (Lnet/minecraft/class_2716;)Lnet/minecraft/class_2718;
 		ARG 1 attribute
+	METHOD method_34647 dropEquipment (ZI)V
+		ARG 1 allowDrops
+		ARG 2 lootingMultiplier
+	METHOD method_34648 drop (ZILnet/minecraft/class_2188;)V
+		ARG 1 allowDrops
+		ARG 2 lootingMultiplier
+		ARG 3 source
 	METHOD method_34649 onEquipStack (Lnet/minecraft/class_5013;)V
 		ARG 1 stack
 	METHOD method_34650 heal (F)V
 		ARG 1 amount
 	METHOD method_34651 getCurrentExperience (Lnet/minecraft/class_4890;)I
 		ARG 1 player
+	METHOD method_34652 playEquipmentBreakEffects (Lnet/minecraft/class_5013;)V
+		ARG 1 stack
+	METHOD method_34653 spawnConsumptionEffects (Lnet/minecraft/class_5013;I)V
+		ARG 1 stack
+		ARG 2 particleCount
 	METHOD method_34654 applyFrostWalker (Lnet/minecraft/class_6183;)V
 		ARG 1 pos
 	METHOD method_34655 getStackInHand (Lnet/minecraft/class_6438;)Lnet/minecraft/class_5013;
@@ -118,6 +146,9 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 		ARG 1 effect
 	METHOD method_34659 getEquippedStack (Lnet/minecraft/class_6448;)Lnet/minecraft/class_5013;
 		ARG 1 slot
+	METHOD method_34660 dropLoot (ZI)V
+		ARG 1 allowDrops
+		ARG 2 lootingMultiplier
 	METHOD method_34661 initAttributes ()V
 	METHOD method_34662 canBreatheInWater ()Z
 	METHOD method_34663 updatePostDeath ()V
@@ -135,6 +166,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34675 setHealth (F)V
 		ARG 1 health
 	METHOD method_34676 setCurrentHand (Lnet/minecraft/class_6438;)V
+		ARG 1 hand
 	METHOD method_34677 playHurtSound (Lnet/minecraft/class_2188;)V
 		ARG 1 source
 	METHOD method_34678 applyEnchantmentsToDamage (Lnet/minecraft/class_2188;F)F
@@ -144,7 +176,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 		COMMENT Removes a status effect from this entity without calling any listener.
 		COMMENT
 		COMMENT <p> This method does not perform any cleanup or synchronization operation.
-		COMMENT Under most circumstances, calling {@link net.minecraft.entity.LivingEntity
+		COMMENT Under most circumstances, calling {@link net.minecraft.entity.LivingEntity#removeStatusEffect(net.minecraft.entity.effect.StatusEffect)} is highly preferable.
 		ARG 1 type
 	METHOD method_34680 addStatusEffect (Lnet/minecraft/class_2233;)V
 		ARG 1 effect
@@ -168,6 +200,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34697 isFallFlying ()Z
 	METHOD method_34698 getRoll ()I
 	METHOD method_34699 isAffectedBySplashPotions ()Z
+	METHOD method_34700 isMobOrPlayer ()Z
 	METHOD method_34701 getStatusEffects ()Ljava/util/Collection;
 	METHOD method_34702 getActiveStatusEffects ()Ljava/util/Map;
 	METHOD method_34703 isUndead ()Z
@@ -177,7 +210,7 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34707 getArmor ()I
 	METHOD method_34708 getDamageTracker ()Lnet/minecraft/class_6440;
 	METHOD method_34709 getPrimeAdversary ()Lnet/minecraft/class_2267;
-	METHOD method_34710 getMaximumHealth ()F
+	METHOD method_34710 getMaxHealth ()F
 	METHOD method_34711 getStuckArrowCount ()I
 	METHOD method_34712 tickHandSwing ()V
 	METHOD method_34713 getAttributes ()Lnet/minecraft/class_2720;
@@ -189,8 +222,11 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34719 isImmobile ()Z
 	METHOD method_34720 getJumpVelocity ()F
 	METHOD method_34721 jump ()V
+	METHOD method_34722 handleWaterSwimming ()V
+	METHOD method_34723 handleLavaSwimming ()V
 	METHOD method_34724 getBaseMovementSpeedMultiplier ()F
 	METHOD method_34725 getMovementSpeed ()F
+	METHOD method_34726 isSleeping ()Z
 	METHOD method_34727 getNextAirUnderwater (I)I
 		ARG 1 air
 	METHOD method_34728 getHurtSound (Lnet/minecraft/class_2188;)Lnet/minecraft/class_2578;
@@ -222,6 +258,10 @@ CLASS net/minecraft/class_2267 net/minecraft/entity/LivingEntity
 	METHOD method_34737 damageArmor (F)V
 		ARG 1 amount
 	METHOD method_34738 enterCombat ()V
+	METHOD method_34739 teleport (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_34740 damageShield (F)V
 		ARG 1 amount
 	METHOD method_34741 endCombat ()V

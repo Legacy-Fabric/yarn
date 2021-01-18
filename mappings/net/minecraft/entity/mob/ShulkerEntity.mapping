@@ -1,22 +1,41 @@
 CLASS net/minecraft/class_4845 net/minecraft/entity/mob/ShulkerEntity
 	FIELD field_22362 ATTACHED_FACE Lnet/minecraft/class_4519;
 	FIELD field_22363 ATTR_COVERED_ARMOR_BONUS Lnet/minecraft/class_6459;
+	FIELD field_22364 prevOpenProgress F
+	FIELD field_22365 openProgress F
+	FIELD field_22366 prevAttachedBlock Lnet/minecraft/class_6183;
+	FIELD field_22367 teleportLerpTimer I
 	FIELD field_22368 ATTACHED_BLOCK Lnet/minecraft/class_4519;
 	FIELD field_22369 COLOR Lnet/minecraft/class_4519;
+	FIELD field_22370 DEFAULT_COLOR Lnet/minecraft/class_4985;
 	FIELD field_22371 ATTR_COVERED_ARMOR_BONUS_UUID Ljava/util/UUID;
 	FIELD field_22372 PEEK_AMOUNT Lnet/minecraft/class_4519;
+	METHOD method_24803 getOpenProgress (F)F
+		ARG 1 delta
 	METHOD method_24804 setPeekAmount (I)V
+		ARG 1 peekAmount
 	METHOD method_24810 getAttachedFace ()Lnet/minecraft/class_6196;
 	METHOD method_24811 getAttachedBlock ()Lnet/minecraft/class_6183;
 	METHOD method_24812 getPeekAmount ()I
+	METHOD method_24813 getTeleportLerpTimer ()I
+	METHOD method_24814 getPrevAttachedBlock ()Lnet/minecraft/class_6183;
+	METHOD method_24815 hasAttachedBlock ()Z
 	METHOD method_24816 getColor ()Lnet/minecraft/class_4985;
+	METHOD method_24817 isClosed ()Z
 	METHOD method_24819 setAttachedBlock (Lnet/minecraft/class_6183;)V
+		ARG 1 pos
+	METHOD method_24820 tryTeleport ()Z
 	CLASS class_4846 ShootBulletGoal
 		FIELD field_22375 counter I
 	CLASS class_4847 ShulkerBodyControl
+		METHOD <init> (Lnet/minecraft/class_4845;Lnet/minecraft/class_2267;)V
+			ARG 2 livingEntity
 	CLASS class_4848 SearchForTargetGoal
 		METHOD <init> (Lnet/minecraft/class_4845;)V
 			ARG 1 shulker
+		CLASS 1
+			METHOD apply (Ljava/lang/Object;)Z
+				ARG 1 livingEntity
 	CLASS class_4849 SearchForPlayerGoal
 		METHOD <init> (Lnet/minecraft/class_4845;Lnet/minecraft/class_4845;)V
 			ARG 2 shulker
