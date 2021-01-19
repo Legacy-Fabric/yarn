@@ -4,18 +4,63 @@ CLASS net/minecraft/class_3753 net/minecraft/entity/boss/dragon/EnderDragonEntit
 	FIELD field_22056 partTail3 Lnet/minecraft/class_4785;
 	FIELD field_22057 partWingRight Lnet/minecraft/class_4785;
 	FIELD field_22058 partWingLeft Lnet/minecraft/class_4785;
+	FIELD field_22059 prevWingPosition F
+	FIELD field_22060 wingPosition F
+	FIELD field_22061 slowedDownByBlock Z
+	FIELD field_22062 ticksSinceDeath I
 	FIELD field_22063 connectedCrystal Lnet/minecraft/class_4786;
 	FIELD field_22064 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_22065 fight Lnet/minecraft/class_1172;
 	FIELD field_22066 phaseManager Lnet/minecraft/class_4793;
+	FIELD field_22067 ticksUntilNextGrowl I
+	FIELD field_22069 pathNodes [Lnet/minecraft/class_3695;
+	FIELD field_22070 pathNodeConnections [I
+	FIELD field_22071 pathHeap Lnet/minecraft/class_5499;
+	FIELD field_22072 segmentCircularBuffer [[D
 	FIELD field_22073 parts [Lnet/minecraft/class_4785;
 	FIELD field_22074 partHead Lnet/minecraft/class_4785;
 	FIELD field_22075 partNeck Lnet/minecraft/class_4785;
 	FIELD field_22076 partBody Lnet/minecraft/class_4785;
 	FIELD field_22077 partTail1 Lnet/minecraft/class_4785;
+	FIELD field_22078 latestSegment I
+	METHOD method_24535 (F)Lnet/minecraft/class_5559;
+		ARG 1 tickDelta
+	METHOD method_24536 awardExperience (I)V
+		ARG 1 amount
+	METHOD method_24537 getSegmentProperties (IF)[D
+		ARG 1 segmentNumber
+		ARG 2 tickDelta
+	METHOD method_24538 findPath (IILnet/minecraft/class_3695;)Lnet/minecraft/class_5502;
+		ARG 1 from
+		ARG 2 to
+		ARG 3 pathNode
+	METHOD method_24539 (I[D[D)F
+		ARG 1 segmentOffset
+		ARG 2 segment1
+		ARG 3 segment2
 	METHOD method_24540 crystalDestroyed (Lnet/minecraft/class_4786;Lnet/minecraft/class_6183;Lnet/minecraft/class_2188;)V
 		ARG 1 crystal
 		ARG 2 pos
 		ARG 3 source
+	METHOD method_24541 getPathOfAllPredecessors (Lnet/minecraft/class_3695;Lnet/minecraft/class_3695;)Lnet/minecraft/class_5502;
+		ARG 1 unused
+		ARG 2 node
+	METHOD method_24542 launchLivingEntities (Ljava/util/List;)V
+		ARG 1 entities
+	METHOD method_24544 destroyBlocks (Lnet/minecraft/class_1303;)Z
+		ARG 1 box
+	METHOD method_24545 damageLivingEntities (Ljava/util/List;)V
+		ARG 1 entities
+	METHOD method_24546 wrapYawChange (D)F
+		ARG 1 yawDegrees
 	METHOD method_24547 getPhaseManager ()Lnet/minecraft/class_4793;
 	METHOD method_24548 getFight ()Lnet/minecraft/class_1172;
+	METHOD method_24549 tickWithEndCrystals ()V
+	METHOD method_24550 parentDamage (Lnet/minecraft/class_2188;F)Z
+		ARG 1 source
+		ARG 2 amount
+	METHOD method_24551 getNearestPathNodeIndex (DDD)I
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_24552 getNearestPathNodeIndex ()I

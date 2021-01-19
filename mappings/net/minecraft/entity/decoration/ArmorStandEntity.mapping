@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_4795 net/minecraft/entity/decoration/ArmorStandEntity
 	FIELD field_22140 ARMOR_STAND_FLAGS Lnet/minecraft/class_4519;
+	FIELD field_22141 invisible Z
 	FIELD field_22142 disabledSlots I
 	FIELD field_22144 headRotation Lnet/minecraft/class_6212;
 	FIELD field_22145 bodyRotation Lnet/minecraft/class_6212;
@@ -14,6 +15,7 @@ CLASS net/minecraft/class_4795 net/minecraft/entity/decoration/ArmorStandEntity
 	FIELD field_22154 DEFAULT_RIGHT_ARM_ROTATION Lnet/minecraft/class_6212;
 	FIELD field_22155 DEFAULT_LEFT_LEG_ROTATION Lnet/minecraft/class_6212;
 	FIELD field_22156 DEFAULT_RIGHT_LEG_ROTATION Lnet/minecraft/class_6212;
+	FIELD field_22157 RIDEABLE_MINECART_PREDICATE Lcom/google/common/base/Predicate;
 	FIELD field_22158 heldItems Lnet/minecraft/class_6207;
 	FIELD field_22159 armorItems Lnet/minecraft/class_6207;
 	FIELD field_22160 TRACKER_BODY_ROTATION Lnet/minecraft/class_4519;
@@ -21,24 +23,57 @@ CLASS net/minecraft/class_4795 net/minecraft/entity/decoration/ArmorStandEntity
 	FIELD field_22162 TRACKER_RIGHT_ARM_ROTATION Lnet/minecraft/class_4519;
 	FIELD field_22163 TRACKER_LEFT_LEG_ROTATION Lnet/minecraft/class_4519;
 	FIELD field_22164 TRACKER_RIGHT_LEG_ROTATION Lnet/minecraft/class_4519;
+	FIELD field_22165 lastHitTime J
+	METHOD <init> (Lnet/minecraft/class_5086;DDD)V
+		ARG 1 world
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD method_24603 getRightLegRotation ()Lnet/minecraft/class_6212;
 	METHOD method_24604 serializePose ()Lnet/minecraft/class_2335;
+	METHOD method_24605 spawnBreakParticles ()V
+	METHOD method_24606 breakAndDropItem ()V
+	METHOD method_24607 onBreak ()V
+	METHOD method_24608 playBreakSound ()V
 	METHOD method_24609 setBitField (BIZ)B
 		ARG 1 value
 		ARG 2 bitField
 		ARG 3 set
+	METHOD method_24610 updateHealth (F)V
+		ARG 1 amount
+	METHOD method_24611 equip (Lnet/minecraft/class_4890;Lnet/minecraft/class_6448;Lnet/minecraft/class_5013;Lnet/minecraft/class_6438;)V
+		ARG 1 player
+		ARG 2 slot
+		ARG 3 stack
+		ARG 4 hand
+	METHOD method_24612 slotFromPosition (Lnet/minecraft/class_5559;)Lnet/minecraft/class_6448;
+		ARG 1 vec3d
 	METHOD method_24613 setHeadRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
+	METHOD method_24615 updateDimensions (Z)V
 	METHOD method_24616 setBodyRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
 	METHOD method_24617 setLeftArmRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
+	METHOD method_24618 isSlotDisabled (Lnet/minecraft/class_6448;)Z
+		ARG 1 slot
 	METHOD method_24619 setRightArmRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
 	METHOD method_24620 setLeftLegRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
 	METHOD method_24621 setRightLegRotation (Lnet/minecraft/class_6212;)V
+		ARG 1 eulerAngle
 	METHOD method_24622 deserializePose (Lnet/minecraft/class_2335;)V
+		ARG 1 compoundTag
 	METHOD method_24623 setSmall (Z)V
+		ARG 1 small
 	METHOD method_24624 setShowArms (Z)V
+		ARG 1 showArms
 	METHOD method_24625 setHideBasePlate (Z)V
+		ARG 1 hideBasePlate
 	METHOD method_24626 isSmall ()Z
 	METHOD method_24627 setMarker (Z)V
+		ARG 1 marker
 	METHOD method_24628 shouldShowArms ()Z
 	METHOD method_24629 shouldHideBasePlate ()Z
 	METHOD method_24630 isMarker ()Z
@@ -47,3 +82,6 @@ CLASS net/minecraft/class_4795 net/minecraft/entity/decoration/ArmorStandEntity
 	METHOD method_24633 getLeftArmRotation ()Lnet/minecraft/class_6212;
 	METHOD method_24634 getRightArmRotation ()Lnet/minecraft/class_6212;
 	METHOD method_24635 getLeftLegRotation ()Lnet/minecraft/class_6212;
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 entity

@@ -5,16 +5,24 @@ CLASS net/minecraft/class_4211 net/minecraft/entity/passive/RabbitEntity
 	FIELD field_21935 RABBIT_TYPE Lnet/minecraft/class_4519;
 	FIELD field_21936 jumpTicks I
 	FIELD field_21937 jumpDuration I
+	METHOD method_24356 lookTowards (DD)V
+		ARG 1 x
+		ARG 3 z
 	METHOD method_24358 isBreedingItem (Lnet/minecraft/class_5009;)Z
+		ARG 1 item
 	METHOD method_24362 setSpeed (D)V
 		ARG 1 speed
 	METHOD method_24364 startJump ()V
 	METHOD method_24365 getJumpSound ()Lnet/minecraft/class_2578;
 	METHOD method_24366 getRabbitType ()I
-	METHOD method_24370 scheduleJump ()V
+	METHOD method_24370 doScheduleJump ()V
+	METHOD method_24371 scheduleJump ()V
+	METHOD method_24372 chooseType ()I
 	METHOD method_24373 wantsCarrots ()Z
 	METHOD method_24374 setRabbitType (I)V
 		ARG 1 rabbitType
+	METHOD method_24375 getJumpProgress (F)F
+		ARG 1 delta
 	CLASS class_4761 RabbitAttackGoal
 		METHOD <init> (Lnet/minecraft/class_4211;)V
 			ARG 1 rabbit
@@ -37,6 +45,7 @@ CLASS net/minecraft/class_4211 net/minecraft/entity/passive/RabbitEntity
 		METHOD method_24377 isActive ()Z
 	CLASS class_4765 RabbitMoveControl
 		FIELD field_21943 rabbit Lnet/minecraft/class_4211;
+		FIELD field_21944 rabbitSpeed D
 		METHOD <init> (Lnet/minecraft/class_4211;)V
 			ARG 1 owner
 	CLASS class_4766 EscapeDangerGoal
@@ -47,5 +56,6 @@ CLASS net/minecraft/class_4211 net/minecraft/entity/passive/RabbitEntity
 	CLASS class_4767 EatCarrotCropGoal
 		FIELD field_21946 rabbit Lnet/minecraft/class_4211;
 		FIELD field_21947 wantsCarrots Z
+		FIELD field_21948 hasTarget Z
 		METHOD <init> (Lnet/minecraft/class_4211;)V
 			ARG 1 rabbit
