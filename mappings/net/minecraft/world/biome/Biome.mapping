@@ -3,6 +3,8 @@ CLASS net/minecraft/class_5101 net/minecraft/world/biome/Biome
 	FIELD field_23656 temperature F
 	FIELD field_23657 downfall F
 	FIELD field_23658 waterFogColor I
+	FIELD field_23659 snowy Z
+	FIELD field_23660 precipitation Z
 	FIELD field_23661 parent Ljava/lang/String;
 	FIELD field_23662 STONE_STATE Lnet/minecraft/class_4541;
 	FIELD field_23663 AIR_STATE Lnet/minecraft/class_4541;
@@ -13,45 +15,96 @@ CLASS net/minecraft/class_5101 net/minecraft/world/biome/Biome
 	FIELD field_23668 ICE_STATE Lnet/minecraft/class_4541;
 	FIELD field_23669 WATER_STATE Lnet/minecraft/class_4541;
 	FIELD field_23670 PARENT_BIOME_ID_MAP Lnet/minecraft/class_6202;
+	FIELD field_23671 TEMPERATURE_NOISE Lnet/minecraft/class_5484;
+	FIELD field_23672 FOLIAGE_NOISE Lnet/minecraft/class_5484;
+	FIELD field_23673 DOUBLE_PLANT_PLACER Lnet/minecraft/class_5335;
+	FIELD field_23674 OAK_TREE_FEATURE Lnet/minecraft/class_5357;
+	FIELD field_23675 LARGE_OAK_TREE_FEATURE Lnet/minecraft/class_1187;
+	FIELD field_23676 SWAMP_TREE_FEATURE Lnet/minecraft/class_1207;
 	FIELD field_23677 REGISTRY Lnet/minecraft/class_6206;
+	FIELD field_23678 surfaceState Lnet/minecraft/class_4541;
+	FIELD field_23679 subSurfaceState Lnet/minecraft/class_4541;
 	FIELD field_23680 decorator Lnet/minecraft/class_5109;
 	FIELD field_23681 hostileSpawnEntries Ljava/util/List;
 	FIELD field_23682 passiveSpawnEntries Ljava/util/List;
 	FIELD field_23683 aquaticSpawnEntries Ljava/util/List;
 	FIELD field_23684 ambientSpawnEntries Ljava/util/List;
 	FIELD field_23685 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_23686 name Ljava/lang/String;
 	FIELD field_23687 depth F
 	METHOD <init> (Lnet/minecraft/class_5101$class_5102;)V
 		ARG 1 settings
 	METHOD method_26228 createBiomeDecorator ()Lnet/minecraft/class_5109;
+	METHOD method_26229 getSkyColor (F)I
+		ARG 1 temperature
+	METHOD method_26230 byRawId (I)Lnet/minecraft/class_5101;
+		ARG 0 rawId
+	METHOD method_26231 getOrDefault (ILnet/minecraft/class_5101;)Lnet/minecraft/class_5101;
+		ARG 0 rawId
+		ARG 1 defaultValue
 	METHOD method_26232 register (ILjava/lang/String;Lnet/minecraft/class_5101;)V
 		ARG 0 rawId
-		ARG 1 name
+		ARG 1 id
 		ARG 2 biome
+	METHOD method_26234 decorate (Lnet/minecraft/class_5086;Ljava/util/Random;Lnet/minecraft/class_6183;)V
+		ARG 1 world
+		ARG 2 random
+		ARG 3 origin
+	METHOD method_26235 getRawId (Lnet/minecraft/class_5101;)I
+		ARG 0 biome
 	METHOD method_26236 getTemperature (Lnet/minecraft/class_6183;)F
+		ARG 1 pos
+	METHOD method_26237 chooseTreeFeature (Ljava/util/Random;)Lnet/minecraft/class_1184;
+	METHOD method_26238 chooseFlowerType (Ljava/util/Random;Lnet/minecraft/class_6183;)Lnet/minecraft/class_5178$class_5179;
+	METHOD method_26239 getSpawns (Lnet/minecraft/class_2274;)Ljava/util/List;
+		ARG 1 group
 	METHOD method_26240 hasParent ()Z
+	METHOD method_26241 get (I)Lnet/minecraft/class_5101;
+		ARG 0 rawId
+	METHOD method_26243 getParent (Lnet/minecraft/class_5101;)Lnet/minecraft/class_5101;
+		ARG 0 biome
+	METHOD method_26244 getGrassColor (Lnet/minecraft/class_6183;)I
+		ARG 1 pos
+	METHOD method_26245 chooseTallFoliageFeature (Ljava/util/Random;)Lnet/minecraft/class_5339;
+	METHOD method_26246 hasSnow ()Z
+	METHOD method_26247 getFoliageColor (Lnet/minecraft/class_6183;)I
+		ARG 1 pos
+	METHOD method_26248 hasRain ()Z
 	METHOD method_26249 hasHighHumidity ()Z
 	METHOD method_26250 getMaxSpawnLimit ()F
+	METHOD method_26251 getBaseBiomeClass ()Ljava/lang/Class;
 	METHOD method_26252 getTemperatureGroup ()Lnet/minecraft/class_5101$class_5103;
+	METHOD method_26253 isVoid ()Z
 	METHOD method_26254 getDepth ()F
 	METHOD method_26255 getRainfall ()F
+	METHOD method_26256 getName ()Ljava/lang/String;
 	METHOD method_26257 getScale ()F
 	METHOD method_26258 getTemperature ()F
 	METHOD method_26259 getWaterFogColor ()I
 	METHOD method_26260 isSnowy ()Z
 	METHOD method_26261 register ()V
 	CLASS class_5102 Settings
+		FIELD field_23689 name Ljava/lang/String;
 		FIELD field_23690 depth F
 		FIELD field_23691 scale F
 		FIELD field_23692 temperature F
 		FIELD field_23693 downFall F
+		FIELD field_23694 waterFogColor I
+		FIELD field_23695 snowy Z
+		FIELD field_23696 precipitation Z
 		FIELD field_23697 parent Ljava/lang/String;
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 name
+		METHOD method_26262 dry ()Lnet/minecraft/class_5101$class_5102;
 		METHOD method_26263 temperature (F)Lnet/minecraft/class_5101$class_5102;
 			ARG 1 temperature
+		METHOD method_26264 waterFogColor (I)Lnet/minecraft/class_5101$class_5102;
+			ARG 1 color
 		METHOD method_26266 parent (Ljava/lang/String;)Lnet/minecraft/class_5101$class_5102;
 			COMMENT Sets the biome that this will replace as a modified version of the biome.
 			ARG 1 parent
 				COMMENT the string identifier of the biome to be replaced
+		METHOD method_26267 snowy ()Lnet/minecraft/class_5101$class_5102;
 		METHOD method_26268 downFall (F)Lnet/minecraft/class_5101$class_5102;
 			ARG 1 downFall
 		METHOD method_26270 depth (F)Lnet/minecraft/class_5101$class_5102;
@@ -60,9 +113,11 @@ CLASS net/minecraft/class_5101 net/minecraft/world/biome/Biome
 			ARG 1 scale
 	CLASS class_5103 TemperatureGroup
 	CLASS class_5104 SpawnEntry
+		FIELD field_23703 mob Ljava/lang/Class;
 		FIELD field_23704 minGroupSize I
 		FIELD field_23705 maxGroupSize I
 		METHOD <init> (Ljava/lang/Class;III)V
+			ARG 1 mob
 			ARG 2 weight
 			ARG 3 minGroupSize
 			ARG 4 maxGroupSize
