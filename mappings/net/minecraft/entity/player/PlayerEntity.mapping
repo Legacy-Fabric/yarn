@@ -12,11 +12,16 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	FIELD field_8335 playerScreenHandler Lnet/minecraft/class_1983;
 	FIELD field_8336 openScreenHandler Lnet/minecraft/class_1983;
 	FIELD field_8337 hungerManager Lnet/minecraft/class_1982;
+	FIELD field_8338 abilityResyncCountdown I
+	FIELD field_8339 prevStrideDistance F
+	FIELD field_8340 strideDistance F
 	FIELD field_8341 experiencePickUpDelay I
 	FIELD field_8348 inBed Z
+	FIELD field_8349 pos Lnet/minecraft/class_1372;
 	FIELD field_8352 spawnPos Lnet/minecraft/class_1372;
 	FIELD field_8353 spawnForced Z
 	FIELD field_8355 enchantmentTableSeed I
+	FIELD field_8356 useItem Lnet/minecraft/class_2056;
 	FIELD field_8358 lastPlayedLevelUpSoundTime I
 	METHOD <init> (Lnet/minecraft/class_99;Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 world
@@ -54,6 +59,8 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 inventory
 	METHOD method_7988 openHandledScreen (Lnet/minecraft/class_1723;)V
 		ARG 1 screenHandlerFactory
+	METHOD method_7989 isScreenLocked (Lnet/minecraft/class_1724;)Z
+		ARG 1 screenLock
 	METHOD method_7990 openHorseInventory (Lnet/minecraft/class_1850;Lnet/minecraft/class_1718;)V
 		ARG 1 horse
 		ARG 2 inventory
@@ -68,6 +75,7 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7995 openBookEditScreen (Lnet/minecraft/class_2056;)V
 		ARG 1 stack
 	METHOD method_7996 setUseItem (Lnet/minecraft/class_2056;I)V
+		ARG 1 item
 	METHOD method_7997 dropItem (Lnet/minecraft/class_2056;Z)Lnet/minecraft/class_1893;
 		ARG 1 stack
 	METHOD method_7998 dropStack (Lnet/minecraft/class_2056;ZZ)Lnet/minecraft/class_1893;
@@ -89,6 +97,9 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 stat
 	METHOD method_8006 addCritParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 target
+	METHOD method_8007 drink (Lnet/minecraft/class_2056;I)V
+		ARG 1 potion
+	METHOD method_8010 isUsingItem ()Z
 	METHOD method_8012 stopUsingItem ()V
 	METHOD method_8015 getScore ()I
 	METHOD method_8017 getMainHandStack ()Lnet/minecraft/class_2056;
@@ -116,9 +127,10 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		ARG 1 ignoreHunger
 	METHOD method_8041 setReducedDebugInfo (Z)V
 		ARG 1 reducedDebugInfo
-	METHOD method_8043 closeScreenHandler ()V
+	METHOD method_8043 closeHandledScreen ()V
 	METHOD method_8045 setScore (I)V
 		ARG 1 score
+	METHOD method_8046 useItem ()V
 	METHOD method_8047 addScore (I)V
 		ARG 1 score
 	METHOD method_8048 sendAbilitiesUpdate ()V
@@ -144,3 +156,4 @@ CLASS net/minecraft/class_1963 net/minecraft/entity/player/PlayerEntity
 		METHOD method_8053 getById (I)Lnet/minecraft/class_1963$class_1965;
 			ARG 0 id
 		METHOD method_8054 getName ()Ljava/lang/String;
+		METHOD values ()[Lnet/minecraft/class_1963$class_1965;
