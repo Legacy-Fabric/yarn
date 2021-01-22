@@ -96,6 +96,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 3 height
 		ARG 4 format
 		ARG 5 type
+		ARG 6 buffer
 	METHOD method_30281 getTexImage (IIIILjava/nio/IntBuffer;)V
 		ARG 0 target
 		ARG 1 level
@@ -109,6 +110,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30287 cullFace (Lnet/minecraft/class_1492$class_5855;)V
 		ARG 0 cullFace
 	METHOD method_30289 logicOp (Lnet/minecraft/class_1492$class_5861;)V
+	METHOD method_30290 startDrawing (Lnet/minecraft/class_1492$class_5863;)V
 	METHOD method_30291 blendFunc (Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;)V
 	METHOD method_30292 blendFuncSeparate (Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;)V
 	METHOD method_30293 enableTexGen (Lnet/minecraft/class_1492$class_5867;)V
@@ -167,6 +169,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30312 vertexPointer (IIILjava/nio/ByteBuffer;)V
 	METHOD method_30313 texEnv (IILjava/nio/FloatBuffer;)V
 	METHOD method_30314 fog (ILjava/nio/FloatBuffer;)V
+	METHOD method_30315 endDrawing (Lnet/minecraft/class_1492$class_5863;)V
 	METHOD method_30316 disableTexGen (Lnet/minecraft/class_1492$class_5867;)V
 		ARG 0 coord
 	METHOD method_30317 popAttributes ()V
@@ -348,6 +351,9 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		FIELD field_29094 capFill Lnet/minecraft/class_1492$class_5849;
 		FIELD field_29096 factor F
 		FIELD field_29097 units F
+	CLASS class_5863 RenderPhaseTexturing
+		METHOD method_30380 startDrawing ()V
+		METHOD method_30381 endDrawing ()V
 	CLASS class_5864 SrcFactor
 		FIELD field_29117 capability I
 		METHOD <init> (Ljava/lang/String;II)V

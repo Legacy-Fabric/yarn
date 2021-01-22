@@ -17,6 +17,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	FIELD field_23584 thunderGradient F
 	FIELD field_23585 random Ljava/util/Random;
 	FIELD field_23586 dimension Lnet/minecraft/class_5321;
+	FIELD field_23588 listeners Ljava/util/List;
 	FIELD field_23591 properties Lnet/minecraft/class_5509;
 	METHOD <init> (Lnet/minecraft/class_1268;Lnet/minecraft/class_5509;Lnet/minecraft/class_5321;Lnet/minecraft/class_2626;Z)V
 		ARG 1 levelProperties
@@ -112,6 +113,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 2 sourceBlock
 	METHOD method_26018 setBlockEntity (Lnet/minecraft/class_6183;Lnet/minecraft/class_3538;)V
 	METHOD method_26019 setBlockState (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;)Z
+		ARG 1 pos
+		ARG 2 state
 	METHOD method_26020 setBlockState (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;I)Z
 	METHOD method_26021 updateListeners (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;Lnet/minecraft/class_4541;I)V
 		ARG 1 pos
@@ -171,10 +174,13 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26082 isEmittingRedstonePower (Lnet/minecraft/class_6183;Lnet/minecraft/class_6196;)Z
 		ARG 1 pos
 	METHOD method_26083 breakBlock (Lnet/minecraft/class_6183;Z)Z
+		ARG 1 pos
+		ARG 2 drop
 	METHOD method_26084 getPlayers (Ljava/lang/Class;Lcom/google/common/base/Predicate;)Ljava/util/List;
 	METHOD method_26086 addBlockEntities (Ljava/util/Collection;)V
 	METHOD method_26087 getPlayerByUuid (Ljava/util/UUID;)Lnet/minecraft/class_4890;
 	METHOD method_26088 loadEntityUnchecked (Lnet/minecraft/class_2239;)V
+		ARG 1 entity
 	METHOD method_26090 getEntitiesIn (Lnet/minecraft/class_2239;Lnet/minecraft/class_1303;)Ljava/util/List;
 	METHOD method_26093 getTopPosition (II)I
 	METHOD method_26097 isAreaNotEmpty (Lnet/minecraft/class_1303;)Z
@@ -187,6 +193,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26101 getEmittedRedstonePower (Lnet/minecraft/class_6183;Lnet/minecraft/class_6196;)I
 		ARG 1 pos
 	METHOD method_26104 unloadEntity (Lnet/minecraft/class_2239;)V
+		ARG 1 entity
 	METHOD method_26105 tickTime ()V
 	METHOD method_26106 getSkyAngleRadians (F)F
 	METHOD method_26107 setLightningTicksLeft (I)V
@@ -214,6 +221,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 1 rainGradient
 	METHOD method_26139 getLightLevel (Lnet/minecraft/class_6183;)I
 	METHOD method_26141 getTopPositionPos (Lnet/minecraft/class_6183;)Lnet/minecraft/class_6183;
+		ARG 1 pos
+	METHOD method_26142 (Lnet/minecraft/class_6183;)V
 		ARG 1 pos
 	METHOD method_26144 getBrightness (Lnet/minecraft/class_6183;)F
 	METHOD method_26146 getTopPosition (Lnet/minecraft/class_6183;)Lnet/minecraft/class_6183;
