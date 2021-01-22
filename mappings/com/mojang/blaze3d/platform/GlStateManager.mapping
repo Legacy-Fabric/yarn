@@ -21,13 +21,17 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	FIELD field_29011 RESCALE_NORMAL Lnet/minecraft/class_1492$class_5849;
 	FIELD field_29012 COLOR_MASK Lnet/minecraft/class_1492$class_5853;
 	FIELD field_29013 COLOR Lnet/minecraft/class_1492$class_5851;
-	METHOD method_30252 getTexLevelParameter ()I
+	METHOD method_30252 genTextures ()I
+	METHOD method_30253 enableCapTracker ()V
+	METHOD method_30254 disableCapTracker ()V
 	METHOD method_30255 enableRescaleNormal ()V
 	METHOD method_30256 disableRescaleNormal ()V
 	METHOD method_30257 loadIdentity ()V
 	METHOD method_30258 pushMatrix ()V
 	METHOD method_30259 popMatrix ()V
 	METHOD method_30260 clearCurrentColor ()V
+	METHOD method_30261 endDrawing ()V
+	METHOD method_30262 endList ()V
 	METHOD method_30263 getError ()I
 	METHOD method_30265 clearDepth (D)V
 		ARG 0 depth
@@ -64,6 +68,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30274 colorMaterial (II)V
 		ARG 0 face
 		ARG 1 mode
+	METHOD method_30275 texEnv (IIF)V
 	METHOD method_30276 texEnv (III)V
 		ARG 0 target
 		ARG 1 pname
@@ -73,6 +78,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 dstFactorRGB
 		ARG 2 srcFactorAlpha
 		ARG 3 dstFactorAlpha
+	METHOD method_30278 copyTexSubImage2D (IIIIIIII)V
 	METHOD method_30279 texImage2D (IIIIIIIILjava/nio/IntBuffer;)V
 		ARG 0 target
 		ARG 1 level
@@ -95,6 +101,16 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 level
 		ARG 2 format
 		ARG 3 type
+	METHOD method_30282 texCoordPointer (IIILjava/nio/ByteBuffer;)V
+	METHOD method_30283 normalPointer (IILjava/nio/ByteBuffer;)V
+	METHOD method_30284 light (IILjava/nio/FloatBuffer;)V
+	METHOD method_30285 lightModel (ILjava/nio/FloatBuffer;)V
+	METHOD method_30286 getInteger (ILjava/nio/IntBuffer;)V
+	METHOD method_30287 cullFace (Lnet/minecraft/class_1492$class_5855;)V
+		ARG 0 cullFace
+	METHOD method_30289 logicOp (Lnet/minecraft/class_1492$class_5861;)V
+	METHOD method_30291 blendFunc (Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;)V
+	METHOD method_30292 blendFuncSeparate (Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;Lnet/minecraft/class_1492$class_5864;Lnet/minecraft/class_1492$class_5858;)V
 	METHOD method_30293 enableTexGen (Lnet/minecraft/class_1492$class_5867;)V
 		ARG 0 coord
 	METHOD method_30294 texGenMode (Lnet/minecraft/class_1492$class_5867;I)V
@@ -106,6 +122,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 2 params
 	METHOD method_30296 multMatrix (Ljava/nio/FloatBuffer;)V
 		ARG 0 matrix
+	METHOD method_30298 multiMatrix (Lorg/lwjgl/util/vector/Quaternion;)V
 	METHOD method_30299 depthMask (Z)V
 		ARG 0 mask
 	METHOD method_30300 colorMask (ZZZZ)V
@@ -119,6 +136,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 4 z
 	METHOD method_30302 fogStart (F)V
 		ARG 0 start
+	METHOD method_30303 texCoord (FF)V
 	METHOD method_30304 scalef (FFF)V
 		ARG 0 x
 		ARG 1 y
@@ -128,6 +146,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_30306 disableLight (I)V
 	METHOD method_30307 blendFunc (II)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -144,6 +163,10 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
+	METHOD method_30311 copyTexSubImage2D (IIIIIIIILjava/nio/IntBuffer;)V
+	METHOD method_30312 vertexPointer (IIILjava/nio/ByteBuffer;)V
+	METHOD method_30313 texEnv (IILjava/nio/FloatBuffer;)V
+	METHOD method_30314 fog (ILjava/nio/FloatBuffer;)V
 	METHOD method_30316 disableTexGen (Lnet/minecraft/class_1492$class_5867;)V
 		ARG 0 coord
 	METHOD method_30317 popAttributes ()V
@@ -171,11 +194,14 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 size
 		ARG 1 type
 		ARG 2 stride
+	METHOD method_30325 colorPointer (IIILjava/nio/ByteBuffer;)V
+	METHOD method_30326 getFloat (ILjava/nio/FloatBuffer;)V
 	METHOD method_30327 getGenCoordState (Lnet/minecraft/class_1492$class_5867;)Lnet/minecraft/class_1492$class_5868;
 		ARG 0 coord
 	METHOD method_30328 disableAlphaTest ()V
 	METHOD method_30329 lineWidth (F)V
 		ARG 0 width
+	METHOD method_30330 color3f (FFF)V
 	METHOD method_30331 blendEquation (I)V
 		ARG 0 mode
 	METHOD method_30332 polygonMode (II)V
@@ -186,6 +212,8 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 type
 		ARG 2 stride
 	METHOD method_30334 enableAlphaTest ()V
+	METHOD method_30335 vertex (FFF)V
+	METHOD method_30337 deleteLists (II)V
 	METHOD method_30338 colorPointer (IIII)V
 		ARG 0 size
 		ARG 1 type
@@ -193,6 +221,7 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30339 enableLighting ()V
 	METHOD method_30340 logicOp (I)V
 		ARG 0 op
+	METHOD method_30341 newList (II)V
 	METHOD method_30342 drawArrays (III)V
 		ARG 0 mode
 		ARG 1 first
@@ -215,6 +244,8 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30352 enableDepthTest ()V
 	METHOD method_30353 disableBlend ()V
 	METHOD method_30354 enableBlend ()V
+	METHOD method_30355 clear (I)V
+		ARG 0 mode
 	METHOD method_30357 matrixMode (I)V
 		ARG 0 mode
 	METHOD method_30358 enableFog ()V
@@ -225,8 +256,12 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30362 enableClientState (I)V
 		ARG 0 cap
 	METHOD method_30363 disableCull ()V
+	METHOD method_30364 beginDrawing (I)V
+		ARG 0 drawmode
 	METHOD method_30365 enablePolygonOffset ()V
+	METHOD method_30366 callList (I)V
 	METHOD method_30367 disableLineOffset ()V
+	METHOD method_30368 genLists (I)I
 	METHOD method_30369 getString (I)Ljava/lang/String;
 		ARG 0 name
 	METHOD method_30370 getInteger (I)I
@@ -235,6 +270,8 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_30372 fogMode (I)V
 		ARG 0 mode
 	METHOD method_30373 disableColorLogicOp ()V
+	METHOD method_30374 cullFace (I)V
+		ARG 0 cap
 	METHOD method_30375 enableTexture ()V
 	METHOD method_30376 disableTexture ()V
 	CLASS class_5847 AlphaTestState
@@ -281,6 +318,10 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		FIELD field_29037 capState Lnet/minecraft/class_1492$class_5849;
 		FIELD field_29038 face I
 		FIELD field_29039 mode I
+	CLASS class_5855 CullFace
+		FIELD field_29043 capability I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 capability
 	CLASS class_5856 CullFaceState
 		FIELD field_29045 capState Lnet/minecraft/class_1492$class_5849;
 	CLASS class_5857 DepthTestState
@@ -288,6 +329,9 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		FIELD field_29048 mask Z
 		FIELD field_29049 func I
 	CLASS class_5858 DstFactor
+		FIELD field_29064 capability I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 capability
 	CLASS class_5859 FogMode
 		FIELD field_29069 value I
 	CLASS class_5860 FogState
@@ -298,11 +342,16 @@ CLASS net/minecraft/class_1492 com/mojang/blaze3d/platform/GlStateManager
 		FIELD field_29075 end F
 	CLASS class_5861 LogicOp
 		FIELD field_29092 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
 	CLASS class_5862 PolygonOffsetState
 		FIELD field_29094 capFill Lnet/minecraft/class_1492$class_5849;
 		FIELD field_29096 factor F
 		FIELD field_29097 units F
 	CLASS class_5864 SrcFactor
+		FIELD field_29117 capability I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 capability
 	CLASS class_5865 StencilSubState
 	CLASS class_5866 StencilState
 	CLASS class_5867 TexCoord
