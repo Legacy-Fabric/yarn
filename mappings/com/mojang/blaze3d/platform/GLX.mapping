@@ -1,21 +1,44 @@
 CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
-	FIELD field_30544 blendFuncSeperateSupported Z
-	FIELD field_30545 gl21Supported Z
-	FIELD field_30546 shadersSupported Z
-	FIELD field_30547 vboSupported Z
+	FIELD field_30532 source1Rgb I
+	FIELD field_30533 source2Rgb I
+	FIELD field_30534 operand0Rgb I
+	FIELD field_30535 operand1Rgb I
+	FIELD field_30536 operand2Rgb I
+	FIELD field_30537 combineAlpha I
+	FIELD field_30538 source0Alpha I
+	FIELD field_30539 source1Alpha I
+	FIELD field_30540 source2Alpha I
+	FIELD field_30541 operand0Alpha I
+	FIELD field_30542 operand1Alpha I
+	FIELD field_30543 operand2Alpha I
+	FIELD field_30544 useSeparateBlendExt Z
+	FIELD field_30545 isOpenGl21 Z
+	FIELD field_30546 usePostProcess Z
+	FIELD field_30547 useVbo Z
 	FIELD field_30549 arrayBuffer I
 	FIELD field_30551 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_30552 fboMode Lnet/minecraft/class_6125$class_6126;
-	FIELD field_30553 shadersEnabled Z
-	FIELD field_30554 arbShaderObjectsEnabled Z
-	FIELD field_30555 arbMultitextureEnabled Z
-	FIELD field_30556 arbTextureEnvCombine Z
-	FIELD field_30557 gl14Supported Z
-	FIELD field_30558 nvidia Z
-	FIELD field_30559 contextDescription Ljava/lang/String;
-	FIELD field_30560 processor Ljava/lang/String;
-	FIELD field_30561 vboShadersSupported Z
-	FIELD field_30562 amd Z
+	FIELD field_30553 hasShaders Z
+	FIELD field_30554 useShaderArb Z
+	FIELD field_30555 useMultitextureArb Z
+	FIELD field_30556 useTexEnvCombineArb Z
+	FIELD field_30557 separateBlend Z
+		COMMENT States whether OpenGL 1.4 features are supported.
+		COMMENT
+		COMMENT <p>
+		COMMENT \tThis includes
+		COMMENT \t<ul>
+		COMMENT \t\t<li>Separate Blend Functions</li>
+		COMMENT \t\t<li>Automatic mipmap generation</li>
+		COMMENT \t\t<li>Stencil wrapping</li>
+		COMMENT \t</ul>
+		COMMENT \tand many more.
+		COMMENT </p>
+	FIELD field_30558 isNvidia Z
+	FIELD field_30559 capsString Ljava/lang/String;
+	FIELD field_30560 cpuInfo Ljava/lang/String;
+	FIELD field_30561 useVboArb Z
+	FIELD field_30562 isAmd Z
 	FIELD field_30563 framebuffer I
 	FIELD field_30564 renderbuffer I
 	FIELD field_30565 colorAttachment I
@@ -35,9 +58,11 @@ CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
 	FIELD field_30579 texture I
 	FIELD field_30580 combine I
 	FIELD field_30581 interpolate I
-	FIELD field_30582 primary I
+	FIELD field_30582 primaryColor I
 	FIELD field_30583 constant I
 	FIELD field_30584 previous I
+	FIELD field_30585 combineRgb I
+	FIELD field_30586 source0Rgb I
 	METHOD method_31782 setupContext ()V
 	METHOD method_31783 deleteShader (I)V
 		COMMENT Deletes a shader object
