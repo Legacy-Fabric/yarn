@@ -47,6 +47,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_237 initWeatherGradients ()V
 	METHOD method_238 hasRain (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
+	METHOD method_239 updateLighting ()V
 	METHOD method_240 hasHighHumidity (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
 	METHOD method_242 getLocalDifficulty (Lnet/minecraft/class_1372;)Lnet/minecraft/class_1722;
@@ -130,6 +131,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 pos
 		ARG 3 level
 	METHOD method_284 canBlockBePlaced (Lnet/minecraft/class_160;Lnet/minecraft/class_1372;ZLnet/minecraft/class_1383;Lnet/minecraft/class_1745;Lnet/minecraft/class_2056;)Z
+	METHOD method_285 addBlockEntity (Lnet/minecraft/class_348;)Z
 	METHOD method_286 isInsideWorld (Lnet/minecraft/class_395;Lnet/minecraft/class_1745;)Z
 		ARG 1 border
 		ARG 2 entity
@@ -159,7 +161,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_301 isRegionLoaded (Lnet/minecraft/class_1372;IZ)Z
 		ARG 1 pos
 		ARG 2 distance
-	METHOD method_302 (Lnet/minecraft/class_1372;Lnet/minecraft/class_106;)I
+	METHOD method_302 getLightAtPos (Lnet/minecraft/class_1372;Lnet/minecraft/class_106;)I
 		ARG 1 pos
 		ARG 2 type
 	METHOD method_306 updateNeighborsExcept (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;Lnet/minecraft/class_1383;)V
@@ -208,6 +210,20 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 status
 	METHOD method_328 getClosestPlayer (Lnet/minecraft/class_1745;D)Lnet/minecraft/class_1963;
 		ARG 1 entity
+	METHOD method_329 createExplosion (Lnet/minecraft/class_1745;DDDFZ)Lnet/minecraft/class_93;
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 power
+		ARG 9 destructive
+	METHOD method_330 createExplosion (Lnet/minecraft/class_1745;DDDFZZ)Lnet/minecraft/class_93;
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 power
+		ARG 10 destructive
 	METHOD method_332 doesBoxCollide (Lnet/minecraft/class_1745;Lnet/minecraft/class_646;)Ljava/util/List;
 		ARG 1 entity
 		ARG 2 boundingBox
@@ -317,6 +333,9 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_392 neighbourUpdate (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
 		ARG 1 pos
 		ARG 2 block
+	METHOD method_393 renderAsNormalBlock (Lnet/minecraft/class_1372;Z)Z
+		ARG 1 pos
+		ARG 2 defaultValue
 	METHOD method_394 spawnEntity (Lnet/minecraft/class_1745;)Z
 		ARG 1 entity
 	METHOD method_396 doesAreaContainFireSource (Lnet/minecraft/class_646;)Z
@@ -359,6 +378,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_423 onLightUpdate (Lnet/minecraft/class_1372;)V
 		ARG 1 pos
+	METHOD method_425 tickWeather ()V
 	METHOD method_426 getNextMapId ()I
 	METHOD method_429 removeBlockEntity (Lnet/minecraft/class_1372;)V
 	METHOD method_431 getDimensionBiomeSource ()Lnet/minecraft/class_123;
@@ -368,5 +388,6 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_437 getMoonPhase ()F
 	METHOD method_438 getReceivedStrongRedstonePower (Lnet/minecraft/class_1372;)I
 		ARG 1 pos
+	METHOD method_439 addDetailsToCrashReport ()Ljava/lang/String;
 	METHOD method_440 isReceivingRedstonePower (Lnet/minecraft/class_1372;)Z
 		ARG 1 pos
