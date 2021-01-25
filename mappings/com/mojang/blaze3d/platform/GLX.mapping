@@ -64,7 +64,7 @@ CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
 	FIELD field_30584 previous I
 	FIELD field_30585 combineRgb I
 	FIELD field_30586 source0Rgb I
-	METHOD method_31782 setupContext ()V
+	METHOD method_31782 init ()V
 	METHOD method_31783 deleteShader (I)V
 		COMMENT Deletes a shader object
 		ARG 0 shader
@@ -76,7 +76,7 @@ CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
 		ARG 1 param
 	METHOD method_31786 renderbufferStorage (IIII)V
 		COMMENT Establishes data storage, format and dimensions of a renderbuffer object's image
-	METHOD method_31787 framebufferTexture2DEXT (IIIII)V
+	METHOD method_31787 framebufferTexture2D (IIIII)V
 		COMMENT Attaches a level of a texture object as a logical buffer of a framebuffer object
 	METHOD method_31788 getUniformLocation (ILjava/lang/CharSequence;)I
 		COMMENT Returns the location of a uniform variable
@@ -101,7 +101,7 @@ CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
 		COMMENT Specifies the value of a uniform variable for the current program object
 		ARG 0 uniform
 		ARG 2 buffer
-	METHOD method_31795 isShadersSupported ()Z
+	METHOD method_31795 isNextGen ()Z
 	METHOD method_31796 createShader (I)I
 		COMMENT Creates a shader object
 		ARG 0 shader
@@ -208,11 +208,11 @@ CLASS net/minecraft/class_6125 com/mojang/blaze3d/platform/GLX
 		COMMENT Returns whether the current GL context supports  Framebuffer Objects
 	METHOD method_31830 checkFramebufferStatus (I)I
 		COMMENT Checks the completeness of a framebuffer
-	METHOD method_31831 getProcessor ()Ljava/lang/String;
+	METHOD method_31831 getCpuInfo ()Ljava/lang/String;
 	METHOD method_31832 activeTexture (I)V
 		COMMENT Allows selecting the active texture unit
-		ARG 0 glId
-	METHOD method_31833 activeClientTexture (I)V
+		ARG 0 textureId
+	METHOD method_31833 clientActiveTexture (I)V
 		COMMENT Allows selecting the active texture unit
-		ARG 0 glId
+		ARG 0 textureId
 	CLASS class_6126 FBOMode
