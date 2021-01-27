@@ -114,6 +114,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_274 isChunkLoaded (IIZ)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD method_275 (ILnet/minecraft/class_1372;I)V
+		ARG 2 pos
 	METHOD method_276 addParticle (IZDDDDDD[I)V
 		ARG 1 id
 	METHOD method_277 setTime (J)V
@@ -237,9 +239,9 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_335 (Lnet/minecraft/class_1745;Z)V
 		ARG 1 entity
 		ARG 2 bl
-	METHOD method_336 (Lnet/minecraft/class_1963;ILnet/minecraft/class_1372;I)V
+	METHOD method_336 syncWorldEvent (Lnet/minecraft/class_1963;ILnet/minecraft/class_1372;I)V
 		ARG 1 player
-		ARG 2 type
+		ARG 2 eventId
 		ARG 3 pos
 		ARG 4 data
 	METHOD method_337 canPlayerModifyAt (Lnet/minecraft/class_1963;Lnet/minecraft/class_1372;)Z
@@ -269,8 +271,10 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 4 x2
 		ARG 5 y2
 		ARG 6 z2
-	METHOD method_354 (ILnet/minecraft/class_1372;I)V
+	METHOD method_354 syncGlobalEvent (ILnet/minecraft/class_1372;I)V
+		ARG 1 eventId
 		ARG 2 pos
+		ARG 3 data
 	METHOD method_355 setTimeOfDay (J)V
 		ARG 1 time
 	METHOD method_356 removeListener (Lnet/minecraft/class_101;)V
@@ -305,6 +309,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_376 setAmbientDarkness (I)V
 		ARG 1 ambientDarkness
 	METHOD method_378 setBlockBreakingInfo (ILnet/minecraft/class_1372;I)V
+		ARG 2 pos
 	METHOD method_379 (Lnet/minecraft/class_106;Lnet/minecraft/class_1372;)Z
 		ARG 1 type
 		ARG 2 pos
