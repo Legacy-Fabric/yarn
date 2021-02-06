@@ -18,14 +18,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Upload With Bintray
-        run: ./gradlew javadoc bintrayUpload
-        env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
       - name: Deploy javadoc 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.PAGE_DEPLOY_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: build/docs/javadoc # The folder the action should deploy.
+      - name : Publish to maven
+        env:
+          MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }} 
+        run: ./gradlew publish    
