@@ -23,7 +23,6 @@ plugins {
 	id 'java' // for jd gen
 	id 'maven'
 	id 'signing'
-	id 'com.jfrog.bintray' version '1.8.4'
 }
 
 def minecraft_version = "1.8.9"
@@ -733,31 +732,6 @@ task javadocJar(type: Jar, dependsOn: ["javadoc"]) {
 
 	archiveVersion.set yarnVersion
 	classifier = 'javadoc'
-}
-
-bintray {
-	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_KEY')
-	publications = ["maven"]
-	publish = true
-	pkg {
-		repo = "Legacy-Fabric-Maven"
-		name = "yarn-1.8.9"
-		userOrg = "legacy-fabric"
-		licenses = ["CC0-1.0"]
-		version {
-			name = yarnVersion
-			vcsTag = yarnVersion
-			released = new Date()
-			githubRepo = 'Legacy-Fabric/yarn'
-			websiteUrl = 'https://github.com/Legacy-Fabric/yarn'
-			issueTrackerUrl = 'https://github.com/Legacy-Fabric/yarn/issues'
-			vcsUrl = 'https://github.com/Legacy-Fabric/yarn.git'
-			gpg {
-				sign = true
-			}
-		}
-	}
 }
 
 publishing {
