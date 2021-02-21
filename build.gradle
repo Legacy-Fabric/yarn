@@ -760,6 +760,20 @@ publishing {
 		// uncomment to publish to the local maven
 		// mavenLocal()
 	}
+	if (System.getenv("MAVEN_PUBLISH_TOKEN") != null)
+	{
+		maven {
+			url = "https://maven.legacyfabric.net/"
+			credentials {
+				username = "BobTheBuildSlave"
+				password = System.getenv("MAVEN_PUBLISH_TOKEN")
+			}
+			authentication {
+				basic(BasicAuthentication)
+			}
+		}
+	}
+	
 }
 
 void mapJar(File output, File input, File mappings, File libraries, String from, String to) {

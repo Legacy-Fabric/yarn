@@ -3,6 +3,7 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	FIELD field_1563 chunkZ I
 	FIELD field_1564 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_1565 blockStorage [Lnet/minecraft/class_401;
+	FIELD field_1566 biomeArray [B
 	FIELD field_1569 loaded Z
 	FIELD field_1570 world Lnet/minecraft/class_99;
 	FIELD field_1571 heightmap [I
@@ -41,8 +42,9 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 1 pos
 	METHOD method_1353 (Lnet/minecraft/class_1372;I)I
 		ARG 1 pos
-	METHOD method_1354 (Lnet/minecraft/class_1372;Lnet/minecraft/class_123;)Lnet/minecraft/class_113;
+	METHOD method_1354 getBiomeAt (Lnet/minecraft/class_1372;Lnet/minecraft/class_123;)Lnet/minecraft/class_113;
 		ARG 1 pos
+		ARG 2 biomeSurce
 	METHOD method_1355 (Lnet/minecraft/class_1372;Lnet/minecraft/class_348;)V
 		ARG 1 pos
 		ARG 2 be
@@ -51,7 +53,7 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 2 state
 	METHOD method_1357 (Lnet/minecraft/class_1372;Lnet/minecraft/class_399$class_400;)Lnet/minecraft/class_348;
 		ARG 1 pos
-	METHOD method_1358 (Lnet/minecraft/class_1383;)V
+	METHOD method_1358 updateLight (Lnet/minecraft/class_1383;)V
 		ARG 1 dir
 	METHOD method_1359 (Ljava/lang/Class;Lnet/minecraft/class_646;Ljava/util/List;Lcom/google/common/base/Predicate;)V
 		ARG 1 clazz
@@ -67,8 +69,11 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 2 box
 		ARG 3 list
 		ARG 4 pred
+	METHOD method_1364 setBiomeArray ([B)V
 	METHOD method_1366 setLevelHeightmap ([I)V
 		ARG 1 heightmap
+	METHOD method_1367 setLevelChunkSections ([Lnet/minecraft/class_401;)V
+		ARG 1 blockStorage
 	METHOD method_1370 setLastSaveTime (J)V
 		ARG 1 lastSaveTime
 	METHOD method_1371 (Lnet/minecraft/class_1372;)I
@@ -86,6 +91,8 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	METHOD method_1384 setTerrainPopulated (Z)V
 		ARG 1 terrainPopulated
 	METHOD method_1386 updateLight (II)Z
+		ARG 1 x
+		ARG 2 z
 	METHOD method_1388 (Lnet/minecraft/class_1372;)V
 		ARG 1 pos
 	METHOD method_1389 setLightPopulated (Z)V
@@ -98,6 +105,9 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	METHOD method_1397 setHasEntities (Z)V
 		ARG 1 containsEntities
 	METHOD method_1398 getBlockStorage ()[Lnet/minecraft/class_401;
+	METHOD method_1403 getChunkPos ()Lnet/minecraft/class_92;
+	METHOD method_1404 getBiomeArray ()[B
+	METHOD method_1407 populate ()V
 	METHOD method_1408 isLoaded ()Z
 	METHOD method_1409 getWorld ()Lnet/minecraft/class_99;
 	METHOD method_1410 getLevelHeightmap ()[I

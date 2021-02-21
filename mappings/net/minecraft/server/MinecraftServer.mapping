@@ -103,19 +103,26 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 		ARG 3 player
 	METHOD method_6436 setDefaultGameMode (Lnet/minecraft/class_102$class_103;)V
 		ARG 1 gamemode
+	METHOD method_6437 (Lnet/minecraft/class_102$class_103;Z)Ljava/lang/String;
+		ARG 1 gamemode
 	METHOD method_6438 setCrashReport (Lnet/minecraft/class_825;)V
 		ARG 1 report
 	METHOD method_6439 upgradeWorld (Ljava/lang/String;)V
 		ARG 1 name
 	METHOD method_6440 loadResourcePack (Ljava/lang/String;Lnet/minecraft/class_635;)V
 		ARG 1 levelName
+		ARG 2 saveHandler
 	METHOD method_6441 setupWorld (Ljava/lang/String;Ljava/lang/String;JLnet/minecraft/class_105;Ljava/lang/String;)V
 		ARG 1 world
+		ARG 2 worldName
+		ARG 3 seed
 		ARG 5 generatorType
+		ARG 6 generatorOptions
 	METHOD method_6442 setKeyPair (Ljava/security/KeyPair;)V
 		ARG 1 keyPair
 	METHOD method_6443 getEntity (Ljava/util/UUID;)Lnet/minecraft/class_1745;
 	METHOD method_6445 setServerMeta (Lnet/minecraft/class_1596;)V
+		ARG 1 metdata
 	METHOD method_6446 addTickable (Lnet/minecraft/class_1618;)V
 		ARG 1 tickable
 	METHOD method_6447 setPlayerManager (Lnet/minecraft/class_1656;)V
@@ -218,6 +225,7 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_6518 getOpPermissionLevel ()I
 	METHOD method_6519 shouldBroadcastRconToOps ()Z
 	METHOD method_6520 shouldBroadcastConsoleToIps ()Z
+	METHOD method_6521 save ()V
 	METHOD method_6522 stopServer ()V
 	METHOD method_6523 getServerIp ()Ljava/lang/String;
 	METHOD method_6524 isRunning ()Z
@@ -225,8 +233,5 @@ CLASS net/minecraft/server/MinecraftServer net/minecraft/server/MinecraftServer
 	METHOD method_6526 setInstance ()V
 	METHOD method_6527 getRunDirectory ()Ljava/io/File;
 	METHOD method_6528 exit ()V
-	METHOD run ()V
 	CLASS 1
 		FIELD field_7103 lastProgressUpdate J
-	CLASS 2
-		METHOD run ()V
