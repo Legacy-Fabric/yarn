@@ -43,6 +43,7 @@ time to type thanks to IDE autocompletion. Common abbreviations you should use a
  - "pos" for "position"
  - "nbt" for "named binary tag"
  - "init" for "initialize"
+ - "min"/"max" for "minimum"/"maximum"
  - Any abbreviations used by Java or libraries ("json", "html", etc.)
 
 Treat acronyms as single words rather than capitalising every letter. This improves readability (compare `JsonObject` and
@@ -113,7 +114,17 @@ front of the coordinate (`velocityX`, not `xVelocity`).
 
 Name screen coordinates `x` and `y`, rather than `left` and `top`.
 
+## Javadocs
+
+Write sentences for class, method and fields javadocs, starting with an uppercase and ending with a period. Start method docs with verbs, like `Gets` or `Called`. Use HTML tags such as `<p>` if the docs have several paragraphs.
+
+Write quick descriptions for parameter javadocs as well as `@return` tags, with no uppercase or period. Add parameter docs to the parameter itself instead of using the `@param` tag.
+
+Use `@link`, `@linkplain` and `@see` tags to refer to other parts of the code.
+
 ## Mojang names
+
+**Do not use names from Mojang's obfuscation maps.**
 
 Use names that match names in strings in the vanilla code, unless that string is outdated or inaccurate. This avoids confusion,
 especially from new modders who may not understand what an class exception message is referring to.
@@ -126,8 +137,8 @@ way.
 
 There are however three exceptions to this rule:
  - Use "world" for what Mojang calls "level" (see https://github.com/FabricMC/yarn/issues/89)
- - Use "container" for what Mojang calls "menu" (see https://github.com/FabricMC/yarn/issues/386)
- - Use "inventory" for what Mojang calls "container" (no issue yet, requires renaming "container" first)
+ - Use "screen handler" or "handler" (depending on context; if the screen part is obvious it can be omitted) for what Mojang calls "menu" (see https://github.com/FabricMC/yarn/pull/1106)
+ - Use "inventory" for what Mojang calls "container" (no issue yet)
 
 ## Things to avoid
 
