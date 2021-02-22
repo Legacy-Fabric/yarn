@@ -6,6 +6,8 @@ labels: enhancement
 assignees: ''
 
 ---
+**Minecraft Version**
+1.6.4
 
 **Names of the classes**  
 Class1, Class2
