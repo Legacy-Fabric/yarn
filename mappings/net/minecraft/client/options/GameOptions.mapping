@@ -19,15 +19,20 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2642 streamPreferredServer Ljava/lang/String;
 	FIELD field_2643 streamChatEnabled I
 	FIELD field_2644 streamChatUserFilter I
+	FIELD field_2645 streamMicToggleBehavior I
 	FIELD field_2646 useNativeTransport Z
 	FIELD field_2647 entityShadows Z
 	FIELD field_2648 realmsNotifications Z
 	FIELD field_2649 keyForward Lnet/minecraft/class_666;
 	FIELD field_2650 keyLeft Lnet/minecraft/class_666;
+	FIELD field_2651 hudHidden Z
 	FIELD field_2652 perspective I
 	FIELD field_2653 debugEnabled Z
+	FIELD field_2654 debugProfilerEnabled Z
+	FIELD field_2655 debugFpsEnabled Z
 	FIELD field_2656 sensitivity F
 	FIELD field_2657 lastServer Ljava/lang/String;
+	FIELD field_2658 smoothCameraEnabled Z
 	FIELD field_2660 fov F
 	FIELD field_2661 gamma F
 	FIELD field_2662 saturation F
@@ -37,6 +42,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2666 forceUnicode Z
 	FIELD field_2667 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_2668 GSON Lcom/google/gson/Gson;
+	FIELD field_2669 STRING_LIST_TYPE Ljava/lang/reflect/ParameterizedType;
 	FIELD field_2670 GUI_SCALE [Ljava/lang/String;
 	FIELD field_2671 PARTICLES [Ljava/lang/String;
 	FIELD field_2672 AMBIENT_OCCLUSION [Ljava/lang/String;
@@ -73,6 +79,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2703 difficulty Lnet/minecraft/class_1721;
 	FIELD field_2704 invertYMouse Z
 	FIELD field_2705 playerModelParts Ljava/util/Set;
+	FIELD field_2706 soundVolumeLevels Ljava/util/Map;
 	FIELD field_2707 optionsFile Ljava/io/File;
 	FIELD field_2708 viewDistance I
 	FIELD field_2709 bobView Z
@@ -100,6 +107,8 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 	FIELD field_2731 pauseOnLostFocus Z
 	METHOD <init> (Lnet/minecraft/class_669;Ljava/io/File;)V
 		ARG 1 client
+		ARG 2 optionsDir
+	METHOD method_2336 load ()V
 	METHOD method_2337 isPressed (Lnet/minecraft/class_666;)Z
 		ARG 0 binding
 	METHOD method_2338 setKeyBindingCode (Lnet/minecraft/class_666;I)V
@@ -119,6 +128,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 		ARG 1 category
 		ARG 2 volume
 	METHOD method_2344 parseFloat (Ljava/lang/String;)F
+		ARG 1 s
 	METHOD method_2345 togglePlayerModelPart (Lnet/minecraft/class_1966;)V
 		ARG 1 part
 	METHOD method_2346 setPlayerModelPart (Lnet/minecraft/class_1966;Z)V
@@ -161,7 +171,7 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 		FIELD field_2752 numeric Z
 		FIELD field_2753 booleanToggle Z
 		FIELD field_2754 name Ljava/lang/String;
-		FIELD field_2755 increment F
+		FIELD field_2755 step F
 		FIELD field_2756 min F
 		FIELD field_2757 max F
 		FIELD field_2759 INVERT_MOUSE Lnet/minecraft/class_671$class_672;
@@ -208,6 +218,13 @@ CLASS net/minecraft/class_671 net/minecraft/client/options/GameOptions
 			ARG 0 id
 		METHOD method_2360 isBooleanToggle ()Z
 		METHOD method_2362 getOrdinal ()I
+		METHOD method_2363 getRatio (F)F
+			ARG 1 value
 		METHOD method_2364 getName ()Ljava/lang/String;
+		METHOD method_2365 getValue (F)F
+			ARG 1 ratio
+		METHOD method_2366 adjust (F)F
+			ARG 1 value
 		METHOD method_2367 getMaxValue ()F
-		METHOD values ()[Lnet/minecraft/class_671$class_672;
+		METHOD method_2368 round (F)F
+			ARG 1 value
