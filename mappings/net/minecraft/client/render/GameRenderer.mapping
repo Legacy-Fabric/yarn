@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
+	FIELD field_4249 renderHand Z
 	FIELD field_4250 blockOutlineEnabled Z
 	FIELD field_4251 lastWindowFocusedTime J
 	FIELD field_4252 lastWorldRenderNanos J
@@ -10,6 +11,10 @@ CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	FIELD field_4257 lightmapFlicker F
 	FIELD field_4258 lastLightmapFlicker F
 		COMMENT Is always the same as {@link GameRenderer#lightmapFlicker}, probably unfinished or left-behind code.
+	FIELD field_4262 fogColorBuffer Ljava/nio/FloatBuffer;
+	FIELD field_4263 fogRed F
+	FIELD field_4264 fogGreen F
+	FIELD field_4265 fogBlue F
 	FIELD field_4269 renderingPanorama Z
 	FIELD field_4270 zoom D
 	FIELD field_4271 zoomX D
@@ -51,6 +56,11 @@ CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	METHOD method_3352 areShadersSupported ()Z
 	METHOD method_3353 updateTargetedEntity (F)V
 		ARG 1 tickDelta
+	METHOD method_3354 updateFogColorBuffer (FFFF)Ljava/nio/FloatBuffer;
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+		ARG 4 alpha
 	METHOD method_3356 (FJ)V
 		ARG 1 tickDelta
 	METHOD method_3359 renderWorld (IFJ)V
