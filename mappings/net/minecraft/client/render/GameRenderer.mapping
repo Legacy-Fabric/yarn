@@ -1,6 +1,8 @@
 CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	FIELD field_4250 blockOutlineEnabled Z
 	FIELD field_4251 lastWindowFocusedTime J
+	FIELD field_4252 lastWorldRenderNanos J
+		COMMENT Set to the current nano time before rendering the HUD or screen.
 	FIELD field_4253 lightmapTexture Lnet/minecraft/class_1219;
 	FIELD field_4254 lightmapTexturePixels [I
 	FIELD field_4255 lightmapTextureId Lnet/minecraft/class_1605;
@@ -14,8 +16,8 @@ CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	FIELD field_4275 SHADERS_LOCATIONS [Lnet/minecraft/class_1605;
 	FIELD field_4276 forcedShaderIndex I
 	FIELD field_4277 shadersEnabled Z
-	FIELD field_4279 anaglyphMask I
-		COMMENT Is set to 0 before enabling green / blue mask and to 1 before enabling the red mask; otherwise unused.
+	FIELD field_4279 anaglyphFilter I
+		COMMENT Is set to 0 before enabling cyan filter and to 1 before enabling the red filter; otherwise unused.
 	FIELD field_4280 firstPersonRenderer Lnet/minecraft/class_1033;
 	FIELD field_4281 SHADER_COUNT I
 	FIELD field_4282 LOGGER Lorg/apache/logging/log4j/Logger;
@@ -46,6 +48,12 @@ CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	METHOD method_3352 areShadersSupported ()Z
 	METHOD method_3353 updateTargetedEntity (F)V
 		ARG 1 tickDelta
+	METHOD method_3356 (FJ)V
+		ARG 1 tickDelta
+	METHOD method_3359 renderWorld (IFJ)V
+		ARG 1 filter
+		ARG 2 tickDelta
+		ARG 3 limitTime
 	METHOD method_3360 onResized (II)V
 	METHOD method_3363 loadShader (Lnet/minecraft/class_1605;)V
 		ARG 1 id
@@ -54,12 +62,18 @@ CLASS net/minecraft/class_1012 net/minecraft/client/render/GameRenderer
 	METHOD method_3366 disableShader ()V
 	METHOD method_3368 renderHand (FI)V
 		ARG 1 tickDelta
+		ARG 2 anaglyphOffset
+	METHOD method_3369 renderWorld (FJ)V
+		ARG 1 tickDelta
+		ARG 2 limitTime
 	METHOD method_3370 toggleShadersEnabled ()V
 	METHOD method_3372 superSecretSettings ()V
 	METHOD method_3374 tick ()V
 	METHOD method_3375 bobView (F)V
 		ARG 1 tickDelta
 	METHOD method_3376 getShader ()Lnet/minecraft/class_1212;
+	METHOD method_3377 (F)V
+		ARG 1 tickDelta
 	METHOD method_3378 updateLightmap (F)V
 		ARG 1 tickDelta
 	METHOD method_3379 disableLightmap ()V
