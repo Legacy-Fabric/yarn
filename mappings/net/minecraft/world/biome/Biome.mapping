@@ -1,4 +1,25 @@
 CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
+	FIELD field_11792 surfaceBlock B
+	FIELD field_11793 subsurfaceBlock B
+	FIELD field_11795 minHeight F
+	FIELD field_11796 maxHeight F
+	FIELD field_11797 temperature F
+	FIELD field_11798 downfall F
+	FIELD field_11799 monsterEntries Ljava/util/List;
+	FIELD field_11800 passiveEntries Ljava/util/List;
+	FIELD field_11801 aquaticEntries Ljava/util/List;
+	FIELD field_11802 flyingEntries Ljava/util/List;
+	FIELD field_11803 birchTreeFeature Lnet/minecraft/class_2218;
+	FIELD field_11804 canSnow Z
+	FIELD field_11805 biomes [Lnet/minecraft/class_113;
+	FIELD field_11806 EXTREME_HILLS Lnet/minecraft/class_113;
+	FIELD field_11807 FOREST Lnet/minecraft/class_113;
+	FIELD field_11808 TAIGA Lnet/minecraft/class_113;
+	FIELD field_11809 ICE_MOUNTAINS Lnet/minecraft/class_113;
+	FIELD field_11810 FOREST_HILLS Lnet/minecraft/class_113;
+	FIELD field_11811 EXTREME_HILLS_EDGE Lnet/minecraft/class_113;
+	FIELD field_11812 JUNGLE Lnet/minecraft/class_113;
+	FIELD field_11813 name Ljava/lang/String;
 	FIELD field_348 FROZEN_RIVER Lnet/minecraft/class_113;
 	FIELD field_349 ICE_PLAINS Lnet/minecraft/class_113;
 	FIELD field_351 MUSHROOM_ISLAND Lnet/minecraft/class_113;
@@ -7,8 +28,12 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_354 DESERT_HILLS Lnet/minecraft/class_113;
 	FIELD field_356 TAIGA_HILLS Lnet/minecraft/class_113;
 	FIELD field_359 JUNGLE_HILLS Lnet/minecraft/class_113;
+	FIELD field_374 treeFeature Lnet/minecraft/class_470;
+	FIELD field_375 bigOakTreeFeature Lnet/minecraft/class_2209;
+	FIELD field_376 swampTreeFeature Lnet/minecraft/class_468;
 	FIELD field_397 getWaterColor I
 	FIELD field_398 biomeDecorator Lnet/minecraft/class_122;
+	FIELD field_404 canRain Z
 	FIELD field_405 id I
 	FIELD field_420 OCEAN Lnet/minecraft/class_113;
 	FIELD field_421 PLAINS Lnet/minecraft/class_113;
@@ -17,17 +42,39 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_427 RIVER Lnet/minecraft/class_113;
 	FIELD field_428 HELL Lnet/minecraft/class_113;
 	FIELD field_430 FROZEN_OCEAN Lnet/minecraft/class_113;
+	FIELD field_9163 END Lnet/minecraft/class_113;
 	METHOD <init> (I)V
 		ARG 1 id
+	METHOD method_10945 getTreeFeature (Ljava/util/Random;)Lnet/minecraft/class_441;
+		ARG 1 random
+	METHOD method_10946 setMinAndMaxHeight (FF)Lnet/minecraft/class_113;
+		ARG 1 minHeight
+		ARG 2 maxHeight
+	METHOD method_10947 canLightningStrike ()Z
+	METHOD method_10948 getDownfallScaled ()I
+	METHOD method_10949 getTemperatureScaled ()I
+	METHOD method_10950 getDownfall ()F
+	METHOD method_10951 getTemperature ()F
+	METHOD method_10952 getGrassColor ()I
+	METHOD method_10953 getFoliageColor ()I
 	METHOD method_512 createBiomePopulator ()Lnet/minecraft/class_122;
+	METHOD method_513 getSkyColor (F)I
 	METHOD method_514 setTempratureAndDownfall (FF)Lnet/minecraft/class_113;
 		ARG 1 temperature
 		ARG 2 downfall
 	METHOD method_519 buildSurface (Lnet/minecraft/class_99;Ljava/util/Random;II)V
 		ARG 1 world
 		ARG 2 random
+		ARG 3 startX
+		ARG 4 startZ
 	METHOD method_523 setName (Ljava/lang/String;)Lnet/minecraft/class_113;
 		ARG 1 name
+	METHOD method_527 disableRain ()Lnet/minecraft/class_113;
+	METHOD method_531 getGrassFeature (Ljava/util/Random;)Lnet/minecraft/class_441;
+		ARG 1 random
+	METHOD method_532 enableSnow ()Lnet/minecraft/class_113;
 	METHOD method_539 hasHighHumidity ()Z
 	METHOD method_540 getMaxSpawnLimit ()F
-	METHOD method_543 hasParent ()Z
+	METHOD method_543 canSnow ()Z
+	METHOD method_8567 getSpawnableList (Lnet/minecraft/class_2631;)Ljava/util/List;
+		ARG 1 category
