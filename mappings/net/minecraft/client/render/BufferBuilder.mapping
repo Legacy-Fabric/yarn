@@ -1,13 +1,24 @@
 CLASS net/minecraft/class_5842 net/minecraft/client/render/BufferBuilder
 	FIELD field_28868 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_28869 buffer Ljava/nio/ByteBuffer;
+	FIELD field_28870 intView Ljava/nio/IntBuffer;
+	FIELD field_28871 shortView Ljava/nio/ShortBuffer;
+	FIELD field_28872 floatView Ljava/nio/FloatBuffer;
+	FIELD field_28873 vertexCount I
 	FIELD field_28874 currentElement Lnet/minecraft/class_1697;
 	FIELD field_28875 index I
 	FIELD field_28877 drawMode I
+	FIELD field_28878 offsetX D
+	FIELD field_28879 offsetY D
+	FIELD field_28880 offsetZ D
 	FIELD field_28881 vertexFormat Lnet/minecraft/class_6031;
 	FIELD field_28882 building Z
 	METHOD <init> (I)V
 		ARG 1 initialCapacity
+	METHOD method_30158 popState ()Lnet/minecraft/class_5842$class_5843;
+	METHOD method_30159 texture (DD)Lnet/minecraft/class_5842;
+		ARG 1 u
+		ARG 3 v
 	METHOD method_30161 sortQuads (FFF)V
 		ARG 1 cameraX
 		ARG 2 cameraY
@@ -17,15 +28,30 @@ CLASS net/minecraft/class_5842 net/minecraft/client/render/BufferBuilder
 		ARG 2 g
 		ARG 3 b
 		ARG 4 a
+	METHOD method_30163 setCornerColor (FFFI)V
+		ARG 1 r
+		ARG 2 g
+		ARG 3 b
+		ARG 4 corner
+	METHOD method_30165 light (II)Lnet/minecraft/class_5842;
+		ARG 1 u
+		ARG 2 v
+	METHOD method_30166 setCornerLight (IIII)V
 	METHOD method_30167 begin (ILnet/minecraft/class_6031;)V
 		ARG 1 drawMode
 		ARG 2 format
 	METHOD method_30168 restoreState (Lnet/minecraft/class_5842$class_5843;)V
+		ARG 1 state
 	METHOD method_30169 getDistanceSq (Ljava/nio/FloatBuffer;FFFII)F
 		ARG 0 buffer
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 4 stride
+		ARG 5 offset
+	METHOD method_30170 putData ([I)V
+		ARG 1 data
+	METHOD method_30171 reset ()V
 	METHOD method_30172 vertex (DDD)Lnet/minecraft/class_5842;
 		ARG 1 x
 		ARG 3 y
@@ -38,11 +64,27 @@ CLASS net/minecraft/class_5842 net/minecraft/client/render/BufferBuilder
 		ARG 3 b
 		ARG 4 a
 	METHOD method_30179 offset (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_30180 normal (FFF)Lnet/minecraft/class_5842;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_30183 next ()V
 	METHOD method_30185 end ()V
 	METHOD method_30186 getBuffer ()Ljava/nio/ByteBuffer;
 	METHOD method_30187 getVertexFormat ()Lnet/minecraft/class_6031;
+	METHOD method_30188 getVertexCount ()I
 	METHOD method_30189 getDrawMode ()I
+	METHOD method_30190 getSize ()I
+	METHOD method_30191 nextElement ()V
+	CLASS class_5843 State
+		FIELD field_28887 bufferData [I
+		FIELD field_28888 format Lnet/minecraft/class_6031;
+		METHOD <init> (Lnet/minecraft/class_5842;[ILnet/minecraft/class_6031;)V
+			ARG 2 bufferData
+			ARG 3 format
+		METHOD method_30193 getBufferData ()[I
+		METHOD method_30194 getVertexCount ()I
+		METHOD method_30195 getFormat ()Lnet/minecraft/class_6031;

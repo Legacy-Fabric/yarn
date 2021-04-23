@@ -1,9 +1,12 @@
 CLASS net/minecraft/class_4116 net/minecraft/client/gui/screen/StatsScreen
 	FIELD field_27620 parent Lnet/minecraft/class_5641;
+	FIELD field_27621 title Ljava/lang/String;
 	FIELD field_27622 generalStats Lnet/minecraft/class_4116$class_5654;
 	FIELD field_27623 itemStats Lnet/minecraft/class_4116$class_5655;
+	FIELD field_27624 blockStats Lnet/minecraft/class_4116$class_5653;
 	FIELD field_27625 mobStats Lnet/minecraft/class_4116$class_5656;
 	FIELD field_27626 statHandler Lnet/minecraft/class_6406;
+	FIELD field_27627 currentTab Lnet/minecraft/class_5604;
 	FIELD field_27628 downloadingStats Z
 	METHOD <init> (Lnet/minecraft/class_5641;Lnet/minecraft/class_6406;)V
 		ARG 1 parent
@@ -19,7 +22,18 @@ CLASS net/minecraft/class_4116 net/minecraft/client/gui/screen/StatsScreen
 		ARG 3 u
 		ARG 4 v
 	METHOD method_29475 createButtons ()V
+	CLASS class_5653 BlockStatsListWidget
 	CLASS class_5654 GeneralStatsListWidget
 	CLASS class_5655 ItemStatsListWidget
 		CLASS 1 McoServerComparator
 	CLASS class_5656 EntityStatsListWidget
+		FIELD field_27637 types Ljava/util/List;
+	CLASS class_5657 AbstractItemStatsListWidget
+		FIELD field_27640 stats Ljava/util/List;
+		FIELD field_27641 comparator Ljava/util/Comparator;
+		METHOD <init> (Lnet/minecraft/class_4116;Lnet/minecraft/class_1321;)V
+			ARG 2 client
+		METHOD method_29494 getColumnTranslationKey (I)Ljava/lang/String;
+			ARG 1 column
+		METHOD method_29495 getStat (I)Lnet/minecraft/class_2590;
+			ARG 1 index

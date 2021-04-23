@@ -12,7 +12,7 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	FIELD field_26937 mipmapLevels I
 	FIELD field_26938 useNativeTransport Z
 	FIELD field_26939 entityShadows Z
-	FIELD field_26940 glDebugVerbosity I
+	FIELD field_26940 attackIndicator I
 	FIELD field_26941 enableWeakAttacks Z
 	FIELD field_26942 showSubtitles Z
 	FIELD field_26943 realmsNotifications Z
@@ -28,6 +28,8 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	FIELD field_26953 lastServer Ljava/lang/String;
 	FIELD field_26954 smoothCameraEnabled Z
 	FIELD field_26956 fov F
+	FIELD field_26957 gamma F
+	FIELD field_26958 saturation F
 	FIELD field_26959 guiScale I
 	FIELD field_26960 particles I
 	FIELD field_26961 narrator I
@@ -37,6 +39,13 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	FIELD field_26965 COLON_SPLITTER Lcom/google/common/base/Splitter;
 	FIELD field_26966 GSON Lcom/google/gson/Gson;
 	FIELD field_26967 STRING_LIST_TYPE Ljava/lang/reflect/Type;
+	FIELD field_26968 GUI_SCALE_TEXTS [Ljava/lang/String;
+	FIELD field_26969 PARTICLE_TEXTS [Ljava/lang/String;
+	FIELD field_26970 AMBIENT_OCCLUSION_TEXTS [Ljava/lang/String;
+	FIELD field_26971 CLOUDS_TEXT [Ljava/lang/String;
+	FIELD field_26972 ATTACK_INDICATOR_TEXTS [Ljava/lang/String;
+	FIELD field_26973 playerModelParts Ljava/util/Set;
+	FIELD field_26974 soundVolumes Ljava/util/Map;
 	FIELD field_26975 optionsFile Ljava/io/File;
 	FIELD field_26976 keyInventory Lnet/minecraft/class_4094;
 	FIELD field_26977 keySwapHands Lnet/minecraft/class_4094;
@@ -61,12 +70,21 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	FIELD field_26996 difficulty Lnet/minecraft/class_2148;
 	FIELD field_26998 perspective I
 	FIELD field_26999 debugEnabled Z
+	FIELD field_27000 debugPieVisible Z
+	FIELD field_27001 debugFpsGraphVisible Z
+	FIELD field_27002 NARRATOR_TEXTS [Ljava/lang/String;
+	FIELD field_27003 mouseSensitivity F
+	FIELD field_27004 invertMouse Z
 	FIELD field_27005 viewDistance I
 	FIELD field_27006 viewBobbing Z
 	FIELD field_27007 anaglyph Z
 	FIELD field_27008 fboEnable Z
+	FIELD field_27009 maxFps I
 	FIELD field_27010 renderClouds I
 	FIELD field_27011 graphics Z
+	FIELD field_27012 ambientOcclusion I
+	FIELD field_27013 resourcePacks Ljava/util/List;
+	FIELD field_27014 incompatibleResourcePacks Ljava/util/List;
 	FIELD field_27015 chatVisibility Lnet/minecraft/class_4890$class_4892;
 	FIELD field_27016 chatColors Z
 	FIELD field_27017 chatLinks Z
@@ -83,15 +101,26 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 		ARG 1 client
 		ARG 2 optionsFile
 	METHOD method_28893 load ()V
+	METHOD method_28894 getMouseButtonName (I)Ljava/lang/String;
+		ARG 0 button
 	METHOD method_28895 togglePlayerModelPart (Lnet/minecraft/class_2980;)V
 		ARG 1 part
 	METHOD method_28896 setPlayerModelPart (Lnet/minecraft/class_2980;Z)V
 		ARG 1 part
 		ARG 2 enabled
+	METHOD method_28897 isKeyPressed (Lnet/minecraft/class_4094;)Z
+		ARG 0 binding
 	METHOD method_28898 setKeyCode (Lnet/minecraft/class_4094;I)V
 		ARG 1 key
-	METHOD method_28901 loadOption (Lnet/minecraft/class_1320$class_5571;I)V
+		ARG 2 code
+	METHOD method_28899 getFloatOption (Lnet/minecraft/class_1320$class_5571;)F
 		ARG 1 option
+	METHOD method_28900 setOption (Lnet/minecraft/class_1320$class_5571;F)V
+		ARG 1 option
+		ARG 2 value
+	METHOD method_28901 setOption (Lnet/minecraft/class_1320$class_5571;I)V
+		ARG 1 option
+		ARG 2 value
 	METHOD method_28902 update (Lnet/minecraft/class_2335;)Lnet/minecraft/class_2335;
 		ARG 1 tag
 	METHOD method_28903 parseFloat (Ljava/lang/String;)F
@@ -100,12 +129,37 @@ CLASS net/minecraft/class_1320 net/minecraft/client/options/GameOptions
 	METHOD method_28905 setSoundVolume (Lnet/minecraft/class_6400;F)V
 		ARG 1 category
 		ARG 2 volume
+	METHOD method_28906 getTranslatedEntry ([Ljava/lang/String;I)Ljava/lang/String;
+		ARG 0 keys
+		ARG 1 index
 	METHOD method_28907 write ()V
+	METHOD method_28908 getBooleanOption (Lnet/minecraft/class_1320$class_5571;)Z
+		ARG 1 option
 	METHOD method_28909 onPlayerModelPartChange ()V
+	METHOD method_28910 getDisplayString (Lnet/minecraft/class_1320$class_5571;)Ljava/lang/String;
+		ARG 1 option
 	METHOD method_28911 getEnabledPlayerModelParts ()Ljava/util/Set;
+	METHOD method_28912 getClouds ()I
 	METHOD method_28913 shouldUseNativeTransport ()Z
 	CLASS class_5571 Option
 		FIELD field_27044 key Ljava/lang/String;
+		FIELD field_27045 step F
+		FIELD field_27046 min F
+		FIELD field_27047 max F
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;ZZ)V
+			ARG 3 key
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;ZZFFF)V
 			ARG 1 key
+			ARG 6 min
+			ARG 7 max
+			ARG 8 step
 		METHOD method_28915 setMax (F)V
+			ARG 1 max
+		METHOD method_28916 fromId (I)Lnet/minecraft/class_1320$class_5571;
+			ARG 0 id
+		METHOD method_28920 getId ()I
+		METHOD method_28921 clampPercentage (F)F
+			ARG 1 value
+		METHOD method_28922 getKey ()Ljava/lang/String;
+		METHOD method_28924 getMin ()F
+		METHOD method_28926 getMax ()F
