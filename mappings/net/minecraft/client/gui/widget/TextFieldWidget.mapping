@@ -1,27 +1,53 @@
 CLASS net/minecraft/class_5582 net/minecraft/client/gui/widget/TextFieldWidget
+	FIELD field_27204 x I
+	FIELD field_27205 y I
+	FIELD field_27206 id I
 	FIELD field_27207 textRenderer Lnet/minecraft/class_5575;
+	FIELD field_27208 width I
+	FIELD field_27209 height I
 	FIELD field_27210 text Ljava/lang/String;
 	FIELD field_27211 maxLength I
 	FIELD field_27212 focusedTicks I
-	FIELD field_27213 focused Z
+	FIELD field_27213 hasBorder Z
 	FIELD field_27214 focusUnlocked Z
-	FIELD field_27215 editable Z
+	FIELD field_27215 focused Z
 	FIELD field_27216 selecting Z
 	FIELD field_27217 firstCharacterIndex I
 	FIELD field_27218 selectionStart I
 	FIELD field_27219 selectionEnd I
 	FIELD field_27220 editableColor I
 	FIELD field_27221 uneditableColor I
+	FIELD field_27222 editable Z
+	FIELD field_27223 optionListener Lnet/minecraft/class_4245$class_5597;
+	FIELD field_27224 textFilter Lcom/google/common/base/Predicate;
+	METHOD <init> (ILnet/minecraft/class_5575;IIII)V
+		ARG 1 id
+		ARG 2 textRenderer
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
 	METHOD method_29100 tick ()V
+	METHOD method_29101 charTyped (CI)Z
+		ARG 1 chr
+		ARG 2 keyCode
 	METHOD method_29102 eraseWords (I)V
 		ARG 1 wordOffset
 	METHOD method_29103 getWordSkipPosition (II)I
 		ARG 1 wordOffset
 		ARG 2 cursorPosition
+	METHOD method_29104 mouseClicked (III)Z
 	METHOD method_29105 getWordSkipPosition (IIZ)I
 		ARG 1 wordOffset
 		ARG 2 cursorPosition
 		ARG 3 skipOverSpaces
+	METHOD method_29106 setOption (ILjava/lang/String;)V
+		ARG 1 id
+		ARG 2 value
+	METHOD method_29107 setListener (Lnet/minecraft/class_4245$class_5597;)V
+		ARG 1 optionListener
+	METHOD method_29108 setTextFilter (Lcom/google/common/base/Predicate;)V
+		ARG 1 predicate
 	METHOD method_29109 setText (Ljava/lang/String;)V
 		ARG 1 text
 	METHOD method_29110 setHasBorder (Z)V
@@ -31,6 +57,8 @@ CLASS net/minecraft/class_5582 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 1 characterOffset
 	METHOD method_29113 write (Ljava/lang/String;)V
 		ARG 1 text
+	METHOD method_29114 onFocusChanged (Z)V
+		ARG 1 focused
 	METHOD method_29115 getSelectedText ()Ljava/lang/String;
 	METHOD method_29116 getWordSkipPosition (I)I
 		ARG 1 wordOffset
@@ -39,6 +67,9 @@ CLASS net/minecraft/class_5582 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 2 y1
 		ARG 3 x2
 		ARG 4 y2
+	METHOD method_29118 setSelecting (Z)V
+		ARG 1 selecting
+	METHOD method_29119 getId ()I
 	METHOD method_29120 moveCursor (I)V
 		ARG 1 offset
 	METHOD method_29121 setFocusUnlocked (Z)V
@@ -51,6 +82,7 @@ CLASS net/minecraft/class_5582 net/minecraft/client/gui/widget/TextFieldWidget
 	METHOD method_29125 setCursorToEnd ()V
 	METHOD method_29126 setMaxLength (I)V
 		ARG 1 maximumLength
+	METHOD method_29127 render ()V
 	METHOD method_29128 setEditableColor (I)V
 		ARG 1 color
 	METHOD method_29129 getMaxLength ()I
@@ -58,5 +90,9 @@ CLASS net/minecraft/class_5582 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 1 color
 	METHOD method_29131 getCursor ()I
 	METHOD method_29132 setSelectionEnd (I)V
+		ARG 1 end
 	METHOD method_29133 hasBorder ()Z
+	METHOD method_29134 isFocused ()Z
+	METHOD method_29135 getSelectionEnd ()I
+	METHOD method_29136 getWidth ()I
 	METHOD method_29137 isEditable ()Z

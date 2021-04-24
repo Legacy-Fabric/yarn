@@ -1,44 +1,111 @@
 CLASS net/minecraft/class_5641 net/minecraft/client/gui/screen/Screen
+	FIELD field_27528 ALLOWED_PROTOCOLS Ljava/util/Set;
+	FIELD field_27529 LINE_SPLITTER Lcom/google/common/base/Splitter;
+	FIELD field_27530 lastMouseButton I
+	FIELD field_27531 mouseClickTime J
 	FIELD field_27532 client Lnet/minecraft/class_1321;
 	FIELD field_27533 itemRenderer Lnet/minecraft/class_1640;
-	METHOD method_29398 (II)V
+	FIELD field_27534 width I
+	FIELD field_27535 height I
+	FIELD field_27536 buttons Ljava/util/List;
+	FIELD field_27537 children Ljava/util/List;
+	FIELD field_27538 passEvents Z
+	FIELD field_27539 textRenderer Lnet/minecraft/class_5575;
+	FIELD field_27540 clickedButton Lnet/minecraft/class_4103;
+	FIELD field_27541 touchEventCount I
+	FIELD field_27542 clickedLink Ljava/net/URI;
+	FIELD field_27543 textFocused Z
+	METHOD method_29397 charTyped (CI)V
+		ARG 1 chr
+		ARG 2 keyCode
+	METHOD method_29398 setSize (II)V
 		ARG 1 width
 		ARG 2 height
-	METHOD method_29399 (IIF)V
+	METHOD method_29399 render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 delta
-	METHOD method_29400 (III)V
-		ARG 2 width
-		ARG 3 height
-	METHOD method_29403 (Lnet/minecraft/class_5013;II)V
+	METHOD method_29400 mouseClicked (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 mouseButton
+	METHOD method_29401 mouseDragged (IIIJ)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 mouseButton
+		ARG 4 duration
+	METHOD method_29402 getTooltipFromItem (Lnet/minecraft/class_5013;)Ljava/util/List;
+		ARG 1 stack
+	METHOD method_29403 renderTooltip (Lnet/minecraft/class_5013;II)V
 		ARG 1 stack
 		ARG 2 x
 		ARG 3 y
-	METHOD method_29407 (Lnet/minecraft/class_6244;II)V
+	METHOD method_29404 init (Lnet/minecraft/class_1321;II)V
+		ARG 1 client
+		ARG 2 width
+		ARG 3 height
+	METHOD method_29405 buttonClicked (Lnet/minecraft/class_4103;)V
+		ARG 1 button
+	METHOD method_29406 handleTextClick (Lnet/minecraft/class_6244;)Z
+		ARG 1 text
+	METHOD method_29407 renderTextHoverEvent (Lnet/minecraft/class_6244;II)V
 		ARG 1 component
 		ARG 2 x
 		ARG 3 y
-	METHOD method_29408 (Ljava/lang/String;II)V
+	METHOD method_29408 renderTooltip (Ljava/lang/String;II)V
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
-	METHOD method_29409 (Ljava/lang/String;Z)V
+	METHOD method_29409 insertText (Ljava/lang/String;Z)V
 		ARG 1 text
 		ARG 2 override
-	METHOD method_29411 (Ljava/util/List;II)V
+	METHOD method_29410 openLink (Ljava/net/URI;)V
+		ARG 1 uri
+	METHOD method_29411 renderOrderedTooltip (Ljava/util/List;II)V
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
+	METHOD method_29412 onTextFocusChanged (Z)V
+		ARG 1 focused
 	METHOD method_29413 init ()V
-	METHOD method_29417 (Ljava/lang/String;Z)V
+	METHOD method_29414 mouseReleased (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 mouseButton
+	METHOD method_29415 resize (Lnet/minecraft/class_1321;II)V
+		ARG 1 client
+		ARG 2 width
+		ARG 3 height
+	METHOD method_29416 addButton (Lnet/minecraft/class_4103;)Lnet/minecraft/class_4103;
+		ARG 1 button
+	METHOD method_29417 sendMessage (Ljava/lang/String;Z)V
 		ARG 1 message
 		ARG 2 toHud
-	METHOD method_29419 (I)V
-		ARG 1 alpha
+	METHOD method_29418 renderBackground ()V
+	METHOD method_29419 renderBackgroundTexture (I)V
+		ARG 1 vOffset
 	METHOD method_29420 isPauseScreen ()Z
-	METHOD method_29422 (I)V
-		ARG 1 alpha
+	METHOD method_29421 isCut (I)Z
+		ARG 0 code
+	METHOD method_29422 renderBackground (I)V
+		ARG 1 vOffset
 	METHOD method_29423 tick ()V
-	METHOD method_29427 (Ljava/lang/String;)V
+	METHOD method_29424 isPaste (I)Z
+		ARG 0 code
+	METHOD method_29425 setClipboard (Ljava/lang/String;)V
+		ARG 0 content
+	METHOD method_29426 isCopy (I)Z
+		ARG 0 code
+	METHOD method_29427 sendMessage (Ljava/lang/String;)V
 		ARG 1 message
+	METHOD method_29428 isSelectAll (I)Z
+		ARG 0 code
+	METHOD method_29429 handleMouseEvents ()V
+	METHOD method_29430 handleKeyboardEvents ()V
+	METHOD method_29431 removed ()V
+	METHOD method_29432 getClipboard ()Ljava/lang/String;
+	METHOD method_29433 isTextFocused ()Z
+	METHOD method_29434 handleInputEvents ()V
+	METHOD method_29435 hasControlDown ()Z
+	METHOD method_29436 hasShiftDown ()Z
+	METHOD method_29437 hasAltDown ()Z
