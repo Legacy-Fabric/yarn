@@ -165,6 +165,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_12064 ACTIVATOR_RAIL Lnet/minecraft/class_160;
 	FIELD field_12065 DROPPER Lnet/minecraft/class_160;
 	FIELD field_12066 GRAVEL_SOUND Lnet/minecraft/class_162;
+	FIELD field_12067 RAIL_SOUND Lnet/minecraft/class_162;
+	FIELD field_12068 GLASS_SOUND Lnet/minecraft/class_162;
+	FIELD field_12069 WOOL_SOUND Lnet/minecraft/class_162;
+	FIELD field_12070 SAND_SOUND Lnet/minecraft/class_162;
 	FIELD field_12074 BLOCKS [Lnet/minecraft/class_160;
 	FIELD field_12080 STONE Lnet/minecraft/class_160;
 	FIELD field_12081 GRASS Lnet/minecraft/class_2696;
@@ -195,10 +199,14 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_616 randomTicks Z
 		COMMENT Specifies whether the current block ticks randomly
 	FIELD field_9205 material Lnet/minecraft/class_591;
+	FIELD field_9206 sprite Lnet/minecraft/class_2616;
+	FIELD field_9208 spriteName Ljava/lang/String;
 	METHOD <init> (ILnet/minecraft/class_591;)V
 		COMMENT Overloaded Block constructor that calls the other with the default material color
 		ARG 1 id
 		ARG 2 material
+	METHOD method_11013 setLuminance (F)Lnet/minecraft/class_160;
+		ARG 1 luminance
 	METHOD method_615 hasCollision ()Z
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
@@ -268,8 +276,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return Whether the event is successful
 		ARG 1 world
 			COMMENT The world that the block is placed in
-		ARG 4 id
-			COMMENT Id
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 		ARG 5 meta
 			COMMENT Metadata
 	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;IIII)V
@@ -281,6 +290,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Runs every time an entity collides with the block
 		ARG 1 world
 			COMMENT The world that the block is placed in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_652 onPlaced (Lnet/minecraft/class_99;IIILnet/minecraft/class_1752;Lnet/minecraft/class_2056;)V
 		COMMENT Runs when the block is placed by an entity
 		ARG 1 world
@@ -291,8 +303,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return Whether the action is succesful
 		ARG 1 world
 			COMMENT The world that the block is placed in
-		ARG 5 direction
-			COMMENT The direction that the block is facing
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 player
 	METHOD method_655 (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2714;
 		ARG 1 world
 	METHOD method_658 onSteppedOn (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;)V
@@ -302,6 +316,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The world that the block is placed in
 	METHOD method_661 onBlockBreakStart (Lnet/minecraft/class_99;IIILnet/minecraft/class_2674;)V
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 player
 	METHOD method_666 getBlockColor (Lnet/minecraft/class_104;III)I
 		COMMENT Returns the current block's color
 		COMMENT @return Block color
@@ -317,10 +335,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_674 getDropItem (ILjava/util/Random;I)I
 		COMMENT Returns the item that must be dropped when the block is broken
 		COMMENT @return The Item that drops after the block breaks
+		ARG 1 meta
 		ARG 2 random
 			COMMENT Random object
-		ARG 3 state
-			COMMENT State
+		ARG 3 fortune
 	METHOD method_675 canCollide (IZ)Z
 		COMMENT Returns whether entities can collide with the block
 		COMMENT @return Whether the block has collision
@@ -380,9 +398,12 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Runs when the block is updated as per a schedule
 		ARG 1 world
 			COMMENT The world that the block is placed in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_697 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
-	METHOD method_699 hasTransperancy ()Z
+	METHOD method_699 hasTransparency ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
 		COMMENT Sets the current block's strength. Used in registering blocks.
 		COMMENT @return The current block
@@ -392,6 +413,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Runs every random display Tick. Useful for displaying particles around a block, like Redstone Ore.
 		ARG 1 world
 			COMMENT The world that the block is placed in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_707 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_708 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_160;
@@ -424,3 +448,30 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_743 hasBlockEntity ()Z
 		COMMENT Returns whether the current block has a block entity
 		COMMENT @return Whether the current block has a block entity
+	METHOD method_8603 getSpriteName ()Ljava/lang/String;
+	METHOD method_8605 getDroppedMeta (I)I
+		ARG 1 meta
+	METHOD method_8606 getSprite (II)Lnet/minecraft/class_2616;
+		ARG 1 side
+		ARG 2 meta
+	METHOD method_8608 getCollisionBox (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8620 registerSprites (Lnet/minecraft/class_2617;)V
+		ARG 1 factory
+	METHOD method_8626 getWeakRedstonePower (Lnet/minecraft/class_104;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8628 canReplace (Lnet/minecraft/class_99;III)Z
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8634 setSprite (Ljava/lang/String;)Lnet/minecraft/class_160;
+		ARG 1 id
+	METHOD method_8643 getSprite (I)Lnet/minecraft/class_2616;
+		ARG 1 meta
+	METHOD method_8644 getColor (I)I
+		ARG 1 meta
