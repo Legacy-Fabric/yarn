@@ -13,6 +13,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	FIELD field_9119 profiler Lnet/minecraft/class_1705;
 	FIELD field_9120 isClient Z
 	FIELD field_9123 calendar Ljava/util/Calendar;
+	FIELD field_9133 ambientDarkness I
 	FIELD field_9136 random Ljava/util/Random;
 	FIELD field_9137 dimension Lnet/minecraft/class_411;
 	FIELD field_9139 chunkProvider Lnet/minecraft/class_396;
@@ -136,6 +137,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 4 x2
 		ARG 5 y2
 		ARG 6 z2
+	METHOD method_354 syncWorldEvent (IIIII)V
 	METHOD method_355 setTimeOfDay (J)V
 		ARG 1 time
 	METHOD method_356 removeListener (Lnet/minecraft/class_101;)V
@@ -175,8 +177,12 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_433 isDay ()Z
 	METHOD method_437 getMoonPhase ()F
 	METHOD method_8463 isRegionLoaded (IIII)Z
+	METHOD method_8464 setBlockMeta (IIIII)Z
+	METHOD method_8467 scheduleBlockTick (IIIII)V
+	METHOD method_8476 getEntities (Ljava/lang/Class;Lnet/minecraft/class_646;)Ljava/util/List;
 	METHOD method_8479 spawnParticle (Ljava/lang/String;DDDDDD)V
 	METHOD method_8491 setBlock (IIII)Z
+	METHOD method_8496 getLightLevel (Lnet/minecraft/class_106;III)I
 	METHOD method_8502 doesChunkExist (II)Z
 		ARG 1 x
 		ARG 2 y
@@ -187,16 +193,23 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_8509 updateNeighborsAlways (IIII)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_8510 setBlock (IIIIII)Z
 	METHOD method_8514 getTopmostBlockCoord (II)I
 	METHOD method_8515 setToAir (III)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_8517 updateComparators (IIII)V
 	METHOD method_8520 getHeightForRainAndSnow (II)I
+	METHOD method_8527 removeBlockEntity (III)V
 	METHOD method_8529 canBlockFreeze (III)Z
 	METHOD method_8533 getBiomeSource ()Lnet/minecraft/class_123;
 	METHOD method_8536 setDefaultSpawn (III)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_8537 hasRain (III)Z

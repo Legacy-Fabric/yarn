@@ -169,7 +169,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	FIELD field_12068 GLASS_SOUND Lnet/minecraft/class_162;
 	FIELD field_12069 WOOL_SOUND Lnet/minecraft/class_162;
 	FIELD field_12070 SAND_SOUND Lnet/minecraft/class_162;
+	FIELD field_12071 SNOW_SOUND Lnet/minecraft/class_162;
+	FIELD field_12072 LADDER_SOUND Lnet/minecraft/class_162;
+	FIELD field_12073 ANVIL_SOUND Lnet/minecraft/class_162;
 	FIELD field_12074 BLOCKS [Lnet/minecraft/class_160;
+	FIELD field_12075 transparency [Z
+	FIELD field_12076 opacity [I
+	FIELD field_12077 translucency [Z
+	FIELD field_12078 luminance [I
+	FIELD field_12079 nonOpaque [Z
 	FIELD field_12080 STONE Lnet/minecraft/class_160;
 	FIELD field_12081 GRASS Lnet/minecraft/class_2696;
 	FIELD field_576 blockEntity Z
@@ -198,6 +206,12 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Specifies whether the current block is tracked for stats
 	FIELD field_616 randomTicks Z
 		COMMENT Specifies whether the current block ticks randomly
+	FIELD field_9198 minX D
+	FIELD field_9199 minY D
+	FIELD field_9200 minZ D
+	FIELD field_9201 maxX D
+	FIELD field_9202 maxY D
+	FIELD field_9203 maxZ D
 	FIELD field_9205 material Lnet/minecraft/class_591;
 	FIELD field_9206 sprite Lnet/minecraft/class_2616;
 	FIELD field_9208 spriteName Ljava/lang/String;
@@ -207,6 +221,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 material
 	METHOD method_11013 setLuminance (F)Lnet/minecraft/class_160;
 		ARG 1 luminance
+	METHOD method_11018 setOpacity (I)Lnet/minecraft/class_160;
+		ARG 1 opacity
 	METHOD method_615 hasCollision ()Z
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
@@ -279,13 +295,16 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-		ARG 5 meta
-			COMMENT Metadata
+		ARG 5 type
+		ARG 6 data
 	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;IIII)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
 		ARG 1 world
 			COMMENT The world that the block is placed in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_651 onEntityCollision (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;)V
 		COMMENT Runs every time an entity collides with the block
 		ARG 1 world
@@ -297,6 +316,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Runs when the block is placed by an entity
 		ARG 1 world
 			COMMENT The world that the block is in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
+		ARG 6 stack
 	METHOD method_654 onUse (Lnet/minecraft/class_99;IIILnet/minecraft/class_2674;IFFF)Z
 		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
 		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
@@ -307,8 +331,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 player
-	METHOD method_655 (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2714;
+	METHOD method_655 getHitResult (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2714;
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_658 onSteppedOn (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;)V
 		COMMENT Runs every time an entity steps on the Block.
 		COMMENT Used by redstone ore to change it's state.
@@ -325,8 +352,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return Block color
 		ARG 1 view
 			COMMENT WorldView instance
-		ARG 3 id
+		ARG 2 x
+		ARG 3 y
 			COMMENT Id
+		ARG 4 z
 	METHOD method_669 setSound (Lnet/minecraft/class_162;)Lnet/minecraft/class_160;
 		COMMENT Sets the block's sound type. Used in registering blocks.
 		COMMENT @return The current block
@@ -392,8 +421,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Since entities are being spawned, most of it only happens on a ServerWorld.
 		ARG 1 world
 			COMMENT The world that the block is placed in
-		ARG 3 size
+		ARG 2 amount
+		ARG 3 x
 			COMMENT Size
+		ARG 4 y
+		ARG 5 z
 	METHOD method_690 scheduledTick (Lnet/minecraft/class_99;IIILjava/util/Random;)V
 		COMMENT Runs when the block is updated as per a schedule
 		ARG 1 world
@@ -448,6 +480,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_743 hasBlockEntity ()Z
 		COMMENT Returns whether the current block has a block entity
 		COMMENT @return Whether the current block has a block entity
+	METHOD method_8600 getMaxY ()D
+	METHOD method_8601 getMinZ ()D
+	METHOD method_8602 getMaxZ ()D
 	METHOD method_8603 getSpriteName ()Ljava/lang/String;
 	METHOD method_8605 getDroppedMeta (I)I
 		ARG 1 meta
@@ -455,23 +490,94 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 side
 		ARG 2 meta
 	METHOD method_8608 getCollisionBox (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
+		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8620 registerSprites (Lnet/minecraft/class_2617;)V
+	METHOD method_8613 onBlockReplaced (Lnet/minecraft/class_99;IIIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 6 meta
+	METHOD method_8614 addBoundingBoxes (Lnet/minecraft/class_99;IIILnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_1745;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 box
+		ARG 7 entity
+	METHOD method_8615 onLandedUpon (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;F)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
+		ARG 6 distance
+	METHOD method_8618 updateBoundingBox (Lnet/minecraft/class_104;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8619 (Lnet/minecraft/class_104;IIII)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8620 createSprites (Lnet/minecraft/class_2617;)V
 		ARG 1 factory
+	METHOD method_8622 (Lnet/minecraft/class_99;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8625 canPathfindThrough (Lnet/minecraft/class_104;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8626 getWeakRedstonePower (Lnet/minecraft/class_104;IIII)I
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 direction
 	METHOD method_8628 canReplace (Lnet/minecraft/class_99;III)Z
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8630 getStrongRedstonePower (Lnet/minecraft/class_104;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 direction
+	METHOD method_8631 getPickStack (Lnet/minecraft/class_99;III)I
+		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 	METHOD method_8634 setSprite (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 1 id
+	METHOD method_8637 getSprite (Lnet/minecraft/class_104;IIII)Lnet/minecraft/class_2616;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 side
+	METHOD method_8639 getStrength (Lnet/minecraft/class_99;III)F
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8642 getComparatorOutput (Lnet/minecraft/class_99;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8643 getSprite (I)Lnet/minecraft/class_2616;
 		ARG 1 meta
 	METHOD method_8644 getColor (I)I
 		ARG 1 meta
+	METHOD method_8650 getMinX ()D
+	METHOD method_8651 getMaxX ()D
+	METHOD method_8652 getMinY ()D
