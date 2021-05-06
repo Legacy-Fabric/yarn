@@ -223,6 +223,8 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 luminance
 	METHOD method_11018 setOpacity (I)Lnet/minecraft/class_160;
 		ARG 1 opacity
+	METHOD method_11019 isSolidBlock (I)Z
+	METHOD method_11020 registerDefaultFlammables ()V
 	METHOD method_615 hasCollision ()Z
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
@@ -312,6 +314,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 entity
 	METHOD method_652 onPlaced (Lnet/minecraft/class_99;IIILnet/minecraft/class_1752;Lnet/minecraft/class_2056;)V
 		COMMENT Runs when the block is placed by an entity
 		ARG 1 world
@@ -331,6 +334,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 player
+		ARG 6 side
+		ARG 7 hitX
+		ARG 8 hitY
+		ARG 9 hitZ
 	METHOD method_655 getHitResult (Lnet/minecraft/class_99;IIILnet/minecraft/class_649;Lnet/minecraft/class_649;)Lnet/minecraft/class_2714;
 		ARG 1 world
 		ARG 2 x
@@ -433,6 +440,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 random
 	METHOD method_697 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_699 hasTransparency ()Z
@@ -494,6 +502,16 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8609 getPlacementMeta (Lnet/minecraft/class_99;IIIIFFFI)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 side
+		ARG 6 hitX
+		ARG 7 hitY
+		ARG 8 hitZ
+		ARG 9 metadata
 	METHOD method_8613 onBlockReplaced (Lnet/minecraft/class_99;IIIII)V
 		ARG 1 world
 		ARG 2 x
@@ -514,19 +532,31 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 		ARG 5 entity
 		ARG 6 distance
+	METHOD method_8617 afterBreak (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;IIII)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
 	METHOD method_8618 updateBoundingBox (Lnet/minecraft/class_104;III)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8619 (Lnet/minecraft/class_104;IIII)Z
+	METHOD method_8619 isSideInvisible (Lnet/minecraft/class_104;IIII)Z
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 side
 	METHOD method_8620 createSprites (Lnet/minecraft/class_2617;)V
 		ARG 1 factory
 	METHOD method_8622 (Lnet/minecraft/class_99;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8623 onBroken (Lnet/minecraft/class_99;IIII)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -543,6 +573,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 		ARG 5 direction
 	METHOD method_8628 canReplace (Lnet/minecraft/class_99;III)Z
+		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
@@ -552,7 +583,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 direction
-	METHOD method_8631 getPickStack (Lnet/minecraft/class_99;III)I
+	METHOD method_8631 getPickItem (Lnet/minecraft/class_99;III)I
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -578,6 +609,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 meta
 	METHOD method_8644 getColor (I)I
 		ARG 1 meta
+	METHOD method_8645 getStack (I)Lnet/minecraft/class_2056;
+		ARG 1 meta
+	METHOD method_8647 getDropMeta (Lnet/minecraft/class_99;III)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8650 getMinX ()D
 	METHOD method_8651 getMaxX ()D
 	METHOD method_8652 getMinY ()D
