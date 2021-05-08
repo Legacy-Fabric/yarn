@@ -1,5 +1,5 @@
 name: Publish
-on: [push, workflow_run]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
-
       - run: ./gradlew build javadocJar publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
