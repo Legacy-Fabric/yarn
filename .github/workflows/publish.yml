@@ -2,10 +2,9 @@ name: Publish
 on: [push, workflow_run]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: openjdk:15-jdk
-      options: --user root
     steps:
       - uses: actions/checkout@v1
       - uses: gradle/wrapper-validation-action@v1
