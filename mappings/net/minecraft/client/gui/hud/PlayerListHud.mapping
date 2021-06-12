@@ -1,7 +1,14 @@
 CLASS net/minecraft/class_711 net/minecraft/client/gui/hud/PlayerListHud
 	FIELD field_2984 ENTRY_ORDERING Lcom/google/common/collect/Ordering;
+	FIELD field_2985 client Lnet/minecraft/class_669;
+	FIELD field_2986 inGameHud Lnet/minecraft/class_680;
+	FIELD field_2987 footer Lnet/minecraft/class_1444;
+	FIELD field_2988 header Lnet/minecraft/class_1444;
 	FIELD field_2989 showTime J
 	FIELD field_2990 visible Z
+	METHOD <init> (Lnet/minecraft/class_669;Lnet/minecraft/class_680;)V
+		ARG 1 client
+		ARG 2 inGameHud
 	METHOD method_2619 clear ()V
 	METHOD method_2620 renderLatencyIcon (IIILnet/minecraft/class_908;)V
 		ARG 3 y
@@ -11,6 +18,11 @@ CLASS net/minecraft/class_711 net/minecraft/client/gui/hud/PlayerListHud
 		ARG 2 scoreboard
 		ARG 3 playerListScoreboardObjective
 	METHOD method_2622 renderScoreboardObjective (Lnet/minecraft/class_650;ILjava/lang/String;IILnet/minecraft/class_908;)V
+		ARG 1 objective
+		ARG 3 player
+		ARG 6 playerEntry
+	METHOD method_2623 getPlayerName (Lnet/minecraft/class_908;)Ljava/lang/String;
+		ARG 1 playerEntry
 	METHOD method_2624 setFooter (Lnet/minecraft/class_1444;)V
 		ARG 1 footer
 	METHOD method_2625 tick (Z)V
@@ -18,3 +30,6 @@ CLASS net/minecraft/class_711 net/minecraft/client/gui/hud/PlayerListHud
 	METHOD method_2626 setHeader (Lnet/minecraft/class_1444;)V
 		ARG 1 header
 	CLASS class_712 EntryOrderComparator
+		METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+			ARG 1 playerEntry1
+			ARG 2 playerEntry2
