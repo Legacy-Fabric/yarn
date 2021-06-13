@@ -1,6 +1,7 @@
 CLASS net/minecraft/class_795 net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen
 	FIELD field_3462 searchField Lnet/minecraft/class_689;
 	FIELD field_3463 slots Ljava/util/List;
+	FIELD field_3464 deleteItemSlot Lnet/minecraft/class_2010;
 	FIELD field_3465 scrolling Z
 	FIELD field_3466 listener Lnet/minecraft/class_794;
 	FIELD field_3467 ITEM_GROUPS Lnet/minecraft/class_1605;
@@ -11,6 +12,10 @@ CLASS net/minecraft/class_795 net/minecraft/client/gui/screen/ingame/CreativeInv
 		ARG 1 player
 	METHOD method_2927 renderTabIcon (Lnet/minecraft/class_2029;)V
 		ARG 1 group
+	METHOD method_2928 isClickInTab (Lnet/minecraft/class_2029;II)Z
+		ARG 1 group
+		ARG 2 mouseX
+		ARG 3 mouseY
 	METHOD method_2929 setSelectedTab (Lnet/minecraft/class_2029;)V
 		ARG 1 group
 	METHOD method_2930 renderTabTooltipIfHovered (Lnet/minecraft/class_2029;II)Z
@@ -21,6 +26,14 @@ CLASS net/minecraft/class_795 net/minecraft/client/gui/screen/ingame/CreativeInv
 	METHOD method_2933 search ()V
 	METHOD method_2934 hasScrollbar ()Z
 	CLASS class_796 CreativeScreenHandler
+		FIELD field_3473 itemList Ljava/util/List;
+		METHOD <init> (Lnet/minecraft/class_1963;)V
+			ARG 1 player
 		METHOD method_2935 scrollItems (F)V
 			ARG 1 position
+		METHOD method_2936 isFull ()Z
 	CLASS class_797 CreativeInventorySlot
+		FIELD field_3475 slot Lnet/minecraft/class_2010;
+		METHOD <init> (Lnet/minecraft/class_795;Lnet/minecraft/class_2010;I)V
+			ARG 2 slot
+			ARG 3 index
