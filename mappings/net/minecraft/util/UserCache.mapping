@@ -1,0 +1,47 @@
+CLASS net/minecraft/class_6387 net/minecraft/util/UserCache
+	FIELD field_31916 EXPIRATION_DATE_FORMAT Ljava/text/SimpleDateFormat;
+	FIELD field_31917 gson Lcom/google/gson/Gson;
+	FIELD field_31918 useRemote Z
+	FIELD field_31919 byName Ljava/util/Map;
+	FIELD field_31920 byUuid Ljava/util/Map;
+	FIELD field_31921 byAccessTime Ljava/util/Deque;
+	FIELD field_31922 profileRepository Lcom/mojang/authlib/GameProfileRepository;
+	FIELD field_31923 cacheFile Ljava/io/File;
+	FIELD field_31924 ENTRY_LIST_TYPE Ljava/lang/reflect/ParameterizedType;
+	METHOD <init> (Lcom/mojang/authlib/GameProfileRepository;Ljava/io/File;)V
+		ARG 1 profileRepository
+	METHOD method_33647 getLastAccessedEntries (I)Ljava/util/List;
+	METHOD method_33648 add (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_33649 add (Lcom/mojang/authlib/GameProfile;Ljava/util/Date;)V
+		ARG 1 profile
+	METHOD method_33650 findProfileByName (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 repository
+		ARG 1 name
+	METHOD method_33651 findByName (Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+	METHOD method_33652 getByUuid (Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;
+	METHOD method_33653 setUseRemote (Z)V
+		ARG 0 value
+	METHOD method_33654 load ()V
+	METHOD method_33655 getEntry (Ljava/util/UUID;)Lnet/minecraft/class_6387$class_6388;
+	METHOD method_33656 save ()V
+	METHOD method_33657 shouldUseRemote ()Z
+	CLASS 1
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+			ARG 2 exception
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
+	CLASS class_6388 Entry
+		FIELD field_31927 profile Lcom/mojang/authlib/GameProfile;
+		FIELD field_31928 expirationDate Ljava/util/Date;
+		METHOD method_33658 getProfile ()Lcom/mojang/authlib/GameProfile;
+		METHOD method_33660 getExpirationDate ()Ljava/util/Date;
+	CLASS class_6389 JsonConverter
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 functionJson
+			ARG 2 unused
+			ARG 3 context
+		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 entry
+			ARG 2 unused
+			ARG 3 context

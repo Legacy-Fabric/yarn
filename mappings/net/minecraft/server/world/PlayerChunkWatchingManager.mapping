@@ -1,0 +1,65 @@
+CLASS net/minecraft/class_6380 net/minecraft/server/world/PlayerChunkWatchingManager
+	FIELD field_31801 NOT_SPECTATOR_PREDICATE Lcom/google/common/base/Predicate;
+	FIELD field_31802 GENERATES_CHUNKS_PREDICATE Lcom/google/common/base/Predicate;
+	FIELD field_31803 world Lnet/minecraft/class_2516;
+	FIELD field_31804 players Ljava/util/List;
+	FIELD field_31805 byChunkPos Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
+	FIELD field_31806 entrySet Ljava/util/Set;
+	FIELD field_31808 entriesMissingChunks Ljava/util/List;
+	FIELD field_31809 entryArrayList Ljava/util/List;
+	FIELD field_31810 viewDistance I
+	FIELD field_31811 periodicUpdate J
+	METHOD <init> (Lnet/minecraft/class_2516;)V
+		ARG 1 world
+	METHOD method_33577 getWorld ()Lnet/minecraft/class_2516;
+	METHOD method_33578 setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD method_33579 hasChunk (II)Z
+		ARG 1 x
+		ARG 2 z
+	METHOD method_33580 isInViewDistance (IIIII)Z
+		ARG 1 chunkX
+		ARG 2 chunkZ
+		ARG 3 playerX
+		ARG 4 playerZ
+		ARG 5 viewDistance
+	METHOD method_33581 onBlockChange (Lnet/minecraft/class_6183;)V
+		ARG 1 pos
+	METHOD method_33582 addPlayer (Lnet/minecraft/class_2520;)V
+		ARG 1 player
+	METHOD method_33584 add (Lnet/minecraft/class_4615;)V
+		ARG 1 entry
+	METHOD method_33585 getRandomTickingChunks ()Ljava/util/Iterator;
+	METHOD method_33586 getMinPos (I)I
+		ARG 0 chunkPos
+	METHOD method_33587 getEntry (II)Lnet/minecraft/class_4615;
+		ARG 1 x
+		ARG 2 z
+	METHOD method_33588 removePlayer (Lnet/minecraft/class_2520;)V
+		ARG 1 player
+	METHOD method_33589 remove (Lnet/minecraft/class_4615;)V
+		ARG 1 entry
+	METHOD method_33590 tick ()V
+	METHOD method_33591 getOrCreateEntry (II)Lnet/minecraft/class_4615;
+		ARG 1 x
+		ARG 2 z
+	METHOD method_33592 movePlayer (Lnet/minecraft/class_2520;)V
+		ARG 1 player
+	METHOD method_33594 getIndex (II)J
+		ARG 0 x
+		ARG 1 z
+	METHOD method_33595 scheduleUpdate ()V
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 player
+	CLASS 2
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 player
+	CLASS 4
+		METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+			ARG 1 a
+			ARG 2 b
+	CLASS 5
+		METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+			ARG 1 a
+			ARG 2 b

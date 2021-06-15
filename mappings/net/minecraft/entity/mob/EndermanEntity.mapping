@@ -1,0 +1,50 @@
+CLASS net/minecraft/class_4813 net/minecraft/entity/mob/EndermanEntity
+	FIELD field_22285 ATTACKING_SPEED_BOOST_UUID Ljava/util/UUID;
+	FIELD field_22286 ageWhenTargetSet I
+	FIELD field_22287 ATTACKING_SPEED_BOOST Lnet/minecraft/class_6459;
+	FIELD field_22288 CARRIED_BLOCK Lnet/minecraft/class_4519;
+	FIELD field_22289 ANGRY Lnet/minecraft/class_4519;
+	FIELD field_22290 lastAngrySoundAge I
+	FIELD field_22291 CARRIABLE_BLOCKS Ljava/util/Set;
+	METHOD method_24731 initDataFixer (Lnet/minecraft/class_2656;)V
+	METHOD method_24732 teleportTo (Lnet/minecraft/class_2239;)Z
+		ARG 1 entity
+	METHOD method_24733 setCarriedBlock (Lnet/minecraft/class_4541;)V
+		ARG 1 state
+	METHOD method_24734 teleportRandomly ()Z
+	METHOD method_24735 getCarriedBlock ()Lnet/minecraft/class_4541;
+	METHOD method_24736 isAngry ()Z
+	METHOD method_24738 isPlayerStaring (Lnet/minecraft/class_4890;)Z
+		ARG 1 player
+	METHOD method_24739 teleportTo (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_24740 playAngrySound ()V
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 endermite
+	CLASS class_4814 PlaceBlockGoal
+		FIELD field_22293 enderman Lnet/minecraft/class_4813;
+		METHOD <init> (Lnet/minecraft/class_4813;)V
+			ARG 1 enderman
+		METHOD method_24742 canPlaceOn (Lnet/minecraft/class_5086;Lnet/minecraft/class_6183;Lnet/minecraft/class_5149;Lnet/minecraft/class_4541;Lnet/minecraft/class_4541;)Z
+			ARG 1 world
+			ARG 2 posAbove
+			ARG 3 carriedBlock
+			ARG 4 stateAbove
+			ARG 5 state
+	CLASS class_4815 TeleportTowardsPlayerGoal
+		FIELD field_22294 enderman Lnet/minecraft/class_4813;
+		FIELD field_22295 targetPlayer Lnet/minecraft/class_4890;
+		FIELD field_22296 lookAtPlayerWarmup I
+		FIELD field_22297 ticksSinceUnseenTeleport I
+		METHOD <init> (Lnet/minecraft/class_4813;)V
+			ARG 1 enderman
+		CLASS 1
+			METHOD apply (Ljava/lang/Object;)Z
+				ARG 1 player
+	CLASS class_4816 PickUpBlockGoal
+		FIELD field_22299 enderman Lnet/minecraft/class_4813;
+		METHOD <init> (Lnet/minecraft/class_4813;)V
+			ARG 1 enderman

@@ -1,0 +1,51 @@
+CLASS net/minecraft/class_2853 net/minecraft/entity/passive/WolfEntity
+	FIELD field_21979 WOLF_HEALTH Lnet/minecraft/class_4519;
+	FIELD field_21980 BEGGING Lnet/minecraft/class_4519;
+	FIELD field_21981 COLLAR_COLOR Lnet/minecraft/class_4519;
+	FIELD field_21982 begAnimationProgress F
+	FIELD field_21983 lastBegAnimationProgress F
+	FIELD field_21984 furWet Z
+	FIELD field_21985 canShakeWaterOff Z
+	FIELD field_21986 shakeProgress F
+	FIELD field_21987 lastShakeProgress F
+	METHOD method_24409 setCollarColor (Lnet/minecraft/class_4985;)V
+		ARG 1 color
+	METHOD method_24410 initDataFixer (Lnet/minecraft/class_2656;)V
+	METHOD method_24412 isFurWet ()Z
+		COMMENT Returns whether this wolf's fur is wet.
+		COMMENT <p>
+		COMMENT The wolf's fur will remain wet until the wolf shakes.
+	METHOD method_24413 getTailAngle ()F
+	METHOD method_24414 hasAngerTime ()Z
+	METHOD method_24415 getCollarColor ()Lnet/minecraft/class_4985;
+	METHOD method_24416 isBegging ()Z
+	METHOD method_24417 getShakeAnimationProgress (FF)F
+		ARG 1 tickDelta
+	METHOD method_24418 getFurWetBrightnessMultiplier (F)F
+		COMMENT Returns this wolf's brightness multiplier based on the fur wetness.
+		COMMENT <p>
+		COMMENT The brightness multiplier represents how much darker the wolf gets while its fur is wet. The multiplier changes (from 0.75 to 1.0 incrementally) when a wolf shakes.
+		COMMENT
+		COMMENT @param tickDelta Progress for linearly interpolating between the previous and current game state.
+		COMMENT @return Brightness as a float value between 0.75 and 1.0.
+		COMMENT @see net.minecraft.client.render.entity.model.TintableAnimalModel
+		ARG 1 tickDelta
+	METHOD method_24419 getBegAnimationProgress (F)F
+		ARG 1 tickDelta
+	METHOD method_24420 setAngry (Z)V
+		ARG 1 angry
+	METHOD method_24421 setBegging (Z)V
+		ARG 1 begging
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 entity
+	CLASS class_4771 AvoidLlamaGoal
+		FIELD field_21990 wolf Lnet/minecraft/class_2853;
+		METHOD <init> (Lnet/minecraft/class_2853;Lnet/minecraft/class_2853;Ljava/lang/Class;FDD)V
+			ARG 2 wolf
+			ARG 3 fleeFromType
+			ARG 4 distance
+			ARG 5 slowSpeed
+			ARG 7 fastSpeed
+		METHOD method_24423 isScaredOf (Lnet/minecraft/class_2870;)Z
+			ARG 1 llama

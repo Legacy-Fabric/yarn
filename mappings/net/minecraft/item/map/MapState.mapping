@@ -1,0 +1,49 @@
+CLASS net/minecraft/class_5506 net/minecraft/item/map/MapState
+	FIELD field_26399 xCenter I
+	FIELD field_26400 zCenter I
+	FIELD field_26401 dimensionId B
+	FIELD field_26402 trackingPosition Z
+	FIELD field_26403 unlimitedTracking Z
+	FIELD field_26404 scale B
+	FIELD field_26405 colors [B
+	FIELD field_26406 updateTrackers Ljava/util/List;
+	FIELD field_26407 icons Ljava/util/Map;
+	FIELD field_26408 updateTrackersByPlayer Ljava/util/Map;
+	METHOD method_28195 calculateCenter (DDI)V
+		ARG 1 x
+		ARG 3 z
+		ARG 5 scale
+	METHOD method_28196 markDirty (II)V
+		ARG 1 x
+		ARG 2 z
+	METHOD method_28197 getPlayerSyncData (Lnet/minecraft/class_4890;)Lnet/minecraft/class_5506$class_5507;
+		ARG 1 player
+	METHOD method_28198 update (Lnet/minecraft/class_4890;Lnet/minecraft/class_5013;)V
+		ARG 1 player
+		ARG 2 stack
+	METHOD method_28200 addDecorationsTag (Lnet/minecraft/class_5013;Lnet/minecraft/class_6183;Ljava/lang/String;Lnet/minecraft/class_5504$class_5505;)V
+		ARG 0 stack
+		ARG 1 pos
+		ARG 2 id
+		ARG 3 type
+	METHOD method_28201 addIcon (Lnet/minecraft/class_5504$class_5505;Lnet/minecraft/class_5086;Ljava/lang/String;DDD)V
+		ARG 1 type
+		ARG 3 key
+		ARG 4 x
+		ARG 6 z
+		ARG 8 rotation
+	CLASS class_5507 PlayerUpdateTracker
+		FIELD field_26409 player Lnet/minecraft/class_4890;
+		FIELD field_26412 dirty Z
+		FIELD field_26413 startX I
+		FIELD field_26414 startZ I
+		FIELD field_26415 endX I
+		FIELD field_26416 endZ I
+		FIELD field_26417 emptyPacketsRequested I
+		METHOD <init> (Lnet/minecraft/class_5506;Lnet/minecraft/class_4890;)V
+			ARG 1 player
+		METHOD method_28202 markDirty (II)V
+			ARG 1 x
+			ARG 2 z
+		METHOD method_28203 getPacket (Lnet/minecraft/class_5013;)Lnet/minecraft/class_6257;
+			ARG 1 stack
