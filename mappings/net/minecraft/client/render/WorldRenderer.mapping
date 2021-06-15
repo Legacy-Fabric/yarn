@@ -1,13 +1,28 @@
 CLASS net/minecraft/class_3986 net/minecraft/client/render/WorldRenderer
 	FIELD field_29156 entityOutlinesFramebuffer Lnet/minecraft/class_5873;
 	FIELD field_29157 entityOutlineShader Lnet/minecraft/class_6015;
+	FIELD field_29158 lastCameraChunkUpdateX D
+	FIELD field_29159 lastCameraChunkUpdateY D
+	FIELD field_29160 lastCameraChunkUpdateZ D
+	FIELD field_29161 cameraChunkX I
+	FIELD field_29162 cameraChunkY I
+	FIELD field_29163 cameraChunkZ I
+	FIELD field_29164 lastCameraX D
+	FIELD field_29165 lastCameraY D
+	FIELD field_29166 lastCameraZ D
+	FIELD field_29167 lastCameraPitch D
+	FIELD field_29168 lastCameraYaw D
 	FIELD field_29169 chunkBuilder Lnet/minecraft/class_1547;
+	FIELD field_29170 chunkRenderer Lnet/minecraft/class_4145;
 	FIELD field_29171 renderDistance I
 	FIELD field_29173 regularEntityCount I
 	FIELD field_29175 blockEntityCount I
 	FIELD field_29176 shouldCaptureFrustum Z
 	FIELD field_29178 capturedFrustrumOrientation [Lorg/lwjgl/util/vector/Vector4f;
 	FIELD field_29179 capturedFrustumPosition Lnet/minecraft/class_6123;
+	FIELD field_29181 lastTranslationSortX D
+	FIELD field_29183 lastTranslucentSortY D
+	FIELD field_29184 lastTranslucentSortZ D
 	FIELD field_29188 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_29189 MOON_PHASES Lnet/minecraft/class_4523;
 	FIELD field_29190 SUN Lnet/minecraft/class_4523;
@@ -19,11 +34,16 @@ CLASS net/minecraft/class_3986 net/minecraft/client/render/WorldRenderer
 	FIELD field_29196 entityRenderDispatcher Lnet/minecraft/class_5957;
 	FIELD field_29197 world Lnet/minecraft/class_5768;
 	FIELD field_29198 chunksToRebuild Ljava/util/Set;
+	FIELD field_29199 visibleChunks Ljava/util/List;
 	FIELD field_29200 noCullingBlockEntities Ljava/util/Set;
 	FIELD field_29201 chunks Lnet/minecraft/class_1511;
 	FIELD field_29205 chunkUpdateSmoother Lnet/minecraft/class_6031;
 	FIELD field_29209 ticks I
+	FIELD field_29210 blockBreakingInfo Ljava/util/Map;
 	FIELD field_29211 playingSongs Ljava/util/Map;
+	FIELD field_29212 destroyTexture [Lnet/minecraft/class_4168;
+	METHOD <init> (Lnet/minecraft/class_1321;)V
+		ARG 1 client
 	METHOD method_30418 reload ()V
 	METHOD method_30424 onResized (II)V
 	METHOD method_30425 scheduleChunkRender (IIIIIIZ)V
@@ -48,6 +68,9 @@ CLASS net/minecraft/class_3986 net/minecraft/client/render/WorldRenderer
 	METHOD method_30439 updateNoCullingBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 removed
 		ARG 2 added
+	METHOD method_30443 renderWorldBorder (Lnet/minecraft/class_2239;F)V
+	METHOD method_30444 (Lnet/minecraft/class_2239;Lnet/minecraft/class_5941;F)V
+		ARG 1 entity
 	METHOD method_30446 getRandomParticleSpawnChance (Z)I
 		ARG 1 canSpawnOnMinimal
 	METHOD method_30450 spawnParticle (IZDDDDDD[I)Lnet/minecraft/class_4157;
@@ -70,6 +93,8 @@ CLASS net/minecraft/class_3986 net/minecraft/client/render/WorldRenderer
 	METHOD method_30462 tick ()V
 	METHOD method_30464 isTerrainRenderComplete ()Z
 	METHOD method_30465 scheduleTerrainUpdate ()V
+	METHOD method_30471 lightWorldBorder ()V
+	METHOD method_30472 cleanupRenderWorldBorder ()V
 	CLASS class_5872 ChunkInfo
 		FIELD field_29220 cullingState B
 		METHOD <init> (Lnet/minecraft/class_3986;Lnet/minecraft/class_5937;Lnet/minecraft/class_6196;I)V
