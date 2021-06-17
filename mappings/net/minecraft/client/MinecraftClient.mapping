@@ -19,6 +19,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26827 connectedToRealms Z
 	FIELD field_26828 renderTickCounter Lnet/minecraft/class_1325;
 	FIELD field_26829 snooper Lnet/minecraft/class_2179;
+	FIELD field_26830 lastTime J
 	FIELD field_26831 resourceManager Lnet/minecraft/class_1726;
 	FIELD field_26833 resourcePacks Ljava/util/List;
 	FIELD field_26834 defaultResourcePack Lnet/minecraft/class_6037;
@@ -81,7 +82,9 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26900 crosshairTarget Lnet/minecraft/class_1307;
 	FIELD field_26901 options Lnet/minecraft/class_1320;
 	FIELD field_26902 hotbarStorage Lnet/minecraft/class_4050;
+	FIELD field_26903 mouseHelper Lnet/minecraft/class_4095;
 	FIELD field_26904 runDirectory Ljava/io/File;
+	FIELD field_26905 cursorLocked Z
 	FIELD field_26907 metricsData Lnet/minecraft/class_2610;
 	METHOD <init> (Lnet/minecraft/class_5731;)V
 		ARG 1 args
@@ -104,6 +107,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28778 isPaused ()Z
 	METHOD method_28779 getSoundManager ()Lnet/minecraft/class_6109;
 	METHOD method_28780 getMusicType ()Lnet/minecraft/class_6104$class_6105;
+	METHOD method_28781 handleKeyboardEvents ()V
 	METHOD method_28782 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_28783 getSkinProvider ()Lnet/minecraft/class_6048;
 	METHOD method_28784 run ()V
@@ -111,6 +115,11 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 		ARG 1 crash
 	METHOD method_28794 openScreen (Lnet/minecraft/class_5641;)V
 		ARG 1 screen
+	METHOD method_28796 loadWorld (Lnet/minecraft/class_5768;)V
+		ARG 1 world
+	METHOD method_28797 loadWorld (Lnet/minecraft/class_5768;Ljava/lang/String;)V
+		ARG 1 world
+		ARG 2 name
 	METHOD method_28798 setCurrentServerEntry (Lnet/minecraft/class_5770;)V
 	METHOD method_28799 (Lnet/minecraft/class_4169;)V
 		ARG 1 textureManager
@@ -125,6 +134,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 		ARG 1 connectedToRealms
 	METHOD method_28808 doAttack ()V
 	METHOD method_28809 doItemUse ()V
+	METHOD method_28811 handleInput ()V
 	METHOD method_28812 handleInputEvents ()V
 	METHOD method_28814 doItemPick ()V
 	METHOD method_28815 getCurrentAction ()Ljava/lang/String;
@@ -150,6 +160,8 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28841 getFramebuffer ()Lnet/minecraft/class_5873;
 	METHOD method_28849 handleBlockBreaking (Z)V
 	METHOD method_28850 getGameVersion ()Ljava/lang/String;
+	METHOD method_28851 handleDebugKey (I)Z
+		ARG 1 keyCode
 	METHOD method_28852 printCrashReport (Lnet/minecraft/class_5342;)V
 		ARG 1 crash
 	METHOD method_28854 getVersionType ()Ljava/lang/String;
@@ -160,6 +172,8 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28861 getFramerateLimit ()I
 	METHOD method_28863 cleanUpAfterCrash ()V
 	METHOD method_28864 scheduleStop ()V
+	METHOD method_28865 lockMouseCursor ()V
+	METHOD method_28866 unlockCursor ()V
 	METHOD method_28867 updateWindowTitle ()V
 	METHOD method_28869 getMusicTracker ()Lnet/minecraft/class_6104;
 	METHOD method_28870 tick ()V

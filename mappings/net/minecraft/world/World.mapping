@@ -4,12 +4,14 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	FIELD field_23558 isClient Z
 	FIELD field_23563 lcgBlockSeed I
 	FIELD field_23564 ambientDarkness I
+	FIELD field_23565 calendar Ljava/util/Calendar;
 	FIELD field_23566 iteratingTickingBlockEntities Z
 	FIELD field_23567 border Lnet/minecraft/class_3600;
 	FIELD field_23569 pendingBlockEntities Ljava/util/List;
 	FIELD field_23570 unloadedBlockEntities Ljava/util/List;
 	FIELD field_23574 blockEntities Ljava/util/List;
 	FIELD field_23575 tickingBlockEntities Ljava/util/List;
+	FIELD field_23576 playerList Ljava/util/List;
 	FIELD field_23580 unusedIncrement I
 	FIELD field_23581 rainGradientPrev F
 	FIELD field_23582 rainGradient F
@@ -18,6 +20,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	FIELD field_23585 random Ljava/util/Random;
 	FIELD field_23586 dimension Lnet/minecraft/class_5321;
 	FIELD field_23588 listeners Ljava/util/List;
+	FIELD field_23589 chunkCache Lnet/minecraft/class_5305;
 	FIELD field_23591 properties Lnet/minecraft/class_5509;
 	METHOD <init> (Lnet/minecraft/class_1268;Lnet/minecraft/class_5509;Lnet/minecraft/class_5321;Lnet/minecraft/class_2626;Z)V
 		ARG 1 levelProperties
@@ -161,6 +164,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26058 getDifficulty ()Lnet/minecraft/class_2148;
 	METHOD method_26060 getAmbientDarkness ()I
 	METHOD method_26062 getWorldBorder ()Lnet/minecraft/class_3600;
+	METHOD method_26065 getWorldLight (F)F
 	METHOD method_26069 syncWorldEvent (ILnet/minecraft/class_6183;I)V
 	METHOD method_26070 setTimeOfDay (J)V
 		ARG 1 time
@@ -182,6 +186,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26088 loadEntityUnchecked (Lnet/minecraft/class_2239;)V
 		ARG 1 entity
 	METHOD method_26090 getEntitiesIn (Lnet/minecraft/class_2239;Lnet/minecraft/class_1303;)Ljava/util/List;
+	METHOD method_26091 getSkyAngle (F)F
+		ARG 1 tickDelta
 	METHOD method_26093 getTopPosition (II)I
 	METHOD method_26097 isAreaNotEmpty (Lnet/minecraft/class_1303;)Z
 	METHOD method_26098 getTopNonAirState (Lnet/minecraft/class_6183;)Lnet/minecraft/class_4541;
@@ -231,3 +237,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26154 getReceivedStrongRedstonePower (Lnet/minecraft/class_6183;)I
 	METHOD method_26155 isReceivingRedstonePower (Lnet/minecraft/class_6183;)Z
 	METHOD method_26156 getReceivedRedstonePower (Lnet/minecraft/class_6183;)I
+	CLASS 4
+		METHOD call ()Ljava/lang/Object;
+	CLASS 5
+		METHOD call ()Ljava/lang/Object;

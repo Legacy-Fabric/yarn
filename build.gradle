@@ -1,6 +1,5 @@
 buildscript {
 	repositories {
-		jcenter()
 		maven {
 			name "Fabric Repository"
 			url 'https://maven.fabricmc.net'
@@ -783,14 +782,14 @@ javadoc {
 	}
 }
 
-task javadocJar(type: Jar, dependsOn: ["javadoc"]) {
-	group = "javadoc generation"
-
-	from javadoc.destinationDir
-
-	archiveVersion.set yarnVersion
-	archiveClassifier = 'javadoc'
-}
+//task javadocJar(type: Jar, dependsOn: ["javadoc"]) {
+//	group = "javadoc generation"
+//
+//	from javadoc.destinationDir
+//
+//	archiveVersion.set yarnVersion
+//	archiveClassifier = 'javadoc'
+//}
 
 publishing {
 	publications {
@@ -810,7 +809,7 @@ publishing {
 			artifact(v2MergedYarnJar) {
 				classifier "mergedv2"
 			}
-			artifact javadocJar
+//			artifact javadocJar
 		}
 
 	}
