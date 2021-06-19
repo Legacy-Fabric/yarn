@@ -3,6 +3,7 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	FIELD field_28926 blockOutlineEnabled Z
 	FIELD field_28927 lastWorldIconUpdate J
 	FIELD field_28928 lastWindowFocusedTime J
+	FIELD field_28933 lightmapDirty Z
 	FIELD field_28946 renderingPanorama Z
 	FIELD field_28951 floatingItem Lnet/minecraft/class_5013;
 	FIELD field_28952 floatingItemTimeLeft I
@@ -15,6 +16,8 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	FIELD field_28961 firstPersonRenderer Lnet/minecraft/class_1498;
 	FIELD field_28962 SHADER_COUNT I
 	FIELD field_28963 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_28964 RAIN_TEXTURE Lnet/minecraft/class_4523;
+	FIELD field_28965 SNOW_TEXTURE Lnet/minecraft/class_4523;
 	FIELD field_28966 client Lnet/minecraft/class_1321;
 	FIELD field_28967 resourceContainer Lnet/minecraft/class_3917;
 	FIELD field_28968 random Ljava/util/Random;
@@ -28,6 +31,9 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	METHOD method_30207 hasShader ()Z
 	METHOD method_30208 updateTargetedEntity (F)V
 		ARG 1 tickDelta
+	METHOD method_30211 render (FJ)V
+		ARG 1 tickDelta
+		ARG 2 startTime
 	METHOD method_30215 onResized (II)V
 	METHOD method_30216 renderFloatingItem (IIF)V
 		ARG 1 scaledWidth
@@ -38,12 +44,20 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	METHOD method_30221 loadShader (Lnet/minecraft/class_4523;)V
 	METHOD method_30222 onCameraEntitySet (Lnet/minecraft/class_2239;)V
 	METHOD method_30224 disableShader ()V
+	METHOD method_30225 initWindow (F)V
+		ARG 1 tickDelta
+	METHOD method_30227 renderWorld (FJ)V
+		ARG 1 tickDelta
+		ARG 2 limitTime
 	METHOD method_30228 toggleShadersEnabled ()V
 	METHOD method_30232 tick ()V
 	METHOD method_30233 bobView (F)V
 		ARG 1 tickDelta
 	METHOD method_30234 getShader ()Lnet/minecraft/class_6015;
+	METHOD method_30236 updateLightmapTexture (F)V
+	METHOD method_30240 initWindow ()V
 	METHOD method_30241 reset ()V
 	METHOD method_30242 getMapRenderer ()Lnet/minecraft/class_4096;
 	METHOD method_30243 updateMovementFovMultiplier ()V
+	METHOD method_30245 updateWorldIcon ()V
 	METHOD method_30246 shouldRenderBlockOutline ()Z

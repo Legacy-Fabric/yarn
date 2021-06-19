@@ -1,15 +1,21 @@
 CLASS net/minecraft/class_5086 net/minecraft/world/World
+	FIELD field_23553 lootTableProvider Lnet/minecraft/class_1285;
+	FIELD field_23554 advancementLoader Lnet/minecraft/class_6372;
+	FIELD field_23555 commandFunctionManager Lnet/minecraft/class_2477;
 	FIELD field_23556 profiler Lnet/minecraft/class_2626;
 	FIELD field_23557 scoreboard Lnet/minecraft/class_5562;
 	FIELD field_23558 isClient Z
 	FIELD field_23563 lcgBlockSeed I
 	FIELD field_23564 ambientDarkness I
+	FIELD field_23565 calendar Ljava/util/Calendar;
 	FIELD field_23566 iteratingTickingBlockEntities Z
 	FIELD field_23567 border Lnet/minecraft/class_3600;
+	FIELD field_23568 seaLevel I
 	FIELD field_23569 pendingBlockEntities Ljava/util/List;
 	FIELD field_23570 unloadedBlockEntities Ljava/util/List;
 	FIELD field_23574 blockEntities Ljava/util/List;
 	FIELD field_23575 tickingBlockEntities Ljava/util/List;
+	FIELD field_23576 playerList Ljava/util/List;
 	FIELD field_23580 unusedIncrement I
 	FIELD field_23581 rainGradientPrev F
 	FIELD field_23582 rainGradient F
@@ -18,11 +24,17 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	FIELD field_23585 random Ljava/util/Random;
 	FIELD field_23586 dimension Lnet/minecraft/class_5321;
 	FIELD field_23588 listeners Ljava/util/List;
+	FIELD field_23589 chunkCache Lnet/minecraft/class_5305;
+	FIELD field_23590 saveHandler Lnet/minecraft/class_1268;
 	FIELD field_23591 properties Lnet/minecraft/class_5509;
 	METHOD <init> (Lnet/minecraft/class_1268;Lnet/minecraft/class_5509;Lnet/minecraft/class_5321;Lnet/minecraft/class_2626;Z)V
-		ARG 1 levelProperties
+		ARG 1 saveHandler
+		ARG 2 properties
+		ARG 3 dimension
 		ARG 4 profiler
-		ARG 5 isClient
+		ARG 5 client
+	METHOD method_25936 setSpawnPos (Lnet/minecraft/class_6183;)V
+		ARG 1 pos
 	METHOD method_25937 getChunkManager ()Lnet/minecraft/class_5305;
 	METHOD method_25938 hasRain (Lnet/minecraft/class_6183;)Z
 		ARG 1 pos
@@ -39,6 +51,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_25957 getTime ()J
 	METHOD method_25958 getTimeOfDay ()J
 	METHOD method_25959 getSpawnPos ()Lnet/minecraft/class_6183;
+	METHOD method_25960 getSaveHandler ()Lnet/minecraft/class_1268;
 	METHOD method_25961 getLevelProperties ()Lnet/minecraft/class_5509;
 	METHOD method_25962 getGameRules ()Lnet/minecraft/class_5081;
 	METHOD method_25963 isThundering ()Z
@@ -104,6 +117,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26009 isRegionLoaded (Lnet/minecraft/class_6183;I)Z
 		ARG 1 pos
 		ARG 2 radius
+	METHOD method_26014 (Lnet/minecraft/class_6183;Lnet/minecraft/class_5149;II)V
+		ARG 1 pos
 	METHOD method_26015 updateNeighbor (Lnet/minecraft/class_6183;Lnet/minecraft/class_5149;Lnet/minecraft/class_6183;)V
 		ARG 1 sourcePos
 		ARG 2 sourceBlock
@@ -119,6 +134,10 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26021 updateListeners (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;Lnet/minecraft/class_4541;I)V
 		ARG 1 pos
 		ARG 4 flags
+	METHOD method_26022 scheduleRandomTick (Lnet/minecraft/class_6183;Lnet/minecraft/class_4541;Ljava/util/Random;)V
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 random
 	METHOD method_26023 setBlockState (Lnet/minecraft/class_6183;Lnet/minecraft/class_6183;)Z
 		ARG 1 pos
 	METHOD method_26027 addParticle (Lnet/minecraft/class_6208;DDDDDD[I)V
@@ -136,6 +155,9 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26031 getEntities (Ljava/lang/Class;Lnet/minecraft/class_1303;)Ljava/util/List;
 	METHOD method_26032 getEntities (Ljava/lang/Class;Lnet/minecraft/class_1303;Lcom/google/common/base/Predicate;)Ljava/util/List;
 	METHOD method_26038 locateStructure (Ljava/lang/String;Lnet/minecraft/class_6183;Z)Lnet/minecraft/class_6183;
+		ARG 1 name
+		ARG 2 pos
+		ARG 3 generate
 	METHOD method_26040 spawnEntity (Lnet/minecraft/class_2239;)Z
 	METHOD method_26041 sendEntityStatus (Lnet/minecraft/class_2239;B)V
 		ARG 1 entity
@@ -161,6 +183,11 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26058 getDifficulty ()Lnet/minecraft/class_2148;
 	METHOD method_26060 getAmbientDarkness ()I
 	METHOD method_26062 getWorldBorder ()Lnet/minecraft/class_3600;
+	METHOD method_26063 getLootTableProvider ()Lnet/minecraft/class_1285;
+	METHOD method_26064 getWorld ()Lnet/minecraft/class_5086;
+	METHOD method_26065 getWorldLight (F)F
+	METHOD method_26066 setSeaLevel (I)V
+		ARG 1 height
 	METHOD method_26069 syncWorldEvent (ILnet/minecraft/class_6183;I)V
 	METHOD method_26070 setTimeOfDay (J)V
 		ARG 1 time
@@ -182,6 +209,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26088 loadEntityUnchecked (Lnet/minecraft/class_2239;)V
 		ARG 1 entity
 	METHOD method_26090 getEntitiesIn (Lnet/minecraft/class_2239;Lnet/minecraft/class_1303;)Ljava/util/List;
+	METHOD method_26091 getSkyAngle (F)F
+		ARG 1 tickDelta
 	METHOD method_26093 getTopPosition (II)I
 	METHOD method_26097 isAreaNotEmpty (Lnet/minecraft/class_1303;)Z
 	METHOD method_26098 getTopNonAirState (Lnet/minecraft/class_6183;)Lnet/minecraft/class_4541;
