@@ -11,6 +11,7 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 	FIELD field_3000 lastMouseY I
 	FIELD field_3002 yDrag I
 	FIELD field_3004 scrollAmount F
+	FIELD field_3006 time J
 	FIELD field_3007 visible Z
 	FIELD field_3008 renderSelection Z
 	FIELD field_3009 renderHeader Z
@@ -28,6 +29,9 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 	METHOD method_2628 renderBackground ()V
 	METHOD method_2629 isEntrySelected (I)Z
 		ARG 1 index
+	METHOD method_2630 clickedHeader (II)V
+		ARG 1 mouseX
+		ARG 2 mouseY
 	METHOD method_2631 render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
@@ -53,14 +57,15 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 		ARG 2 y
 		ARG 3 tessellator
 	METHOD method_2636 selectEntry (IZII)V
+		ARG 1 index
 		ARG 3 lastMouseX
 		ARG 4 lastMouseY
 	METHOD method_2637 buttonClicked (Lnet/minecraft/class_685;)V
-		ARG 1 buttonWidget
+		ARG 1 button
 	METHOD method_2638 setHeader (ZI)V
 		ARG 1 renderHeader
 		ARG 2 headerHeight
-	METHOD method_2639 getEntriesSize ()I
+	METHOD method_2639 getEntryCount ()I
 	METHOD method_2640 renderDecorations (II)V
 		ARG 1 mouseX
 		ARG 2 mouseY
@@ -73,6 +78,8 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 		ARG 1 renderSelection
 	METHOD method_2643 getRowWidth ()I
 	METHOD method_2644 getEntryAt (II)I
+		ARG 1 x
+		ARG 2 y
 	METHOD method_2645 renderHoleBackground (IIII)V
 		ARG 1 top
 		ARG 2 bottom
@@ -87,7 +94,7 @@ CLASS net/minecraft/class_713 net/minecraft/client/gui/widget/ListWidget
 	METHOD method_2649 isMouseInList (I)Z
 		ARG 1 mouseY
 	METHOD method_2650 scroll (I)V
-		ARG 1 offset
+		ARG 1 amount
 	METHOD method_2651 setXPos (I)V
 		ARG 1 x
 	METHOD method_2652 getMaxPosition ()I
