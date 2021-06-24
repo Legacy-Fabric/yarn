@@ -1,23 +1,64 @@
 CLASS net/minecraft/class_1856 net/minecraft/entity/passive/RabbitEntity
+	FIELD field_7928 fleeFromWolfGoal Lnet/minecraft/class_1856$class_1859;
 	FIELD field_7929 jumpTicks I
 	FIELD field_7930 jumpDuration I
 	FIELD field_7932 lastOnGround Z
 	FIELD field_7933 ticksUntilJump I
 	FIELD field_7935 moreCarrotTicks I
+	METHOD method_7604 lookTowards (DD)V
+		ARG 1 x
+		ARG 3 z
+	METHOD method_7608 (ZLnet/minecraft/class_1856$class_1858;)V
+		ARG 2 action
 	METHOD method_7609 setSpeed (D)V
 		ARG 1 speed
+	METHOD method_7611 (Lnet/minecraft/class_1856$class_1858;)V
+		ARG 1 action
 	METHOD method_7613 getHopSound ()Ljava/lang/String;
 	METHOD method_7614 getRabbitType ()I
 	METHOD method_7621 wantsCarrots ()Z
+	METHOD method_7622 getJumpProgress (F)F
+		ARG 1 delta
 	METHOD method_7623 setRabbitType (I)V
 		ARG 1 type
 	CLASS class_1857 RabbitAttackGoal
+		METHOD <init> (Lnet/minecraft/class_1856;)V
+			ARG 1 rabbit
 	CLASS class_1858 Action
 		FIELD field_7942 speed F
 		METHOD <init> (Ljava/lang/String;IFFII)V
 			ARG 3 speed
 		METHOD method_7624 getSpeed ()F
-	CLASS class_1860 RabbitEntityData
+		METHOD method_7627 getJumpDuration ()I
+	CLASS class_1859 FleeGoal
+		FIELD field_7947 rabbit Lnet/minecraft/class_1856;
+		METHOD <init> (Lnet/minecraft/class_1856;Ljava/lang/Class;FDD)V
+			ARG 1 rabbit
+			ARG 2 fleeFromType
+			ARG 3 distance
+			ARG 4 slowSpeed
+			ARG 6 fastSpeed
+	CLASS class_1860 RabbitData
+		FIELD field_7948 type I
+		METHOD <init> (I)V
+			ARG 1 type
 	CLASS class_1861 RabbitJumpControl
+		FIELD field_7950 rabbit Lnet/minecraft/class_1856;
+		METHOD <init> (Lnet/minecraft/class_1856;Lnet/minecraft/class_1856;)V
+			ARG 2 rabbit
 		METHOD method_7629 isActive ()Z
+	CLASS class_1862 RabbitMoveControl
+		FIELD field_7952 rabbit Lnet/minecraft/class_1856;
+		METHOD <init> (Lnet/minecraft/class_1856;)V
+			ARG 1 rabbit
 	CLASS class_1863 EscapeDangerGoal
+		FIELD field_7953 rabbit Lnet/minecraft/class_1856;
+		METHOD <init> (Lnet/minecraft/class_1856;D)V
+			ARG 1 rabbit
+			ARG 2 speed
+	CLASS class_1864 EatCarrotCropGoal
+		FIELD field_7954 rabbit Lnet/minecraft/class_1856;
+		FIELD field_7955 wantsCarrots Z
+		FIELD field_7956 hasTarget Z
+		METHOD <init> (Lnet/minecraft/class_1856;)V
+			ARG 1 rabbit

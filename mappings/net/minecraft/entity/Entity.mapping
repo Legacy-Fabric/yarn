@@ -49,6 +49,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7387 netherPortalTime I
 	FIELD field_7388 fireTicks I
 	FIELD field_7389 renderDistanceMultiplier D
+	FIELD field_7390 inanimate Z
 	FIELD field_7391 rider Lnet/minecraft/class_1745;
 	FIELD field_7392 vehicle Lnet/minecraft/class_1745;
 	FIELD field_7393 teleporting Z
@@ -91,6 +92,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6910 tickFire ()Z
 	METHOD method_6911 isTouchingWater ()Z
 		COMMENT Returns whether this entity's hitbox is touching water fluid.
+	METHOD method_6912 updateWaterState ()Z
 	METHOD method_6913 onSwimmingStart ()V
 	METHOD method_6914 attemptSprintingParticles ()V
 	METHOD method_6915 spawnSprintingParticles ()V
@@ -126,6 +128,16 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 width
 		ARG 2 height
 	METHOD method_6925 getBlastResistance (Lnet/minecraft/class_93;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;)F
+		ARG 1 explosion
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 state
+	METHOD method_6926 canExplosionDestroyBlock (Lnet/minecraft/class_93;Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_376;F)Z
+		ARG 1 explosion
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 explosionPower
 	METHOD method_6927 setWorld (Lnet/minecraft/class_99;)V
 		ARG 1 world
 	METHOD method_6928 isSubmergedIn (Lnet/minecraft/class_591;)Z
@@ -140,7 +152,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 3 pitch
 	METHOD method_6932 playStepSound (Lnet/minecraft/class_1372;Lnet/minecraft/class_160;)V
 		ARG 1 pos
-	METHOD method_6933 deserialize (Lnet/minecraft/class_1405;)V
+		ARG 2 block
+	METHOD method_6933 readCustomDataFromTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_6934 setCustomName (Ljava/lang/String;)V
 		ARG 1 name
@@ -155,17 +168,27 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 2 amount
 	METHOD method_6938 startRiding (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
-	METHOD method_6940 (Lnet/minecraft/class_1752;Lnet/minecraft/class_1745;)V
-		ARG 2 entity
+	METHOD method_6940 dealDamage (Lnet/minecraft/class_1752;Lnet/minecraft/class_1745;)V
+		ARG 1 attacker
+		ARG 2 target
 	METHOD method_6941 onLightningStrike (Lnet/minecraft/class_1890;)V
 		ARG 1 lightning
 	METHOD method_6942 interactAt (Lnet/minecraft/class_1963;Lnet/minecraft/class_649;)Z
 		ARG 1 player
 		ARG 2 hitPos
+	METHOD method_6943 dropItem (Lnet/minecraft/class_2054;I)Lnet/minecraft/class_1893;
+		ARG 1 item
+	METHOD method_6944 dropItem (Lnet/minecraft/class_2054;IF)Lnet/minecraft/class_1893;
+		ARG 1 item
+		ARG 3 yOffset
+	METHOD method_6945 dropItem (Lnet/minecraft/class_2056;F)Lnet/minecraft/class_1893;
+		ARG 1 stack
+		ARG 2 yOffset
 	METHOD method_6946 toListTag ([D)Lnet/minecraft/class_1411;
 		ARG 1 values
 	METHOD method_6947 toListTag ([F)Lnet/minecraft/class_1411;
 		ARG 1 values
+	METHOD method_6949 getParts ()[Lnet/minecraft/class_1745;
 	METHOD method_6950 getHeadRotation ()F
 	METHOD method_6951 isAttackable ()Z
 	METHOD method_6952 getSafeFallDistance ()I
@@ -186,6 +209,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6967 getCommandStats ()Lnet/minecraft/class_1685;
 	METHOD method_6969 isImmuneToExplosion ()Z
 	METHOD method_6970 getSplashSound ()Ljava/lang/String;
+	METHOD method_6971 isTouchingLava ()Z
 	METHOD method_6972 scheduleVelocityUpdate ()V
 	METHOD method_6973 collides ()Z
 	METHOD method_6974 isPushable ()Z
@@ -194,6 +218,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6978 isAlive ()Z
 	METHOD method_6979 isInsideWall ()Z
 	METHOD method_6980 tickRiding ()V
+	METHOD method_6981 updatePassengerPosition ()V
 	METHOD method_6982 getHeightOffset ()D
 	METHOD method_6983 getMountedHeightOffset ()D
 	METHOD method_6986 getDefaultNetherPortalCooldown ()I
@@ -215,6 +240,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
+	METHOD method_6998 getLightmapCoordinates (F)I
 	METHOD method_6999 setRotation (FF)V
 		ARG 1 yaw
 		ARG 2 pitch
@@ -225,7 +251,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 box
 	METHOD method_7002 squaredDistanceTo (Lnet/minecraft/class_1372;)D
 		ARG 1 pos
-	METHOD method_7003 serialize (Lnet/minecraft/class_1405;)V
+	METHOD method_7003 writeCustomDataToTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
 	METHOD method_7004 isInvulnerableTo (Lnet/minecraft/class_1733;)Z
 		ARG 1 damageSource
@@ -276,6 +302,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7024 getCameraPosVec (F)Lnet/minecraft/class_649;
 		ARG 1 tickDelta
 	METHOD method_7025 handleFallDamage (FF)V
+		ARG 1 fallDistance
+		ARG 2 damageMultiplier
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
 	METHOD method_7027 writePlayerData (Lnet/minecraft/class_1405;)V
@@ -343,11 +371,3 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_7057 copyPortalInfo (Lnet/minecraft/class_1745;)V
 	METHOD method_7059 canClimb ()Z
 	METHOD method_7060 tick ()V
-	CLASS 1
-		METHOD call ()Ljava/lang/Object;
-	CLASS 2
-		METHOD call ()Ljava/lang/Object;
-	CLASS 3
-		METHOD call ()Ljava/lang/Object;
-	CLASS 4
-		METHOD call ()Ljava/lang/Object;
