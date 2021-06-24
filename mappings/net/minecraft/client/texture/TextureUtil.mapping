@@ -1,8 +1,59 @@
 CLASS net/minecraft/class_1684 net/minecraft/client/texture/TextureUtil
 	FIELD field_30079 nativeTexture Lnet/minecraft/class_6021;
 	FIELD field_30081 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_30083 srgbLinearMap [F
+	FIELD field_30084 rgba [I
+	METHOD method_31368 genTextures ()I
+	METHOD method_31369 deleteTexture (I)V
+		ARG 0 textureId
+	METHOD method_31370 (III)V
+		ARG 0 texId
+	METHOD method_31371 (IIII)V
+		ARG 0 texId
+		ARG 1 param
+	METHOD method_31372 blendPixelsComponent (IIIII)I
+		ARG 0 r
+		ARG 1 g
+		ARG 2 b
+		ARG 3 a
+		ARG 4 bitshift
+	METHOD method_31373 blendPixels (IIIIZ)I
+		ARG 0 colorTopLeft
+		ARG 1 colorBottomLeft
+		ARG 2 colorTopRight
+		ARG 3 colorBottomRight
+		ARG 4 hasTransparency
+	METHOD method_31374 generateMipmapsInternal (II[[I)[[I
+		ARG 0 mipLevels
+		ARG 1 width
+		ARG 2 imagesSize
+	METHOD method_31376 (ILjava/awt/image/BufferedImage;IIZZ)I
+		ARG 0 texId
+		ARG 1 image
 	METHOD method_31378 (I[III)V
 		ARG 0 texId
+	METHOD method_31379 upload (I[IIIIIZZZ)V
+		ARG 0 level
+		ARG 1 offsets
+		ARG 2 unpackSkipPixels
+		ARG 3 unpackSkipRows
+		ARG 4 width
+		ARG 5 height
+		ARG 6 blur
+		ARG 7 clamp
+		ARG 8 mipmap
+	METHOD method_31381 (Ljava/awt/image/BufferedImage;IIZZ)V
+		ARG 0 image
 	METHOD method_31382 readImage (Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;
+	METHOD method_31388 upload ([[IIIIIZZ)V
+		ARG 0 dimensions
+		ARG 1 width
+		ARG 2 height
+		ARG 3 x
+		ARG 4 y
+		ARG 5 blur
+		ARG 6 clamp
 	METHOD method_31389 bindTexture (I)V
 		ARG 0 glTexId
+	METHOD method_31393 srgbToLinear (I)F
+		ARG 0 srgbColor
