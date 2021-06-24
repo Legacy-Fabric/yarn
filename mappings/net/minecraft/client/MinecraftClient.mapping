@@ -31,6 +31,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26840 textureAtlas Lnet/minecraft/class_3803;
 	FIELD field_26841 soundManager Lnet/minecraft/class_6109;
 	FIELD field_26842 musicTracker Lnet/minecraft/class_6104;
+	FIELD field_26843 mojangLogo Lnet/minecraft/class_4523;
 	FIELD field_26844 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_26845 skinProvider Lnet/minecraft/class_6048;
 	FIELD field_26847 thread Ljava/lang/Thread;
@@ -55,6 +56,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	FIELD field_26870 gameVersion Ljava/lang/String;
 	FIELD field_26871 versionType Ljava/lang/String;
 	FIELD field_26872 netProxy Ljava/net/Proxy;
+	FIELD field_26873 levelStorage Lnet/minecraft/class_1271;
 	FIELD field_26874 currentFps I
 	FIELD field_26875 itemUseCooldown I
 	FIELD field_26876 serverAddress Ljava/lang/String;
@@ -125,7 +127,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 		ARG 1 world
 		ARG 2 name
 	METHOD method_28798 setCurrentServerEntry (Lnet/minecraft/class_5770;)V
-	METHOD method_28799 (Lnet/minecraft/class_4169;)V
+	METHOD method_28799 initWindow (Lnet/minecraft/class_4169;)V
 		ARG 1 textureManager
 	METHOD method_28802 checkForGlError (Ljava/lang/String;)V
 		ARG 1 label
@@ -158,8 +160,12 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28829 getToastManager ()Lnet/minecraft/class_5611;
 	METHOD method_28830 getTutorialManager ()Lnet/minecraft/class_6119;
 	METHOD method_28831 initializeGame ()V
+	METHOD method_28834 createWindow ()V
+	METHOD method_28835 setDisplayMode ()V
+	METHOD method_28836 setIcon ()V
 	METHOD method_28837 checkIs64Bit ()Z
 	METHOD method_28838 startTimerHackThread ()V
+	METHOD method_28839 setFullscreenDisplayMode ()V
 	METHOD method_28840 render ()V
 	METHOD method_28841 getFramebuffer ()Lnet/minecraft/class_5873;
 	METHOD method_28849 handleBlockBreaking (Z)V
@@ -176,6 +182,7 @@ CLASS net/minecraft/class_1321 net/minecraft/client/MinecraftClient
 	METHOD method_28859 updateDisplay ()V
 	METHOD method_28860 resizeDisplay ()V
 	METHOD method_28861 getFramerateLimit ()I
+	METHOD method_28862 isBelowMaxFramerateLimit ()Z
 	METHOD method_28863 cleanUpAfterCrash ()V
 	METHOD method_28864 scheduleStop ()V
 	METHOD method_28865 lockMouseCursor ()V
