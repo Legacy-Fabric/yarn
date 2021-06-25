@@ -3,8 +3,10 @@ CLASS net/minecraft/class_1922 net/minecraft/entity/mob/GuardianEntity
 	FIELD field_8213 prevSpikesExtension F
 	FIELD field_8214 tailAngle F
 	FIELD field_8215 prevTailAngle F
+	FIELD field_8216 cachedBeamTarget Lnet/minecraft/class_1752;
 	FIELD field_8217 beamTicks I
 	FIELD field_8218 flopping Z
+	FIELD field_8219 wanderAroundGoal Lnet/minecraft/class_1811;
 	FIELD field_8220 spikesExtensionRate F
 	METHOD method_7851 getSpikesExtension (F)F
 		ARG 1 tickDelta
@@ -15,6 +17,7 @@ CLASS net/minecraft/class_1922 net/minecraft/entity/mob/GuardianEntity
 	METHOD method_7859 getWarmupTime ()I
 	METHOD method_7860 isElder ()Z
 	METHOD method_7862 hasBeamTarget ()Z
+	METHOD method_7863 getBeamTarget ()Lnet/minecraft/class_1752;
 	METHOD method_7864 setSpikesRetracted (Z)V
 		ARG 1 retracted
 	METHOD method_7865 areSpikesRetracted ()Z
@@ -25,3 +28,6 @@ CLASS net/minecraft/class_1922 net/minecraft/entity/mob/GuardianEntity
 	CLASS class_1923 FireBeamGoal
 		FIELD field_8223 beamTicks I
 	CLASS class_1925 GuardianMoveControl
+		FIELD field_8225 guardian Lnet/minecraft/class_1922;
+		METHOD <init> (Lnet/minecraft/class_1922;)V
+			ARG 1 guardian

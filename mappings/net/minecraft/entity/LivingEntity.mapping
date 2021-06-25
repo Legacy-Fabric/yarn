@@ -19,6 +19,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7459 jumping Z
 	FIELD field_7460 sidewaysSpeed F
 	FIELD field_7461 handSwinging Z
+	FIELD field_7462 handSwingTicks I
 	FIELD field_7464 hurtTime I
 	FIELD field_7465 maxHurtTime I
 	FIELD field_7466 knockbackVelocity F
@@ -45,6 +46,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7488 statusEffects Ljava/util/Map;
 	FIELD field_7489 equippedItems [Lnet/minecraft/class_2056;
 	FIELD field_7490 effectsChanged Z
+	METHOD method_7087 updatePotionVisibility ()V
 	METHOD method_7088 isInTeam (Lnet/minecraft/class_655;)Z
 		ARG 1 team
 	METHOD method_7089 onKilled (Lnet/minecraft/class_1733;)V
@@ -65,16 +67,25 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 		ARG 1 effect
 	METHOD method_7103 setAttacker (Lnet/minecraft/class_1752;)V
 		ARG 1 entity
+	METHOD method_7104 getXpToDrop (Lnet/minecraft/class_1963;)I
+		ARG 1 player
 	METHOD method_7107 getStackInHand ()Lnet/minecraft/class_2056;
+	METHOD method_7108 getSoundVolume ()F
+	METHOD method_7111 getJumpVelocity ()F
 	METHOD method_7112 jump ()V
+	METHOD method_7115 getMovementSpeed ()F
 	METHOD method_7116 isSleeping ()Z
 	METHOD method_7117 tickNewAi ()V
+	METHOD method_7118 tickCramming ()V
 	METHOD method_7119 canMoveVoluntarily ()Z
 	METHOD method_7120 getAbsorption ()F
 	METHOD method_7121 getScoreboardTeam ()Lnet/minecraft/class_655;
 	METHOD method_7122 markEffectsDirty ()V
 	METHOD method_7125 getRandom ()Ljava/util/Random;
+	METHOD method_7126 getAttacker ()Lnet/minecraft/class_1752;
 	METHOD method_7127 getLastHurtTimestamp ()I
+	METHOD method_7128 getAttacking ()Lnet/minecraft/class_1752;
+	METHOD method_7129 getLastAttackTime ()I
 	METHOD method_7131 tickStatusEffects ()V
 	METHOD method_7133 clearStatusEffects ()V
 	METHOD method_7135 isAffectedBySmite ()Z
@@ -86,8 +97,12 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7143 getMaxHealth ()F
 	METHOD method_7144 getStuckArrows ()I
 	METHOD method_7145 swingHand ()V
+	METHOD method_7146 tickHandSwing ()V
 	METHOD method_7147 getAttributeContainer ()Lnet/minecraft/class_1769;
 	METHOD method_7148 getDamageEnchantmentTarget ()Lnet/minecraft/class_1758;
+	METHOD method_7149 applyEnchantmentsToDamage (Lnet/minecraft/class_1733;F)F
+		ARG 1 source
+		ARG 2 amount
 	METHOD method_7150 addStatusEffect (Lnet/minecraft/class_1742;)V
 		ARG 1 instance
 	METHOD method_7151 isInSameTeam (Lnet/minecraft/class_1752;)Z
@@ -97,7 +112,11 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 		ARG 2 damage
 	METHOD method_7153 (Lnet/minecraft/class_1742;)Z
 		ARG 1 instance
+	METHOD method_7154 travel (FF)V
 	METHOD method_7155 heal (F)V
+	METHOD method_7156 turnHead (FF)F
+		ARG 1 bodyRotation
+		ARG 2 headRotation
 	METHOD method_7157 enterCombat ()V
 	METHOD method_7158 setHealth (F)V
 	METHOD method_7159 setJumping (Z)V
@@ -106,6 +125,8 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7161 damageArmor (F)V
 		ARG 1 value
 	METHOD method_7163 isBaby ()Z
+	METHOD method_7164 setMovementSpeed (F)V
+		ARG 1 movementSpeed
 	METHOD method_7165 hasStatusEffect (I)Z
 		ARG 1 id
 	METHOD method_7167 getHandSwingProgress (F)F
@@ -123,7 +144,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 		ARG 1 arrows
 	METHOD method_7175 getMainSlot (I)Lnet/minecraft/class_2056;
 		ARG 1 slot
-	METHOD method_7179 (Lnet/minecraft/class_1745;)Z
+	METHOD method_7179 tryAttack (Lnet/minecraft/class_1745;)Z
 		ARG 1 entity
 	METHOD method_7180 pushAway (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
