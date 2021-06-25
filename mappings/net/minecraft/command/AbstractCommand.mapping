@@ -3,6 +3,16 @@ CLASS net/minecraft/class_1999 net/minecraft/command/AbstractCommand
 	FIELD field_26799 COMMA_SPLITTER Lcom/google/common/base/Splitter;
 	FIELD field_26800 KEY_VALUE_SPLITTER Lcom/google/common/base/Splitter;
 	METHOD method_28700 getRequiredLevel ()I
+	METHOD method_28701 parseCoordinate (DLjava/lang/String;IIZ)Lnet/minecraft/class_1999$class_5570;
+		ARG 0 base
+		ARG 2 input
+		ARG 3 min
+		ARG 4 max
+		ARG 5 center
+	METHOD method_28702 parseCoordinate (DLjava/lang/String;Z)Lnet/minecraft/class_1999$class_5570;
+		ARG 0 base
+		ARG 2 input
+		ARG 3 center
 	METHOD method_28703 parseBlockState (Lnet/minecraft/class_5149;Ljava/lang/String;)Lnet/minecraft/class_4541;
 		ARG 0 block
 		ARG 1 stateDescription
@@ -52,3 +62,14 @@ CLASS net/minecraft/class_1999 net/minecraft/command/AbstractCommand
 	METHOD method_28742 parseDouble (Ljava/lang/String;)D
 	METHOD method_28744 parseBoolean (Ljava/lang/String;)Z
 		ARG 0 s
+	CLASS class_5570 ParsedCoordinate
+		FIELD field_26804 absolute D
+		FIELD field_26805 relative D
+		FIELD field_26806 center Z
+		METHOD <init> (DDZ)V
+			ARG 1 absolute
+			ARG 3 relative
+			ARG 5 center
+		METHOD method_28750 getAbsolute ()D
+		METHOD method_28751 getRelative ()D
+		METHOD method_28752 isCenter ()Z
