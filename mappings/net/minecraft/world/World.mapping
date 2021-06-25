@@ -13,6 +13,8 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	FIELD field_23568 seaLevel I
 	FIELD field_23569 pendingBlockEntities Ljava/util/List;
 	FIELD field_23570 unloadedBlockEntities Ljava/util/List;
+	FIELD field_23572 globalEntities Ljava/util/List;
+	FIELD field_23573 entities Ljava/util/List;
 	FIELD field_23574 blockEntities Ljava/util/List;
 	FIELD field_23575 tickingBlockEntities Ljava/util/List;
 	FIELD field_23576 playerList Ljava/util/List;
@@ -42,6 +44,7 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_25941 isDay ()Z
 	METHOD method_25942 getLocalDifficulty (Lnet/minecraft/class_6183;)Lnet/minecraft/class_6437;
 	METHOD method_25943 isHeightInvalid (Lnet/minecraft/class_6183;)Z
+		ARG 1 pos
 	METHOD method_25944 getMoonPhase ()I
 	METHOD method_25945 getPendingBlockEntity (Lnet/minecraft/class_6183;)Lnet/minecraft/class_3538;
 	METHOD method_25946 getMoonSize ()F
@@ -82,6 +85,10 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 8 velocityX
 		ARG 10 velocityY
 		ARG 12 velocityZ
+	METHOD method_25975 loadChunk (II)Lnet/minecraft/class_3607;
+		ARG 1 x
+		ARG 2 z
+	METHOD method_25980 canSetBlock (IIZ)Z
 	METHOD method_25981 syncGlobalEvent (ILnet/minecraft/class_6183;I)V
 	METHOD method_25983 setTime (J)V
 		ARG 1 time
@@ -117,10 +124,13 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 	METHOD method_26005 rayTrace (Lnet/minecraft/class_5559;Lnet/minecraft/class_5559;Z)Lnet/minecraft/class_1307;
 	METHOD method_26006 rayTrace (Lnet/minecraft/class_5559;Lnet/minecraft/class_5559;ZZZ)Lnet/minecraft/class_1307;
 	METHOD method_26007 isValid (Lnet/minecraft/class_6183;)Z
+		ARG 1 pos
 	METHOD method_26008 getClosestPlayer (Lnet/minecraft/class_6183;DD)Lnet/minecraft/class_4890;
 	METHOD method_26009 isRegionLoaded (Lnet/minecraft/class_6183;I)Z
 		ARG 1 pos
 		ARG 2 radius
+	METHOD method_26010 (Lnet/minecraft/class_6183;IZ)Z
+		ARG 1 pos
 	METHOD method_26014 (Lnet/minecraft/class_6183;Lnet/minecraft/class_5149;II)V
 		ARG 1 pos
 	METHOD method_26015 updateNeighbor (Lnet/minecraft/class_6183;Lnet/minecraft/class_5149;Lnet/minecraft/class_6183;)V
@@ -143,6 +153,9 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 2 state
 		ARG 3 random
 	METHOD method_26023 setBlockState (Lnet/minecraft/class_6183;Lnet/minecraft/class_6183;)Z
+		ARG 1 pos1
+		ARG 2 pos2
+	METHOD method_26026 canSetBlock (Lnet/minecraft/class_6183;Z)Z
 		ARG 1 pos
 	METHOD method_26027 addParticle (Lnet/minecraft/class_6208;DDDDDD[I)V
 	METHOD method_26028 addParticle (Lnet/minecraft/class_6208;ZDDDDDD[I)V
@@ -162,7 +175,9 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 1 name
 		ARG 2 pos
 		ARG 3 generate
+	METHOD method_26039 loadEntities (Ljava/util/Collection;)V
 	METHOD method_26040 spawnEntity (Lnet/minecraft/class_2239;)Z
+		ARG 1 entity
 	METHOD method_26041 sendEntityStatus (Lnet/minecraft/class_2239;B)V
 		ARG 1 entity
 		ARG 2 status
@@ -242,10 +257,14 @@ CLASS net/minecraft/class_5086 net/minecraft/world/World
 		ARG 1 tickDelta
 	METHOD method_26116 doesAreaContainFireSource (Lnet/minecraft/class_1303;)Z
 	METHOD method_26117 canSetBlock (Lnet/minecraft/class_6183;)Z
+		ARG 1 pos
 	METHOD method_26119 removeEntity (Lnet/minecraft/class_2239;)V
+		ARG 1 entity
 	METHOD method_26120 getFogColor (F)Lnet/minecraft/class_5559;
 		ARG 1 tickDelta
 	METHOD method_26121 getWorldChunk (Lnet/minecraft/class_6183;)Lnet/minecraft/class_3607;
+	METHOD method_26123 removeEntityUnchecked (Lnet/minecraft/class_2239;)V
+		ARG 1 entity
 	METHOD method_26125 removeBlock (Lnet/minecraft/class_6183;)Z
 	METHOD method_26127 setDefaultSpawnClient ()V
 	METHOD method_26128 getThunderGradient (F)F
