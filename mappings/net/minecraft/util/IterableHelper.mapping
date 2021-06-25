@@ -1,0 +1,37 @@
+CLASS net/minecraft/class_6188 net/minecraft/util/IterableHelper
+	METHOD method_31940 toIterableArrays (Ljava/lang/Class;Ljava/lang/Iterable;)Ljava/lang/Iterable;
+		ARG 0 type
+		ARG 1 iterable
+	METHOD method_31941 toIterableLists (Ljava/lang/Iterable;)Ljava/lang/Iterable;
+		ARG 0 iterable
+	METHOD method_31942 createArray (Ljava/lang/Class;I)[Ljava/lang/Object;
+		ARG 0 type
+		ARG 1 length
+	METHOD method_31943 toArray (Ljava/lang/Class;Ljava/lang/Iterable;)[Ljava/lang/Object;
+		ARG 0 type
+		ARG 1 iterable
+	METHOD method_31944 toLists (Ljava/lang/Iterable;)Ljava/lang/Iterable;
+		ARG 0 iterable
+	CLASS class_6189 ArrayToListTransform
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 array
+		METHOD method_31945 apply ([Ljava/lang/Object;)Ljava/util/List;
+			ARG 1 array
+	CLASS class_6190 TypedIterable
+		FIELD field_30637 type Ljava/lang/Class;
+		FIELD field_30638 iterable [Ljava/lang/Iterable;
+		METHOD <init> (Ljava/lang/Class;[Ljava/lang/Iterable;)V
+			ARG 1 type
+			ARG 2 iterable
+		METHOD iterator ()Ljava/util/Iterator;
+		CLASS class_6191 TypedIterator
+			FIELD field_30639 state I
+			FIELD field_30640 iterables [Ljava/lang/Iterable;
+			FIELD field_30641 iterators [Ljava/util/Iterator;
+			FIELD field_30642 arrays [Ljava/lang/Object;
+			METHOD <init> (Ljava/lang/Class;[Ljava/lang/Iterable;)V
+				ARG 1 type
+				ARG 2 iterables
+			METHOD hasNext ()Z
+			METHOD method_31947 reset ()V
+			METHOD next ()Ljava/lang/Object;

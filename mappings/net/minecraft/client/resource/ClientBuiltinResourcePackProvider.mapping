@@ -6,14 +6,20 @@ CLASS net/minecraft/class_6045 net/minecraft/client/resource/ClientBuiltinResour
 	FIELD field_30167 ALPHANUMERAL Ljava/util/regex/Pattern;
 	FIELD field_30168 UNKNOWN_PACK Lnet/minecraft/class_4523;
 	FIELD field_30170 serverPacksRoot Ljava/io/File;
-	FIELD field_30171 resourcePack Lnet/minecraft/class_6042;
+	FIELD field_30171 serverResourcePack Lnet/minecraft/class_6042;
 	FIELD field_30172 lock Ljava/util/concurrent/locks/ReentrantLock;
+	FIELD field_30174 available Ljava/util/List;
+	FIELD field_30175 enabled Ljava/util/List;
 	METHOD <init> (Ljava/io/File;Ljava/io/File;Lnet/minecraft/class_6042;Lnet/minecraft/class_6057;Lnet/minecraft/class_1320;)V
 		ARG 2 serverPacksRoot
 		ARG 3 pack
 	METHOD method_31471 verifyFile (Ljava/lang/String;Ljava/io/File;)Z
 		ARG 2 rfile
-	METHOD method_31481 getResourcePack ()Lnet/minecraft/class_6042;
+	METHOD method_31473 setEnabled (Ljava/util/List;)V
+		ARG 1 packs
+	METHOD method_31478 getAvailablePacks ()Ljava/util/List;
+	METHOD method_31479 getEnabledPacks ()Ljava/util/List;
+	METHOD method_31481 getServerResourcePack ()Lnet/minecraft/class_6042;
 	METHOD method_31482 clear ()V
 	METHOD method_31487 deleteOldServerPack ()V
 	CLASS 1
@@ -31,3 +37,4 @@ CLASS net/minecraft/class_6045 net/minecraft/client/resource/ClientBuiltinResour
 		METHOD method_31491 get ()Lnet/minecraft/class_6042;
 		METHOD method_31492 getName ()Ljava/lang/String;
 		METHOD method_31493 getDescription ()Ljava/lang/String;
+		METHOD method_31494 getPackFormat ()I
