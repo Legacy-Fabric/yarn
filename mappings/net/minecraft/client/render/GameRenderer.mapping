@@ -3,11 +3,7 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	FIELD field_28926 blockOutlineEnabled Z
 	FIELD field_28927 lastWorldIconUpdate J
 	FIELD field_28928 lastWindowFocusedTime J
-	FIELD field_28930 lightmapTexture Lnet/minecraft/class_6021;
-	FIELD field_28932 lightmapTextureManager Lnet/minecraft/class_4523;
 	FIELD field_28933 lightmapDirty Z
-	FIELD field_28937 weatherXOffsets [F
-	FIELD field_28938 weatherYOffsets [F
 	FIELD field_28946 renderingPanorama Z
 	FIELD field_28951 floatingItem Lnet/minecraft/class_5013;
 	FIELD field_28952 floatingItemTimeLeft I
@@ -25,7 +21,6 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	FIELD field_28966 client Lnet/minecraft/class_1321;
 	FIELD field_28967 resourceContainer Lnet/minecraft/class_3917;
 	FIELD field_28968 random Ljava/util/Random;
-	FIELD field_28969 viewDistance F
 	FIELD field_28970 mapRenderer Lnet/minecraft/class_4096;
 	FIELD field_28971 ticks I
 	FIELD field_28982 movementFovMultiplier F
@@ -33,17 +28,12 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	FIELD field_28984 skyDarkness F
 	METHOD <init> (Lnet/minecraft/class_1321;Lnet/minecraft/class_3917;)V
 		ARG 1 client
-		ARG 2 resourceManager
 	METHOD method_30207 hasShader ()Z
 	METHOD method_30208 updateTargetedEntity (F)V
 		ARG 1 tickDelta
 	METHOD method_30211 render (FJ)V
 		ARG 1 tickDelta
 		ARG 2 startTime
-	METHOD method_30212 getFov (FZ)F
-		ARG 1 tickDelta
-		ARG 2 changingFov
-	METHOD method_30213 renderFog (IF)V
 	METHOD method_30215 onResized (II)V
 	METHOD method_30216 renderFloatingItem (IIF)V
 		ARG 1 scaledWidth
@@ -51,24 +41,8 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 		ARG 3 tickDelta
 	METHOD method_30217 showFloatingItem (Lnet/minecraft/class_5013;)V
 		ARG 1 floatingItem
-	METHOD method_30218 renderFloatingText (Lnet/minecraft/class_5575;Ljava/lang/String;FFFIFFZZ)V
+	METHOD method_30218 (Lnet/minecraft/class_5575;Ljava/lang/String;FFFIFFZZ)V
 		ARG 0 textRenderer
-		ARG 1 text
-		ARG 2 x
-		ARG 3 y
-		ARG 4 z
-		ARG 5 verticalOffset
-		ARG 6 yaw
-		ARG 7 pitch
-		ARG 8 flip
-		ARG 9 translucent
-	METHOD method_30220 renderAboveClouds (Lnet/minecraft/class_3986;FIDDD)V
-		ARG 1 worldRenderer
-		ARG 2 tickDelta
-		ARG 3 cameraX
-		ARG 4 cameraY
-		ARG 6 cameraZ
-		ARG 8 cloudHeight
 	METHOD method_30221 loadShader (Lnet/minecraft/class_4523;)V
 	METHOD method_30222 onCameraEntitySet (Lnet/minecraft/class_2239;)V
 	METHOD method_30224 disableShader ()V
@@ -78,8 +52,6 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 		ARG 1 tickDelta
 		ARG 2 limitTime
 	METHOD method_30228 toggleShadersEnabled ()V
-	METHOD method_30229 renderWeather (F)V
-		ARG 1 tickOffset
 	METHOD method_30232 tick ()V
 	METHOD method_30233 bobView (F)V
 		ARG 1 tickDelta
@@ -91,4 +63,3 @@ CLASS net/minecraft/class_1481 net/minecraft/client/render/GameRenderer
 	METHOD method_30243 updateMovementFovMultiplier ()V
 	METHOD method_30245 updateWorldIcon ()V
 	METHOD method_30246 shouldRenderBlockOutline ()Z
-	METHOD method_30247 renderRain ()V

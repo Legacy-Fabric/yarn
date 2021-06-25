@@ -1,9 +1,21 @@
 CLASS net/minecraft/class_1547 net/minecraft/client/render/chunk/ChunkBuilder
+	FIELD field_29541 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_29542 CHUNK_BATCHER_THREAD_FACTORY Ljava/util/concurrent/ThreadFactory;
+	FIELD field_29544 threads Ljava/util/List;
+	FIELD field_29545 workers Ljava/util/List;
+	FIELD field_29546 renderTasks Ljava/util/concurrent/PriorityBlockingQueue;
+	FIELD field_29548 bufferRenderer Lnet/minecraft/class_1473;
+	FIELD field_29549 chunkBufferRenderer Lnet/minecraft/class_1508;
+	FIELD field_29550 buildingTasks Ljava/util/Queue;
 	METHOD method_30787 getNextChunkRenderTask ()Lnet/minecraft/class_1543;
+	METHOD method_30788 cancelTasks ()V
 	METHOD method_30789 isEmpty ()Z
+	METHOD method_30790 stop ()V
 	CLASS class_5934 Task
 		FIELD field_29563 task Lcom/google/common/util/concurrent/ListenableFutureTask;
 		FIELD field_29564 distance D
 		METHOD <init> (Lnet/minecraft/class_1547;Lcom/google/common/util/concurrent/ListenableFutureTask;D)V
 			ARG 2 task
 			ARG 3 distance
+		METHOD compareTo (Ljava/lang/Object;)I
+			ARG 1 task
