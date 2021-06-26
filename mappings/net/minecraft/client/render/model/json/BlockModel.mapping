@@ -1,25 +1,68 @@
 CLASS net/minecraft/class_1063 net/minecraft/client/render/model/json/BlockModel
 	FIELD field_4579 GSON Lcom/google/gson/Gson;
-	FIELD field_4583 identifier Lnet/minecraft/class_1605;
+	FIELD field_4581 textureMap Ljava/util/Map;
+	FIELD field_4582 parent Lnet/minecraft/class_1063;
+	FIELD field_4583 id Lnet/minecraft/class_1605;
 	FIELD field_4584 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_4585 elements Ljava/util/List;
+	FIELD field_4587 ambientOcclusion Z
+	FIELD field_4588 transformation Lnet/minecraft/class_1080;
 	METHOD <init> (Ljava/util/List;Ljava/util/Map;ZZLnet/minecraft/class_1080;)V
 		ARG 1 elements
 		ARG 2 textures
+		ARG 3 ambientOcclusion
 		ARG 5 transformation
 	METHOD <init> (Lnet/minecraft/class_1605;Ljava/util/List;Ljava/util/Map;ZZLnet/minecraft/class_1080;)V
 		ARG 1 identifier
 		ARG 2 elements
+		ARG 3 textureMap
+		ARG 4 ambientOcclusion
 		ARG 6 transformation
 	METHOD <init> (Lnet/minecraft/class_1605;Ljava/util/Map;ZZLnet/minecraft/class_1080;)V
 		ARG 1 identifier
+		ARG 2 textureMap
+		ARG 3 ambientOcclusion
 		ARG 5 transformation
+	METHOD method_3648 getElements ()Ljava/util/List;
+	METHOD method_3649 getTransformation (Lnet/minecraft/class_1080$class_1082;)Lnet/minecraft/class_1078;
+		ARG 1 mode
 	METHOD method_3650 getFromReader (Ljava/io/Reader;)Lnet/minecraft/class_1063;
 		ARG 0 reader
 	METHOD method_3651 create (Ljava/lang/String;)Lnet/minecraft/class_1063;
 		ARG 0 value
+	METHOD method_3652 resolveTexture (Ljava/lang/String;Lnet/minecraft/class_1063$class_1064;)Ljava/lang/String;
+		ARG 1 texture
+		ARG 2 modelHolder
+	METHOD method_3653 refreshParent (Ljava/util/Map;)V
+		ARG 1 models
+	METHOD method_3654 hasAmbientOcclusion ()Z
+	METHOD method_3655 isValidTexture (Ljava/lang/String;)Z
+		ARG 1 texture
+	METHOD method_3658 resolveTexture (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 texture
+	METHOD method_3660 isValidTextureReference (Ljava/lang/String;)Z
+		ARG 1 texture
+	METHOD method_3661 getId ()Lnet/minecraft/class_1605;
+	METHOD method_3662 getRootModel ()Lnet/minecraft/class_1063;
+		COMMENT @return the actual model which contains elements.
+	METHOD method_3664 hasParent ()Z
 	CLASS class_1064 ModelHolder
 		FIELD field_4589 model Lnet/minecraft/class_1063;
+		FIELD field_4590 parent Lnet/minecraft/class_1063;
 		METHOD <init> (Lnet/minecraft/class_1063;)V
 			ARG 1 model
 	CLASS class_1065 Deserializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 json
+			ARG 2 type
+			ARG 3 ctx
+		METHOD method_3665 getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
+			ARG 1 ctx
+			ARG 2 json
+		METHOD method_3667 getAmbientOcclusion (Lcom/google/gson/JsonObject;)Z
+			ARG 1 json
+		METHOD method_3668 getTextureMap (Lcom/google/gson/JsonObject;)Ljava/util/Map;
+			ARG 1 json
+		METHOD method_3669 getParentId (Lcom/google/gson/JsonObject;)Ljava/lang/String;
+			ARG 1 json
 	CLASS class_1066 LoopException
