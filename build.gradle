@@ -280,8 +280,8 @@ task downloadMcLibs(dependsOn: downloadWantedVersionManifest) {
 
 		version.libraries.each {
 			def artifact = it.downloads.artifact
-            if(artifact == null) return
-            def downloadUrl = artifact.url
+			if(artifact == null) return
+			def downloadUrl = artifact.url
 
 			download {
 				src downloadUrl
@@ -435,18 +435,18 @@ task buildYarnTiny(dependsOn: mapIntermediaryJar, type: WithV2FileOutput) {
 		logger.lifecycle(":generating tiny mappings")
 
 		new MapSpecializedMethodsCommand().run(
-			intermediaryJar.getAbsolutePath(),
-			"enigma",
-			mappingsDir.getAbsolutePath(),
-			"tinyv2:intermediary:named",
-			v2Output.getAbsolutePath()
+				intermediaryJar.getAbsolutePath(),
+				"enigma",
+				mappingsDir.getAbsolutePath(),
+				"tinyv2:intermediary:named",
+				v2Output.getAbsolutePath()
 		)
 
 		new ConvertMappingsCommand().run(
-			"tinyv2",
-			v2Output.getAbsolutePath(),
-			"tiny:intermediary:named",
-			v1Output.getAbsolutePath())
+				"tinyv2",
+				v2Output.getAbsolutePath(),
+				"tiny:intermediary:named",
+				v1Output.getAbsolutePath())
 	}
 }
 
