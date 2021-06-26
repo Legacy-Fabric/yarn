@@ -2,9 +2,11 @@ CLASS net/minecraft/class_1516 net/minecraft/client/render/model/json/JsonUnbake
 	FIELD field_29343 GSON Lcom/google/gson/Gson;
 	FIELD field_29344 id Ljava/lang/String;
 	FIELD field_29345 textureMap Ljava/util/Map;
-	FIELD field_29347 guiLight Lnet/minecraft/class_4523;
+	FIELD field_29346 parent Lnet/minecraft/class_1516;
+	FIELD field_29347 parentId Lnet/minecraft/class_4523;
 	FIELD field_29348 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_29349 elements Ljava/util/List;
+	FIELD field_29350 depthInGui Z
 	FIELD field_29351 ambientOcclusion Z
 	FIELD field_29352 transformations Lnet/minecraft/class_1523;
 	FIELD field_29353 overrides Ljava/util/List;
@@ -22,14 +24,36 @@ CLASS net/minecraft/class_1516 net/minecraft/client/render/model/json/JsonUnbake
 		ARG 0 input
 	METHOD method_30584 deserialize (Ljava/lang/String;)Lnet/minecraft/class_1516;
 		ARG 0 json
-	METHOD method_30585 (Ljava/lang/String;Lnet/minecraft/class_1516$class_5891;)Ljava/lang/String;
+	METHOD method_30585 resolveTexture (Ljava/lang/String;Lnet/minecraft/class_1516$class_5891;)Ljava/lang/String;
+		ARG 1 texturePath
 		ARG 2 tracker
-	METHOD method_30587 useAmbientOcclusion ()Z
+	METHOD method_30586 setParent (Ljava/util/Map;)V
+		ARG 1 map
+	METHOD method_30587 hasAmbientOcclusion ()Z
+		COMMENT @see useAmbientOcclusion
+	METHOD method_30588 textureExists (Ljava/lang/String;)Z
+		ARG 1 texturePath
+	METHOD method_30589 checkRoot (Ljava/util/Map;)V
+		ARG 0 map
+	METHOD method_30590 hasDepthInGui ()Z
+	METHOD method_30591 resolveTextureReference (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 texturePath
+	METHOD method_30592 useAmbientOcclusion ()Z
+		COMMENT @see hasAmbientOcclusion
 	METHOD method_30593 isTextureReference (Ljava/lang/String;)Z
+		ARG 1 texturePath
+	METHOD method_30594 getOverrideModelIds ()Ljava/util/Collection;
 	METHOD method_30595 getOverrides ()Ljava/util/List;
+	METHOD method_30596 compileOverrides ()Lnet/minecraft/class_5904;
+	METHOD method_30597 getParentId ()Lnet/minecraft/class_4523;
 	METHOD method_30598 getRootModel ()Lnet/minecraft/class_1516;
 	METHOD method_30599 getTransformations ()Lnet/minecraft/class_1523;
-	CLASS class_5891 TextureReferenceTracker
+	METHOD method_30600 hasParent ()Z
+	CLASS class_5891 TextureResolutionContext
+		FIELD field_29354 root Lnet/minecraft/class_1516;
+		FIELD field_29355 current Lnet/minecraft/class_1516;
+		METHOD <init> (Lnet/minecraft/class_1516;)V
+			ARG 1 root
 	CLASS class_5892 Deserializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
 			ARG 1 element
@@ -43,6 +67,8 @@ CLASS net/minecraft/class_1516 net/minecraft/client/render/model/json/JsonUnbake
 		METHOD method_30604 deserializeElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
 			ARG 1 context
 			ARG 2 json
+		METHOD method_30605 deserializeTextures (Lcom/google/gson/JsonObject;)Ljava/util/Map;
+			ARG 1 object
 		METHOD method_30606 deserializeParent (Lcom/google/gson/JsonObject;)Ljava/lang/String;
 			ARG 1 json
 	CLASS class_5893 UncheckedModelException
