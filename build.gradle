@@ -1,17 +1,20 @@
+//file:noinspection GrDeprecatedAPIUsage
 buildscript {
 	repositories {
-		jcenter()
+		mavenCentral()
 		maven {
 			name "Fabric Repository"
 			url 'https://maven.fabricmc.net'
 		}
 	}
 	dependencies {
+		classpath "cuchaz:enigma:${project.enigma_version}"
 		classpath "cuchaz:enigma-cli:${project.enigma_version}"
 		classpath "net.fabricmc:stitch:${project.stitch_version}"
 		classpath "commons-io:commons-io:2.6"
 		classpath 'de.undercouch:gradle-download-task:4.0.4'
 		classpath 'net.fabricmc:tiny-remapper:0.3.1.72'
+		classpath 'org.codehaus.groovy:groovy-all:3.0.8'
 	}
 }
 
@@ -25,11 +28,13 @@ plugins {
 def minecraft_version = "1.6.4"
 
 def ENV = System.getenv()
-
-def yarnVersion = "${minecraft_version}+build.${buildTime()}"
+// Fetch build number from Github Actions
+// Then completely ignore it
+def build_number = ENV.BUILD_NUMBER ? buildTime() : "local"
+def yarnVersion = "${minecraft_version}+build.${build_number}"
 
 static def buildTime() {
-	def df = new java.text.SimpleDateFormat("yyyyMMddHHmm")
+	def df = new SimpleDateFormat("yyyyMMddHHmm")
 	df.setTimeZone(TimeZone.getTimeZone("UTC"))
 	return df.format(new Date())
 }
@@ -77,20 +82,22 @@ def setupGroup = "jar setup"
 def yarnGroup = "yarn"
 def buildMappingGroup = "mapping build"
 def mapJarGroup = "jar mapping"
-def mappingsDir = file("mappings")
-def cacheFilesMinecraft = file(".gradle/minecraft")
-def tempDir = file(".gradle/temp")
-def mergedFile = file("${minecraft_version}-merged.jar")
-def intermediaryJar = file("${minecraft_version}-intermediary.jar")
-def namedJar = file("${minecraft_version}-named.jar")
-def versionFile = new File(cacheFilesMinecraft, "${minecraft_version}.json")
-def clientJar = new File(cacheFilesMinecraft, "${minecraft_version}-client.jar")
-def serverJar = new File(cacheFilesMinecraft, "${minecraft_version}-server.jar")
-def libraries = new File(cacheFilesMinecraft, "libraries")
-def libs = new File("build/libs/")
+File mappingsDir = file("mappings")
+File cacheFilesMinecraft = file(".gradle/minecraft")
+File tempDir = file(".gradle/temp")
+File mergedFile = file("${minecraft_version}-merged.jar")
+File intermediaryJar = file("${minecraft_version}-intermediary.jar")
+File namedJar = file("${minecraft_version}-named.jar")
+File versionFile = new File(cacheFilesMinecraft, "${minecraft_version}.json")
+File clientJar = new File(cacheFilesMinecraft, "${minecraft_version}-client.jar")
+File serverJar = new File(cacheFilesMinecraft, "${minecraft_version}-server.jar")
+File libraries = new File(cacheFilesMinecraft, "libraries")
+File libs = new File("build/libs/")
 
 
 import com.google.common.hash.Hashing
+import com.google.common.io.Files
+import com.google.common.net.UrlEscapers
 import cuchaz.enigma.command.CheckMappingsCommand
 import cuchaz.enigma.command.ComposeMappingsCommand
 import cuchaz.enigma.command.ConvertMappingsCommand
@@ -111,16 +118,17 @@ import net.fabricmc.tinyremapper.TinyUtils
 import org.apache.commons.io.FileUtils
 
 import java.nio.charset.StandardCharsets
+import java.text.SimpleDateFormat
 import java.util.zip.GZIPOutputStream
 
-boolean validateChecksum(File file, String checksum) {
+static boolean validateChecksum(File file, String checksum) {
 	if (file != null) {
-		def hash = com.google.common.io.Files.asByteSource(file).hash(Hashing.sha1())
+		def hash = Files.asByteSource(file).hash(Hashing.sha1())
 		def builder = new StringBuilder()
 		hash.asBytes().each {
 			builder.append(Integer.toString((it & 0xFF) + 0x100, 16).substring(1))
 		}
-		return builder.toString().equals(checksum)
+		return builder.toString() == checksum
 	}
 	return false
 }
@@ -137,10 +145,10 @@ task downloadVersionsManifest {
 	}
 }
 
-def getManifestVersion(File manifestFile, String minecraft_version) {
+static def getManifestVersion(File manifestFile, String minecraft_version) {
 	def manifest = manifestFile.exists() ? new JsonSlurper().parseText(FileUtils.readFileToString(manifestFile)) : null
 	return manifest != null ? manifest.versions.stream().filter({
-		it.id.equals(minecraft_version)
+		(it.id == minecraft_version)
 	}).findFirst() : java.util.Optional.empty()
 }
 
@@ -160,7 +168,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 		if (manifestVersion.isPresent() || versionFile.exists()) {
 
 			if (manifestVersion.isPresent()) {
-				FileUtils.copyURLToFile(new URL(manifestVersion.get().url), versionFile)
+				FileUtils.copyURLToFile(new URL(manifestVersion.get().url as String), versionFile)
 			}
 		} else {
 			throw new RuntimeException("No version data for Minecraft version ${minecraft_version}")
@@ -176,8 +184,8 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 	outputs.files(clientJar, serverJar)
 
 	outputs.upToDateWhen {
-		def version = new JsonSlurper().parseText(FileUtils.readFileToString(versionFile))
-		return clientJar.exists() && serverJar.exists() && validateChecksum(clientJar, version.downloads.client.sha1) && validateChecksum(serverJar, version.downloads.server.sha1)
+		def version = new JsonSlurper().parseText(FileUtils.readFileToString(versionFile as File))
+		return clientJar.exists() && serverJar.exists() && validateChecksum(clientJar, version.downloads.client.sha1 as String) && validateChecksum(serverJar, version.downloads.server.sha1 as String)
 	}
 
 	doLast {
@@ -191,13 +199,13 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 		logger.lifecycle(":downloading minecraft jars")
 
 		download {
-			src new URL(version.downloads.client.url)
+			src new URL(version.downloads.client.url as String)
 			dest clientJar
 			overwrite false
 		}
 
 		download {
-			src new URL(version.downloads.server.url)
+			src new URL(version.downloads.server.url as String)
 			dest serverJar
 			overwrite false
 		}
@@ -207,14 +215,14 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
 	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/${minecraft_version}.tiny"
-	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
+	src UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
 }
 
 task downloadIntermediaryV2(type: Download) {
 	group = buildMappingGroup
 	def url = "https://maven.legacyfabric.net/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
-	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
+	src UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 }
 
@@ -272,12 +280,12 @@ task downloadMcLibs(dependsOn: downloadWantedVersionManifest) {
 
 		version.libraries.each {
 			def artifact = it.downloads.artifact
-            if(artifact == null) return
-            def downloadUrl = artifact.url
+			if(artifact == null) return
+			def downloadUrl = artifact.url
 
 			download {
 				src downloadUrl
-				dest new File(libraries, downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1))
+				dest new File(libraries, downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1) as String)
 				overwrite false
 			}
 
@@ -427,18 +435,18 @@ task buildYarnTiny(dependsOn: mapIntermediaryJar, type: WithV2FileOutput) {
 		logger.lifecycle(":generating tiny mappings")
 
 		new MapSpecializedMethodsCommand().run(
-			intermediaryJar.getAbsolutePath(),
-			"enigma",
-			mappingsDir.getAbsolutePath(),
-			"tinyv2:intermediary:named",
-			v2Output.getAbsolutePath()
+				intermediaryJar.getAbsolutePath(),
+				"enigma",
+				mappingsDir.getAbsolutePath(),
+				"tinyv2:intermediary:named",
+				v2Output.getAbsolutePath()
 		)
 
 		new ConvertMappingsCommand().run(
-			"tinyv2",
-			v2Output.getAbsolutePath(),
-			"tiny:intermediary:named",
-			v1Output.getAbsolutePath())
+				"tinyv2",
+				v2Output.getAbsolutePath(),
+				"tiny:intermediary:named",
+				v1Output.getAbsolutePath())
 	}
 }
 
@@ -481,7 +489,7 @@ task tinyJar(type: Jar, dependsOn: mergeTiny) {
 	outputs.upToDateWhen { false }
 	archiveFileName = "yarn-${yarnVersion}.jar"
 	destinationDirectory.set(file("build/libs"))
-	classifier = ""
+	classifier("")
 	from(mergeTiny.output) {
 		rename { "mappings/mappings.tiny" }
 	}
@@ -493,7 +501,7 @@ task compressTiny(dependsOn: [tinyJar, mergeTiny], type: FileOutput) {
 	outputs.file(outputFile)
 	output = outputFile
 
-	def inputFile = mergeTiny.output
+	File inputFile = mergeTiny.output
 
 	outputs.upToDateWhen { false }
 
@@ -505,7 +513,7 @@ task compressTiny(dependsOn: [tinyJar, mergeTiny], type: FileOutput) {
 		def outputStream = new GZIPOutputStream(fileOutputStream)
 		def fileInputStream = new FileInputStream(inputFile)
 
-		def length
+		int length
 		while ((length = fileInputStream.read(buffer)) > 0) {
 			outputStream.write(buffer, 0, length)
 		}
@@ -591,7 +599,7 @@ task mapNamedJar(dependsOn: ["mergeV2", mapIntermediaryJar]) {
 	doLast {
 		logger.lifecycle(":mapping minecraft to named")
 
-		mapJar(namedJar, intermediaryJar, mergeV2.output, libraries, "intermediary", "named")
+		mapJar(namedJar, intermediaryJar, mergeV2.output as File, libraries, "intermediary", "named")
 	}
 }
 
@@ -617,7 +625,7 @@ task insertAutoGeneratedEnumMappings(dependsOn : [buildYarnTiny,mapIntermediaryJ
 }
 
 task mergeV2(dependsOn: ["v2UnmergedYarnJar", "invertIntermediaryv2"], type: FileOutput) {
-	def mergedV2 = new File(tempDir, "merged-v2.tiny");
+	def mergedV2 = new File(tempDir, "merged-v2.tiny")
 
 	output = new File(tempDir, "merged-reordered-v2.tiny")
 	outputs.upToDateWhen { false }
@@ -653,7 +661,7 @@ task v2UnmergedYarnJar(dependsOn: insertAutoGeneratedEnumMappings, type: Jar) {
 	archiveFileName = "yarn-${yarnVersion}-v2.jar"
 
 	from(file(mappings)) {
-		rename mappings.name, "mappings/mappings.tiny"
+		rename mappings.name as String, "mappings/mappings.tiny"
 	}
 	destinationDirectory.set(file("build/libs"))
 }
@@ -665,7 +673,7 @@ task v2MergedYarnJar(dependsOn: ["mergeV2"], type: Jar) {
 	archiveFileName = "yarn-${yarnVersion}-mergedv2.jar"
 
 	from(file(mappings)) {
-		rename mappings.name, "mappings/mappings.tiny"
+		rename mappings.name as String, "mappings/mappings.tiny"
 	}
 	destinationDirectory.set(file("build/libs"))
 }
@@ -759,7 +767,7 @@ javadoc {
 		addBooleanOption 'Xdoclint:accessibility', true
 	}
 	source fakeSourceDir
-	classpath = configurations.javadocClasspath.plus downloadMcLibs.outputs.files.asFileTree
+	classpath = configurations.javadocClasspath.plus downloadMcLibs.outputs.files.asFileTree as FileCollection
 
 	finalizedBy {
 		task copyCopyOnClickScript(type: Copy) {
@@ -827,7 +835,7 @@ publishing {
 }
 
 
-void mapJar(File output, File input, File mappings, File libraries, String from, String to) {
+static void mapJar(File output, File input, File mappings, File libraries, String from, String to) {
 	if (output.exists()) {
 		output.delete()
 	}
