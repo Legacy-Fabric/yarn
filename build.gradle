@@ -27,8 +27,10 @@ plugins {
 def minecraft_version = "1.12.2"
 
 def ENV = System.getenv()
-
-def yarnVersion = "${minecraft_version}+build.${buildTime()}"
+// Fetch build number from Github Actions
+// Then completely ignore it
+def build_number = ENV.GITHUB_ACTIONS ? buildTime() : "local"
+def yarnVersion = "${minecraft_version}+build.${build_number}"
 
 static def buildTime() {
 	def df = new SimpleDateFormat("yyyyMMddHHmm")
