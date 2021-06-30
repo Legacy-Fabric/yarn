@@ -101,7 +101,8 @@ File clientJar = new File(cacheFilesMinecraft, "${minecraft_version}-client.jar"
 File serverJar = new File(cacheFilesMinecraft, "${minecraft_version}-server.jar")
 File libraries = new File(cacheFilesMinecraft, "libraries")
 File libs = new File("build/libs/")
-
+File intermediary = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
+File intermediaryV2 = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 
 import com.google.common.hash.Hashing
 import com.google.common.io.Files
@@ -224,14 +225,14 @@ task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
 	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/${minecraft_version}.tiny"
 	src UrlEscapers.urlFragmentEscaper().escape(url)
-	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
+	dest intermediary
 }
 
 task downloadIntermediaryV2(type: Download) {
 	group = buildMappingGroup
 	def url = "https://maven.legacyfabric.net/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
 	src UrlEscapers.urlFragmentEscaper().escape(url)
-	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
+	dest intermediaryV2
 }
 
 task extractIntermediaryV2(dependsOn: downloadIntermediaryV2, type: Copy) {
