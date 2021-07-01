@@ -1,17 +1,46 @@
 CLASS net/minecraft/class_1294 net/minecraft/client/render/model/BasicBakedModel
 	FIELD field_5382 quads Ljava/util/List;
-	FIELD field_5384 usesAo Z
-	FIELD field_5385 hasDepth Z
+	FIELD field_5383 directionalQuads Ljava/util/List;
+	FIELD field_5384 ambientOcclusion Z
+	FIELD field_5385 depth Z
 	FIELD field_5386 sprite Lnet/minecraft/class_1231;
+		COMMENT The particle sprite
 	FIELD field_5387 transformation Lnet/minecraft/class_1080;
 	METHOD <init> (Ljava/util/List;Ljava/util/List;ZZLnet/minecraft/class_1231;Lnet/minecraft/class_1080;)V
 		ARG 1 quads
-		ARG 3 usesAo
-		ARG 4 hasDepth
-	CLASS class_1295
-		FIELD field_5388 bakedQuads Ljava/util/List;
+		ARG 2 directionalQuads
+		ARG 3 ambientOcclusion
+		ARG 4 depth
+		ARG 5 sprite
+		ARG 6 transformation
+	CLASS class_1295 Builder
+		FIELD field_5388 quads Ljava/util/List;
+		FIELD field_5389 directionalQuads Ljava/util/List;
+		FIELD field_5390 ambientOcclusion Z
 		FIELD field_5391 sprite Lnet/minecraft/class_1231;
+		FIELD field_5392 depth Z
 		FIELD field_5393 transformation Lnet/minecraft/class_1080;
+		METHOD <init> (Lnet/minecraft/class_1063;)V
+			ARG 1 blockModel
 		METHOD <init> (Lnet/minecraft/class_1288;Lnet/minecraft/class_1231;)V
 			ARG 1 model
 			ARG 2 sprite
+		METHOD <init> (ZZLnet/minecraft/class_1080;)V
+			ARG 1 ambientOcclusion
+			ARG 2 depth
+			ARG 3 transformation
+		METHOD method_4500 addQuad (Lnet/minecraft/class_1055;)Lnet/minecraft/class_1294$class_1295;
+			ARG 1 quad
+		METHOD method_4501 setParticle (Lnet/minecraft/class_1231;)Lnet/minecraft/class_1294$class_1295;
+			ARG 1 sprite
+		METHOD method_4502 addTexturedQuad (Lnet/minecraft/class_1288;Lnet/minecraft/class_1231;)V
+			ARG 1 model
+			ARG 2 sprite
+		METHOD method_4503 addTexturedQuad (Lnet/minecraft/class_1288;Lnet/minecraft/class_1231;Lnet/minecraft/class_1383;)V
+			ARG 1 model
+			ARG 2 sprite
+			ARG 3 direction
+		METHOD method_4504 addQuad (Lnet/minecraft/class_1383;Lnet/minecraft/class_1055;)Lnet/minecraft/class_1294$class_1295;
+			ARG 1 direction
+			ARG 2 quad
+		METHOD method_4505 build ()Lnet/minecraft/class_1288;
