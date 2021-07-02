@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_11408 boundingBox Lnet/minecraft/class_646;
+	FIELD field_13174 id I
 	FIELD field_7332 prevYaw F
 	FIELD field_7333 prevPitch F
 	FIELD field_7334 onGround Z
@@ -13,10 +14,12 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_7342 height F
 	FIELD field_7343 prevHorizontalSpeed F
 	FIELD field_7344 horizontalSpeed F
+	FIELD field_7345 distanceTraveled F
 	FIELD field_7346 fallDistance F
 	FIELD field_7347 prevTickX D
 	FIELD field_7348 prevTickY D
 	FIELD field_7349 prevTickZ D
+	FIELD field_7350 stepHeight F
 	FIELD field_7351 noClip Z
 	FIELD field_7352 pushSpeedReduction F
 	FIELD field_7353 random Ljava/util/Random;
@@ -58,6 +61,12 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 world
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 object
+	METHOD method_10542 dropItem (Lnet/minecraft/class_2056;F)Lnet/minecraft/class_1893;
+	METHOD method_10544 isInvulnerable ()Z
+	METHOD method_10546 setPosition (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_11963 getEyeHeight ()F
 	METHOD method_6897 getDataTracker ()Lnet/minecraft/class_1761;
 	METHOD method_6898 afterSpawn ()V
@@ -115,6 +124,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6955 canAvoidTraps ()Z
 	METHOD method_6957 getUuid ()Ljava/util/UUID;
 	METHOD method_6958 canFly ()Z
+	METHOD method_6971 isTouchingLava ()Z
 	METHOD method_6972 scheduleVelocityUpdate ()V
 	METHOD method_6973 collides ()Z
 	METHOD method_6974 isPushable ()Z
@@ -170,6 +180,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 3 y
 		ARG 5 z
 	METHOD method_7025 handleFallDamage (F)V
+		ARG 1 fallDistance
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
 	METHOD method_7027 writePlayerData (Lnet/minecraft/class_2816;)V

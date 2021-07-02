@@ -1,17 +1,42 @@
 CLASS net/minecraft/class_2599 net/minecraft/server/PlayerManager
+	FIELD field_11304 players Ljava/util/List;
+	FIELD field_11305 maxPlayers I
 	FIELD field_11307 date Ljava/text/SimpleDateFormat;
 	FIELD field_11308 server Lnet/minecraft/server/MinecraftServer;
 	FIELD field_11314 dataHandler Lnet/minecraft/class_640;
+	FIELD field_11315 whileListEnabled Z
 	FIELD field_11317 gamemode Lnet/minecraft/class_2087;
+	FIELD field_11318 cheatsAllowed Z
+	FIELD field_13021 viewDistance I
 	FIELD field_13022 bannedPlayers Lnet/minecraft/class_2887;
 	FIELD field_13023 bannedIps Lnet/minecraft/class_2887;
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
 		ARG 1 server
+	METHOD method_10412 setGameMode (Lnet/minecraft/class_2087;)V
+		ARG 1 gameMode
 	METHOD method_10414 (Lnet/minecraft/class_2821;Lnet/minecraft/class_1637;)V
 		ARG 2 player
+	METHOD method_10416 broadcastChatMessage (Lnet/minecraft/class_2828;Z)V
+		ARG 1 style
+		ARG 2 interruptNarration
+	METHOD method_10417 sendToAll (Lnet/minecraft/class_2863;)V
+	METHOD method_10425 setGameMode (Lnet/minecraft/class_1637;Lnet/minecraft/class_1637;Lnet/minecraft/class_99;)V
+		ARG 1 player
+		ARG 2 oldPlayer
+	METHOD method_10433 getPlayersByIp (Ljava/lang/String;)Ljava/util/List;
+		ARG 1 ip
+	METHOD method_10438 setCheatsAllowed (Z)V
+		ARG 1 cheatsAllowed
+	METHOD method_10451 saveAllPlayerData ()V
+	METHOD method_10456 getCurrentPlayerCount ()I
+	METHOD method_10457 getMaxPlayerCount ()I
+	METHOD method_10459 isWhitelistEnabled ()Z
+	METHOD method_10460 getViewDistance ()I
+	METHOD method_10461 disconnectAllPlayers ()V
 	METHOD method_6187 reloadWhitelist ()V
 	METHOD method_6198 checkCanJoin (Ljava/net/SocketAddress;Ljava/lang/String;)Ljava/lang/String;
 	METHOD method_6210 setWhitelistEnabled (Z)V
+		ARG 1 value
 	METHOD method_6214 savePlayerData (Lnet/minecraft/class_1637;)V
 	METHOD method_6218 getServer ()Lnet/minecraft/server/MinecraftServer;
 	METHOD method_6246 getUserData ()Lnet/minecraft/class_2816;

@@ -1,19 +1,23 @@
 //file:noinspection GrDeprecatedAPIUsage
 buildscript {
 	repositories {
-		mavenCentral()
 		maven {
-			name "Fabric Repository"
+			name "Fabric"
 			url 'https://maven.fabricmc.net'
 		}
+		maven {
+			name = 'Quilt'
+			url = 'https://maven.quiltmc.org/repository/release'
+		}
+		mavenCentral()
 	}
 	dependencies {
 		classpath "cuchaz:enigma:${project.enigma_version}"
 		classpath "cuchaz:enigma-cli:${project.enigma_version}"
-		classpath "net.fabricmc:stitch:${project.stitch_version}"
+		classpath "org.quiltmc:stitch:${project.stitch_version}"
 		classpath "commons-io:commons-io:2.6"
 		classpath 'de.undercouch:gradle-download-task:4.0.4'
-		classpath 'net.fabricmc:tiny-remapper:0.3.1.72'
+		classpath 'org.quiltmc:tiny-remapper:0.4.3'
 		classpath 'org.codehaus.groovy:groovy-all:3.0.8'
 	}
 }
@@ -28,9 +32,9 @@ plugins {
 def minecraft_version = "1.6.4"
 
 def ENV = System.getenv()
-// Fetch build number from Github Actions
-// Then completely ignore it
-def build_number = ENV.BUILD_NUMBER ? buildTime() : "local"
+// Check if the build is being run by Github Actions
+// Set build number to "local" if not.
+def build_number = ENV.GITHUB_ACTIONS ? buildTime() : "local"
 def yarnVersion = "${minecraft_version}+build.${build_number}"
 
 static def buildTime() {
@@ -42,8 +46,12 @@ static def buildTime() {
 repositories {
 	mavenCentral()
 	maven {
-		name "Fabric Repository"
+		name "Fabric"
 		url 'https://maven.fabricmc.net'
+	}
+	maven {
+		name = 'Quilt'
+		url = 'https://maven.quiltmc.org/repository/release'
 	}
 	maven {
 		name "Mojang"
@@ -71,8 +79,8 @@ configurations {
 
 dependencies {
 	enigmaRuntime "cuchaz:enigma-swing:${project.enigma_version}"
-	enigmaRuntime "net.fabricmc:stitch:${project.stitch_version}"
-	javadocClasspath "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+	enigmaRuntime "org.quiltmc:stitch:${project.stitch_version}"
+	javadocClasspath "org.quiltmc:quilt-loader:${project.loader_version}"
 	javadocClasspath "com.google.code.findbugs:jsr305:3.0.2"
 	decompileClasspath "org.benf:cfr:0.150"
 	mappingPoetJar 'net.fabricmc:mappingpoet:0.2.6'
@@ -93,7 +101,8 @@ File clientJar = new File(cacheFilesMinecraft, "${minecraft_version}-client.jar"
 File serverJar = new File(cacheFilesMinecraft, "${minecraft_version}-server.jar")
 File libraries = new File(cacheFilesMinecraft, "libraries")
 File libs = new File("build/libs/")
-
+File intermediary = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
+File intermediaryV2 = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 
 import com.google.common.hash.Hashing
 import com.google.common.io.Files
@@ -216,14 +225,14 @@ task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
 	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/${minecraft_version}.tiny"
 	src UrlEscapers.urlFragmentEscaper().escape(url)
-	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
+	dest intermediary
 }
 
 task downloadIntermediaryV2(type: Download) {
 	group = buildMappingGroup
 	def url = "https://maven.legacyfabric.net/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
 	src UrlEscapers.urlFragmentEscaper().escape(url)
-	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
+	dest intermediaryV2
 }
 
 task extractIntermediaryV2(dependsOn: downloadIntermediaryV2, type: Copy) {
@@ -756,7 +765,7 @@ javadoc {
 				'https://commons.apache.org/proper/commons-io/javadocs/api-2.5',
 				'https://commons.apache.org/proper/commons-codec/archives/1.10/apidocs',
 				'https://commons.apache.org/proper/commons-compress/javadocs/api-1.8.1/',
-				"https://maven.fabricmc.net/docs/fabric-loader-${project.fabric_loader_version}/",
+				"https://maven.quiltmc.net/docs/quilt-loader-${project.loader_version}/",
 				"https://docs.oracle.com/en/java/javase/11/docs/api/"
 				// Need to add loader jd publication for env annotations!
 		)

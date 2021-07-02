@@ -1,9 +1,14 @@
 CLASS net/minecraft/class_686 net/minecraft/client/gui/hud/ChatHud
+	FIELD field_10038 messageHistory Ljava/util/List;
+	FIELD field_10039 messages Ljava/util/List;
+	FIELD field_10040 visibleMessages Ljava/util/List;
 	FIELD field_2894 client Lnet/minecraft/class_669;
 	FIELD field_2898 scrolledLines I
 	FIELD field_2899 hasUnreadNewMessages Z
 	METHOD <init> (Lnet/minecraft/class_669;)V
 		ARG 1 client
+	METHOD method_11088 addMessage (Ljava/lang/String;)V
+		ARG 1 message
 	METHOD method_2480 clear ()V
 	METHOD method_2481 getWidth (F)I
 		ARG 0 chatWidth
@@ -13,6 +18,8 @@ CLASS net/minecraft/class_686 net/minecraft/client/gui/hud/ChatHud
 		ARG 1 x
 		ARG 2 y
 	METHOD method_2485 addMessage (Ljava/lang/String;I)V
+		ARG 1 message
+		ARG 2 messageId
 	METHOD method_2487 addToMessageHistory (Ljava/lang/String;)V
 		ARG 1 message
 	METHOD method_2488 reset ()V
@@ -29,3 +36,8 @@ CLASS net/minecraft/class_686 net/minecraft/client/gui/hud/ChatHud
 	METHOD method_2496 getHeight ()I
 	METHOD method_2497 getChatScale ()F
 	METHOD method_2498 getVisibleLineCount ()I
+	METHOD method_9205 (Ljava/lang/String;IIZ)V
+		ARG 1 message
+		ARG 2 messageId
+		ARG 3 timestamp
+		ARG 4 refresh

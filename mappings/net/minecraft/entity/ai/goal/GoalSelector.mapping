@@ -1,0 +1,18 @@
+CLASS net/minecraft/class_2641 net/minecraft/entity/ai/goal/GoalSelector
+	COMMENT Manages a set of goals, which are competing for certain controls on the mob. Multiple goals can run at the same time, so long as they are all using different controls.
+	COMMENT A running goal will always be replaced with a goal with a lower priority, if such a goal exists, it's competing for the same control and its canStart() method returns true. (Note that some goals randomize this method.)
+	COMMENT If two goals have the same priority and are competing for the same control, then one goal cannot replace the other if it's running. The goal selector tries to run goals in the order they were added.
+	FIELD field_11553 goals Ljava/util/List;
+	FIELD field_11554 disabledGoals Ljava/util/List;
+	FIELD field_11555 profiler Lnet/minecraft/class_1705;
+	METHOD <init> (Lnet/minecraft/class_1705;)V
+		ARG 1 profiler
+	METHOD method_10649 tick ()V
+	METHOD method_10650 add (ILnet/minecraft/class_1789;)V
+		COMMENT Adds a goal with a certain priority. Goals with lower priorities will replace running goals with a higher priority.
+		ARG 1 priority
+		ARG 2 goal
+	METHOD method_10651 remove (Lnet/minecraft/class_1789;)V
+		ARG 1 goal
+	METHOD method_10652 shouldContinue (Lnet/minecraft/class_1791;)Z
+		ARG 1 prioritizedGoal

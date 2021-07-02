@@ -388,7 +388,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_677 getDropCount (Ljava/util/Random;)I
 		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
 		COMMENT @return Amount of items to be dropped
-		ARG 1 rand
+		ARG 1 random
 			COMMENT Random object
 	METHOD method_678 getBlastResistance (Lnet/minecraft/class_1745;)F
 		COMMENT Returns the block's blast resistance as per the entity provided.
@@ -403,6 +403,9 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The player breaking the block
 		ARG 2 world
 			COMMENT The world that the block is placed in
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
 	METHOD method_680 setItemGroup (Lnet/minecraft/class_2029;)Lnet/minecraft/class_160;
 		COMMENT Sets the block's ItemGroup. Used in registering blocks.
 		COMMENT @return The current block
@@ -516,7 +519,19 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 7 hitY
 		ARG 8 hitZ
 		ARG 9 metadata
+	METHOD method_8611 (Lnet/minecraft/class_99;IIIILnet/minecraft/class_2674;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 meta
+		ARG 6 player
 	METHOD method_8612 dropStack (Lnet/minecraft/class_99;IIILnet/minecraft/class_2056;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 stack
 	METHOD method_8613 onBlockReplaced (Lnet/minecraft/class_99;IIIII)V
 		ARG 1 world
 		ARG 2 x
@@ -554,7 +569,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 side
-	METHOD method_8620 createSprites (Lnet/minecraft/class_2617;)V
+	METHOD method_8620 createSprite (Lnet/minecraft/class_2617;)V
 		ARG 1 factory
 	METHOD method_8622 (Lnet/minecraft/class_99;III)V
 		ARG 1 world
@@ -566,6 +581,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8624 (Lnet/minecraft/class_99;IIIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 id
+		ARG 6 fortune
 	METHOD method_8625 canPathfindThrough (Lnet/minecraft/class_104;III)Z
 		ARG 1 world
 		ARG 2 x
@@ -593,8 +615,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8633 (Lnet/minecraft/class_104;IIII)Z
+		ARG 1 world
 	METHOD method_8634 setSprite (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 1 id
+	METHOD method_8636 (Lnet/minecraft/class_99;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8637 getSprite (Lnet/minecraft/class_104;IIII)Lnet/minecraft/class_2616;
 		ARG 1 world
 		ARG 2 x
@@ -602,6 +631,17 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 		ARG 5 side
 	METHOD method_8639 getStrength (Lnet/minecraft/class_99;III)F
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8640 (Lnet/minecraft/class_99;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8641 (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
+		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
@@ -610,13 +650,24 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 direction
 	METHOD method_8643 getSprite (I)Lnet/minecraft/class_2616;
 		ARG 1 meta
 	METHOD method_8644 getColor (I)I
 		ARG 1 meta
 	METHOD method_8645 getStack (I)Lnet/minecraft/class_2056;
 		ARG 1 meta
+	METHOD method_8646 (Lnet/minecraft/class_99;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8647 getDropMeta (Lnet/minecraft/class_99;III)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8648 (Lnet/minecraft/class_99;III)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y

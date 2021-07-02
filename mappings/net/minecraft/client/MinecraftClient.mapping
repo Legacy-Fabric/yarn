@@ -1,4 +1,7 @@
 CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
+	FIELD field_12125 logger Lnet/minecraft/class_2915;
+	FIELD field_12126 sessionAuthenticator Lnet/minecraft/class_2528;
+	FIELD field_12128 resourcePackManager Lnet/minecraft/class_2374;
 	FIELD field_2508 profiler Lnet/minecraft/class_1705;
 	FIELD field_2509 running Z
 	FIELD field_2510 fpsDebugString Ljava/lang/String;
@@ -11,7 +14,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2527 windowFocused Z
 	FIELD field_2529 crashed Z
 	FIELD field_2530 crashReport Lnet/minecraft/class_825;
-	FIELD field_2532 tricker Lnet/minecraft/class_676;
+	FIELD field_2532 tracker Lnet/minecraft/class_676;
 	FIELD field_2533 snooper Lnet/minecraft/class_1728;
 	FIELD field_2535 defaultResourcePack Lnet/minecraft/class_1249;
 	FIELD field_2537 languageManager Lnet/minecraft/class_1270;
@@ -28,7 +31,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2567 currentFps I
 	FIELD field_2568 blockPlaceDelay I
 	FIELD field_2571 joinPlayerCounter I
-	FIELD field_2573 isDemo Z
+	FIELD field_2573 demo Z
 	FIELD field_2574 clientConnection Lnet/minecraft/class_2821;
 	FIELD field_2575 isIntegratedServerRunning Z
 	FIELD field_2576 f3CTime J
@@ -53,6 +56,20 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2599 runDirectory Ljava/io/File;
 	FIELD field_2600 focused Z
 	FIELD field_2601 sysTime J
+	FIELD field_9848 startTime J
+	FIELD field_9850 assetsFolder Ljava/io/File;
+	FIELD field_9853 resourcesFolder Ljava/io/File;
+	FIELD field_9860 worldRenderer Lnet/minecraft/class_2346;
+	METHOD <init> (Lnet/minecraft/class_2528;IIZZLjava/io/File;Ljava/io/File;Ljava/io/File;Ljava/net/Proxy;Ljava/lang/String;)V
+		ARG 1 sessionAuthenticator
+		ARG 2 width
+		ARG 3 height
+		ARG 5 demo
+		ARG 7 resources
+		ARG 8 assets
+		ARG 10 version
+	METHOD method_11063 getSessionAuthenticator ()Lnet/minecraft/class_2528;
+	METHOD method_11066 reloadResources ()V
 	METHOD method_2221 getInstance ()Lnet/minecraft/class_669;
 	METHOD method_2223 getMaxTextureSize ()I
 	METHOD method_2225 isIntegratedServerRunning ()Z
@@ -65,14 +82,18 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2235 getNetworkProxy ()Ljava/net/Proxy;
 	METHOD method_2236 getTextureManager ()Lnet/minecraft/class_1232;
 	METHOD method_2237 getResourceManager ()Lnet/minecraft/class_1258;
-	METHOD method_2238 getResourcePackLoader ()Lnet/minecraft/class_2374;
+	METHOD method_2238 getResourcePackManager ()Lnet/minecraft/class_2374;
 	METHOD method_2239 getLanguageManager ()Lnet/minecraft/class_1270;
 	METHOD method_2247 run ()V
+	METHOD method_2252 getGameVersion (Lnet/minecraft/class_669;)Ljava/lang/String;
+		ARG 0 client
 	METHOD method_2253 openScreen (Lnet/minecraft/class_2729;)V
 		ARG 1 screen
 	METHOD method_2254 crash (Lnet/minecraft/class_825;)V
 		ARG 1 crashReport
 	METHOD method_2255 disconnect (Lnet/minecraft/class_2317;)V
+	METHOD method_2256 (Lnet/minecraft/class_2317;Ljava/lang/String;)V
+		ARG 1 world
 	METHOD method_2257 setCurrentServerEntry (Lnet/minecraft/class_2324;)V
 		ARG 1 info
 	METHOD method_2260 startGame (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/class_102;)V
@@ -82,6 +103,8 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2285 updateDisplayMode ()V
 	METHOD method_2286 runGameLoop ()V
 	METHOD method_2290 doPick ()V
+	METHOD method_2293 getLanguageManger (Lnet/minecraft/class_669;)Lnet/minecraft/class_1270;
+		ARG 0 client
 	METHOD method_2294 addSystemDetailsToCrashReport (Lnet/minecraft/class_825;)Lnet/minecraft/class_825;
 		ARG 1 crashReport
 	METHOD method_2295 setGlErrorMessage (Ljava/lang/String;)V
@@ -101,3 +124,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2317 isHudEnabled ()Z
 	METHOD method_2318 isFancyGraphicsEnabled ()Z
 	METHOD method_2319 isAmbientOcclusionEnabled ()Z
+	METHOD method_9150 getDebugInfo1 ()Ljava/lang/String;
+	METHOD method_9151 getDebugInfo2 ()Ljava/lang/String;
+	METHOD method_9152 getWorldDebugInfo ()Ljava/lang/String;
+	METHOD method_9153 getEntityDebugInfo ()Ljava/lang/String;
