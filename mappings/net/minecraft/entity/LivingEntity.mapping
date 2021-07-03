@@ -63,12 +63,17 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7095 initializeAttribute (Lnet/minecraft/class_1765;)Lnet/minecraft/class_1766;
 		ARG 1 attribute
 	METHOD method_7097 initializeAttributes ()V
+	METHOD method_7099 dropXp ()V
+		COMMENT Drops experience when this entity is killed.
 	METHOD method_7101 getEffectInstance (Lnet/minecraft/class_1741;)Lnet/minecraft/class_1742;
 		ARG 1 effect
 	METHOD method_7103 setAttacker (Lnet/minecraft/class_1752;)V
 		ARG 1 entity
 	METHOD method_7104 getXpToDrop (Lnet/minecraft/class_1963;)I
 		ARG 1 player
+	METHOD method_7106 dropEquipment (ZI)V
+		ARG 1 allowDrops
+		ARG 2 lootingMultiplier
 	METHOD method_7107 getStackInHand ()Lnet/minecraft/class_2056;
 	METHOD method_7108 getSoundVolume ()F
 	METHOD method_7111 getJumpVelocity ()F
@@ -81,6 +86,8 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7120 getAbsorption ()F
 	METHOD method_7121 getScoreboardTeam ()Lnet/minecraft/class_655;
 	METHOD method_7122 markEffectsDirty ()V
+	METHOD method_7123 shouldDropXp ()Z
+	METHOD method_7124 shouldAlwaysDropXp ()Z
 	METHOD method_7125 getRandom ()Ljava/util/Random;
 	METHOD method_7126 getAttacker ()Lnet/minecraft/class_1752;
 	METHOD method_7127 getLastHurtTimestamp ()I
@@ -99,7 +106,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7145 swingHand ()V
 	METHOD method_7146 tickHandSwing ()V
 	METHOD method_7147 getAttributeContainer ()Lnet/minecraft/class_1769;
-	METHOD method_7148 getDamageEnchantmentTarget ()Lnet/minecraft/class_1758;
+	METHOD method_7148 getGroup ()Lnet/minecraft/class_1758;
 	METHOD method_7149 applyEnchantmentsToDamage (Lnet/minecraft/class_1733;F)F
 		ARG 1 source
 		ARG 2 amount
@@ -124,11 +131,14 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7160 endCombat ()V
 	METHOD method_7161 damageArmor (F)V
 		ARG 1 value
+	METHOD method_7162 getNextAirUnderwater (I)I
+		ARG 1 air
 	METHOD method_7163 isBaby ()Z
 	METHOD method_7164 setMovementSpeed (F)V
 		ARG 1 movementSpeed
 	METHOD method_7165 hasStatusEffect (I)Z
 		ARG 1 id
+	METHOD method_7166 isClimbing ()Z
 	METHOD method_7167 getHandSwingProgress (F)F
 	METHOD method_7168 removeEffect (I)V
 		ARG 1 id
@@ -145,7 +155,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7175 getMainSlot (I)Lnet/minecraft/class_2056;
 		ARG 1 slot
 	METHOD method_7179 tryAttack (Lnet/minecraft/class_1745;)Z
-		ARG 1 entity
+		ARG 1 target
 	METHOD method_7180 pushAway (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
 	METHOD method_7181 canSee (Lnet/minecraft/class_1745;)Z
