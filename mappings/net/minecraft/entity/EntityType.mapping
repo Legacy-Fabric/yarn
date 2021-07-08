@@ -1,2 +1,46 @@
 CLASS net/minecraft/class_2624 net/minecraft/entity/EntityType
-	METHOD method_10551 getEntityById (I)Ljava/lang/Class;
+	FIELD field_11425 SPAWN_EGGS Ljava/util/HashMap;
+	FIELD field_11427 ID_TO_CLASS Ljava/util/Map;
+	FIELD field_11428 CLASS_TO_ID Ljava/util/Map;
+	FIELD field_11429 RAW_ID_TO_CLASS Ljava/util/Map;
+	FIELD field_11430 CLASS_TO_RAW_ID Ljava/util/Map;
+	FIELD field_11431 ID_TO_RAW_ID Ljava/util/Map;
+	METHOD method_10551 getEntityByRawId (I)Ljava/lang/Class;
+		ARG 0 rawId
+	METHOD method_10552 createEntity (ILnet/minecraft/class_99;)Lnet/minecraft/class_1745;
+		ARG 0 entityRawId
+		ARG 1 world
+	METHOD method_10553 create (Lnet/minecraft/class_2816;Lnet/minecraft/class_99;)Lnet/minecraft/class_1745;
+		ARG 0 nbt
+		ARG 1 world
+	METHOD method_10555 register (Ljava/lang/Class;Ljava/lang/String;III)V
+		COMMENT regsiter an entity type and a spawn egg item.
+		COMMENT
+		COMMENT @param entityClass The class of the entity to be created by this type.
+		COMMENT @param id The string-based id of the entity type.
+		COMMENT @param rawId The numerical id to be assigned to the entity type.
+		COMMENT @param eggForegroundColor The hex color of the top egg texture layer
+		COMMENT @param eggBackgroundColor The hex color of the bottom egg texture layer
+		ARG 0 entityClass
+		ARG 1 id
+		ARG 2 rawId
+		ARG 3 eggForegroundColor
+		ARG 4 eggBackgroundColor
+	METHOD method_10556 create (Ljava/lang/String;Lnet/minecraft/class_99;)Lnet/minecraft/class_1745;
+		ARG 0 entityId
+		ARG 1 world
+	METHOD method_10557 isRegistered (Lnet/minecraft/class_1745;)I
+		ARG 0 entity
+	METHOD method_10559 getEntityClassById (I)Ljava/lang/String;
+		ARG 0 rawId
+	METHOD method_10560 getEntityId (Lnet/minecraft/class_1745;)Ljava/lang/String;
+		ARG 0 entity
+	METHOD method_11967 register (Ljava/lang/Class;Ljava/lang/String;I)V
+		COMMENT register an entity type with no spawn egg item.
+		COMMENT
+		COMMENT @param entityClass The class of the entity to be created by this type.
+		COMMENT @param id The string-based id of the entity type.
+		COMMENT @param rawId The numerical id to be assigned to the entity type.
+		ARG 0 entityClass
+		ARG 1 id
+		ARG 2 rawId
