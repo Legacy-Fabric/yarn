@@ -3,7 +3,9 @@ CLASS net/minecraft/class_1910 net/minecraft/entity/mob/EndermanEntity
 	FIELD field_8191 endermanAttributeModifier Lnet/minecraft/class_1767;
 	FIELD field_8193 HOLDABLES Ljava/util/Set;
 	METHOD method_7829 setCarriedBlock (Lnet/minecraft/class_376;)V
+		ARG 1 block
 	METHOD method_7833 teleportTo (Lnet/minecraft/class_1745;)Z
+		ARG 1 entity
 	METHOD method_7834 isPlayerStaring (Lnet/minecraft/class_1963;)Z
 		ARG 1 player
 	METHOD method_7835 getCarriedBlock ()Lnet/minecraft/class_376;
@@ -20,13 +22,20 @@ CLASS net/minecraft/class_1910 net/minecraft/entity/mob/EndermanEntity
 		FIELD field_8195 entity Lnet/minecraft/class_1910;
 		METHOD <init> (Lnet/minecraft/class_1910;)V
 			ARG 1 entity
-	CLASS class_1912 EndermanMovementGoal
-		FIELD field_8196 player Lnet/minecraft/class_1963;
-			COMMENT The target
+		METHOD method_7842 canPlaceOn (Lnet/minecraft/class_99;Lnet/minecraft/class_1372;Lnet/minecraft/class_160;Lnet/minecraft/class_160;Lnet/minecraft/class_160;)Z
+			ARG 1 world
+			ARG 2 pos
+			ARG 3 blockCarried
+			ARG 4 blockAbove
+			ARG 5 blockBelow
+	CLASS class_1912 TeleportTowardsPlayerGoal
+		FIELD field_8196 targetPlayer Lnet/minecraft/class_1963;
+		FIELD field_8197 lookAtPlayerWarmup I
+		FIELD field_8198 ticksSinceUnseenTeleport I
 		FIELD field_8199 enderman Lnet/minecraft/class_1910;
 		METHOD <init> (Lnet/minecraft/class_1910;)V
 			ARG 1 enderman
-	CLASS class_1913 PickupBlockGoal
-		FIELD field_8200 entity Lnet/minecraft/class_1910;
+	CLASS class_1913 PickUpBlockGoal
+		FIELD field_8200 enderman Lnet/minecraft/class_1910;
 		METHOD <init> (Lnet/minecraft/class_1910;)V
-			ARG 1 entity
+			ARG 1 enderman
