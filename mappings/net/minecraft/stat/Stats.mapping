@@ -3,12 +3,14 @@ CLASS net/minecraft/class_1687 net/minecraft/stat/Stats
 	FIELD field_11344 ALL Ljava/util/List;
 	FIELD field_11345 GENERAL Ljava/util/List;
 	FIELD field_11346 ITEM Ljava/util/List;
-	FIELD field_11347 MINE Ljava/util/List;
+	FIELD field_11347 MINING Ljava/util/List;
 	FIELD field_13139 FISH_CAUGHT Lnet/minecraft/class_2906;
 	FIELD field_13140 BLOCK_STATS [Lnet/minecraft/class_2906;
 	FIELD field_13141 CRAFTING_STATS [Lnet/minecraft/class_2906;
 	FIELD field_13142 USE_STATS [Lnet/minecraft/class_2906;
 	FIELD field_13143 BREAK_STATS [Lnet/minecraft/class_2906;
+	FIELD field_13144 baseRegistered Z
+	FIELD field_13145 extendedRegistered Z
 	FIELD field_13146 START_GAME Lnet/minecraft/class_2906;
 	FIELD field_13147 CREATE_WORLD Lnet/minecraft/class_2906;
 	FIELD field_13148 LOAD_WORLD Lnet/minecraft/class_2906;
@@ -24,7 +26,7 @@ CLASS net/minecraft/class_1687 net/minecraft/stat/Stats
 	FIELD field_7014 CM_DIVEN Lnet/minecraft/class_2906;
 	FIELD field_7015 CM_MINECART Lnet/minecraft/class_2906;
 	FIELD field_7016 CM_SAILED Lnet/minecraft/class_2906;
-	FIELD field_7017 CM_PIG Lnet/minecraft/class_2906;
+	FIELD field_7017 CM_RIDDEN_ON_PIG Lnet/minecraft/class_2906;
 	FIELD field_7019 JUMPS Lnet/minecraft/class_2906;
 	FIELD field_7020 DROPS Lnet/minecraft/class_2906;
 	FIELD field_7021 DAMAGE_DEALT Lnet/minecraft/class_2906;
@@ -35,16 +37,27 @@ CLASS net/minecraft/class_1687 net/minecraft/stat/Stats
 		COMMENT touches the class to initialize static variables
 	METHOD method_11926 getStat (I)Lnet/minecraft/class_2906;
 		ARG 0 statId
-	METHOD method_11928 initStats ([Lnet/minecraft/class_2906;II)V
+	METHOD method_11927 registerMiningStats (Ljava/lang/String;I)[Lnet/minecraft/class_2906;
+		ARG 0 statName
+		ARG 1 statId
+	METHOD method_11928 synchronizeBlockStats ([Lnet/minecraft/class_2906;II)V
 		ARG 0 stats
 		ARG 1 blockId1
 		ARG 2 blockId2
-	METHOD method_11929 registerStats ([Lnet/minecraft/class_2906;Ljava/lang/String;III)[Lnet/minecraft/class_2906;
+	METHOD method_11929 registerUseStats ([Lnet/minecraft/class_2906;Ljava/lang/String;III)[Lnet/minecraft/class_2906;
 		ARG 0 stats
-		ARG 1 prefix
-		ARG 3 start
-		ARG 4 end
-	METHOD method_11931 ([Lnet/minecraft/class_2906;Ljava/lang/String;III)[Lnet/minecraft/class_2906;
+		ARG 1 statName
+		ARG 2 statId
+		ARG 3 min
+		ARG 4 max
+	METHOD method_11930 registerBaseStats ()V
+	METHOD method_11931 registerBreakStats ([Lnet/minecraft/class_2906;Ljava/lang/String;III)[Lnet/minecraft/class_2906;
 		ARG 0 stats
-	METHOD method_6389 ([Lnet/minecraft/class_2906;)V
+		ARG 1 statName
+		ARG 2 statId
+		ARG 3 min
+		ARG 4 max
+	METHOD method_11932 registerExtendedStats ()V
+	METHOD method_11933 completeRegistration ()V
+	METHOD method_6389 synchronizeBlockStats ([Lnet/minecraft/class_2906;)V
 		ARG 0 stats
