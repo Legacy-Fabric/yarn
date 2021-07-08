@@ -13,7 +13,9 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7467 deathTime I
 	FIELD field_7470 SPRINTING_SPEED_MODIFIER Lnet/minecraft/class_1767;
 	FIELD field_7471 forwardSpeed F
+	FIELD field_7479 lastHurtBy Lnet/minecraft/class_1752;
 	FIELD field_7480 hurtByTimestamp I
+	FIELD field_7481 vehicle Lnet/minecraft/class_1752;
 	FIELD field_7484 jumpingCooldown I
 	FIELD field_7485 absorption F
 	FIELD field_7486 attributeContainer Lnet/minecraft/class_2635;
@@ -37,11 +39,16 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7095 initializeAttribute (Lnet/minecraft/class_1765;)Lnet/minecraft/class_1766;
 		ARG 1 attribute
 	METHOD method_7097 initializeAttributes ()V
+	METHOD method_7099 deathTick ()V
+		COMMENT Called every tick when the entity is dead.
 	METHOD method_7101 getEffectInstance (Lnet/minecraft/class_1741;)Lnet/minecraft/class_1742;
 		ARG 1 effect
-	METHOD method_7103 (Lnet/minecraft/class_1752;)V
+	METHOD method_7103 setHurtBy (Lnet/minecraft/class_1752;)V
 		ARG 1 entity
 	METHOD method_7104 getXpToDrop (Lnet/minecraft/class_2674;)I
+	METHOD method_7106 dropLoot (ZI)V
+		ARG 1 allowDrops
+		ARG 2 lootingMultiplier
 	METHOD method_7107 getStackInHand ()Lnet/minecraft/class_2056;
 	METHOD method_7114 jump ()V
 	METHOD method_7116 isSleeping ()Z
@@ -81,6 +88,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7163 isBaby ()Z
 	METHOD method_7165 hasStatusEffect (I)Z
 		ARG 1 id
+	METHOD method_7166 isClimbing ()Z
 	METHOD method_7168 removeEffect (I)V
 		ARG 1 id
 	METHOD method_7169 tickMovement ()V
@@ -92,8 +100,8 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7174 setStuckArrows (I)V
 		ARG 1 arrows
 	METHOD method_7175 getEquipment (I)Lnet/minecraft/class_2056;
-	METHOD method_7179 (Lnet/minecraft/class_1745;)Z
-		ARG 1 entity
+	METHOD method_7179 tryAttack (Lnet/minecraft/class_1745;)Z
+		ARG 1 target
 	METHOD method_7181 (Lnet/minecraft/class_1745;)Z
 		ARG 1 entity
 	METHOD method_7186 tickNewAi ()V
