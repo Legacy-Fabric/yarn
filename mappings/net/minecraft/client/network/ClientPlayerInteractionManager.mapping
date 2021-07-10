@@ -14,13 +14,17 @@ CLASS net/minecraft/class_2316 net/minecraft/client/network/ClientPlayerInteract
 	METHOD <init> (Lnet/minecraft/class_669;Lnet/minecraft/class_2314;)V
 		ARG 1 client
 		ARG 2 networkHandler
+	METHOD method_11452 tick ()V
+	METHOD method_9283 isSpectator ()Z
+		COMMENT Always returns false in this version. :mojank:
 	METHOD method_9284 clickButton (II)V
 		ARG 1 syncId
 		ARG 2 buttonId
-	METHOD method_9286 (IIII)Z
+	METHOD method_9286 breakBlock (IIII)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 4 direction
 	METHOD method_9287 clickSlot (IIIILnet/minecraft/class_2674;)Lnet/minecraft/class_2056;
 		ARG 1 syncId
 		ARG 2 slotId
@@ -34,14 +38,26 @@ CLASS net/minecraft/class_2316 net/minecraft/client/network/ClientPlayerInteract
 		ARG 2 slot
 	METHOD method_9291 setGameMode (Lnet/minecraft/class_2087;)V
 		ARG 1 gameMode
-	METHOD method_9292 (Lnet/minecraft/class_669;Lnet/minecraft/class_2316;IIII)V
+	METHOD method_9292 breakBlockOrFire (Lnet/minecraft/class_669;Lnet/minecraft/class_2316;IIII)V
 		ARG 0 client
+		ARG 1 interactionManager
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 direction
 	METHOD method_9293 copyAbilities (Lnet/minecraft/class_2674;)V
 		ARG 1 player
 	METHOD method_9297 isSurvival ()Z
-	METHOD method_9299 (Lnet/minecraft/class_2674;)V
+	METHOD method_9298 attackBlock (IIII)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 direction
+	METHOD method_9299 resetYaw (Lnet/minecraft/class_2674;)V
 		ARG 1 player
+	METHOD method_9301 cancelBlockBreaking ()V
 	METHOD method_9303 stopUsingItem (Lnet/minecraft/class_2674;)V
+	METHOD method_9304 getReachDistance ()F
 	METHOD method_9306 hasExperienceBar ()Z
 	METHOD method_9307 hasLimitedAttackSpeed ()Z
 	METHOD method_9308 hasCreativeInventory ()Z

@@ -17,13 +17,14 @@ CLASS net/minecraft/class_2277 net/minecraft/client/option/GameOptions
 	FIELD field_9868 chatHeightUnfocused F
 	FIELD field_9869 chatHeightFocused F
 	FIELD field_9880 skin Ljava/lang/String;
-	FIELD field_9882 fpsLimit I
+	FIELD field_9882 maxFramerate I
 	FIELD field_9884 keyForward Lnet/minecraft/class_2717;
 	FIELD field_9885 keyLeft Lnet/minecraft/class_2717;
 	FIELD field_9886 keyBack Lnet/minecraft/class_2717;
 	FIELD field_9887 keyRight Lnet/minecraft/class_2717;
 	FIELD field_9888 keyJump Lnet/minecraft/class_2717;
 	FIELD field_9889 keySneak Lnet/minecraft/class_2717;
+	FIELD field_9891 smoothCameraEnabled Z
 	FIELD field_9898 gamma F
 	FIELD field_9899 guiScale I
 	FIELD field_9900 particles I
@@ -45,7 +46,10 @@ CLASS net/minecraft/class_2277 net/minecraft/client/option/GameOptions
 	FIELD field_9922 keyPlayerList Lnet/minecraft/class_2717;
 	FIELD field_9933 keysAll [Lnet/minecraft/class_2717;
 	FIELD field_9934 client Lnet/minecraft/class_669;
-	FIELD field_9936 hudEnabled Z
+	FIELD field_9936 hudHidden Z
+	FIELD field_9937 perspective I
+	FIELD field_9938 debugEnabled Z
+	FIELD field_9939 debugProfilerEnabled Z
 	FIELD field_9940 lastServer Ljava/lang/String;
 	FIELD field_9941 invertYMouse Z
 	FIELD field_9944 anaglyph3d Z
@@ -68,17 +72,34 @@ CLASS net/minecraft/class_2277 net/minecraft/client/option/GameOptions
 	METHOD <init> (Lnet/minecraft/class_669;Ljava/io/File;)V
 		ARG 1 client
 		ARG 2 gameDir
+	METHOD method_11075 getLocalizedKeybindName (I)Ljava/lang/String;
+		ARG 1 button
+	METHOD method_11077 getLocalizedBindingName (I)Ljava/lang/String;
+		ARG 1 button
 	METHOD method_9160 load ()V
 	METHOD method_9161 isKeybindPressed (Lnet/minecraft/class_2717;)Z
 		ARG 0 keyBinding
-	METHOD method_9165 (Lnet/minecraft/class_2718;I)V
+	METHOD method_9163 getFloatOptionValue (Lnet/minecraft/class_2718;)F
 		ARG 1 option
+	METHOD method_9164 setFloatOptionValue (Lnet/minecraft/class_2718;F)V
+		ARG 1 option
+		ARG 2 value
+	METHOD method_9165 setIntOptionValue (Lnet/minecraft/class_2718;I)V
+		ARG 1 option
+		ARG 2 value
 	METHOD method_9166 parseFloat (Ljava/lang/String;)F
 		ARG 1 string
+	METHOD method_9169 translate ([Ljava/lang/String;I)Ljava/lang/String;
+		ARG 0 keys
+		ARG 1 index
 	METHOD method_9170 write ()V
+	METHOD method_9171 getBooleanOptionValue (Lnet/minecraft/class_2718;)Z
+		ARG 1 option
 	METHOD method_9172 sendClientSettings ()V
 		COMMENT Sends the current client settings to the server if the client is connected to a server.
 		COMMENT Called when a player joins the game or when client settings are changed.
+	METHOD method_9173 getLocalizedKeyName (I)Ljava/lang/String;
+		ARG 0 keyCode
 	METHOD method_9174 getOptionButtonText (Lnet/minecraft/class_2718;)Ljava/lang/String;
 		ARG 1 option
 	METHOD method_9175 getCloudRenderMode ()Z
