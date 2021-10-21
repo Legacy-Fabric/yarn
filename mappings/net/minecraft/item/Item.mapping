@@ -16,6 +16,11 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	FIELD field_8015 propertyGetters Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/class_1792$class_1793;)V
 		ARG 1 settings
+	METHOD method_73182 registerItemBlock (Lnet/minecraft/class_1747;)V
+	METHOD method_73183 register (Lnet/minecraft/class_2248;Lnet/minecraft/class_1761;)V
+	METHOD method_73184 register (Lnet/minecraft/class_2248;Lnet/minecraft/class_1792;)V
+	METHOD method_73185 register (Ljava/lang/String;Lnet/minecraft/class_1792;)V
+	METHOD method_73188 registerDefaults ()V
 	METHOD method_7836 use (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1271;
 		ARG 1 world
 		ARG 2 user
@@ -27,6 +32,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 3 user
 		ARG 4 remainingUseTicks
 	METHOD method_7841 getMaxDamage ()I
+	METHOD method_7842 getHitResult ()Z
 	METHOD method_7843 onCraft (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;)V
 		ARG 1 stack
 		ARG 2 world
@@ -35,7 +41,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 slot
 	METHOD method_7845 hasPropertyGetters ()Z
 	METHOD method_7846 isDamageable ()Z
-	METHOD method_7847 useOnEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Z
+	METHOD method_7847 interactWithEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Z
 		ARG 1 stack
 		ARG 2 user
 		ARG 3 entity
@@ -58,10 +64,11 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_7854 getStackForRender ()Lnet/minecraft/class_1799;
 	METHOD method_7855 isIn (Lnet/minecraft/class_3494;)Z
 		ARG 1 tag
+	METHOD method_7856 isEffectiveOn (Lnet/minecraft/class_16477;)Z
 	METHOD method_7857 hasRecipeRemainder ()Z
 	METHOD method_7858 getRecipeRemainder ()Lnet/minecraft/class_1792;
 	METHOD method_7859 getGroup ()Lnet/minecraft/class_1761;
-	METHOD method_7860 postProcessTag (Lnet/minecraft/class_2487;)Z
+	METHOD method_7860 onTagDeserialized (Lnet/minecraft/class_2487;)Z
 		ARG 1 tag
 	METHOD method_7861 finishUsing (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1799;
 		ARG 1 stack
@@ -74,6 +81,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 property
 	METHOD method_7864 getName (Lnet/minecraft/class_1799;)Lnet/minecraft/class_2561;
 		ARG 1 stack
+	METHOD method_7865 getBlockBreakingSpeed (Lnet/minecraft/class_1799;Lnet/minecraft/class_16477;)F
 	METHOD method_7866 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
 		ARG 1 stack
 	METHOD method_7867 fromBlock (Lnet/minecraft/class_2248;)Lnet/minecraft/class_1792;
@@ -87,7 +95,8 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 0 stack
 		ARG 1 world
 		ARG 2 entity
-	METHOD method_7873 postHit (Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
+	METHOD method_7872 getHitResult (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Z)Lnet/minecraft/class_239;
+	METHOD method_7873 onEntityDamaged (Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
 		ARG 1 stack
 		ARG 2 target
 		ARG 3 attacker
@@ -103,6 +112,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_7878 canRepair (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 1 stack
 		ARG 2 ingredient
+	METHOD method_7879 onBlockBroken (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_16477;Lnet/minecraft/class_2338;Lnet/minecraft/class_1309;)Z
 	METHOD method_7880 getRawId (Lnet/minecraft/class_1792;)I
 		ARG 0 item
 	METHOD method_7881 getMaxUseTime (Lnet/minecraft/class_1799;)I
@@ -114,6 +124,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 entity
 	METHOD method_7884 useOnBlock (Lnet/minecraft/class_1838;)Lnet/minecraft/class_1269;
 		ARG 1 context
+	METHOD method_7885 beforeBlockBreak (Lnet/minecraft/class_16477;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;)Z
 	METHOD method_7886 hasEnchantmentGlint (Lnet/minecraft/class_1799;)Z
 		ARG 1 stack
 	METHOD method_7887 shouldSyncTagToClient ()Z
