@@ -8,6 +8,7 @@ CLASS net/minecraft/class_1841 net/minecraft/village/Village
 	FIELD field_7859 ticks I
 	FIELD field_7860 populationSize I
 	FIELD field_7861 mtick I
+	FIELD field_7863 attackers Ljava/util/List;
 	FIELD field_7864 golems I
 	METHOD <init> (Lnet/minecraft/class_99;)V
 		ARG 1 world
@@ -17,5 +18,15 @@ CLASS net/minecraft/class_1841 net/minecraft/village/Village
 		ARG 1 world
 	METHOD method_7463 fromTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
+	METHOD method_7466 addAttacker (Lnet/minecraft/class_1752;)V
+		ARG 1 entity
 	METHOD method_7471 toTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
+	METHOD method_7472 getClosestAttacker (Lnet/minecraft/class_1752;)Lnet/minecraft/class_1752;
+		ARG 1 entity
+	CLASS class_1842 Attacker
+		FIELD field_7865 entity Lnet/minecraft/class_1752;
+		FIELD field_7866 ticks I
+		METHOD <init> (Lnet/minecraft/class_1841;Lnet/minecraft/class_1752;I)V
+			ARG 2 entity
+			ARG 3 ticks
