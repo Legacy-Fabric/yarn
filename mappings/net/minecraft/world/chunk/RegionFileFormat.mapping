@@ -1,8 +1,43 @@
 CLASS net/minecraft/class_407 net/minecraft/world/chunk/RegionFileFormat
 	FIELD field_1618 BYTES [B
 	FIELD field_1619 file Ljava/io/File;
+	FIELD field_1620 fileBuffer Ljava/io/RandomAccessFile;
+	FIELD field_1621 sectorData [I
+	FIELD field_1622 saveTimes [I
+	FIELD field_1625 lastModified J
 	METHOD <init> (Ljava/io/File;)V
 		ARG 1 file
+	METHOD method_1447 getChunkInputStream (II)Ljava/io/DataInputStream;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD method_1448 writeSectorData (III)V
+		ARG 1 chunkX
+		ARG 2 chunkZ
+		ARG 3 length
+	METHOD method_1449 writeChunk (II[BI)V
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD method_1450 writeChunk (I[BI)V
+		ARG 1 sectorData
+		ARG 2 data
+		ARG 3 dataLength
+	METHOD method_1451 getChunkOutputStream (II)Ljava/io/DataOutputStream;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD method_1452 writeSaveTime (III)V
+		ARG 1 chunkX
+		ARG 2 chunkZ
+		ARG 3 timestamp
+	METHOD method_1453 close ()V
+	METHOD method_1454 chunkExists (II)Z
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD method_1455 isOutsideRange (II)Z
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD method_1456 getSectorData (II)I
+		ARG 1 chunkX
+		ARG 2 chunkZ
 	CLASS class_408 OutputStream
 		FIELD field_1627 chunkX I
 		FIELD field_1628 chunkZ I
