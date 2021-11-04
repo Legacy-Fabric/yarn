@@ -2,14 +2,32 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 	FIELD field_5988 parent Lio/netty/buffer/ByteBuf;
 	METHOD <init> (Lio/netty/buffer/ByteBuf;)V
 		ARG 1 parent
+	METHOD alloc ()Lio/netty/buffer/ByteBufAllocator;
+	METHOD array ()[B
+	METHOD arrayOffset ()I
+	METHOD bytesBefore (B)I
+	METHOD bytesBefore (IB)I
+	METHOD bytesBefore (IIB)I
 	METHOD capacity ()I
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
+	METHOD clear ()Lio/netty/buffer/ByteBuf;
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 byteBuf
+	METHOD copy ()Lio/netty/buffer/ByteBuf;
+	METHOD copy (II)Lio/netty/buffer/ByteBuf;
+	METHOD discardReadBytes ()Lio/netty/buffer/ByteBuf;
+	METHOD discardSomeReadBytes ()Lio/netty/buffer/ByteBuf;
+	METHOD duplicate ()Lio/netty/buffer/ByteBuf;
 	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 	METHOD ensureWritable (IZ)I
 		ARG 1 i
 		ARG 2 bl
+	METHOD forEachByte (IILio/netty/buffer/ByteBufProcessor;)I
+	METHOD forEachByte (Lio/netty/buffer/ByteBufProcessor;)I
+	METHOD forEachByteDesc (IILio/netty/buffer/ByteBufProcessor;)I
+	METHOD forEachByteDesc (Lio/netty/buffer/ByteBufProcessor;)I
 	METHOD getBoolean (I)Z
 		ARG 1 i
 	METHOD getByte (I)B
@@ -67,10 +85,22 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 		ARG 1 i
 	METHOD getUnsignedShort (I)I
 		ARG 1 i
+	METHOD hasArray ()Z
+	METHOD hasMemoryAddress ()Z
+	METHOD indexOf (IIB)I
+	METHOD internalNioBuffer (II)Ljava/nio/ByteBuffer;
+	METHOD isDirect ()Z
+	METHOD isReadable ()Z
 	METHOD isReadable (I)Z
 		ARG 1 i
+	METHOD isWritable ()Z
 	METHOD isWritable (I)Z
 		ARG 1 i
+	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD markWriterIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD maxCapacity ()I
+	METHOD maxWritableBytes ()I
+	METHOD memoryAddress ()J
 	METHOD method_5127 getVarIntSizeBytes (I)I
 		ARG 0 size
 	METHOD method_5135 writeItemStack (Lnet/minecraft/class_2056;)V
@@ -86,19 +116,48 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 		ARG 1 tag
 	METHOD method_9859 writeString (Ljava/lang/String;)V
 		ARG 1 string
+	METHOD nioBuffer ()Ljava/nio/ByteBuffer;
+	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
+	METHOD nioBufferCount ()I
+	METHOD nioBuffers ()[Ljava/nio/ByteBuffer;
+	METHOD nioBuffers (II)[Ljava/nio/ByteBuffer;
+	METHOD order ()Ljava/nio/ByteOrder;
 	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
 		ARG 1 order
 	METHOD readBoolean ()Z
 	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Ljava/nio/channels/GatheringByteChannel;I)I
 	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes ([BII)Lio/netty/buffer/ByteBuf;
+	METHOD readChar ()C
+	METHOD readDouble ()D
 	METHOD readFloat ()F
 	METHOD readInt ()I
 	METHOD readLong ()J
+	METHOD readMedium ()I
 	METHOD readShort ()S
+	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
 	METHOD readUnsignedByte ()S
+	METHOD readUnsignedInt ()J
+	METHOD readUnsignedMedium ()I
 	METHOD readUnsignedShort ()I
+	METHOD readableBytes ()I
+	METHOD readerIndex ()I
 	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
+	METHOD refCnt ()I
+	METHOD release ()Z
+	METHOD release (I)Z
+	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD resetWriterIndex ()Lio/netty/buffer/ByteBuf;
+	METHOD retain ()Lio/netty/util/ReferenceCounted;
+	METHOD retain (I)Lio/netty/util/ReferenceCounted;
 	METHOD setBoolean (IZ)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 		ARG 2 bl
@@ -117,6 +176,9 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 		ARG 2 buf
 		ARG 3 j
 		ARG 4 k
+	METHOD setBytes (ILjava/io/InputStream;I)I
+	METHOD setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (ILjava/nio/channels/ScatteringByteChannel;I)I
 	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 		ARG 2 bytes
@@ -149,12 +211,32 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 		ARG 2 j
+	METHOD setZero (II)Lio/netty/buffer/ByteBuf;
+	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD slice ()Lio/netty/buffer/ByteBuf;
+	METHOD slice (II)Lio/netty/buffer/ByteBuf;
+	METHOD toString (IILjava/nio/charset/Charset;)Ljava/lang/String;
+	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
+	METHOD unwrap ()Lio/netty/buffer/ByteBuf;
+	METHOD writableBytes ()I
 	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
 	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Ljava/io/InputStream;I)I
+	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I
 	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes ([BII)Lio/netty/buffer/ByteBuf;
+	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
 	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
+	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
+	METHOD writerIndex ()I
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i

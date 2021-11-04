@@ -1,4 +1,6 @@
 CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
+	FIELD field_11440 attackTime I
+	FIELD field_11442 activeEffects Ljava/util/HashMap;
 	FIELD field_7437 health I
 	FIELD field_7442 bodyYaw F
 	FIELD field_7443 prevBodyYaw F
@@ -13,13 +15,21 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7467 deathTime I
 	FIELD field_7470 SPRINTING_SPEED_MODIFIER Lnet/minecraft/class_1767;
 	FIELD field_7471 forwardSpeed F
+	FIELD field_7479 attacker Lnet/minecraft/class_1752;
 	FIELD field_7480 hurtByTimestamp I
 	FIELD field_7485 absorption F
 	FIELD field_7486 attributeContainer Lnet/minecraft/class_2635;
 	FIELD field_7487 damageTracker Lnet/minecraft/class_1732;
+	FIELD field_7490 dirty Z
 	METHOD bp mobTick ()V
+	METHOD method_10570 getActiveEffects ()Ljava/util/Collection;
 	METHOD method_10576 getRotationVec (F)Lnet/minecraft/class_649;
+	METHOD method_10578 (Lnet/minecraft/class_1745;)V
+		ARG 1 other
 	METHOD method_6918 positAfterTeleport (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_7088 isInTeam (Lnet/minecraft/class_655;)Z
 		ARG 1 team
 	METHOD method_7089 onKilled (Lnet/minecraft/class_1733;)V
@@ -36,14 +46,23 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7095 initializeAttribute (Lnet/minecraft/class_1765;)Lnet/minecraft/class_1766;
 		ARG 1 attribute
 	METHOD method_7097 initializeAttributes ()V
+	METHOD method_7100 transformDamage (Lnet/minecraft/class_1733;F)F
+		COMMENT Returns the damage after applying armor protection
+		ARG 1 source
+		ARG 2 amount
 	METHOD method_7101 getEffectInstance (Lnet/minecraft/class_1741;)Lnet/minecraft/class_1742;
 		ARG 1 effect
 	METHOD method_7102 onStatusEffectRemoved (Lnet/minecraft/class_1742;)V
 		ARG 1 effect
 	METHOD method_7103 (Lnet/minecraft/class_1752;)V
 		ARG 1 entity
+	METHOD method_7104 getDroppedExp (Lnet/minecraft/class_2674;)I
+		ARG 1 player
+	METHOD method_7105 (Lnet/minecraft/class_2056;)V
+		ARG 1 stack
 	METHOD method_7107 getStackInHand ()Lnet/minecraft/class_2056;
 	METHOD method_7108 getSoundVolume ()F
+	METHOD method_7110 isHealthBellowZero ()Z
 	METHOD method_7116 isSleeping ()Z
 	METHOD method_7120 getAbsorption ()F
 	METHOD method_7121 getScoreboardTeam ()Lnet/minecraft/class_655;
@@ -56,11 +75,15 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7138 getDeathSound ()Ljava/lang/String;
 	METHOD method_7140 getArmorProtectionValue ()I
 	METHOD method_7141 getDamageTracker ()Lnet/minecraft/class_1732;
+	METHOD method_7142 getLastAttacker ()Lnet/minecraft/class_1752;
 	METHOD method_7143 getMaxHealth ()F
 	METHOD method_7144 getStuckArrows ()I
 	METHOD method_7145 swingHand ()V
 	METHOD method_7147 getAttributeContainer ()Lnet/minecraft/class_2635;
 	METHOD method_7148 getDamageEnchantmentTarget ()Lnet/minecraft/class_1758;
+	METHOD method_7149 (Lnet/minecraft/class_1733;F)F
+		ARG 1 source
+		ARG 2 amount
 	METHOD method_7150 addStatusEffect (Lnet/minecraft/class_1742;)V
 		ARG 1 instance
 	METHOD method_7151 isInSameTeam (Lnet/minecraft/class_1752;)Z
@@ -71,8 +94,10 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7153 canHaveStatusEffect (Lnet/minecraft/class_1742;)Z
 		ARG 1 effect
 	METHOD method_7155 heal (F)V
+		ARG 1 amount
 	METHOD method_7157 enterCombat ()V
 	METHOD method_7158 setHealth (F)V
+		ARG 1 amount
 	METHOD method_7160 endCombat ()V
 	METHOD method_7161 damageArmor (F)V
 		ARG 1 value

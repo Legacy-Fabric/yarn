@@ -13,19 +13,30 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 	FIELD field_11725 currentScreenHandler Lnet/minecraft/class_1983;
 	FIELD field_11726 hunderManager Lnet/minecraft/class_1982;
 	FIELD field_11737 spawnPointPosition Lnet/minecraft/class_2614;
+	FIELD field_11739 spawnForced Z
 	FIELD field_11741 heldItem Lnet/minecraft/class_2056;
 	FIELD field_11744 profiler Lcom/mojang/authlib/GameProfile;
 	METHOD <init> (Lnet/minecraft/class_99;Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 world
 		ARG 2 profile
+	METHOD method_10840 addExhaustion (F)V
+		ARG 1 exhaustion
 	METHOD method_10842 trySleep (III)Lnet/minecraft/class_2675;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_10843 (IIIILnet/minecraft/class_2056;)Z
+		ARG 5 stack
 	METHOD method_10847 openTradingScreen (Lnet/minecraft/class_83;Ljava/lang/String;)V
 		ARG 1 trader
+		ARG 2 name
 	METHOD method_10848 openCommandBlockMinecartScreen (Lnet/minecraft/class_87;)V
 		ARG 1 executor
+	METHOD method_10850 canCurrentToolBreak (Lnet/minecraft/class_160;)Z
+		ARG 1 block
+	METHOD method_10851 (Lnet/minecraft/class_160;Z)F
+		ARG 1 block
+		ARG 2 canBreak
 	METHOD method_10852 openBeaconScreen (Lnet/minecraft/class_2192;)V
 		ARG 1 beacon
 	METHOD method_10853 openBrewingStandScreen (Lnet/minecraft/class_349;)V
@@ -41,21 +52,32 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 	METHOD method_10861 openHorseScreen (Lnet/minecraft/class_1850;Lnet/minecraft/class_1718;)V
 		ARG 1 horse
 		ARG 2 inventory
+	METHOD method_10862 drop (Lnet/minecraft/class_1893;)V
+		ARG 1 entity
 	METHOD method_10863 openHopperMinecartScreen (Lnet/minecraft/class_2659;)V
 		ARG 1 hopperMinecart
+	METHOD method_10864 canAttack (Lnet/minecraft/class_2674;)Z
+		ARG 1 other
 	METHOD method_10868 openEditBookScreen (Lnet/minecraft/class_2056;)V
 		ARG 1 book
 	METHOD method_10869 addCritParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
 	METHOD method_10870 stopUsingHand ()V
 	METHOD method_10872 isHoldingSword ()Z
+	METHOD method_10873 getScore ()I
+	METHOD method_10875 getMainHandStack ()Lnet/minecraft/class_2056;
 	METHOD method_10878 getGameProfile ()Lcom/mojang/authlib/GameProfile;
 	METHOD method_10882 getSpawnPointPosition ()Lnet/minecraft/class_2614;
 	METHOD method_10883 isSpawnPointSet ()Z
+	METHOD method_10885 getHungerManager ()Lnet/minecraft/class_1982;
+	METHOD method_10886 hasDamage ()Z
+	METHOD method_10889 getScoreboard ()Lnet/minecraft/class_653;
 	METHOD method_10890 getItemInHand ()Lnet/minecraft/class_2056;
 	METHOD method_10892 isHoldingItem ()Z
 	METHOD method_10894 score (I)V
 	METHOD method_10897 addEnchantedCritParticles (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
+	METHOD method_10907 attack (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
 	METHOD method_7977 setGameMode (Lnet/minecraft/class_2087;)V
 	METHOD method_7979 openEditSignScreen (Lnet/minecraft/class_2193;)V
