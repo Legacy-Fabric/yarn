@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_11408 boundingBox Lnet/minecraft/class_646;
+	FIELD field_11410 heightOffset F
 	FIELD field_7332 prevYaw F
 	FIELD field_7333 prevPitch F
 	FIELD field_7334 onGround Z
@@ -61,14 +62,13 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD Y getEyeHeight ()F
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 object
-	METHOD g ()F
-		COMMENT TODO: WTF is this
 	METHOD method_10541 playStepSound (IIILnet/minecraft/class_160;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 		ARG 4 block
 	METHOD method_10542 dropStack (Lnet/minecraft/class_2056;F)Lnet/minecraft/class_1893;
+		ARG 1 stack
 	METHOD method_10544 isInvulnerableTo ()Z
 	METHOD method_10546 updatePosition (DDD)V
 	METHOD method_6261 getTranslationKey ()Ljava/lang/String;
@@ -133,9 +133,16 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 2 amount
 	METHOD method_6938 startRiding (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_6939 (Lnet/minecraft/class_1752;)V
+		ARG 1 entity
 	METHOD method_6941 onLightningStrike (Lnet/minecraft/class_1890;)V
 		ARG 1 lightning
-	METHOD method_6943 dropItem (Lnet/minecraft/class_2054;I)Lnet/minecraft/class_1893;
+	METHOD method_6943 dropItems (Lnet/minecraft/class_2054;I)Lnet/minecraft/class_1893;
+		ARG 1 item
+		ARG 2 count
+	METHOD method_6944 dropItems (Lnet/minecraft/class_2054;IF)Lnet/minecraft/class_1893;
+		ARG 1 item
+		ARG 2 count
 	METHOD method_6946 toListTag ([D)Lnet/minecraft/class_1411;
 		ARG 1 values
 	METHOD method_6947 toListTag ([F)Lnet/minecraft/class_1411;
@@ -155,6 +162,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6978 isAlive ()Z
 	METHOD method_6979 isInsideWall ()Z
 	METHOD method_6980 tickRiding ()V
+	METHOD method_6981 updateByRiding ()V
 	METHOD method_6982 getHeightOffset ()D
 	METHOD method_6983 getMountedHeightOffset ()D
 	METHOD method_6986 getDefaultNetherPortalCooldown ()I
@@ -180,11 +188,15 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 2 value
 	METHOD method_7003 writeCustomDataToTag (Lnet/minecraft/class_1405;)V
 		ARG 1 tag
+	METHOD method_7005 (Lnet/minecraft/class_1745;I)V
+		ARG 1 entity
 	METHOD method_7009 increaseTransforms (FF)V
 		ARG 1 yaw
 		ARG 2 pitch
 	METHOD method_7010 teleportToDimension (I)V
 		ARG 1 dimensionId
+	METHOD method_7011 (ILnet/minecraft/class_2056;)V
+		ARG 2 stack
 	METHOD method_7013 saveSelfToTag (Lnet/minecraft/class_1405;)Z
 		ARG 1 tag
 	METHOD method_7014 setSneaking (Z)V
@@ -195,6 +207,8 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 5 velocityZ
 	METHOD method_7017 setEntityId (I)V
 		ARG 1 id
+	METHOD method_7020 (Lnet/minecraft/class_1405;)Z
+		ARG 1 tag
 	METHOD method_7021 onPlayerCollision (Lnet/minecraft/class_2674;)V
 		ARG 1 player
 	METHOD method_7022 setSprinting (Z)V
@@ -257,6 +271,10 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 entity
 	METHOD method_7054 handleAttack (Lnet/minecraft/class_1745;)Z
 		ARG 1 attacker
+	METHOD method_7056 refreshPositionAndAngles (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
+	METHOD method_7057 (Lnet/minecraft/class_1745;Z)V
+		ARG 1 entity
 	METHOD method_7059 canClimb ()Z
 	METHOD method_7060 tick ()V
 	METHOD method_8397 getName ()Lnet/minecraft/class_1444;

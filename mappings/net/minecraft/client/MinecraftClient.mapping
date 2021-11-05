@@ -24,7 +24,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2543 mojang Lnet/minecraft/class_1605;
 	FIELD field_2544 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_2545 skinProvider Lnet/minecraft/class_2378;
-	FIELD field_2548 currentThread Ljava/lang/Thread;
+	FIELD field_2548 mainThread Ljava/lang/Thread;
 	FIELD field_2551 openProfilerSection Ljava/lang/String;
 	FIELD field_2552 IS_MAC Z
 	FIELD field_2558 paused Z
@@ -50,7 +50,7 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2581 width I
 	FIELD field_2582 height I
 	FIELD field_2583 world Lnet/minecraft/class_2317;
-	FIELD field_2585 player Lnet/minecraft/class_2322;
+	FIELD field_2585 statHandler Lnet/minecraft/class_2322;
 	FIELD field_2586 facingEntity Lnet/minecraft/class_1745;
 	FIELD field_2587 particleManager Lnet/minecraft/class_959;
 	FIELD field_2588 textRenderer Lnet/minecraft/class_679;
@@ -66,7 +66,25 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_2599 runDirectory Ljava/io/File;
 	FIELD field_2600 focused Z
 	FIELD field_2601 sysTime J
+	FIELD field_9848 startTime J
+	FIELD field_9850 resourcePackDir Ljava/io/File;
+	FIELD field_9852 session Lnet/minecraft/class_677;
+	FIELD field_9854 executorQueue Ljava/util/Queue;
+	FIELD field_9855 needToReloadResources Z
+	FIELD field_9856 connectToServer Ljava/lang/String;
+	FIELD field_9857 connectToPort I
+	FIELD field_9859 spriteAtlasTexture Lnet/minecraft/class_1230;
 	FIELD field_9862 inGameHud Lnet/minecraft/class_2283;
+	METHOD <init> (Lnet/minecraft/class_677;IIZZLjava/io/File;Ljava/io/File;Ljava/io/File;Ljava/net/Proxy;Ljava/lang/String;Lcom/google/common/collect/Multimap;Ljava/lang/String;)V
+		ARG 1 session
+		ARG 2 width
+		ARG 3 height
+		ARG 4 windowFocused
+		ARG 5 isDemo
+		ARG 6 runDirectory
+		ARG 8 resourcePackDir
+		ARG 9 networkProxy
+		ARG 10 versionString
 	METHOD method_2221 getInstance ()Lnet/minecraft/class_669;
 	METHOD method_2223 getMaxTextureSize ()I
 	METHOD method_2224 getCurrentServerEntry ()Lnet/minecraft/class_2324;
@@ -103,6 +121,8 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2260 startGame (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/class_102;)V
 		ARG 1 worldName
 		ARG 3 levelInfo
+	METHOD method_2261 execute (Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+		ARG 1 callable
 	METHOD method_2266 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_2267 getSkinProvider ()Lnet/minecraft/class_2378;
 	METHOD method_2283 checkIs64Bit ()Z
@@ -140,4 +160,11 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2317 isHudEnabled ()Z
 	METHOD method_2318 isFancyGraphicsEnabled ()Z
 	METHOD method_2319 isAmbientOcclusionEnabled ()Z
+	METHOD method_9141 markNeedToReloadResources ()V
+	METHOD method_9144 execute (Ljava/lang/Runnable;)Lcom/google/common/util/concurrent/ListenableFuture;
+		ARG 1 runnable
+	METHOD method_9145 laterConnectTo (Ljava/lang/String;I)V
+		ARG 1 server
+		ARG 2 port
+	METHOD method_9146 isMainThread ()Z
 	METHOD method_9147 initializeGame ()V

@@ -27,6 +27,10 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 		ARG 3 z
 	METHOD method_10843 (IIIILnet/minecraft/class_2056;)Z
 		ARG 5 stack
+	METHOD method_10845 drop (Lnet/minecraft/class_2056;Z)Lnet/minecraft/class_1893;
+		ARG 1 stack
+	METHOD method_10846 drop (Lnet/minecraft/class_2056;ZZ)Lnet/minecraft/class_1893;
+		ARG 1 stack
 	METHOD method_10847 openTradingScreen (Lnet/minecraft/class_83;Ljava/lang/String;)V
 		ARG 1 trader
 		ARG 2 name
@@ -37,7 +41,7 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 		ARG 1 pos
 	METHOD method_10850 canCurrentToolBreak (Lnet/minecraft/class_160;)Z
 		ARG 1 block
-	METHOD method_10851 (Lnet/minecraft/class_160;Z)F
+	METHOD method_10851 getMiningSpeed (Lnet/minecraft/class_160;Z)F
 		ARG 1 block
 		ARG 2 canBreak
 	METHOD method_10852 openBeaconScreen (Lnet/minecraft/class_2192;)V
@@ -75,6 +79,7 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 	METHOD method_10872 isHoldingSword ()Z
 	METHOD method_10873 getScore ()I
 	METHOD method_10875 getMainHandStack ()Lnet/minecraft/class_2056;
+	METHOD method_10876 clearSelectedSlot ()V
 	METHOD method_10878 getGameProfile ()Lcom/mojang/authlib/GameProfile;
 	METHOD method_10881 getSleepTimer ()I
 	METHOD method_10882 getSpawnPointPosition ()Lnet/minecraft/class_2614;
@@ -85,11 +90,20 @@ CLASS net/minecraft/class_2674 net/minecraft/entity/player/PlayerEntity
 	METHOD method_10890 getItemInHand ()Lnet/minecraft/class_2056;
 	METHOD method_10892 isHoldingItem ()Z
 	METHOD method_10894 score (I)V
+		ARG 1 score
 	METHOD method_10897 addEnchantedCritParticles (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_10898 canBreak (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_10899 onCollision (Lnet/minecraft/class_1745;)V
+		ARG 1 other
 	METHOD method_10905 interact (Lnet/minecraft/class_1745;)Z
 	METHOD method_10907 attack (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_10908 addScore (I)V
+		ARG 1 amount
 	METHOD method_7114 jump ()V
 		COMMENT TODO: Is the right name
 	METHOD method_7977 setGameMode (Lnet/minecraft/class_2087;)V
