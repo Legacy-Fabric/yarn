@@ -61,6 +61,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Stores the block's materal, witch determines its sounds
 	FIELD field_9206 side Lnet/minecraft/class_2616;
 	FIELD field_9207 REGISTRY Lnet/minecraft/class_1393;
+	FIELD field_9208 icon Ljava/lang/String;
 	FIELD field_9209 translucent Z
 	METHOD <init> (Lnet/minecraft/class_591;)V
 		COMMENT Overloaded Block constructor that calls the other with the default material color
@@ -151,10 +152,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT @return Whether the event is successful
 		ARG 1 world
 			COMMENT The world that the block is placed in
-		ARG 4 id
-			COMMENT Id
-		ARG 5 meta
-			COMMENT Metadata
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 id
+		ARG 6 meta
 	METHOD method_648 neighborUpdate (Lnet/minecraft/class_99;IIILnet/minecraft/class_160;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
@@ -305,7 +307,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The other block
 	METHOD method_697 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
-	METHOD method_699 hasTransperancy ()Z
+	METHOD method_699 isTrasparent ()Z
 	METHOD method_700 setStrength (F)Lnet/minecraft/class_160;
 		COMMENT Sets the current block's strength. Used in registering blocks.
 		COMMENT @return The current block
@@ -389,6 +391,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_8600 getMaxY ()D
 	METHOD method_8601 getMinZ ()D
 	METHOD method_8602 getMaxZ ()D
+	METHOD method_8603 getIcon ()Ljava/lang/String;
+	METHOD method_8604 getSpriteToLoad ()Ljava/lang/String;
+	METHOD method_8605 getMapColor (I)I
+		ARG 1 meta
 	METHOD method_8606 getSprite (II)Lnet/minecraft/class_2616;
 		ARG 2 blockMeta
 	METHOD method_8607 byItem (Lnet/minecraft/class_2054;)Lnet/minecraft/class_160;
@@ -406,21 +412,47 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 6 stack
+	METHOD method_8611 (Lnet/minecraft/class_99;IIIILnet/minecraft/class_2674;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 6 player
 	METHOD method_8612 drop (Lnet/minecraft/class_99;IIILnet/minecraft/class_2056;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 		ARG 5 stack
-	METHOD method_8613 (Lnet/minecraft/class_99;IIILnet/minecraft/class_160;I)V
+	METHOD method_8613 onBroken (Lnet/minecraft/class_99;IIILnet/minecraft/class_160;I)V
+		COMMENT Called when this block was broken
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 		ARG 5 block
+		ARG 6 meta
 	METHOD method_8614 (Lnet/minecraft/class_99;IIILnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_1745;)V
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 		ARG 5 box
 		ARG 7 entity
+	METHOD method_8615 (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;F)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
 	METHOD method_8616 (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;Lnet/minecraft/class_649;)V
 		ARG 1 world
+	METHOD method_8617 (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;IIII)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
 	METHOD method_8618 (Lnet/minecraft/class_104;III)V
 		ARG 1 view
 	METHOD method_8619 (Lnet/minecraft/class_104;IIII)Z
@@ -440,12 +472,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8624 (Lnet/minecraft/class_99;IIIII)V
+	METHOD method_8624 getDrops (Lnet/minecraft/class_99;IIIII)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 		ARG 5 id
+		ARG 6 fortuneLevel
 	METHOD method_8625 (Lnet/minecraft/class_104;III)Z
 		ARG 1 view
 		ARG 2 x
@@ -465,6 +498,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 	METHOD method_8630 (Lnet/minecraft/class_104;IIII)I
 		ARG 1 view
+	METHOD method_8631 getItem (Lnet/minecraft/class_99;III)Lnet/minecraft/class_2054;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8632 canReplace (Lnet/minecraft/class_99;IIII)Z
 		ARG 1 world
 		ARG 2 x
@@ -475,10 +513,15 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8634 setIcon (Ljava/lang/String;)Lnet/minecraft/class_160;
+		ARG 1 icon
 	METHOD method_8635 byRawId (I)Lnet/minecraft/class_160;
 		ARG 0 id
 	METHOD method_8636 (Lnet/minecraft/class_99;IIII)V
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8637 getSprite (Lnet/minecraft/class_104;IIII)Lnet/minecraft/class_2616;
 		ARG 1 view
 		ARG 2 x
@@ -491,15 +534,40 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8640 (Lnet/minecraft/class_99;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8641 offsetBox (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
 		COMMENT TODO: Better name
 		ARG 1 world
 		ARG 2 offsetX
 		ARG 3 offsetY
 		ARG 4 offsetZ
+	METHOD method_8642 getComparatorOutput (Lnet/minecraft/class_99;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 meta
 	METHOD method_8643 getSprite (I)Lnet/minecraft/class_2616;
 	METHOD method_8646 (Lnet/minecraft/class_99;III)Z
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8647 getMapColor (Lnet/minecraft/class_99;III)I
+		COMMENT TODO: Unsure
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8648 (Lnet/minecraft/class_99;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8650 getMinX ()D
 	METHOD method_8651 getMaxX ()D
 	METHOD method_8652 getMinY ()D
