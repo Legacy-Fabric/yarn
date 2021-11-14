@@ -2,6 +2,8 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_12125 logger Lnet/minecraft/class_2915;
 	FIELD field_12126 sessionAuthenticator Lnet/minecraft/class_2528;
 	FIELD field_12128 resourcePackManager Lnet/minecraft/class_2374;
+	FIELD field_12130 loadingScreenRenderer Lnet/minecraft/class_673;
+	FIELD field_12131 soundManager Lnet/minecraft/class_2804;
 	FIELD field_2508 profiler Lnet/minecraft/class_1705;
 	FIELD field_2509 running Z
 	FIELD field_2510 fpsDebugString Ljava/lang/String;
@@ -59,17 +61,24 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	FIELD field_9848 startTime J
 	FIELD field_9850 assetsFolder Ljava/io/File;
 	FIELD field_9853 resourcesFolder Ljava/io/File;
+	FIELD field_9856 address Ljava/lang/String;
+	FIELD field_9857 port I
 	FIELD field_9860 worldRenderer Lnet/minecraft/class_2346;
+	FIELD field_9862 inGameHud Lnet/minecraft/class_2283;
 	METHOD <init> (Lnet/minecraft/class_2528;IIZZLjava/io/File;Ljava/io/File;Ljava/io/File;Ljava/net/Proxy;Ljava/lang/String;)V
 		ARG 1 sessionAuthenticator
 		ARG 2 width
 		ARG 3 height
+		ARG 4 windowFocused
 		ARG 5 demo
+		ARG 6 runDirectory
 		ARG 7 resources
 		ARG 8 assets
+		ARG 9 proxy
 		ARG 10 version
 	METHOD method_11063 getSessionAuthenticator ()Lnet/minecraft/class_2528;
 	METHOD method_11066 reloadResources ()V
+	METHOD method_11072 fullscreen ()V
 	METHOD method_2221 getInstance ()Lnet/minecraft/class_669;
 	METHOD method_2223 getMaxTextureSize ()I
 	METHOD method_2225 isIntegratedServerRunning ()Z
@@ -85,6 +94,9 @@ CLASS net/minecraft/class_669 net/minecraft/client/MinecraftClient
 	METHOD method_2238 getResourcePackManager ()Lnet/minecraft/class_2374;
 	METHOD method_2239 getLanguageManager ()Lnet/minecraft/class_1270;
 	METHOD method_2247 run ()V
+	METHOD method_2249 createWindow (II)V
+		ARG 1 width
+		ARG 2 height
 	METHOD method_2252 getGameVersion (Lnet/minecraft/class_669;)Ljava/lang/String;
 		ARG 0 client
 	METHOD method_2253 openScreen (Lnet/minecraft/class_2729;)V
