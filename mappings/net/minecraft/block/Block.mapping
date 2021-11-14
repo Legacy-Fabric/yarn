@@ -221,6 +221,13 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 material
 	METHOD method_11013 setLuminance (F)Lnet/minecraft/class_160;
 		ARG 1 luminance
+	METHOD method_11015 (Lnet/minecraft/class_104;III)F
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_11016 isSelf (I)Z
+		ARG 1 id
 	METHOD method_11018 setOpacity (I)Lnet/minecraft/class_160;
 		ARG 1 opacity
 	METHOD method_11019 isSolidBlock (I)Z
@@ -283,6 +290,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 			COMMENT The world that the block is placed in
 	METHOD method_644 onDestroyedByExplosion (Lnet/minecraft/class_99;IIILnet/minecraft/class_93;)V
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 explosion
 	METHOD method_646 randomDropAsItem (Lnet/minecraft/class_99;IIIIFI)V
 		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
 		ARG 1 world
@@ -292,6 +303,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 		ARG 5 id
 			COMMENT Id
+		ARG 6 luckValue
 		ARG 7 fortune
 	METHOD method_647 onEvent (Lnet/minecraft/class_99;IIIII)Z
 		COMMENT Runs when an event takes place
@@ -311,6 +323,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 id
 	METHOD method_651 onEntityCollision (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;)V
 		COMMENT Runs every time an entity collides with the block
 		ARG 1 world
@@ -352,6 +365,10 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		COMMENT Used by redstone ore to change it's state.
 		ARG 1 world
 			COMMENT The world that the block is placed in
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
 	METHOD method_661 onBlockBreakStart (Lnet/minecraft/class_99;IIILnet/minecraft/class_2674;)V
 		ARG 1 world
 		ARG 2 x
@@ -463,6 +480,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 random
 	METHOD method_707 (Lnet/minecraft/class_649;)Z
 		ARG 1 vec
 	METHOD method_708 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_160;
@@ -499,6 +517,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 	METHOD method_8601 getMinZ ()D
 	METHOD method_8602 getMaxZ ()D
 	METHOD method_8603 getSpriteName ()Ljava/lang/String;
+	METHOD method_8604 getNameId ()Ljava/lang/String;
 	METHOD method_8605 getDroppedMeta (I)I
 		ARG 1 meta
 	METHOD method_8606 getSprite (II)Lnet/minecraft/class_2616;
@@ -519,7 +538,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 7 hitY
 		ARG 8 hitZ
 		ARG 9 metadata
-	METHOD method_8611 (Lnet/minecraft/class_99;IIIILnet/minecraft/class_2674;)V
+	METHOD method_8611 onRemove (Lnet/minecraft/class_99;IIIILnet/minecraft/class_2674;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -537,6 +556,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 type
 		ARG 6 meta
 	METHOD method_8614 addBoundingBoxes (Lnet/minecraft/class_99;IIILnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_1745;)V
 		ARG 1 world
@@ -544,6 +564,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 box
+		ARG 6 boxes
 		ARG 7 entity
 	METHOD method_8615 onLandedUpon (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;F)V
 		ARG 1 world
@@ -552,12 +573,20 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 4 z
 		ARG 5 entity
 		ARG 6 distance
+	METHOD method_8616 (Lnet/minecraft/class_99;IIILnet/minecraft/class_1745;Lnet/minecraft/class_649;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
+		ARG 6 vec3d
 	METHOD method_8617 afterBreak (Lnet/minecraft/class_99;Lnet/minecraft/class_2674;IIII)V
 		ARG 1 world
 		ARG 2 player
 		ARG 3 x
 		ARG 4 y
 		ARG 5 z
+		ARG 6 meta
 	METHOD method_8618 updateBoundingBox (Lnet/minecraft/class_104;III)V
 		ARG 1 world
 		ARG 2 x
@@ -571,7 +600,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 5 side
 	METHOD method_8620 createSprite (Lnet/minecraft/class_2617;)V
 		ARG 1 factory
-	METHOD method_8622 (Lnet/minecraft/class_99;III)V
+	METHOD method_8622 neighborUpdate (Lnet/minecraft/class_99;III)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -581,7 +610,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8624 (Lnet/minecraft/class_99;IIIII)V
+	METHOD method_8624 randomDropAsItem (Lnet/minecraft/class_99;IIIII)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -604,6 +633,11 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8629 (Lnet/minecraft/class_104;III)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8630 getStrongRedstonePower (Lnet/minecraft/class_104;IIII)I
 		ARG 1 world
 		ARG 2 x
@@ -615,8 +649,17 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8632 canPlaceOnSide (Lnet/minecraft/class_99;IIII)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 side
 	METHOD method_8633 (Lnet/minecraft/class_104;IIII)Z
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8634 setSprite (Ljava/lang/String;)Lnet/minecraft/class_160;
 		ARG 1 id
 	METHOD method_8636 (Lnet/minecraft/class_99;IIII)V
@@ -640,7 +683,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8641 (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
+	METHOD method_8641 getHighlightBox (Lnet/minecraft/class_99;III)Lnet/minecraft/class_646;
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -657,7 +700,7 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 1 meta
 	METHOD method_8645 getStack (I)Lnet/minecraft/class_2056;
 		ARG 1 meta
-	METHOD method_8646 (Lnet/minecraft/class_99;III)Z
+	METHOD method_8646 canPlace (Lnet/minecraft/class_99;III)Z
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -667,11 +710,12 @@ CLASS net/minecraft/class_160 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_8648 (Lnet/minecraft/class_99;III)V
+	METHOD method_8648 onRain (Lnet/minecraft/class_99;III)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_8649 isWater ()I
 	METHOD method_8650 getMinX ()D
 	METHOD method_8651 getMaxX ()D
 	METHOD method_8652 getMinY ()D
