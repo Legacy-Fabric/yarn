@@ -25,6 +25,8 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_371 EXTREME_HILLS_PLUS Lnet/minecraft/class_113;
 	FIELD field_372 SAVANNA Lnet/minecraft/class_113;
 	FIELD field_373 SAVANNA_PLATEAU Lnet/minecraft/class_113;
+	FIELD field_374 jungleTreeFeature Lnet/minecraft/class_470;
+	FIELD field_376 oakTreeFeature Lnet/minecraft/class_468;
 	FIELD field_377 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_378 BIOMES [Lnet/minecraft/class_113;
 	FIELD field_379 OTHER Lnet/minecraft/class_114;
@@ -33,6 +35,7 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_382 MESA_PLATEAU Lnet/minecraft/class_113;
 	FIELD field_386 DOUBLE_PLANT_FEATURE Lnet/minecraft/class_440;
 	FIELD field_387 name Ljava/lang/String;
+	FIELD field_388 seedModifier I
 	FIELD field_390 topBlock Lnet/minecraft/class_160;
 	FIELD field_391 baseBlock Lnet/minecraft/class_160;
 	FIELD field_393 baseHeightModifier F
@@ -45,6 +48,7 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_400 passiveEntries Ljava/util/List;
 	FIELD field_401 waterEntries Ljava/util/List;
 	FIELD field_402 flyingEntries Ljava/util/List;
+	FIELD field_403 hasParent Z
 	FIELD field_405 id I
 	FIELD field_406 RIVER_HEIGHT Lnet/minecraft/class_114;
 	FIELD field_407 OCEAN_BIOME Lnet/minecraft/class_114;
@@ -69,6 +73,7 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	FIELD field_427 RIVER Lnet/minecraft/class_113;
 	FIELD field_428 HELL Lnet/minecraft/class_113;
 	FIELD field_430 FROZEN_OCEAN Lnet/minecraft/class_113;
+	FIELD field_9163 SKY Lnet/minecraft/class_113;
 	METHOD <init> (I)V
 		ARG 1 id
 	METHOD method_512 createBiomePopulator ()Lnet/minecraft/class_122;
@@ -76,17 +81,30 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 		ARG 1 temperature
 		ARG 2 downfall
 	METHOD method_517 seedModifier (IZ)Lnet/minecraft/class_113;
+		ARG 1 modifier
+	METHOD method_518 (Lnet/minecraft/class_99;Ljava/util/Random;[Lnet/minecraft/class_160;[BIID)V
+		ARG 1 world
+		ARG 2 random
+		ARG 3 blocks
 	METHOD method_519 buildSurface (Lnet/minecraft/class_99;Ljava/util/Random;II)V
 		ARG 1 world
 		ARG 2 random
 	METHOD method_520 setHeight (Lnet/minecraft/class_114;)Lnet/minecraft/class_113;
 		ARG 1 height
-	METHOD method_521 (Lnet/minecraft/class_113;)Z
+	METHOD method_521 equals (Lnet/minecraft/class_113;)Z
 		ARG 1 biome
 	METHOD method_523 setName (Ljava/lang/String;)Lnet/minecraft/class_113;
 		ARG 1 name
+	METHOD method_524 (Ljava/util/Random;)Lnet/minecraft/class_429;
+		ARG 1 random
 	METHOD method_528 setSeedModifier (I)Lnet/minecraft/class_113;
 		ARG 1 modifier
+	METHOD method_529 (Lnet/minecraft/class_99;Ljava/util/Random;[Lnet/minecraft/class_160;[BIID)V
+		ARG 1 world
+		ARG 2 random
+		ARG 3 blocks
+	METHOD method_531 (Ljava/util/Random;)Lnet/minecraft/class_441;
+		ARG 1 random
 	METHOD method_535 isMutatedBiome ()Z
 	METHOD method_539 hasHighHumidity ()Z
 	METHOD method_540 getMaxSpawnLimit ()F
@@ -96,3 +114,25 @@ CLASS net/minecraft/class_113 net/minecraft/world/biome/Biome
 	METHOD method_545 asClass ()Ljava/lang/Class;
 	METHOD method_546 getBiomeTemperature ()Lnet/minecraft/class_2089;
 	METHOD method_547 getBiomes ()[Lnet/minecraft/class_113;
+	METHOD method_8565 getTemperature (III)F
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8566 (Ljava/util/Random;III)Ljava/lang/String;
+		ARG 1 random
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_8567 getCreatures (Lnet/minecraft/class_2631;)Ljava/util/List;
+		ARG 1 type
+	METHOD method_8568 (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8569 (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8570 fromId (I)Lnet/minecraft/class_113;
+		ARG 0 id
+	METHOD method_8571 getMutated ()Lnet/minecraft/class_113;

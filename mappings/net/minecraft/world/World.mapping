@@ -15,6 +15,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	FIELD field_9120 isClient Z
 	FIELD field_9123 calendar Ljava/util/Calendar;
 	FIELD field_9128 entities Ljava/util/List;
+	FIELD field_9130 blockEntities Ljava/util/List;
 	FIELD field_9131 players Ljava/util/List;
 	FIELD field_9135 difficulty Lnet/minecraft/class_1721;
 	FIELD field_9136 random Ljava/util/Random;
@@ -41,6 +42,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_239 buildList ()V
 	METHOD method_241 getEntities ()Ljava/util/List;
 	METHOD method_245 disconnect ()V
+	METHOD method_246 beforeChunkSave ()V
 	METHOD method_247 getSeed ()J
 	METHOD method_248 getLastUpdateTime ()J
 	METHOD method_249 getTimeOfDay ()J
@@ -83,7 +85,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_269 getChunk (II)Lnet/minecraft/class_399;
 		ARG 1 x
 		ARG 2 y
-	METHOD method_271 (IIII)V
+	METHOD method_271 updateRenderRegion (IIII)V
+		COMMENT TODO: Unsure about this one too
 		ARG 1 x
 		ARG 2 z
 		ARG 3 minY
@@ -109,6 +112,9 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 listener
 	METHOD method_279 setPropertiesInitialized (Lnet/minecraft/class_102;)V
 		ARG 1 info
+	METHOD method_287 getBlockTicks (Lnet/minecraft/class_399;Z)Ljava/util/List;
+		COMMENT TODO: Name's dumb
+		ARG 1 chunk
 	METHOD method_291 (Lnet/minecraft/class_646;Lnet/minecraft/class_591;)Z
 		ARG 1 boundingBox
 		ARG 2 material
@@ -154,7 +160,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 sound
 		ARG 3 volume
 		ARG 4 pitch
-	METHOD method_352 (II)I
+	METHOD method_352 getMinimumHeightMap (II)I
 		ARG 1 x
 		ARG 2 z
 	METHOD method_353 onRenderRegionUpdate (IIIIII)V
@@ -188,6 +194,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_374 tick ()V
 	METHOD method_380 (Lnet/minecraft/class_646;)Z
 		ARG 1 boundingBox
+	METHOD method_386 (Ljava/util/Collection;)V
+		ARG 1 blockEntities
 	METHOD method_387 addEntity (Lnet/minecraft/class_1745;)Z
 		ARG 1 entity
 	METHOD method_389 getSkyAngleRadians (F)F
@@ -234,6 +242,11 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 y
 		ARG 3 z
 		ARG 4 direction
+	METHOD method_8465 (IIILnet/minecraft/class_106;)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 lightType
 	METHOD method_8466 (IIILnet/minecraft/class_160;)Z
 		ARG 1 x
 		ARG 2 y
@@ -310,11 +323,19 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_8490 getTopBlock (II)Lnet/minecraft/class_160;
 		ARG 1 x
 		ARG 2 z
-	METHOD method_8492 (IIILnet/minecraft/class_160;I)V
+	METHOD method_8492 updateNeightborAt (IIILnet/minecraft/class_160;I)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 		ARG 4 block
+		ARG 5 offsetType
+	METHOD method_8493 tileTicks (IIILnet/minecraft/class_160;II)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 block
+		ARG 5 time
+		ARG 6 priority
 	METHOD method_8494 markEntityChunkDirty (IIILnet/minecraft/class_2193;)V
 		ARG 1 x
 		ARG 2 y
@@ -345,6 +366,11 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_8502 doesChunkExist (II)Z
 		ARG 1 x
 		ARG 2 y
+	METHOD method_8503 (IIILnet/minecraft/class_160;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 block
 	METHOD method_8504 sendEvent (IIILnet/minecraft/class_160;II)V
 		ARG 3 id
 		ARG 4 block
@@ -356,7 +382,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_8509 (IIILnet/minecraft/class_160;)V
+	METHOD method_8509 updateNeightbors (IIILnet/minecraft/class_160;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -371,7 +397,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_8512 (IIILnet/minecraft/class_160;)V
+	METHOD method_8512 doNeightborUpdate (IIILnet/minecraft/class_160;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -392,7 +418,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_8522 (III)Z
+	METHOD method_8522 isSkyObstructed (III)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z

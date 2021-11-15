@@ -2,16 +2,19 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	FIELD field_1562 chunkX I
 	FIELD field_1563 chunkZ I
 	FIELD field_1564 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_1569 loaded Z
+	FIELD field_1569 blockEntitiesLoaded Z
 	FIELD field_1570 world Lnet/minecraft/class_99;
 	FIELD field_1575 terrainPopulated Z
 	FIELD field_1576 lightPopulated Z
 	FIELD field_1578 modified Z
 	FIELD field_1579 containsEntities Z
 	FIELD field_1581 minimumHeightMap I
+	FIELD field_9591 heightMap [I
 	FIELD field_9592 blockEntities Ljava/util/Map;
 	FIELD field_9595 full Z
-	FIELD field_9597 blockStorage [Lnet/minecraft/class_401;
+	FIELD field_9596 inhabitedTime J
+	FIELD field_9597 regions [Lnet/minecraft/class_401;
+	FIELD field_9598 biomeMap [B
 	METHOD <init> (Lnet/minecraft/class_99;II)V
 		ARG 1 world
 		ARG 2 chunkX
@@ -27,6 +30,7 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 3 data
 		ARG 4 chunkX
 		ARG 5 chunkZ
+	METHOD method_1343 calculateMinimumHeightMap ()V
 	METHOD method_1344 isChunkEqual (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
@@ -36,37 +40,79 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	METHOD method_1347 getSlimeRandom (J)Ljava/util/Random;
 	METHOD method_1349 (Lnet/minecraft/class_106;IIII)V
 		ARG 1 type
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 lightData
 	METHOD method_1351 (Lnet/minecraft/class_396;Lnet/minecraft/class_396;II)V
 		ARG 1 provider
 		ARG 2 provider2
 		ARG 3 chunkX
 		ARG 4 chunkZ
-	METHOD method_1360 (Lnet/minecraft/class_1745;)V
+	METHOD method_1360 addEntity (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
 	METHOD method_1361 (Lnet/minecraft/class_1745;I)V
 		ARG 1 entity
+	METHOD method_1365 ([BIIZ)V
+		ARG 1 bs
+			COMMENT bs (byte[]) can contain.. all of the chunk's block data at once???
+			COMMENT :mojank:
+		ARG 2 x
+		ARG 3 z
+	METHOD method_1369 getHeightValue (II)I
+		ARG 1 x
+		ARG 2 z
 	METHOD method_1372 (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_1374 loadBlockEntities ()V
+	METHOD method_1382 updateLight (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_1385 markDirty ()V
 	METHOD method_1386 updateLight (II)Z
 		ARG 1 x
 		ARG 2 z
+	METHOD method_1387 getBlockOpacity (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_1390 isEmpty ()Z
+	METHOD method_1394 getLastY ()I
 	METHOD method_1398 getBlockStorage ()[Lnet/minecraft/class_401;
 	METHOD method_1400 recheckGaps (Z)V
+	METHOD method_1403 getChunkPos ()Lnet/minecraft/class_92;
+	METHOD method_1404 getBiomeMap ()[B
 	METHOD method_1406 checkLight ()V
+	METHOD method_1407 populateLight ()V
+		COMMENT TODO: Not sure about this one
+	METHOD method_8916 updateLight (I)V
+		ARG 1 updateType
 	METHOD method_8917 getBlock (III)Lnet/minecraft/class_160;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_8920 (IIILnet/minecraft/class_2193;)V
+	METHOD method_8918 (IIII)Z
+		ARG 4 data
+	METHOD method_8919 update (IIILnet/minecraft/class_160;I)Z
+		COMMENT @return wether the chunk was actually modified by the update
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 block
+		ARG 5 data
+	METHOD method_8920 putBlockEntity (IIILnet/minecraft/class_2193;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 		ARG 4 blockEntity
+	METHOD method_8921 getBiome (IILnet/minecraft/class_123;)Lnet/minecraft/class_113;
+		ARG 1 x
+		ARG 2 z
+		ARG 3 source
 	METHOD method_8922 (Lnet/minecraft/class_106;III)I
 		ARG 1 type
-	METHOD method_8923 (Lnet/minecraft/class_2193;)V
+	METHOD method_8923 addBlockEntity (Lnet/minecraft/class_2193;)V
 		ARG 1 blockEntity
 	METHOD method_8924 getEntitiesByType (Ljava/lang/Class;Lnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_2625;)V
 		ARG 1 entityClass
@@ -78,7 +124,22 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 2 box
 		ARG 3 foundEntities
 		ARG 4 filter
-	METHOD method_8929 getBlockMeta (III)I
+	METHOD method_8926 setBiomeMap ([B)V
+		ARG 1 map
+	METHOD method_8927 setRegions ([Lnet/minecraft/class_401;)V
+		ARG 1 regions
+	METHOD method_8928 (IIII)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8929 getBlockData (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8930 (II)I
+		ARG 1 x
+		ARG 2 z
+	METHOD method_8931 isSkyObstructed (III)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
