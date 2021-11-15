@@ -1,4 +1,4 @@
-CLASS net/minecraft/class_2828 net/minecraft/text/Style
+CLASS net/minecraft/class_2828 net/minecraft/text/Text
 	FIELD field_12732 GSON Lcom/google/gson/Gson;
 	FIELD field_12733 color Lnet/minecraft/class_1;
 	FIELD field_12734 bold Ljava/lang/Boolean;
@@ -7,16 +7,21 @@ CLASS net/minecraft/class_2828 net/minecraft/text/Style
 	FIELD field_12737 obfuscated Ljava/lang/Boolean;
 	FIELD field_12738 text Ljava/lang/String;
 	FIELD field_12739 translation Ljava/lang/String;
-	FIELD field_12740 styles Ljava/util/List;
+	FIELD field_12740 texts Ljava/util/List;
 	METHOD <init> (Lnet/minecraft/class_2828;)V
 		ARG 1 copyFrom
 	METHOD method_11684 getColor ()Lnet/minecraft/class_1;
 	METHOD method_11685 setFormatting (Lnet/minecraft/class_1;)Lnet/minecraft/class_2828;
 		ARG 1 color
+	METHOD method_11686 addText (Lnet/minecraft/class_2828;)Lnet/minecraft/class_2828;
+		ARG 1 text
 	METHOD method_11687 bold (Ljava/lang/Boolean;)Lnet/minecraft/class_2828;
 		ARG 1 value
-	METHOD method_11688 (Ljava/lang/String;)Lnet/minecraft/class_2828;
+	METHOD method_11688 setText (Ljava/lang/String;)Lnet/minecraft/class_2828;
 		ARG 1 text
+	METHOD method_11689 setTranslation (Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/class_2828;
+		ARG 1 key
+		ARG 2 args
 	METHOD method_11690 asString (Ljava/lang/StringBuilder;Lnet/minecraft/class_1;ZZZZ)V
 		ARG 0 builder
 		ARG 1 color
@@ -24,7 +29,9 @@ CLASS net/minecraft/class_2828 net/minecraft/text/Style
 		ARG 3 italic
 		ARG 4 underline
 		ARG 5 obfuscated
-	METHOD method_11692 (ZLnet/minecraft/class_1;ZZZZ)Ljava/lang/String;
+	METHOD method_11691 asString (Z)Ljava/lang/String;
+		ARG 1 format
+	METHOD method_11692 asString (ZLnet/minecraft/class_1;ZZZZ)Ljava/lang/String;
 		ARG 1 format
 		ARG 2 color
 		ARG 3 bold
@@ -34,6 +41,11 @@ CLASS net/minecraft/class_2828 net/minecraft/text/Style
 	METHOD method_11693 isBold ()Ljava/lang/Boolean;
 	METHOD method_11694 italic (Ljava/lang/Boolean;)Lnet/minecraft/class_2828;
 		ARG 1 value
+	METHOD method_11695 setTranslation (Ljava/lang/String;)Lnet/minecraft/class_2828;
+		ARG 1 key
+	METHOD method_11696 createTranslation (Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/class_2828;
+		ARG 0 key
+		ARG 1 args
 	METHOD method_11697 isItalic ()Ljava/lang/Boolean;
 	METHOD method_11698 underlined (Ljava/lang/Boolean;)Lnet/minecraft/class_2828;
 		ARG 1 value
@@ -42,8 +54,11 @@ CLASS net/minecraft/class_2828 net/minecraft/text/Style
 	METHOD method_11700 isUnderlined ()Ljava/lang/Boolean;
 	METHOD method_11701 obfuscated (Ljava/lang/Boolean;)Lnet/minecraft/class_2828;
 		ARG 1 value
-	METHOD method_11702 createStyle (Ljava/lang/String;)Lnet/minecraft/class_2828;
+	METHOD method_11702 createText (Ljava/lang/String;)Lnet/minecraft/class_2828;
+		ARG 0 text
 	METHOD method_11703 isObfuscated ()Ljava/lang/Boolean;
+	METHOD method_11704 createTranslation (Ljava/lang/String;)Lnet/minecraft/class_2828;
+		ARG 0 text
 	METHOD method_11705 getText ()Ljava/lang/String;
 	METHOD method_11706 getTranslate ()Ljava/lang/String;
 	METHOD method_11707 getStyles ()Ljava/util/List;
