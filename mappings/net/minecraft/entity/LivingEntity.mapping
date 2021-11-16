@@ -6,9 +6,11 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7444 headYaw F
 	FIELD field_7445 prevHeadYaw F
 	FIELD field_7446 UUID Ljava/util/UUID;
+	FIELD field_7447 currentSpeed F
 	FIELD field_7448 player Lnet/minecraft/class_2674;
 	FIELD field_7454 distanceTravelled F
 	FIELD field_7455 prevDistanceTravelled F
+	FIELD field_7458 damageAmount F
 	FIELD field_7460 sidewaysSpeed F
 	FIELD field_7464 hurtTime I
 	FIELD field_7467 deathTime I
@@ -19,10 +21,18 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	FIELD field_7485 absorption F
 	FIELD field_7486 attributeContainer Lnet/minecraft/class_2635;
 	FIELD field_7487 damageTracker Lnet/minecraft/class_1732;
+	FIELD field_7490 hasEffect Z
 	METHOD method_10570 getStatusEffects ()Ljava/util/Collection;
+	METHOD method_10571 getItemSprite (Lnet/minecraft/class_2056;I)Lnet/minecraft/class_2616;
+		ARG 1 itemStack
 	METHOD method_10575 tickOldAi ()V
+	METHOD method_10578 (Lnet/minecraft/class_1745;)V
+		ARG 1 entity
 	METHOD method_11968 mobTick ()V
 	METHOD method_6918 positAfterTeleport (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_7088 isInTeam (Lnet/minecraft/class_655;)Z
 		ARG 1 team
 	METHOD method_7089 onKilled (Lnet/minecraft/class_1733;)V
@@ -33,18 +43,27 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 		ARG 1 instance
 	METHOD method_7092 (Lnet/minecraft/class_1742;Z)V
 		ARG 1 instance
+	METHOD method_7093 (Lnet/minecraft/class_1745;FDD)V
+		ARG 1 entity
 	METHOD method_7094 onItemPickedUp (Lnet/minecraft/class_1745;I)V
 		ARG 1 entity
 		ARG 2 stackSize
 	METHOD method_7095 initializeAttribute (Lnet/minecraft/class_1765;)Lnet/minecraft/class_1766;
 		ARG 1 attribute
 	METHOD method_7097 initializeAttributes ()V
+	METHOD method_7100 (Lnet/minecraft/class_1733;F)F
+		ARG 1 source
+		ARG 2 damage
 	METHOD method_7101 getEffectInstance (Lnet/minecraft/class_1741;)Lnet/minecraft/class_1742;
 		ARG 1 effect
+	METHOD method_7102 (Lnet/minecraft/class_1742;)V
+		ARG 1 instance
 	METHOD method_7103 (Lnet/minecraft/class_1752;)V
 		ARG 1 entity
 	METHOD method_7104 getXpToDrop (Lnet/minecraft/class_2674;)I
 		ARG 1 player
+	METHOD method_7105 (Lnet/minecraft/class_2056;)V
+		ARG 1 itemStack
 	METHOD method_7107 getStackInHand ()Lnet/minecraft/class_2056;
 	METHOD method_7110 isDead ()Z
 	METHOD method_7114 jump ()V
@@ -60,6 +79,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 	METHOD method_7138 getDeathSound ()Ljava/lang/String;
 	METHOD method_7140 getArmorProtectionValue ()I
 	METHOD method_7141 getDamageTracker ()Lnet/minecraft/class_1732;
+	METHOD method_7142 getAttackTarget ()Lnet/minecraft/class_1752;
 	METHOD method_7143 getMaxHealth ()F
 	METHOD method_7144 getStuckArrows ()I
 	METHOD method_7145 swingHand ()V
@@ -79,6 +99,7 @@ CLASS net/minecraft/class_1752 net/minecraft/entity/LivingEntity
 		ARG 1 instance
 	METHOD method_7154 travel (FF)V
 	METHOD method_7155 heal (F)V
+		ARG 1 amount
 	METHOD method_7158 setHealth (F)V
 	METHOD method_7161 damageArmor (F)V
 		ARG 1 value

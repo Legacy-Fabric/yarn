@@ -2,24 +2,38 @@ CLASS net/minecraft/class_679 net/minecraft/client/font/TextRenderer
 	FIELD field_2815 fontHeight I
 	FIELD field_2816 random Ljava/util/Random;
 	FIELD field_2817 PAGES [Lnet/minecraft/class_1605;
+	FIELD field_2818 unicodePages [I
+	FIELD field_2819 glyphSizes [B
+	FIELD field_2820 colorCodes [I
 	FIELD field_2821 fontTexture Lnet/minecraft/class_1605;
 	FIELD field_2822 textureManager Lnet/minecraft/class_1232;
+	FIELD field_2823 x F
+	FIELD field_2824 y F
 	FIELD field_2825 storedRigthToLeft Z
 	FIELD field_2826 rightToLeft Z
+	FIELD field_2831 color I
 	METHOD <init> (Lnet/minecraft/class_2277;Lnet/minecraft/class_1605;Lnet/minecraft/class_1232;Z)V
 		ARG 1 options
 		ARG 2 fontTexture
 		ARG 3 textureManager
+		ARG 4 storedRightToLeft
 	METHOD method_11096 drawText (Ljava/lang/String;IIIZ)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
 		ARG 5 shadow
+	METHOD method_11097 reverseText (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 text
 	METHOD method_2381 storedRightToLeft ()Z
 	METHOD method_2382 getCharWidth (C)I
+		ARG 1 character
+	METHOD method_2383 (ICZ)F
+		ARG 2 character
 	METHOD method_2384 getFontPage (I)Lnet/minecraft/class_1605;
 		ARG 1 page
+	METHOD method_2385 (IZ)F
+		ARG 1 pageIndex
 	METHOD method_2386 getStringWidth (Ljava/lang/String;)I
 		ARG 1 text
 	METHOD method_2387 drawWithShadow (Ljava/lang/String;III)I
@@ -42,11 +56,19 @@ CLASS net/minecraft/class_679 net/minecraft/client/font/TextRenderer
 		ARG 4 maxWidth
 		ARG 5 color
 	METHOD method_2392 drawString (Ljava/lang/String;IIIIZ)I
+		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 5 color
 		ARG 6 drawShadow
+	METHOD method_2393 (Ljava/lang/String;IIIZ)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 maxWidth
 	METHOD method_2394 trimToWidth (Ljava/lang/String;IZ)Ljava/lang/String;
+		ARG 1 text
+		ARG 2 width
 	METHOD method_2395 drawString (Ljava/lang/String;Z)V
 		ARG 1 string
 		ARG 2 drawShadow
@@ -58,20 +80,34 @@ CLASS net/minecraft/class_679 net/minecraft/client/font/TextRenderer
 		ARG 2 drawShadow
 	METHOD method_2400 bindFontPage (I)V
 		ARG 1 pageNumber
+	METHOD method_2401 (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 text
 	METHOD method_2402 drawLayer (Ljava/lang/String;IIIZ)I
 		ARG 1 text
+		ARG 2 x
+		ARG 3 y
 		ARG 4 color
+		ARG 5 drawShadow
+	METHOD method_2403 (Ljava/lang/String;I)I
+		ARG 1 text
+		ARG 2 width
 	METHOD method_2404 setRightToLeft (Z)V
 		ARG 1 rightToLeft
 	METHOD method_2405 init ()V
+	METHOD method_2406 isColorCode (C)Z
+		ARG 0 character
 	METHOD method_2408 wrapLines (Ljava/lang/String;I)Ljava/util/List;
+		ARG 1 text
+		ARG 2 width
 	METHOD method_2409 loadResources ()V
+	METHOD method_2410 isFormatingCode (C)Z
+		ARG 0 character
 	METHOD method_2411 trimEndNewlines (Ljava/lang/String;)Ljava/lang/String;
 		ARG 1 text
 	METHOD method_2412 wrapStringToWidth (Ljava/lang/String;I)Ljava/lang/String;
 		ARG 1 text
 		ARG 2 width
-	METHOD method_2413 reset ()V
+	METHOD method_2413 resetFormatting ()V
 	METHOD method_2414 getCharacterCountForWidth (Ljava/lang/String;I)I
 		ARG 1 text
 		ARG 2 offset
