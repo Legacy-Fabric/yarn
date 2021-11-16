@@ -2,6 +2,8 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 	FIELD field_5988 parent Lio/netty/buffer/ByteBuf;
 	METHOD <init> (Lio/netty/buffer/ByteBuf;)V
 		ARG 1 parent
+	METHOD alloc ()Lio/netty/buffer/ByteBufAllocator;
+	METHOD capacity ()I
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 	METHOD compareTo (Ljava/lang/Object;)I
@@ -68,10 +70,12 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 		ARG 1 i
 	METHOD getUnsignedShort (I)I
 		ARG 1 i
+	METHOD isDirect ()Z
 	METHOD isReadable (I)Z
 		ARG 1 i
 	METHOD isWritable (I)Z
 		ARG 1 i
+	METHOD maxCapacity ()I
 	METHOD method_5127 getVarIntSizeBytes (I)I
 		ARG 0 size
 	METHOD method_5135 writeItemStack (Lnet/minecraft/class_2056;)V
@@ -87,9 +91,14 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 		ARG 1 tag
 	METHOD method_9859 writeString (Ljava/lang/String;)V
 		ARG 1 string
+	METHOD order ()Ljava/nio/ByteOrder;
 	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
 		ARG 1 order
+	METHOD readByte ()B
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
 	METHOD readInt ()I
+	METHOD readShort ()S
 	METHOD readUnsignedByte ()S
 	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
@@ -143,7 +152,10 @@ CLASS net/minecraft/class_1435 net/minecraft/util/PacketByteBuf
 	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 i
 		ARG 2 j
+	METHOD unwrap ()Lio/netty/buffer/ByteBuf;
 	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 i

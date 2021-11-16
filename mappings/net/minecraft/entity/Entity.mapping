@@ -1,6 +1,9 @@
 CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	FIELD field_11408 boundingBox Lnet/minecraft/class_646;
 	FIELD field_11410 heightOffset F
+	FIELD field_11414 clientDefinedX I
+	FIELD field_11415 clientDefinedY I
+	FIELD field_11416 clientDefinedZ I
 	FIELD field_7332 prevYaw F
 	FIELD field_7333 prevPitch F
 	FIELD field_7334 onGround Z
@@ -73,6 +76,10 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 1 stack
 	METHOD method_10544 isInvulnerableTo ()Z
 	METHOD method_10546 updatePosition (DDD)V
+	METHOD method_10547 (DDD)Z
+		ARG 1 offsetX
+		ARG 3 offsetY
+		ARG 5 offsetZ
 	METHOD method_6261 getTranslationKey ()Ljava/lang/String;
 	METHOD method_6895 getEntityId ()I
 	METHOD method_6897 getDataTracker ()Lnet/minecraft/class_1761;
@@ -86,6 +93,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6905 getSwimSound ()Ljava/lang/String;
 	METHOD method_6906 checkBlockCollision ()V
 	METHOD method_6908 getBox ()Lnet/minecraft/class_646;
+	METHOD method_6909 isImmuneToFire ()Z
 	METHOD method_6911 isTouchingWater ()Z
 		COMMENT Returns whether this entity's hitbox is touching water fluid.
 	METHOD method_6916 handleStatus (B)V
@@ -156,6 +164,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 	METHOD method_6957 getUuid ()Ljava/util/UUID;
 	METHOD method_6958 canFly ()Z
 	METHOD method_6970 getSplashSound ()Ljava/lang/String;
+	METHOD method_6971 isInsideLava ()Z
 	METHOD method_6972 scheduleVelocityUpdate ()V
 	METHOD method_6973 collides ()Z
 	METHOD method_6974 isPushable ()Z
@@ -220,6 +229,7 @@ CLASS net/minecraft/class_1745 net/minecraft/entity/Entity
 		ARG 3 y
 		ARG 5 z
 	METHOD method_7025 handleFallDamage (F)V
+		ARG 1 distance
 	METHOD method_7026 setOnFireFor (I)V
 		ARG 1 seconds
 	METHOD method_7027 writePlayerData (Lnet/minecraft/class_1405;)V

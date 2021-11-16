@@ -11,6 +11,7 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 	FIELD field_1581 minimumHeightMap I
 	FIELD field_9591 heightMap [I
 	FIELD field_9592 blockEntities Ljava/util/Map;
+	FIELD field_9594 lastSaveTime J
 	FIELD field_9595 full Z
 	FIELD field_9596 inhabitedTime J
 	FIELD field_9597 regions [Lnet/minecraft/class_401;
@@ -38,7 +39,7 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 1 x
 		ARG 2 z
 	METHOD method_1347 getSlimeRandom (J)Ljava/util/Random;
-	METHOD method_1349 (Lnet/minecraft/class_106;IIII)V
+	METHOD method_1349 setLightLevel (Lnet/minecraft/class_106;IIII)V
 		ARG 1 type
 		ARG 2 x
 		ARG 3 y
@@ -92,7 +93,10 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_8918 (IIII)Z
+	METHOD method_8918 setBlockData (IIII)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 		ARG 4 data
 	METHOD method_8919 update (IIILnet/minecraft/class_160;I)Z
 		COMMENT @return wether the chunk was actually modified by the update
@@ -110,8 +114,11 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 1 x
 		ARG 2 z
 		ARG 3 source
-	METHOD method_8922 (Lnet/minecraft/class_106;III)I
+	METHOD method_8922 getLightLevel (Lnet/minecraft/class_106;III)I
 		ARG 1 type
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_8923 addBlockEntity (Lnet/minecraft/class_2193;)V
 		ARG 1 blockEntity
 	METHOD method_8924 getEntitiesByType (Ljava/lang/Class;Lnet/minecraft/class_646;Ljava/util/List;Lnet/minecraft/class_2625;)V
@@ -128,10 +135,11 @@ CLASS net/minecraft/class_399 net/minecraft/world/chunk/Chunk
 		ARG 1 map
 	METHOD method_8927 setRegions ([Lnet/minecraft/class_401;)V
 		ARG 1 regions
-	METHOD method_8928 (IIII)I
+	METHOD method_8928 setLight (IIII)I
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 4 light
 	METHOD method_8929 getBlockData (III)I
 		ARG 1 x
 		ARG 2 y

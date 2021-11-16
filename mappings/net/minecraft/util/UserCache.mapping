@@ -3,13 +3,29 @@ CLASS net/minecraft/class_1649 net/minecraft/util/UserCache
 	FIELD field_6778 gson Lcom/google/gson/Gson;
 	FIELD field_6779 byName Ljava/util/Map;
 	FIELD field_6780 byUuid Ljava/util/Map;
+	FIELD field_6781 list Ljava/util/LinkedList;
+	FIELD field_6782 server Lnet/minecraft/server/MinecraftServer;
 	FIELD field_6783 cacheFile Ljava/io/File;
 	FIELD field_6784 ENTRY_LIST_TYPE Ljava/lang/reflect/ParameterizedType;
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/io/File;)V
+		ARG 1 server
+		ARG 2 cacheFIle
+	METHOD method_6147 getCachedUsernames ()[Ljava/lang/String;
+	METHOD method_6148 getEntries (I)Ljava/util/List;
+		ARG 1 maxEntries
 	METHOD method_6149 add (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
 	METHOD method_6150 add (Lcom/mojang/authlib/GameProfile;Ljava/util/Date;)V
 		ARG 1 profile
+		ARG 2 today
 	METHOD method_6151 findByName (Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		ARG 1 username
 	METHOD method_6152 getByUuid (Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;
+		ARG 1 uuid
+	METHOD method_6153 getProfile (Lnet/minecraft/server/MinecraftServer;Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 server
+		ARG 1 username
 	METHOD method_6154 load ()V
 	METHOD method_6155 getEntry (Ljava/util/UUID;)Lnet/minecraft/class_1650;
+		ARG 1 uuid
 	METHOD method_6156 save ()V
