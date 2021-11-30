@@ -1,8 +1,125 @@
 CLASS net/minecraft/class_1337 net/minecraft/client/twitch/StreamController
+	FIELD field_10779 captureBuffer Ljava/util/List;
+	FIELD field_10780 freeBuffer Ljava/util/List;
+	FIELD field_5534 twitchStream Lnet/minecraft/class_1346;
 	FIELD field_5537 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_5538 THREAD_SAFE_BOUND Lnet/minecraft/class_1700;
+	FIELD field_5539 errorMessage Ljava/lang/String;
+	FIELD field_5540 errorCode Ltv/twitch/ErrorCode;
 	FIELD field_5543 listener Lnet/minecraft/class_1339;
+	FIELD field_5544 secret Ljava/lang/String;
+	FIELD field_5547 audio Z
+	FIELD field_5548 core Ltv/twitch/Core;
+	FIELD field_5549 stream Ltv/twitch/broadcast/Stream;
+	FIELD field_5552 initialized Z
+	FIELD field_5553 loggedIn Z
 	FIELD field_5555 status Lnet/minecraft/class_1338;
+	FIELD field_5556 username Ljava/lang/String;
+	FIELD field_5557 videoParams Ltv/twitch/broadcast/VideoParams;
+	FIELD field_5558 audioParams Ltv/twitch/broadcast/AudioParams;
+	FIELD field_5559 ingestList Ltv/twitch/broadcast/IngestList;
+	FIELD field_5560 ingestServer Ltv/twitch/broadcast/IngestServer;
+	FIELD field_5561 authToken Ltv/twitch/AuthToken;
+	FIELD field_5562 channel Ltv/twitch/broadcast/ChannelInfo;
+	FIELD field_5563 user Ltv/twitch/broadcast/UserInfo;
 	FIELD field_5564 streamInfo Ltv/twitch/broadcast/StreamInfo;
+	FIELD field_5565 archivingState Ltv/twitch/broadcast/ArchivingState;
+	METHOD bufferUnlockCallback (J)V
+	METHOD getArchivingStateCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/ArchivingState;)V
+		ARG 1 errorCode
+		ARG 2 archivingState
+	METHOD getGameNameListCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/GameInfoList;)V
+		ARG 1 errorCode
+		ARG 2 gameInfoList
+	METHOD getIngestServersCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/IngestList;)V
+		ARG 1 errorCode
+		ARG 2 ingestList
+	METHOD getStreamInfoCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/StreamInfo;)V
+		ARG 1 errorCode
+		ARG 2 streamInfo
+	METHOD getUserInfoCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/UserInfo;)V
+		ARG 1 errorCode
+		ARG 2 userInfo
+	METHOD loginCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/ChannelInfo;)V
+		ARG 1 errorCode
+		ARG 2 channelInfo
+	METHOD method_4629 getErrorCode ()Ltv/twitch/ErrorCode;
+	METHOD method_4630 getPixelFormat ()Ltv/twitch/broadcast/PixelFormat;
+	METHOD method_4631 initialize ()Z
+	METHOD method_4635 runCommercial ()Z
+	METHOD method_4636 stopBroadcast ()Z
+	METHOD method_4637 pauseSTream ()Z
+	METHOD method_4638 resumeStream ()Z
+	METHOD method_4641 createTwitchStream ()Lnet/minecraft/class_1346;
+	METHOD method_4642 allocateFrameBuffer ()Z
+	METHOD method_4643 stop ()V
+	METHOD method_4644 getFreeBuffer ()Ltv/twitch/broadcast/FrameBuffer;
+	METHOD method_4645 setRecorderVolume (F)V
+		ARG 1 volume
+	METHOD method_4646 getOptimalVideoParams (IIFF)Ltv/twitch/broadcast/VideoParams;
+		ARG 1 maxKbps
+		ARG 2 targetFps
+	METHOD method_4647 setStatus (Lnet/minecraft/class_1338;)V
+		ARG 1 status
 	METHOD method_4648 setListener (Lnet/minecraft/class_1339;)V
 		ARG 1 listener
+	METHOD method_4649 setSecret (Ljava/lang/String;)V
+		ARG 1 secret
+	METHOD method_4651 sendMetadata (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;)Z
+	METHOD method_4652 setStreamInfo (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
+		ARG 1 username
+		ARG 2 gameName
+		ARG 3 streamTitle
+	METHOD method_4653 authenticate (Ljava/lang/String;Ltv/twitch/AuthToken;)Z
+		ARG 1 username
+		ARG 2 authToken
+	METHOD method_4654 failed (Ltv/twitch/ErrorCode;)Z
+		ARG 1 errorCode
+	METHOD method_4655 submitFrame (Ltv/twitch/broadcast/FrameBuffer;)V
+		ARG 1 frameBuffer
+	METHOD method_4656 setIngestServer (Ltv/twitch/broadcast/IngestServer;)V
+		ARG 1 ingestServer
+	METHOD method_4657 startBroadcast (Ltv/twitch/broadcast/VideoParams;)Z
+		ARG 1 videoParams
+	METHOD method_4658 isInitialized ()Z
+	METHOD method_4659 setPlaybackVolume (F)V
+		ARG 1 volume
+	METHOD method_4661 submitVideoFrame (Ltv/twitch/broadcast/FrameBuffer;)Ltv/twitch/ErrorCode;
+		ARG 1 frameBuffer
+	METHOD method_4662 error (Ljava/lang/String;)V
+		ARG 1 message
+	METHOD method_4663 warning (Ljava/lang/String;)V
+		ARG 1 message
+	METHOD method_4664 getStreamInfo ()Ltv/twitch/broadcast/StreamInfo;
+	METHOD method_4665 getChannel ()Ltv/twitch/broadcast/ChannelInfo;
+	METHOD method_4666 isBroadcasting ()Z
+	METHOD method_4667 isReadyToBroadcast ()Z
+	METHOD method_4668 isTestingIngest ()Z
+	METHOD method_4669 isPaused ()Z
+	METHOD method_4670 isLoggedIn ()Z
+	METHOD method_4671 getIngestServer ()Ltv/twitch/broadcast/IngestServer;
+	METHOD method_4672 getIngestServerList ()Ltv/twitch/broadcast/IngestList;
+	METHOD method_4673 getTwitchStream ()Lnet/minecraft/class_1346;
+	METHOD method_4674 getStreamTime ()J
+	METHOD method_4675 hasAudio ()Z
+	METHOD method_9760 deinitialize ()Z
+	METHOD requestAuthTokenCallback (Ltv/twitch/ErrorCode;Ltv/twitch/AuthToken;)V
+		ARG 1 errorCode
+		ARG 2 authToken
+	METHOD runCommercialCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendActionMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendEndSpanMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendStartSpanMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD setStreamInfoCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD startCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD statCallback (Ltv/twitch/broadcast/StatType;J)V
+		ARG 1 statType
+		ARG 2 stat
+	METHOD stopCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode

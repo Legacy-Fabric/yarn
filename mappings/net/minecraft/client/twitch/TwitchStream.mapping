@@ -1,5 +1,75 @@
 CLASS net/minecraft/class_1346 net/minecraft/client/twitch/TwitchStream
+	FIELD field_10797 closed Z
+	FIELD field_5631 ingestStateListener Lnet/minecraft/class_1347;
 	FIELD field_5632 stream Ltv/twitch/broadcast/Stream;
+	FIELD field_5633 ingestList Ltv/twitch/broadcast/IngestList;
+	FIELD field_5634 ingestState Lnet/minecraft/class_1348;
+	FIELD field_5635 ingestTestTimeout J
+	FIELD field_5638 rtmpState Ltv/twitch/broadcast/RTMPState;
 	FIELD field_5639 videoArgs Ltv/twitch/broadcast/VideoParams;
 	FIELD field_5640 audioArgs Ltv/twitch/broadcast/AudioParams;
+	FIELD field_5641 startTime J
 	FIELD field_5642 frameBuffer Ljava/util/List;
+	FIELD field_5644 streamCallbacks Ltv/twitch/broadcast/IStreamCallbacks;
+	FIELD field_5645 statCallbacks Ltv/twitch/broadcast/IStatCallbacks;
+	FIELD field_5646 ingestServer Ltv/twitch/broadcast/IngestServer;
+	FIELD field_5648 testingIngest Z
+	METHOD <init> (Ltv/twitch/broadcast/Stream;Ltv/twitch/broadcast/IngestList;)V
+		ARG 1 stream
+		ARG 2 ingestList
+	METHOD bufferUnlockCallback (J)V
+		ARG 1 frameBuffer
+	METHOD getArchivingStateCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/ArchivingState;)V
+		ARG 1 errorCode
+		ARG 2 archivingState
+	METHOD getGameNameListCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/GameInfoList;)V
+		ARG 1 errorCode
+		ARG 2 gameInfoList
+	METHOD getIngestServersCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/IngestList;)V
+		ARG 1 errorCode
+		ARG 2 ingestList
+	METHOD getStreamInfoCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/StreamInfo;)V
+		ARG 1 errorCode
+		ARG 2 streamInfo
+	METHOD getUserInfoCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/UserInfo;)V
+		ARG 1 errorCode
+		ARG 2 userInfo
+	METHOD loginCallback (Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/ChannelInfo;)V
+		ARG 1 errorCode
+		ARG 2 channelInfo
+	METHOD method_4732 setIngestStateListener (Lnet/minecraft/class_1347;)V
+		ARG 1 listener
+	METHOD method_4733 setIngestState (Lnet/minecraft/class_1348;)V
+		ARG 1 state
+	METHOD method_4734 (Ltv/twitch/broadcast/IngestServer;)Z
+		ARG 1 ingestServer
+	METHOD method_4736 getIngestServer ()Ltv/twitch/broadcast/IngestServer;
+	METHOD method_4737 tickIngestTest (Ltv/twitch/broadcast/IngestServer;)Z
+		ARG 1 ingestServer
+	METHOD method_4739 isClosed ()Z
+	METHOD method_4741 testIngest ()V
+	METHOD method_4744 getPassedTime ()J
+	METHOD method_4746 ()V
+	METHOD method_9778 (Ltv/twitch/broadcast/IngestServer;)V
+		ARG 1 ingestServer
+	METHOD method_9779 close ()V
+	METHOD requestAuthTokenCallback (Ltv/twitch/ErrorCode;Ltv/twitch/AuthToken;)V
+		ARG 1 errorCode
+		ARG 2 authToken
+	METHOD runCommercialCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendActionMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendEndSpanMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD sendStartSpanMetaDataCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD setStreamInfoCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD startCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
+	METHOD statCallback (Ltv/twitch/broadcast/StatType;J)V
+		ARG 1 statType
+		ARG 2 state
+	METHOD stopCallback (Ltv/twitch/ErrorCode;)V
+		ARG 1 errorCode
