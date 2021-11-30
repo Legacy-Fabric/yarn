@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_99 net/minecraft/world/World
 	FIELD field_251 scoreboard Lnet/minecraft/class_653;
+	FIELD field_254 isNotPeaceful Z
 	FIELD field_261 iteratingTickingBlockEntities Z
 	FIELD field_266 cloudColor J
 	FIELD field_275 lcgBlockSeed I
@@ -161,6 +162,8 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 2 sound
 		ARG 3 volume
 		ARG 4 pitch
+	METHOD method_341 (ZZ)V
+		ARG 1 isNotPaceful
 	METHOD method_352 getMinimumHeightMap (II)I
 		ARG 1 x
 		ARG 2 z
@@ -192,7 +195,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 uuid
 	METHOD method_372 onEntityRemoved (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
-	METHOD method_374 tick ()V
+	METHOD method_374 worldTick ()V
 	METHOD method_380 (Lnet/minecraft/class_646;)Z
 		ARG 1 boundingBox
 	METHOD method_386 (Ljava/util/Collection;)V
@@ -215,6 +218,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 		ARG 1 offset
 	METHOD method_412 loadEntity (Lnet/minecraft/class_1745;)V
 		ARG 1 entity
+	METHOD method_413 tick ()V
 	METHOD method_414 setThunderGradient (F)V
 		ARG 1 thunderGradient
 	METHOD method_416 getRainGradient (F)F
@@ -222,7 +226,7 @@ CLASS net/minecraft/class_99 net/minecraft/world/World
 	METHOD method_418 getClientChunkCache ()Lnet/minecraft/class_396;
 	METHOD method_419 setRainGradient (F)V
 		ARG 1 rainGradient
-	METHOD method_425 tickInternal ()V
+	METHOD method_425 tickAmbientRainfall ()V
 	METHOD method_426 getNextMapId ()I
 	METHOD method_433 isDay ()Z
 	METHOD method_437 getMoonPhase ()F
