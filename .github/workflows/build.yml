@@ -1,5 +1,5 @@
-name: Publish
-on: [push]
+name: Build
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,6 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1
-      - run: ./gradlew publish --stacktrace
-        env:
-          MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+      - run: ./gradlew build javadocJar checkMappings mapNamedJar --stacktrace
