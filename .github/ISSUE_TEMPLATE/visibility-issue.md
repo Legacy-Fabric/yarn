@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**Minecraft Version**
+1.8.9
+
 **Name of the class**  
 Classname
 

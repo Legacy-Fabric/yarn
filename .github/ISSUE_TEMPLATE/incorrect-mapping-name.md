@@ -1,11 +1,14 @@
 ---
 name: Incorrect mapping name
 about: Report an incorrect mapping name
-title: 
+title:
 labels: bug
 assignees: ''
 
 ---
+
+**Minecraft Version**
+1.8.9
 
 **Type**  
 Class / Field / Method / Parameter
