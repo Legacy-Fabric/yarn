@@ -1,14 +1,14 @@
 CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteractionManager
+	FIELD field_10593 currentBreakingPos Lnet/minecraft/class_2552;
 	FIELD field_1646 client Lnet/minecraft/class_1600;
 	FIELD field_1647 networkHandler Lnet/minecraft/class_1845;
-	FIELD field_10593 currentBreakingPos Lnet/minecraft/class_2552;
-	FIELD field_5147 selectedStack Lnet/minecraft/class_1071;
 	FIELD field_1651 currentBreakingProgress F
 	FIELD field_1653 blockBreakingSoundCooldown F
 	FIELD field_1654 blockBreakingCooldown I
 	FIELD field_1655 breakingBlock Z
 	FIELD field_1656 gameMode Lnet/minecraft/class_1156$class_1157;
 	FIELD field_1657 lastSelectedSlot I
+	FIELD field_5147 selectedStack Lnet/minecraft/class_1071;
 	METHOD <init> (Lnet/minecraft/class_1600;Lnet/minecraft/class_1845;)V
 		ARG 1 client
 	METHOD method_1221 isSpectator ()Z
@@ -21,10 +21,31 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 3 mouseButton
 		ARG 4 actionType
 		ARG 5 player
-	METHOD method_9658 createPlayer (Lnet/minecraft/class_1150;Lnet/minecraft/class_625;)Lnet/minecraft/class_11506;
-		ARG 1 world
+	METHOD method_1226 copyAbilities (Lnet/minecraft/class_988;)V
+		ARG 1 player
+	METHOD method_1227 attackEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)V
+		ARG 1 player
+		ARG 2 target
+	METHOD method_1230 dropCreativeStack (Lnet/minecraft/class_1071;)V
+		ARG 1 stack
+	METHOD method_1231 clickCreativeStack (Lnet/minecraft/class_1071;I)V
+		ARG 1 stack
+		ARG 2 slotId
 	METHOD method_1233 setGameMode (Lnet/minecraft/class_1156$class_1157;)V
 		ARG 1 gameMode
+	METHOD method_1234 hasStatusBars ()Z
+	METHOD method_1237 interactEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)Z
+	METHOD method_1238 cancelBlockBreaking ()V
+	METHOD method_1240 stopUsingItem (Lnet/minecraft/class_988;)V
+		ARG 1 player
+	METHOD method_1241 getReachDistance ()F
+	METHOD method_1242 tick ()V
+	METHOD method_1243 hasExperienceBar ()Z
+	METHOD method_1244 hasLimitedAttackSpeed ()Z
+	METHOD method_1245 hasCreativeInventory ()Z
+	METHOD method_1246 hasExtendedReach ()Z
+	METHOD method_1247 syncSelectedSlot ()V
+	METHOD method_5707 hasRidingInventory ()Z
 	METHOD method_9659 breakBlockOrFire (Lnet/minecraft/class_1600;Lnet/minecraft/class_477;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)V
 		ARG 0 client
 		ARG 1 interactionManager
@@ -42,37 +63,14 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_9662 breakBlock (Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 pos
 		ARG 2 direction
-	METHOD method_1226 copyAbilities (Lnet/minecraft/class_988;)V
-		ARG 1 player
-	METHOD method_1227 attackEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)V
-		ARG 1 player
-		ARG 2 target
 	METHOD method_9663 interactEntityAtLocation (Lnet/minecraft/class_988;Lnet/minecraft/class_864;Lnet/minecraft/class_234;)Z
 		ARG 1 player
-	METHOD method_1230 dropCreativeStack (Lnet/minecraft/class_1071;)V
-		ARG 1 stack
-	METHOD method_1231 clickCreativeStack (Lnet/minecraft/class_1071;I)V
-		ARG 1 stack
-		ARG 2 slotId
-	METHOD method_1234 hasStatusBars ()Z
 	METHOD method_9664 attackBlock (Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 pos
 		ARG 2 direction
-	METHOD method_1237 interactEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)Z
-	METHOD method_1238 cancelBlockBreaking ()V
 	METHOD method_9665 updateBlockBreakingProgress (Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 pos
 		ARG 2 direction
-	METHOD method_1240 stopUsingItem (Lnet/minecraft/class_988;)V
-		ARG 1 player
-	METHOD method_1241 getReachDistance ()F
-	METHOD method_1242 tick ()V
-	METHOD method_1243 hasExperienceBar ()Z
-	METHOD method_1244 hasLimitedAttackSpeed ()Z
-	METHOD method_1245 hasCreativeInventory ()Z
-	METHOD method_1246 hasExtendedReach ()Z
-	METHOD method_5707 hasRidingInventory ()Z
 	METHOD method_9666 isFlyingLocked ()Z
 	METHOD method_9667 getCurrentGameMode ()Lnet/minecraft/class_1156$class_1157;
 	METHOD method_9668 isBreakingBlock ()Z
-	METHOD method_1247 syncSelectedSlot ()V
