@@ -24,7 +24,7 @@ Please have a look at the [naming conventions](/CONVENTIONS.md) before submittin
 ### Getting Started
 
 1. Fork and clone the repo
-2. Run `./gradlew yarn` (Linux, macOS) or `gradlew yarn` (Windows) to open [Enigma](https://github.com/FabricMC/Enigma), a user interface to easily edit the mappings
+2. Run `sh ./yarn` (Linux, macOS) or `yarn.bat` (Windows) and select the Minecraft version, to open [Enigma](https://github.com/FabricMC/Enigma), a user interface to easily edit the mappings
 3. Commit and push your work to your fork
 4. Open a pull request with your changes
 
@@ -32,7 +32,7 @@ Please have a look at the [naming conventions](/CONVENTIONS.md) before submittin
 Yarn uses Gradle to provide a number of utility tasks for working with the mappings.
 
 ### `yarn`
-[`setupYarn`](#setupYarn) and download and launch the latest version of [Enigma](https://github.com/FabricMC/Enigma) automatically configured to use the merged jar and the mappings.
+Runs [`setupYarn`](#setupYarn) and downloads and launches [Enigma](https://github.com/FabricMC/Enigma) automatically configured to use the merged jar and the mappings.
 
 Compared to launching Enigma externally, the gradle task adds a name guesser plugin that automatically map enums and a few constant field names.
 
