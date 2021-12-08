@@ -2,6 +2,17 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	COMMENT The Block class provides useful methods and fields for creation of Blocks.
 	COMMENT All blocks extend the Block class.
 	COMMENT The Block class also registers all the blocks.
+	FIELD field_372 itemGroup Lnet/minecraft/class_1041;
+	FIELD field_425 translationKey Ljava/lang/String;
+		COMMENT Stores the block's translation key
+	FIELD field_467 strength F
+		COMMENT Stores the current block's hardness
+	FIELD field_468 resistance F
+		COMMENT Stores the current block's resistance
+	FIELD field_470 stats Z
+		COMMENT Specifies whether the current block is tracked for stats
+	FIELD field_471 randomTicks Z
+		COMMENT Specifies whether the current block ticks randomly
 	FIELD field_472 blockEntity Z
 		COMMENT Specifies whether the current block has a block entity
 	FIELD field_473 boundingBoxMinX D
@@ -23,35 +34,20 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_481 material Lnet/minecraft/class_63;
 		COMMENT Stores the current block's material
 		COMMENT @see net.minecraft.block.Material
-	FIELD field_9279 materialColor Lnet/minecraft/class_65;
-		COMMENT Stores the current block's material color
-		COMMENT @see net.minecraft.block.MaterialColor
 	FIELD field_482 slipperiness F
 		COMMENT Stores the current block's slipperiness
 		COMMENT Used By Ice and Packed Ice
-	FIELD field_9280 stateManager Lnet/minecraft/class_2233;
-		COMMENT Stores the block's state manager
-	FIELD field_9281 defaultState Lnet/minecraft/class_2232;
-		COMMENT Stores the block's default state
-	FIELD field_425 translationKey Ljava/lang/String;
-		COMMENT Stores the block's translation key
-	FIELD field_9282 AIR_ID Lnet/minecraft/class_1653;
-		COMMENT The Identifier for Air
-	FIELD field_372 itemGroup Lnet/minecraft/class_1041;
-	FIELD field_9283 REGISTRY Lnet/minecraft/class_1940;
-		COMMENT The Registry object to which all blocks get registered to
-	FIELD field_9284 BLOCK_STATES Lnet/minecraft/class_1942;
-		COMMENT A List of all blockstates, used by Debug worlds
 	FIELD field_483 ORE Lnet/minecraft/class_197$class_200;
 		COMMENT Ore sound type
 	FIELD field_484 WOOD Lnet/minecraft/class_197$class_200;
 		COMMENT Wood sound type
-	FIELD field_7261 GRAVEL Lnet/minecraft/class_197$class_200;
-		COMMENT Gravel sound type
 	FIELD field_486 GRASS Lnet/minecraft/class_197$class_200;
 		COMMENT Grass sound type
 	FIELD field_487 STONE Lnet/minecraft/class_197$class_200;
 		COMMENT Stone sound type
+	FIELD field_7260 BLOCKS Lnet/minecraft/class_1943;
+	FIELD field_7261 GRAVEL Lnet/minecraft/class_197$class_200;
+		COMMENT Gravel sound type
 	FIELD field_7262 RAIL Lnet/minecraft/class_197$class_200;
 		COMMENT Rail sound type
 	FIELD field_7263 GLASS Lnet/minecraft/class_197$class_200;
@@ -66,8 +62,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Ladder sound type
 	FIELD field_7268 ANVIL Lnet/minecraft/class_197$class_200;
 		COMMENT Anvil sound type
-	FIELD field_9285 SLIME Lnet/minecraft/class_197$class_200;
-		COMMENT Slime sound type
 	FIELD field_7269 fullBlock Z
 		COMMENT Specifies whether the current block is a full block
 	FIELD field_7270 opacity I
@@ -77,14 +71,21 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_7272 lightLevel I
 		COMMENT Stores the block's luminescence
 	FIELD field_7273 useNeighbourLight Z
-	FIELD field_467 strength F
-		COMMENT Stores the current block's hardness
-	FIELD field_468 resistance F
-		COMMENT Stores the current block's resistance
-	FIELD field_470 stats Z
-		COMMENT Specifies whether the current block is tracked for stats
-	FIELD field_471 randomTicks Z
-		COMMENT Specifies whether the current block ticks randomly
+	FIELD field_9279 materialColor Lnet/minecraft/class_65;
+		COMMENT Stores the current block's material color
+		COMMENT @see net.minecraft.block.MaterialColor
+	FIELD field_9280 stateManager Lnet/minecraft/class_2233;
+		COMMENT Stores the block's state manager
+	FIELD field_9281 defaultState Lnet/minecraft/class_2232;
+		COMMENT Stores the block's default state
+	FIELD field_9282 AIR_ID Lnet/minecraft/class_1653;
+		COMMENT The Identifier for Air
+	FIELD field_9283 REGISTRY Lnet/minecraft/class_1940;
+		COMMENT The Registry object to which all blocks get registered to
+	FIELD field_9284 BLOCK_STATES Lnet/minecraft/class_1942;
+		COMMENT A List of all blockstates, used by Debug worlds
+	FIELD field_9285 SLIME Lnet/minecraft/class_197$class_200;
+		COMMENT Slime sound type
 	METHOD <init> (Lnet/minecraft/class_63;)V
 		COMMENT Overloaded Block constructor that calls the other with the default material color
 		ARG 1 material
@@ -95,65 +96,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's material
 		ARG 2 color
 			COMMENT The block's material color
-	METHOD method_469 hasCollision ()Z
-		COMMENT Returns whether a block has collision, i.e. stops entities
-		COMMENT @return Whether a block has collision
-	METHOD method_4189 getMinX ()D
-		COMMENT Returns the block's bounding box' minimum X value
-		COMMENT @return Minimum X value
-	METHOD method_4190 getMaxX ()D
-		COMMENT Returns the block's bounding box' minimum Y value
-		COMMENT @return Minimum Y value
-	METHOD method_4191 getMinY ()D
-		COMMENT Returns the block's bounding box' minimum Z value
-		COMMENT @return Minimum Z value
-	METHOD method_4192 getMaxY ()D
-		COMMENT Returns the block's bounding box' maximum X value
-		COMMENT @return Maximum X value
-	METHOD method_4193 getMinZ ()D
-		COMMENT Returns the block's bounding box' maximum Y value
-		COMMENT @return Maximum Y value
-	METHOD method_4183 getMaxZ ()D
-		COMMENT Returns the block's bounding box' maximum Z value
-		COMMENT @return Maximum Z value
-	METHOD method_470 getColor ()I
-	METHOD method_475 requiresSilkTouch ()Z
-	METHOD method_481 hasStats ()Z
-		COMMENT Returns whether the current block should be tracked for stats
-		COMMENT @return Whether the current block should be tracked for stats
-	METHOD method_482 disableStats ()Lnet/minecraft/class_197;
-		COMMENT Disables tracking by stats for the current block. Used in registering blocks.
-		COMMENT @return The current block
-	METHOD method_483 getItemGroup ()Lnet/minecraft/class_1041;
-		COMMENT Returns the block's ItemGroup.
-		COMMENT Only called on the client.
-		COMMENT @return The Block's item group
-	METHOD method_4188 isFlowerPot ()Z
-	METHOD method_4187 isFire ()Z
-	METHOD method_4797 hasComparatorOutput ()Z
-		COMMENT Returns whether the block provides comparator output.
-		COMMENT Used in blocks with entities like Chests and Droppers.
-		COMMENT @return Whether the block provides comparator output
-	METHOD method_8632 getStateManager ()Lnet/minecraft/class_2233;
-		COMMENT Returns the current state manager.
-		COMMENT @return The current state manager
-	METHOD method_8633 getDefaultState ()Lnet/minecraft/class_2232;
-		COMMENT Returns the block's default BlockState.
-		COMMENT @return The block's default BlockState
-	METHOD method_8634 getOffsetType ()Lnet/minecraft/class_197$class_2177;
-		COMMENT Returns the block's offset type.
-		COMMENT Used by grass and flowers.
-		COMMENT @return The block's offset type
-	METHOD method_6457 setup ()V
-		COMMENT Registers all blocks
 	METHOD method_392 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
-	METHOD method_6441 setLightLevel (F)Lnet/minecraft/class_197;
-		COMMENT Sets the block's luminescence. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 lightLevel
-			COMMENT The block's luminescence
 	METHOD method_394 setBoundingBox (FFFFFF)V
 		COMMENT Sets the block's bounding box. It accepts six parameters: The minimum and maximum for each of the three axes.
 		ARG 1 minX
@@ -168,6 +113,340 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT Maximum Y value
 		ARG 6 maxZ
 			COMMENT Maximum Z value
+	METHOD method_397 getBonusDrops (ILjava/util/Random;)I
+		COMMENT Returns the number bonus drops for a block when broken.
+		COMMENT @return Bonus drops for a block
+		ARG 1 id
+			COMMENT Id
+		ARG 2 rand
+			COMMENT Random object
+	METHOD method_398 getDropItem (Lnet/minecraft/class_2232;Ljava/util/Random;I)Lnet/minecraft/class_1069;
+		COMMENT Returns the item that must be dropped when the block is broken
+		COMMENT @return The Item that drops after the block breaks
+		ARG 1 blockState
+			COMMENT The block's BlockState
+		ARG 2 random
+			COMMENT Random object
+		ARG 3 state
+			COMMENT State
+	METHOD method_399 appendItemStacks (Lnet/minecraft/class_1069;Lnet/minecraft/class_1041;Ljava/util/List;)V
+		COMMENT Appends ItemStacks to an itemgroup.
+		COMMENT Only called on the client.
+		ARG 1 item
+			COMMENT The Item that must be added
+		ARG 2 group
+			COMMENT The ItemGroup that the item must be added to
+		ARG 3 stacks
+			COMMENT The list of currently added ItemStacks to the ItemGroup
+	METHOD method_400 canCollide (Lnet/minecraft/class_2232;Z)Z
+		COMMENT Returns whether entities can collide with the block
+		COMMENT @return Whether the block has collision
+		ARG 1 state
+			COMMENT The block's BlockState
+		ARG 2 bl
+	METHOD method_401 setSound (Lnet/minecraft/class_197$class_200;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's sound type. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 sound
+			COMMENT The block's sound type
+	METHOD method_402 (Lnet/minecraft/class_236;)Z
+		ARG 1 vec
+	METHOD method_403 getDropCount (Ljava/util/Random;)I
+		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
+		COMMENT @return Amount of items to be dropped
+		ARG 1 rand
+			COMMENT Random object
+	METHOD method_404 getBlastResistance (Lnet/minecraft/class_864;)F
+		COMMENT Returns the block's blast resistance as per the entity provided.
+		COMMENT @return Blast Resistance
+		ARG 1 entity
+			COMMENT The entity that blast resistance must be calculated for
+	METHOD method_405 calcBlockBreakingData (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
+		COMMENT Calculates how fast or slow the block must be broken by a Player.
+		COMMENT  Status effects such as Haste and Mining fatigue are taken into consideration.
+		COMMENT @return Speed of breaking
+		ARG 1 player
+			COMMENT The player breaking the block
+		ARG 2 world
+			COMMENT The world that the block is placed in
+		ARG 3 pos
+			COMMENT The block's position
+	METHOD method_406 setItemGroup (Lnet/minecraft/class_1041;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's ItemGroup. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 group
+			COMMENT The itemgroup that the block must be added to
+	METHOD method_410 randomDropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;FI)V
+		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 chance
+			COMMENT The chance (luck factor)
+		ARG 5 id
+			COMMENT Id
+	METHOD method_414 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 vec1
+		ARG 4 vec2
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)V
+		COMMENT Runs every time an entity collides with the block
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 entity
+			COMMENT The entity that collided with the block
+	METHOD method_4183 getMaxZ ()D
+		COMMENT Returns the block's bounding box' maximum Z value
+		COMMENT @return Maximum Z value
+	METHOD method_4184 shouldDropItemsOnExplosion (Lnet/minecraft/class_1147;)Z
+		COMMENT Returns whether the block should drop as an Item during an explosion.
+		COMMENT @return Whether the block should drop as an item during an explosion
+		ARG 1 explosion
+			COMMENT The explosion that caused the block to break
+	METHOD method_4187 isFire ()Z
+	METHOD method_4188 isFlowerPot ()Z
+	METHOD method_4189 getMinX ()D
+		COMMENT Returns the block's bounding box' minimum X value
+		COMMENT @return Minimum X value
+	METHOD method_419 onPlaced (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
+		COMMENT Runs when the block is placed by an entity
+		ARG 1 world
+			COMMENT The world that the block is in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 placer
+			COMMENT The entity who placed the block
+		ARG 5 itemStack
+			COMMENT ItemStack instance
+	METHOD method_4190 getMaxX ()D
+		COMMENT Returns the block's bounding box' minimum Y value
+		COMMENT @return Minimum Y value
+	METHOD method_4191 getMinY ()D
+		COMMENT Returns the block's bounding box' minimum Z value
+		COMMENT @return Minimum Z value
+	METHOD method_4192 getMaxY ()D
+		COMMENT Returns the block's bounding box' maximum X value
+		COMMENT @return Maximum X value
+	METHOD method_4193 getMinZ ()D
+		COMMENT Returns the block's bounding box' maximum Y value
+		COMMENT @return Maximum Y value
+	METHOD method_420 onBlockBreakStart (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 player
+	METHOD method_421 onUse (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_1354;FFF)Z
+		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
+		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
+		COMMENT @return Whether the action is succesful
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 player
+			COMMENT The player who <i>used</i> the block
+		ARG 5 direction
+			COMMENT The direction that the block is facing
+	METHOD method_429 getBlockType ()I
+	METHOD method_430 setResistance (F)Lnet/minecraft/class_197;
+		COMMENT Sets the block's resistance. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 resistance
+			COMMENT The block's resistance
+	METHOD method_432 (Lnet/minecraft/class_236;)Z
+		ARG 1 vec
+	METHOD method_433 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's localization key. Used in registering blocks.
+		COMMENT @return The Current block
+		ARG 1 key
+			COMMENT The Translation key
+	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
+		COMMENT Runs when an event takes place
+		COMMENT @return Whether the event is successful
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 id
+			COMMENT Id
+		ARG 5 meta
+			COMMENT Metadata
+	METHOD method_437 onSteppedOn (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
+		COMMENT Runs every time an entity steps on the Block.
+		COMMENT Used by redstone ore to change it's state.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 entity
+			COMMENT The entity who stepped on the block
+	METHOD method_438 getBlockColor (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;I)I
+		COMMENT Returns the current block's color
+		COMMENT @return Block color
+		ARG 1 view
+			COMMENT WorldView instance
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 id
+			COMMENT Id
+	METHOD method_440 setTickRandomly (Z)Lnet/minecraft/class_197;
+		COMMENT Sets whether the current block has random ticks. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 tickRandomly
+			COMMENT Whether the current block should have random ticks
+	METHOD method_441 renderAsNormalBlock ()Z
+		COMMENT Returns whether the block can be rendered as a normal block
+		COMMENT @return Whether the block can be rendered as a normal block
+	METHOD method_442 setStrength (F)Lnet/minecraft/class_197;
+		COMMENT Sets the current block's strength. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 strength
+			COMMENT The block's strength
+	METHOD method_443 (Lnet/minecraft/class_236;)Z
+		ARG 1 vec
+	METHOD method_449 hasTransperancy ()Z
+	METHOD method_453 getPistonInteractionType ()I
+		COMMENT Returns the block's piston interaction type, as provided by it's material.
+		COMMENT @return Current block's piston interaction type
+	METHOD method_456 setBlockItemBounds ()V
+		COMMENT Sets the bounds for the BlockItem
+	METHOD method_466 emitsRedstonePower ()Z
+		COMMENT Returns whether the current block emits a redstone signal.
+		COMMENT Used by comparators, Redstone Blocks, etc.
+		COMMENT @return Whether the current block emits a redstone signal
+	METHOD method_469 hasCollision ()Z
+		COMMENT Returns whether a block has collision, i.e. stops entities
+		COMMENT @return Whether a block has collision
+	METHOD method_470 getColor ()I
+	METHOD method_474 setUnbreakable ()Lnet/minecraft/class_197;
+		COMMENT Sets the current block as unbreakable. Used in registering blocks.
+		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
+		COMMENT @return The current block
+	METHOD method_475 requiresSilkTouch ()Z
+	METHOD method_476 ticksRandomly ()Z
+		COMMENT Returns whether the current block has random ticks
+		COMMENT @return Whether the current block has random ticks
+	METHOD method_478 hasBlockEntity ()Z
+		COMMENT Returns whether the current block has a block entity
+		COMMENT @return Whether the current block has a block entity
+	METHOD method_4789 getTickRate (Lnet/minecraft/class_1150;)I
+		COMMENT Returns the block's tick rate.
+		COMMENT Default is 10.
+		COMMENT @return Tick rate
+		ARG 1 world
+			COMMENT The world that the block is placed in
+	METHOD method_4797 hasComparatorOutput ()Z
+		COMMENT Returns whether the block provides comparator output.
+		COMMENT Used in blocks with entities like Chests and Droppers.
+		COMMENT @return Whether the block provides comparator output
+	METHOD method_480 getTranslatedName ()Ljava/lang/String;
+		COMMENT Translates and returns the translation key
+		COMMENT @return Translated name
+	METHOD method_481 hasStats ()Z
+		COMMENT Returns whether the current block should be tracked for stats
+		COMMENT @return Whether the current block should be tracked for stats
+	METHOD method_482 disableStats ()Lnet/minecraft/class_197;
+		COMMENT Disables tracking by stats for the current block. Used in registering blocks.
+		COMMENT @return The current block
+	METHOD method_483 getItemGroup ()Lnet/minecraft/class_1041;
+		COMMENT Returns the block's ItemGroup.
+		COMMENT Only called on the client.
+		COMMENT @return The Block's item group
+	METHOD method_6440 getAmbientOcclusionLightLevel ()F
+		COMMENT Returns the block's ambient occlusion light level on the basis of whether it is a normal block.
+		COMMENT Only called on the client.
+		COMMENT @return The block's ambient occlusion light level
+	METHOD method_6441 setLightLevel (F)Lnet/minecraft/class_197;
+		COMMENT Sets the block's luminescence. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 lightLevel
+			COMMENT The block's luminescence
+	METHOD method_6442 getBlockFromItem (Lnet/minecraft/class_1069;)Lnet/minecraft/class_197;
+		COMMENT Returns a block by converting a blockitem to a block
+		COMMENT @return The block
+		ARG 0 item
+			COMMENT The item that must be converted to a block
+	METHOD method_6443 areBlocksEqual (Lnet/minecraft/class_197;Lnet/minecraft/class_197;)Z
+		COMMENT Returns whether two blocks are equal.
+		COMMENT @return Whether two blocks are equal
+		ARG 0 one
+		ARG 1 two
+	METHOD method_6445 getIdByBlock (Lnet/minecraft/class_197;)I
+		COMMENT Returns a certain block's id
+		COMMENT @return Block id
+		ARG 0 block
+			COMMENT The block for which the id is returned
+	METHOD method_6446 get (Ljava/lang/String;)Lnet/minecraft/class_197;
+		COMMENT Returns a block from it's name
+		COMMENT @return The block
+		ARG 0 id
+			COMMENT The block's name
+	METHOD method_6447 isEqualTo (Lnet/minecraft/class_197;)Z
+		COMMENT Returns whether the current block and another block are equal
+		COMMENT @return Whether the current block and the other block are equal
+		ARG 1 block
+			COMMENT The other block
+	METHOD method_6448 getById (I)Lnet/minecraft/class_197;
+		COMMENT Returns a certain block from its id
+		COMMENT @return The Block
+		ARG 0 id
+			COMMENT The id for which the Block is returned
+	METHOD method_6450 setOpacity (I)Lnet/minecraft/class_197;
+		COMMENT Sets the block's light opacity. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 opacity
+			COMMENT The block's light opacity
+	METHOD method_6451 isFullBlock ()Z
+		COMMENT Checks whether the current block is a full block
+		COMMENT @return fullBlock
+	METHOD method_6452 getOpacity ()I
+		COMMENT Returns the current block's opacity
+		COMMENT @return opacity
+	METHOD method_6453 isTransluscent ()Z
+		COMMENT Checks whether the current block is transluscent
+		COMMENT @return transluscent
+	METHOD method_6454 getLightLevel ()I
+		COMMENT Returns the block's luminescence
+		COMMENT @return lightLevel
+	METHOD method_6455 usesNeighbourLight ()Z
+		COMMENT Checks whether the current block uses light from the adjacent block
+		COMMENT @return useNeighbourLight
+	METHOD method_6456 getMaterial ()Lnet/minecraft/class_63;
+		COMMENT Returns the block's material
+		COMMENT @return material
+	METHOD method_6457 setup ()V
+		COMMENT Registers all blocks
+	METHOD method_6458 isNormalBlock ()Z
+		COMMENT Checks whether the block is a normal block.
+		COMMENT A normal block is one that blocks movement and can be rendered as a normal block.
+		COMMENT @return Whether the block is a normal block
+	METHOD method_6459 isFullCube ()Z
+		COMMENT Checks whether the current block is a full cube.
+		COMMENT A block is a full cube when it can be rendered as a normal block, does not emit redstone power and is opaque.
+		COMMENT @return Whether the current block is a full cube
+	METHOD method_8632 getStateManager ()Lnet/minecraft/class_2233;
+		COMMENT Returns the current state manager.
+		COMMENT @return The current state manager
+	METHOD method_8633 getDefaultState ()Lnet/minecraft/class_2232;
+		COMMENT Returns the block's default BlockState.
+		COMMENT @return The block's default BlockState
+	METHOD method_8634 getOffsetType ()Lnet/minecraft/class_197$class_2177;
+		COMMENT Returns the block's offset type.
+		COMMENT Used by grass and flowers.
+		COMMENT @return The block's offset type
 	METHOD method_8635 stateFromData (I)Lnet/minecraft/class_2232;
 		COMMENT Returns a blockstate of the current block from it's id
 		COMMENT @return The Default state
@@ -181,13 +460,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's name
 		ARG 2 block
 			COMMENT The block object
-	METHOD method_397 getBonusDrops (ILjava/util/Random;)I
-		COMMENT Returns the number bonus drops for a block when broken.
-		COMMENT @return Bonus drops for a block
-		ARG 1 id
-			COMMENT Id
-		ARG 2 rand
-			COMMENT Random object
 	METHOD method_8637 register (ILnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		COMMENT Registers a block to the registry
 		ARG 0 id
@@ -196,17 +468,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's Identifier
 		ARG 2 block
 			COMMENT The block object
-	METHOD method_4184 shouldDropItemsOnExplosion (Lnet/minecraft/class_1147;)Z
-		COMMENT Returns whether the block should drop as an Item during an explosion.
-		COMMENT @return Whether the block should drop as an item during an explosion
-		ARG 1 explosion
-			COMMENT The explosion that caused the block to break
-	METHOD method_4789 getTickRate (Lnet/minecraft/class_1150;)I
-		COMMENT Returns the block's tick rate.
-		COMMENT Default is 10.
-		COMMENT @return Tick rate
-		ARG 1 world
-			COMMENT The world that the block is placed in
 	METHOD method_8638 isReplaceable (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -223,31 +484,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 state
 			COMMENT The block's BlockState
-	METHOD method_410 randomDropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;FI)V
-		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
-		ARG 1 world
-			COMMENT The world that the block is placed in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 state
-			COMMENT The block's BlockState
-		ARG 4 chance
-			COMMENT The chance (luck factor)
-		ARG 5 id
-			COMMENT Id
-	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
-		COMMENT Runs when an event takes place
-		COMMENT @return Whether the event is successful
-		ARG 1 world
-			COMMENT The world that the block is placed in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 state
-			COMMENT The block's BlockState
-		ARG 4 id
-			COMMENT Id
-		ARG 5 meta
-			COMMENT Metadata
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
@@ -276,28 +512,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 rand
 			COMMENT Random object
-	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)V
-		COMMENT Runs every time an entity collides with the block
-		ARG 1 world
-			COMMENT The world that the block is placed in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 state
-			COMMENT The block's BlockState
-		ARG 4 entity
-			COMMENT The entity that collided with the block
-	METHOD method_419 onPlaced (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
-		COMMENT Runs when the block is placed by an entity
-		ARG 1 world
-			COMMENT The world that the block is in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 state
-			COMMENT The block's BlockState
-		ARG 4 placer
-			COMMENT The entity who placed the block
-		ARG 5 itemStack
-			COMMENT ItemStack instance
 	METHOD method_8644 onBreakByPlayer (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;)V
 		COMMENT Runs when the block is broken by a player.
 		ARG 1 world
@@ -308,25 +522,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 player
 			COMMENT The player who broke the block
-	METHOD method_421 onUse (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_1354;FFF)Z
-		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
-		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
-		COMMENT @return Whether the action is succesful
-		ARG 1 world
-			COMMENT The world that the block is placed in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 state
-			COMMENT The block's BlockState
-		ARG 4 player
-			COMMENT The player who <i>used</i> the block
-		ARG 5 direction
-			COMMENT The direction that the block is facing
-	METHOD method_414 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 vec1
-		ARG 4 vec2
 	METHOD method_8645 getStateFromData (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;FFFILnet/minecraft/class_1699;)Lnet/minecraft/class_2232;
 		COMMENT Returns a BlockState from an id
 		ARG 1 world
@@ -349,15 +544,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's direction
 		ARG 4 stack
 			COMMENT ItemStack
-	METHOD method_437 onSteppedOn (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
-		COMMENT Runs every time an entity steps on the Block.
-		COMMENT Used by redstone ore to change it's state.
-		ARG 1 world
-			COMMENT The world that the block is placed in
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 entity
-			COMMENT The entity who stepped on the block
 	METHOD method_8647 onLandedUpon (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;F)V
 		COMMENT Runs when an entity falls on the block.
 		ARG 1 world
@@ -373,10 +559,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 entity
 		ARG 4 velocity
-	METHOD method_420 onBlockBreakStart (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)V
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 player
 	METHOD method_8649 onBlockBreak (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1071;)V
 		COMMENT Runs when a block is broken
 		ARG 0 world
@@ -406,15 +588,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_8652 setBoundingBox (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)V
 		ARG 1 view
 		ARG 2 pos
-	METHOD method_438 getBlockColor (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;I)I
-		COMMENT Returns the current block's color
-		COMMENT @return Block color
-		ARG 1 view
-			COMMENT WorldView instance
-		ARG 2 pos
-			COMMENT The block's position
-		ARG 3 id
-			COMMENT Id
 	METHOD method_8653 getWeakRedstonePower (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)I
 		COMMENT Returns the block's weak redstone power.
 		COMMENT @return Block's weak redstone power
@@ -435,21 +608,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The current block's position
 		ARG 3 facing
 			COMMENT The direction the block is facing
-	METHOD method_401 setSound (Lnet/minecraft/class_197$class_200;)Lnet/minecraft/class_197;
-		COMMENT Sets the block's sound type. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 sound
-			COMMENT The block's sound type
-	METHOD method_6445 getIdByBlock (Lnet/minecraft/class_197;)I
-		COMMENT Returns a certain block's id
-		COMMENT @return Block id
-		ARG 0 block
-			COMMENT The block for which the id is returned
-	METHOD method_6443 areBlocksEqual (Lnet/minecraft/class_197;Lnet/minecraft/class_197;)Z
-		COMMENT Returns whether two blocks are equal.
-		COMMENT @return Whether two blocks are equal
-		ARG 0 one
-		ARG 1 two
 	METHOD method_8655 getMeta (Lnet/minecraft/class_2232;)I
 		COMMENT Returns the metadata value for a certain BlockState
 		COMMENT @return Metadata value
@@ -464,73 +622,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT WorldView instance
 		ARG 3 pos
 			COMMENT The block's position
-	METHOD method_398 getDropItem (Lnet/minecraft/class_2232;Ljava/util/Random;I)Lnet/minecraft/class_1069;
-		COMMENT Returns the item that must be dropped when the block is broken
-		COMMENT @return The Item that drops after the block breaks
-		ARG 1 blockState
-			COMMENT The block's BlockState
-		ARG 2 random
-			COMMENT Random object
-		ARG 3 state
-			COMMENT State
-	METHOD method_400 canCollide (Lnet/minecraft/class_2232;Z)Z
-		COMMENT Returns whether entities can collide with the block
-		COMMENT @return Whether the block has collision
-		ARG 1 state
-			COMMENT The block's BlockState
-		ARG 2 bl
-	METHOD method_402 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
-	METHOD method_403 getDropCount (Ljava/util/Random;)I
-		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
-		COMMENT @return Amount of items to be dropped
-		ARG 1 rand
-			COMMENT Random object
-	METHOD method_404 getBlastResistance (Lnet/minecraft/class_864;)F
-		COMMENT Returns the block's blast resistance as per the entity provided.
-		COMMENT @return Blast Resistance
-		ARG 1 entity
-			COMMENT The entity that blast resistance must be calculated for
-	METHOD method_405 calcBlockBreakingData (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
-		COMMENT Calculates how fast or slow the block must be broken by a Player.
-		COMMENT  Status effects such as Haste and Mining fatigue are taken into consideration.
-		COMMENT @return Speed of breaking
-		ARG 1 player
-			COMMENT The player breaking the block
-		ARG 2 world
-			COMMENT The world that the block is placed in
-		ARG 3 pos
-			COMMENT The block's position
-	METHOD method_406 setItemGroup (Lnet/minecraft/class_1041;)Lnet/minecraft/class_197;
-		COMMENT Sets the block's ItemGroup. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 group
-			COMMENT The itemgroup that the block must be added to
-	METHOD method_6442 getBlockFromItem (Lnet/minecraft/class_1069;)Lnet/minecraft/class_197;
-		COMMENT Returns a block by converting a blockitem to a block
-		COMMENT @return The block
-		ARG 0 item
-			COMMENT The item that must be converted to a block
-	METHOD method_399 appendItemStacks (Lnet/minecraft/class_1069;Lnet/minecraft/class_1041;Ljava/util/List;)V
-		COMMENT Appends ItemStacks to an itemgroup.
-		COMMENT Only called on the client.
-		ARG 1 item
-			COMMENT The Item that must be added
-		ARG 2 group
-			COMMENT The ItemGroup that the item must be added to
-		ARG 3 stacks
-			COMMENT The list of currently added ItemStacks to the ItemGroup
-	METHOD method_440 setTickRandomly (Z)Lnet/minecraft/class_197;
-		COMMENT Sets whether the current block has random ticks. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 tickRandomly
-			COMMENT Whether the current block should have random ticks
-	METHOD method_429 getBlockType ()I
-	METHOD method_430 setResistance (F)Lnet/minecraft/class_197;
-		COMMENT Sets the block's resistance. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 resistance
-			COMMENT The block's resistance
 	METHOD method_8657 getSelectionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
 		ARG 1 world
 		ARG 2 pos
@@ -599,29 +690,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 worldView
 		ARG 2 pos
 		ARG 3 direction
-	METHOD method_6447 isEqualTo (Lnet/minecraft/class_197;)Z
-		COMMENT Returns whether the current block and another block are equal
-		COMMENT @return Whether the current block and the other block are equal
-		ARG 1 block
-			COMMENT The other block
-	METHOD method_432 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
-	METHOD method_6446 get (Ljava/lang/String;)Lnet/minecraft/class_197;
-		COMMENT Returns a block from it's name
-		COMMENT @return The block
-		ARG 0 id
-			COMMENT The block's name
-	METHOD method_449 hasTransperancy ()Z
-	METHOD method_442 setStrength (F)Lnet/minecraft/class_197;
-		COMMENT Sets the current block's strength. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 strength
-			COMMENT The block's strength
-	METHOD method_6448 getById (I)Lnet/minecraft/class_197;
-		COMMENT Returns a certain block from its id
-		COMMENT @return The Block
-		ARG 0 id
-			COMMENT The id for which the Block is returned
 	METHOD method_8667 getPickItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_1069;
 		COMMENT Called when a player presses the pick block key while facing the block.
 		COMMENT It returns the item that must be placed into the player's inventory.
@@ -655,16 +723,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return Zero
 		ARG 1 state
 			COMMENT The Blockstate
-	METHOD method_443 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
-	METHOD method_433 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_197;
-		COMMENT Sets the block's localization key. Used in registering blocks.
-		COMMENT @return The Current block
-		ARG 1 key
-			COMMENT The Translation key
-	METHOD method_441 renderAsNormalBlock ()Z
-		COMMENT Returns whether the block can be rendered as a normal block
-		COMMENT @return Whether the block can be rendered as a normal block
 	METHOD method_8672 getStateFromRawId (I)Lnet/minecraft/class_2232;
 		COMMENT Returns a BlockState from it's id
 		COMMENT @return The Blockstate
@@ -689,14 +747,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_8676 appendProperties ()Lnet/minecraft/class_2233;
 		COMMENT Returns a new state manager with a property array.
 		COMMENT @return New state manager
-	METHOD method_6450 setOpacity (I)Lnet/minecraft/class_197;
-		COMMENT Sets the block's light opacity. Used in registering blocks.
-		COMMENT @return The current block
-		ARG 1 opacity
-			COMMENT The block's light opacity
-	METHOD method_480 getTranslatedName ()Ljava/lang/String;
-		COMMENT Translates and returns the translation key
-		COMMENT @return Translated name
 	METHOD method_8677 getByBlockState (Lnet/minecraft/class_2232;)I
 		COMMENT Returns a certain Block's id from a blockstate
 		COMMENT @return Block id
@@ -719,23 +769,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return materialColor
 		ARG 1 state
 			COMMENT The Blockstate for which the material color is returned
-	METHOD method_6440 getAmbientOcclusionLightLevel ()F
-		COMMENT Returns the block's ambient occlusion light level on the basis of whether it is a normal block.
-		COMMENT Only called on the client.
-		COMMENT @return The block's ambient occlusion light level
 	METHOD method_8681 getColor (Lnet/minecraft/class_2232;)I
 		ARG 1 state
-	METHOD method_466 emitsRedstonePower ()Z
-		COMMENT Returns whether the current block emits a redstone signal.
-		COMMENT Used by comparators, Redstone Blocks, etc.
-		COMMENT @return Whether the current block emits a redstone signal
 	METHOD method_8682 createStackFromBlock (Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
 		COMMENT Creates and returns and ItemStack from a block.
 		COMMENT @return An ItemStack instance containing the block
 		ARG 1 state
 			COMMENT The block's BlockState
-	METHOD method_456 setBlockItemBounds ()V
-		COMMENT Sets the bounds for the BlockItem
 	METHOD method_8683 getMeta (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
 		COMMENT Returns metadata from a world and a BlockPos
 		COMMENT @return Metadata
@@ -747,9 +787,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Sets the block's default BlockState.
 		ARG 1 state
 			COMMENT The default state
-	METHOD method_453 getPistonInteractionType ()I
-		COMMENT Returns the block's piston interaction type, as provided by it's material.
-		COMMENT @return Current block's piston interaction type
 	METHOD method_8685 rainTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)V
 		COMMENT Runs every tick when raining.
 		COMMENT Used my cauldrons to randomly fill up when raining.
@@ -767,49 +804,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns the appropriate RenderLayer for a block.
 		COMMENT Only called on the client.
 		COMMENT @return The block's RenderLayer
-	METHOD method_6451 isFullBlock ()Z
-		COMMENT Checks whether the current block is a full block
-		COMMENT @return fullBlock
-	METHOD method_6452 getOpacity ()I
-		COMMENT Returns the current block's opacity
-		COMMENT @return opacity
-	METHOD method_6453 isTransluscent ()Z
-		COMMENT Checks whether the current block is transluscent
-		COMMENT @return transluscent
-	METHOD method_6454 getLightLevel ()I
-		COMMENT Returns the block's luminescence
-		COMMENT @return lightLevel
-	METHOD method_6455 usesNeighbourLight ()Z
-		COMMENT Checks whether the current block uses light from the adjacent block
-		COMMENT @return useNeighbourLight
-	METHOD method_6456 getMaterial ()Lnet/minecraft/class_63;
-		COMMENT Returns the block's material
-		COMMENT @return material
-	METHOD method_6458 isNormalBlock ()Z
-		COMMENT Checks whether the block is a normal block.
-		COMMENT A normal block is one that blocks movement and can be rendered as a normal block.
-		COMMENT @return Whether the block is a normal block
-	METHOD method_6459 isFullCube ()Z
-		COMMENT Checks whether the current block is a full cube.
-		COMMENT A block is a full cube when it can be rendered as a normal block, does not emit redstone power and is opaque.
-		COMMENT @return Whether the current block is a full cube
 	METHOD method_8688 isLeafBlock ()Z
 		COMMENT Checks whether the current block is a normal block (used only by {@code LeavesBlock})
 		COMMENT @return Whether the current block is a normal block
-	METHOD method_474 setUnbreakable ()Lnet/minecraft/class_197;
-		COMMENT Sets the current block as unbreakable. Used in registering blocks.
-		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
-		COMMENT @return The current block
-	METHOD method_476 ticksRandomly ()Z
-		COMMENT Returns whether the current block has random ticks
-		COMMENT @return Whether the current block has random ticks
-	METHOD method_478 hasBlockEntity ()Z
-		COMMENT Returns whether the current block has a block entity
-		COMMENT @return Whether the current block has a block entity
-	CLASS class_2177 OffsetType
-		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
-		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
-		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
 	CLASS class_200 Sound
 		COMMENT
 		FIELD field_506 id Ljava/lang/String;
@@ -820,8 +817,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			ARG 1 id
 			ARG 2 volume
 			ARG 3 pitch
-		METHOD method_484 getDigSound ()Ljava/lang/String;
 		METHOD method_4194 getSound ()Ljava/lang/String;
-		METHOD method_487 getStepSound ()Ljava/lang/String;
+		METHOD method_484 getDigSound ()Ljava/lang/String;
 		METHOD method_485 getVolume ()F
 		METHOD method_486 getPitch ()F
+		METHOD method_487 getStepSound ()Ljava/lang/String;
+	CLASS class_2177 OffsetType
+		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
+		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
+		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
