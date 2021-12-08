@@ -59,6 +59,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8484 isWater (Lnet/minecraft/class_2552;)Z
 		ARG 1 pos
 	METHOD method_3577 disconnect ()V
+	METHOD method_3579 readSaveLock ()V
 	METHOD method_3581 getSeed ()J
 	METHOD method_4678 getLastUpdateTime ()J
 	METHOD method_3583 getTimeOfDay ()J
@@ -165,6 +166,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8496 isRegionLoaded (Lnet/minecraft/class_1251;)Z
 		ARG 1 box
 	METHOD method_8497 getEntities (Lnet/minecraft/class_1251;Z)Ljava/util/List;
+		ARG 1 box
 	METHOD method_3608 (Lnet/minecraft/class_231;)Ljava/util/List;
 		ARG 1 box
 	METHOD method_3609 containsMaterial (Lnet/minecraft/class_231;Lnet/minecraft/class_63;)Z
@@ -204,6 +206,12 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 pos
 		ARG 2 type
 	METHOD method_8502 hasScheduledTick (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)Z
+		ARG 1 pos
+		ARG 2 block
+	METHOD method_3599 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;I)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD method_4682 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
 		ARG 1 pos
 		ARG 2 block
 	METHOD method_8503 updateNeighborsExcept (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Lnet/minecraft/class_1354;)V
@@ -283,7 +291,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 entity
 	METHOD method_8516 getEntitiesIn (Lnet/minecraft/class_864;Lnet/minecraft/class_231;Lcom/google/common/base/Predicate;)Ljava/util/List;
 		ARG 2 box
-		ARG 3 filter
+		ARG 3 predicate
 	METHOD method_3634 playSound (Lnet/minecraft/class_864;Ljava/lang/String;FF)V
 		ARG 1 entity
 		ARG 2 sound
