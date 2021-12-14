@@ -3,9 +3,53 @@ CLASS net/minecraft/class_39 net/minecraft/structure/VillagePieces
 	METHOD method_5538 getPieceChance (Ljava/util/Random;I)Ljava/util/List;
 		ARG 0 rand
 	METHOD method_86 (Lnet/minecraft/class_39$class_50;Lnet/minecraft/class_39$class_44;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_53;
-		ARG 0 piece
+		ARG 0 start
+		ARG 1 chance
+		ARG 2 pieces
+		ARG 3 random
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
+		ARG 7 direction
+	METHOD method_91 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_53;
+		ARG 0 startPiece
+		ARG 1 pieces
+		ARG 2 random
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
+		ARG 6 direction
+	METHOD method_92 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_34;
+		ARG 0 startPiece
+		ARG 1 pieces
+		ARG 2 random
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
+		ARG 6 direction
+	METHOD method_93 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_34;
+		ARG 0 startPiece
+		ARG 1 pieces
+		ARG 2 random
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
+		ARG 6 direction
 	CLASS class_40 BlacksmithHouse
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 box
+			ARG 5 direction
 		METHOD method_94 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_40;
+			ARG 0 startPiece
+			ARG 2 random
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 direction
+			ARG 7 type
 	CLASS class_41 LargeFarmPiece
 		FIELD field_7542 cropA Lnet/minecraft/class_197;
 		FIELD field_7543 cropB Lnet/minecraft/class_197;
@@ -25,14 +69,56 @@ CLASS net/minecraft/class_39 net/minecraft/structure/VillagePieces
 			ARG 4 boundingBox
 			ARG 5 direction
 	CLASS class_44 Chance
+		FIELD field_78 pieceClass Ljava/lang/Class;
+		METHOD <init> (Ljava/lang/Class;II)V
+			ARG 1 pieceClass
 	CLASS class_45 PriestHousePiece
 		METHOD method_100 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_45;
 	CLASS class_46 BalconyHousePiece
+		FIELD field_84 terrace Z
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 box
+			ARG 5 direction
 		METHOD method_101 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_46;
+			ARG 0 startPiece
+			ARG 1 pieces
+			ARG 2 random
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 direction
 	CLASS class_47 TallSmallHousePiece
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 box
+			ARG 5 direction
 		METHOD method_102 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_47;
+			ARG 0 startPiece
+			ARG 2 random
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 direction
+			ARG 7 type
 	CLASS class_48 ClerkHousePiece
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 box
+			ARG 5 direction
 		METHOD method_103 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_48;
+			ARG 0 startPiece
+			ARG 2 random
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 direction
 	CLASS class_49 SmallHousePiece
 		FIELD field_91 hasChest Z
 		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
@@ -40,7 +126,28 @@ CLASS net/minecraft/class_39 net/minecraft/structure/VillagePieces
 			ARG 5 direction
 		METHOD method_104 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_49;
 	CLASS class_50 StartPiece
+		FIELD field_92 biomeSource Lnet/minecraft/class_1175;
+		METHOD <init> (Lnet/minecraft/class_1175;ILjava/util/Random;IILjava/util/List;I)V
+			ARG 1 biomeSource
+			ARG 3 random
+			ARG 4 chunkX
+			ARG 5 chunkZ
 	CLASS class_51 RoadPiece
+		FIELD field_99 lenght I
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;Lnet/minecraft/class_1251;Lnet/minecraft/class_1354;)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 box
+			ARG 5 direction
+		METHOD method_106 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;)Lnet/minecraft/class_1251;
+			ARG 0 startPiece
+			ARG 1 pieces
+			ARG 2 random
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 direction
 	CLASS class_52 TinyHousePiece
 		METHOD method_107 create (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/class_1354;I)Lnet/minecraft/class_39$class_52;
 	CLASS class_53 AbstractPiece
@@ -50,5 +157,34 @@ CLASS net/minecraft/class_39 net/minecraft/structure/VillagePieces
 		METHOD <init> (Lnet/minecraft/class_39$class_50;I)V
 			ARG 1 startPiece
 			ARG 2 type
+		METHOD method_109 (Lnet/minecraft/class_1150;Lnet/minecraft/class_1251;IIII)V
+			ARG 1 world
+			ARG 2 box
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+		METHOD method_110 (Lnet/minecraft/class_1251;)Z
+			ARG 0 box
+		METHOD method_113 (Lnet/minecraft/class_1150;Lnet/minecraft/class_1251;)I
+			ARG 1 world
+			ARG 2 box
+		METHOD method_9279 (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2232;
+			ARG 1 blockState
+		METHOD method_9280 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;II)Lnet/minecraft/class_34;
+			ARG 1 startPiece
+			ARG 2 pieces
+			ARG 3 random
+		METHOD method_9281 setDesert (Z)V
+			ARG 1 isDesert
+		METHOD method_9282 (Lnet/minecraft/class_39$class_50;Ljava/util/List;Ljava/util/Random;II)Lnet/minecraft/class_34;
+			ARG 1 startPiece
+			ARG 2 pieces
+			ARG 3 random
 	CLASS class_54 DelegatingPiece
 	CLASS class_56 WellPiece
+		METHOD <init> (Lnet/minecraft/class_39$class_50;ILjava/util/Random;II)V
+			ARG 1 startPiece
+			ARG 2 type
+			ARG 3 random
+			ARG 4 chunkX
+			ARG 5 chunkY
