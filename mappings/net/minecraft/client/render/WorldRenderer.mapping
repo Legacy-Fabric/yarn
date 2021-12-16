@@ -11,26 +11,29 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 	FIELD field_10809 lastCameraPitch D
 	FIELD field_10810 lastCameraYaw D
 	FIELD field_10811 chunkBuilder Lnet/minecraft/class_2476;
+	FIELD field_10819 FORCEFIELD Lnet/minecraft/class_1653;
+	FIELD field_10820 entityRenderDispatcher Lnet/minecraft/class_550;
+	FIELD field_10821 chunksToRebuild Ljava/util/Set;
+	FIELD field_10822 noCullingBlockEntities Ljava/util/Set;
+	FIELD field_10823 chunks Lnet/minecraft/class_2427;
+	FIELD field_10825 starsBuffer Lnet/minecraft/class_2521;
 	FIELD field_1892 blockEntityCount I
-	FIELD field_7968 scheduleTerrainUpdate Z
-	FIELD field_7976 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_1900 visibleChunks Ljava/util/List;
+	FIELD field_1909 world Lnet/minecraft/class_478;
+	FIELD field_1918 client Lnet/minecraft/class_1600;
 	FIELD field_6460 MOON_PHASES Lnet/minecraft/class_1653;
 	FIELD field_6461 SUN Lnet/minecraft/class_1653;
 	FIELD field_6462 CLOUDS Lnet/minecraft/class_1653;
 	FIELD field_6463 END_SKY Lnet/minecraft/class_1653;
-	FIELD field_10819 FORCEFIELD Lnet/minecraft/class_1653;
-	FIELD field_1918 client Lnet/minecraft/class_1600;
 	FIELD field_6464 textureManager Lnet/minecraft/class_1532;
-	FIELD field_10820 entityRenderDispatcher Lnet/minecraft/class_550;
-	FIELD field_1909 world Lnet/minecraft/class_478;
-	FIELD field_10821 chunksToRebuild Ljava/util/Set;
-	FIELD field_1900 visibleChunks Ljava/util/List;
-	FIELD field_10822 noCullingBlockEntities Ljava/util/Set;
-	FIELD field_10823 chunks Lnet/minecraft/class_2427;
-	FIELD field_10825 starsBuffer Lnet/minecraft/class_2521;
 	FIELD field_7967 playingSongs Ljava/util/Map;
+	FIELD field_7968 scheduleTerrainUpdate Z
+	FIELD field_7976 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD method_1363 reload ()V
 	METHOD method_1367 onResized (II)V
+	METHOD method_1381 getChunksDebugString ()Ljava/lang/String;
+	METHOD method_1384 getEntitiesDebugString ()Ljava/lang/String;
+	METHOD method_1385 tick ()V
 	METHOD method_9897 renderStars (Lnet/minecraft/class_520;)V
 		ARG 1 buffer
 	METHOD method_9898 renderSkyHalf (Lnet/minecraft/class_520;FZ)V
@@ -40,12 +43,15 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 	METHOD method_9903 updateNoCullingBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 removed
 		ARG 2 added
+	METHOD method_9910 (FI)V
+		ARG 1 tickDelta
+		ARG 2 anaglyphFilter
+	METHOD method_9913 (FI)V
+		ARG 1 tickDelta
+		ARG 2 anaglyphFilter
 	METHOD method_9914 getOpenChunkFaces (Lnet/minecraft/class_2552;)Ljava/util/Set;
 		ARG 1 pos
 	METHOD method_9916 clearChunkRenderers ()V
-	METHOD method_1381 getChunksDebugString ()Ljava/lang/String;
-	METHOD method_1384 getEntitiesDebugString ()Ljava/lang/String;
-	METHOD method_1385 tick ()V
 	METHOD method_9917 scheduleTerrainUpdate ()V
 	METHOD method_9921 renderStars ()V
 	CLASS class_2424 ChunkInfo

@@ -17,12 +17,15 @@ CLASS net/minecraft/class_1251 net/minecraft/util/math/BlockBox
 		ARG 4 maxX
 		ARG 5 maxY
 		ARG 6 maxZ
+	METHOD <init> (Lnet/minecraft/class_1167;Lnet/minecraft/class_1167;)V
+		ARG 1 vec1
+		ARG 2 vec2
 	METHOD <init> (Lnet/minecraft/class_1251;)V
-		ARG 1 blockBox
+		ARG 1 source
 	METHOD <init> ([I)V
-		ARG 1 args
+		ARG 1 data
 	METHOD method_4034 empty ()Lnet/minecraft/class_1251;
-	METHOD method_4035 offset (III)V
+	METHOD method_4035 move (III)V
 		ARG 1 dx
 		ARG 2 dy
 		ARG 3 dz
@@ -60,3 +63,5 @@ CLASS net/minecraft/class_1251 net/minecraft/util/math/BlockBox
 	METHOD method_9232 getDimensions ()Lnet/minecraft/class_1167;
 	METHOD method_9233 contains (Lnet/minecraft/class_1167;)Z
 		ARG 1 vec
+	METHOD method_9234 getCenter ()Lnet/minecraft/class_1167;
+		COMMENT @implNote Biased towards the minimum bound corner of the box.
