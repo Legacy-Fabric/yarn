@@ -2,25 +2,22 @@ CLASS net/minecraft/class_388 net/minecraft/client/gui/screen/Screen
 	FIELD field_10460 logger Lorg/apache/logging/log4j/Logger;
 	FIELD field_10461 ALLOWED_PROTOCOLS Ljava/util/Set;
 	FIELD field_10462 LINE_SPLITTER Lcom/google/common/base/Splitter;
+	FIELD field_10463 clickedLink Ljava/net/URI;
 	FIELD field_1228 prevClickedButton Lnet/minecraft/class_356;
-	FIELD field_5090 pressedMouseButton I
 	FIELD field_1229 client Lnet/minecraft/class_1600;
-	FIELD field_7770 itemRenderer Lnet/minecraft/class_560;
 	FIELD field_1230 width I
 	FIELD field_1231 height I
 	FIELD field_1232 buttons Ljava/util/List;
-	FIELD field_7771 labels Ljava/util/List;
 	FIELD field_1233 passEvents Z
 	FIELD field_1234 textRenderer Lnet/minecraft/class_370;
+	FIELD field_5090 pressedMouseButton I
 	FIELD field_5091 lastClicked J
 	FIELD field_5092 touchHeld I
-	FIELD field_10463 clickedLink Ljava/net/URI;
+	FIELD field_7770 itemRenderer Lnet/minecraft/class_560;
+	FIELD field_7771 labels Ljava/util/List;
 	METHOD method_1024 keyPressed (CI)V
 		ARG 1 character
 		ARG 2 code
-	METHOD method_9577 setScreenBounds (II)V
-		ARG 1 width
-		ARG 2 height
 	METHOD method_1025 render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
@@ -29,20 +26,53 @@ CLASS net/minecraft/class_388 net/minecraft/client/gui/screen/Screen
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 button
-	METHOD method_4259 mouseDragged (IIIJ)V
+	METHOD method_1027 buttonClicked (Lnet/minecraft/class_356;)V
+		ARG 1 button
 	METHOD method_1028 init (Lnet/minecraft/class_1600;II)V
 		ARG 1 client
 		ARG 2 width
 		ARG 3 height
-	METHOD method_1027 buttonClicked (Lnet/minecraft/class_356;)V
-		ARG 1 button
-	METHOD method_9578 handleTextClick (Lnet/minecraft/class_1982;)Z
-		ARG 1 text
-	METHOD method_9579 renderTextHoverEffect (Lnet/minecraft/class_1982;II)V
-		ARG 1 text
+	METHOD method_1029 confirmResult (ZI)V
+	METHOD method_1030 removed ()V
+	METHOD method_1031 renderBackground (I)V
+		ARG 1 alpha
+	METHOD method_1032 mouseReleased (III)V
+		ARG 1 mouseX
+		ARG 2 mouseY
+		ARG 3 button
+	METHOD method_1033 tick ()V
+	METHOD method_1034 renderDirtBackground (I)V
+		ARG 1 alpha
+	METHOD method_1035 handleMouse ()V
+	METHOD method_1036 setClipboard (Ljava/lang/String;)V
+		ARG 0 string
+	METHOD method_1037 shouldPauseGame ()Z
+	METHOD method_1038 getClipboard ()Ljava/lang/String;
+	METHOD method_1039 handleInput ()V
+	METHOD method_1041 hasControlDown ()Z
+	METHOD method_1042 hasShiftDown ()Z
+	METHOD method_1043 renderBackground ()V
+	METHOD method_1044 init ()V
+	METHOD method_4259 mouseDragged (IIIJ)V
+	METHOD method_6752 renderTooltip (Lnet/minecraft/class_1071;II)V
+		ARG 1 stack
 		ARG 2 x
 		ARG 3 y
 	METHOD method_6753 renderTooltip (Ljava/lang/String;II)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+	METHOD method_6754 renderTooltip (Ljava/util/List;II)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+	METHOD method_6755 handleKeyboard ()V
+	METHOD method_9577 setScreenBounds (II)V
+		ARG 1 width
+		ARG 2 height
+	METHOD method_9578 handleTextClick (Lnet/minecraft/class_1982;)Z
+		ARG 1 text
+	METHOD method_9579 renderTextHoverEffect (Lnet/minecraft/class_1982;II)V
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -51,19 +81,6 @@ CLASS net/minecraft/class_388 net/minecraft/client/gui/screen/Screen
 		ARG 2 override
 	METHOD method_9581 openLink (Ljava/net/URI;)V
 		ARG 1 link
-	METHOD method_6754 renderTooltip (Ljava/util/List;II)V
-		ARG 1 text
-		ARG 2 x
-		ARG 3 y
-	METHOD method_6752 renderTooltip (Lnet/minecraft/class_1071;II)V
-		ARG 1 stack
-		ARG 2 x
-		ARG 3 y
-	METHOD method_1044 init ()V
-	METHOD method_1032 mouseReleased (III)V
-		ARG 1 mouseX
-		ARG 2 mouseY
-		ARG 3 button
 	METHOD method_9582 resize (Lnet/minecraft/class_1600;II)V
 		ARG 1 client
 		ARG 2 width
@@ -71,30 +88,14 @@ CLASS net/minecraft/class_388 net/minecraft/client/gui/screen/Screen
 	METHOD method_9583 sendMessage (Ljava/lang/String;Z)V
 		ARG 1 text
 		ARG 2 toHud
-	METHOD method_1031 renderBackground (I)V
-		ARG 1 alpha
-	METHOD method_1043 renderBackground ()V
-	METHOD method_1034 renderDirtBackground (I)V
-		ARG 1 alpha
-	METHOD method_1037 shouldPauseGame ()Z
 	METHOD method_9584 isCut (I)Z
 		ARG 0 code
-	METHOD method_1033 tick ()V
 	METHOD method_9585 isPaste (I)Z
 		ARG 0 code
-	METHOD method_1036 setClipboard (Ljava/lang/String;)V
-		ARG 0 string
 	METHOD method_9586 isCopy (I)Z
 		ARG 0 code
 	METHOD method_9587 sendMessage (Ljava/lang/String;)V
 		ARG 1 text
 	METHOD method_9588 isSelectAll (I)Z
 		ARG 0 code
-	METHOD method_1035 handleMouse ()V
-	METHOD method_6755 handleKeyboard ()V
-	METHOD method_1030 removed ()V
-	METHOD method_1038 getClipboard ()Ljava/lang/String;
-	METHOD method_1039 handleInput ()V
-	METHOD method_1041 hasControlDown ()Z
-	METHOD method_1042 hasShiftDown ()Z
 	METHOD method_9589 hasAltDown ()Z
