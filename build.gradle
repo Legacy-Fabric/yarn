@@ -21,9 +21,9 @@ plugins {
 	id 'java' // for jd gen
 }
 
-def minecraft_version = "1.8.9"
-
 def ENV = System.getenv()
+
+def minecraft_version = ENV.MC_VERSION
 // Fetch build number from Github Actions
 // Then completely ignore it
 def build_number = ENV.GITHUB_ACTIONS ? buildTime() : "local"
