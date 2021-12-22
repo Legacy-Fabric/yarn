@@ -1,13 +1,20 @@
 CLASS net/minecraft/class_867 net/minecraft/entity/EntityType
 	FIELD field_11907 SPAWN_EGGS Ljava/util/Map;
-	FIELD field_9081 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_11908 NAME_ID_MAP Ljava/util/Map;
 	FIELD field_3268 NAME_CLASS_MAP Ljava/util/Map;
 	FIELD field_3269 CLASS_NAME_MAP Ljava/util/Map;
 	FIELD field_3270 ID_CLASS_MAP Ljava/util/Map;
 	FIELD field_3271 CLASS_ID_MAP Ljava/util/Map;
-	FIELD field_11908 NAME_ID_MAP Ljava/util/Map;
-	METHOD method_8366 load ()V
-	METHOD method_4457 getEntityById (I)Ljava/lang/Class;
+	FIELD field_9081 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD method_10968 getIdByName (Ljava/lang/String;)I
+		ARG 0 name
+	METHOD method_10969 equals (Lnet/minecraft/class_864;Ljava/lang/String;)Z
+		ARG 0 entity
+		ARG 1 string
+	METHOD method_10970 getEntityNames ()Ljava/util/List;
+	METHOD method_10971 isEntityRegistered (Ljava/lang/String;)Z
+		ARG 0 name
+	METHOD method_2566 getEntityName (I)Ljava/lang/String;
 		ARG 0 id
 	METHOD method_2567 createInstanceFromId (ILnet/minecraft/class_1150;)Lnet/minecraft/class_864;
 		ARG 0 id
@@ -25,24 +32,20 @@ CLASS net/minecraft/class_867 net/minecraft/entity/EntityType
 		ARG 2 id
 		ARG 3 foregroundColor
 		ARG 4 backgroundColor
-	METHOD method_10968 getIdByName (Ljava/lang/String;)I
-		ARG 0 name
 	METHOD method_2571 createInstanceFromName (Ljava/lang/String;Lnet/minecraft/class_1150;)Lnet/minecraft/class_864;
 		ARG 0 name
 		ARG 1 world
 	METHOD method_2572 getIdByEntity (Lnet/minecraft/class_864;)I
 		ARG 0 entity
-	METHOD method_10969 equals (Lnet/minecraft/class_864;Ljava/lang/String;)Z
-		ARG 0 entity
-		ARG 1 string
-	METHOD method_10970 getEntityNames ()Ljava/util/List;
-	METHOD method_2566 getEntityName (I)Ljava/lang/String;
-		ARG 0 id
-	METHOD method_10971 isEntityRegistered (Ljava/lang/String;)Z
-		ARG 0 name
 	METHOD method_2573 getEntityName (Lnet/minecraft/class_864;)Ljava/lang/String;
 		ARG 0 entity
+	METHOD method_4457 getEntityById (I)Ljava/lang/Class;
+		ARG 0 id
+	METHOD method_8366 load ()V
 	CLASS class_868 SpawnEggData
+		FIELD field_14512 name Ljava/lang/String;
+		FIELD field_14513 foreGroundColor I
+		FIELD field_14514 backGroundColor I
 		FIELD field_3273 id I
 		FIELD field_3274 foregroundColor I
 		FIELD field_3275 backgroundColor I
@@ -50,5 +53,9 @@ CLASS net/minecraft/class_867 net/minecraft/entity/EntityType
 		FIELD field_9083 killedByEntityStat Lnet/minecraft/class_819;
 		METHOD <init> (III)V
 			ARG 1 id
+			ARG 2 foregroundColor
+			ARG 3 backgroundColor
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 1 name
 			ARG 2 foregroundColor
 			ARG 3 backgroundColor

@@ -1,16 +1,18 @@
 CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
+	FIELD field_12450 REGISTRY Lnet/minecraft/class_1943;
 	FIELD field_4620 baseHeightModifier F
 	FIELD field_4621 variationModifier F
 	FIELD field_4622 temperature F
 	FIELD field_4623 downfall F
-	FIELD field_4624 getWaterColor I
+	FIELD field_4624 waterColor I
 	FIELD field_4625 biomeDecorator Lnet/minecraft/class_1174;
 	FIELD field_4626 monsterEntries Ljava/util/List;
 	FIELD field_4627 passiveEntries Ljava/util/List;
 	FIELD field_4628 waterEntries Ljava/util/List;
 	FIELD field_4629 id I
-	FIELD field_4630 jungleTreeFeature Lnet/minecraft/class_1249;
-	FIELD field_4633 oakTreeFeature Lnet/minecraft/class_1247;
+	FIELD field_4630 JUNGLE_TREE_FEATURE Lnet/minecraft/class_1249;
+	FIELD field_4633 OAK_TREE_FEATURE Lnet/minecraft/class_1247;
+	FIELD field_4634 hasParent Z
 	FIELD field_4636 BIOMES [Lnet/minecraft/class_1170;
 	FIELD field_4637 OCEAN Lnet/minecraft/class_1170;
 	FIELD field_4638 PLAINS Lnet/minecraft/class_1170;
@@ -76,6 +78,27 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_9227 MUTATED_BIOMES Ljava/util/Map;
 	METHOD <init> (I)V
 		ARG 1 id
+	METHOD <init> (Lnet/minecraft/class_1170$class_2708;)V
+		ARG 1 data
+	METHOD method_11498 byIndex (I)Lnet/minecraft/class_1170;
+		ARG 0 index
+	METHOD method_11499 byIdOrDefault (ILnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+		ARG 0 id
+		ARG 1 biome
+	METHOD method_11500 register (ILjava/lang/String;Lnet/minecraft/class_1170;)V
+		ARG 0 id
+		ARG 1 identifier
+		ARG 2 biome
+	METHOD method_11501 getId (Lnet/minecraft/class_1170;)I
+		ARG 0 biome
+	METHOD method_11503 (Lnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+		ARG 0 biome
+	METHOD method_11505 getBaseHeightModifier ()F
+	METHOD method_11506 getName ()Ljava/lang/String;
+	METHOD method_11507 getVariationModifier ()F
+	METHOD method_11508 getTemperature ()F
+	METHOD method_11509 getWaterColor ()I
+	METHOD method_11510 register ()V
 	METHOD method_3817 createBiomePopulator ()Lnet/minecraft/class_1174;
 	METHOD method_3819 setTempratureAndDownfall (FF)Lnet/minecraft/class_1170;
 		ARG 1 temperature
@@ -154,3 +177,24 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		FIELD field_7223 COLD Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7224 MEDIUM Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7225 WARM Lnet/minecraft/class_1170$class_1743;
+	CLASS class_2708 Data
+		FIELD field_12451 name Ljava/lang/String;
+		FIELD field_12452 baseHeightModifier F
+		FIELD field_12453 variationModifier F
+		FIELD field_12454 temperature F
+		FIELD field_12455 downfall F
+		FIELD field_12456 waterColor I
+		FIELD field_12457 hasParent Z
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 name
+		METHOD method_11512 temperature (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 temperature
+		METHOD method_11513 waterColor (I)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 waterColor
+		METHOD method_11516 hasParent ()Lnet/minecraft/class_1170$class_2708;
+		METHOD method_11517 downfall (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 downfall
+		METHOD method_11519 baseHeightModifier (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 baseHeightModifier
+		METHOD method_11521 variationModifier (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 variationModifier
