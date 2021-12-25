@@ -14,7 +14,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_4621 variationModifier F
 	FIELD field_4622 temperature F
 	FIELD field_4623 downfall F
-	FIELD field_4624 getWaterColor I
+	FIELD field_4624 waterColor I
 	FIELD field_4625 biomeDecorator Lnet/minecraft/class_1174;
 	FIELD field_4626 monsterEntries Ljava/util/List;
 	FIELD field_4627 passiveEntries Ljava/util/List;
@@ -22,6 +22,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_4629 id I
 	FIELD field_4630 jungleTreeFeature Lnet/minecraft/class_1249;
 	FIELD field_4633 oakTreeFeature Lnet/minecraft/class_1247;
+	FIELD field_4634 isMutatedBiome Z
 	FIELD field_4636 BIOMES [Lnet/minecraft/class_1170;
 	FIELD field_4637 OCEAN Lnet/minecraft/class_1170;
 	FIELD field_4638 PLAINS Lnet/minecraft/class_1170;
@@ -67,6 +68,8 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_7197 OTHER Lnet/minecraft/class_1170$class_1742;
 	FIELD field_7198 MESA_PLATEAU_F Lnet/minecraft/class_1170;
 	FIELD field_7199 MESA_PLATEAU Lnet/minecraft/class_1170;
+	FIELD field_7200 TEMPERATURE_NOISE Lnet/minecraft/class_57;
+	FIELD field_7201 FOLIAGE_NOISE Lnet/minecraft/class_57;
 	FIELD field_7202 DOUBLE_PLANT_FEATURE Lnet/minecraft/class_1771;
 	FIELD field_7207 RIVER_HEIGHT Lnet/minecraft/class_1170$class_1742;
 	FIELD field_7208 OCEAN_BIOME Lnet/minecraft/class_1170$class_1742;
@@ -91,6 +94,9 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 1 settings
 	METHOD method_11498 getBiomeFromIndex (I)Lnet/minecraft/class_1170;
 		ARG 0 id
+	METHOD method_11499 (ILnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+		ARG 0 id
+		ARG 1 biome
 	METHOD method_11500 register (ILjava/lang/String;Lnet/minecraft/class_1170;)V
 		ARG 0 numId
 		ARG 1 stringId
@@ -100,6 +106,11 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	METHOD method_11502 hasParent ()Z
 	METHOD method_11503 getBiomeFromList (Lnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
 		ARG 0 biome
+	METHOD method_11505 getBaseHeightModifier ()F
+	METHOD method_11506 getName ()Ljava/lang/String;
+	METHOD method_11507 getVariationModifier ()F
+	METHOD method_11508 getTemperature ()F
+	METHOD method_11509 getWaterColor ()I
 	METHOD method_11510 setBiomeRegistry ()V
 	METHOD method_3817 createBiomePopulator ()Lnet/minecraft/class_1174;
 	METHOD method_3819 setTempratureAndDownfall (FF)Lnet/minecraft/class_1170;
@@ -117,7 +128,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 3 pos
 	METHOD method_3828 (Ljava/util/Random;)Lnet/minecraft/class_1227;
 		ARG 1 random
-	METHOD method_3829 isMutatedBiome ()Z
+	METHOD method_3829 redundantIsMutatedBiome ()Z
 	METHOD method_3831 hasHighHumidity ()Z
 	METHOD method_3832 getMaxSpawnLimit ()F
 	METHOD method_3833 getDownfall ()I
@@ -135,6 +146,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 1 modifier
 	METHOD method_6428 byId (I)Lnet/minecraft/class_1170;
 		ARG 0 id
+	METHOD method_6429 isMutatedBiome ()Z
 	METHOD method_6430 getMutatedVariant ()Lnet/minecraft/class_1170;
 	METHOD method_6431 asClass ()Ljava/lang/Class;
 	METHOD method_6432 getBiomeTemperature ()Lnet/minecraft/class_1170$class_1743;
@@ -184,5 +196,19 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		FIELD field_12453 variationModifier F
 		FIELD field_12454 temperature F
 		FIELD field_12455 downfall F
-		FIELD field_12456 getWaterColor I
+		FIELD field_12456 waterColor I
 		FIELD field_12459 parent Ljava/lang/String;
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 name
+		METHOD method_11512 setTemperature (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 temperature
+		METHOD method_11513 setWaterColor (I)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 shade
+		METHOD method_11515 setParent (Ljava/lang/String;)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 parent
+		METHOD method_11517 setDownfall (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 downfall
+		METHOD method_11519 setBaseHeightModifier (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 baseHeightModifier
+		METHOD method_11521 setVariationModifier (F)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 variationModifier
