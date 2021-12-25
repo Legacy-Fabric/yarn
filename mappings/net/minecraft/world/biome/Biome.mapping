@@ -1,4 +1,15 @@
 CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
+	FIELD field_12440 parent Ljava/lang/String;
+	FIELD field_12441 stoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12442 airBlockState Lnet/minecraft/class_2232;
+	FIELD field_12443 bedrockBlockState Lnet/minecraft/class_2232;
+	FIELD field_12444 gravelBlockState Lnet/minecraft/class_2232;
+	FIELD field_12445 redSandstoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12446 sandstoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12447 iceBlockState Lnet/minecraft/class_2232;
+	FIELD field_12448 waterBlockState Lnet/minecraft/class_2232;
+	FIELD field_12449 biomeList Lnet/minecraft/class_1942;
+	FIELD field_12450 biomeRegistry Lnet/minecraft/class_1943;
 	FIELD field_4620 baseHeightModifier F
 	FIELD field_4621 variationModifier F
 	FIELD field_4622 temperature F
@@ -76,6 +87,20 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_9227 MUTATED_BIOMES Ljava/util/Map;
 	METHOD <init> (I)V
 		ARG 1 id
+	METHOD <init> (Lnet/minecraft/class_1170$class_2708;)V
+		ARG 1 settings
+	METHOD method_11498 getBiomeFromIndex (I)Lnet/minecraft/class_1170;
+		ARG 0 id
+	METHOD method_11500 register (ILjava/lang/String;Lnet/minecraft/class_1170;)V
+		ARG 0 numId
+		ARG 1 stringId
+		ARG 2 biome
+	METHOD method_11501 getBiomeIndex (Lnet/minecraft/class_1170;)I
+		ARG 0 biome
+	METHOD method_11502 hasParent ()Z
+	METHOD method_11503 getBiomeFromList (Lnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+		ARG 0 biome
+	METHOD method_11510 setBiomeRegistry ()V
 	METHOD method_3817 createBiomePopulator ()Lnet/minecraft/class_1174;
 	METHOD method_3819 setTempratureAndDownfall (FF)Lnet/minecraft/class_1170;
 		ARG 1 temperature
@@ -110,7 +135,6 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 1 modifier
 	METHOD method_6428 byId (I)Lnet/minecraft/class_1170;
 		ARG 0 id
-	METHOD method_6429 hasParent ()Z
 	METHOD method_6430 getMutatedVariant ()Lnet/minecraft/class_1170;
 	METHOD method_6431 asClass ()Ljava/lang/Class;
 	METHOD method_6432 getBiomeTemperature ()Lnet/minecraft/class_1170$class_1743;
@@ -154,3 +178,11 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		FIELD field_7223 COLD Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7224 MEDIUM Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7225 WARM Lnet/minecraft/class_1170$class_1743;
+	CLASS class_2708 Settings
+		FIELD field_12451 name Ljava/lang/String;
+		FIELD field_12452 baseHeightModifier F
+		FIELD field_12453 variationModifier F
+		FIELD field_12454 temperature F
+		FIELD field_12455 downfall F
+		FIELD field_12456 getWaterColor I
+		FIELD field_12459 parent Ljava/lang/String;
