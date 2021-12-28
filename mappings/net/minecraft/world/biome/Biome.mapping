@@ -1,4 +1,14 @@
 CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
+	FIELD field_12440 parent Ljava/lang/String;
+	FIELD field_12441 stoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12442 airBlockState Lnet/minecraft/class_2232;
+	FIELD field_12443 bedrockBlockState Lnet/minecraft/class_2232;
+	FIELD field_12444 gravelBlockState Lnet/minecraft/class_2232;
+	FIELD field_12445 redSandstoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12446 sandstoneBlockState Lnet/minecraft/class_2232;
+	FIELD field_12447 iceBlockState Lnet/minecraft/class_2232;
+	FIELD field_12448 waterBlockState Lnet/minecraft/class_2232;
+	FIELD field_12449 biomeList Lnet/minecraft/class_1942;
 	FIELD field_12450 REGISTRY Lnet/minecraft/class_1943;
 	FIELD field_4620 baseHeightModifier F
 	FIELD field_4621 variationModifier F
@@ -12,7 +22,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_4629 id I
 	FIELD field_4630 JUNGLE_TREE_FEATURE Lnet/minecraft/class_1249;
 	FIELD field_4633 OAK_TREE_FEATURE Lnet/minecraft/class_1247;
-	FIELD field_4634 hasParent Z
+	FIELD field_4634 isMutatedBiome Z
 	FIELD field_4636 BIOMES [Lnet/minecraft/class_1170;
 	FIELD field_4637 OCEAN Lnet/minecraft/class_1170;
 	FIELD field_4638 PLAINS Lnet/minecraft/class_1170;
@@ -58,6 +68,8 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	FIELD field_7197 OTHER Lnet/minecraft/class_1170$class_1742;
 	FIELD field_7198 MESA_PLATEAU_F Lnet/minecraft/class_1170;
 	FIELD field_7199 MESA_PLATEAU Lnet/minecraft/class_1170;
+	FIELD field_7200 TEMPERATURE_NOISE Lnet/minecraft/class_57;
+	FIELD field_7201 FOLIAGE_NOISE Lnet/minecraft/class_57;
 	FIELD field_7202 DOUBLE_PLANT_FEATURE Lnet/minecraft/class_1771;
 	FIELD field_7207 RIVER_HEIGHT Lnet/minecraft/class_1170$class_1742;
 	FIELD field_7208 OCEAN_BIOME Lnet/minecraft/class_1170$class_1742;
@@ -79,19 +91,20 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 	METHOD <init> (I)V
 		ARG 1 id
 	METHOD <init> (Lnet/minecraft/class_1170$class_2708;)V
-		ARG 1 data
-	METHOD method_11498 byIndex (I)Lnet/minecraft/class_1170;
-		ARG 0 index
-	METHOD method_11499 byIdOrDefault (ILnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+		ARG 1 settings
+	METHOD method_11498 getBiomeFromIndex (I)Lnet/minecraft/class_1170;
+		ARG 0 id
+	METHOD method_11499 (ILnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
 		ARG 0 id
 		ARG 1 biome
 	METHOD method_11500 register (ILjava/lang/String;Lnet/minecraft/class_1170;)V
-		ARG 0 id
-		ARG 1 identifier
+		ARG 0 numId
+		ARG 1 stringId
 		ARG 2 biome
-	METHOD method_11501 getId (Lnet/minecraft/class_1170;)I
+	METHOD method_11501 getBiomeIndex (Lnet/minecraft/class_1170;)I
 		ARG 0 biome
-	METHOD method_11503 (Lnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
+	METHOD method_11502 hasParent ()Z
+	METHOD method_11503 getBiomeFromList (Lnet/minecraft/class_1170;)Lnet/minecraft/class_1170;
 		ARG 0 biome
 	METHOD method_11505 getBaseHeightModifier ()F
 	METHOD method_11506 getName ()Ljava/lang/String;
@@ -115,7 +128,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 3 pos
 	METHOD method_3828 (Ljava/util/Random;)Lnet/minecraft/class_1227;
 		ARG 1 random
-	METHOD method_3829 isMutatedBiome ()Z
+	METHOD method_3829 redundantIsMutatedBiome ()Z
 	METHOD method_3831 hasHighHumidity ()Z
 	METHOD method_3832 getMaxSpawnLimit ()F
 	METHOD method_3833 getDownfall ()I
@@ -133,7 +146,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		ARG 1 modifier
 	METHOD method_6428 byId (I)Lnet/minecraft/class_1170;
 		ARG 0 id
-	METHOD method_6429 hasParent ()Z
+	METHOD method_6429 isMutatedBiome ()Z
 	METHOD method_6430 getMutatedVariant ()Lnet/minecraft/class_1170;
 	METHOD method_6431 asClass ()Ljava/lang/Class;
 	METHOD method_6432 getBiomeTemperature ()Lnet/minecraft/class_1170$class_1743;
@@ -177,7 +190,7 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		FIELD field_7223 COLD Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7224 MEDIUM Lnet/minecraft/class_1170$class_1743;
 		FIELD field_7225 WARM Lnet/minecraft/class_1170$class_1743;
-	CLASS class_2708 Data
+	CLASS class_2708 Settings
 		FIELD field_12451 name Ljava/lang/String;
 		FIELD field_12452 baseHeightModifier F
 		FIELD field_12453 variationModifier F
@@ -185,16 +198,19 @@ CLASS net/minecraft/class_1170 net/minecraft/world/biome/Biome
 		FIELD field_12455 downfall F
 		FIELD field_12456 waterColor I
 		FIELD field_12457 hasParent Z
+		METHOD method_11516 hasParent ()Lnet/minecraft/class_1170$class_2708;
+		FIELD field_12459 parent Ljava/lang/String;
 		METHOD <init> (Ljava/lang/String;)V
 			ARG 1 name
-		METHOD method_11512 temperature (F)Lnet/minecraft/class_1170$class_2708;
+		METHOD method_11512 setTemperature (F)Lnet/minecraft/class_1170$class_2708;
 			ARG 1 temperature
-		METHOD method_11513 waterColor (I)Lnet/minecraft/class_1170$class_2708;
-			ARG 1 waterColor
-		METHOD method_11516 hasParent ()Lnet/minecraft/class_1170$class_2708;
-		METHOD method_11517 downfall (F)Lnet/minecraft/class_1170$class_2708;
+		METHOD method_11513 setWaterColor (I)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 shade
+		METHOD method_11515 setParent (Ljava/lang/String;)Lnet/minecraft/class_1170$class_2708;
+			ARG 1 parent
+		METHOD method_11517 setDownfall (F)Lnet/minecraft/class_1170$class_2708;
 			ARG 1 downfall
-		METHOD method_11519 baseHeightModifier (F)Lnet/minecraft/class_1170$class_2708;
+		METHOD method_11519 setBaseHeightModifier (F)Lnet/minecraft/class_1170$class_2708;
 			ARG 1 baseHeightModifier
-		METHOD method_11521 variationModifier (F)Lnet/minecraft/class_1170$class_2708;
+		METHOD method_11521 setVariationModifier (F)Lnet/minecraft/class_1170$class_2708;
 			ARG 1 variationModifier
