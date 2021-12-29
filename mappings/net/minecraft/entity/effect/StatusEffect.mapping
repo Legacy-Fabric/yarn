@@ -1,9 +1,9 @@
 CLASS net/minecraft/class_860 net/minecraft/entity/effect/StatusEffect
-	FIELD field_3157 id I
 	FIELD field_11893 STATUS_EFFECTS_BY_ID Ljava/util/Map;
-	FIELD field_6742 attributeModifiers Ljava/util/Map;
-	FIELD field_3163 color I
+	FIELD field_3157 id I
 	FIELD field_3158 translationKey Ljava/lang/String;
+	FIELD field_3160 negative Z
+	FIELD field_3163 color I
 	FIELD field_3164 STATUS_EFFECTS [Lnet/minecraft/class_860;
 	FIELD field_3165 UNKNOWN Lnet/minecraft/class_860;
 	FIELD field_3166 SPEED Lnet/minecraft/class_860;
@@ -25,15 +25,33 @@ CLASS net/minecraft/class_860 net/minecraft/entity/effect/StatusEffect
 	FIELD field_3182 HUNGER Lnet/minecraft/class_860;
 	FIELD field_3183 WEAKNESS Lnet/minecraft/class_860;
 	FIELD field_3184 POISON Lnet/minecraft/class_860;
-	FIELD field_5316 WITHER Lnet/minecraft/class_860;
 	FIELD field_3186 HEALTH_BOOST Lnet/minecraft/class_860;
 	FIELD field_3187 ABSORPTION Lnet/minecraft/class_860;
 	FIELD field_3188 SATURATION Lnet/minecraft/class_860;
+	FIELD field_5316 WITHER Lnet/minecraft/class_860;
+	FIELD field_6742 attributeModifiers Ljava/util/Map;
 	METHOD <init> (ILnet/minecraft/class_1653;ZI)V
 		ARG 1 id
+	METHOD <init> (ZI)V
+		ARG 1 negative
+		ARG 2 color
+	METHOD method_10922 get (Ljava/lang/String;)Lnet/minecraft/class_860;
+		ARG 0 id
+	METHOD method_12942 byIndex (I)Lnet/minecraft/class_860;
+		ARG 0 index
+	METHOD method_12943 getIndex (Lnet/minecraft/class_860;)I
+		ARG 0 statusEffect
+	METHOD method_12945 register ()V
+	METHOD method_2433 getTranslationKey ()Ljava/lang/String;
 	METHOD method_2435 canApplyUpdateEffect (II)Z
 		ARG 1 duration
 		ARG 2 amplifier
+	METHOD method_2439 isInstant ()Z
+	METHOD method_2441 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_860;
+		ARG 1 key
+	METHOD method_2442 getId ()I
+	METHOD method_2445 isNegative ()Z
+	METHOD method_2449 getColor ()I
 	METHOD method_6086 adjustModifierAmount (ILnet/minecraft/class_1704;)D
 		ARG 1 amplifier
 		ARG 2 modifier
@@ -41,10 +59,7 @@ CLASS net/minecraft/class_860 net/minecraft/entity/effect/StatusEffect
 		ARG 1 entity
 		ARG 2 attributes
 		ARG 3 amplifier
-	METHOD method_2439 isInstant ()Z
 	METHOD method_6091 (Lnet/minecraft/class_1699;Lnet/minecraft/class_1706;I)V
 		ARG 1 entity
 		ARG 2 attributes
-	METHOD method_2442 getId ()I
-	METHOD method_2449 getColor ()I
 	METHOD method_6092 getAttributeModifiers ()Ljava/util/Map;
