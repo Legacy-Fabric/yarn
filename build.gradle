@@ -517,7 +517,13 @@ clean.doFirst {
 	delete tempDir, cacheFilesMinecraft
 }
 
+task publishToMavenLocalLocal() {
+	yarnVersion = "${minecraft_version}+build.local"
+}
+
 tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar"
+
+tasks.publishToMavenLocal.dependsOn "publishToMavenLocalLocal"
 
 task exportMappingsOfficial(dependsOn: downloadIntermediary) {
 	def composeInput = downloadIntermediary.dest

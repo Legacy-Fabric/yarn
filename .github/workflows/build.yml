@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: openjdk:11-jdk
+      image: openjdk:17-jdk
       options: --user root
     strategy:
       matrix: 
@@ -27,3 +27,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1
       - run: ./gradlew build javadocJar checkMappings mapNamedJar --stacktrace
+      - run: ./gradlew publishToMavenLocal
+      - run: cd test-mod && ./gradlew build

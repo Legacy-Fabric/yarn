@@ -26,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1
-      - run: ./gradlew publish --stacktrace
+      - run: ./gradlew publishToMavenLocal --stacktrace
+      - run: cd test-mod && ./gradlew build
+      - run: cd .. && ./gradlew publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
