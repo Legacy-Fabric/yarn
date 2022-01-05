@@ -526,7 +526,7 @@ task publishToMavenLocalLocal() {
 
 tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar"
 
-tasks.publishToMavenLocal.dependsOn "publishToMavenLocalLocal"
+tasks.publishToMavenLocalLocal.finalizedBy "publishToMavenLocal"
 
 task exportMappingsOfficial(dependsOn: downloadIntermediary) {
 	def composeInput = downloadIntermediary.dest
