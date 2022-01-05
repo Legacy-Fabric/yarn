@@ -23,8 +23,10 @@ plugins {
 
 def ENV = System.getenv()
 
+def taskName = project.gradle.startParameter.taskNames[0]
+
 def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
-def build_number = ENV.GITHUB_ACTIONS ? buildTime() : "local"
+def build_number = ENV.GITHUB_ACTIONS && taskName != "publishToMavenLocal" ? buildTime() : "local"
 def yarnVersion = "${minecraft_version}+build.${build_number}"
 
 System.out.println("Preparing yarn ${yarnVersion}")
@@ -520,13 +522,7 @@ clean.doFirst {
 	delete tempDir, cacheFilesMinecraft
 }
 
-task publishToMavenLocalLocal() {
-	yarnVersion = "${minecraft_version}+build.local"
-}
-
 tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar"
-
-tasks.publishToMavenLocalLocal.finalizedBy "publishToMavenLocal"
 
 task exportMappingsOfficial(dependsOn: downloadIntermediary) {
 	def composeInput = downloadIntermediary.dest
