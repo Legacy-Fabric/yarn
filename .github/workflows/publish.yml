@@ -1,10 +1,10 @@
-name: Publish
+name: Build and Publish
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: openjdk:11-jdk
+      image: openjdk:17-jdk
       options: --user root
     strategy:
       matrix: 
@@ -18,14 +18,16 @@ jobs:
             '1.9.4',
             '1.10.2',
             '1.11.2',
-            '1.12.2',
-            '1.13.2'
+            '1.12.2'#,
+            #'1.13.2'
         ]
     env: 
         MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1
+      - run: ./gradlew publishToMavenLocal --stacktrace
+      - run: cd test-mod && ./gradlew build
       - run: ./gradlew publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}

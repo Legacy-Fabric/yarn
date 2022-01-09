@@ -5,6 +5,25 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	FIELD field_11902 teleportDirection Lnet/minecraft/class_1354;
 	FIELD field_11903 commandStats Lnet/minecraft/class_2598;
 	FIELD field_11904 outsideWorldborder Z
+	FIELD field_14493 CUSTOM_NAME Lnet/minecraft/class_2921;
+	FIELD field_14494 NAME_VISIBLE Lnet/minecraft/class_2921;
+	FIELD field_14495 SILENT Lnet/minecraft/class_2921;
+	FIELD field_14497 scoreboardTags Ljava/util/Set;
+	FIELD field_14498 teleportRequested Z
+	FIELD field_14500 tracedX J
+	FIELD field_14501 tracedY J
+	FIELD field_14502 tracedZ J
+	FIELD field_14503 uuidString Ljava/lang/String;
+	FIELD field_14504 isGlowing Z
+	FIELD field_14505 mount Lnet/minecraft/class_864;
+	FIELD field_14506 FLAGS Lnet/minecraft/class_2921;
+	FIELD field_14507 AIR Lnet/minecraft/class_2921;
+	FIELD field_14508 passengerList Ljava/util/List;
+	FIELD field_14509 ridingCooldown I
+	FIELD field_15028 NO_GRAVITY Lnet/minecraft/class_2921;
+	FIELD field_15443 pistonMovementDelta [D
+	FIELD field_15445 EMPTY_STACK_LIST Ljava/util/List;
+	FIELD field_16512 nextSoundDistance F
 	FIELD field_3193 pitch F
 	FIELD field_3194 prevYaw F
 	FIELD field_3195 prevPitch F
@@ -34,7 +53,9 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	FIELD field_3222 touchingWater Z
 	FIELD field_3224 isFireImmune Z
 	FIELD field_3225 dataTracker Lnet/minecraft/class_878;
+	FIELD field_3226 updateNeeded Z
 	FIELD field_3227 chunkX I
+	FIELD field_3228 chunkY I
 	FIELD field_3229 chunkZ I
 	FIELD field_3230 ignoreCameraFrustum Z
 	FIELD field_3231 velocityDirty Z
@@ -80,6 +101,8 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_10929 attemptSprintingParticles ()V
 	METHOD method_10930 spawnSprintingParticles ()V
 	METHOD method_10931 rayTrace (DF)Lnet/minecraft/class_234;
+		ARG 1 maxDistance
+		ARG 3 tickDelta
 	METHOD method_10932 getBlastResistance (Lnet/minecraft/class_1147;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)F
 		ARG 1 explosion
 		ARG 2 world
@@ -147,6 +170,94 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_10963 setOutsideWorldborder (Z)V
 		ARG 1 value
 	METHOD method_10964 updateSubmergedInWaterState ()V
+	METHOD method_12966 tickNetherPortalCooldown ()V
+	METHOD method_12967 getScoreboardTags ()Ljava/util/Set;
+	METHOD method_12968 applyMirror (Lnet/minecraft/class_2727;)F
+		ARG 1 mirror
+	METHOD method_12969 applyRotation (Lnet/minecraft/class_2734;)F
+		ARG 1 rotation
+	METHOD method_12970 isTeamPlayer (Lnet/minecraft/class_1599;)Z
+		ARG 1 team
+	METHOD method_12972 addScoreboardTag (Ljava/lang/String;)Z
+		ARG 1 tag
+	METHOD method_12973 setUuid (Ljava/util/UUID;)V
+		ARG 1 uuid
+	METHOD method_12974 onTrackedDataSet (Lnet/minecraft/class_2921;)V
+		ARG 1 data
+	METHOD method_12975 startRiding (Lnet/minecraft/class_864;Z)Z
+		ARG 1 entity
+		ARG 2 force
+	METHOD method_12976 interactAt (Lnet/minecraft/class_988;Lnet/minecraft/class_236;Lnet/minecraft/class_2961;)Lnet/minecraft/class_2962;
+		ARG 1 player
+		ARG 2 hitPos
+		ARG 3 hand
+	METHOD method_12977 getItemsHand ()Ljava/lang/Iterable;
+	METHOD method_12978 getArmorItems ()Ljava/lang/Iterable;
+	METHOD method_12979 getItemsEquipped ()Ljava/lang/Iterable;
+	METHOD method_12980 hasMount ()Z
+	METHOD method_12981 hasPassengers ()Z
+	METHOD method_12982 isGlowing ()Z
+	METHOD method_12986 removeAllPassengers ()V
+	METHOD method_12987 setRenderDistanceMultiplier (D)V
+		ARG 0 value
+	METHOD method_12989 removeScoreboardTag (Ljava/lang/String;)Z
+		ARG 1 tag
+	METHOD method_12990 onStartedTrackingBy (Lnet/minecraft/class_798;)V
+		ARG 1 player
+	METHOD method_12992 getSoundCategory ()Lnet/minecraft/class_2153;
+	METHOD method_12993 getEntityName ()Ljava/lang/String;
+	METHOD method_12994 getRenderDistanceMultiplier ()D
+	METHOD method_12995 getMovementDirection ()Lnet/minecraft/class_1354;
+	METHOD method_12996 getVisibilityBoundingBox ()Lnet/minecraft/class_231;
+	METHOD method_12997 entityDataRequiresOperator ()Z
+	METHOD method_12998 teleportRequested ()Z
+	METHOD method_12999 getPrimaryPassenger ()Lnet/minecraft/class_864;
+	METHOD method_13000 getPassengerList ()Ljava/util/List;
+	METHOD method_13001 getPassengersDeep ()Ljava/util/Collection;
+	METHOD method_13004 getVehicle ()Lnet/minecraft/class_864;
+	METHOD method_13005 onStoppedTrackingBy (Lnet/minecraft/class_798;)V
+		ARG 1 player
+	METHOD method_13006 toTag (Lnet/minecraft/class_322;)Lnet/minecraft/class_322;
+		ARG 1 tag
+	METHOD method_13007 setGlowing (Z)V
+		ARG 1 glowing
+	METHOD method_13008 setInvulnerable (Z)V
+		ARG 1 invulnerable
+	METHOD method_13009 updatePassengerPosition (Lnet/minecraft/class_864;)V
+		ARG 1 passenger
+	METHOD method_13010 onPassengerLookAround (Lnet/minecraft/class_864;)V
+		ARG 1 passenger
+	METHOD method_13011 ride (Lnet/minecraft/class_864;)Z
+		ARG 1 entity
+	METHOD method_13012 canStartRiding (Lnet/minecraft/class_864;)Z
+		ARG 1 entity
+	METHOD method_13013 addPassenger (Lnet/minecraft/class_864;)V
+		ARG 1 passenger
+	METHOD method_13014 stopRiding ()V
+	METHOD method_13015 removePassenger (Lnet/minecraft/class_864;)V
+		ARG 1 passenger
+	METHOD method_13016 canAddPassenger (Lnet/minecraft/class_864;)Z
+		ARG 1 passenger
+	METHOD method_13017 isTeammate (Lnet/minecraft/class_864;)Z
+		ARG 1 other
+	METHOD method_13018 hasPassenger (Lnet/minecraft/class_864;)Z
+		ARG 1 passenger
+	METHOD method_13019 isConnectedThroughVehicle (Lnet/minecraft/class_864;)Z
+	METHOD method_13021 getPistonBehavior ()Lnet/minecraft/class_2768;
+	METHOD method_13489 getRotationClient ()Lnet/minecraft/class_3019;
+	METHOD method_13490 getRotationVecClient ()Lnet/minecraft/class_236;
+	METHOD method_13491 hasNoGravity ()Z
+	METHOD method_13492 setNoGravity (Z)V
+		ARG 1 noGravity
+	METHOD method_13931 isInvulnerable ()Z
+	METHOD method_15049 onBlockCollision (Lnet/minecraft/class_2232;)V
+		ARG 1 state
+	METHOD method_15050 updateKilledAchievement (Lnet/minecraft/class_864;ILnet/minecraft/class_856;)V
+		ARG 1 killer
+		ARG 2 score
+		ARG 3 source
+	METHOD method_15053 getLightmapCoordinates ()I
+	METHOD method_15054 getBrightnessAtEyes ()F
 	METHOD method_2460 setOnFireFromLava ()V
 	METHOD method_2461 extinguish ()V
 	METHOD method_2462 destroy ()V
@@ -167,6 +278,8 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_2479 updatePassengerPosition ()V
 	METHOD method_2480 getHeightOffset ()D
 	METHOD method_2481 getMountedHeightOffset ()D
+	METHOD method_2482 getTargetingMargin ()F
+	METHOD method_2483 getRotation ()Lnet/minecraft/class_236;
 	METHOD method_2484 initDataTracker ()V
 	METHOD method_2485 handleStatus (B)V
 		ARG 1 status
@@ -191,6 +304,11 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 3 onGround
 		ARG 4 landedBlock
 		ARG 5 landedPosition
+	METHOD method_2489 fall (DZLnet/minecraft/class_2232;Lnet/minecraft/class_2552;)V
+		ARG 1 heightDifference
+		ARG 3 onGround
+		ARG 4 landedState
+		ARG 5 landedPos
 	METHOD method_2490 handleFallDamage (FF)V
 		ARG 1 fallDistance
 		ARG 2 damageMultiplier
@@ -200,6 +318,7 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_2492 updateVelocity (FFF)V
 	METHOD method_2493 dropItem (Lnet/minecraft/class_1069;IF)Lnet/minecraft/class_964;
 		ARG 1 item
+		ARG 2 count
 		ARG 3 yOffset
 	METHOD method_2495 setFlag (IZ)V
 		ARG 1 index
@@ -232,6 +351,7 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_2513 isSneaking ()Z
 	METHOD method_2514 isSprinting ()Z
 	METHOD method_2516 getAir ()I
+	METHOD method_2517 setInLava ()V
 	METHOD method_2518 getTranslationKey ()Ljava/lang/String;
 	METHOD method_2519 getParts ()[Lnet/minecraft/class_864;
 	METHOD method_2520 getHeadRotation ()F
@@ -252,9 +372,13 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 2 pitch
 	METHOD method_2526 dropItem (Lnet/minecraft/class_1069;I)Lnet/minecraft/class_964;
 		ARG 1 item
+		ARG 2 yOffset
 	METHOD method_2527 setArmorSlot (ILnet/minecraft/class_1071;)V
 		ARG 1 armorSlot
 		ARG 2 item
+	METHOD method_2527 equipStack (Lnet/minecraft/class_2968;Lnet/minecraft/class_1071;)V
+		ARG 1 slot
+		ARG 2 stack
 	METHOD method_2528 writeCustomDataToTag (Lnet/minecraft/class_322;)V
 		ARG 1 tag
 	METHOD method_2529 setSprinting (Z)V
@@ -270,6 +394,8 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_2534 increaseTransforms (FF)V
 		ARG 1 yaw
 		ARG 2 pitch
+	METHOD method_2535 saveToTag (Lnet/minecraft/class_322;)Z
+		ARG 1 tag
 	METHOD method_2536 updateKilledAdvancementCriterion (Lnet/minecraft/class_864;I)V
 		ARG 1 entity
 		ARG 2 score
@@ -279,6 +405,11 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 1 velocityX
 		ARG 3 velocityY
 		ARG 5 velocityZ
+	METHOD method_2539 move (Lnet/minecraft/class_3131;DDD)V
+		ARG 1 type
+		ARG 2 movementX
+		ARG 4 movementY
+		ARG 6 movementZ
 	METHOD method_2540 setHeadYaw (F)V
 		ARG 1 headYaw
 	METHOD method_2541 setOnFireFor (I)V
@@ -320,6 +451,10 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 3 y
 		ARG 5 z
 	METHOD method_2558 tick ()V
+	METHOD method_2559 pushOutOfBlocks (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_2560 isPartOf (Lnet/minecraft/class_864;)Z
 		ARG 1 entity
 	METHOD method_2561 getDataTracker ()Lnet/minecraft/class_878;
@@ -330,6 +465,8 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD method_3197 changeDimension (I)Lnet/minecraft/class_864;
+		ARG 1 newDimension
 	METHOD method_3197 teleportToDimension (I)V
 		ARG 1 dimensionId
 	METHOD method_3203 onSwimmingStart ()V
@@ -337,9 +474,14 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 1 id
 		ARG 2 volume
 		ARG 3 pitch
+	METHOD method_4441 playSound (Lnet/minecraft/class_2926;FF)V
+		ARG 1 event
+		ARG 2 volume
+		ARG 3 pitch
 	METHOD method_4442 populateCrashReport (Lnet/minecraft/class_1392;)V
 		ARG 1 section
 	METHOD method_4443 copyPortalInfo (Lnet/minecraft/class_864;)V
+		ARG 1 original
 	METHOD method_4445 getDefaultNetherPortalCooldown ()I
 	METHOD method_4446 isInvisible ()Z
 	METHOD method_4448 getSafeFallDistance ()I
@@ -350,6 +492,7 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_4453 handleAttack (Lnet/minecraft/class_864;)Z
 		ARG 1 attacker
 	METHOD method_4454 copyPosition (Lnet/minecraft/class_864;)V
+		ARG 1 original
 	METHOD method_4455 getMaxNetherPortalTime ()I
 	METHOD method_5339 hasCustomName ()Z
 	METHOD method_5380 canFly ()Z
@@ -365,6 +508,10 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	METHOD method_6099 getUuid ()Ljava/util/UUID;
 	METHOD method_6100 openInventory (Lnet/minecraft/class_988;)Z
 		ARG 1 player
+	METHOD method_6100 interact (Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Z
+		ARG 1 player
+		ARG 2 hand
+	METHOD method_6135 getScoreboardTeam ()Lnet/minecraft/class_1599;
 	METHOD method_6146 getRotationVector (F)Lnet/minecraft/class_236;
 		ARG 1 vector
 	METHOD method_6344 getName ()Lnet/minecraft/class_1982;

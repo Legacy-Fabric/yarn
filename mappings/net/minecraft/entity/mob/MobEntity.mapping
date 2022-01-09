@@ -1,84 +1,88 @@
 CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
-	FIELD field_3360 lookControl Lnet/minecraft/class_883;
 	FIELD field_3291 ambientSoundChance I
-	FIELD field_3363 bodyControl Lnet/minecraft/class_881;
 	FIELD field_3305 experiencePoints I
-	FIELD field_3337 attackGoals Lnet/minecraft/class_897;
-	FIELD field_5339 armorDropChances [F
 	FIELD field_3323 visbilityCache Lnet/minecraft/class_935;
+	FIELD field_3336 goals Lnet/minecraft/class_897;
+	FIELD field_3337 attackGoals Lnet/minecraft/class_897;
+	FIELD field_3354 navigation Lnet/minecraft/class_934;
+	FIELD field_3360 lookControl Lnet/minecraft/class_883;
+	FIELD field_3361 entityMotionHelper Lnet/minecraft/class_884;
+	FIELD field_3362 jumpControl Lnet/minecraft/class_882;
+	FIELD field_3363 bodyControl Lnet/minecraft/class_881;
 	FIELD field_5335 armorInventory [Lnet/minecraft/class_1071;
-	FIELD field_5342 pickUpLoot Z
 	FIELD field_5337 persistent Z
+	FIELD field_5339 armorDropChances [F
+	FIELD field_5342 pickUpLoot Z
+	FIELD field_6802 attackTarget Lnet/minecraft/class_1699;
 	FIELD field_6803 leashed Z
 	FIELD field_6804 leashOwner Lnet/minecraft/class_864;
 	FIELD field_6805 leash Lnet/minecraft/class_322;
-	FIELD field_6802 attackTarget Lnet/minecraft/class_1699;
-	FIELD field_3361 entityMotionHelper Lnet/minecraft/class_884;
-	FIELD field_3362 jumpControl Lnet/minecraft/class_882;
-	FIELD field_3354 navigation Lnet/minecraft/class_934;
-	FIELD field_3336 goals Lnet/minecraft/class_897;
-	METHOD method_8375 getDefaultDrop ()Lnet/minecraft/class_1069;
-	METHOD method_2631 canImmediatelyDespawn ()Z
-	METHOD method_2632 checkDespawn ()V
-	METHOD method_2633 mobTick ()V
-	METHOD method_2579 canAttackEntity (Ljava/lang/Class;)Z
-		ARG 1 clazz
 	METHOD method_10983 initEquipment (Lnet/minecraft/class_2607;)V
 		ARG 1 difficulty
-	METHOD method_6156 initialize (Lnet/minecraft/class_2607;Lnet/minecraft/class_1700;)Lnet/minecraft/class_1700;
-		ARG 1 difficulty
-		ARG 2 data
-	METHOD method_2583 lookAtEntity (Lnet/minecraft/class_864;FF)V
-		ARG 1 targetEntity
-		ARG 2 maxYawChange
-		ARG 3 maxPitchChange
-	METHOD method_6158 attachLeash (Lnet/minecraft/class_864;Z)V
-		ARG 1 entity
 	METHOD method_10984 loot (Lnet/minecraft/class_964;)V
 		ARG 1 item
-	METHOD method_2537 canBeLeashedBy (Lnet/minecraft/class_988;)Z
-		ARG 1 player
 	METHOD method_10985 canPickupItem (Lnet/minecraft/class_1071;)Z
 		ARG 1 stack
-	METHOD method_6157 detachLeash (ZZ)V
-		ARG 1 sendPacket
-	METHOD method_2624 changeAngle (FFF)F
-		ARG 1 oldAngle
-		ARG 2 newAngle
-		ARG 3 maxChangeInAngle
 	METHOD method_10986 createNavigation (Lnet/minecraft/class_1150;)Lnet/minecraft/class_934;
 		ARG 1 world
 	METHOD method_10987 updateEnchantments (Lnet/minecraft/class_2607;)V
 		ARG 1 difficulty
-	METHOD method_2636 getLookPitchSpeed ()I
-	METHOD method_2637 canSpawn ()Z
-	METHOD method_2639 getLimitPerChunk ()I
-	METHOD method_4476 canBeControlledByRider ()Z
-	METHOD method_6164 setPersistent ()V
-	METHOD method_5395 canPickUpLoot ()Z
-	METHOD method_5396 isPersistent ()Z
-	METHOD method_6159 updateLeash ()V
-	METHOD method_6160 isTameable ()Z
-	METHOD method_6161 isLeashed ()Z
-	METHOD method_5393 hasNoAi ()Z
-	METHOD method_6165 setTarget (Lnet/minecraft/class_1699;)V
-		ARG 1 target
-	METHOD method_5399 setCanPickUpLoot (Z)V
-	METHOD method_5398 setAiDisabled (Z)V
-		ARG 1 value
-	METHOD method_2659 setForwardSpeed (F)V
-		ARG 1 forwardSpeed
+	METHOD method_13079 interactMob (Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Z
+		ARG 1 playerEntity
+		ARG 2 hand
+	METHOD method_2537 canBeLeashedBy (Lnet/minecraft/class_988;)Z
+		ARG 1 player
+	METHOD method_2579 canAttackEntity (Ljava/lang/Class;)Z
+		ARG 1 clazz
+	METHOD method_2583 lookAtEntity (Lnet/minecraft/class_864;FF)V
+		ARG 1 targetEntity
+		ARG 2 maxYawChange
+		ARG 3 maxPitchChange
+	METHOD method_2588 onEatingGrass ()V
+	METHOD method_2594 getMinAmbientSoundDelay ()I
+	METHOD method_2595 playAmbientSound ()V
+	METHOD method_2598 playSpawnEffects ()V
+	METHOD method_2603 getAmbientSound ()Ljava/lang/String;
+	METHOD method_2603 ambientSound ()Lnet/minecraft/class_2926;
 	METHOD method_2613 getLookControl ()Lnet/minecraft/class_883;
 	METHOD method_2614 getMotionHelper ()Lnet/minecraft/class_884;
 	METHOD method_2615 getJumpControl ()Lnet/minecraft/class_882;
 	METHOD method_2616 getNavigation ()Lnet/minecraft/class_934;
 	METHOD method_2617 getVisibilityCache ()Lnet/minecraft/class_935;
 	METHOD method_2623 getTarget ()Lnet/minecraft/class_1699;
-	METHOD method_2588 onEatingGrass ()V
-	METHOD method_2594 getMinAmbientSoundDelay ()I
-	METHOD method_2595 playAmbientSound ()V
-	METHOD method_2598 playSpawnEffects ()V
-	METHOD method_2603 getAmbientSound ()Ljava/lang/String;
+	METHOD method_2624 changeAngle (FFF)F
+		ARG 1 oldAngle
+		ARG 2 newAngle
+		ARG 3 maxChangeInAngle
+	METHOD method_2631 canImmediatelyDespawn ()Z
+	METHOD method_2632 checkDespawn ()V
+	METHOD method_2633 mobTick ()V
+	METHOD method_2636 getLookPitchSpeed ()I
+	METHOD method_2637 canSpawn ()Z
+	METHOD method_2639 getLimitPerChunk ()I
+	METHOD method_2659 setForwardSpeed (F)V
+		ARG 1 forwardSpeed
+	METHOD method_4476 canBeControlledByRider ()Z
+	METHOD method_5393 hasNoAi ()Z
+	METHOD method_5395 canPickUpLoot ()Z
+	METHOD method_5396 isPersistent ()Z
+	METHOD method_5398 setAiDisabled (Z)V
+		ARG 1 value
+	METHOD method_5399 setCanPickUpLoot (Z)V
+	METHOD method_6156 initialize (Lnet/minecraft/class_2607;Lnet/minecraft/class_1700;)Lnet/minecraft/class_1700;
+		ARG 1 difficulty
+		ARG 2 data
+	METHOD method_6157 detachLeash (ZZ)V
+		ARG 1 sendPacket
+	METHOD method_6158 attachLeash (Lnet/minecraft/class_864;Z)V
+		ARG 1 entity
+	METHOD method_6159 updateLeash ()V
+	METHOD method_6160 isTameable ()Z
+	METHOD method_6161 isLeashed ()Z
+	METHOD method_6164 setPersistent ()V
+	METHOD method_6165 setTarget (Lnet/minecraft/class_1699;)V
+		ARG 1 target
+	METHOD method_8375 getDefaultDrop ()Lnet/minecraft/class_1069;
 	CLASS class_2612 Location
 		FIELD field_11915 ON_GROUND Lnet/minecraft/class_871$class_2612;
 		FIELD field_11916 IN_AIR Lnet/minecraft/class_871$class_2612;

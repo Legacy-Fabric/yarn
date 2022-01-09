@@ -1,22 +1,23 @@
 CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
-	FIELD field_4730 chunkX I
-	FIELD field_4731 chunkZ I
-	FIELD field_7504 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_4740 chunkSections [Lnet/minecraft/class_1197;
-	FIELD field_4741 biomeArray [B
+	FIELD field_12911 empty Lnet/minecraft/class_1197;
 	FIELD field_4727 loaded Z
 	FIELD field_4728 world Lnet/minecraft/class_1150;
 	FIELD field_4729 heightmap [I
+	FIELD field_4730 chunkX I
+	FIELD field_4731 chunkZ I
 	FIELD field_4732 blockEntities Ljava/util/Map;
-	FIELD field_9945 entities [Lnet/minecraft/class_2600;
 	FIELD field_4734 terrainPopulated Z
-	FIELD field_7502 lightPopulated Z
-	FIELD field_7503 blockEntitiesPopulated Z
 	FIELD field_4735 modified Z
 	FIELD field_4736 containsEntities Z
 	FIELD field_4737 lastSaveTime J
+	FIELD field_4740 chunkSections [Lnet/minecraft/class_1197;
+	FIELD field_4741 biomeArray [B
 	FIELD field_5479 minimumHeightMap I
 	FIELD field_6229 inhabitedTime J
+	FIELD field_7502 lightPopulated Z
+	FIELD field_7503 blockEntitiesPopulated Z
+	FIELD field_7504 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_9945 entities [Lnet/minecraft/class_2600;
 	FIELD field_9946 blocks Ljava/util/concurrent/ConcurrentLinkedQueue;
 	METHOD <init> (Lnet/minecraft/class_1150;II)V
 		ARG 1 world
@@ -27,33 +28,92 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 storage
 		ARG 3 chunkX
 		ARG 4 chunkZ
+	METHOD method_11769 (Lnet/minecraft/class_1193;Lnet/minecraft/class_2744;)V
+		ARG 1 chunkProvider
+	METHOD method_11771 (Lnet/minecraft/class_2552;Lnet/minecraft/class_1178;)Lnet/minecraft/class_1170;
+		ARG 1 pos
+		ARG 2 biomeSource
+	METHOD method_11773 getHighestNonEmptySection ()Lnet/minecraft/class_1197;
 	METHOD method_3878 isChunkEqual (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
-	METHOD method_9131 (III)Lnet/minecraft/class_197;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_3884 getRandom (J)Ljava/util/Random;
 		ARG 1 seed
-	METHOD method_9132 getLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)I
-		ARG 1 type
-		ARG 2 pos
+	METHOD method_3885 addBlockEntity (Lnet/minecraft/class_226;)V
+		ARG 1 be
+	METHOD method_3887 addEntity (Lnet/minecraft/class_864;)V
+		ARG 1 entity
+	METHOD method_3888 removeEntity (Lnet/minecraft/class_864;I)V
+		ARG 1 entity
+		ARG 2 index
 	METHOD method_3891 setLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;I)V
 		ARG 1 type
 		ARG 2 pos
 		ARG 3 light
-	METHOD method_3885 addBlockEntity (Lnet/minecraft/class_226;)V
-		ARG 1 be
 	METHOD method_3892 (Lnet/minecraft/class_1193;Lnet/minecraft/class_1193;II)V
 		ARG 1 provider1
 		ARG 2 provider2
 		ARG 3 chunkX
 		ARG 4 chunkZ
+	METHOD method_3893 shouldSave (Z)Z
+	METHOD method_3894 setBiomeArray ([B)V
+		ARG 1 biomeArray
+	METHOD method_3895 (Lnet/minecraft/class_1967;IZ)V
+		ARG 1 packet
+	METHOD method_3896 setLevelChunkSections ([Lnet/minecraft/class_1197;)V
+		ARG 1 chunkSections
+	METHOD method_3897 calculateSkyLight ()V
+	METHOD method_3898 getHighestBlockY (II)I
+		ARG 1 x
+		ARG 2 z
+	METHOD method_3899 getBlockOpacityAtPos (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_3901 removeEntity (Lnet/minecraft/class_864;)V
+		ARG 1 entity
+	METHOD method_3902 loadToWorld ()V
+	METHOD method_3903 areSectionsEmptyBetween (II)Z
+		ARG 1 startY
+		ARG 2 endY
+	METHOD method_3904 getBlockData (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_3906 unloadFromWorld ()V
+	METHOD method_3910 setModified ()V
+	METHOD method_3911 (II)V
+		ARG 1 x
+		ARG 2 z
+	METHOD method_3914 isEmpty ()Z
+	METHOD method_3916 getHighestNonEmptySectionYOffset ()I
+	METHOD method_3918 getBlockStorage ()[Lnet/minecraft/class_1197;
+	METHOD method_3920 getChunkPos ()Lnet/minecraft/class_1146;
+	METHOD method_3921 getBiomeArray ()[B
+	METHOD method_6532 getBlockAtPos (III)Lnet/minecraft/class_197;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_6533 populateBlockEntities (Z)V
+		ARG 1 runningBehind
+	METHOD method_6534 (Z)V
+		ARG 1 isClient
+	METHOD method_6535 updateLight (II)Z
+		ARG 1 x
+		ARG 2 z
+	METHOD method_6537 populate ()V
+	METHOD method_9131 (III)Lnet/minecraft/class_197;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_9132 getLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)I
+		ARG 1 type
+		ARG 2 pos
 	METHOD method_9133 getBlockAtPos (Lnet/minecraft/class_2552;)Lnet/minecraft/class_197;
 		ARG 1 pos
-	METHOD method_9134 (Lnet/minecraft/class_2552;I)I
+	METHOD method_9134 getLightLevel (Lnet/minecraft/class_2552;I)I
 		ARG 1 pos
+		ARG 2 darkness
 	METHOD method_9135 getBiomeAt (Lnet/minecraft/class_2552;Lnet/minecraft/class_1175;)Lnet/minecraft/class_1170;
 		ARG 1 pos
 		ARG 2 biomeSurce
@@ -72,91 +132,43 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 box
 		ARG 3 list
 		ARG 4 pred
-	METHOD method_3887 addEntity (Lnet/minecraft/class_864;)V
-		ARG 1 entity
-	METHOD method_3888 removeEntity (Lnet/minecraft/class_864;I)V
-		ARG 1 entity
-		ARG 2 index
 	METHOD method_9141 (Lnet/minecraft/class_864;Lnet/minecraft/class_231;Ljava/util/List;Lcom/google/common/base/Predicate;)V
 		ARG 1 entity
 		ARG 2 box
 		ARG 3 list
 		ARG 4 pred
-	METHOD method_3893 shouldSave (Z)Z
-	METHOD method_3894 setBiomeArray ([B)V
-		ARG 1 biomeArray
 	METHOD method_9142 setLevelHeightmap ([I)V
 		ARG 1 heightmap
-	METHOD method_3896 setLevelChunkSections ([Lnet/minecraft/class_1197;)V
-		ARG 1 chunkSections
-	METHOD method_3897 calculateSkyLight ()V
-	METHOD method_3898 getHighestBlockY (II)I
-		ARG 1 x
-		ARG 2 z
 	METHOD method_9143 setLastSaveTime (J)V
 		ARG 1 lastSaveTime
 	METHOD method_9144 getBlockOpacityAtPos (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
-	METHOD method_3901 removeEntity (Lnet/minecraft/class_864;)V
-		ARG 1 entity
-	METHOD method_6533 populateBlockEntities (Z)V
-		ARG 1 runningBehind
-	METHOD method_3902 loadToWorld ()V
-	METHOD method_3903 areSectionsEmptyBetween (II)Z
-		ARG 1 startY
-		ARG 2 endY
 	METHOD method_9145 setInhabitedTime (J)V
 		ARG 1 inhabitedTime
 	METHOD method_9146 getBlockData (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
 	METHOD method_9147 setChunkLoaded (Z)V
 		ARG 1 loaded
-	METHOD method_3911 (II)V
-		ARG 1 x
-		ARG 2 z
 	METHOD method_9148 hasDirectSunlight (Lnet/minecraft/class_2552;)Z
 		ARG 1 pos
 	METHOD method_9149 setTerrainPopulated (Z)V
 		ARG 1 terrainPopulated
-	METHOD method_3910 setModified ()V
-	METHOD method_6535 updateLight (II)Z
-		ARG 1 x
-		ARG 2 z
-	METHOD method_3899 getBlockOpacityAtPos (III)I
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_9150 (Lnet/minecraft/class_2552;)V
 		ARG 1 pos
 	METHOD method_9151 setLightPopulated (Z)V
 		ARG 1 lightPopulated
-	METHOD method_3914 isEmpty ()Z
-	METHOD method_6532 getBlockAtPos (III)Lnet/minecraft/class_197;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_9152 getHighestBlockY (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
 	METHOD method_9153 setModified (Z)V
 		ARG 1 modified
-	METHOD method_3904 getBlockData (III)I
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_9154 getBlockState (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
 		ARG 1 pos
 	METHOD method_9155 setHasEntities (Z)V
 		ARG 1 containsEntities
-	METHOD method_3918 getBlockStorage ()[Lnet/minecraft/class_1197;
 	METHOD method_9156 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;
 		ARG 1 pos
-	METHOD method_6534 (Z)V
-		ARG 1 isClient
 	METHOD method_9157 createBlockEntity (Lnet/minecraft/class_2552;)Lnet/minecraft/class_226;
 		ARG 1 pos
-	METHOD method_3920 getChunkPos ()Lnet/minecraft/class_1146;
-	METHOD method_3921 getBiomeArray ()[B
-	METHOD method_6537 populate ()V
 	METHOD method_9158 isLoaded ()Z
 	METHOD method_9159 getWorld ()Lnet/minecraft/class_1150;
 	METHOD method_9160 getLevelHeightmap ()[I
