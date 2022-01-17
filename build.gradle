@@ -8,17 +8,21 @@ buildscript {
 	dependencies {
 		classpath "cuchaz:enigma-cli:${project.enigma_version}"
 		classpath "net.fabricmc:stitch:${project.stitch_version}"
-		classpath "commons-io:commons-io:2.6"
+		classpath "commons-io:commons-io:2.8.0"
 		classpath 'de.undercouch:gradle-download-task:4.1.1'
-		classpath 'net.fabricmc:tiny-remapper:0.3.2'
+		classpath 'net.fabricmc:tiny-remapper:0.7.0'
+		classpath "net.fabricmc.unpick:unpick:${project.unpick_version}"
+		classpath "net.fabricmc.unpick:unpick-format-utils:${project.unpick_version}"
+		classpath "net.fabricmc:name-proposal:${project.name_proposal_version}"
 	}
 }
 
 plugins {
+	id 'java' // for constants, packages, javadoc
 	id 'de.undercouch.download' version '4.1.1'
-	id 'base'
 	id 'maven-publish'
-	id 'java' // for jd gen
+	id 'org.cadixdev.licenser' version '0.6.1'
+	id 'net.fabricmc.filament' version '0.3.0'
 }
 
 def ENV = System.getenv()
@@ -50,12 +54,7 @@ repositories {
 }
 
 configurations {
-	enigmaRuntime {
-		resolutionStrategy {
-			cacheDynamicVersionsFor 0, "seconds"
-			cacheChangingModulesFor 0, "seconds"
-		}
-	}
+	enigmaRuntime
 	javadocClasspath
 	decompileClasspath
 	mappingPoetJar {
@@ -65,15 +64,18 @@ configurations {
 		extendsFrom mappingPoetJar
 		transitive = true
 	}
+	unpick
 }
 
 dependencies {
 	enigmaRuntime "cuchaz:enigma-swing:${project.enigma_version}"
-	enigmaRuntime "net.fabricmc:stitch:${project.stitch_version}"
+	enigmaRuntime "net.fabricmc:name-proposal:${project.name_proposal_version}"
 	javadocClasspath "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+	javadocClasspath "org.jetbrains:annotations:${project.jetbrains_annotations_version}"
 	javadocClasspath "com.google.code.findbugs:jsr305:3.0.2"
-	decompileClasspath "org.benf:cfr:0.150"
-	mappingPoetJar 'net.fabricmc:mappingpoet:0.2.6'
+	decompileClasspath "net.fabricmc:cfr:${project.cfr_version}"
+	mappingPoetJar "net.fabricmc:mappingpoet:${project.mappingpoet_version}"
+	unpick "net.fabricmc.unpick:unpick-cli:${project.unpick_version}"
 }
 
 def setupGroup = "jar setup"
@@ -219,15 +221,20 @@ task downloadIntermediaryV2(type: Download) {
 	def url = "https://maven.legacyfabric.net/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
-}
-
-task extractIntermediaryV2(dependsOn: downloadIntermediaryV2, type: Copy) {
+	
 	def output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.tiny")
-	from({ zipTree(downloadIntermediaryV2.dest) }) {
-		include 'mappings/mappings.tiny'
-		rename 'mappings.tiny', "../${output.name}"
+	outputs.file output
+
+	doLast {
+		copy {
+			from({ zipTree(downloadIntermediaryV2.dest) }) {
+				from 'mappings/mappings.tiny'
+				rename 'mappings.tiny', "../${output.name}"
+			}
+
+			into output.parentFile
+		}
 	}
-	into output.parentFile
 }
 
 task mergeJars(dependsOn: downloadMcJars) {
@@ -311,7 +318,7 @@ task invertIntermediary(dependsOn: downloadIntermediary, type: FileOutput) {
 	}
 }
 
-task invertIntermediaryv2(dependsOn: extractIntermediaryV2, type: FileOutput) {
+task invertIntermediaryv2(dependsOn: downloadIntermediaryV2, type: FileOutput) {
 	group = buildMappingGroup
 	def v2Input = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.tiny")
 
@@ -374,25 +381,20 @@ task setupYarn(dependsOn: mapIntermediaryJar) {
 	group = yarnGroup
 }
 
-task yarn(dependsOn: setupYarn) {
+task yarn(dependsOn: setupYarn, type: JavaExec) {
 	group = yarnGroup
-	doLast {
-		ant.setLifecycleLogLevel "WARN"
-		ant.java(
-				classname: 'cuchaz.enigma.gui.Main',
-				classpath: configurations.enigmaRuntime.asPath,
-				fork: true,
-				spawn: true
-		) {
-			jvmarg(value: "-Xmx2048m")
-			arg(value: '-jar')
-			arg(value: intermediaryJar.getAbsolutePath())
-			arg(value: '-mappings')
-			arg(value: mappingsDir.getAbsolutePath())
-			arg(value: '-profile')
-			arg(value: 'enigma_profile.json')
-		}
-	}
+
+	classpath = configurations.enigmaRuntime
+	mainClass = 'cuchaz.enigma.gui.Main'
+
+	args '-jar'
+	args intermediaryJar.getAbsolutePath()
+	args '-mappings'
+	args mappingsDir.getAbsolutePath()
+	args '-profile'
+	args 'enigma_profile.json'
+
+	jvmArgs "-Xmx2048m"
 }
 
 task checkMappings {
@@ -728,7 +730,7 @@ javadoc {
 	// verbose = true // enable to debug
 	options {
 		// verbose() // enable to debug
-		source = "11"
+		source = "17"
 		encoding = 'UTF-8'
 		charSet = 'UTF-8'
 		memberLevel = JavadocMemberLevel.PRIVATE
