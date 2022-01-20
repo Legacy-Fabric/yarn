@@ -1,7 +1,21 @@
 CLASS net/minecraft/class_1962 net/minecraft/network/NetworkState
+	FIELD field_8449 TYPE Lgnu/trove/map/TIntObjectMap;
+	FIELD field_8450 PACKET_TO_STATE Ljava/util/Map;
 	FIELD field_8451 stateId I
-	METHOD method_7418 getId ()I
+	FIELD field_8452 CLIENT2SERVER Lcom/google/common/collect/BiMap;
+	FIELD field_8453 SERVER2CLIENT Lcom/google/common/collect/BiMap;
+	METHOD <init> (Ljava/lang/String;II)V
+		ARG 3 stateId
+	METHOD method_7410 getClientToServer ()Lcom/google/common/collect/BiMap;
 	METHOD method_7411 byId (I)Lnet/minecraft/class_1962;
 		ARG 0 id
+	METHOD method_7412 registerClient2Server (ILjava/lang/Class;)Lnet/minecraft/class_1962;
+		ARG 1 id
+		ARG 2 packetClass
 	METHOD method_7413 getPacketHandlerState (Lnet/minecraft/class_700;)Lnet/minecraft/class_1962;
 		ARG 0 handler
+	METHOD method_7415 getServerToClient ()Lcom/google/common/collect/BiMap;
+	METHOD method_7416 registerServer2Client (ILjava/lang/Class;)Lnet/minecraft/class_1962;
+		ARG 1 id
+		ARG 2 packetClass
+	METHOD method_7418 getId ()I
