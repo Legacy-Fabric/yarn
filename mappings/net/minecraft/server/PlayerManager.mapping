@@ -1,56 +1,57 @@
 CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
+	FIELD field_11786 playerMap Ljava/util/Map;
+	FIELD field_2708 players Ljava/util/List;
+	FIELD field_2709 maxPlayers I
+	FIELD field_2710 viewDistance I
+	FIELD field_2711 DATE_FORMATTER Ljava/text/SimpleDateFormat;
+	FIELD field_2712 server Lnet/minecraft/server/MinecraftServer;
+	FIELD field_2713 bannedPlayers Lnet/minecraft/class_733;
+	FIELD field_2714 bannedIps Lnet/minecraft/class_733;
+	FIELD field_2717 saveHandler Lnet/minecraft/class_105;
+	FIELD field_2718 whitelistEnabled Z
+	FIELD field_2719 gameMode Lnet/minecraft/class_1156$class_1157;
+	FIELD field_2720 cheatsAllowed Z
+	FIELD field_2721 latencyUpdateTimer I
 	FIELD field_9003 BANNED_PLAYERS_FILE Ljava/io/File;
 	FIELD field_9004 BANNED_IPS_FILE Ljava/io/File;
 	FIELD field_9005 OPERATORS_FILE Ljava/io/File;
 	FIELD field_9006 WHITELIST_FILE Ljava/io/File;
-	FIELD field_2709 maxPlayers I
 	FIELD field_9007 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_2711 DATE_FORMATTER Ljava/text/SimpleDateFormat;
-	FIELD field_2712 server Lnet/minecraft/server/MinecraftServer;
-	FIELD field_2708 players Ljava/util/List;
-	FIELD field_11786 playerMap Ljava/util/Map;
 	FIELD field_9008 bannedProfiles Lnet/minecraft/class_2137;
-	FIELD field_2714 bannedIps Lnet/minecraft/class_733;
 	FIELD field_9009 ops Lnet/minecraft/class_2131;
 	FIELD field_9010 whitelist Lnet/minecraft/class_2139;
 	FIELD field_9011 advancementTrackers Ljava/util/Map;
-	FIELD field_2717 saveHandler Lnet/minecraft/class_105;
-	FIELD field_2718 whitelistEnabled Z
-	FIELD field_2710 viewDistance I
-	FIELD field_2719 gameMode Lnet/minecraft/class_1156$class_1157;
-	FIELD field_2720 cheatsAllowed Z
-	FIELD field_2721 latencyUpdateTimer I
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
 		ARG 1 server
-	METHOD method_2016 reloadWhitelist ()V
-	METHOD method_8222 setViewDistance (I)V
-		ARG 1 viewDistance
-	METHOD method_1991 setGameMode (Lnet/minecraft/class_1156$class_1157;)V
-		ARG 1 gameMode
-	METHOD method_8223 op (Lcom/mojang/authlib/GameProfile;)V
+	METHOD method_10779 getPlayer (Ljava/util/UUID;)Lnet/minecraft/class_798;
+		ARG 1 UUID
+	METHOD method_10780 sendMessageToTeam (Lnet/minecraft/class_988;Lnet/minecraft/class_1982;)V
+		ARG 1 source
+		ARG 2 text
+	METHOD method_10781 sendMessageToOtherTeams (Lnet/minecraft/class_988;Lnet/minecraft/class_1982;)V
+		ARG 1 source
+		ARG 2 text
+	METHOD method_10782 canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
 		ARG 1 profile
+	METHOD method_10783 getPlayers ()Ljava/util/List;
+	METHOD method_1979 sendToAround (DDDDILnet/minecraft/class_700;)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 distance
+		ARG 9 dimension
+		ARG 10 packet
 	METHOD method_1980 onPlayerConnect (Lnet/minecraft/class_1957;Lnet/minecraft/class_798;)V
 		ARG 1 connection
 		ARG 2 player
-	METHOD method_6061 sendToAll (Lnet/minecraft/class_1982;)V
-	METHOD method_6062 broadcastChatMessage (Lnet/minecraft/class_1982;Z)V
-		ARG 2 system
+	METHOD method_1980 onPlayerConnect (Lnet/minecraft/class_630;Lnet/minecraft/class_798;)V
+		ARG 1 connection
+		ARG 2 player
 	METHOD method_1981 sendToAll (Lnet/minecraft/class_700;)V
 		ARG 1 packet
 	METHOD method_1982 sendToDimension (Lnet/minecraft/class_700;I)V
 		ARG 1 packet
 		ARG 2 dimension
-	METHOD method_2010 getPlayer (Ljava/lang/String;)Lnet/minecraft/class_798;
-	METHOD method_1989 checkCanJoin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;
-		ARG 1 address
-		ARG 2 profile
-	METHOD method_10779 getPlayer (Ljava/util/UUID;)Lnet/minecraft/class_798;
-		ARG 1 UUID
-	METHOD method_5293 sendScoreboard (Lnet/minecraft/class_1545;Lnet/minecraft/class_798;)V
-		ARG 1 scoreboard
-		ARG 2 player
-	METHOD method_5294 loadPlayerData (Lnet/minecraft/class_798;)Lnet/minecraft/class_322;
-		ARG 1 player
 	METHOD method_1984 teleportToDimension (Lnet/minecraft/class_798;I)V
 		ARG 1 player
 		ARG 2 dimension
@@ -65,69 +66,86 @@ CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 		ARG 1 player
 		ARG 2 oldPlayer
 		ARG 3 world
-	METHOD method_8224 createStatHandler (Lnet/minecraft/class_988;)Lnet/minecraft/class_2141;
-		ARG 1 player
+	METHOD method_1988 createPlayer (Ljava/lang/String;)Lnet/minecraft/class_798;
+		ARG 1 username
+	METHOD method_1989 checkCanJoin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;
+		ARG 1 address
+		ARG 2 profile
+	METHOD method_1989 checkCanJoin (Ljava/net/SocketAddress;Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 address
+		ARG 2 username
 	METHOD method_1990 sendToAround (Lnet/minecraft/class_988;DDDDILnet/minecraft/class_700;)V
 		ARG 1 player
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
+		ARG 8 distance
 		ARG 10 dimension
-	METHOD method_10780 sendMessageToTeam (Lnet/minecraft/class_988;Lnet/minecraft/class_1982;)V
-		ARG 1 source
-		ARG 2 text
+		ARG 11 packet
+	METHOD method_1991 setGameMode (Lnet/minecraft/class_1156$class_1157;)V
+		ARG 1 gameMode
 	METHOD method_1992 setWhitelistEnabled (Z)V
 		ARG 1 whitelistEnabled
 	METHOD method_1993 setMainWorld ([Lnet/minecraft/class_795;)V
 		ARG 1 world
-	METHOD method_8225 deop (Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 profile
-	METHOD method_2017 getPlayersByIp (Ljava/lang/String;)Ljava/util/List;
-		ARG 1 ip
+	METHOD method_1994 updatePlayerLatency ()V
 	METHOD method_1995 savePlayerData (Lnet/minecraft/class_798;)V
 		ARG 1 player
 	METHOD method_1996 sendWorldInfo (Lnet/minecraft/class_798;Lnet/minecraft/class_795;)V
 		ARG 1 player
 		ARG 2 world
-	METHOD method_10781 sendMessageToOtherTeams (Lnet/minecraft/class_988;Lnet/minecraft/class_1982;)V
-		ARG 1 source
-		ARG 2 text
-	METHOD method_2023 getServer ()Lnet/minecraft/server/MinecraftServer;
-	METHOD method_8227 unWhitelist (Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 profile
-	METHOD method_2000 sendPlayerList (Lnet/minecraft/class_798;)V
-		ARG 1 player
 	METHOD method_1998 setCheatsAllowed (Z)V
 		ARG 1 cheatsAllowed
-	METHOD method_8228 whitelist (Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 profile
-	METHOD method_1994 updatePlayerLatency ()V
-	METHOD method_8229 isWhitelisted (Lcom/mojang/authlib/GameProfile;)Z
-		ARG 1 profile
-	METHOD method_2006 remove (Lnet/minecraft/class_798;)V
+	METHOD method_2000 sendPlayerList (Lnet/minecraft/class_798;)V
 		ARG 1 player
 	METHOD method_2002 getPlayerNames ()[Ljava/lang/String;
-	METHOD method_10782 canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
-		ARG 1 profile
+	METHOD method_2006 remove (Lnet/minecraft/class_798;)V
+		ARG 1 player
+	METHOD method_2008 getIpBanList ()Lnet/minecraft/class_733;
 	METHOD method_2009 (Lnet/minecraft/class_798;)V
 		ARG 1 player
-	METHOD method_8231 getProfiles ()[Lcom/mojang/authlib/GameProfile;
-	METHOD method_8230 createPlayer (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/class_798;
-		ARG 1 profile
-	METHOD method_8233 getUserBanList ()Lnet/minecraft/class_2137;
-	METHOD method_8232 isOperator (Lcom/mojang/authlib/GameProfile;)Z
-		ARG 1 profile
-	METHOD method_2008 getIpBanList ()Lnet/minecraft/class_733;
+	METHOD method_2010 getPlayer (Ljava/lang/String;)Lnet/minecraft/class_798;
 	METHOD method_2011 saveAllPlayerData ()V
-	METHOD method_8234 getWhitelist ()Lnet/minecraft/class_2139;
-	METHOD method_8235 getWhitelistedNames ()[Ljava/lang/String;
-	METHOD method_8236 getOpList ()Lnet/minecraft/class_2131;
-	METHOD method_8237 getOpNames ()[Ljava/lang/String;
+	METHOD method_2016 reloadWhitelist ()V
+	METHOD method_2017 getPlayersByIp (Ljava/lang/String;)Ljava/util/List;
+		ARG 1 ip
 	METHOD method_2018 getCurrentPlayerCount ()I
 	METHOD method_2019 getMaxPlayerCount ()I
 	METHOD method_2020 getSavedPlayerIds ()[Ljava/lang/String;
 	METHOD method_2021 isWhitelistEnabled ()Z
 	METHOD method_2022 getViewDistance ()I
+	METHOD method_2023 getServer ()Lnet/minecraft/server/MinecraftServer;
 	METHOD method_2024 getUserData ()Lnet/minecraft/class_322;
 	METHOD method_2025 disconnectAllPlayers ()V
-	METHOD method_10783 getPlayers ()Ljava/util/List;
+	METHOD method_5293 sendScoreboard (Lnet/minecraft/class_1545;Lnet/minecraft/class_798;)V
+		ARG 1 scoreboard
+		ARG 2 player
+	METHOD method_5294 loadPlayerData (Lnet/minecraft/class_798;)Lnet/minecraft/class_322;
+		ARG 1 player
+	METHOD method_6061 sendToAll (Lnet/minecraft/class_1982;)V
+	METHOD method_6062 broadcastChatMessage (Lnet/minecraft/class_1982;Z)V
+		ARG 2 system
+	METHOD method_8222 setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD method_8223 op (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD method_8224 createStatHandler (Lnet/minecraft/class_988;)Lnet/minecraft/class_2141;
+		ARG 1 player
+	METHOD method_8225 deop (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD method_8227 unWhitelist (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD method_8228 whitelist (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD method_8229 isWhitelisted (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD method_8230 createPlayer (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/class_798;
+		ARG 1 profile
+	METHOD method_8231 getProfiles ()[Lcom/mojang/authlib/GameProfile;
+	METHOD method_8232 isOperator (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD method_8233 getUserBanList ()Lnet/minecraft/class_2137;
+	METHOD method_8234 getWhitelist ()Lnet/minecraft/class_2139;
+	METHOD method_8235 getWhitelistedNames ()[Ljava/lang/String;
+	METHOD method_8236 getOpList ()Lnet/minecraft/class_2131;
+	METHOD method_8237 getOpNames ()[Ljava/lang/String;
