@@ -2,6 +2,9 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 	FIELD field_2574 CLASS_TO_ID Ljava/util/Map;
 	FIELD field_2575 clientPacketIds Ljava/util/Set;
 	FIELD field_2576 serverPacketIds Ljava/util/Set;
+	FIELD field_2577 ID_TO_CLASS Lnet/minecraft/class_833;
+	FIELD field_2583 affectsWorld Z
+	FIELD field_6058 logger Lnet/minecraft/class_1555;
 	METHOD method_1826 getSize ()I
 		COMMENT The size of this packet, in bytes.
 	METHOD method_1827 addPacketType (IZZLjava/lang/Class;)V
@@ -9,7 +12,8 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 		ARG 1 client
 		ARG 2 server
 		ARG 3 class_
-	METHOD method_1829 (Lnet/minecraft/class_700;)Z
+	METHOD method_1829 targetsSameEntity (Lnet/minecraft/class_700;)Z
+		COMMENT Returns if this packet is the same type as the one passed in and if they both target the same entity.
 		ARG 1 packet
 	METHOD method_1830 writePacket (Lnet/minecraft/class_700;Ljava/io/DataOutput;)V
 		ARG 0 packet
@@ -17,8 +21,10 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 	METHOD method_1831 apply (Lnet/minecraft/class_701;)V
 		ARG 1 listener
 	METHOD method_1839 canApplyAsync ()Z
+	METHOD method_1844 targetsEntity ()Z
 	METHOD method_1845 getPacketId ()I
-	METHOD method_5285 createPacket (Lnet/minecraft/class_1555;I)Lnet/minecraft/class_700;
+	METHOD method_5285 create (Lnet/minecraft/class_1555;I)Lnet/minecraft/class_700;
+		ARG 0 logger
 		ARG 1 id
 	METHOD method_6037 writeTag (Lnet/minecraft/class_322;Ljava/io/DataOutput;)V
 		ARG 0 tag
@@ -37,6 +43,7 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 		ARG 0 string
 		ARG 1 output
 	METHOD method_6043 readPacket (Lnet/minecraft/class_1555;Ljava/io/DataInput;ZLjava/net/Socket;)Lnet/minecraft/class_700;
+		ARG 0 logger
 		ARG 1 input
 		ARG 2 server
 		ARG 3 socket
