@@ -28,11 +28,14 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 storage
 		ARG 3 chunkX
 		ARG 4 chunkZ
+	METHOD method_11768 (Lnet/minecraft/class_2744;)V
+		ARG 1 chunkGenerator
 	METHOD method_11769 (Lnet/minecraft/class_1193;Lnet/minecraft/class_2744;)V
 		ARG 1 chunkProvider
 	METHOD method_11771 (Lnet/minecraft/class_2552;Lnet/minecraft/class_1178;)Lnet/minecraft/class_1170;
 		ARG 1 pos
 		ARG 2 biomeSource
+	METHOD method_11772 hasPopulatedBlockEntities ()Z
 	METHOD method_11773 getHighestNonEmptySection ()Lnet/minecraft/class_1197;
 	METHOD method_3878 isChunkEqual (II)Z
 		ARG 1 chunkX
@@ -81,12 +84,21 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 y
 		ARG 3 z
 	METHOD method_3906 unloadFromWorld ()V
+	METHOD method_3909 (IIII)V
+		ARG 1 x
+		ARG 2 z
 	METHOD method_3910 setModified ()V
 	METHOD method_3911 (II)V
 		ARG 1 x
 		ARG 2 z
 	METHOD method_3914 isEmpty ()Z
+	METHOD method_3915 (III)V
+		ARG 1 x
+		ARG 2 z
 	METHOD method_3916 getHighestNonEmptySectionYOffset ()I
+	METHOD method_3917 (III)V
+		ARG 1 x
+		ARG 3 z
 	METHOD method_3918 getBlockStorage ()[Lnet/minecraft/class_1197;
 	METHOD method_3920 getChunkPos ()Lnet/minecraft/class_1146;
 	METHOD method_3921 getBiomeArray ()[B
@@ -125,6 +137,7 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 state
 	METHOD method_9138 getBlockEntity (Lnet/minecraft/class_2552;Lnet/minecraft/class_1196$class_2251;)Lnet/minecraft/class_226;
 		ARG 1 pos
+		ARG 2 status
 	METHOD method_9139 updateLight (Lnet/minecraft/class_1354;)V
 		ARG 1 dir
 	METHOD method_9140 (Ljava/lang/Class;Lnet/minecraft/class_231;Ljava/util/List;Lcom/google/common/base/Predicate;)V
@@ -176,6 +189,8 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 	METHOD method_9164 isLightPopulated ()Z
 	METHOD method_9165 getMinimumHeightMap ()I
 	METHOD method_9166 getInhabitedTime ()J
+	CLASS 1
+		METHOD call call ()Ljava/lang/Object;
 	CLASS class_2251 Status
 		FIELD field_9951 IMMEDIATE Lnet/minecraft/class_1196$class_2251;
 		FIELD field_9952 QUEUED Lnet/minecraft/class_1196$class_2251;

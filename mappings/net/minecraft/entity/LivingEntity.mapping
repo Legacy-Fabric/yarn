@@ -1,5 +1,9 @@
 CLASS net/minecraft/class_1699 net/minecraft/entity/LivingEntity
 	FIELD field_11913 statusEffects Ljava/util/Map;
+	FIELD field_14544 mainHand Lnet/minecraft/class_2961;
+		COMMENT TODO: Unsure
+	FIELD field_14553 STUCK_ARROWS Lnet/minecraft/class_2921;
+	FIELD field_15464 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_6743 knockbackVelocity F
 	FIELD field_6744 deathTime I
 	FIELD field_6746 lastHandSwingProgress F
@@ -49,9 +53,24 @@ CLASS net/minecraft/class_1699 net/minecraft/entity/LivingEntity
 	METHOD method_10977 updatePotionVisibility ()V
 	METHOD method_10978 getJumpVelocity ()F
 	METHOD method_10980 markEffectsDirty ()V
+	METHOD method_13038 (Lnet/minecraft/class_1071;I)V
+		ARG 1 stack
+	METHOD method_13039 (Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Z
+		ARG 1 pos
+		ARG 2 state
+	METHOD method_13041 (Lnet/minecraft/class_2961;)V
+		ARG 1 hand
 	METHOD method_13047 getStackInHand (Lnet/minecraft/class_2961;)Lnet/minecraft/class_1071;
 	METHOD method_13049 deathSound ()Lnet/minecraft/class_2926;
+	METHOD method_13050 (Lnet/minecraft/class_2961;)V
+		ARG 1 hand
 	METHOD method_13069 removeStatusEffect (Lnet/minecraft/class_860;)V
+	METHOD method_13070 getLandSound (I)Lnet/minecraft/class_2926;
+		ARG 1 height
+	METHOD method_13071 (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_15060 getHurtSound (Lnet/minecraft/class_856;)Lnet/minecraft/class_2926;
 		ARG 1 damageSource
 	METHOD method_2580 onKilled (Lnet/minecraft/class_856;)V
@@ -118,11 +137,15 @@ CLASS net/minecraft/class_1699 net/minecraft/entity/LivingEntity
 	METHOD method_6121 isAffectedBySmite ()Z
 	METHOD method_6122 getHealth ()F
 	METHOD method_6123 getDamageTracker ()Lnet/minecraft/class_1561;
+	METHOD method_6124 getOpponent ()Lnet/minecraft/class_1699;
 	METHOD method_6125 getMaxHealth ()F
 	METHOD method_6126 getStuckArrows ()I
 	METHOD method_6127 tickHandSwing ()V
 	METHOD method_6128 getAttributeContainer ()Lnet/minecraft/class_1706;
 	METHOD method_6129 initializeAttributes ()V
+	METHOD method_6130 applyArmorDamage (Lnet/minecraft/class_856;F)F
+		ARG 1 source
+		ARG 2 damage
 	METHOD method_6131 getEffectInstance (Lnet/minecraft/class_860;)Lnet/minecraft/class_861;
 		ARG 1 effect
 	METHOD method_6132 setAttacker (Lnet/minecraft/class_1699;)V
