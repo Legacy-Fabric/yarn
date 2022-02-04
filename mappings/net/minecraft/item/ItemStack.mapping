@@ -1,7 +1,10 @@
 CLASS net/minecraft/class_1071 net/minecraft/item/ItemStack
+	FIELD field_12184 lastDestroyedBlock Lnet/minecraft/class_197;
 	FIELD field_12185 lastDestroyResult Z
+	FIELD field_12186 lastPlacedOn Lnet/minecraft/class_197;
 	FIELD field_12187 lastPlaceOnResult Z
 	FIELD field_15108 EMPTY Lnet/minecraft/class_1071;
+	FIELD field_15109 invalid Z
 	FIELD field_4376 count I
 	FIELD field_4378 id I
 	FIELD field_4379 tag Lnet/minecraft/class_322;
@@ -72,6 +75,12 @@ CLASS net/minecraft/class_1071 net/minecraft/item/ItemStack
 		ARG 3 hand
 	METHOD method_11391 (Lnet/minecraft/class_2232;)F
 		ARG 1 state
+	METHOD method_11392 (Ljava/lang/String;Lnet/minecraft/class_1704;Lnet/minecraft/class_2968;)V
+		ARG 1 attributeNmae
+		ARG 2 modifier
+		ARG 3 slot
+	METHOD method_11393 (Lnet/minecraft/class_2968;)Lcom/google/common/collect/Multimap;
+		ARG 1 slot
 	METHOD method_11394 use (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Lnet/minecraft/class_2962;
 		ARG 1 player
 		ARG 2 world
@@ -88,7 +97,15 @@ CLASS net/minecraft/class_1071 net/minecraft/item/ItemStack
 	METHOD method_11397 equals (Lnet/minecraft/class_1071;Lnet/minecraft/class_1071;)Z
 		ARG 0 stack0
 		ARG 1 stack1
+	METHOD method_13652 getCount ()I
+	METHOD method_13653 updateStackStatus ()V
+	METHOD method_13654 isInvalid ()Z
+	METHOD method_13658 setCount (I)V
+		ARG 1 count
+	METHOD method_13660 increment (I)V
+		ARG 1 amount
 	METHOD method_13662 decrement (I)V
+		ARG 1 amount
 	METHOD method_3404 getTranslationKey ()Ljava/lang/String;
 	METHOD method_3405 split (I)Lnet/minecraft/class_1071;
 		ARG 1 amount
@@ -181,6 +198,9 @@ CLASS net/minecraft/class_1071 net/minecraft/item/ItemStack
 	METHOD method_5464 damage (ILjava/util/Random;)Z
 		ARG 1 amount
 		ARG 2 random
+	METHOD method_5464 (ILjava/util/Random;Lnet/minecraft/class_798;)Z
+		ARG 2 rand
+		ARG 3 player
 	METHOD method_6327 getAttributes ()Lcom/google/common/collect/Multimap;
 	METHOD method_6328 damage (ILnet/minecraft/class_1699;)V
 		ARG 1 amount

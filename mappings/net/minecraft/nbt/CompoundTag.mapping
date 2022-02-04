@@ -1,10 +1,19 @@
 CLASS net/minecraft/class_322 net/minecraft/nbt/CompoundTag
+	FIELD field_15347 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_16244 KEY_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_899 data Ljava/util/Map;
-	METHOD method_10575 (Lnet/minecraft/class_322;)V
+	METHOD method_10575 putAll (Lnet/minecraft/class_322;)V
 		ARG 1 nbt
 	METHOD method_12586 getUuid (Ljava/lang/String;)Ljava/util/UUID;
+		ARG 1 key
 	METHOD method_12587 putUuid (Ljava/lang/String;Ljava/util/UUID;)V
+		ARG 1 key
+		ARG 2 uuid
 	METHOD method_12588 containsUuid (Ljava/lang/String;)Z
+		ARG 1 key
+	METHOD method_12589 getSize ()I
+	METHOD method_14749 isValidKey (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 key
 	METHOD method_4385 addDetailsToCrashReport (Ljava/lang/String;ILjava/lang/ClassCastException;)Lnet/minecraft/class_1;
 		ARG 1 key
 		ARG 2 id
@@ -15,6 +24,8 @@ CLASS net/minecraft/class_322 net/minecraft/nbt/CompoundTag
 		ARG 0 type
 		ARG 1 name
 		ARG 2 input
+		ARG 3 depth
+		ARG 4 tracker
 	METHOD method_7342 readByte (Ljava/io/DataInput;Lnet/minecraft/class_1944;)B
 		ARG 0 input
 		ARG 1 tracker
@@ -61,6 +72,7 @@ CLASS net/minecraft/class_322 net/minecraft/nbt/CompoundTag
 		ARG 1 key
 		ARG 2 value
 	METHOD method_817 putBoolean (Ljava/lang/String;Z)V
+		ARG 1 key
 		ARG 2 bool
 	METHOD method_818 putByteArray (Ljava/lang/String;[B)V
 		ARG 1 key
