@@ -17,8 +17,11 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_10310 player Lnet/minecraft/class_518;
 	FIELD field_10311 metricsData Lnet/minecraft/class_2601;
 	FIELD field_10312 nanoTime J
+	FIELD field_3759 soundSystem Lnet/minecraft/class_622;
 	FIELD field_3760 mouse Lnet/minecraft/class_345;
+	FIELD field_3761 texturePackManager Lnet/minecraft/class_615;
 	FIELD field_3762 runDirectory Ljava/io/File;
+	FIELD field_3763 statHandler Lnet/minecraft/class_625;
 	FIELD field_3765 focused Z
 	FIELD field_3766 sysTime J
 	FIELD field_3767 profiler Lnet/minecraft/class_839;
@@ -29,6 +32,7 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_3772 debugTime J
 	FIELD field_3773 currentServerEntry Lnet/minecraft/class_485;
 	FIELD field_3774 instance Lnet/minecraft/class_1600;
+	FIELD field_3774 _instance Lnet/minecraft/client/Minecraft;
 	FIELD field_3775 windowFocused Z
 	FIELD field_3776 crashed Z
 	FIELD field_3777 crashReport Lnet/minecraft/class_1;
@@ -47,7 +51,9 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_3794 joinPlayerCounter I
 	FIELD field_3795 isDemo Z
 	FIELD field_3796 clientConnection Lnet/minecraft/class_1957;
+	FIELD field_3796 conection Lnet/minecraft/class_630;
 	FIELD field_3797 isIntegratedServerRunning Z
+	FIELD field_3798 gameFolder Ljava/io/File;
 	FIELD field_3799 openProfilerSection Ljava/lang/String;
 	FIELD field_3800 interactionManager Lnet/minecraft/class_477;
 	FIELD field_3801 width I
@@ -56,6 +62,9 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_3804 worldRenderer Lnet/minecraft/class_530;
 	FIELD field_3807 particleManager Lnet/minecraft/class_503;
 	FIELD field_3808 session Lnet/minecraft/class_355;
+	FIELD field_3809 host Ljava/lang/String;
+	FIELD field_3810 canvas Ljava/awt/Canvas;
+	FIELD field_3811 isApplet Z
 	FIELD field_3812 paused Z
 	FIELD field_3814 textRenderer Lnet/minecraft/class_370;
 	FIELD field_3815 shadowTextRenderer Lnet/minecraft/class_370;
@@ -67,6 +76,7 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_3821 skipGameRender Z
 	FIELD field_3822 result Lnet/minecraft/class_234;
 	FIELD field_3823 options Lnet/minecraft/class_347;
+	FIELD field_3824 applet Lnet/minecraft/client/MinecraftApplet;
 	FIELD field_5356 f3CTime J
 	FIELD field_6122 logManager Lnet/minecraft/class_1555;
 	FIELD field_6265 MOJANG_LOGO_TEXTURE Lnet/minecraft/class_1653;
@@ -96,6 +106,12 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	FIELD field_7628 mojang Lnet/minecraft/class_1653;
 	FIELD field_7629 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_7630 targetedEntity Lnet/minecraft/class_864;
+	METHOD <init> (Ljava/awt/Canvas;Lnet/minecraft/client/MinecraftApplet;IIZ)V
+		ARG 1 canvas
+		ARG 2 applet
+		ARG 3 width
+		ARG 4 height
+		ARG 5 focusWindow
 	METHOD <init> (Lnet/minecraft/class_2332;)V
 		ARG 1 args
 	METHOD <init> (Lnet/minecraft/class_355;IIZZLjava/io/File;Ljava/io/File;Ljava/io/File;Ljava/net/Proxy;Ljava/lang/String;)V
@@ -132,8 +148,18 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 		ARG 2 loadingMessage
 	METHOD method_2931 setCurrentServerEntry (Lnet/minecraft/class_485;)V
 		ARG 1 info
+	METHOD method_2932 findFolder (Ljava/lang/String;)Ljava/io/File;
+		ARG 0 name
+	METHOD method_2933 setServer (Ljava/lang/String;I)V
+		ARG 1 address
+		ARG 2 port
+	METHOD method_2936 setDemo (Z)V
+		ARG 1 demo
+	METHOD method_2937 getGameFolder ()Ljava/io/File;
 	METHOD method_2939 printCrashReport (Lnet/minecraft/class_1;)V
 		ARG 1 crashReport
+	METHOD method_2942 onCrash (Lnet/minecraft/class_1;)V
+		ARG 1 report
 	METHOD method_2944 getCurrentSave ()Lnet/minecraft/class_102;
 	METHOD method_2945 addSystemDetailsToCrashReport (Lnet/minecraft/class_1;)Lnet/minecraft/class_1;
 		ARG 1 crashReport
@@ -147,12 +173,16 @@ CLASS net/minecraft/client/Minecraft net/minecraft/client/Minecraft
 	METHOD method_2952 openGameMenuScreen ()V
 	METHOD method_2953 toggleFullscreen ()V
 	METHOD method_2954 tick ()V
+	METHOD method_2955 getChunkDebugString ()Ljava/lang/String;
+	METHOD method_2956 getEntitiesDebugString ()Ljava/lang/String;
+	METHOD method_2957 getWorldDebugString ()Ljava/lang/String;
 	METHOD method_2959 isDemo ()Z
 	METHOD method_2960 getNetworkHandler ()Lnet/minecraft/class_1845;
 	METHOD method_2961 isHudEnabled ()Z
 	METHOD method_2962 isFancyGraphicsEnabled ()Z
 	METHOD method_2963 isAmbientOcclusionEnabled ()Z
 	METHOD method_2965 getInstance ()Lnet/minecraft/class_1600;
+	METHOD method_2967 getCurrentServerEntryInfo ()Lnet/minecraft/class_485;
 	METHOD method_4498 getMaxFramerate ()I
 	METHOD method_5568 getSession ()Lnet/minecraft/class_355;
 	METHOD method_5569 getNetworkProxy ()Ljava/net/Proxy;
