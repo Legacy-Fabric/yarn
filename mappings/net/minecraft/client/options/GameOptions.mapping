@@ -72,6 +72,7 @@ CLASS net/minecraft/class_347 net/minecraft/client/options/GameOptions
 	FIELD field_945 keysAll [Lnet/minecraft/class_327;
 	FIELD field_946 client Lnet/minecraft/class_1600;
 	FIELD field_946 _client Lnet/minecraft/client/Minecraft;
+	FIELD field_947 difficultyLevel I
 	FIELD field_948 hudHidden Z
 	FIELD field_949 perspective I
 	FIELD field_950 debugEnabled Z
@@ -80,6 +81,7 @@ CLASS net/minecraft/class_347 net/minecraft/client/options/GameOptions
 	FIELD field_954 smoothCameraEnabled Z
 	FIELD field_958 fov F
 	FIELD field_959 gamma F
+	FIELD field_960 musicVolume F
 	FIELD field_961 guiScale I
 	FIELD field_962 particle I
 	FIELD field_963 language Ljava/lang/String;
@@ -90,17 +92,24 @@ CLASS net/minecraft/class_347 net/minecraft/client/options/GameOptions
 	FIELD field_968 PARTICLES [Ljava/lang/String;
 	FIELD field_969 STREAM_CHAT_USERFILTER [Ljava/lang/String;
 	FIELD field_970 optionsFile Ljava/io/File;
+	FIELD field_971 soundVolume F
 	FIELD field_972 sensitivity F
 	FIELD field_973 invertYMouse Z
+	FIELD field_974 renderDistance I
 	FIELD field_975 bobView Z
 	FIELD field_976 anaglyph3d Z
+	FIELD field_977 advancedOpengl Z
 	FIELD field_978 maxFramerate I
 	FIELD field_979 fancyGraphics Z
-	FIELD field_982 currentTexturePack Ljava/lang/String;
+	FIELD field_980 ambientOcculsion Z
+	FIELD field_981 renderClouds Z
+	FIELD field_982 currentTexturePackName Ljava/lang/String;
+	FIELD field_983 chatVisibility I
 	FIELD field_984 chatColor Z
 	FIELD field_985 chatLink Z
 	FIELD field_986 chatLinkPrompt Z
 	FIELD field_987 chatOpacity F
+	FIELD field_988 useServerTextures Z
 	FIELD field_989 snopperEnabled Z
 	FIELD field_990 fullscreen Z
 	FIELD field_991 vsync Z
@@ -130,12 +139,20 @@ CLASS net/minecraft/class_347 net/minecraft/client/options/GameOptions
 		ARG 1 language
 	METHOD method_868 getIntValue (Lnet/minecraft/class_347$class_350;)F
 		ARG 1 option
+	METHOD method_868 getFLoatOption (Lnet/minecraft/class_350;)F
+		ARG 1 option
 	METHOD method_869 setValue (Lnet/minecraft/class_347$class_350;F)V
 		ARG 1 option
 		ARG 2 var
+	METHOD method_869 setOption (Lnet/minecraft/class_350;F)V
+		ARG 1 option
+		ARG 2 value
 	METHOD method_870 getBooleanValue (Lnet/minecraft/class_347$class_350;I)V
 		ARG 1 option
 		ARG 2 integer
+	METHOD method_870 setOption (Lnet/minecraft/class_350;I)V
+		ARG 1 option
+		ARG 2 value
 	METHOD method_871 parseFloat (Ljava/lang/String;)F
 		ARG 1 s
 	METHOD method_872 translateArrayElement ([Ljava/lang/String;I)Ljava/lang/String;
@@ -144,9 +161,13 @@ CLASS net/minecraft/class_347 net/minecraft/client/options/GameOptions
 	METHOD method_873 save ()V
 	METHOD method_875 getIntVideoOptions (Lnet/minecraft/class_347$class_350;)Z
 		ARG 1 option
+	METHOD method_875 gteIntOption (Lnet/minecraft/class_350;)Z
+		ARG 1 option
 	METHOD method_877 getFormattedNameForKeyCode (I)Ljava/lang/String;
 		ARG 0 code
 	METHOD method_878 getValueMessage (Lnet/minecraft/class_347$class_350;)Ljava/lang/String;
+		ARG 1 option
+	METHOD method_878 getStringOption (Lnet/minecraft/class_350;)Ljava/lang/String;
 		ARG 1 option
 	METHOD method_9411 togglePlayerModelPart (Lnet/minecraft/class_2670;)V
 		ARG 1 part
