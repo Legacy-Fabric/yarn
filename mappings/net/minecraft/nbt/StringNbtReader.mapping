@@ -1,16 +1,33 @@
 CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
+	FIELD field_16247 DOUBLE_PATTERN_IMPLICIT Ljava/util/regex/Pattern;
+	FIELD field_16248 DOUBLE_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16249 FLOAT_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16250 BYTE_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16251 LONG_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16252 SHORT_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16253 INT_PATTERN Ljava/util/regex/Pattern;
+	FIELD field_16254 input Ljava/lang/String;
+	FIELD field_8408 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 input
 	METHOD method_10579 parse (Ljava/lang/String;)Lnet/minecraft/class_322;
+		ARG 0 string
+	METHOD method_14757 readCompound ()Lnet/minecraft/class_322;
+	METHOD method_14761 readString ()Ljava/lang/String;
+	METHOD method_14764 createException (Ljava/lang/String;)Lnet/minecraft/class_1948;
+	METHOD method_14765 parseElementPrimitive ()Lnet/minecraft/class_605;
+	METHOD method_14766 parsePrimitive (Ljava/lang/String;)Lnet/minecraft/class_605;
+		ARG 1 input
 	METHOD method_7379 (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/class_1949$class_1950;
 		ARG 1 stringNbt
 	CLASS class_1950 Parser
 		FIELD field_8409 key Ljava/lang/String;
 		METHOD method_7384 parse ()Lnet/minecraft/class_605;
-	CLASS class_1951 CompoundTagParser
+	CLASS class_1951 NbtCompoundParser
 		FIELD field_11538 parsers Ljava/util/List;
-	CLASS class_1952 ListTagParser
+	CLASS class_1952 NbtListParser
 		FIELD field_11539 parsers Ljava/util/List;
 	CLASS class_1953 PrimitiveTypeParser
-		FIELD field_8412 value Ljava/lang/String;
 		FIELD field_11540 DOUBLE_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11541 FLOAT_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11542 BYTE_PATTRN Ljava/util/regex/Pattern;
@@ -18,5 +35,6 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 		FIELD field_11544 SHORT_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11545 INT_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11546 DECIMAL_PATTERN Ljava/util/regex/Pattern;
+		FIELD field_8412 value Ljava/lang/String;
 		METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
 			ARG 2 value
