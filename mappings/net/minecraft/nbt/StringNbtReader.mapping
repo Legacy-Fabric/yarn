@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
+	FIELD field_11537 VALID_LIST_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_16247 DOUBLE_PATTERN_IMPLICIT Ljava/util/regex/Pattern;
 	FIELD field_16248 DOUBLE_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_16249 FLOAT_PATTERN Ljava/util/regex/Pattern;
@@ -7,26 +8,81 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 	FIELD field_16252 SHORT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_16253 INT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_16254 input Ljava/lang/String;
+	FIELD field_16255 cursor I
 	FIELD field_8408 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 input
 	METHOD method_10579 parse (Ljava/lang/String;)Lnet/minecraft/class_322;
 		ARG 0 string
+	METHOD method_10580 getFirstElement (Ljava/lang/String;I)Ljava/lang/String;
+		ARG 0 string
+		ARG 1 startIndex
+	METHOD method_10581 createParser (Ljava/lang/String;Z)Lnet/minecraft/class_1949$class_1950;
+		ARG 0 stringNbt
+		ARG 1 missingKey
+	METHOD method_10582 createParserFromArray ([Ljava/lang/String;)Lnet/minecraft/class_1949$class_1950;
+		ARG 0 keyNbtArray
+	METHOD method_10583 isEscaped (Ljava/lang/String;I)Z
+		ARG 0 string
+		ARG 1 index
 	METHOD method_14757 readCompound ()Lnet/minecraft/class_322;
+	METHOD method_14758 readArray (BB)Ljava/util/List;
+		ARG 1 nbtType
+		ARG 2 numberType
+	METHOD method_14759 isAllowedInUnquotedString (C)Z
+		ARG 1 c
+	METHOD method_14760 canRead (I)Z
+		ARG 1 offset
 	METHOD method_14761 readString ()Ljava/lang/String;
+	METHOD method_14762 expect (C)V
+		ARG 1 c
+	METHOD method_14763 peek (I)C
+		ARG 1 offset
 	METHOD method_14764 createException (Ljava/lang/String;)Lnet/minecraft/class_1948;
-	METHOD method_14765 parseElementPrimitive ()Lnet/minecraft/class_605;
+		ARG 1 message
+	METHOD method_14765 parsePrimitive ()Lnet/minecraft/class_605;
 	METHOD method_14766 parsePrimitive (Ljava/lang/String;)Lnet/minecraft/class_605;
 		ARG 1 input
-	METHOD method_7379 (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/class_1949$class_1950;
+	METHOD method_14767 parseElement ()Lnet/minecraft/class_605;
+	METHOD method_14768 parseArray ()Lnet/minecraft/class_605;
+	METHOD method_14769 parseCompound ()Lnet/minecraft/class_322;
+	METHOD method_14770 canRead ()Z
+	METHOD method_14771 readQuotedString ()Ljava/lang/String;
+	METHOD method_14772 readUnquotedString ()Ljava/lang/String;
+	METHOD method_14773 parseList ()Lnet/minecraft/class_605;
+	METHOD method_14774 parsePrimitiveArray ()Lnet/minecraft/class_605;
+	METHOD method_14775 skipWhitespace ()V
+	METHOD method_14776 readComma ()Z
+	METHOD method_14777 peek ()C
+	METHOD method_14778 read ()C
+	METHOD method_7378 indexOf (Ljava/lang/String;C)I
+		ARG 0 string
+		ARG 1 c
+	METHOD method_7379 createParser (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/class_1949$class_1950;
+		ARG 0 key
 		ARG 1 stringNbt
+	METHOD method_7380 getFirstElement (Ljava/lang/String;Z)Ljava/lang/String;
+		ARG 0 stringNbt
+		ARG 1 hasKey
+	METHOD method_7381 getTopElementCount (Ljava/lang/String;)I
+		ARG 0 string
+	METHOD method_7382 getKey (Ljava/lang/String;Z)Ljava/lang/String;
+		ARG 0 stringNbt
+		ARG 1 missingKey
+	METHOD method_7383 getValue (Ljava/lang/String;Z)Ljava/lang/String;
+		ARG 0 stringNbt
+		ARG 1 missingKey
 	CLASS class_1950 Parser
 		FIELD field_8409 key Ljava/lang/String;
 		METHOD method_7384 parse ()Lnet/minecraft/class_605;
 	CLASS class_1951 NbtCompoundParser
 		FIELD field_11538 parsers Ljava/util/List;
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 key
 	CLASS class_1952 NbtListParser
 		FIELD field_11539 parsers Ljava/util/List;
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 key
 	CLASS class_1953 PrimitiveTypeParser
 		FIELD field_11540 DOUBLE_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11541 FLOAT_PATTERN Ljava/util/regex/Pattern;
@@ -35,6 +91,8 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 		FIELD field_11544 SHORT_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11545 INT_PATTERN Ljava/util/regex/Pattern;
 		FIELD field_11546 DECIMAL_PATTERN Ljava/util/regex/Pattern;
+		FIELD field_11547 SPLITTER Lcom/google/common/base/Splitter;
 		FIELD field_8412 value Ljava/lang/String;
 		METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
+			ARG 1 key
 			ARG 2 value
