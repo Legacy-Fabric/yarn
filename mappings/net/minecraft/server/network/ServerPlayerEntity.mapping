@@ -1,52 +1,64 @@
 CLASS net/minecraft/class_798 net/minecraft/server/network/ServerPlayerEntity
+	FIELD field_11763 spectatingEntity Lnet/minecraft/class_864;
+	FIELD field_16399 file Lnet/minecraft/class_3347;
 	FIELD field_2823 networkHandler Lnet/minecraft/class_2107;
-	FIELD field_8893 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_6730 lang Ljava/lang/String;
-	FIELD field_2840 removedEntities Ljava/util/List;
-	FIELD field_8894 statHandler Lnet/minecraft/class_2141;
-	FIELD field_6731 completeHealth F
+	FIELD field_2823 packetListener Lnet/minecraft/class_803;
 	FIELD field_2824 server Lnet/minecraft/server/MinecraftServer;
-	FIELD field_6732 lastHealth F
+	FIELD field_2825 interactionManager Lnet/minecraft/class_799;
+	FIELD field_2826 language Lnet/minecraft/class_244;
 	FIELD field_2828 lastHungerLevel I
 	FIELD field_2829 wasHungry Z
 	FIELD field_2830 lastXp I
 	FIELD field_2831 spawnProtectionTicks I
-	FIELD field_8895 visibilityType Lnet/minecraft/class_988$class_2157;
+	FIELD field_2832 viewDistance I
+	FIELD field_2833 chatFilterLevel I
 	FIELD field_2834 chatColors Z
-	FIELD field_6733 lastActionTime J
-	FIELD field_11763 spectatingEntity Lnet/minecraft/class_864;
 	FIELD field_2836 screenHandlerSyncId I
-	FIELD field_2825 interactionManager Lnet/minecraft/class_799;
 	FIELD field_2837 serverPosX D
 	FIELD field_2838 serverPosZ D
 	FIELD field_2839 loadedChunks Ljava/util/List;
+	FIELD field_2840 removedEntities Ljava/util/List;
 	FIELD field_2841 skipPacketSlotUpdates Z
 	FIELD field_2842 ping I
 	FIELD field_2843 killedEnderdragon Z
+	FIELD field_6730 lang Ljava/lang/String;
+	FIELD field_6731 completeHealth F
+	FIELD field_6732 lastHealth F
+	FIELD field_6733 lastActionTime J
+	FIELD field_8893 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_8894 statHandler Lnet/minecraft/class_2141;
+	FIELD field_8895 visibilityType Lnet/minecraft/class_988$class_2157;
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_1150;Ljava/lang/String;Lnet/minecraft/class_799;)V
+		ARG 1 server
+		ARG 2 world
+		ARG 3 username
+		ARG 4 interactionManager
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_795;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_799;)V
 		ARG 1 server
 		ARG 2 world
 		ARG 3 profile
 		ARG 4 interactionManager
-	METHOD method_8138 getStatHandler ()Lnet/minecraft/class_2141;
 	METHOD method_10759 getSpectatingEntity ()Lnet/minecraft/class_864;
-	METHOD method_8139 getLastActionTime ()J
 	METHOD method_10760 getDisplayName ()Lnet/minecraft/class_1982;
-	METHOD method_2154 handleFall (DZ)V
-		ARG 1 distance
+	METHOD method_10761 sendResourcePackUrl (Ljava/lang/String;Ljava/lang/String;)V
+	METHOD method_10762 isPvpEnabled ()Z
+	METHOD method_14966 getAdvancementFile ()Lnet/minecraft/class_3347;
 	METHOD method_2149 updateBlockEntity (Lnet/minecraft/class_226;)V
 		ARG 1 blockEntity
-	METHOD method_10761 sendResourcePackUrl (Ljava/lang/String;Ljava/lang/String;)V
 	METHOD method_2152 refreshScreenHandler (Lnet/minecraft/class_1002;)V
 		ARG 1 handler
-	METHOD method_10762 isPvpEnabled ()Z
-	METHOD method_2156 incrementSyncId ()V
-	METHOD method_8135 stopTracking (Lnet/minecraft/class_864;)V
 	METHOD method_2153 listenToScreenHandler ()V
-	METHOD method_8136 updateExploreredBiomes ()V
+	METHOD method_2154 handleFall (DZ)V
+		ARG 1 distance
+	METHOD method_2156 incrementSyncId ()V
 	METHOD method_2157 tickPlayer ()V
 	METHOD method_2159 closeOpenedScreenHandler ()V
 	METHOD method_2161 markHealthDirty ()V
 	METHOD method_2162 getServerWorld ()Lnet/minecraft/class_795;
 	METHOD method_2163 getIp ()Ljava/lang/String;
+	METHOD method_2164 getChatFilterLevel ()I
 	METHOD method_6067 updateLastActionTime ()V
+	METHOD method_8135 stopTracking (Lnet/minecraft/class_864;)V
+	METHOD method_8136 updateExploreredBiomes ()V
+	METHOD method_8138 getStatHandler ()Lnet/minecraft/class_2141;
+	METHOD method_8139 getLastActionTime ()J
