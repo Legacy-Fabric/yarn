@@ -262,22 +262,32 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's material
 		ARG 2 color
 			COMMENT The block's material color
-	METHOD method_11552 (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
+	METHOD method_11552 getBlockRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
 		ARG 1 blockState
-	METHOD method_11555 (Lnet/minecraft/class_2232;Lnet/minecraft/class_2727;)Lnet/minecraft/class_2232;
+	METHOD method_11554 getBoundingBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_11555 withMirror (Lnet/minecraft/class_2232;Lnet/minecraft/class_2727;)Lnet/minecraft/class_2232;
 		ARG 1 blockState
-	METHOD method_11556 (Lnet/minecraft/class_2232;Lnet/minecraft/class_2734;)Lnet/minecraft/class_2232;
+		ARG 2 mirror
+	METHOD method_11556 withRotation (Lnet/minecraft/class_2232;Lnet/minecraft/class_2734;)Lnet/minecraft/class_2232;
 		ARG 1 blockState
+		ARG 2 rotation
 	METHOD method_11560 (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11561 getStrength (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
 	METHOD method_11562 (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
+	METHOD method_11564 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_11565 (Lnet/minecraft/class_2232;)F
 		ARG 1 blockState
 	METHOD method_11566 (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
-	METHOD method_11567 (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
+	METHOD method_11567 getPistonBehavior (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
 		ARG 1 blockState
 	METHOD method_11568 (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
@@ -300,6 +310,16 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11577 (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11578 getSoundGroup ()Lnet/minecraft/class_200;
+	METHOD method_13704 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_14305 (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
+		ARG 1 group
+		ARG 2 stacks
+	METHOD method_14307 (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
+		ARG 1 view
+		ARG 2 state
+		ARG 3 pos
+		ARG 4 direction
 	METHOD method_392 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
@@ -470,6 +490,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The player who <i>used</i> the block
 		ARG 5 direction
 			COMMENT The direction that the block is facing
+	METHOD method_421 use (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 direction
 	METHOD method_424 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
 		ARG 1 world
 		ARG 2 playerEntity
@@ -722,6 +749,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 block
 			COMMENT The adjacent Block that updated the current block
+	METHOD method_8641 onBreak (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Lnet/minecraft/class_2552;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 arg3
+		ARG 4 block
+		ARG 5 pos
 	METHOD method_8642 appendCollisionBoxes (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 world
 		ARG 2 pos
@@ -812,6 +845,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 5 be
 			COMMENT The block entity in the block
+	METHOD method_8651 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;Lnet/minecraft/class_1071;)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 blockEntity
+		ARG 6 stack
 	METHOD method_8652 setBoundingBox (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)V
 		ARG 1 view
 		ARG 2 pos
@@ -835,6 +875,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The current block's position
 		ARG 3 facing
 			COMMENT The direction the block is facing
+	METHOD method_8654 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+		ARG 4 direction
 	METHOD method_8655 getMeta (Lnet/minecraft/class_2232;)I
 		COMMENT Returns the metadata value for a certain BlockState
 		COMMENT @return Metadata value
@@ -996,6 +1041,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return materialColor
 		ARG 1 state
 			COMMENT The Blockstate for which the material color is returned
+	METHOD method_8680 getMaterialColor (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_65;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_8681 getColor (Lnet/minecraft/class_2232;)I
 		ARG 1 state
 	METHOD method_8682 createStackFromBlock (Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
@@ -1027,7 +1076,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The block's comparator output value
 		ARG 1 world
 		ARG 2 pos
-	METHOD method_8686 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
+	METHOD method_8686 getComparatorOutput (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
 		ARG 1 blockState
 		ARG 2 world
 		ARG 3 blockPos

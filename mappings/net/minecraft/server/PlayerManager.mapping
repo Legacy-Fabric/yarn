@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 	FIELD field_11786 playerMap Ljava/util/Map;
+	FIELD field_2707 _LOGGER Ljava/util/logging/Logger;
 	FIELD field_2708 players Ljava/util/List;
 	FIELD field_2709 maxPlayers I
 	FIELD field_2710 viewDistance I
@@ -7,6 +8,8 @@ CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 	FIELD field_2712 server Lnet/minecraft/server/MinecraftServer;
 	FIELD field_2713 bannedPlayers Lnet/minecraft/class_733;
 	FIELD field_2714 bannedIps Lnet/minecraft/class_733;
+	FIELD field_2715 ADMINS Ljava/util/Set;
+	FIELD field_2716 _whitelist Ljava/util/Set;
 	FIELD field_2717 saveHandler Lnet/minecraft/class_105;
 	FIELD field_2718 whitelistEnabled Z
 	FIELD field_2719 gameMode Lnet/minecraft/class_1156$class_1157;
@@ -52,6 +55,8 @@ CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 	METHOD method_1982 sendToDimension (Lnet/minecraft/class_700;I)V
 		ARG 1 packet
 		ARG 2 dimension
+	METHOD method_1983 laodPlayer (Lnet/minecraft/class_798;)V
+		ARG 1 player
 	METHOD method_1984 teleportToDimension (Lnet/minecraft/class_798;I)V
 		ARG 1 player
 		ARG 2 dimension
@@ -84,6 +89,8 @@ CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 		ARG 11 packet
 	METHOD method_1991 setGameMode (Lnet/minecraft/class_1156$class_1157;)V
 		ARG 1 gameMode
+	METHOD method_1991 setGamemode (Lnet/minecraft/class_1157;)V
+		ARG 1 gamemode
 	METHOD method_1992 setWhitelistEnabled (Z)V
 		ARG 1 whitelistEnabled
 	METHOD method_1993 setMainWorld ([Lnet/minecraft/class_795;)V
@@ -94,18 +101,36 @@ CLASS net/minecraft/class_743 net/minecraft/server/PlayerManager
 	METHOD method_1996 sendWorldInfo (Lnet/minecraft/class_798;Lnet/minecraft/class_795;)V
 		ARG 1 player
 		ARG 2 world
+	METHOD method_1997 addAdmin (Ljava/lang/String;)V
+		ARG 1 username
 	METHOD method_1998 setCheatsAllowed (Z)V
 		ARG 1 cheatsAllowed
 	METHOD method_2000 sendPlayerList (Lnet/minecraft/class_798;)V
 		ARG 1 player
+	METHOD method_2001 removeAdmin (Ljava/lang/String;)V
+		ARG 1 username
 	METHOD method_2002 getPlayerNames ()[Ljava/lang/String;
+	METHOD method_2003 (Lnet/minecraft/class_798;)V
+		ARG 1 player
+	METHOD method_2004 isWhitelisted (Ljava/lang/String;)Z
+		ARG 1 username
+	METHOD method_2005 getBannedIps ()Lnet/minecraft/class_733;
 	METHOD method_2006 remove (Lnet/minecraft/class_798;)V
 		ARG 1 player
+	METHOD method_2007 canCheat (Ljava/lang/String;)Z
+		ARG 1 username
 	METHOD method_2008 getIpBanList ()Lnet/minecraft/class_733;
 	METHOD method_2009 (Lnet/minecraft/class_798;)V
 		ARG 1 player
 	METHOD method_2010 getPlayer (Ljava/lang/String;)Lnet/minecraft/class_798;
+		ARG 1 username
 	METHOD method_2011 saveAllPlayerData ()V
+	METHOD method_2012 _getWhitelist ()Ljava/util/Set;
+	METHOD method_2013 addWhitelisted (Ljava/lang/String;)V
+		ARG 1 username
+	METHOD method_2014 getAdmins ()Ljava/util/Set;
+	METHOD method_2015 removeWhitelisted (Ljava/lang/String;)V
+		ARG 1 username
 	METHOD method_2016 reloadWhitelist ()V
 	METHOD method_2017 getPlayersByIp (Ljava/lang/String;)Ljava/util/List;
 		ARG 1 ip

@@ -3,6 +3,11 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 	FIELD field_2575 clientPacketIds Ljava/util/Set;
 	FIELD field_2576 serverPacketIds Ljava/util/Set;
 	FIELD field_2577 ID_TO_CLASS Lnet/minecraft/class_833;
+	FIELD field_2578 startTime J
+	FIELD field_2579 totalpacketsReceived J
+	FIELD field_2580 totalPacketSizeReceived J
+	FIELD field_2581 totalPacketsSent J
+	FIELD field_2582 totalPacketsSentSize J
 	FIELD field_2583 affectsWorld Z
 	FIELD field_6058 logger Lnet/minecraft/class_1555;
 	METHOD method_1826 getSize ()I
@@ -12,15 +17,47 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 		ARG 1 client
 		ARG 2 server
 		ARG 3 class_
+	METHOD method_1828 sendNbt (Lnet/minecraft/class_322;Ljava/io/DataOutputStream;)V
+		ARG 0 nbt
+		ARG 1 stream
 	METHOD method_1829 targetsSameEntity (Lnet/minecraft/class_700;)Z
 		COMMENT Returns if this packet is the same type as the one passed in and if they both target the same entity.
 		ARG 1 packet
 	METHOD method_1830 writePacket (Lnet/minecraft/class_700;Ljava/io/DataOutput;)V
 		ARG 0 packet
 		ARG 1 output
+	METHOD method_1830 writepacket (Lnet/minecraft/class_700;Ljava/io/DataOutputStream;)V
+		ARG 0 packet
+		ARG 1 stream
 	METHOD method_1831 apply (Lnet/minecraft/class_701;)V
 		ARG 1 listener
+	METHOD method_1832 readFrom (Ljava/io/DataInputStream;)V
+		ARG 1 stream
+	METHOD method_1833 getString (Ljava/io/DataInputStream;I)Ljava/lang/String;
+		ARG 0 stream
+		ARG 1 maxLenght
+	METHOD method_1834 readPacket (Ljava/io/DataInputStream;Z)Lnet/minecraft/class_700;
+		ARG 0 stream
+		ARG 1 serverSide
+	METHOD method_1835 writeTo (Ljava/io/DataOutputStream;)V
+		ARG 1 stream
+	METHOD method_1836 (Ljava/io/DataOutputStream;[B)V
+		ARG 0 stream
+	METHOD method_1837 putString (Ljava/lang/String;Ljava/io/DataOutputStream;)V
+		ARG 0 string
+		ARG 1 streamn
+	METHOD method_1838 writeItemStack (Lnet/minecraft/class_1071;Ljava/io/DataOutputStream;)V
+		ARG 0 stack
+		ARG 1 stream
 	METHOD method_1839 canApplyAsync ()Z
+	METHOD method_1840 (Ljava/io/DataInputStream;)[B
+		ARG 0 stream
+	METHOD method_1841 readItemStack (Ljava/io/DataInputStream;)Lnet/minecraft/class_1071;
+		ARG 0 stream
+	METHOD method_1842 createPacketInstance (I)Lnet/minecraft/class_700;
+		ARG 0 id
+	METHOD method_1843 readNbt (Ljava/io/DataInputStream;)Lnet/minecraft/class_322;
+		ARG 0 stream
 	METHOD method_1844 targetsEntity ()Z
 	METHOD method_1845 getPacketId ()I
 	METHOD method_5285 create (Lnet/minecraft/class_1555;I)Lnet/minecraft/class_700;
