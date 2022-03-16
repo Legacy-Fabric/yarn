@@ -3,9 +3,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: openjdk:17-jdk
-      options: --user root
     strategy:
       matrix: 
         mc_version: [
@@ -36,6 +33,10 @@ jobs:
         with:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64'
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
       - run: python ./prepare_yarn.py $MC_VERSION
       - uses: gradle/wrapper-validation-action@v1
       - run: ./gradlew publishToMavenLocal --stacktrace
