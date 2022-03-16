@@ -32,6 +32,8 @@ jobs:
         MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3.0.0
+      - run: python ./prepare_yarn.py $MC_VERSION
       - uses: gradle/wrapper-validation-action@v1
       - run: ./gradlew build javadocJar checkMappings mapNamedJar --stacktrace
       - run: ./gradlew publishToMavenLocal
