@@ -1,11 +1,9 @@
 plugins {
-	id 'fabric-loom' version "0.10-SNAPSHOT" // To use chocoloom, change the version to a commit hash
+	id 'fabric-loom' version "0.11-SNAPSHOT" // To use chocoloom, change the version to a commit hash
 	id 'maven-publish'
 }
 def ENV = System.getenv()
 def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
-def old_version = !"1.13.2 1.12.2 1.11.2 1.10.2 1.9.4 1.8.9 1.7.10".contains(minecraft_version);
-def lwjglVersion = System.getProperty("os.name").toLowerCase().contains("mac") ? "2.9.1" : "2.9.0"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -22,43 +20,16 @@ repositories {
 	}
 }
 
-// Comment out this block if you're using Chocoloom
-// Comment when using loom 0.10
-// minecraft {
-// 	intermediaryUrl = {
-// 		return "https://maven.legacyfabric.net/net/fabricmc/intermediary/" + it + "/intermediary-" + it + "-v2.jar";
-// 	}
-// }
 loom {
 // Uncomment when using loom 0.10
 	setIntermediaryUrl('https://maven.legacyfabric.net/net/fabricmc/intermediary/%1$s/intermediary-%1$s-v2.jar');
 }
 
 dependencies {
-	if (old_version) {
-		implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
-		implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
-
-		implementation "org.lwjgl.lwjgl:lwjgl_util:${lwjglVersion}"
-		implementation "org.lwjgl.lwjgl:lwjgl:${lwjglVersion}"
-		implementation "org.lwjgl.lwjgl:lwjgl-platform:${lwjglVersion}"
-	}
 
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${minecraft_version}+build.local:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-}
-
-if (old_version) {
-	configurations.all {
-		resolutionStrategy {
-			dependencySubstitution {
-				substitute module('org.lwjgl.lwjgl:lwjgl_util:2.9.1-nightly-20130708-debug3') with module("org.lwjgl.lwjgl:lwjgl_util:${lwjglVersion}")
-				substitute module('org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20130708-debug3') with module("org.lwjgl.lwjgl:lwjgl:${lwjglVersion}")
-			}
-			force "org.lwjgl.lwjgl:lwjgl-platform:${lwjglVersion}"
-		}
-	}
 }
 
 processResources {
