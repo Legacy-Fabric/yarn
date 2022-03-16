@@ -1,7 +1,8 @@
 plugins {
-	id 'fabric-loom' version "0.11-SNAPSHOT" // To use chocoloom, change the version to a commit hash
+	id 'fabric-loom' version "0.12-SNAPSHOT" // To use chocoloom, change the version to a commit hash
 	id 'maven-publish'
 }
+
 def ENV = System.getenv()
 def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
 
@@ -21,12 +22,10 @@ repositories {
 }
 
 loom {
-// Uncomment when using loom 0.10
 	setIntermediaryUrl('https://maven.legacyfabric.net/net/fabricmc/intermediary/%1$s/intermediary-%1$s-v2.jar');
 }
 
 dependencies {
-
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${minecraft_version}+build.local:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
