@@ -35,7 +35,31 @@ def remap_file(path: str, mappings: dict):
         if not class_name in mappings.keys():
             os.remove(path)
         else:
-            print(path)
+            new_lines = []
+
+            class_infos = mappings[class_name]
+            fields_infos = class_infos["fields"]
+
+            for i in lines:
+                parts = i.split(" ")
+                header = parts[0].split("	")
+
+                if len(header) > 2 or len(header) == 0:
+                    new_lines.append(i)
+                elif parts[0].endswith("FIELD") and parts[1] in fields_infos.keys():
+                    if (len(parts) == 3 and parts[2] == fields_infos[parts[1]]) or parts[3] == fields_infos[parts[1]]:
+                        new_lines.append(i)
+                elif not parts[0].endswith("FIELD"):
+                    new_lines.append(i)
+            new_str = new_lines.pop(0)
+
+            for i in new_lines:
+                new_str = new_str + "\n" + i
+            
+            with open(path, 'w') as m_write:
+                m_write.write(new_str)
+                m_write.close()
+
 
 def parse_intermediary(intermediary):
     classes = {}
