@@ -1,6 +1,6 @@
 @echo off
 SETLOCAL
-set mc_versions=1.3.2 1.4.7 1.5.1 1.5.2 1.6.4 1.7.10 1.8.9 1.9.4 1.10.2 1.11.2 1.12.2 1.13.2
+set mc_versions=1.3.2 1.4.7 13w11a 1.5.1 1.5.2 1.6.4 1.7.9 1.7.10 1.8 15w14a 1.8.9 1.9.4 1.10.2 1.11.2 1.12.2 1.13.2
 echo Available MC versions: %mc_versions%
 
 :versionselect

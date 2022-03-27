@@ -134,18 +134,18 @@ task downloadVersionsManifest {
 	group = setupGroup
 	//inputs.property "mc_ver", minecraft_version
 	inputs.property "currenttime", new Date()
-	def manifestFile = new File(cacheFilesMinecraft, "version_manifest.json")
+	def manifestFile = new File(cacheFilesMinecraft, "version_list_meta.json")
 	outputs.file(manifestFile)
 	doLast {
 		logger.lifecycle(":downloading minecraft versions manifest")
-		FileUtils.copyURLToFile(new URL("https://launchermeta.mojang.com/mc/game/version_manifest.json"), manifestFile)
+		FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/versions/game"), manifestFile)
 	}
 }
 
 def getManifestVersion(File manifestFile, String minecraft_version) {
 	def manifest = manifestFile.exists() ? new JsonSlurper().parseText(FileUtils.readFileToString(manifestFile)) : null
-	return manifest != null ? manifest.versions.stream().filter({
-		it.id.equals(minecraft_version)
+	return manifest != null ? manifest.stream().filter({
+		it.version.equals(minecraft_version)
 	}).findFirst() : java.util.Optional.empty()
 }
 
@@ -165,7 +165,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 		if (manifestVersion.isPresent() || versionFile.exists()) {
 
 			if (manifestVersion.isPresent()) {
-				FileUtils.copyURLToFile(new URL(manifestVersion.get().url), versionFile)
+				FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/manifest/${manifestVersion.get().version}"), versionFile)
 			}
 		} else {
 			throw new RuntimeException("No version data for Minecraft version ${minecraft_version}")
