@@ -1,0 +1,90 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Publish Version
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: choice
+        description: Which version to publish
+        options:
+        - '1.5'
+        - '13w11a'
+        - '1.5.1'
+        - '2point0_blue'
+        - '2point0_purple'
+        - '2point0_red'
+        - '1.7'
+        - '1.7.1'
+        - '1.7.2'
+        - '13w47a'
+        - '13w47b'
+        - '13w47c'
+        - '13w47d'
+        - '13w47e'
+        - '13w48a'
+        - '13w48b'
+        - '13w49a'
+        - '1.7.3'
+        - '1.7.4'
+        - '1.7.5'
+        - '1.7.6-pre1'
+        - '1.7.6-pre2'
+        - '1.7.6'
+        - '1.7.7'
+        - '1.7.8'
+        - '1.7.10-pre1'
+        - '1.7.10-pre2'
+        - '1.7.10-pre3'
+        - '1.7.10-pre4'
+        - '1.7.10'
+        - '1.8.1-pre1'
+        - '1.8.1-pre2'
+        - '1.8.1-pre3'
+        - '1.8.1-pre4'
+        - '1.8.1-pre5'
+        - '1.8.1'
+        - '1.8.2-pre1'
+        - '1.8.2-pre2'
+        - '1.8.2-pre3'
+        - '1.8.2-pre4'
+        - '1.8.2-pre5'
+        - '1.8.2-pre6'
+        - '1.8.2-pre7'
+        - '1.8.2'
+        - '1.8.3'
+        - '15w14a'
+        - '1.8.4'
+        - '1.8.5'
+        - '1.8.6'
+        - '1.8.7'
+        - '1.8.8'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  publish:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env: 
+        MC_VERSION: ${{ github.event.inputs.version }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3.0.0
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64'
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - run: python ./prepare_yarn.py $MC_VERSION
+      - uses: gradle/wrapper-validation-action@v1
+      - run: ./gradlew publish --stacktrace
+        env:
+          MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
