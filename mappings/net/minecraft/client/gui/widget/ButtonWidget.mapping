@@ -1,5 +1,4 @@
 CLASS net/minecraft/class_356 net/minecraft/client/gui/widget/ButtonWidget
-	FIELD field_6282 WIDGETS_LOCATION Lnet/minecraft/class_1653;
 	FIELD field_1049 width I
 	FIELD field_1050 height I
 	FIELD field_1051 x I
@@ -9,6 +8,7 @@ CLASS net/minecraft/class_356 net/minecraft/client/gui/widget/ButtonWidget
 	FIELD field_1055 active Z
 	FIELD field_1056 visible Z
 	FIELD field_5056 hovered Z
+	FIELD field_6282 WIDGETS_LOCATION Lnet/minecraft/class_1653;
 	METHOD <init> (IIIIILjava/lang/String;)V
 		ARG 1 id
 		ARG 2 x
@@ -22,8 +22,12 @@ CLASS net/minecraft/class_356 net/minecraft/client/gui/widget/ButtonWidget
 		ARG 3 y
 		ARG 4 message
 	METHOD method_4229 isHovered ()Z
-	METHOD method_9443 setWidth (I)V
-		ARG 1 width
+	METHOD method_4230 renderToolTip (II)V
+		ARG 1 mouseX
+		ARG 2 mouseY
+	METHOD method_6687 playDownSound (Lnet/minecraft/class_1909;)V
+		ARG 1 soundManager
+	METHOD method_6688 getWidth ()I
 	METHOD method_890 mouseReleased (II)V
 		ARG 1 mouseX
 		ARG 2 mouseY
@@ -31,14 +35,10 @@ CLASS net/minecraft/class_356 net/minecraft/client/gui/widget/ButtonWidget
 		ARG 1 client
 		ARG 2 mouseX
 		ARG 3 mouseY
-	METHOD method_6687 playDownSound (Lnet/minecraft/class_1909;)V
-		ARG 1 soundManager
+	METHOD method_891 (Lnet/minecraft/client/Minecraft;II)V
+		ARG 1 minecraft
 	METHOD method_892 getYImage (Z)I
 		ARG 1 isHovered
-	METHOD method_6688 getWidth ()I
-	METHOD method_4230 renderToolTip (II)V
-		ARG 1 mouseX
-		ARG 2 mouseY
 	METHOD method_893 renderBg (Lnet/minecraft/class_1600;II)V
 		ARG 1 client
 		ARG 2 mouseX
@@ -47,3 +47,5 @@ CLASS net/minecraft/class_356 net/minecraft/client/gui/widget/ButtonWidget
 		ARG 1 client
 		ARG 2 mouseX
 		ARG 3 mouseY
+	METHOD method_9443 setWidth (I)V
+		ARG 1 width
