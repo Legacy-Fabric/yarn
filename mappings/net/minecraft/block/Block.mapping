@@ -3,6 +3,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	COMMENT All blocks extend the Block class.
 	COMMENT The Block class also registers all the blocks.
 	FIELD field_12573 blockSoundGroup Lnet/minecraft/class_200;
+	FIELD field_22993 ETHO_SLAB Lnet/minecraft/class_143;
+	FIELD field_22994 TORCH_OFF Lnet/minecraft/class_197;
+	FIELD field_22995 COAL_BLOCK_APRIL Lnet/minecraft/class_197;
+	FIELD field_22996 TINTED_GLASS Lnet/minecraft/class_197;
+	FIELD field_22997 DOUBLE_ETHO_SLAB Lnet/minecraft/class_143;
+	FIELD field_335 WATER Lnet/minecraft/class_197;
+	FIELD field_337 LAVA Lnet/minecraft/class_197;
 	FIELD field_338 SAND_BLOCK Lnet/minecraft/class_197;
 	FIELD field_339 GRAVEL_BLOCK Lnet/minecraft/class_197;
 	FIELD field_340 GOLD_ORE Lnet/minecraft/class_197;
@@ -149,6 +156,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Stores the Maximum value on the Z axis for the voxel shape
 	FIELD field_479 sound Lnet/minecraft/class_197$class_200;
 		COMMENT Stores the current block's sound type
+	FIELD field_479 soundGroup Lnet/minecraft/class_200;
 	FIELD field_480 particleGravity F
 		COMMENT Stores the current block's particles' gravity
 	FIELD field_481 material Lnet/minecraft/class_63;
@@ -181,8 +189,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_503 PLANKS Lnet/minecraft/class_197;
 	FIELD field_504 SAPLING Lnet/minecraft/class_197;
 	FIELD field_505 BEDROCK Lnet/minecraft/class_197;
-	FIELD field_5611 WATER Lnet/minecraft/class_153;
-	FIELD field_5612 LAVA Lnet/minecraft/class_153;
+	FIELD field_5611 FLOWING_WATER Lnet/minecraft/class_153;
+	FIELD field_5612 FLOWING_LAVA Lnet/minecraft/class_153;
 	FIELD field_5613 STICKY_PISTON Lnet/minecraft/class_227;
 	FIELD field_5614 PISTON Lnet/minecraft/class_227;
 	FIELD field_5615 CHEST Lnet/minecraft/class_118;
@@ -513,6 +521,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The Current block
 		ARG 1 key
 			COMMENT The Translation key
+	METHOD method_434 (Lnet/minecraft/class_1150;III)Z
+		ARG 1 world
 	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
 		COMMENT Runs when an event takes place
 		COMMENT @return Whether the event is successful
@@ -526,6 +536,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT Id
 		ARG 5 meta
 			COMMENT Metadata
+	METHOD method_436 (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+		ARG 1 world
 	METHOD method_437 onSteppedOn (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
 		COMMENT Runs every time an entity steps on the Block.
 		COMMENT Used by redstone ore to change it's state.
@@ -575,6 +587,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
 	METHOD method_470 getColor ()I
+	METHOD method_471 (Lnet/minecraft/class_1150;III)F
+		ARG 1 world
 	METHOD method_474 setUnbreakable ()Lnet/minecraft/class_197;
 		COMMENT Sets the current block as unbreakable. Used in registering blocks.
 		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
