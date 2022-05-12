@@ -328,6 +328,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 direction
+	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
+		ARG 0 identifier
+		ARG 1 block
 	METHOD method_392 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
@@ -724,6 +727,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's name
 		ARG 2 block
 			COMMENT The block object
+	METHOD method_8636 register (Ljava/lang/String;Lnet/minecraft/class_197;)V
+		ARG 0 identifier
+		ARG 1 block
 	METHOD method_8637 register (ILnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		COMMENT Registers a block to the registry
 		ARG 0 id
@@ -1120,3 +1126,32 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
 		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
 		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
+	CLASS class_3692 BlockBuilder
+		FIELD field_17754 material Lnet/minecraft/class_63;
+		FIELD field_17755 materialColor Lnet/minecraft/class_65;
+		FIELD field_17757 blockSoundGroup Lnet/minecraft/class_200;
+		FIELD field_17758 lightLevel I
+		FIELD field_17759 resistance F
+		FIELD field_17760 strength F
+		FIELD field_17761 randomTicks Z
+		METHOD <init> (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)V
+			ARG 1 material
+			ARG 2 materialColor
+		METHOD method_16607 setStrengthAndResistance (FF)Lnet/minecraft/class_197$class_3692;
+			ARG 1 strength
+			ARG 2 resistance
+		METHOD method_16608 setLightLevel (I)Lnet/minecraft/class_197$class_3692;
+			ARG 1 lightLevel
+		METHOD method_16610 fromBlock (Lnet/minecraft/class_197;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 block
+		METHOD method_16611 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197$class_3692;
+			ARG 1 blockSoundGroup
+		METHOD method_16612 setMaterial (Lnet/minecraft/class_63;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 material
+		METHOD method_16613 setMaterialAndDyeColor (Lnet/minecraft/class_63;Lnet/minecraft/class_2674;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 material
+			ARG 1 dyeColor
+		METHOD method_16614 setMaterialAndColor (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)Lnet/minecraft/class_197$class_3692;
+		METHOD method_16615 setNoDurability ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16616 setDurability (F)Lnet/minecraft/class_197$class_3692;
+			ARG 1 durability
