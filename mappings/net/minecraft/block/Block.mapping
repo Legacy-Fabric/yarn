@@ -293,7 +293,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11556 withRotation (Lnet/minecraft/class_2232;Lnet/minecraft/class_2734;)Lnet/minecraft/class_2232;
 		ARG 1 blockState
 		ARG 2 rotation
-	METHOD method_11560 (Lnet/minecraft/class_2232;)Z
+	METHOD method_11560 isFullBoundsCubeForCulling (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11561 getStrength (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
 	METHOD method_11562 (Lnet/minecraft/class_2232;)Z
@@ -355,6 +355,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_16576 appendProperties (Lnet/minecraft/class_2233$class_3757;)V
 	METHOD method_16577 isShapeFullCube (Lnet/minecraft/class_4100;)Z
 		ARG 0 voxelShape
+	METHOD method_16578 isFaceFullSquare (Lnet/minecraft/class_4100;Lnet/minecraft/class_1354;)Z
+		ARG 0 voxelShape
+		ARG 1 direction
 	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		ARG 0 identifier
 		ARG 1 block
@@ -368,7 +371,24 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 blockPos
 	METHOD method_16591 isAir (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
+	METHOD method_16593 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 blockState
+		ARG 2 blockView
+		ARG 3 blockPos
 	METHOD method_16594 getFluidState (Lnet/minecraft/class_2232;)Lnet/minecraft/class_4024;
+	METHOD method_16595 getRayTraceShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 blockState
+		ARG 2 blockView
+		ARG 3 blockPos
+	METHOD method_16596 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 blockState
+		ARG 2 blockView
+		ARG 3 blockPos
+	METHOD method_16597 getLightSubtracted (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 blockState
+		ARG 2 blockView
+		ARG 3 blockPos
+	METHOD method_16598 getBlaseResistance ()F
 	METHOD method_16601 getRawIdFromState (Lnet/minecraft/class_2232;)I
 		ARG 0 blockState
 	METHOD method_16602 getOffsetPos (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_236;
@@ -806,6 +826,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 state
 			COMMENT The block's BlockState
 	METHOD method_8640 getCollisionShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 blockState
+		ARG 2 blockview
+		ARG 3 blockPos
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
