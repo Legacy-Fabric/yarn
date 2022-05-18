@@ -3,6 +3,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	COMMENT All blocks extend the Block class.
 	COMMENT The Block class also registers all the blocks.
 	FIELD field_12573 blockSoundGroup Lnet/minecraft/class_200;
+	FIELD field_17745 FACINGS [Lnet/minecraft/class_1354;
+	FIELD field_17746 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_17747 collidable Z
+	FIELD field_17749 FACE_CULL_MAP Ljava/lang/ThreadLocal;
 	FIELD field_22993 ETHO_SLAB Lnet/minecraft/class_143;
 	FIELD field_22994 TORCH_OFF Lnet/minecraft/class_197;
 	FIELD field_22995 COAL_BLOCK_APRIL Lnet/minecraft/class_197;
@@ -132,7 +136,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_464 MYCELIUM Lnet/minecraft/class_162;
 	FIELD field_465 LILY_PAD Lnet/minecraft/class_197;
 	FIELD field_466 id I
-	FIELD field_467 strength F
+	FIELD field_467 hardness F
 		COMMENT Stores the current block's hardness
 	FIELD field_468 resistance F
 		COMMENT Stores the current block's resistance
@@ -332,9 +336,29 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 pos
 		ARG 4 direction
 	METHOD method_16561 createCuboidShape (DDDDDD)Lnet/minecraft/class_4100;
+	METHOD method_16562 getStateByRawId (I)Lnet/minecraft/class_2232;
+		ARG 0 rawId
+	METHOD method_16567 canReplace (Lnet/minecraft/class_2232;Lnet/minecraft/class_3544;)Z
+		ARG 1 blockState
+		ARG 2 itemPlacementContext
+	METHOD method_16571 pushEntitiesUpBeforeBlockChange (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 0 blockState
+		ARG 1 blockState2
+		ARG 2 world
+		ARG 3 blockPos
+	METHOD method_16576 appendProperties (Lnet/minecraft/class_2233$class_3757;)V
+	METHOD method_16577 isShapeFullCube (Lnet/minecraft/class_4100;)Z
 	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		ARG 0 identifier
 		ARG 1 block
+	METHOD method_16589 getHardness (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)F
+		ARG 1 blockState
+		ARG 2 worldView
+		ARG 3 blockPos
+	METHOD method_16601 getRawIdFromState (Lnet/minecraft/class_2232;)I
+		ARG 0 blockState
+	METHOD method_16604 hasRandomTicks (Lnet/minecraft/class_2232;)Z
+		ARG 1 blockState
 	METHOD method_392 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
@@ -762,6 +786,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 state
 			COMMENT The block's BlockState
+	METHOD method_8640 getCollisionShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
@@ -971,6 +996,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_8663 blocksMovement (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
 		ARG 1 view
 		ARG 2 pos
+	METHOD method_8663 canPlaceAtSide (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_4064;)Z
+		ARG 1 blockState
+		ARG 2 worldView
+		ARG 3 blockPos
+		ARG 4 blockPlacementEnvironment
 	METHOD method_8664 getStrongRedstonePower (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)I
 		COMMENT Returns the block's strong redstone power.
 		COMMENT @return The Block's strong redstone power
@@ -1130,6 +1160,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
 		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
 		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
+	CLASS class_3691 NeighborGroup
 	CLASS class_3692 Builder
 		FIELD field_17754 material Lnet/minecraft/class_63;
 		FIELD field_17755 materialColor Lnet/minecraft/class_65;

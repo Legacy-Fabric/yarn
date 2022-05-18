@@ -5,6 +5,14 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	COMMENT @see net.minecraft.item.Items
 	FIELD field_12183 BLOCK_ITEMS Ljava/util/Map;
 		COMMENT A map containing all BlockItems, with their corresponding Block and Item variants
+	FIELD field_12299 GETTER_DAMAGED Lnet/minecraft/class_2688;
+	FIELD field_12300 GETTER_DAMAGE Lnet/minecraft/class_2688;
+	FIELD field_12301 GETTER_HAND Lnet/minecraft/class_2688;
+	FIELD field_12302 GETTER_COOLDOWN Lnet/minecraft/class_2688;
+	FIELD field_12304 ATTACK_SPEED_MODIFIER Ljava/util/UUID;
+	FIELD field_17190 PROPERTIES Ljava/util/Map;
+	FIELD field_17191 itemGroup Lnet/minecraft/class_1041;
+	FIELD field_17192 itemCategory Lnet/minecraft/class_1081;
 	FIELD field_4209 DIAMOND_SHOVEL Lnet/minecraft/class_1069;
 	FIELD field_4210 DIAMOND_PICKAXE Lnet/minecraft/class_1069;
 	FIELD field_4211 DIAMOND_AXE Lnet/minecraft/class_1069;
@@ -203,6 +211,8 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		COMMENT Sets the max stack size of an Item to 64
 	METHOD <init> (I)V
 		ARG 1 id
+	METHOD <init> (Lnet/minecraft/class_1069$class_3555;)V
+		ARG 1 settings
 	METHOD method_11284 register (ILjava/lang/String;Lnet/minecraft/class_1069;)V
 		COMMENT Overloaded method that registers an Item to the registry
 		ARG 0 id
@@ -232,8 +242,12 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		COMMENT Overloaded method that registers a BlockItem to the registry
 		ARG 0 block
 			COMMENT The block
-	METHOD method_11375 (Lnet/minecraft/class_1653;Lnet/minecraft/class_2688;)V
+	METHOD method_11374 getProperty (Lnet/minecraft/class_1653;)Lnet/minecraft/class_2688;
+		ARG 1 identitifier
+	METHOD method_11375 addProperty (Lnet/minecraft/class_1653;Lnet/minecraft/class_2688;)V
 		ARG 1 identifier
+		ARG 2 itemPropertyGetter
+	METHOD method_11376 hasProperties ()Z
 	METHOD method_13649 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Lnet/minecraft/class_2963;
 		ARG 1 world
 		ARG 2 player
@@ -250,6 +264,28 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 3 tooltip
 	METHOD method_16070 register (Lnet/minecraft/class_1096;)V
 	METHOD method_16072 register (Lnet/minecraft/class_197;Lnet/minecraft/class_1041;)V
+	METHOD method_16073 beforeBlockBreak (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)Z
+		ARG 1 blockState
+		ARG 2 world
+		ARG 3 blockPos
+		ARG 4 playerEntity
+	METHOD method_16076 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16077 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16078 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16079 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16081 computeTranslationKey ()Ljava/lang/String;
 	METHOD method_3342 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the translation key of the current Item
 		COMMENT @return Translation key
@@ -607,3 +643,21 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		METHOD method_6370 getRepairIngredient ()Lnet/minecraft/class_1069;
 			COMMENT Returns the repair ingredient of the tool material. Currently, this is hardcoded.
 			COMMENT @return Repair Ingredient
+	CLASS class_3555 Settings
+		FIELD field_17194 maxStackSize I
+		FIELD field_17195 maxDamage I
+		FIELD field_17196 recipeRemainder Lnet/minecraft/class_1069;
+		FIELD field_17197 group Lnet/minecraft/class_1041;
+		FIELD field_17198 rarity Lnet/minecraft/class_1081;
+		METHOD method_16082 setMaxStackSize (I)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 maxStackSize
+		METHOD method_16083 setGroup (Lnet/minecraft/class_1041;)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 group
+		METHOD method_16086 setRecipeRemainder (Lnet/minecraft/class_1069;)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 recipeRemainder
+		METHOD method_16087 setRarity (Lnet/minecraft/class_1081;)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 rarity
+		METHOD method_16088 setMaxDamageIfAbsent (I)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 maxDamage
+		METHOD method_16090 setMaxDamage (I)Lnet/minecraft/class_1069$class_3555;
+			ARG 1 maxDamage
