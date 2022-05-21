@@ -3,6 +3,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	COMMENT All blocks extend the Block class.
 	COMMENT The Block class also registers all the blocks.
 	FIELD field_12573 blockSoundGroup Lnet/minecraft/class_200;
+	FIELD field_17745 FACINGS [Lnet/minecraft/class_1354;
+	FIELD field_17746 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_17747 collidable Z
+	FIELD field_17748 dynamicBounds Z
+	FIELD field_17749 FACE_CULL_MAP Ljava/lang/ThreadLocal;
 	FIELD field_22993 ETHO_SLAB Lnet/minecraft/class_143;
 	FIELD field_22994 TORCH_OFF Lnet/minecraft/class_197;
 	FIELD field_22995 COAL_BLOCK_APRIL Lnet/minecraft/class_197;
@@ -132,9 +137,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_464 MYCELIUM Lnet/minecraft/class_162;
 	FIELD field_465 LILY_PAD Lnet/minecraft/class_197;
 	FIELD field_466 id I
-	FIELD field_467 strength F
+	FIELD field_467 hardness F
 		COMMENT Stores the current block's hardness
-	FIELD field_468 resistance F
+	FIELD field_468 blastResistance F
 		COMMENT Stores the current block's resistance
 	FIELD field_470 stats Z
 		COMMENT Specifies whether the current block is tracked for stats
@@ -273,57 +278,62 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 color
 			COMMENT The block's material color
 	METHOD method_11552 getBlockRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11554 getBoundingBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_11554 getOutlineShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_11555 withMirror (Lnet/minecraft/class_2232;Lnet/minecraft/class_2727;)Lnet/minecraft/class_2232;
-		ARG 1 blockState
+		ARG 1 state
 		ARG 2 mirror
 	METHOD method_11556 withRotation (Lnet/minecraft/class_2232;Lnet/minecraft/class_2734;)Lnet/minecraft/class_2232;
-		ARG 1 blockState
+		ARG 1 state
 		ARG 2 rotation
-	METHOD method_11560 (Lnet/minecraft/class_2232;)Z
+	METHOD method_11560 isFullBoundsCubeForCulling (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11561 getStrength (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
 	METHOD method_11562 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11564 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_11565 (Lnet/minecraft/class_2232;)F
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11566 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11567 getPistonBehavior (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11568 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11569 isFullBlock (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11570 getOpacity (Lnet/minecraft/class_2232;)I
 		ARG 1 blockState
 	METHOD method_11571 isTransluscent (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
-	METHOD method_11572 getLightLevel (Lnet/minecraft/class_2232;)I
-		ARG 1 blockState
+	METHOD method_11572 getLuminance (Lnet/minecraft/class_2232;)I
+		ARG 1 state
 	METHOD method_11573 useNeighbourLight (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11574 getMaterial (Lnet/minecraft/class_2232;)Lnet/minecraft/class_63;
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11575 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11576 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11577 (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11578 getSoundGroup ()Lnet/minecraft/class_200;
+	METHOD method_13703 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
 	METHOD method_13704 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
-	METHOD method_14305 (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
+	METHOD method_14305 addStacksForDisplay (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
 		ARG 1 group
 		ARG 2 stacks
 	METHOD method_14307 (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
@@ -332,9 +342,66 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 pos
 		ARG 4 direction
 	METHOD method_16561 createCuboidShape (DDDDDD)Lnet/minecraft/class_4100;
+	METHOD method_16562 getStateByRawId (I)Lnet/minecraft/class_2232;
+		ARG 0 rawId
+	METHOD method_16567 canReplace (Lnet/minecraft/class_2232;Lnet/minecraft/class_3544;)Z
+		ARG 1 state
+		ARG 2 itemPlacementContext
+	METHOD method_16571 pushEntitiesUpBeforeBlockChange (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 0 state
+		ARG 1 state2
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16574 getRenderingSeed (Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;)J
+		ARG 1 state
+		ARG 2 pos
+	METHOD method_16576 appendProperties (Lnet/minecraft/class_2233$class_3757;)V
+	METHOD method_16577 isShapeFullCube (Lnet/minecraft/class_4100;)Z
+		ARG 0 shape
+	METHOD method_16578 isFaceFullSquare (Lnet/minecraft/class_4100;Lnet/minecraft/class_1354;)Z
+		ARG 0 voxelShape
+		ARG 1 direction
 	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		ARG 0 identifier
 		ARG 1 block
+	METHOD method_16581 isTranslucent (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16589 getHardness (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)F
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16591 isAir (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_16593 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16594 getFluidState (Lnet/minecraft/class_2232;)Lnet/minecraft/class_4024;
+		ARG 1 state
+	METHOD method_16595 getRayTraceShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16596 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16597 getLightSubtracted (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16598 getBlastResistance ()F
+	METHOD method_16601 getRawIdFromState (Lnet/minecraft/class_2232;)I
+		ARG 0 state
+	METHOD method_16602 getOffsetPos (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_236;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16603 getSlipperiness ()F
+	METHOD method_16604 hasRandomTicks (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
 	METHOD method_392 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the block's translation key
 		COMMENT @return Translation Key
@@ -558,7 +625,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns the current block's color
 		COMMENT @return Block color
 		ARG 1 view
-			COMMENT WorldView instance
+			COMMENT BlockView instance
 		ARG 2 pos
 			COMMENT The block's position
 		ARG 3 id
@@ -762,6 +829,14 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 state
 			COMMENT The block's BlockState
+	METHOD method_8640 getPickStack (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+	METHOD method_8640 getCollisionShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
@@ -883,7 +958,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns the block's weak redstone power.
 		COMMENT @return Block's weak redstone power
 		ARG 1 view
-			COMMENT WorldView instance
+			COMMENT BlockView instance
 		ARG 2 pos
 			COMMENT The block's position
 		ARG 3 state
@@ -894,7 +969,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns whether the current block has connected sides, i.e its side faces are invisible when covered by other blocks. Used by glass to prevent the white dots from appearing everywhere through adjacent glass blocks.
 		COMMENT @return Whether the current block has connected sides
 		ARG 1 view
-			COMMENT WorldView instance
+			COMMENT BlockView instance
 		ARG 2 pos
 			COMMENT The current block's position
 		ARG 3 facing
@@ -915,7 +990,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 state
 			COMMENT The original blockstate
 		ARG 2 view
-			COMMENT WorldView instance
+			COMMENT BlockView instance
 		ARG 3 pos
 			COMMENT The block's position
 	METHOD method_8657 getSelectionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
@@ -971,11 +1046,16 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_8663 blocksMovement (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
 		ARG 1 view
 		ARG 2 pos
+	METHOD method_8663 canPlaceAtSide (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_4064;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 blockPlacementEnvironment
 	METHOD method_8664 getStrongRedstonePower (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)I
 		COMMENT Returns the block's strong redstone power.
 		COMMENT @return The Block's strong redstone power
 		ARG 1 view
-			COMMENT WorldView instance
+			COMMENT BlockView instance
 		ARG 2 pos
 			COMMENT The block's position
 		ARG 3 state
@@ -983,7 +1063,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 4 facing
 			COMMENT The block's direction
 	METHOD method_8665 hasCollision (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
-		ARG 1 worldView
+		ARG 1 blockView
 		ARG 2 pos
 		ARG 3 direction
 	METHOD method_8667 getPickItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_1069;
@@ -1011,7 +1091,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 4 rand
 			COMMENT Random object
 	METHOD method_8670 getBrightness (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
-		ARG 1 worldView
+		ARG 1 blockView
 		ARG 2 pos
 	METHOD method_8671 getData (Lnet/minecraft/class_2232;)I
 		COMMENT Returns the data value for a blockstate
@@ -1101,9 +1181,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_8686 getComparatorOutput (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
-		ARG 1 blockState
+		ARG 1 state
 		ARG 2 world
-		ARG 3 blockPos
+		ARG 3 pos
 	METHOD method_8687 getRenderLayerType ()Lnet/minecraft/class_2165;
 		COMMENT Returns the appropriate RenderLayer for a block.
 		COMMENT Only called on the client.
@@ -1130,20 +1210,34 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
 		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
 		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
+	CLASS class_3691 NeighborGroup
+		FIELD field_17751 self Lnet/minecraft/class_2232;
+		FIELD field_17752 other Lnet/minecraft/class_2232;
+		FIELD field_17753 facing Lnet/minecraft/class_1354;
+		METHOD <init> (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)V
+			ARG 1 blockState
+			ARG 2 blockState2
+			ARG 3 direction
 	CLASS class_3692 Builder
 		FIELD field_17754 material Lnet/minecraft/class_63;
 		FIELD field_17755 materialColor Lnet/minecraft/class_65;
+		FIELD field_17756 collidable Z
 		FIELD field_17757 blockSoundGroup Lnet/minecraft/class_200;
 		FIELD field_17758 lightLevel I
-		FIELD field_17759 resistance F
+		FIELD field_17759 blastResistance F
 		FIELD field_17760 strength F
 		FIELD field_17761 randomTicks Z
+		FIELD field_17762 slipperiness F
+		FIELD field_17763 dynamicBounds Z
 		METHOD <init> (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)V
 			ARG 1 material
 			ARG 2 materialColor
+		METHOD method_16605 setNotCollidable ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16606 setSlipperiness (F)Lnet/minecraft/class_197$class_3692;
+			ARG 1 slipperiness
 		METHOD method_16607 setStrengthAndResistance (FF)Lnet/minecraft/class_197$class_3692;
 			ARG 1 strength
-			ARG 2 resistance
+			ARG 2 blastResistance
 		METHOD method_16608 setLightLevel (I)Lnet/minecraft/class_197$class_3692;
 			ARG 1 lightLevel
 		METHOD method_16610 fromBlock (Lnet/minecraft/class_197;)Lnet/minecraft/class_197$class_3692;
@@ -1161,3 +1255,5 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		METHOD method_16615 setNoDurability ()Lnet/minecraft/class_197$class_3692;
 		METHOD method_16616 setDurability (F)Lnet/minecraft/class_197$class_3692;
 			ARG 1 durability
+		METHOD method_16618 setRandomTicks ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16620 setHasDynamicBounds ()Lnet/minecraft/class_197$class_3692;
