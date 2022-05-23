@@ -139,7 +139,7 @@ task downloadVersionsManifest {
 	outputs.file(manifestFile)
 	doLast {
 		logger.lifecycle(":downloading minecraft versions manifest")
-		FileUtils.copyURLToFile(new URL(metaURL + "/v2/versions/game"), manifestFile)
+		FileUtils.copyURLToFile(new URL("$metaURL/v2/versions/game"), manifestFile)
 	}
 }
 
@@ -166,7 +166,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 		if (manifestVersion.isPresent() || versionFile.exists()) {
 
 			if (manifestVersion.isPresent()) {
-				FileUtils.copyURLToFile(new URL(metaURL + "/v2/manifest/${manifestVersion.get().version}"), versionFile)
+				FileUtils.copyURLToFile(new URL("$metaURL/v2/manifest/${manifestVersion.get().version}"), versionFile)
 			}
 		} else {
 			throw new RuntimeException("No version data for Minecraft version ${minecraft_version}")
