@@ -516,6 +516,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 group
 			COMMENT The itemgroup that the block must be added to
+	METHOD method_408 getBlockData (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
+	METHOD method_410 randomDropAsItem (Lnet/minecraft/class_1150;IIIIFI)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_410 randomDropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;FI)V
 		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
 		ARG 1 world
@@ -528,6 +534,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The chance (luck factor)
 		ARG 5 id
 			COMMENT Id
+	METHOD method_411 (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;I)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 block
 	METHOD method_414 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
 		ARG 1 world
 		ARG 2 pos
@@ -608,6 +620,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_424 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
 		ARG 1 world
 		ARG 2 playerEntity
+	METHOD method_426 (Lnet/minecraft/class_1158;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_429 getBlockType ()I
 	METHOD method_430 setResistance (F)Lnet/minecraft/class_197;
 		COMMENT Sets the block's resistance. Used in registering blocks.
@@ -647,6 +664,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 entity
 			COMMENT The entity who stepped on the block
+	METHOD method_438 getColor (Lnet/minecraft/class_1158;III)I
 	METHOD method_438 getBlockColor (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;I)I
 		COMMENT Returns the current block's color
 		COMMENT @return Block color
@@ -671,12 +689,24 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's strength
 	METHOD method_443 (Lnet/minecraft/class_236;)Z
 		ARG 1 vec
+	METHOD method_448 createStackFromBlock (I)Lnet/minecraft/class_1071;
+		ARG 1 blockData
 	METHOD method_449 hasTransperancy ()Z
 	METHOD method_453 getPistonInteractionType ()I
 		COMMENT Returns the block's piston interaction type, as provided by it's material.
 		COMMENT @return Current block's piston interaction type
+	METHOD method_454 getCollisionBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_456 setBlockItemBounds ()V
 		COMMENT Sets the bounds for the BlockItem
+	METHOD method_460 breakBlock (Lnet/minecraft/class_1150;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_466 emitsRedstonePower ()Z
 		COMMENT Returns whether the current block emits a redstone signal.
 		COMMENT Used by comparators, Redstone Blocks, etc.
@@ -707,9 +737,16 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return Tick rate
 		ARG 1 world
 			COMMENT The world that the block is placed in
+	METHOD method_4791 (Lnet/minecraft/class_1558;)V
+		ARG 1 registry
 	METHOD method_4792 isEqual (II)Z
 		ARG 0 id1
 		ARG 1 id2
+	METHOD method_4793 getComparatorOutput (Lnet/minecraft/class_1150;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_4795 is (I)Z
 		ARG 1 id
 	METHOD method_4797 hasComparatorOutput ()Z
@@ -729,6 +766,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns the block's ItemGroup.
 		COMMENT Only called on the client.
 		COMMENT @return The Block's item group
+	METHOD method_5545 getTextureName ()Ljava/lang/String;
 	METHOD method_6440 getAmbientOcclusionLightLevel ()F
 		COMMENT Returns the block's ambient occlusion light level on the basis of whether it is a normal block.
 		COMMENT Only called on the client.

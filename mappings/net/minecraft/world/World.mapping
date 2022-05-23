@@ -102,10 +102,12 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 y
 		ARG 3 z
 		ARG 4 blockEntity
-	METHOD method_3604 (IIIZ)I
+	METHOD method_3604 computeLightOfBlock (IIIZ)I
+		COMMENT set isFullBlock to false for slabs
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 4 isFullBlock
 	METHOD method_3605 (IILnet/minecraft/class_1196;)V
 		ARG 3 chunk
 	METHOD method_3607 queueBlockEntity (Lnet/minecraft/class_226;)V
@@ -317,7 +319,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3694 setDefaultSpawnClient ()V
 	METHOD method_3695 getCloudColor (F)Lnet/minecraft/class_236;
 		ARG 1 tickDelta
-	METHOD method_3696 (II)I
+	METHOD method_3696 getHighestBlockY (II)I
 		ARG 1 x
 		ARG 2 z
 	METHOD method_3697 (IIII)V
@@ -349,6 +351,10 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_3710 notifyOfNeightborChange (IIILnet/minecraft/class_197;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_3711 loadEntity (Lnet/minecraft/class_864;)V
 		ARG 1 entity
 	METHOD method_3712 getChunkCache ()Lnet/minecraft/class_1193;
@@ -366,12 +372,16 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_3720 (III)I
+	METHOD method_3720 getLightOfBlock (III)I
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD method_3722 tickWeather ()V
 	METHOD method_3723 (IIII)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_3723 updateNeighbors (IIILnet/minecraft/class_197;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -416,7 +426,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 3 z
 	METHOD method_4689 (ILnet/minecraft/class_2552;I)V
 		ARG 2 pos
-	METHOD method_4690 (II)I
+	METHOD method_4690 minimumHeightMap (II)I
 		ARG 1 x
 		ARG 2 z
 	METHOD method_4691 (III)Z
