@@ -1,6 +1,7 @@
 import sys
 import os
 
+
 HELP_STR = """Syntax:
     python ./start.py action mcVersion metaUrl
 Example:
@@ -27,7 +28,10 @@ def main():
         os.environ['LEGACY_FABRIC_META_URL'] = args[3]
     if action == 'yarn':
         os.environ['MC_VERSION'] = version
-        os.system('gradlew.bat yarn')
+        if os.name == 'nt':
+            os.system('gradlew.bat yarn')
+        else:
+            os.system('gradlew yarn')
     elif action == 'publishlocal':
         os.system('python ./prepare_yarn.py ' + version)
         os.system('gradlew publishToMavenLocal --stacktrace')
