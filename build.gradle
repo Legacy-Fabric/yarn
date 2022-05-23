@@ -32,6 +32,7 @@ def taskName = project.gradle.startParameter.taskNames[0]
 def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
 def build_number = ENV.GITHUB_ACTIONS && taskName != "publishToMavenLocal" ? buildTime() : "local"
 def yarnVersion = "${minecraft_version}+build.${build_number}"
+def metaURL = ENV.LEGACY_FABRIC_META_URL ? ENV.LEGACY_FABRIC_META_URL : "https://meta.legacyfabric.net"
 
 System.out.println("Preparing yarn ${yarnVersion}")
 
@@ -138,7 +139,7 @@ task downloadVersionsManifest {
 	outputs.file(manifestFile)
 	doLast {
 		logger.lifecycle(":downloading minecraft versions manifest")
-		FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/versions/game"), manifestFile)
+		FileUtils.copyURLToFile(new URL(metaURL + "/v2/versions/game"), manifestFile)
 	}
 }
 
@@ -165,7 +166,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 		if (manifestVersion.isPresent() || versionFile.exists()) {
 
 			if (manifestVersion.isPresent()) {
-				FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/manifest/${manifestVersion.get().version}"), versionFile)
+				FileUtils.copyURLToFile(new URL(metaURL + "/v2/manifest/${manifestVersion.get().version}"), versionFile)
 			}
 		} else {
 			throw new RuntimeException("No version data for Minecraft version ${minecraft_version}")
