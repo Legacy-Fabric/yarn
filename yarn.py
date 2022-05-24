@@ -58,8 +58,8 @@ def main():
         if len(args) == 4:
             os.environ['LEGACY_FABRIC_META_URL'] = args[3]
 
+    os.environ['MC_VERSION'] = version
     if action == 'edit':
-        os.environ['MC_VERSION'] = version
         os.system('gradlew yarn')
     elif action == 'publish':
         os.system('python ./prepare_yarn.py ' + version)
