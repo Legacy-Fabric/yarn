@@ -559,12 +559,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The chance (luck factor)
 		ARG 5 id
 			COMMENT Id
-	METHOD method_411 (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;I)V
+	METHOD method_411 onBreak (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;I)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 		ARG 5 block
+		ARG 6 blockData
 	METHOD method_412 onHarvested (Lnet/minecraft/class_1150;IIIILnet/minecraft/class_988;)V
 	METHOD method_413 addCollisionBoxToList (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 world
@@ -721,6 +722,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_435 onSyncedBlockAction (Lnet/minecraft/class_1150;IIIII)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 type
+		ARG 6 data
 	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
 		COMMENT Runs when an event takes place
 		COMMENT @return Whether the event is successful
@@ -790,6 +798,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 blockData
 	METHOD method_449 hasTransperancy ()Z
 	METHOD method_450 canStay (Lnet/minecraft/class_1150;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_451 onDestroyedByPlayer (Lnet/minecraft/class_1150;IIII)V
 		ARG 1 world
 		ARG 2 x
@@ -873,7 +885,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 5 side
 	METHOD method_4795 is (I)Z
 		ARG 1 id
-	METHOD method_4796 getSideIcon (I)Lnet/minecraft/class_1557;
+	METHOD method_4796 getSideTexture (I)Lnet/minecraft/class_1557;
 		ARG 1 side
 	METHOD method_4797 hasComparatorOutput ()Z
 		COMMENT Returns whether the block provides comparator output.
