@@ -205,7 +205,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_5617 CAULDRON Lnet/minecraft/class_117;
 	FIELD field_5618 UNPOWERED_REPEATER Lnet/minecraft/class_125;
 	FIELD field_5619 POWERED_REPEATER Lnet/minecraft/class_125;
-	FIELD field_5620 icon Lnet/minecraft/class_1557;
+	FIELD field_5620 sideTexture Lnet/minecraft/class_1557;
 	FIELD field_5621 BEACON Lnet/minecraft/class_1300;
 	FIELD field_5622 TRAPPED_CHEST Lnet/minecraft/class_197;
 	FIELD field_5623 LIGHT_WEIGHTED_PRESSURE_PLATE Lnet/minecraft/class_197;
@@ -536,7 +536,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_408 getBlockData (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
+	METHOD method_408 onConnectedBlockChange (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -565,6 +565,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 block
+	METHOD method_412 onHarvested (Lnet/minecraft/class_1150;IIIILnet/minecraft/class_988;)V
 	METHOD method_413 addCollisionBoxToList (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 world
 		ARG 2 x
@@ -583,6 +584,18 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 vec1
 		ARG 4 vec2
+	METHOD method_415 onRandomTick (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 random
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;IIILnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
 	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)V
 		COMMENT Runs every time an entity collides with the block
 		ARG 1 world
@@ -606,6 +619,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_4189 getMinX ()D
 		COMMENT Returns the block's bounding box' minimum X value
 		COMMENT @return Minimum X value
+	METHOD method_419 onBlockPlaced (Lnet/minecraft/class_1150;IIILnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 player
+		ARG 6 item
 	METHOD method_419 onPlaced (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
 		COMMENT Runs when the block is placed by an entity
 		ARG 1 world
@@ -634,6 +654,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 player
+	METHOD method_421 onActivated (Lnet/minecraft/class_1150;IIILnet/minecraft/class_988;IFFF)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 player
 	METHOD method_421 onUse (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_1354;FFF)Z
 		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
 		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
@@ -661,14 +687,15 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 item
-	METHOD method_424 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
+	METHOD method_424 harvestBlock (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
 		ARG 1 world
 		ARG 2 playerEntity
-	METHOD method_426 getRedstonePower (Lnet/minecraft/class_1158;IIII)I
+	METHOD method_426 getWeakPower (Lnet/minecraft/class_1158;IIII)I
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 direction
 	METHOD method_427 makeBoundingBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
 		ARG 1 world
 		ARG 2 x
@@ -689,8 +716,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The Current block
 		ARG 1 key
 			COMMENT The Translation key
-	METHOD method_434 (Lnet/minecraft/class_1150;III)Z
+	METHOD method_434 canPlaceBlock (Lnet/minecraft/class_1150;III)Z
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
 		COMMENT Runs when an event takes place
 		COMMENT @return Whether the event is successful
@@ -704,8 +734,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT Id
 		ARG 5 meta
 			COMMENT Metadata
-	METHOD method_436 (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+	METHOD method_436 onTick (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 random
 	METHOD method_437 onSteppedOn (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
 		COMMENT Runs every time an entity steps on the Block.
 		COMMENT Used by redstone ore to change it's state.
@@ -744,11 +778,23 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's strength
 	METHOD method_443 insideXYBound (Lnet/minecraft/class_236;)Z
 		ARG 1 vec
+	METHOD method_444 getStrongPower (Lnet/minecraft/class_1158;IIII)I
+		ARG 1 block
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_445 dropAsItem (Lnet/minecraft/class_1150;IIIII)V
 	METHOD method_447 shouldRenderSide (Lnet/minecraft/class_1158;IIII)Z
 		ARG 1 world
 	METHOD method_448 createStackFromBlock (I)Lnet/minecraft/class_1071;
 		ARG 1 blockData
 	METHOD method_449 hasTransperancy ()Z
+	METHOD method_450 canStay (Lnet/minecraft/class_1150;III)Z
+	METHOD method_451 onDestroyedByPlayer (Lnet/minecraft/class_1150;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_452 (Lnet/minecraft/class_1158;IIII)Z
 		ARG 1 world
 	METHOD method_453 getPistonInteractionType ()I
@@ -809,7 +855,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return Tick rate
 		ARG 1 world
 			COMMENT The world that the block is placed in
-	METHOD method_4791 registerIcons (Lnet/minecraft/class_1558;)V
+	METHOD method_4791 registerTextures (Lnet/minecraft/class_1558;)V
 		ARG 1 registry
 	METHOD method_4792 isEqual (II)Z
 		ARG 0 id1

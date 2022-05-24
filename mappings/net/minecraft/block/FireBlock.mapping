@@ -1,4 +1,9 @@
 CLASS net/minecraft/class_137 net/minecraft/block/FireBlock
+	FIELD field_278 ENCOURAGEMENT [I
+		COMMENT the higher the encouragement, the more quickly a block catches fire if the fire is available to spread there
+	FIELD field_279 BLOCK_FLAMMABILITY [I
+		COMMENT The higher the flammability, the more quickly a block on fire burns away
+	FIELD field_5552 icons [Lnet/minecraft/class_1557;
 	FIELD field_9409 ALT Lnet/minecraft/class_2243;
 	FIELD field_9410 NORTH Lnet/minecraft/class_2243;
 	FIELD field_9411 EAST Lnet/minecraft/class_2243;
@@ -9,6 +14,34 @@ CLASS net/minecraft/class_137 net/minecraft/block/FireBlock
 	FIELD field_9416 BLOCKS_BY_MODIFIER Ljava/util/Map;
 	FIELD field_9417 AGE Lnet/minecraft/class_2246;
 	FIELD field_9418 FLIP Lnet/minecraft/class_2243;
+	METHOD method_315 registerFlammability (III)V
+		ARG 1 blockId
+		ARG 2 encouragement
+		ARG 3 flamability
+	METHOD method_316 (Lnet/minecraft/class_1150;IIIILjava/util/Random;I)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 6 random
+	METHOD method_317 canCatchFire (Lnet/minecraft/class_1158;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_318 (Lnet/minecraft/class_1150;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_319 canSpreadFire (Lnet/minecraft/class_1150;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_4772 (I)Lnet/minecraft/class_1557;
+		ARG 1 blockData
+	METHOD method_6485 registerDefaultFlammables ()V
 	METHOD method_8772 trySpreadingFire (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;ILjava/util/Random;I)V
 		ARG 1 world
 		ARG 2 pos
@@ -22,4 +55,3 @@ CLASS net/minecraft/class_137 net/minecraft/block/FireBlock
 	METHOD method_8776 isRainingAround (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
 		ARG 1 world
 		ARG 2 pos
-	METHOD method_6485 registerDefaultFlammables ()V

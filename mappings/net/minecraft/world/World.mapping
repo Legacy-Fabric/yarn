@@ -61,6 +61,10 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_2146 getServer ()Lnet/minecraft/server/MinecraftServer;
 	METHOD method_3577 disconnect ()V
 	METHOD method_3579 readSaveLock ()V
+	METHOD method_3580 canStrikeLightning (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_3581 getSeed ()J
 	METHOD method_3583 getTimeOfDay ()J
 	METHOD method_3584 getStructureRandom (III)Ljava/util/Random;
@@ -94,6 +98,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 y
 		ARG 3 z
 		ARG 4 radius
+	METHOD method_3599 queueBlockUpdate (IIILnet/minecraft/class_197;I)V
 	METHOD method_3599 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;I)V
 		ARG 1 pos
 		ARG 2 block
@@ -148,6 +153,14 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 3 except
 	METHOD method_3620 getPlayerByName (Ljava/lang/String;)Lnet/minecraft/class_988;
 		ARG 1 name
+	METHOD method_3621 spawnParticle (Ljava/lang/String;DDDDDD)V
+		ARG 1 particleName
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 velocityX
+		ARG 10 velocityY
+		ARG 12 velocityZ
 	METHOD method_3623 setItemData (Ljava/lang/String;Lnet/minecraft/class_92;)V
 	METHOD method_3624 addBlockEntities (Ljava/util/Collection;)V
 		ARG 1 collection
@@ -179,7 +192,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3633 doesBoxCollide (Lnet/minecraft/class_864;Lnet/minecraft/class_231;)Ljava/util/List;
 		ARG 1 entity
 		ARG 2 box
-	METHOD method_3634 playSound (Lnet/minecraft/class_864;Ljava/lang/String;FF)V
+	METHOD method_3634 playSoundOnEntity (Lnet/minecraft/class_864;Ljava/lang/String;FF)V
 		ARG 1 entity
 		ARG 2 sound
 		ARG 3 volume
@@ -187,7 +200,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3636 checkChunk (Lnet/minecraft/class_864;Z)V
 		ARG 1 entity
 		ARG 2 bl
-	METHOD method_3639 (Lnet/minecraft/class_988;IIIII)V
+	METHOD method_3639 getBlock (Lnet/minecraft/class_988;IIIII)V
 		ARG 1 playerEntity
 		ARG 2 type
 		ARG 3 x
@@ -329,6 +342,12 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_3698 continueBreakingBlock (IIIII)V
+		ARG 1 enityId
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 progress
 	METHOD method_3698 setBlockBreakingInfo (ILnet/minecraft/class_2552;I)V
 		ARG 2 pos
 	METHOD method_3700 (Lnet/minecraft/class_864;)V
@@ -336,7 +355,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3701 tickBlocks ()V
 	METHOD method_3702 getFogColor (F)Lnet/minecraft/class_236;
 		ARG 1 tickDelta
-	METHOD method_3703 (II)I
+	METHOD method_3703 getHeightOfWeather (II)I
+		COMMENT Height that rain/snow will fall at
 		ARG 1 x
 		ARG 2 z
 	METHOD method_3704 (IIII)V
@@ -365,7 +385,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 offset
 	METHOD method_3715 getRainGradient (F)F
 		ARG 1 offset
-	METHOD method_3716 (III)Z
+	METHOD method_3716 canSeeSky (III)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -395,6 +415,10 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3731 calculateAmbientDarkness ()V
 	METHOD method_3735 updateLighting ()V
 	METHOD method_3737 getLoadedEntities ()Ljava/util/List;
+	METHOD method_3739 isPowered (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_3771 getMaxBuildHeight ()I
 	METHOD method_4678 getLastUpdateTime ()J
 	METHOD method_4679 getGameRules ()Lnet/minecraft/class_1439;
@@ -445,7 +469,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 entity
 		ARG 2 box
 		ARG 3 entityPredicate
-	METHOD method_4718 (IIIII)Z
+	METHOD method_4718 setBlockdataAndNotifyConnected (IIIII)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -464,6 +488,11 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 4 block
 		ARG 5 blockData
 		ARG 6 flags
+	METHOD method_4722 setAir (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_4724 getPowerAtFace (IIII)I
 	METHOD method_4725 (IIII)V
 		ARG 1 x
 		ARG 2 y
@@ -471,7 +500,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 4 id
 	METHOD method_4726 getMoonPhase ()I
 	METHOD method_5504 getMoonSize ()F
-	METHOD method_6407 (Lnet/minecraft/class_1158;III)Z
+	METHOD method_6407 canBuildOnTopOfBlock (Lnet/minecraft/class_1158;III)Z
 		ARG 0 world
 		ARG 1 x
 		ARG 2 y
