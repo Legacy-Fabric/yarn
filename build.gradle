@@ -199,12 +199,14 @@ task downloadMcJars(dependsOn: downloadWantedVersionManifest) {
 			src new URL(version.downloads.client.url)
 			dest clientJar
 			overwrite false
+			retries 5
 		}
 
 		download {
 			src new URL(version.downloads.server.url)
 			dest serverJar
 			overwrite false
+			retries 5
 		}
 	}
 }
@@ -289,6 +291,7 @@ task downloadMcLibs(dependsOn: downloadWantedVersionManifest) {
 				src downloadUrl
 				dest new File(libraries, downloadUrl.substring(downloadUrl.lastIndexOf("/") + 1))
 				overwrite false
+				retries 5
 			}
 
 			project.dependencies.add("decompileClasspath", it.name)
