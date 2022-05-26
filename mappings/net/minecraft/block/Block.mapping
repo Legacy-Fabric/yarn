@@ -2,7 +2,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	COMMENT The Block class provides useful methods and fields for creation of Blocks.
 	COMMENT All blocks extend the Block class.
 	COMMENT The Block class also registers all the blocks.
-	FIELD field_12571 NORMAL_BLOCK_BOX Lnet/minecraft/class_231;
+	FIELD field_12571 DEFAULT_BOX Lnet/minecraft/class_231;
 	FIELD field_12572 EMPTY_BOX Lnet/minecraft/class_231;
 	FIELD field_12573 blockSoundGroup Lnet/minecraft/class_200;
 	FIELD field_17745 FACINGS [Lnet/minecraft/class_1354;
@@ -284,7 +284,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's material color
 	METHOD method_11552 getBlockRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
 		ARG 1 state
-	METHOD method_11553 addCollisionBoxesToList (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+	METHOD method_11553 appendCollisionBoxes (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -536,7 +536,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_408 onConnectedBlockChange (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
+	METHOD method_408 neighbourUpdate (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -567,7 +567,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 5 block
 		ARG 6 blockData
 	METHOD method_412 onHarvested (Lnet/minecraft/class_1150;IIIILnet/minecraft/class_988;)V
-	METHOD method_413 addCollisionBoxToList (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+	METHOD method_413 appendCollisionBoxes (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -630,7 +630,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_4189 getMinX ()D
 		COMMENT Returns the block's bounding box' minimum X value
 		COMMENT @return Minimum X value
-	METHOD method_419 onBlockPlaced (Lnet/minecraft/class_1150;IIILnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
+	METHOD method_419 onPlaced (Lnet/minecraft/class_1150;IIILnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -707,7 +707,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_424 harvestBlock (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
 		ARG 1 world
 		ARG 2 playerEntity
-	METHOD method_426 getWeakPower (Lnet/minecraft/class_1158;IIII)I
+	METHOD method_426 getWeakRedstonePower (Lnet/minecraft/class_1158;IIII)I
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -849,7 +849,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_455 getBrightnessOfBlock (Lnet/minecraft/class_1158;III)I
+	METHOD method_455 getBrightness (Lnet/minecraft/class_1158;III)I
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
@@ -857,6 +857,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_456 setBlockItemBounds ()V
 		COMMENT Sets the bounds for the BlockItem
 	METHOD method_459 getRenderedColor (I)I
+		ARG 1 blockData
 	METHOD method_460 breakBlock (Lnet/minecraft/class_1150;III)V
 		ARG 1 world
 		ARG 2 x
