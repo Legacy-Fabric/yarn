@@ -31,6 +31,8 @@ jobs:
 
             '2point0_blue','2point0_purple','2point0_red'
         ]
+    env: 
+        MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v3.0.0
@@ -41,5 +43,5 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./yarn.py ${{ matrix.mc_version }} build javadocJar checkMappings mapNamedJar publishToMavenLocal --stacktrace
+      - run: python ./yarn.py $MC_VERSION build javadocJar checkMappings mapNamedJar publishToMavenLocal --stacktrace
       - run: cd test-mod && ./gradlew build
