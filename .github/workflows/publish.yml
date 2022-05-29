@@ -32,8 +32,6 @@ jobs:
             
             '2point0_blue','2point0_purple','2point0_red'
         ]
-    env: 
-        MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v3.0.0
@@ -44,8 +42,7 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
-      - run: ./gradlew publishToMavenLocal --stacktrace
+      - run: python ./yarn.py ${{ matrix.mc_version }} publishToMavenLocal --stacktrace
       - run: cd test-mod && ./gradlew build
       
   publish:
@@ -66,8 +63,6 @@ jobs:
             '1.12.2',
             '1.13.2',
         ]
-    env: 
-        MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v3.0.0
@@ -78,7 +73,6 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
-      - run: ./gradlew publish --stacktrace
+      - run: python ./yarn.py ${{ matrix.mc_version }} publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}

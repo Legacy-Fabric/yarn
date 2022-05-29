@@ -81,8 +81,6 @@ jobs:
   publish:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env: 
-        MC_VERSION: ${{ github.event.inputs.version }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -96,8 +94,7 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
       - uses: gradle/wrapper-validation-action@v1
-      - run: ./gradlew publish --stacktrace
+      - run: python ./yarn.py ${{ github.event.inputs.version }} publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}

@@ -31,8 +31,6 @@ jobs:
 
             '2point0_blue','2point0_purple','2point0_red'
         ]
-    env: 
-        MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v3.0.0
@@ -43,7 +41,5 @@ jobs:
         with:
           distribution: 'semeru' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
-      - run: ./gradlew build javadocJar checkMappings mapNamedJar --stacktrace
-      - run: ./gradlew publishToMavenLocal
+      - run: python ./yarn.py ${{ matrix.mc_version }} build javadocJar checkMappings mapNamedJar publishToMavenLocal --stacktrace
       - run: cd test-mod && ./gradlew build
