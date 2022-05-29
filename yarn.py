@@ -8,6 +8,7 @@ from intermediary_helper import seperate, merge
 
 
 VERSIONS = ['1.3.2', '1.4.7', '1.5', '13w11a', '1.5.1', '2point0_red', '2point0_purple', '2point0_blue', '1.5.2', '1.6.4', '1.7.2', '1.7.10', '1.8', '15w14a', '1.8.9', '1.9.4', '1.10.2', '1.11.2', '1.12.2', '1.13.2']
+GRADLE_PREFIX = "gradlew.bat" if os.name == "nt" else "./gradlew"
 saving_thread = None
 kill = False
 
@@ -44,7 +45,7 @@ def main():
     if command.startswith("yarn"):
         start_autosave()
 
-    os.system("gradlew " + command)
+    os.system(GRADLE_PREFIX + " " + command)
 
     stop_autosave()
     merge()
