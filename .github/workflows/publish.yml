@@ -44,8 +44,7 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
-      - run: ./gradlew publishToMavenLocal --stacktrace
+      - run: python ./yarn.py $MC_VERSION publishToMavenLocal --stacktrace
       - run: cd test-mod && ./gradlew build
       
   publish:
@@ -78,7 +77,6 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./prepare_yarn.py $MC_VERSION
-      - run: ./gradlew publish --stacktrace
+      - run: python ./yarn.py $MC_VERSION publish --stacktrace
         env:
           MAVEN_PUBLISH_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
