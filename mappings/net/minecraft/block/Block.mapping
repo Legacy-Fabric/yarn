@@ -180,16 +180,16 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Stone sound type
 	FIELD field_492 BLOCKS [Lnet/minecraft/class_197;
 	FIELD field_499 STONE_BLOCK Lnet/minecraft/class_197;
+	FIELD field_500 GRASS_BLOCK Lnet/minecraft/class_141;
 	FIELD field_5004 COMMAND_BLOCK Lnet/minecraft/class_197;
 	FIELD field_5006 COBBLESTONE_WALL Lnet/minecraft/class_197;
 	FIELD field_5007 FLOWER_POT Lnet/minecraft/class_197;
 	FIELD field_5008 CARROTS Lnet/minecraft/class_197;
 	FIELD field_5009 POTATOES Lnet/minecraft/class_197;
-	FIELD field_500 GRASS_BLOCK Lnet/minecraft/class_141;
+	FIELD field_501 DIRT Lnet/minecraft/class_197;
 	FIELD field_5010 WOODEN_BUTTON Lnet/minecraft/class_197;
 	FIELD field_5011 SKULL Lnet/minecraft/class_197;
 	FIELD field_5012 ANVIL_BLOCK Lnet/minecraft/class_197;
-	FIELD field_501 DIRT Lnet/minecraft/class_197;
 	FIELD field_502 STONE_BRICKS Lnet/minecraft/class_197;
 	FIELD field_503 PLANKS Lnet/minecraft/class_197;
 	FIELD field_504 SAPLING Lnet/minecraft/class_197;
@@ -456,13 +456,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 state
 			COMMENT The block's BlockState
 		ARG 2 bl
+	METHOD method_401 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197;
+		ARG 1 blockSoundGroup
 	METHOD method_401 setSound (Lnet/minecraft/class_197$class_200;)Lnet/minecraft/class_197;
 		COMMENT Sets the block's sound type. Used in registering blocks.
 		COMMENT @return The current block
 		ARG 1 sound
 			COMMENT The block's sound type
-	METHOD method_401 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197;
-		ARG 1 blockSoundGroup
 	METHOD method_402 (Lnet/minecraft/class_236;)Z
 		ARG 1 vec
 	METHOD method_403 getDropCount (Ljava/util/Random;)I
@@ -816,10 +816,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 explosion
-	METHOD method_8640 getItemStack (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
-		ARG 1 world
-		ARG 2 blockPos
-		ARG 3 blockState
 	METHOD method_8640 getCollisionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_231;
 		COMMENT Returns a box by adding the block's current location and the block's corresponding value in its Bounding Box
 		COMMENT @return The Collision box
@@ -829,14 +825,18 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 state
 			COMMENT The block's BlockState
-	METHOD method_8640 getPickStack (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 state
 	METHOD method_8640 getCollisionShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
+	METHOD method_8640 getItemStack (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 blockPos
+		ARG 3 blockState
+	METHOD method_8640 getPickStack (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
@@ -932,6 +932,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The world that the block is placed in
 		ARG 2 entity
 			COMMENT The entity that the speed must be changed for
+	METHOD method_8651 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;Lnet/minecraft/class_1071;)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 blockEntity
+		ARG 6 stack
 	METHOD method_8651 harvest (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;)V
 		COMMENT Runs every time a player begins to break the block.
 		ARG 1 world
@@ -944,13 +951,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 5 be
 			COMMENT The block entity in the block
-	METHOD method_8651 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;Lnet/minecraft/class_1071;)V
-		ARG 1 world
-		ARG 2 player
-		ARG 3 pos
-		ARG 4 state
-		ARG 5 blockEntity
-		ARG 6 stack
 	METHOD method_8652 setBoundingBox (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)V
 		ARG 1 view
 		ARG 2 pos
@@ -965,6 +965,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 facing
 			COMMENT The block's direction
+	METHOD method_8654 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+		ARG 4 direction
 	METHOD method_8654 isSideInvisible (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		COMMENT Returns whether the current block has connected sides, i.e its side faces are invisible when covered by other blocks. Used by glass to prevent the white dots from appearing everywhere through adjacent glass blocks.
 		COMMENT @return Whether the current block has connected sides
@@ -974,11 +979,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The current block's position
 		ARG 3 facing
 			COMMENT The direction the block is facing
-	METHOD method_8654 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 direction
 	METHOD method_8655 getMeta (Lnet/minecraft/class_2232;)I
 		COMMENT Returns the metadata value for a certain BlockState
 		COMMENT @return Metadata value

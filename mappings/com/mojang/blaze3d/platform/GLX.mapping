@@ -1,20 +1,23 @@
 CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
-	FIELD field_8390 blendFuncSeperateSupported Z
-	FIELD field_8372 gl21Supported Z
-	FIELD field_8391 shadersSupported Z
 	FIELD field_11407 vboSupported Z
 	FIELD field_11409 arrayBuffer I
-	FIELD field_8392 type I
-	FIELD field_8393 shaders Z
-	FIELD field_8394 arbShaderObjects Z
-	FIELD field_2302 arbMultitexture Z
 	FIELD field_11410 arbTextureEnvCombine Z
-	FIELD field_8370 gl14Supported Z
-	FIELD field_8371 contextDescription Ljava/lang/String;
-	FIELD field_8373 nvidia Z
 	FIELD field_11411 processor Ljava/lang/String;
 	FIELD field_11412 vboShadersSupported Z
 	FIELD field_11413 amd Z
+	FIELD field_11414 texture I
+	FIELD field_11415 combine I
+	FIELD field_11416 interpolate I
+	FIELD field_11417 primary I
+	FIELD field_11418 constant I
+	FIELD field_11419 previous I
+	FIELD field_2300 textureUnit I
+	FIELD field_2301 lightmapTextureUnit I
+	FIELD field_2302 arbMultitexture Z
+	FIELD field_8370 gl14Supported Z
+	FIELD field_8371 contextDescription Ljava/lang/String;
+	FIELD field_8372 gl21Supported Z
+	FIELD field_8373 nvidia Z
 	FIELD field_8374 framebuffer I
 	FIELD field_8375 renderbuffer I
 	FIELD field_8376 colorAttachment I
@@ -29,23 +32,42 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 	FIELD field_8385 compileStatus I
 	FIELD field_8386 vertexShader I
 	FIELD field_8387 fragmentShader I
-	FIELD field_2300 textureUnit I
-	FIELD field_2301 lightmapTextureUnit I
-	FIELD field_11414 texture I
-	FIELD field_11415 combine I
-	FIELD field_11416 interpolate I
-	FIELD field_11417 primary I
-	FIELD field_11418 constant I
-	FIELD field_11419 previous I
+	FIELD field_8390 blendFuncSeperateSupported Z
+	FIELD field_8391 shadersSupported Z
+	FIELD field_8392 type I
+	FIELD field_8393 shaders Z
+	FIELD field_8394 arbShaderObjects Z
+	METHOD method_10473 gl15BufferData (ILjava/nio/ByteBuffer;I)V
+		COMMENT Binds a named buffer object
+		ARG 0 i
+		ARG 1 buf
+		ARG 2 j
+	METHOD method_10474 gl15GenBuffers ()I
+		COMMENT Generates buffer object names
+	METHOD method_10475 supportsVbo ()Z
+		COMMENT Returns whether OpenGl supports Vertex Buffer Objects
+	METHOD method_10476 gl15DeleteBuffers (I)V
+		COMMENT Deletes named buffer objects
+		ARG 0 i
+	METHOD method_10477 gl15BindBuffer (II)V
+		ARG 0 i
+		ARG 1 j
+	METHOD method_10478 getProcessor ()Ljava/lang/String;
 	METHOD method_1761 createContext ()V
-	METHOD method_7280 gl20DeleteShader (I)V
-		COMMENT Deletes a shader object
-		ARG 0 shader
+	METHOD method_1762 gl13ActiveTexture (I)V
+		COMMENT Allows selecting the active texture unit
+		ARG 0 texture
 	METHOD method_1763 gl13MultiTexCoord2f (IFF)V
 		COMMENT Sets the current texture coordinates
 		ARG 0 i
 		ARG 1 f1
 		ARG 2 f2
+	METHOD method_1764 gl13ClientActiveTexture (I)V
+		COMMENT Allows selecting the active texture unit
+		ARG 0 texture
+	METHOD method_7280 gl20DeleteShader (I)V
+		COMMENT Deletes a shader object
+		ARG 0 shader
 	METHOD method_7281 gl20GetProgrami (II)I
 		COMMENT Returns a parameter from a program object
 		ARG 0 program
@@ -62,11 +84,6 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Replaces the source code in a shader object
 		ARG 0 shader
 		ARG 1 count
-	METHOD method_10473 gl15BufferData (ILjava/nio/ByteBuffer;I)V
-		COMMENT Binds a named buffer object
-		ARG 0 i
-		ARG 1 buf
-		ARG 2 j
 	METHOD method_7286 gl20Uniform (ILjava/nio/FloatBuffer;)V
 		COMMENT Specifies the value of a uniform variable for the current program object
 		ARG 0 loc
@@ -151,8 +168,8 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Specifies the value of a uniform variable for the current program object
 		ARG 0 loc
 		ARG 1 v
-	METHOD method_10474 gl15GenBuffers ()I
-		COMMENT Generates buffer object names
+	METHOD method_7309 advancedGenFrameBuffers ()I
+		COMMENT Generates framebuffer object names
 	METHOD method_7310 gl20DeleteProgram (I)V
 		COMMENT Deletes a program object
 		ARG 0 program
@@ -160,8 +177,8 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Returns the information log for a program object
 		ARG 0 program
 		ARG 1 maxLength
-	METHOD method_10475 supportsVbo ()Z
-		COMMENT Returns whether OpenGl supports Vertex Buffer Objects
+	METHOD method_7312 advancedGenRenderBuffers ()I
+		COMMENT Generates renderbuffer object names
 	METHOD method_7313 gl20LinkProgram (I)V
 		COMMENT Links a program object
 		ARG 0 program
@@ -169,16 +186,8 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Specifies the value of a uniform variable for the current program object
 		ARG 0 loc
 		ARG 1 v
-	METHOD method_7309 advancedGenFrameBuffers ()I
-		COMMENT Generates framebuffer object names
-	METHOD method_10476 gl15DeleteBuffers (I)V
-		COMMENT Deletes named buffer objects
-		ARG 0 i
-	METHOD method_10477 gl15BindBuffer (II)V
-		ARG 0 i
-		ARG 1 j
-	METHOD method_7312 advancedGenRenderBuffers ()I
-		COMMENT Generates renderbuffer object names
+	METHOD method_7315 supportsFbo ()Z
+		COMMENT Returns whether OpenGl supports  Frame Buffer Objects
 	METHOD method_7316 advancedDeleteRenderBuffers (I)V
 		COMMENT Deletes renderbuffer objects
 		ARG 0 renderbuffer
@@ -186,8 +195,6 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Binds a framebuffer to a framebuffer target
 		ARG 0 i
 		ARG 1 j
-	METHOD method_7315 supportsFbo ()Z
-		COMMENT Returns whether OpenGl supports  Frame Buffer Objects
 	METHOD method_7318 advancedDeleteFrameBuffers (I)V
 		COMMENT Deletes framebuffer objects
 		ARG 0 framebuffer
@@ -195,13 +202,6 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		COMMENT Binds a renderbuffer to a renderbuffer target
 		ARG 0 i
 		ARG 1 j
-	METHOD method_10478 getProcessor ()Ljava/lang/String;
 	METHOD method_7320 advancedCheckFrameBufferStatus (I)I
 		COMMENT Checks the completeness of a framebuffer
 		ARG 0 framebuffer
-	METHOD method_1762 gl13ActiveTexture (I)V
-		COMMENT Allows selecting the active texture unit
-		ARG 0 texture
-	METHOD method_1764 gl13ClientActiveTexture (I)V
-		COMMENT Allows selecting the active texture unit
-		ARG 0 texture
