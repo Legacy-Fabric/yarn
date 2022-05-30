@@ -43,5 +43,6 @@ jobs:
         with:
           distribution: 'adopt-openj9' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./yarn.py $MC_VERSION build javadocJar checkMappings mapNamedJar publishToMavenLocal --stacktrace
+      - run: python ./yarn.py $MC_VERSION build javadocJar checkMappings mapNamedJar --stacktrace
+      - run: python ./yarn.py $MC_VERSION publishToMavenLocal --stacktrace
       - run: cd test-mod && ./gradlew build
