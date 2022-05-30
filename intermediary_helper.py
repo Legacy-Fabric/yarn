@@ -13,12 +13,12 @@ class Intermediaries(NamedTuple):
     fields: dict  # { field, signature }
     methods: dict # { method, signature }
 
-def seperate(minecraft_version: str, try_merge: bool=True):
+def separate(minecraft_version: str, try_merge: bool=True):
     if try_merge and os.path.isdir("mappings-active"):
         print("> Found leftover mappings, Merging!")
         merge()
 
-    print("> Seperating mappings for {}..".format(minecraft_version))
+    print("> Separating mappings for {}..".format(minecraft_version))
     with request.urlopen(URL.format(minecraft_version)) as response:
         intermediary_data = response.read().decode('utf-8')
         mappings = parse_intermediary(intermediary_data.splitlines()[1:])
@@ -30,7 +30,7 @@ def seperate(minecraft_version: str, try_merge: bool=True):
     for folder, dirs, files in os.walk("./mappings"):
         for fname in files:
             if fname.endswith(".mapping"):
-                seperate_file(folder, fname, mappings)
+                separate_file(folder, fname, mappings)
 
 def merge(delete: bool=True):
     for file in os.listdir("./mappings-active"):
@@ -69,8 +69,8 @@ def parse_intermediary(intermediary_lines: list):
     for f, d in itm.fields.items():
         itm.fields[f] = remap_signature(d, itm.classes)
 
-    for m, d in itm.fields.items():
-        itm.methods[m] = remap_signature(m, itm.classes)
+    for m, d in itm.methods.items():
+        itm.methods[m] = remap_signature(d, itm.classes)
 
     return itm
 
@@ -100,7 +100,7 @@ def remap_signature(signature: str, classes: dict):
 
 # Seperating Utilities
 
-def seperate_file(folder: str, fname: str, mappings: Intermediaries):
+def separate_file(folder: str, fname: str, mappings: Intermediaries):
     new_content = ""
     with open(os.path.join(folder, fname), 'r') as file:
         tabs = 0

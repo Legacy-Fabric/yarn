@@ -4,7 +4,7 @@ import os
 import sys
 sys.dont_write_bytecode = True
 
-from intermediary_helper import seperate, merge
+from intermediary_helper import separate, merge
 
 
 VERSIONS = ['1.3.2', '1.4.7', '1.5', '13w11a', '1.5.1', '2point0_red', '2point0_purple', '2point0_blue', '1.5.2', '1.6.4', '1.7.2', '1.7.10', '1.8', '15w14a', '1.8.9', '1.9.4', '1.10.2', '1.11.2', '1.12.2', '1.13.2']
@@ -40,7 +40,7 @@ def main():
         command = " ".join(args[2:])
 
     os.environ["MC_VERSION"] = version
-    seperate(version)
+    separate(version)
 
     if command.startswith("yarn"):
         start_autosave()
