@@ -53,6 +53,7 @@ def main():
 def start_autosave():
     global kill, saving_thread
     saving_thread = threading.Thread(target=_autosave)
+    saving_thread.setDaemon(True)
     saving_thread.start()
 
 def _autosave():
