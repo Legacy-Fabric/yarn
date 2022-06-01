@@ -277,7 +277,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's material
 		ARG 2 color
 			COMMENT The block's material color
-	METHOD method_11552 getBlockRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
+	METHOD method_11552 getRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
 		ARG 1 state
 	METHOD method_11554 getBoundingBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
 		ARG 1 state
@@ -302,9 +302,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-	METHOD method_11565 (Lnet/minecraft/class_2232;)F
+	METHOD method_11565 getAmbientOcclusionLightLevel (Lnet/minecraft/class_2232;)F
 		ARG 1 state
-	METHOD method_11566 (Lnet/minecraft/class_2232;)Z
+	METHOD method_11566 emitsRedstonePower (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_11567 getPistonBehavior (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
 		ARG 1 state
@@ -336,17 +336,25 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_14305 addStacksForDisplay (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
 		ARG 1 group
 		ARG 2 stacks
-	METHOD method_14307 (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
-		ARG 1 view
+	METHOD method_14307 getRenderLayer (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
+		ARG 1 world
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 direction
 	METHOD method_16561 createCuboidShape (DDDDDD)Lnet/minecraft/class_4100;
 	METHOD method_16562 getStateByRawId (I)Lnet/minecraft/class_2232;
 		ARG 0 rawId
+	METHOD method_16563 getPlacementState (Lnet/minecraft/class_3544;)Lnet/minecraft/class_2232;
+		ARG 1 context
+	METHOD method_16565 getTickDelay (Lnet/minecraft/class_3599;)I
+		ARG 1 world
 	METHOD method_16567 canReplace (Lnet/minecraft/class_2232;Lnet/minecraft/class_3544;)Z
 		ARG 1 state
 		ARG 2 itemPlacementContext
+	METHOD method_16570 canPlaceAt (Lnet/minecraft/class_2232;Lnet/minecraft/class_3599;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_16571 pushEntitiesUpBeforeBlockChange (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
 		ARG 0 state
 		ARG 1 state2
@@ -355,7 +363,15 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_16574 getRenderingSeed (Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;)J
 		ARG 1 state
 		ARG 2 pos
+	METHOD method_16575 getStateForNeighborUpdate (Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;Lnet/minecraft/class_2232;Lnet/minecraft/class_3598;Lnet/minecraft/class_2552;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 1 state
+		ARG 2 direction
+		ARG 3 neighbotState
+		ARG 4 world
+		ARG 5 pos
+		ARG 6 neighborPos
 	METHOD method_16576 appendProperties (Lnet/minecraft/class_2233$class_3757;)V
+		ARG 1 builder
 	METHOD method_16577 isShapeFullCube (Lnet/minecraft/class_4100;)Z
 		ARG 0 shape
 	METHOD method_16578 isFaceFullSquare (Lnet/minecraft/class_4100;Lnet/minecraft/class_1354;)Z
@@ -364,6 +380,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
 		ARG 0 identifier
 		ARG 1 block
+	METHOD method_16580 isIn (Lnet/minecraft/class_4482;)Z
+		ARG 1 tag
 	METHOD method_16581 isTranslucent (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
 		ARG 1 state
 		ARG 2 world
@@ -517,6 +535,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 entity
 			COMMENT The entity that collided with the block
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 entity
 	METHOD method_4183 getMaxZ ()D
 		COMMENT Returns the block's bounding box' maximum Z value
 		COMMENT @return Maximum Z value
@@ -572,6 +595,16 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The player who <i>used</i> the block
 		ARG 5 direction
 			COMMENT The direction that the block is facing
+	METHOD method_421 onUse (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 direction
+		ARG 7 distanceX
+		ARG 8 distanceY
+		ARG 9 distanceZ
 	METHOD method_421 use (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
 		ARG 1 world
 		ARG 2 pos
@@ -833,6 +866,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 blockPos
 		ARG 3 blockState
+	METHOD method_8640 getPickBlock (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
 	METHOD method_8640 getPickStack (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
 		ARG 1 world
 		ARG 2 pos
@@ -926,6 +963,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 2 item
 			COMMENT Allows creating an ItemEntity
+	METHOD method_8650 onEntityLand (Lnet/minecraft/class_1158;Lnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 entity
 	METHOD method_8650 setEntityVelocity (Lnet/minecraft/class_1150;Lnet/minecraft/class_864;)V
 		COMMENT Sets the speed of an entity moving on the block
 		ARG 1 world
@@ -965,6 +1005,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 facing
 			COMMENT The block's direction
+	METHOD method_8653 getWeakRedstonePower (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 direction
 	METHOD method_8654 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 state
 		ARG 2 view
@@ -1013,6 +1058,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's position
 		ARG 3 state
 			COMMENT The block's BlockState
+	METHOD method_8659 onStateReplaced (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Z)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 newState
+		ARG 5 moved
 	METHOD method_8660 dropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;I)V
 		COMMENT Runs when the block must be dropped as an item.
 		COMMENT Called when the block is broken or an enderman holding the block dies.
@@ -1034,6 +1085,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 rand
 			COMMENT Random object
+	METHOD method_8661 sheduledTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
 	METHOD method_8662 canBePlacedAdjacent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		COMMENT Returns whether blocks can be placed adjacent to it.
 		COMMENT @return Whether blocks can be placed adjacent to it
@@ -1062,6 +1118,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 facing
 			COMMENT The block's direction
+	METHOD method_8664 getStrongRedstonePower (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 direction
 	METHOD method_8665 hasCollision (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 blockView
 		ARG 2 pos
@@ -1072,6 +1133,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The Item that must be placed into the player's inventory
 		ARG 1 world
 		ARG 2 pos
+	METHOD method_8668 onBlockAdded (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 oldState
 	METHOD method_8668 onCreation (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
 		COMMENT Runs when the block is placed (by a player or enderman).
 		ARG 1 world
@@ -1090,6 +1156,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 rand
 			COMMENT Random object
+	METHOD method_8669 randomDisplayTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
 	METHOD method_8670 getBrightness (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
 		ARG 1 blockView
 		ARG 2 pos

@@ -146,24 +146,31 @@ def create_class_map():
 def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dict):
     path = os.path.join(folder, fname)
     with open(path, 'r') as file:
+        new_path = os.path.normpath(path.replace("mappings-active", "mappings", 1))
         lines = file.read().splitlines()
         i_class = lines[0].split()[1].split("/")[-1]
-        new_path = os.path.normpath(path.replace("mappings-active", "mappings", 1))
+
+        # Delete the file if its just a stub
+        if len(lines[0]) == 2 and len(lines) <= 2:
+            if i_class in class_map:
+                os.remove(class_map[i_class])
+            return
 
         # Step 1: Rename/create the file we're moving the mappings into
-        if os.path.normpath(class_map[i_class]) != new_path:
+        if i_class not in class_map or os.path.normpath(class_map[i_class]) != new_path:
             while os.path.isfile(new_path):
                 new_path = new_path[:-8] + "$.mapping"
 
             os.makedirs(os.path.dirname(new_path), exist_ok=True)
-            os.rename(class_map[i_class], new_path)
+            if i_class in class_map:
+                os.rename(class_map[i_class], new_path)
+            else:
+                with open(new_path, 'w') as file:
+                    file.write(lines[0] + "\n")
             class_map[i_class] = new_path
 
         with open(new_path, 'r') as new_file:
             new_lines = new_file.read().splitlines()
-
-        if "CLASS" not in new_lines[0]:
-            new_lines = [ lines[0] ]
 
         # Step 2: Rename existing classes/subclasses
         # (We wait with classes that don't exist until step 4 since its more convenient there,
