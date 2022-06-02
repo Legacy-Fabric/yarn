@@ -158,10 +158,11 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
             return
 
         # Step 1: Rename/create the file we're moving the mappings into
-        if i_class not in class_map:
-            class_map[i_class] = new_path
-        
-        if os.path.normpath(class_map[i_class]) != new_path:
+        not_in_map = i_class not in class_map
+        if not_in_map or os.path.normpath(class_map[i_class]) != new_path:
+            if not_in_map:
+                class_map[i_class] = new_path
+
             while os.path.isfile(new_path) and os.path.normpath(class_map[i_class]) != new_path:
                 new_path = new_path[:-8] + "$.mapping"
 
