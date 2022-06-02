@@ -352,6 +352,11 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_3710 notifyOfNeighborChange (IIILnet/minecraft/class_197;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 block
 	METHOD method_3711 loadEntity (Lnet/minecraft/class_864;)V
 		ARG 1 entity
 	METHOD method_3712 getChunkCache ()Lnet/minecraft/class_1193;
@@ -378,6 +383,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_3723 updateNeighbors (IIILnet/minecraft/class_197;)V
 	METHOD method_3726 getBiomeSource ()Lnet/minecraft/class_1175;
 	METHOD method_3727 isDay ()Z
 	METHOD method_3728 addDetailsToCrashReport ()Ljava/lang/String;
@@ -400,6 +406,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_4682 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
 		ARG 1 pos
 		ARG 2 block
+	METHOD method_4682 setTickPriority (IIILnet/minecraft/class_197;II)V
 	METHOD method_4683 setTime (J)V
 		ARG 1 time
 	METHOD method_4684 addToCrashReport (Lnet/minecraft/class_1;)Lnet/minecraft/class_1392;
@@ -428,6 +435,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 3 z
 	METHOD method_4711 getScoreboard ()Lnet/minecraft/class_1471;
 	METHOD method_4712 getLogger ()Lnet/minecraft/class_1555;
+	METHOD method_4713 isTicking (IIILnet/minecraft/class_197;)Z
 	METHOD method_4716 (Lnet/minecraft/class_197;I)Z
 		ARG 1 block
 		ARG 2 blockData
@@ -443,10 +451,19 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_4720 onBlockUpdatedAtFace (IIILnet/minecraft/class_197;I)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 block
+		ARG 5 direction
 	METHOD method_4721 (IIIIII)Z
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD method_4721 setBlock (IIILnet/minecraft/class_197;II)Z
+	METHOD method_4722 setAir (III)Z
+	METHOD method_4724 getPowerAtFace (IIII)I
 	METHOD method_4725 (IIII)V
 		ARG 1 x
 		ARG 2 y
@@ -454,6 +471,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 4 id
 	METHOD method_4726 getMoonPhase ()I
 	METHOD method_5504 getMoonSize ()F
+	METHOD method_6407 canBuildOnTopOfBlock (Lnet/minecraft/class_1158;III)Z
 	METHOD method_6408 getPlayerByUuid (Ljava/util/UUID;)Lnet/minecraft/class_988;
 		ARG 1 uuid
 	METHOD method_6410 setThunderGradient (F)V
