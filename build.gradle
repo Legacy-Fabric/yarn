@@ -35,16 +35,11 @@ if (!ENV.MC_VERSION) {
 
 def minecraft_version = ENV.MC_VERSION
 // Fetch build number from Github Actions
-def build_number = ENV.GITHUB_ACTIONS && taskName != "publishToMavenLocal" ? buildTime() : "local"
+def build_number = ENV.BUILD_NUMBER ?: "local"
 def yarnVersion = "${minecraft_version}+build.$build_number"
 
 System.out.println("Preparing yarn ${yarnVersion}")
-
-static def buildTime() {
-	def df = new java.text.SimpleDateFormat("yyyyMMddHHmm")
-	df.setTimeZone(TimeZone.getTimeZone("UTC"))
-	return df.format(new Date())
-}
+System.out.println("Build ID: ${build_number}")
 
 repositories {
 	mavenCentral()
@@ -783,7 +778,7 @@ task javadocJar(type: Jar, dependsOn: ["javadoc"]) {
 publishing {
 	publications {
 		maven(MavenPublication) {
-			groupId 'net.fabricmc'
+			groupId 'net.legacyfabric'
 			artifactId "yarn"
 			version yarnVersion
 
