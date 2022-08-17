@@ -174,12 +174,21 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Used By Ice and Packed Ice
 	FIELD field_483 ORE Lnet/minecraft/class_197$class_200;
 		COMMENT Ore sound type
+	FIELD field_483 UNKNOWN_SOUND_GROUP Lnet/minecraft/class_200;
 	FIELD field_484 WOOD Lnet/minecraft/class_197$class_200;
 		COMMENT Wood sound type
+	FIELD field_484 WOOD_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_485 GRAVEL_SOUND_GROUP Lnet/minecraft/class_200;
 	FIELD field_486 GRASS Lnet/minecraft/class_197$class_200;
 		COMMENT Grass sound type
+	FIELD field_486 GRASS_SOUND_GROUP Lnet/minecraft/class_200;
 	FIELD field_487 STONE Lnet/minecraft/class_197$class_200;
 		COMMENT Stone sound type
+	FIELD field_487 STONE_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_488 METAL_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_489 GLASS_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_490 CLOTH_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_491 SAND_SOUND_GROUP Lnet/minecraft/class_200;
 	FIELD field_492 BLOCKS [Lnet/minecraft/class_197;
 	FIELD field_499 STONE_BLOCK Lnet/minecraft/class_197;
 	FIELD field_500 GRASS_BLOCK Lnet/minecraft/class_141;
@@ -192,6 +201,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_5010 WOODEN_BUTTON Lnet/minecraft/class_197;
 	FIELD field_5011 SKULL Lnet/minecraft/class_197;
 	FIELD field_5012 ANVIL_BLOCK Lnet/minecraft/class_197;
+	FIELD field_5013 SNOW_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_5014 LADDER_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_5015 ANVIL_SOUND_GROUP Lnet/minecraft/class_200;
 	FIELD field_502 STONE_BRICKS Lnet/minecraft/class_197;
 	FIELD field_503 PLANKS Lnet/minecraft/class_197;
 	FIELD field_504 SAPLING Lnet/minecraft/class_197;
@@ -543,6 +555,12 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 group
 			COMMENT The itemgroup that the block must be added to
+	METHOD method_408 onNeighborUpdate (Lnet/minecraft/class_1150;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 neighborId
 	METHOD method_408 onNeighborUpdate (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
 		ARG 1 world
 		ARG 2 x
@@ -561,11 +579,24 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The chance (luck factor)
 		ARG 5 id
 			COMMENT Id
+	METHOD method_411 (Lnet/minecraft/class_1150;IIIII)V
+		ARG 1 world
+	METHOD method_413 (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_414 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 vec1
 		ARG 4 vec2
+	METHOD method_415 spawnParticles (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 random
 	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;IIILnet/minecraft/class_864;)V
 		ARG 1 world
 		ARG 2 x
@@ -681,6 +712,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 direction
+	METHOD method_427 getRenderBoundingBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_429 getBlockType ()I
 	METHOD method_430 setResistance (F)Lnet/minecraft/class_197;
 		COMMENT Sets the block's resistance. Used in registering blocks.
@@ -770,7 +806,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 blockData
-	METHOD method_449 hasTransperancy ()Z
+	METHOD method_449 hasTransparency ()Z
 	METHOD method_450 canStayPlaced (Lnet/minecraft/class_1150;III)Z
 		ARG 1 world
 		ARG 2 x
@@ -785,6 +821,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_453 getPistonInteractionType ()I
 		COMMENT Returns the block's piston interaction type, as provided by it's material.
 		COMMENT @return Current block's piston interaction type
+	METHOD method_454 getBoundingBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_456 setBlockItemBounds ()V
 		COMMENT Sets the bounds for the BlockItem
 	METHOD method_460 breakNaturally (Lnet/minecraft/class_1150;III)V
@@ -796,7 +837,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns whether the current block emits a redstone signal.
 		COMMENT Used by comparators, Redstone Blocks, etc.
 		COMMENT @return Whether the current block emits a redstone signal
-	METHOD method_467 (I)Z
+	METHOD method_467 isSolid (I)Z
 		ARG 0 id
 	METHOD method_469 hasCollision ()Z
 		COMMENT Returns whether a block has collision, i.e. stops entities
@@ -830,6 +871,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_4795 is (I)Z
 		ARG 1 id
 	METHOD method_4796 getSideTexture (I)Lnet/minecraft/class_1557;
+		ARG 1 side
 	METHOD method_4797 hasComparatorOutput ()Z
 		COMMENT Returns whether the block provides comparator output.
 		COMMENT Used in blocks with entities like Chests and Droppers.
