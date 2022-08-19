@@ -121,6 +121,12 @@ CLASS net/minecraft/class_1600 net/minecraft/client/MinecraftClient
 	METHOD method_2919 doPick ()V
 	METHOD method_2920 getMaxTextureSize ()I
 	METHOD method_2921 initializeGame ()V
+	METHOD method_2922 setDimensionAndSpawn (I)V
+		ARG 1 dimension
+	METHOD method_2923 onResolutionChanged (II)V
+		ARG 1 width
+		ARG 2 height
+	METHOD method_2926 drawProfilerResults (J)V
 	METHOD method_2927 crash (Lnet/minecraft/class_1;)V
 		ARG 1 crashReport
 	METHOD method_2928 openScreen (Lnet/minecraft/class_388;)V
@@ -132,6 +138,8 @@ CLASS net/minecraft/class_1600 net/minecraft/client/MinecraftClient
 		ARG 2 loadingMessage
 	METHOD method_2931 setCurrentServerEntry (Lnet/minecraft/class_485;)V
 		ARG 1 info
+	METHOD method_2938 handleProfilerKeyPress (I)V
+		ARG 1 digit
 	METHOD method_2939 printCrashReport (Lnet/minecraft/class_1;)V
 		ARG 1 crashReport
 	METHOD method_2944 getCurrentSave ()Lnet/minecraft/class_102;
@@ -161,7 +169,7 @@ CLASS net/minecraft/class_1600 net/minecraft/client/MinecraftClient
 	METHOD method_5572 getResourcePackLoader ()Lnet/minecraft/class_1657;
 	METHOD method_5573 getLanguageManager ()Lnet/minecraft/class_1666;
 	METHOD method_5575 updateDisplayMode ()V
-	METHOD method_5576 stitchTextures ()V
+	METHOD method_5576 reloadResources ()V
 	METHOD method_5580 run ()V
 	METHOD method_6625 getCurrentServerEntry ()Lnet/minecraft/class_485;
 	METHOD method_6627 getSpriteAtlasTexture ()Lnet/minecraft/class_1533;
@@ -173,24 +181,35 @@ CLASS net/minecraft/class_1600 net/minecraft/client/MinecraftClient
 	METHOD method_6633 getFramebuffer ()Lnet/minecraft/class_1862;
 	METHOD method_6634 readInputStreamAsImage (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
 		ARG 1 stream
-	METHOD method_6636 startGame (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/class_1156;)V
+	METHOD method_6636 startIntegratedServer (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/class_1156;)V
 		ARG 1 worldName
+		ARG 2 levelName
 		ARG 3 levelInfo
+	METHOD method_6637 execute (Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+		ARG 1 task
 	METHOD method_6638 handleBlockBreaking (Z)V
+		ARG 1 breaking
 	METHOD method_6639 handleKeyInput ()V
 	METHOD method_6641 getSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	METHOD method_6642 getSkinProvider ()Lnet/minecraft/class_1885;
 	METHOD method_6643 checkIs64Bit ()Z
 	METHOD method_6644 doAttack ()V
 	METHOD method_6645 doUse ()V
-	METHOD method_6647 hasReducedDebugInfo ()Z
+	METHOD method_6646 resizeFraembuffer ()V
+	METHOD method_6647 forcesUnicodeFont ()Z
 	METHOD method_6649 isFramerateValid ()Z
+	METHOD method_9379 reloadResourcesConcurrently ()Lcom/google/common/util/concurrent/ListenableFuture;
 	METHOD method_9380 getTwitchPropertyMap ()Lcom/mojang/authlib/properties/PropertyMap;
 	METHOD method_9381 getSessionProperties ()Lcom/mojang/authlib/properties/PropertyMap;
+	METHOD method_9382 drawLogo (IIIIIIIIII)V
 	METHOD method_9383 loadLogo (Lnet/minecraft/class_1532;)V
 		ARG 1 textureManager
 	METHOD method_9384 setCameraEntity (Lnet/minecraft/class_864;)V
 		ARG 1 entity
+	METHOD method_9385 addBlockEntityNbt (Lnet/minecraft/class_1069;ILnet/minecraft/class_226;)Lnet/minecraft/class_1071;
+		ARG 1 stack
+		ARG 2 meta
+		ARG 3 blockEntity
 	METHOD method_9386 setConnectedToRealms (Z)V
 		ARG 1 connectedToRealms
 	METHOD method_9387 getCurrentAction ()Ljava/lang/String;
@@ -212,3 +231,33 @@ CLASS net/minecraft/class_1600 net/minecraft/client/MinecraftClient
 	METHOD method_9403 updateDisplay ()V
 	METHOD method_9404 updateWindow ()V
 	METHOD method_9405 getMusicTracker ()Lnet/minecraft/class_1904;
+	CLASS 11
+		METHOD run run ()V
+	CLASS 12
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 13
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 14
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 15
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 16
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 17
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 18
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 2
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 3
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 4
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 5
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 6
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 7
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 8
+		METHOD run run ()V

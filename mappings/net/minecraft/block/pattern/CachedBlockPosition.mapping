@@ -1,19 +1,21 @@
-CLASS net/minecraft/class_2235 net/minecraft/world/RayTraceResult
+CLASS net/minecraft/class_2235 net/minecraft/block/pattern/CachedBlockPosition
 	FIELD field_9894 world Lnet/minecraft/class_1150;
 	FIELD field_9895 pos Lnet/minecraft/class_2552;
-	FIELD field_9896 stateRequired Z
+	FIELD field_9896 forceLoad Z
 	FIELD field_9897 state Lnet/minecraft/class_2232;
 	FIELD field_9898 blockEntity Lnet/minecraft/class_226;
-	FIELD field_9899 hasBlockEntity Z
+	FIELD field_9899 cachedEntity Z
 	METHOD <init> (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Z)V
 		ARG 1 world
 		ARG 2 pos
-		ARG 3 stateRequired
+		ARG 3 forceLoad
 	METHOD method_9038 getBlockState ()Lnet/minecraft/class_2232;
-	METHOD method_9039 filterByState (Lcom/google/common/base/Predicate;)Lcom/google/common/base/Predicate;
-		ARG 0 stateFilter
+	METHOD method_9039 matchesBlockState (Lcom/google/common/base/Predicate;)Lcom/google/common/base/Predicate;
+		ARG 0 state
 	METHOD method_9040 getBlockEntity ()Lnet/minecraft/class_226;
 	METHOD method_9041 getPos ()Lnet/minecraft/class_2552;
 	CLASS 1
 		METHOD apply (Ljava/lang/Object;)Z
 			ARG 1 result
+		METHOD apply apply (Ljava/lang/Object;)Z
+			ARG 1 cachedBlockPosition
