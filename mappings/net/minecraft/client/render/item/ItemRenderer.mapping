@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_560 net/minecraft/client/render/item/ItemRenderer
+	FIELD field_11114 renderingAchievement Z
 	FIELD field_11115 textureManager Lnet/minecraft/class_1532;
 	FIELD field_2124 zOffset F
 	FIELD field_2125 models Lnet/minecraft/class_2422;
@@ -7,6 +8,10 @@ CLASS net/minecraft/class_560 net/minecraft/client/render/item/ItemRenderer
 		ARG 1 textureManager
 		ARG 2 modelManager
 	METHOD method_10224 getModels ()Lnet/minecraft/class_2422;
+	METHOD method_10225 renderGuiItemModelTransformations (IIZ)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 depth
 	METHOD method_10226 addModel (Lnet/minecraft/class_197;ILjava/lang/String;)V
 		ARG 1 block
 		ARG 2 metadata
@@ -15,6 +20,11 @@ CLASS net/minecraft/class_560 net/minecraft/client/render/item/ItemRenderer
 		ARG 1 block
 		ARG 2 id
 	METHOD method_10228 renderGuiItemOverlay (Lnet/minecraft/class_370;Lnet/minecraft/class_1071;IILjava/lang/String;)V
+		ARG 1 renderer
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+		ARG 5 countLabel
 	METHOD method_10229 renderGuiQuad (Lnet/minecraft/class_520;IIIIIIII)V
 		ARG 1 buffer
 		ARG 2 x
@@ -25,6 +35,32 @@ CLASS net/minecraft/class_560 net/minecraft/client/render/item/ItemRenderer
 		ARG 7 green
 		ARG 8 blue
 		ARG 9 alpha
+	METHOD method_10230 renderQuad (Lnet/minecraft/class_520;Lnet/minecraft/class_2437;)V
+		ARG 1 bufferBuilder
+		ARG 2 quad
+	METHOD method_10231 renderQuad (Lnet/minecraft/class_520;Lnet/minecraft/class_2437;I)V
+		ARG 1 bufferBuilder
+		ARG 2 quad
+		ARG 3 color
+	METHOD method_10232 renderBakedItemQuads (Lnet/minecraft/class_520;Ljava/util/List;ILnet/minecraft/class_1071;)V
+		ARG 1 bufferbuilder
+		ARG 2 quads
+		ARG 3 color
+		ARG 4 stack
+	METHOD method_10233 isNegativeScale (Lnet/minecraft/class_2460;)Z
+		ARG 1 transformation
+	METHOD method_10234 renderGlint (Lnet/minecraft/class_2528;)V
+		ARG 1 model
+	METHOD method_10235 renderBakedItemModel (Lnet/minecraft/class_2528;I)V
+		ARG 1 model
+		ARG 2 color
+	METHOD method_10236 renderBakedItemModel (Lnet/minecraft/class_2528;ILnet/minecraft/class_1071;)V
+		ARG 1 model
+		ARG 2 color
+		ARG 3 stack
+	METHOD method_10237 renderBakedItemModel (Lnet/minecraft/class_2528;Lnet/minecraft/class_1071;)V
+		ARG 1 model
+		ARG 2 stack
 	METHOD method_10238 addModel (Lnet/minecraft/class_1069;ILjava/lang/String;)V
 		ARG 1 item
 		ARG 2 metadata
@@ -32,6 +68,45 @@ CLASS net/minecraft/class_560 net/minecraft/client/render/item/ItemRenderer
 	METHOD method_10239 addModel (Lnet/minecraft/class_1069;Ljava/lang/String;)V
 		ARG 1 item
 		ARG 2 id
-	METHOD method_10241 renderItem (Lnet/minecraft/class_1071;II)V
+	METHOD method_10240 hasDepth (Lnet/minecraft/class_1071;)Z
+		ARG 1 stack
+	METHOD method_10241 renderGuiItemModel (Lnet/minecraft/class_1071;II)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+	METHOD method_10242 renderItem (Lnet/minecraft/class_1071;Lnet/minecraft/class_2462$class_2464;)V
+		ARG 1 stack
+		ARG 2 mode
+	METHOD method_10243 renderItem (Lnet/minecraft/class_1071;Lnet/minecraft/class_2528;)V
+		ARG 1 stack
+		ARG 2 model
+	METHOD method_10244 renderItem (Lnet/minecraft/class_1071;Lnet/minecraft/class_2528;Lnet/minecraft/class_2462$class_2464;)V
+		ARG 1 stack
+		ARG 2 model
+		ARG 3 transformation
+	METHOD method_10245 renderItem (Lnet/minecraft/class_1071;Lnet/minecraft/class_1699;Lnet/minecraft/class_2462$class_2464;)V
+		ARG 1 stack
+		ARG 2 entity
+		ARG 3 mode
+	METHOD method_10246 setRenderingAchievment (Z)V
+		ARG 1 renderingAchievement
 	METHOD method_10247 initModels ()V
+	METHOD method_10248 preRenderGuiItemModel (Lnet/minecraft/class_1071;)V
+		ARG 1 stack
 	METHOD method_10249 renderInGuiWithOverrides (Lnet/minecraft/class_1071;II)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+	METHOD method_1549 renderGuiItemOverlay (Lnet/minecraft/class_370;Lnet/minecraft/class_1071;II)V
+		ARG 1 renderer
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+	CLASS 1
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 2
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 3
+		METHOD call call ()Ljava/lang/Object;
+	CLASS 4
+		METHOD call call ()Ljava/lang/Object;
