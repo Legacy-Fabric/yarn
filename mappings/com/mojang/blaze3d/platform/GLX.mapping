@@ -1,5 +1,18 @@
 CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
+	FIELD field_11395 source1Rgb I
+	FIELD field_11396 source2Rgb I
+	FIELD field_11397 operand0Rgb I
+	FIELD field_11398 operand1Rgb I
+	FIELD field_11399 operand2Rgb I
+	FIELD field_11400 combineAlpha I
+	FIELD field_11401 source0Alpha I
+	FIELD field_11402 source1Alpha I
+	FIELD field_11403 source2Alpha I
+	FIELD field_11404 operand0Alpha I
+	FIELD field_11405 operand1Alpha I
+	FIELD field_11406 operand2Alpha I
 	FIELD field_11407 vboSupported Z
+	FIELD field_11408 vboSupportedAmd Z
 	FIELD field_11409 arrayBuffer I
 	FIELD field_11410 arbTextureEnvCombine Z
 	FIELD field_11411 processor Ljava/lang/String;
@@ -11,6 +24,8 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 	FIELD field_11417 primary I
 	FIELD field_11418 constant I
 	FIELD field_11419 previous I
+	FIELD field_11420 combineRgb I
+	FIELD field_11421 source0Rgb I
 	FIELD field_2300 textureUnit I
 	FIELD field_2301 lightmapTextureUnit I
 	FIELD field_2302 arbMultitexture Z
@@ -32,6 +47,7 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 	FIELD field_8385 compileStatus I
 	FIELD field_8386 vertexShader I
 	FIELD field_8387 fragmentShader I
+	FIELD field_8389 staticDraw I
 	FIELD field_8390 blendFuncSeperateSupported Z
 	FIELD field_8391 shadersSupported Z
 	FIELD field_8392 type I
@@ -74,8 +90,17 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		ARG 1 param
 	METHOD method_7282 advancedRenderBufferStorage (IIII)V
 		COMMENT Establishes data storage, format and dimensions of a renderbuffer object's image
+		ARG 0 target
+		ARG 1 internalFormat
+		ARG 2 width
+		ARG 3 height
 	METHOD method_7283 advancedFrameBufferTexture2D (IIIII)V
 		COMMENT Attaches a level of a texture object as a logical buffer of a framebuffer object
+		ARG 0 target
+		ARG 1 attachment
+		ARG 2 textarget
+		ARG 3 texture
+		ARG 4 level
 	METHOD method_7284 gl20GetUniformLocation (ILjava/lang/CharSequence;)I
 		COMMENT Returns the location of a uniform variable
 		ARG 0 program
@@ -107,6 +132,10 @@ CLASS net/minecraft/class_629 com/mojang/blaze3d/platform/GLX
 		ARG 1 shader
 	METHOD method_7292 advancedFramebufferRenderbuffer (IIII)V
 		COMMENT Attaches a renderbuffer as a logical buffer of a framebuffer object
+		ARG 0 target
+		ARG 1 attachment
+		ARG 2 renderBufferTarget
+		ARG 3 renderBuffer
 	METHOD method_7293 gl20GetAttribLocation (ILjava/lang/CharSequence;)I
 		COMMENT Returns the location of an attribute variable
 		ARG 0 loc

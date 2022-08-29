@@ -1,4 +1,6 @@
 CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
+	FIELD field_10798 entityOutlineFramebuffer Lnet/minecraft/class_1862;
+	FIELD field_10799 entityOutlineShader Lnet/minecraft/class_1872;
 	FIELD field_10800 lastCameraChunkUpdateX D
 	FIELD field_10801 lastCameraChunkUpdateY D
 	FIELD field_10802 lastCameraChunkUpdateZ D
@@ -11,47 +13,155 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 	FIELD field_10809 lastCameraPitch D
 	FIELD field_10810 lastCameraYaw D
 	FIELD field_10811 chunkBuilder Lnet/minecraft/class_2476;
+	FIELD field_10812 chunkRenderManager Lnet/minecraft/class_2398;
+	FIELD field_10814 capturedFrustum Lnet/minecraft/class_539;
+	FIELD field_10815 capturedFrustumOrientation [Lorg/lwjgl/util/vector/Vector4f;
+	FIELD field_10816 capturedFrustumPosition Lnet/minecraft/class_2547;
+	FIELD field_10817 vbo Z
+	FIELD field_10818 chunkRenderFactory Lnet/minecraft/class_2482;
 	FIELD field_10819 FORCEFIELD Lnet/minecraft/class_1653;
 	FIELD field_10820 entityRenderDispatcher Lnet/minecraft/class_550;
 	FIELD field_10821 chunksToRebuild Ljava/util/Set;
 	FIELD field_10822 noCullingBlockEntities Ljava/util/Set;
 	FIELD field_10823 chunks Lnet/minecraft/class_2427;
+	FIELD field_10824 skyVertexFormat Lnet/minecraft/class_2522;
 	FIELD field_10825 starsBuffer Lnet/minecraft/class_2521;
+	FIELD field_10826 lightSkyBuffer Lnet/minecraft/class_2521;
+	FIELD field_10827 darkSkyBuffer Lnet/minecraft/class_2521;
+	FIELD field_10828 destroySprites [Lnet/minecraft/class_1639;
+	FIELD field_1887 blockBreakingInfos Ljava/util/Map;
+	FIELD field_1888 renderDistance I
+	FIELD field_1889 totalEntityCount I
+	FIELD field_1890 rendererdEntityCount I
+	FIELD field_1891 hiddenEntityCount I
 	FIELD field_1892 blockEntityCount I
 	FIELD field_1900 visibleChunks Ljava/util/List;
 	FIELD field_1909 world Lnet/minecraft/class_478;
 	FIELD field_1918 client Lnet/minecraft/class_1600;
+	FIELD field_1922 ticks I
+	FIELD field_1923 starsList I
+	FIELD field_1924 lightSkyList I
+	FIELD field_1925 darkSkyList I
 	FIELD field_6460 MOON_PHASES Lnet/minecraft/class_1653;
 	FIELD field_6461 SUN Lnet/minecraft/class_1653;
 	FIELD field_6462 CLOUDS Lnet/minecraft/class_1653;
 	FIELD field_6463 END_SKY Lnet/minecraft/class_1653;
 	FIELD field_6464 textureManager Lnet/minecraft/class_1532;
 	FIELD field_7967 playingSongs Ljava/util/Map;
-	FIELD field_7968 scheduleTerrainUpdate Z
+	FIELD field_7968 needsTerrainUpdate Z
+	FIELD field_7970 lastTranslucentSortX D
+	FIELD field_7971 lastTranslucentSortY D
+	FIELD field_7972 lastTranslucentSortZ D
 	FIELD field_7976 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD <init> (Lnet/minecraft/class_1600;)V
+		ARG 1 minecraftClient
 	METHOD method_1363 reload ()V
+	METHOD method_1364 hasThickFog (DDDF)Z
 	METHOD method_1367 onResized (II)V
+		ARG 1 width
+		ARG 2 height
+	METHOD method_1371 setWorld (Lnet/minecraft/class_478;)V
+		ARG 1 clientWorld
+	METHOD method_1378 updateBlock (IIIIII)V
+	METHOD method_1380 drawBlockOutline (Lnet/minecraft/class_988;Lnet/minecraft/class_234;IF)V
+		ARG 1 player
+		ARG 2 hitResult
+		ARG 4 tickDelta
 	METHOD method_1381 getChunksDebugString ()Ljava/lang/String;
 	METHOD method_1384 getEntitiesDebugString ()Ljava/lang/String;
 	METHOD method_1385 tick ()V
+	METHOD method_9890 captureFrustum (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_9891 renderSky (FI)V
+		ARG 1 tickDelta
+		ARG 2 anaglyphFilter
+	METHOD method_9892 updateChunks (J)V
+		ARG 1 limitTime
+	METHOD method_9893 renderLayer (Lnet/minecraft/class_2165;)V
+		ARG 1 renderLayer
+	METHOD method_9894 renderLayer (Lnet/minecraft/class_2165;DILnet/minecraft/class_864;)I
+		ARG 1 renderLayer
+		ARG 2 tickDelta
+		ARG 4 anaglyphFilter
+		ARG 5 entity
+	METHOD method_9895 drawBox (Lnet/minecraft/class_231;)V
+		ARG 0 box
+	METHOD method_9896 drawBox (Lnet/minecraft/class_231;IIII)V
+		ARG 0 box
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+		ARG 4 alpha
 	METHOD method_9897 renderStars (Lnet/minecraft/class_520;)V
 		ARG 1 buffer
 	METHOD method_9898 renderSkyHalf (Lnet/minecraft/class_520;FZ)V
 		ARG 1 buffer
 		ARG 2 y
 		ARG 3 bottom
+	METHOD method_9899 drawBlockDamage (Lnet/minecraft/class_533;Lnet/minecraft/class_520;Lnet/minecraft/class_864;F)V
+		ARG 1 tessellator
+		ARG 2 bufferBuilder
+		ARG 3 entity
+		ARG 4 tickDelta
+	METHOD method_9900 isInChunk (Lnet/minecraft/class_2552;Lnet/minecraft/class_2481;)Z
+		ARG 1 pos
+		ARG 2 chunk
+	METHOD method_9901 getAdjacentChunk (Lnet/minecraft/class_2552;Lnet/minecraft/class_2481;Lnet/minecraft/class_1354;)Lnet/minecraft/class_2481;
+		ARG 1 pos
+		ARG 2 chunk
+		ARG 3 direction
+	METHOD method_9902 addParticleInternal (Lnet/minecraft/class_2562;DDDDDD[I)V
+		ARG 1 type
 	METHOD method_9903 updateNoCullingBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 removed
 		ARG 2 added
-	METHOD method_9910 (FI)V
+	METHOD method_9904 clearBlockBreakingInfo (Ljava/util/Iterator;)V
+		ARG 1 iterator
+	METHOD method_9905 getFacing (Lnet/minecraft/class_864;D)Lorg/lwjgl/util/vector/Vector3f;
+		ARG 1 entity
+		ARG 2 tickDelta
+	METHOD method_9906 setupTerrain (Lnet/minecraft/class_864;DLnet/minecraft/class_536;IZ)V
+		ARG 1 entity
+		ARG 2 tickDelta
+		ARG 4 cameraView
+		ARG 5 frame
+		ARG 6 spectator
+	METHOD method_9907 renderWorldBorder (Lnet/minecraft/class_864;F)V
+		ARG 1 entity
+		ARG 2 tickDelta
+	METHOD method_9908 renderEntities (Lnet/minecraft/class_864;Lnet/minecraft/class_536;F)V
+		ARG 1 entity
+		ARG 2 cameraView
+		ARG 3 tickDelta
+	METHOD method_9909 setupEntityOutlineShader ()V
+	METHOD method_9910 renderClouds (FI)V
 		ARG 1 tickDelta
 		ARG 2 anaglyphFilter
-	METHOD method_9913 (FI)V
+	METHOD method_9911 addParticleInternal (IZDDDDDD[I)Lnet/minecraft/class_502;
+	METHOD method_9912 drawEntityOutlineFramebuffer ()V
+	METHOD method_9913 renderFancyClouds (FI)V
 		ARG 1 tickDelta
 		ARG 2 anaglyphFilter
 	METHOD method_9914 getOpenChunkFaces (Lnet/minecraft/class_2552;)Ljava/util/Set;
 		ARG 1 pos
+	METHOD method_9915 isEntityOutline ()Z
 	METHOD method_9916 clearChunkRenderers ()V
 	METHOD method_9917 scheduleTerrainUpdate ()V
+	METHOD method_9918 fillDestroySprites ()V
+	METHOD method_9919 renderDarkSky ()V
+	METHOD method_9920 renderLightSky ()V
 	METHOD method_9921 renderStars ()V
+	METHOD method_9922 renderEndSky ()V
+	METHOD method_9923 preDrawBlockDamage ()V
+	METHOD method_9924 postDrawBlockDamage ()V
 	CLASS class_2424 ChunkInfo
+		FIELD field_10830 chunk Lnet/minecraft/class_2481;
+		FIELD field_10831 direction Lnet/minecraft/class_1354;
+		FIELD field_10832 facingSet Ljava/util/Set;
+		FIELD field_10833 propagationLevel I
+		METHOD <init> (Lnet/minecraft/class_530;Lnet/minecraft/class_2481;Lnet/minecraft/class_1354;I)V
+			ARG 2 chunk
+			ARG 3 direction
+			ARG 4 propagationLevel

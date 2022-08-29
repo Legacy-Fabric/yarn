@@ -11,6 +11,7 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 	FIELD field_5147 selectedStack Lnet/minecraft/class_1071;
 	METHOD <init> (Lnet/minecraft/class_1600;Lnet/minecraft/class_1845;)V
 		ARG 1 client
+		ARG 2 networkHandler
 	METHOD method_1221 isSpectator ()Z
 	METHOD method_1222 clickButton (II)V
 		ARG 1 syncId
@@ -26,6 +27,10 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_1227 attackEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)V
 		ARG 1 player
 		ARG 2 target
+	METHOD method_1228 interactItem (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_1071;)Z
+		ARG 1 player
+		ARG 2 world
+		ARG 3 stack
 	METHOD method_1230 dropCreativeStack (Lnet/minecraft/class_1071;)V
 		ARG 1 stack
 	METHOD method_1231 clickCreativeStack (Lnet/minecraft/class_1071;I)V
@@ -34,7 +39,11 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_1233 setGameMode (Lnet/minecraft/class_1156$class_1157;)V
 		ARG 1 gameMode
 	METHOD method_1234 hasStatusBars ()Z
+	METHOD method_1236 flipPlayer (Lnet/minecraft/class_988;)V
+		ARG 1 player
 	METHOD method_1237 interactEntity (Lnet/minecraft/class_988;Lnet/minecraft/class_864;)Z
+		ARG 1 player
+		ARG 2 entity
 	METHOD method_1238 cancelBlockBreaking ()V
 	METHOD method_1240 stopUsingItem (Lnet/minecraft/class_988;)V
 		ARG 1 player
@@ -46,6 +55,9 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_1246 hasExtendedReach ()Z
 	METHOD method_1247 syncSelectedSlot ()V
 	METHOD method_5707 hasRidingInventory ()Z
+	METHOD method_9658 createPlayer (Lnet/minecraft/class_1150;Lnet/minecraft/class_625;)Lnet/minecraft/class_518;
+		ARG 1 world
+		ARG 2 statHandler
 	METHOD method_9659 breakBlockOrFire (Lnet/minecraft/class_1600;Lnet/minecraft/class_477;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)V
 		ARG 0 client
 		ARG 1 interactionManager
@@ -65,6 +77,8 @@ CLASS net/minecraft/class_477 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 2 direction
 	METHOD method_9663 interactEntityAtLocation (Lnet/minecraft/class_988;Lnet/minecraft/class_864;Lnet/minecraft/class_234;)Z
 		ARG 1 player
+		ARG 2 entity
+		ARG 3 hitResult
 	METHOD method_9664 attackBlock (Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
 		ARG 1 pos
 		ARG 2 direction
