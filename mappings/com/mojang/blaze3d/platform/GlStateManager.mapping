@@ -40,6 +40,15 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 		COMMENT Stores the color mask state
 	FIELD field_10727 COLOR Lnet/minecraft/class_2403$class_2408;
 		COMMENT Stores the color state in rgba
+	METHOD method_12287 blendFunc (Lnet/minecraft/class_2403$class_2870;Lnet/minecraft/class_2403$class_2866;)V
+	METHOD method_12288 blendFuncSeparate (Lnet/minecraft/class_2403$class_2870;Lnet/minecraft/class_2403$class_2866;Lnet/minecraft/class_2403$class_2870;Lnet/minecraft/class_2403$class_2866;)V
+		COMMENT  Sets pixel arithmetic for RGB and alpha components separately
+		ARG 0 srcRGB
+		ARG 1 dstRGB
+		ARG 2 srcAlpha
+		ARG 3 dstAlpha
+	METHOD method_12305 blendEquation (I)V
+		ARG 0 eq
 	METHOD method_9787 disableNormalize ()V
 		COMMENT Disables Normalize
 	METHOD method_9788 enableRescaleNormal ()V
@@ -114,6 +123,8 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_9807 enableTexCoord (Lnet/minecraft/class_2403$class_2418;)V
 		COMMENT Enables the generation of texture coordinates
 		ARG 0 coord
+	METHOD method_9807 logicOp (Lnet/minecraft/class_2403$class_2868;)V
+		ARG 0 op
 	METHOD method_9808 genTex (Lnet/minecraft/class_2403$class_2418;I)V
 		COMMENT Allows controlling the generation of texture coordinates
 		ARG 0 coord
@@ -360,3 +371,23 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 	CLASS class_2421 Texture2DState
 		FIELD field_10789 capState Lnet/minecraft/class_2403$class_2406;
 		FIELD field_10790 boundTexture I
+	CLASS class_2865
+		FIELD field_13469 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS class_2866 BlendDst
+		FIELD field_13485 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS class_2867
+		FIELD field_13490 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS class_2868 LogicOperand
+		FIELD field_13508 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS class_2870 BlendSrc
+		FIELD field_13529 value I
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value

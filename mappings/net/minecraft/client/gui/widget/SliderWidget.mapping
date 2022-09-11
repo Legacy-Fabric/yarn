@@ -1,6 +1,7 @@
 CLASS net/minecraft/class_2295 net/minecraft/client/gui/widget/SliderWidget
 	FIELD field_10358 focused Z
 	FIELD field_10359 progress F
+	FIELD field_10360 label Ljava/lang/String;
 	FIELD field_10361 min F
 	FIELD field_10362 max F
 	FIELD field_10363 listener Lnet/minecraft/class_2300$class_2302;
@@ -10,12 +11,22 @@ CLASS net/minecraft/class_2295 net/minecraft/client/gui/widget/SliderWidget
 		ARG 2 id
 		ARG 3 x
 		ARG 4 y
+		ARG 5 label
 		ARG 6 min
 		ARG 7 max
+		ARG 8 initialValue
 		ARG 9 labelSupplier
+	METHOD method_9459 setValue (F)V
+		ARG 1 progress
+	METHOD method_9460 setValue (FZ)V
+		ARG 1 value
+		ARG 2 updateListener
 	METHOD method_9461 getSliderValue ()F
 	METHOD method_9462 getProgress ()F
 		COMMENT Returns a progress value between 0 and 1
+	METHOD method_9463 getLabel ()Ljava/lang/String;
 	CLASS class_2296 LabelSupplier
 		METHOD method_9464 getLabel (ILjava/lang/String;F)Ljava/lang/String;
+			ARG 1 id
+			ARG 2 label
 			ARG 3 sliderValue

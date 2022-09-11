@@ -332,8 +332,15 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11560 isFullBoundsCubeForCulling (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11561 getHardness (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_11562 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
+	METHOD method_11563 getStateCollisionBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_11564 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
 		ARG 1 state
 		ARG 2 view
@@ -344,7 +351,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 state
 	METHOD method_11567 getPistonBehavior (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
 		ARG 1 state
-	METHOD method_11568 (Lnet/minecraft/class_2232;)Z
+	METHOD method_11568 isOpaque (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_11569 isFullBlock (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
@@ -365,6 +372,13 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11577 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_11578 getSoundGroup ()Lnet/minecraft/class_200;
+	METHOD method_13315 (Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)Z
+		ARG 1 state
+		ARG 2 entity
+	METHOD method_13702 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_236;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_13703 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_13704 (Lnet/minecraft/class_2232;)Z
@@ -372,11 +386,20 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_14305 addStacksForDisplay (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
 		ARG 1 group
 		ARG 2 stacks
+	METHOD method_14306 appendTooltips (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Ljava/util/List;Lnet/minecraft/class_3191;)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 tooltip
+		ARG 4 ctx
 	METHOD method_14307 getRenderLayer (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
 		ARG 1 world
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 direction
+	METHOD method_14308 (Lnet/minecraft/class_197;)Z
+		ARG 0 block
+	METHOD method_14309 (Lnet/minecraft/class_197;)Z
+		ARG 0 block
 	METHOD method_16561 createCuboidShape (DDDDDD)Lnet/minecraft/class_4100;
 	METHOD method_16562 getStateByRawId (I)Lnet/minecraft/class_2232;
 		ARG 0 rawId
@@ -515,7 +538,6 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return Whether the block has collision
 		ARG 1 state
 			COMMENT The block's BlockState
-		ARG 2 bl
 	METHOD method_401 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197;
 		ARG 1 blockSoundGroup
 	METHOD method_401 setSound (Lnet/minecraft/class_197$class_200;)Lnet/minecraft/class_197;
@@ -994,6 +1016,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's Identifier
 		ARG 2 block
 			COMMENT The block object
+	METHOD method_8638 (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 view
+		ARG 2 pos
 	METHOD method_8638 isReplaceable (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -1026,6 +1051,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
+	METHOD method_8640 getStateCollisionBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
 		COMMENT Runs when its adjacent blocks are updated.
 		COMMENT It will also run when the block is placed or removed as Air is being updated.
