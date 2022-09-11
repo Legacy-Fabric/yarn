@@ -24,7 +24,7 @@ Please have a look at the [naming conventions](/CONVENTIONS.md) before submittin
 ### Getting Started
 
 1. Fork and clone the repo
-2. Run `sh ./yarn` (Linux, macOS) or `yarn.bat` (Windows) and select the Minecraft version, to open [Enigma](https://github.com/FabricMC/Enigma), a user interface to easily edit the mappings
+2. Run `yarn.py`, select a Minecraft version and type `yarn` to open [Enigma](https://github.com/FabricMC/Enigma), a user interface to easily edit the mappings
 3. Commit and push your work to your fork
 4. Open a pull request with your changes
 
