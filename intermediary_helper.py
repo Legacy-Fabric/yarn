@@ -136,7 +136,7 @@ def create_class_map():
     for folder, dirs, files in os.walk("./mappings"):
         for fname in files:
             if fname.endswith(".mapping"):
-                path = os.path.join(folder, fname)
+                path = os.path.normpath(os.path.join(folder, fname))
                 with open(path, 'r') as file:
                     parts = file.readline().rstrip().split()
 
@@ -147,35 +147,35 @@ def create_class_map():
 def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dict):
     path = os.path.join(folder, fname)
     with open(path, 'r') as file:
-        new_path = os.path.normpath(path.replace("mappings-active", "mappings", 1))
+        out_path = os.path.normpath(path.replace("mappings-active", "mappings", 1))
         lines = file.read().splitlines()
-        i_class = lines[0].split()[1].split("/")[-1]
+        in_class = lines[0].split()[1].split("/")[-1]
 
         # Delete the file if its just a stub
         if len(lines[0]) == 2 and len(lines) <= 2:
-            if i_class in class_map:
-                os.remove(class_map[i_class])
+            if in_class in class_map:
+                os.remove(class_map[in_class])
             return
 
         # Step 1: Rename/create the file we're moving the mappings into
-        not_in_map = i_class not in class_map
-        if not_in_map or os.path.normpath(class_map[i_class]) != new_path:
-            if not_in_map:
-                class_map[i_class] = new_path
+        if in_class not in class_map:
+            while os.path.isfile(out_path):
+                out_path = out_path[:-8] + "$.mapping"
 
-            while os.path.isfile(new_path) and os.path.normpath(class_map[i_class]) != new_path:
-                new_path = new_path[:-8] + "$.mapping"
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            with open(out_path, 'w') as file:
+                file.write(lines[0] + "\n")
+        elif class_map[in_class] != out_path:
+            while os.path.isfile(out_path) and class_map[in_class] != out_path:
+                out_path = out_path[:-8] + "$.mapping"
 
-            os.makedirs(os.path.dirname(new_path), exist_ok=True)
-            if os.path.isfile(class_map[i_class]):
-                os.rename(class_map[i_class], new_path)
-            else:
-                with open(new_path, 'w') as file:
-                    file.write(lines[0] + "\n")
-            class_map[i_class] = new_path
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            os.rename(class_map[in_class], out_path)
 
-        with open(new_path, 'r') as new_file:
-            new_lines = new_file.read().splitlines()
+        class_map[in_class] = out_path
+
+        with open(out_path, 'r') as new_file:
+            out_lines = new_file.read().splitlines()
 
         # Step 2: Rename existing classes/subclasses
         # (We wait with classes that don't exist until step 4 since its more convenient there,
@@ -184,26 +184,26 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
         for i in range(len(lines)):
             split = lines[i].replace("	", "").split()
             if split[0] == "CLASS":
-                ni = indexof(new_lines, "CLASS " + split[1])
+                ni = indexof(out_lines, "CLASS " + split[1])
                 if ni != -1:
-                    insert_mapping(lines, new_lines, i, ni, True)
+                    insert_mapping(lines, out_lines, i, ni, True)
 
         # Step 3: Delete fields and methods that are in the current intermediaries before merging them
         i = 1
         tabs = 1
-        while i < len(new_lines):
-            new_tabs = new_lines[i].count("	")
+        while i < len(out_lines):
+            new_tabs = out_lines[i].count("	")
             if new_tabs > tabs:
                 i += 1
                 continue
             elif new_tabs < tabs:
                 tabs = new_tabs
 
-            if is_in_mappings(new_lines[i], mappings, False):
-                count = get_mapping_length(new_lines, i)
-                if "	CLASS" not in new_lines[i]:
+            if is_in_mappings(out_lines[i], mappings, False):
+                count = get_mapping_length(out_lines, i)
+                if "	CLASS" not in out_lines[i]:
                     for _ in range(count):
-                        new_lines.pop(i)
+                        out_lines.pop(i)
                 else:
                     i += count
                 tabs += count
@@ -217,20 +217,20 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
             if split[0] == "CLASS" or split[0] == "FIELD" or split[0] == "METHOD":
                 if split[0] == "CLASS":
                     parent_classes = parent_classes[:lines[i].count("	")]
-                    if indexof(new_lines, "CLASS " + split[1]) != -1:
+                    if indexof(out_lines, "CLASS " + split[1]) != -1:
                         parent_classes.append(split[1])
                         continue
 
-                ni = indexof(new_lines, "CLASS " + parent_classes[-1]) + 1
-                while ni < len(new_lines) and not cmp_mapping(lines[i], new_lines[ni]):
+                ni = indexof(out_lines, "CLASS " + parent_classes[-1]) + 1
+                while ni < len(out_lines) and not cmp_mapping(lines[i], out_lines[ni]):
                     ni += 1
-                insert_mapping(lines, new_lines, i, ni, False)
+                insert_mapping(lines, out_lines, i, ni, False)
 
                 if split[0] == "CLASS":
                     parent_classes.append(split[1])
 
-        with open(new_path, "w+", newline="\n") as new_file:
-            new_file.write("\n".join(new_lines) + "\n")
+        with open(out_path, "w+", newline="\n") as out_file:
+            out_file.write("\n".join(out_lines) + "\n")
 
 def insert_mapping(from_lines: list, to_lines: list, from_index: int, to_index: int, replace: bool):
     if replace:
