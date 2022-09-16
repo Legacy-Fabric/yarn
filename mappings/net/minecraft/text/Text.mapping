@@ -1,4 +1,17 @@
 CLASS net/minecraft/class_1982 net/minecraft/text/Text
+	METHOD method_20169 trimToWidth (I)Ljava/lang/String;
+		ARG 1 length
+	METHOD method_20170 formatted (Lnet/minecraft/class_1442;)Lnet/minecraft/class_1982;
+		ARG 1 formatting
+	METHOD method_20172 styled (Ljava/util/function/Consumer;)Lnet/minecraft/class_1982;
+		ARG 1 styleConsumer
+	METHOD method_20173 formatted ([Lnet/minecraft/class_1442;)Lnet/minecraft/class_1982;
+		ARG 1 formatting
+	METHOD method_20174 copy (Lnet/minecraft/class_1982;)Lnet/minecraft/class_1982;
+		COMMENT Copies the text itself and the style, but excludes siblings.
+		ARG 0 text
+	METHOD method_20175 stream ()Ljava/util/stream/Stream;
+	METHOD method_20176 streamCopied ()Ljava/util/stream/Stream;
 	METHOD method_7466 getSiblings ()Ljava/util/List;
 	METHOD method_7467 append (Lnet/minecraft/class_1982;)Lnet/minecraft/class_1982;
 		ARG 1 text
@@ -12,6 +25,9 @@ CLASS net/minecraft/class_1982 net/minecraft/text/Text
 	METHOD method_7473 computeValue ()Ljava/lang/String;
 	METHOD method_7474 copy ()Lnet/minecraft/class_1982;
 	CLASS class_1983 Serializer
+		FIELD field_21511 GSON Lcom/google/gson/Gson;
+		FIELD field_21512 POS_FIELD Ljava/lang/reflect/Field;
+		FIELD field_21513 LINE_START_FIELD Ljava/lang/reflect/Field;
 		FIELD field_8485 GSON Lcom/google/gson/Gson;
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
 			ARG 1 element
@@ -21,6 +37,8 @@ CLASS net/minecraft/class_1982 net/minecraft/text/Text
 			ARG 0 string
 		METHOD method_12606 lenientDeserializeText (Ljava/lang/String;)Lnet/minecraft/class_1982;
 			ARG 0 string
+		METHOD method_20180 getReaderPos (Lcom/google/gson/stream/JsonReader;)I
+			ARG 0 reader
 		METHOD method_7476 serialize (Lnet/minecraft/class_1982;)Ljava/lang/String;
 			ARG 0 text
 		METHOD method_7478 serializeStyle (Lnet/minecraft/class_1986;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;)V

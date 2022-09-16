@@ -9,7 +9,16 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 	FIELD field_16253 INT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_16254 input Ljava/lang/String;
 	FIELD field_16255 cursor I
+	FIELD field_21493 TRAILING_EXCEPTION Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD field_21494 EXPECTED_KEY_EXCEPTION Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD field_21495 EXPECTED_VALUE_EXCEPTION Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD field_21496 MIXED_LIST_EXCEPTION Lcom/mojang/brigadier/exceptions/Dynamic2CommandExceptionType;
+	FIELD field_21497 MIXED_ARRAY_EXCEPTION Lcom/mojang/brigadier/exceptions/Dynamic2CommandExceptionType;
+	FIELD field_21498 INVALID_ARRAY_EXCEPTION Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD field_21499 reader Lcom/mojang/brigadier/StringReader;
 	FIELD field_8408 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;)V
+		ARG 1 reader
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 input
 	METHOD method_10579 parse (Ljava/lang/String;)Lnet/minecraft/class_322;
@@ -25,15 +34,15 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 	METHOD method_10583 isEscaped (Ljava/lang/String;I)Z
 		ARG 0 string
 		ARG 1 index
-	METHOD method_14757 readCompound ()Lnet/minecraft/class_322;
-	METHOD method_14758 readArray (BB)Ljava/util/List;
+	METHOD method_14757 parse ()Lnet/minecraft/class_322;
+	METHOD method_14758 parseArray (BB)Ljava/util/List;
 		ARG 1 nbtType
 		ARG 2 numberType
 	METHOD method_14759 isAllowedInUnquotedString (C)Z
 		ARG 1 c
 	METHOD method_14760 canRead (I)Z
 		ARG 1 offset
-	METHOD method_14761 readString ()Ljava/lang/String;
+	METHOD method_14761 parseString ()Ljava/lang/String;
 	METHOD method_14762 expect (C)V
 		ARG 1 c
 	METHOD method_14763 peek (I)C
@@ -41,6 +50,8 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 	METHOD method_14764 createException (Ljava/lang/String;)Lnet/minecraft/class_1948;
 		ARG 1 message
 	METHOD method_14765 parsePrimitive ()Lnet/minecraft/class_605;
+	METHOD method_14766 parseNumber (Ljava/lang/String;)Lnet/minecraft/class_4373;
+		ARG 1 string
 	METHOD method_14766 parsePrimitive (Ljava/lang/String;)Lnet/minecraft/class_605;
 		ARG 1 input
 	METHOD method_14767 parseElement ()Lnet/minecraft/class_605;
@@ -55,6 +66,11 @@ CLASS net/minecraft/class_1949 net/minecraft/nbt/StringNbtReader
 	METHOD method_14776 readComma ()Z
 	METHOD method_14777 peek ()C
 	METHOD method_14778 read ()C
+	METHOD method_20152 parsePrimitive ()Lnet/minecraft/class_4373;
+	METHOD method_20153 parseElement ()Lnet/minecraft/class_4373;
+	METHOD method_20154 parseAbstractList ()Lnet/minecraft/class_4373;
+	METHOD method_20155 parseList ()Lnet/minecraft/class_4373;
+	METHOD method_20156 parseArray ()Lnet/minecraft/class_4373;
 	METHOD method_7378 indexOf (Ljava/lang/String;C)I
 		ARG 0 string
 		ARG 1 c
