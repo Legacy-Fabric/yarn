@@ -143,18 +143,18 @@ task downloadVersionsManifest {
 	group = setupGroup
 	//inputs.property "mc_ver", minecraft_version
 	inputs.property "currenttime", new Date()
-	def manifestFile = new File(cacheFilesMinecraft, "version_list_meta.json")
+	def manifestFile = new File(cacheFilesMinecraft, "version_manifest_v2.json")
 	outputs.file(manifestFile)
 	doLast {
 		logger.lifecycle(":downloading minecraft versions manifest")
-		FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/versions/game"), manifestFile)
+		FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/versions/manifest"), manifestFile)
 	}
 }
 
 def getManifestVersion(File manifestFile, String minecraft_version) {
 	def manifest = manifestFile.exists() ? new JsonSlurper().parseText(FileUtils.readFileToString(manifestFile)) : null
-	return manifest != null ? manifest.stream().filter({
-		it.version.equals(minecraft_version)
+	return manifest != null ? manifest.versions.stream().filter({
+		it.id.equals(minecraft_version)
 	}).findFirst() : java.util.Optional.empty()
 }
 
@@ -164,7 +164,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 	def manifestVersion = getManifestVersion(manifestFile, minecraft_version)
 
 	//have to grab the release time as there's a current timestamp on each element?!
-	// inputs.property "releaseTime", manifestVersion.isPresent() ? manifestVersion.get().releaseTime : -1
+	inputs.property "releaseTime", manifestVersion.isPresent() ? manifestVersion.get().releaseTime : -1
 
 	outputs.file versionFile
 
@@ -174,7 +174,7 @@ task downloadWantedVersionManifest(dependsOn: downloadVersionsManifest) {
 		if (manifestVersion.isPresent() || versionFile.exists()) {
 
 			if (manifestVersion.isPresent()) {
-				FileUtils.copyURLToFile(new URL("https://meta.legacyfabric.net/v2/manifest/${manifestVersion.get().version}"), versionFile)
+				FileUtils.copyURLToFile(new URL(manifestVersion.get().url), versionFile)
 			}
 		} else {
 			throw new RuntimeException("No version data for Minecraft version ${minecraft_version}")
