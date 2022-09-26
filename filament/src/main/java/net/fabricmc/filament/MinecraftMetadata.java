@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 
+import net.fabricmc.loom.LoomRepositoryPlugin;
+
 import org.gradle.api.Project;
 
 import net.fabricmc.loom.configuration.providers.minecraft.ManifestVersion;
@@ -41,7 +43,16 @@ public class MinecraftMetadata {
 		extension.getMinecraftVersionMeta().finalizeValue();
 
 		for (MinecraftVersionMeta.Library library : versionMeta.libraries()) {
-			project.getDependencies().add("minecraftLibraries", library.name());
+			if (library.artifact() != null) {
+				final String name = library.name();
+
+				if ("org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20130708-debug3".equals(name) || "org.lwjgl.lwjgl:lwjgl:2.9.1-nightly-20131017".equals(name)) {
+					// 1.4.7 contains an LWJGL version with an invalid maven pom, set the metadata sources to not use the pom for this version.
+					LoomRepositoryPlugin.setupForLegacyVersions(project);
+				}
+
+				project.getDependencies().add("minecraftLibraries", library.name());
+			}
 		}
 	}
 

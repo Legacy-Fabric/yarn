@@ -29,11 +29,14 @@ def taskName = project.gradle.startParameter.taskNames[0]
 
 def ENV = System.getenv()
 
-if (!ENV.MC_VERSION) {
-	throw new InvalidUserDataException("No Minecraft version selected! Please use yarn.py to start gradle")
-}
+def minecraft_version = "1.8.9"
 
-def minecraft_version = ENV.MC_VERSION
+if (!ENV.MC_VERSION) {
+	System.out.println("No Minecraft version selected! Please use yarn.py to start gradle.")
+	System.out.println("Defaulting Minecraft version to ${minecraft_version}")
+} else {
+	minecraft_version = ENV.MC_VERSION
+}
 
 filament {
 	minecraftVersion = minecraft_version
