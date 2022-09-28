@@ -830,7 +830,7 @@ int getLastBuildNumber() {
 	def metadata = new XmlSlurper().parseText(xml)
 	def latest = metadata.versioning.latest.text();
 	
-	return Integer.valueOf(latest.split("+build.")[1])
+	return Integer.valueOf(latest.split("build.")[1])
 }
 
 publish.mustRunAfter checkVersion
