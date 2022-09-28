@@ -45,6 +45,16 @@ filament {
 
 // Fetch build number from Github Actions
 def build_number = ENV.GITHUB_RUN_NUMBER && taskName != "publishToMavenLocal" ? ENV.GITHUB_RUN_NUMBER : "local"
+
+if (build_number != "local") {
+	def build_num = Integer.valueOf(build_number);
+	def latest_num = getLastBuildNumber();
+
+	if (latest_num > build_num) {
+		build_number = String.valueOf(latest_num);
+	}
+}
+
 def yarnVersion = "${minecraft_version}+build.$build_number"
 version = yarnVersion
 
@@ -813,6 +823,14 @@ task checkVersion {
 			throw new RuntimeException("${version} has already been released!")
 		}
 	}
+}
+
+int getLastBuildNumber() {
+	def xml = new URL("https://maven.legacyfabric.net/net/legacyfabric/yarn/maven-metadata.xml").text
+	def metadata = new XmlSlurper().parseText(xml)
+	def latest = metadata.versioning.latest.text();
+	
+	return Integer.valueOf(latest.split("+build.")[1])
 }
 
 publish.mustRunAfter checkVersion
