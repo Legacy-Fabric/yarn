@@ -1,4 +1,6 @@
 CLASS net/minecraft/class_792 net/minecraft/server/PlayerWorldManager
+	FIELD field_13866 NON_SPECTATOR_PLAYER Lcom/google/common/base/Predicate;
+	FIELD field_13867 PLAYER_TO_GENERATE_CHUNKS Lcom/google/common/base/Predicate;
 	FIELD field_2789 world Lnet/minecraft/class_795;
 	FIELD field_2790 players Ljava/util/List;
 	FIELD field_2791 playerInstancesById Lnet/minecraft/class_835;
@@ -12,6 +14,15 @@ CLASS net/minecraft/class_792 net/minecraft/server/PlayerWorldManager
 		ARG 2 viewDistance
 	METHOD method_10748 (Lnet/minecraft/class_2552;)V
 		ARG 1 pos
+	METHOD method_12811 (II)Lnet/minecraft/class_2099;
+		ARG 1 x
+		ARG 2 z
+	METHOD method_12813 (II)Lnet/minecraft/class_2099;
+		ARG 1 x
+		ARG 2 z
+	METHOD method_12815 (II)J
+		ARG 0 x
+		ARG 1 z
 	METHOD method_2103 getWorld ()Lnet/minecraft/class_795;
 	METHOD method_2108 getWorld (Lnet/minecraft/class_792;)Lnet/minecraft/class_795;
 		ARG 0 manager
@@ -30,6 +41,13 @@ CLASS net/minecraft/class_792 net/minecraft/server/PlayerWorldManager
 	METHOD method_2116 (Lnet/minecraft/class_798;)V
 		ARG 1 player
 	METHOD method_8115 applyViewDistance (I)V
+		ARG 1 viewDistance
+	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 player
+	CLASS 2
+		METHOD apply (Ljava/lang/Object;)Z
+			ARG 1 player
 	CLASS class_2099 PlayerInstance
 		METHOD method_8122 (Lnet/minecraft/class_700;)V
 			ARG 1 packet
