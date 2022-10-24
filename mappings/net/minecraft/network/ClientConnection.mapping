@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
+	FIELD field_11556 side Lnet/minecraft/class_2569;
 	FIELD field_11558 disconnected Z
 	FIELD field_8418 MARKER_NETWORK Lorg/apache/logging/log4j/Marker;
 	FIELD field_8419 MARKER_NETWORK_PACKETS Lorg/apache/logging/log4j/Marker;
@@ -14,12 +15,16 @@ CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
 	FIELD field_8433 state Lnet/minecraft/class_1962;
 	FIELD field_8434 disconnectReason Lnet/minecraft/class_1982;
 	FIELD field_8435 encrypted Z
+	METHOD <init> (Lnet/minecraft/class_2569;)V
+		ARG 1 side
 	METHOD <init> (Z)V
 		ARG 1 isClient
 	METHOD method_10587 setCompressionThreshold (I)V
 		ARG 1 compressionThreshold
 	METHOD method_10588 send (Lnet/minecraft/class_700;)V
+		ARG 1 packet
 	METHOD method_10589 send (Lnet/minecraft/class_700;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V
+		ARG 1 packet
 	METHOD method_10590 connect (Ljava/net/InetAddress;IZ)Lnet/minecraft/class_1957;
 		ARG 0 address
 		ARG 1 port
@@ -55,3 +60,6 @@ CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
 	METHOD method_7406 disableAutoRead ()V
 	METHOD method_7407 sendQueuedPackets ()V
 	CLASS class_1961 PacketWrapper
+		FIELD field_8443 packet Lnet/minecraft/class_700;
+		METHOD <init> (Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V
+			ARG 1 packet
