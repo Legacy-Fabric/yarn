@@ -5,11 +5,11 @@ buildscript {
 			url 'https://maven.fabricmc.net'
 		}
 		mavenCentral()
+		mavenLocal()
 	}
 	dependencies {
 		classpath "cuchaz:enigma-cli:${project.enigma_version}"
 		classpath "net.fabricmc:stitch:${project.stitch_version}"
-		classpath "commons-io:commons-io:2.11.0"
 		classpath "de.undercouch:gradle-download-task:4.1.1"
 		classpath "net.fabricmc.unpick:unpick:${project.unpick_version}"
 		classpath "net.fabricmc.unpick:unpick-format-utils:${project.unpick_version}"
@@ -22,7 +22,7 @@ plugins {
 	id 'de.undercouch.download' version '4.1.2'
 	id 'maven-publish'
 	id "com.diffplug.spotless" version "6.4.2"
-	id 'net.fabricmc.filament'
+	id 'net.fabricmc.filament' version "0.4.0"
 }
 
 def taskName = project.gradle.startParameter.taskNames[0]
@@ -69,6 +69,10 @@ repositories {
 	maven {
 		name "Mojang"
 		url 'https://libraries.minecraft.net/'
+		metadataSources {
+			artifact()
+			ignoreGradleMetadataRedirection()
+		}
 	}
 }
 
@@ -122,12 +126,13 @@ def namedJar = file("${minecraft_version}-named.jar")
 def serverIntermediaryJar = file("${minecraft_version}-server-intermediary.jar")
 def libs = new File("build/libs/")
 
+def minecraftLibraries = tasks.minecraftLibraries.files
+
 import com.google.common.hash.Hashing
 import cuchaz.enigma.command.CheckMappingsCommand
 import cuchaz.enigma.command.ComposeMappingsCommand
 import cuchaz.enigma.command.ConvertMappingsCommand
 import cuchaz.enigma.command.MapSpecializedMethodsCommand
-import groovy.json.JsonSlurper
 import net.fabricmc.filament.task.MapJarTask
 import net.fabricmc.filament.task.minecraft.MergeMinecraftTask
 import net.fabricmc.stitch.commands.CommandMergeTiny
@@ -135,11 +140,8 @@ import net.fabricmc.stitch.commands.CommandReorderTiny
 import net.fabricmc.stitch.commands.CommandRewriteIntermediary
 import net.fabricmc.stitch.commands.tinyv2.CommandMergeTinyV2
 import net.fabricmc.stitch.commands.tinyv2.CommandReorderTinyV2
-import net.fabricmc.stitch.merge.JarMerger
 import net.fabricmc.nameproposal.MappingNameCompleter
-import org.apache.commons.io.FileUtils
 
-import java.nio.charset.StandardCharsets
 import java.util.zip.GZIPOutputStream
 
 boolean validateChecksum(File file, String checksum) {
@@ -163,7 +165,7 @@ task downloadIntermediary(type: Download) {
 
 task downloadIntermediaryV2(type: Download) {
 	group = buildMappingGroup
-	def url = "https://maven.legacyfabric.net/net/fabricmc/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
+	def url = "https://maven.legacyfabric.net/net/legacyfabric/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 
@@ -260,7 +262,7 @@ task mapIntermediaryJar(type: MapJarTask, dependsOn: [downloadIntermediary, merg
 	output = intermediaryJar
 	input = mergeOriginalMinecraftJars.outputFile
 	mappings = downloadIntermediary.dest
-	classpath.from configurations.minecraftLibraries
+	classpath.from minecraftLibraries
 	from = 'official'
 	to = 'intermediary'
 }
@@ -270,7 +272,7 @@ task mapServerIntermediaryJar(type: MapJarTask, dependsOn: [downloadIntermediary
 	output = serverIntermediaryJar
 	input = downloadMinecraftServerJar.outputFile
 	mappings = downloadIntermediary.dest
-	classpath.from configurations.minecraftLibraries
+	classpath.from minecraftLibraries
 	from = 'official'
 	to = 'intermediary'
 }
@@ -488,7 +490,7 @@ task unpickIntermediaryJar(type: JavaExec, dependsOn: [mapIntermediaryJar, "cons
 	doFirst {
 		args intermediaryJar.absolutePath, unpickedJar.absolutePath, remapUnpickDefinitionsIntermediary.output.get().asFile.absolutePath, constantsJar.archiveFile.get().asFile.absolutePath
 
-		configurations.minecraftLibraries.files.forEach {
+		minecraftLibraries.files.forEach {
 			args it.absolutePath
 		}
 	}
@@ -627,7 +629,7 @@ task mapNamedJar(type: MapJarTask, dependsOn: ["mergeV2", "unpickIntermediaryJar
 	output = namedJar
 	input = unpickedJar
 	mappings = mergeV2.output
-	classpath.from configurations.minecraftLibraries
+	classpath.from minecraftLibraries
 	from = 'intermediary'
 	to = 'named'
 	classMappings = [
@@ -637,9 +639,12 @@ task mapNamedJar(type: MapJarTask, dependsOn: ["mergeV2", "unpickIntermediaryJar
 	]
 }
 
+def mcLibsDir = file('build/tmp/mclibs')
+
+// Task to copy all the mc libs into a single directory.
 task syncDependencies(type: Sync) {
-	from configurations.minecraftLibraries
-	into '.gradle/temp/mclibs'
+	from minecraftLibraries
+	into mcLibsDir
 }
 
 def fakeSourceDir = file(".gradle/temp/fakeSource")
@@ -650,7 +655,7 @@ task genFakeSource(type: JavaExec, dependsOn: ["mergeV2", "mapNamedJar", syncDep
 	mainClass = "net.fabricmc.mappingpoet.Main"
 	classpath configurations.mappingPoet
 	// use merged v2 so we have all namespaces in jd
-	args mergeV2.output.getAbsolutePath(), namedJar.getAbsolutePath(), fakeSourceDir.getAbsolutePath(), file('.gradle/temp/mclibs').getAbsolutePath()
+	args mergeV2.output.getAbsolutePath(), namedJar.getAbsolutePath(), fakeSourceDir.getAbsolutePath(), mcLibsDir.getAbsolutePath()
 
 	doLast {
 		logger.lifecycle ":Fake source generated"
@@ -665,7 +670,7 @@ task decompileCFR(type: JavaExec, dependsOn: [mapNamedJar]) {
 	doFirst {
 		file("namedSrc").deleteDir()
 		classpath.from configurations.decompileClasspath
-		classpath.from configurations.minecraftLibraries
+		classpath.from minecraftLibraries
 	}
 }
 
@@ -728,7 +733,7 @@ javadoc {
 		addBooleanOption 'Xdoclint:accessibility', true
 	}
 	source fileTree(fakeSourceDir) + sourceSets.constants.allJava + sourceSets.packageDocs.allJava
-	classpath = configurations.javadocClasspath.plus configurations.minecraftLibraries
+	classpath = configurations.javadocClasspath.plus minecraftLibraries
 
 	doLast {
 		project.copy {
@@ -836,14 +841,6 @@ int getLastBuildNumber() {
 publish.mustRunAfter checkVersion
 
 class FileOutput extends DefaultTask {
-	@OutputFile
-	File output
-}
-
-class FileOutputInput extends DefaultTask {
-	@InputFile
-	File input
-
 	@OutputFile
 	File output
 }
