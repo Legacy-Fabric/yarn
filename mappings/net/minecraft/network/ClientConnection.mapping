@@ -1,17 +1,30 @@
 CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
+	FIELD field_11556 side Lnet/minecraft/class_2569;
 	FIELD field_11558 disconnected Z
 	FIELD field_8418 MARKER_NETWORK Lorg/apache/logging/log4j/Marker;
 	FIELD field_8419 MARKER_NETWORK_PACKETS Lorg/apache/logging/log4j/Marker;
 	FIELD field_8421 ATTR_KEY_PROTOCOL Lio/netty/util/AttributeKey;
+	FIELD field_8422 ATTR_RECEIVABLE_PACKETS Lio/netty/util/AttributeKey;
+	FIELD field_8423 ATTR_SENDABLE_PACKETS Lio/netty/util/AttributeKey;
 	FIELD field_8426 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_8427 isClient Z
 	FIELD field_8429 packetQueue Ljava/util/Queue;
 	FIELD field_8430 channel Lio/netty/channel/Channel;
 	FIELD field_8431 address Ljava/net/SocketAddress;
+	FIELD field_8432 packetListener Lnet/minecraft/class_701;
+	FIELD field_8433 state Lnet/minecraft/class_1962;
+	FIELD field_8434 disconnectReason Lnet/minecraft/class_1982;
 	FIELD field_8435 encrypted Z
+	METHOD <init> (Lnet/minecraft/class_2569;)V
+		ARG 1 side
+	METHOD <init> (Z)V
+		ARG 1 isClient
 	METHOD method_10587 setCompressionThreshold (I)V
 		ARG 1 compressionThreshold
 	METHOD method_10588 send (Lnet/minecraft/class_700;)V
+		ARG 1 packet
 	METHOD method_10589 send (Lnet/minecraft/class_700;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V
+		ARG 1 packet
 	METHOD method_10590 connect (Ljava/net/InetAddress;IZ)Lnet/minecraft/class_1957;
 		ARG 0 address
 		ARG 1 port
@@ -26,10 +39,20 @@ CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
 		ARG 1 listener
 	METHOD method_7394 disconnect (Lnet/minecraft/class_1982;)V
 		ARG 1 disconnectReason
+	METHOD method_7395 send (Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V
+		ARG 1 packet
+		ARG 2 listeners
+	METHOD method_7397 connect (Ljava/net/InetAddress;I)Lnet/minecraft/class_1957;
+		ARG 0 address
+		ARG 1 port
 	METHOD method_7398 connectLocal (Ljava/net/SocketAddress;)Lnet/minecraft/class_1957;
 		ARG 0 address
 	METHOD method_7399 setupEncryption (Ljavax/crypto/SecretKey;)V
+		ARG 1 secretKey
 	METHOD method_7400 getAddress ()Ljava/net/SocketAddress;
+	METHOD method_7401 sendImmediately (Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V
+		ARG 1 packet
+		ARG 2 listeners
 	METHOD method_7402 isLocal ()Z
 	METHOD method_7403 isOpen ()Z
 	METHOD method_7404 getPacketListener ()Lnet/minecraft/class_701;
@@ -37,3 +60,6 @@ CLASS net/minecraft/class_1957 net/minecraft/network/ClientConnection
 	METHOD method_7406 disableAutoRead ()V
 	METHOD method_7407 sendQueuedPackets ()V
 	CLASS class_1961 PacketWrapper
+		FIELD field_8443 packet Lnet/minecraft/class_700;
+		METHOD <init> (Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V
+			ARG 1 packet

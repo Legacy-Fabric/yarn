@@ -10,6 +10,7 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 	FIELD field_2582 totalBytesSent J
 	FIELD field_2583 affectsWorld Z
 	FIELD field_6058 logger Lnet/minecraft/class_1555;
+	FIELD field_8512 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD method_1826 getSize ()I
 		COMMENT The size of this packet, in bytes.
 	METHOD method_1827 addPacketType (IZZLjava/lang/Class;)V
@@ -93,7 +94,16 @@ CLASS net/minecraft/class_700 net/minecraft/network/Packet
 		ARG 0 input
 	METHOD method_6047 readNbt (Ljava/io/DataInput;)Lnet/minecraft/class_322;
 		ARG 0 input
+	METHOD method_7534 create (Lcom/google/common/collect/BiMap;I)Lnet/minecraft/class_700;
+		ARG 0 packetMap
+		ARG 1 id
 	METHOD method_7535 read (Lnet/minecraft/class_1967;)V
 		ARG 1 buf
+	METHOD method_7536 readKey (Lio/netty/buffer/ByteBuf;)[B
+		ARG 0 buf
+	METHOD method_7537 writeKey (Lio/netty/buffer/ByteBuf;[B)V
+		ARG 0 buf
+		ARG 1 data
+	METHOD method_7538 dataToString ()Ljava/lang/String;
 	METHOD method_7539 write (Lnet/minecraft/class_1967;)V
 		ARG 1 buf

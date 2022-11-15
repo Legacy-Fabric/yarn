@@ -45,10 +45,12 @@ def main():
     if command.startswith("yarn"):
         start_autosave()
 
-    os.system(GRADLE_PREFIX + " " + command)
+    exitCode = os.system(GRADLE_PREFIX + " " + command)
 
     stop_autosave()
     merge()
+
+    exit(exitCode)
 
 def start_autosave():
     global kill, saving_thread

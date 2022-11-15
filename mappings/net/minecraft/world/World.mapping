@@ -114,6 +114,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3599 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;I)V
 		ARG 1 pos
 		ARG 2 block
+		ARG 3 tickRate
 	METHOD method_3603 (IIILnet/minecraft/class_226;)V
 		ARG 1 x
 		ARG 2 y
@@ -298,6 +299,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3659 containsBlockWithMaterial (Lnet/minecraft/class_231;Lnet/minecraft/class_63;)Z
 		ARG 1 box
 		ARG 2 material
+	METHOD method_3660 getIntState (Ljava/lang/String;)I
+		ARG 1 name
 	METHOD method_3661 getFeatureLocation (Ljava/lang/String;III)Lnet/minecraft/class_1167;
 		ARG 1 featureName
 		ARG 2 startX
@@ -615,6 +618,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8483 getSeaLevel ()I
 	METHOD method_8484 isWater (Lnet/minecraft/class_2552;)Z
 		ARG 1 pos
+	METHOD method_8485 getPersistentStateManager ()Lnet/minecraft/class_106;
 	METHOD method_8486 isRegionLoaded (IIIIIIZ)Z
 		ARG 1 minX
 		ARG 2 minY
@@ -689,6 +693,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 pos
 		ARG 2 state
 	METHOD method_8506 setBlockState (Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;I)Z
+		ARG 1 pos
+		ARG 2 state
 	METHOD method_8507 isRegionLoaded (Lnet/minecraft/class_2552;Lnet/minecraft/class_2552;)Z
 		ARG 1 start
 		ARG 2 end
@@ -773,7 +779,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8542 getEmittedRedstonePower (Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)I
 		ARG 1 pos
 		ARG 2 dir
-	METHOD method_8543 (Lnet/minecraft/class_2552;Z)I
+	METHOD method_8543 getLightLevel (Lnet/minecraft/class_2552;Z)I
 		ARG 1 pos
 	METHOD method_8544 unloadEntities (Ljava/util/Collection;)V
 		ARG 1 entities
@@ -803,9 +809,9 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_8556 recievesSunlight (Lnet/minecraft/class_2552;)Z
 		ARG 1 pos
-	METHOD method_8557 (Lnet/minecraft/class_2552;)I
-		ARG 1 osarg
-	METHOD method_8558 (Lnet/minecraft/class_2552;)I
+	METHOD method_8557 getLightLevel (Lnet/minecraft/class_2552;)I
+		ARG 1 pos
+	METHOD method_8558 getLightLevelWithCheck (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
 	METHOD method_8559 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;
 		ARG 1 pos
