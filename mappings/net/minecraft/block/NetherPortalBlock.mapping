@@ -1,8 +1,8 @@
 CLASS net/minecraft/class_169 net/minecraft/block/NetherPortalBlock
 	FIELD field_9577 AXIS Lnet/minecraft/class_2245;
-	METHOD method_8846 (Lnet/minecraft/class_1354$class_2558;)I
+	METHOD method_8846 getDataFromAxis (Lnet/minecraft/class_1354$class_2558;)I
 		ARG 0 axis
-	METHOD method_8847 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
+	METHOD method_8847 createPortalAt (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
 		ARG 1 world
 		ARG 2 pos
 	METHOD method_8848 findPortal (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2236$class_2238;
@@ -11,15 +11,18 @@ CLASS net/minecraft/class_169 net/minecraft/block/NetherPortalBlock
 	CLASS class_1763 AreaHelper
 		FIELD field_7473 world Lnet/minecraft/class_1150;
 		FIELD field_7477 foundPortalBlocks I
+		FIELD field_7478 oppositeCorner Lnet/minecraft/class_2552;
 		FIELD field_7479 height I
 		FIELD field_7480 width I
 		FIELD field_9578 axis Lnet/minecraft/class_1354$class_2558;
+		FIELD field_9579 direction1 Lnet/minecraft/class_1354;
+		FIELD field_9580 direction2 Lnet/minecraft/class_1354;
 		METHOD <init> (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354$class_2558;)V
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 axis
 		METHOD method_6500 findHeight ()I
-		METHOD method_6502 (Lnet/minecraft/class_197;)Z
+		METHOD method_6502 canCreatePortal (Lnet/minecraft/class_197;)Z
 			ARG 1 block
 		METHOD method_6504 isValid ()Z
 		METHOD method_6506 createPortal ()V
