@@ -1,7 +1,6 @@
 CLASS net/minecraft/class_550 net/minecraft/client/render/entity/EntityRenderDispatcher
 	FIELD field_11099 modelRenderers Ljava/util/Map;
 	FIELD field_11100 playerRenderer Lnet/minecraft/class_570;
-	FIELD field_11101 renderHitboxes Z
 	FIELD field_11102 renderShadows Z
 	FIELD field_2095 cameraX D
 	FIELD field_2096 cameraY D
@@ -11,6 +10,7 @@ CLASS net/minecraft/class_550 net/minecraft/client/render/entity/EntityRenderDis
 	FIELD field_2103 pitch F
 	FIELD field_2108 renderers Ljava/util/Map;
 	FIELD field_2109 textRenderer Lnet/minecraft/class_370;
+	FIELD field_5192 renderHitboxes Z
 	FIELD field_6481 textureManager Lnet/minecraft/class_1532;
 	METHOD <init> (Lnet/minecraft/class_1532;Lnet/minecraft/class_560;)V
 		ARG 1 textureManager
@@ -23,11 +23,18 @@ CLASS net/minecraft/class_550 net/minecraft/client/render/entity/EntityRenderDis
 	METHOD method_10199 setYaw (F)V
 		ARG 1 yaw
 	METHOD method_10200 updateCamera (Lnet/minecraft/class_1150;Lnet/minecraft/class_370;Lnet/minecraft/class_864;Lnet/minecraft/class_864;Lnet/minecraft/class_347;F)V
+		ARG 1 world
 	METHOD method_10201 shouldRender (Lnet/minecraft/class_864;Lnet/minecraft/class_536;DDD)Z
+		ARG 1 entity
 	METHOD method_10202 setRenderShadows (Z)V
 		ARG 1 value
-	METHOD method_10206 setRenderHitboxes (Z)V
-		ARG 1 value
+	METHOD method_10203 getRenderHitboxes ()Z
+	METHOD method_10205 setRenderHitboxes (Z)V
+		ARG 1 renderHitboxes
+	METHOD method_12446 (Lnet/minecraft/class_864;DDDFFZ)V
+		ARG 1 entity
+	METHOD method_12449 (Lnet/minecraft/class_864;)Z
+		ARG 1 entity
 	METHOD method_1516 getTextRenderer ()Lnet/minecraft/class_370;
 	METHOD method_1517 squaredDistanceToCamera (DDD)D
 		ARG 1 x
@@ -39,5 +46,7 @@ CLASS net/minecraft/class_550 net/minecraft/client/render/entity/EntityRenderDis
 		ARG 1 entity
 	METHOD method_1522 setWorld (Lnet/minecraft/class_1150;)V
 		ARG 1 world
+	METHOD method_4328 renderHitbox (Lnet/minecraft/class_864;DDDFF)V
+		ARG 1 entity
 	METHOD method_6912 render (Lnet/minecraft/class_864;DDDFF)Z
 	METHOD method_6914 renderEntity (Lnet/minecraft/class_864;F)Z

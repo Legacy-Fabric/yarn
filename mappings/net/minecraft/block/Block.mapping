@@ -347,10 +347,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11568 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_11569 isFullBlock (Lnet/minecraft/class_2232;)Z
-		ARG 1 blockState
+		ARG 1 state
 	METHOD method_11570 getOpacity (Lnet/minecraft/class_2232;)I
 		ARG 1 blockState
-	METHOD method_11571 isTransluscent (Lnet/minecraft/class_2232;)Z
+	METHOD method_11571 isTranslucent (Lnet/minecraft/class_2232;)Z
 		ARG 1 blockState
 	METHOD method_11572 getLuminance (Lnet/minecraft/class_2232;)I
 		ARG 1 state
@@ -365,6 +365,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_11577 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_11578 getSoundGroup ()Lnet/minecraft/class_200;
+	METHOD method_13315 (Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)Z
+		ARG 2 entity
 	METHOD method_13703 (Lnet/minecraft/class_2232;)Z
 		ARG 1 state
 	METHOD method_13704 (Lnet/minecraft/class_2232;)Z
@@ -624,7 +626,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return Whether the block should drop as an item during an explosion
 		ARG 1 explosion
 			COMMENT The explosion that caused the block to break
-	METHOD method_4187 isFire ()Z
+	METHOD method_4187 doImmediateUpdates ()Z
+		COMMENT Returns whether the block's onScheduledTick should be called directly if ServerWorld.immediateUpdates is true, or to schedule it and call it later.
+		COMMENT Used by Fire (with false) for some reason.
 	METHOD method_4188 isFlowerPot ()Z
 	METHOD method_4189 getMinX ()D
 		COMMENT Returns the block's bounding box' minimum X value
@@ -1003,6 +1007,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 explosion
+	METHOD method_8640 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_8640 getCollisionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_231;
 		COMMENT Returns a box by adding the block's current location and the block's corresponding value in its Bounding Box
 		COMMENT @return The Collision box
@@ -1052,7 +1060,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 4 box
 		ARG 5 list
 		ARG 6 entity
-	METHOD method_8643 onUpdateTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+	METHOD method_8643 onRandomTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
 		COMMENT Runs when the block is updated
 		ARG 1 world
 			COMMENT The world that the block is placed in
@@ -1232,7 +1240,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 id
 			COMMENT Id
-	METHOD method_8661 scheduledTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+	METHOD method_8661 onScheduledTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
 		COMMENT Runs when the block is updated as per a schedule
 		ARG 1 world
 			COMMENT The world that the block is placed in
@@ -1397,9 +1405,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Sets the block's default BlockState.
 		ARG 1 state
 			COMMENT The default state
-	METHOD method_8685 rainTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)V
+	METHOD method_8685 onRainTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)V
 		COMMENT Runs every tick when raining.
-		COMMENT Used my cauldrons to randomly fill up when raining.
+		COMMENT Used by cauldrons to randomly fill up when raining.
 		ARG 1 world
 			COMMENT The world that the block is placed in
 		ARG 2 pos
