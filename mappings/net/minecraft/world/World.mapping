@@ -57,8 +57,30 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 3 dim
 		ARG 4 profiler
 		ARG 5 isClient
+	METHOD method_11481 (Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;I)V
+		ARG 1 position
+	METHOD method_11482 (Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 random
 	METHOD method_11485 playSound (Lnet/minecraft/class_988;DDDLnet/minecraft/class_2926;Lnet/minecraft/class_2153;FF)V
+	METHOD method_11489 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)Z
+		ARG 1 pos
+		ARG 2 block
+	METHOD method_13313 getHighestBlockY (II)I
+		ARG 1 x
+		ARG 2 z
+	METHOD method_13691 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Lnet/minecraft/class_2552;)V
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 sourcePos
+	METHOD method_13692 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Z)V
+		ARG 1 pos
+		ARG 2 block
 	METHOD method_13692 updateNeighborsAlways (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD method_13693 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)V
 		ARG 1 pos
 		ARG 2 block
 	METHOD method_2133 getEntityById (I)Lnet/minecraft/class_864;
@@ -252,7 +274,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_3643 getEntities (Lnet/minecraft/class_1196;Z)Ljava/util/List;
+	METHOD method_3643 getScheduledTicks (Lnet/minecraft/class_1196;Z)Ljava/util/List;
 		ARG 1 chunk
 	METHOD method_3645 setMobSpawning (ZZ)V
 		ARG 1 spawnAnimals
@@ -275,9 +297,11 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3650 getSpawnBlock (II)I
 		ARG 1 x
 		ARG 2 z
-	METHOD method_3653 addBlockTick (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
+	METHOD method_3653 scheduleTick (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
 		ARG 1 pos
 		ARG 2 block
+		ARG 3 tickRate
+		ARG 4 priority
 	METHOD method_3654 addBlockAction (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
 		ARG 1 pos
 		ARG 2 block
@@ -331,7 +355,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_3669 updateSleepingStatus ()V
 	METHOD method_3670 getSkyAngle (F)F
 		ARG 1 tickDelta
-	METHOD method_3671 isChunkLoaded (II)Z
+	METHOD method_3671 isChunkInsideSpawnChunks (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
 	METHOD method_3674 isRegionLoaded (IIIIII)Z
@@ -498,6 +522,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_4682 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;II)V
 		ARG 1 pos
 		ARG 2 block
+		ARG 3 tickRate
+		ARG 4 priority
 	METHOD method_4682 setTickPriority (IIILnet/minecraft/class_197;II)V
 	METHOD method_4683 setTime (J)V
 		ARG 1 time
@@ -665,7 +691,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 entity
 	METHOD method_8496 isRegionLoaded (Lnet/minecraft/class_1251;)Z
 		ARG 1 box
-	METHOD method_8497 getEntities (Lnet/minecraft/class_1251;Z)Ljava/util/List;
+	METHOD method_8497 getScheduledTicks (Lnet/minecraft/class_1251;Z)Ljava/util/List;
 		ARG 1 box
 	METHOD method_8498 isValidPos (Lnet/minecraft/class_2552;)Z
 		ARG 1 pos
@@ -751,6 +777,9 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8530 isRegionLoaded (Lnet/minecraft/class_1251;Z)Z
 		ARG 1 box
 		ARG 2 canBeEmpty
+	METHOD method_8531 (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Z)V
+		ARG 1 pos
+		ARG 2 block
 	METHOD method_8531 updateNeighbors (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)V
 		ARG 1 pos
 		ARG 2 block
@@ -771,6 +800,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8539 (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)Z
 		ARG 1 type
 		ARG 2 pos
+	METHOD method_8540 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 1 pos
 	METHOD method_8540 getBlockAt (Lnet/minecraft/class_2552;)Lnet/minecraft/class_197;
 		ARG 1 pos
 	METHOD method_8541 updateNeighborsAlways (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)V
@@ -786,6 +817,10 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 	METHOD method_8546 neighbourUpdate (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;)V
 		ARG 1 pos
 		ARG 2 block
+	METHOD method_8546 updateNeighbor (Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Lnet/minecraft/class_2552;)V
+		ARG 1 pos
+		ARG 2 sourceBlock
+		ARG 3 sourcePos
 	METHOD method_8547 renderAsNormalBlock (Lnet/minecraft/class_2552;Z)Z
 		ARG 1 pos
 		ARG 2 defaultValue
@@ -813,7 +848,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_8558 getLightLevelWithCheck (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
-	METHOD method_8559 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;
+	METHOD method_8559 getHighestBlock (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;
 		ARG 1 pos
 	METHOD method_8560 onLightUpdate (Lnet/minecraft/class_2552;)V
 		ARG 1 pos
