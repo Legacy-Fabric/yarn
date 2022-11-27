@@ -830,12 +830,13 @@ task checkVersion {
 	}
 }
 
+import groovy.json.JsonSlurper;
+
 int getLastBuildNumber() {
-	def xml = new URL("https://maven.legacyfabric.net/net/legacyfabric/yarn/maven-metadata.xml").text
-	def metadata = new XmlSlurper().parseText(xml)
-	def latest = metadata.versioning.latest.text();
+	def xml = new URL("https://meta.legacyfabric.net/v2/versions/yarn/1.8.9").text
+	def metadata = new JsonSlurper().parseText(xml);
 	
-	return Integer.valueOf(latest.split("build.")[1])
+	return metadata[0].build;
 }
 
 publish.mustRunAfter checkVersion
