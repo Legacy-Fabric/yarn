@@ -525,8 +525,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 sound
 			COMMENT The block's sound type
-	METHOD method_402 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
+	METHOD method_402 isVecWithinYZBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
 	METHOD method_403 getDropCount (Ljava/util/Random;)I
 		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
 		COMMENT @return Amount of items to be dropped
@@ -586,11 +586,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD method_414 (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
+	METHOD method_414 rayTrace (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
 		ARG 1 world
 		ARG 2 pos
-		ARG 3 vec1
-		ARG 4 vec2
+		ARG 3 start
+		ARG 4 end
 	METHOD method_415 spawnParticles (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
 		ARG 1 world
 		ARG 2 x
@@ -688,6 +688,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The player who <i>used</i> the block
 		ARG 5 direction
 			COMMENT The direction that the block is facing
+		ARG 6 posX
+		ARG 7 posY
+		ARG 8 posZ
 	METHOD method_421 onUse (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
 		ARG 1 state
 		ARG 2 world
@@ -725,8 +728,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 resistance
 			COMMENT The block's resistance
-	METHOD method_432 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
+	METHOD method_432 isVecWithinXZBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
 	METHOD method_433 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_197;
 		COMMENT Sets the block's localization key. Used in registering blocks.
 		COMMENT @return The Current block
@@ -748,8 +751,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT The block's BlockState
 		ARG 4 id
 			COMMENT Id
-		ARG 5 meta
-			COMMENT Metadata
+		ARG 5 data
 	METHOD method_435 onSyncedBlockEvent (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;II)Z
 		ARG 1 state
 		ARG 2 world
@@ -793,8 +795,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT @return The current block
 		ARG 1 strength
 			COMMENT The block's strength
-	METHOD method_443 (Lnet/minecraft/class_236;)Z
-		ARG 1 vec
+	METHOD method_443 isVecWithinXYBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
 	METHOD method_444 getStrongRedstonePower (Lnet/minecraft/class_1158;IIII)I
 		ARG 1 world
 		ARG 2 x
