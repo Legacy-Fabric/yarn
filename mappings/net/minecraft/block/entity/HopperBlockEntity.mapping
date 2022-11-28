@@ -2,9 +2,9 @@ CLASS net/minecraft/class_1463 net/minecraft/block/entity/HopperBlockEntity
 	FIELD field_5660 items [Lnet/minecraft/class_1071;
 	FIELD field_5661 customName Ljava/lang/String;
 	FIELD field_5662 transferCooldown I
-	METHOD method_4821 (Lnet/minecraft/class_1462;)Z
+	METHOD method_4821 extract (Lnet/minecraft/class_1462;)Z
 		ARG 0 provider
-	METHOD method_4822 (Lnet/minecraft/class_1462;Lnet/minecraft/class_849;ILnet/minecraft/class_1354;)Z
+	METHOD method_4822 extract (Lnet/minecraft/class_1462;Lnet/minecraft/class_849;ILnet/minecraft/class_1354;)Z
 		ARG 0 provider
 		ARG 1 inventory
 		ARG 2 slot
@@ -31,7 +31,7 @@ CLASS net/minecraft/class_1463 net/minecraft/block/entity/HopperBlockEntity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-	METHOD method_4829 (Lnet/minecraft/class_1462;)Lnet/minecraft/class_849;
+	METHOD method_4829 getInputInventory (Lnet/minecraft/class_1462;)Lnet/minecraft/class_849;
 		ARG 0 provider
 	METHOD method_4830 canExtract (Lnet/minecraft/class_849;Lnet/minecraft/class_1071;ILnet/minecraft/class_1354;)Z
 		ARG 0 inv
@@ -40,18 +40,26 @@ CLASS net/minecraft/class_1463 net/minecraft/block/entity/HopperBlockEntity
 		ARG 3 facing
 	METHOD method_4831 setCooldown (I)V
 		ARG 1 cooldown
-	METHOD method_4832 (Lnet/minecraft/class_849;Lnet/minecraft/class_1071;ILnet/minecraft/class_1354;)Lnet/minecraft/class_1071;
+	METHOD method_4832 transfer (Lnet/minecraft/class_849;Lnet/minecraft/class_1071;ILnet/minecraft/class_1354;)Lnet/minecraft/class_1071;
 		ARG 0 inventory
 		ARG 1 stack
 		ARG 2 slot
 		ARG 3 dir
-	METHOD method_4834 notReady ()Z
-	METHOD method_6522 (Lnet/minecraft/class_849;Lnet/minecraft/class_1354;)Z
+	METHOD method_4833 insertAndExtract ()Z
+	METHOD method_4834 needsCooldown ()Z
+	METHOD method_4835 insert ()Z
+	METHOD method_4836 getOutputInventory ()Lnet/minecraft/class_849;
+	METHOD method_6522 isInventoryFull (Lnet/minecraft/class_849;Lnet/minecraft/class_1354;)Z
 		ARG 1 inventory
 		ARG 2 dir
-	METHOD method_6523 (Lnet/minecraft/class_849;Lnet/minecraft/class_1354;)Z
+	METHOD method_6523 isInventoryEmpty (Lnet/minecraft/class_849;Lnet/minecraft/class_1354;)Z
 		ARG 0 inventory
 		ARG 1 dir
-	METHOD method_8991 (Lnet/minecraft/class_1150;DDD)Ljava/util/List;
+	METHOD method_6524 isEmpty ()Z
+	METHOD method_6525 isFull ()Z
+	METHOD method_8991 getInputItemEntities (Lnet/minecraft/class_1150;DDD)Ljava/util/List;
 		ARG 0 world
+		ARG 1 posX
+		ARG 3 posY
+		ARG 5 posZ
 	METHOD method_8992 isReady ()Z
