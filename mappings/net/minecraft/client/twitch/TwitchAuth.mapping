@@ -1,8 +1,34 @@
 CLASS net/minecraft/class_1933 net/minecraft/client/twitch/TwitchAuth
+		CLASS 1
+			METHOD run run ()V
+		METHOD run run ()V
+	FIELD field_11390 currentChannelName Ljava/lang/String;
 	FIELD field_8341 streamMarker Lorg/apache/logging/log4j/Marker;
 	FIELD field_8342 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_8343 streamController Lnet/minecraft/class_1919;
 	FIELD field_8344 twitch Lnet/minecraft/class_1923;
 	FIELD field_8345 client Lnet/minecraft/class_1600;
 	FIELD field_8346 twitchText Lnet/minecraft/class_1982;
 	FIELD field_8347 twitchChat Ljava/util/Map;
 	FIELD field_8348 framebuffer Lnet/minecraft/class_1862;
+	FIELD field_8349 streamSendMetadata Z
+	FIELD field_8350 targetFps I
+	FIELD field_8352 streamFinished Z
+	FIELD field_8353 loggedIn Z
+	FIELD field_8354 paused Z
+	FIELD field_8355 micEnabled Z
+	FIELD field_8356 reason Lnet/minecraft/class_1931$class_1932;
+	FIELD field_8357 initialized Z
+	METHOD <init> (Lnet/minecraft/class_1600;Lcom/mojang/authlib/properties/Property;)V
+		ARG 1 client
+		ARG 2 accessToken
+	METHOD method_10471 updateChatUser (Ljava/lang/String;Ltv/twitch/chat/ChatRawMessage;)V
+		ARG 1 username
+		ARG 2 chatMessage
+	METHOD method_10472 (Ljava/util/Set;Ljava/util/Set;I)Z
+		ARG 1 chatUserModes
+		ARG 2 chatUserSubscriptions
+		ARG 3 streamChatUserFilter
+	METHOD method_7271 setStreamFps (F)I
+	METHOD method_7276 setStreamBitrate (F)I
+	METHOD method_7278 setStreamBytesPerPixel (F)F
