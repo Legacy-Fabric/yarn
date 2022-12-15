@@ -27,10 +27,12 @@ CLASS net/minecraft/class_402 net/minecraft/client/gui/screen/StatsScreen
 	METHOD method_9596 createLists ()V
 	CLASS class_403 BlockStatsListWidget
 		CLASS 1
-			METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+			METHOD compare compare (Ljava/lang/Object;Ljava/lang/Object;)I
 				ARG 1 stat1
 				ARG 2 stat2
 			METHOD compare compare (Ljava/lang/Object;Ljava/lang/Object;)I
+				ARG 1 stat1
+				ARG 2 stat2
 	CLASS class_405 GeneralStatsListWidget
 		METHOD <init> (Lnet/minecraft/class_402;Lnet/minecraft/class_1600;)V
 			ARG 2 client
@@ -41,8 +43,11 @@ CLASS net/minecraft/class_402 net/minecraft/client/gui/screen/StatsScreen
 		METHOD <init> (Lnet/minecraft/class_402;Lnet/minecraft/class_1600;)V
 			ARG 2 client
 	CLASS class_408 CustomStatsListWidget
+		FIELD field_1340 headerMode I
 		FIELD field_1341 entries Ljava/util/List;
 		FIELD field_1342 statComparator Ljava/util/Comparator;
+		FIELD field_1343 sortColumnMode I
+		FIELD field_1344 sortOrder I
 		METHOD <init> (Lnet/minecraft/class_402;Lnet/minecraft/class_1600;)V
 			ARG 2 client
 		METHOD method_1122 render (Lnet/minecraft/class_818;II)V
@@ -53,7 +58,10 @@ CLASS net/minecraft/class_402 net/minecraft/client/gui/screen/StatsScreen
 			ARG 1 stat
 			ARG 2 x
 			ARG 3 y
+			ARG 4 oddNumber
 		METHOD method_1124 getText (I)Ljava/lang/String;
 			ARG 1 index
 		METHOD method_1125 getEntry (I)Lnet/minecraft/class_818;
 			ARG 1 index
+		METHOD method_1126 changeSortOrder (I)V
+			ARG 1 headerMode
