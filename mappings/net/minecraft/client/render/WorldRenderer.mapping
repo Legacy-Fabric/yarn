@@ -36,8 +36,12 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 	FIELD field_1891 hiddenEntityCount I
 	FIELD field_1892 blockEntityCount I
 	FIELD field_1900 visibleChunks Ljava/util/List;
+	FIELD field_1902 blockEntities Ljava/util/List;
 	FIELD field_1909 world Lnet/minecraft/class_478;
+	FIELD field_1910 textureManager Lnet/minecraft/class_534;
 	FIELD field_1918 client Lnet/minecraft/class_1600;
+	FIELD field_1918 client Lnet/minecraft/client/Minecraft;
+	FIELD field_1919 blockRenderer Lnet/minecraft/class_535;
 	FIELD field_1922 ticks I
 	FIELD field_1923 starsList I
 	FIELD field_1924 lightSkyList I
@@ -55,6 +59,9 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 	FIELD field_7976 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD <init> (Lnet/minecraft/class_1600;)V
 		ARG 1 minecraftClient
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/class_534;)V
+		ARG 1 client
+		ARG 2 textureManager
 	METHOD method_13429 (DDDDDDFFFF)V
 		ARG 0 minX
 		ARG 2 minY
@@ -115,17 +122,37 @@ CLASS net/minecraft/class_530 net/minecraft/client/render/WorldRenderer
 		ARG 16 alpha
 	METHOD method_1363 reload ()V
 	METHOD method_1364 hasThickFog (DDDF)Z
+	METHOD method_1365 renderSky (F)V
+		ARG 1 tickDelta
 	METHOD method_1367 onResized (II)V
 		ARG 1 width
 		ARG 2 height
+	METHOD method_1369 renderBox (Lnet/minecraft/class_231;)V
+		ARG 1 box
+	METHOD method_1370 (Lnet/minecraft/class_236;Lnet/minecraft/class_536;F)V
+		ARG 1 cameraPos
+		ARG 2 view
+		ARG 3 tickDelta
 	METHOD method_1371 setWorld (Lnet/minecraft/class_478;)V
-		ARG 1 clientWorld
+		ARG 1 world
+	METHOD method_1377 (F)V
+		ARG 1 tickDelta
 	METHOD method_1378 updateBlock (IIIIII)V
+	METHOD method_1379 spawnParticleInternal (Ljava/lang/String;DDDDDD)Lnet/minecraft/class_502;
+		ARG 1 particleName
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 velocityX
+		ARG 10 velocityY
+		ARG 12 velocityZ
 	METHOD method_1380 drawBlockOutline (Lnet/minecraft/class_988;Lnet/minecraft/class_234;IF)V
 		ARG 1 player
 		ARG 2 hitResult
 		ARG 4 tickDelta
 	METHOD method_1381 getChunksDebugString ()Ljava/lang/String;
+	METHOD method_1382 (F)V
+		ARG 1 tickDelta
 	METHOD method_1384 getEntitiesDebugString ()Ljava/lang/String;
 	METHOD method_1385 tick ()V
 	METHOD method_1386 cleanUp ()V
