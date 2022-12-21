@@ -49,7 +49,7 @@ jobs:
           distribution: 'adopt-openj9' # See 'Supported distributions' for available options
           java-version: '17'
       - run: python ./yarn.py $MC_VERSION publishToMavenLocal --stacktrace
-      - run: cd test-mod && ./gradlew build
+      - run: cd test-mod && ./gradlew build genSources
       
   publish:
     needs: build
