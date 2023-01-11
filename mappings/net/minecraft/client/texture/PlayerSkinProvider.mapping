@@ -1,10 +1,14 @@
 CLASS net/minecraft/class_1885 net/minecraft/client/texture/PlayerSkinProvider
+	FIELD field_8115 executorService Ljava/util/concurrent/ExecutorService;
+	FIELD field_8116 textureManager Lnet/minecraft/client/texture/TextureManager;
 	FIELD field_8117 skinCacheDir Ljava/io/File;
 	FIELD field_8118 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_8119 skinCache Lcom/google/common/cache/LoadingCache;
 	METHOD method_7042 getTextures (Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;
 		ARG 1 profile
-	METHOD method_7043 loadSkin (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_1885$class_1890;Z)V
+	METHOD method_7043 loadProfileSkin (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_1885$class_1890;Z)V
+		ARG 1 profile
+		ARG 2 callback
 	METHOD method_7044 loadSkin (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)Lnet/minecraft/class_1653;
 		ARG 1 profileTexture
 		ARG 2 type
@@ -12,4 +16,7 @@ CLASS net/minecraft/class_1885 net/minecraft/client/texture/PlayerSkinProvider
 		ARG 1 profileTexture
 		ARG 2 type
 		ARG 3 callback
-	CLASS class_1890 SkinTextureAvailableCallback
+	CLASS net/minecraft/class_1890 net/minecraft/client/texture/PlayerSkinProvider$SkinTextureAvailableCallback
+		METHOD	method_7047	onSkinTextureAvailable	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/util/Identifier;)V
+			ARG 1 skinType
+			ARG 2 skinLoc
