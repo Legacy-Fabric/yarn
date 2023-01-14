@@ -1,5 +1,5 @@
 CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
-	COMMENT Allows calling the static methods in {@code GL11} without actually touching it
+	COMMENT Helper for modifying OpenGL state.
 	FIELD field_10708 ALPHA_TEST Lnet/minecraft/class_2403$class_2404;
 		COMMENT Stores the alpha test state
 	FIELD field_10709 LIGHTING Lnet/minecraft/class_2403$class_2406;
@@ -59,7 +59,7 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_9795 clearDepth (D)V
 		COMMENT Sets the clear value for the depth buffer
 		ARG 0 depth
-	METHOD method_9796 scaled (DDD)V
+	METHOD method_9796 scale (DDD)V
 		COMMENT Multiplies the current matrix by a general scaling matrix
 		ARG 0 x
 		ARG 2 y
@@ -79,7 +79,7 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 		COMMENT Sets the scale and units used to calculate depth values
 		ARG 0 factor
 		ARG 1 units
-	METHOD method_9800 scalef (FFF)V
+	METHOD method_9800 scale (FFF)V
 		COMMENT Multiplies the current matrix by a general scaling matrix
 		ARG 0 x
 		ARG 1 y
@@ -137,7 +137,7 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 		ARG 3 alpha
 	METHOD method_9813 popAttributes ()V
 		COMMENT Pops the attribute stack
-	METHOD method_9814 translated (DDD)V
+	METHOD method_9814 translate (DDD)V
 		COMMENT Multiplies the current matrix by a translation matrix
 		ARG 0 x
 		ARG 2 y
@@ -145,12 +145,12 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_9815 fogStart (F)V
 		COMMENT Sets fog parameters
 		ARG 0 start
-	METHOD method_9816 translatef (FFF)V
+	METHOD method_9816 translate (FFF)V
 		COMMENT Multiplies the current matrix by a translation matrix
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
-	METHOD method_9817 rotatef (FFFF)V
+	METHOD method_9817 rotate (FFFF)V
 		COMMENT Multiplies the current matrix by a rotation matrix
 		ARG 0 angle
 		ARG 1 x
@@ -163,7 +163,7 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 		COMMENT Sets pixel arithmetic
 		ARG 0 srcFactor
 		ARG 1 dstFactor
-	METHOD method_9820 viewPort (IIII)V
+	METHOD method_9820 viewport (IIII)V
 		COMMENT Sets the viewport
 		ARG 0 x
 		ARG 1 y
@@ -177,12 +177,12 @@ CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
 	METHOD method_9823 fogEnd (F)V
 		COMMENT Sets fog parameters
 		ARG 0 end
-	METHOD method_9824 color3f (FFF)V
+	METHOD method_9824 color (FFF)V
 		COMMENT Sets the current color without alpha
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
-	METHOD method_9825 color4f (FFFF)V
+	METHOD method_9825 color (FFFF)V
 		COMMENT Sets the current color
 		ARG 0 red
 		ARG 1 green
