@@ -1,6 +1,6 @@
 # Yarn
 
-![Build](https://img.shields.io/github/workflow/status/Legacy-Fabric/yarn/Build/1.8.9?label=Build) ![Publish](https://img.shields.io/github/workflow/status/Legacy-Fabric/yarn/Publish/1.8.9?label=Publish)
+![Build](https://img.shields.io/github/actions/workflow/status/Legacy-Fabric/yarn/build.yml?label=Build&branch=master) ![Publish](https://img.shields.io/github/actions/workflow/status/Legacy-Fabric/yarn/publish.yml?label=Publish&branch=master)
 
 Yarn is a set of open, unencumbered Minecraft mappings, free for everyone to use under the Creative Commons Zero license. The intention is to let 
 everyone mod Minecraft freely and openly, while also being able to innovate and process the mappings as they see fit.
