@@ -159,16 +159,16 @@ boolean validateChecksum(File file, String checksum) {
 
 task downloadIntermediary(type: Download) {
 	group = buildMappingGroup
-	// def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/experiment_dream_1/mappings/${minecraft_version}.tiny"
-	def url = "https://github.com/FabricMC/intermediary/raw/master/mappings/${minecraft_version}.tiny"
+	def url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/experiment_dream_1/mappings/${minecraft_version}.tiny"
+	// def url = "https://github.com/FabricMC/intermediary/raw/master/mappings/${minecraft_version}.tiny"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
 }
 
 task downloadIntermediaryV2(type: Download) {
 	group = buildMappingGroup
-	// def url = "https://maven.legacyfabric.net/net/legacyfabric/unstable/intermediary${intermediaryVersion}/${minecraft_version}/intermediary${intermediaryVersion}-${minecraft_version}-v2.jar"
-	def url = "https://maven.fabricmc.net/net/fabricmc/intermediary//${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
+	def url = "https://maven.legacyfabric.net/net/legacyfabric/unstable/intermediary${intermediaryVersion}/${minecraft_version}/intermediary${intermediaryVersion}-${minecraft_version}-v2.jar"
+	// def url = "https://maven.fabricmc.net/net/fabricmc/intermediary//${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
 	src com.google.common.net.UrlEscapers.urlFragmentEscaper().escape(url)
 	dest new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 

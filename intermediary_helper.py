@@ -6,8 +6,8 @@ import shutil
 import os
 
 
-# URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/experiment_dream_1/mappings/{}.tiny"
-URL = "https://github.com/FabricMC/intermediary/raw/master/mappings/{}.tiny"
+URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/experiment_dream_1/mappings/{}.tiny"
+# URL = "https://github.com/FabricMC/intermediary/raw/master/mappings/{}.tiny"
 
 class Intermediaries(NamedTuple):
     classes: dict # { offical name, class }
