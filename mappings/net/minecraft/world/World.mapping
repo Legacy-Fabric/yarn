@@ -30,8 +30,11 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 4 profiler
 		ARG 5 isClient
 	METHOD method_16107 getProfiler ()Lnet/minecraft/class_3695;
+	METHOD method_16109 checkBlockRerender (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;)V
+		ARG 1 pos
+		ARG 2 old
+		ARG 3 updated
 	METHOD method_16109 scheduleBlockRender (Lnet/minecraft/class_2338;)V
-	METHOD method_16109 scheduleBlockRender (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;)V
 	METHOD method_17452 addImportantParticle (Lnet/minecraft/class_2394;ZDDDDDD)V
 		ARG 1 parameters
 		ARG 2 alwaysSpawn
@@ -57,6 +60,10 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 2 oldBlock
 		ARG 3 newBlock
 	METHOD method_8413 updateListeners (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;I)V
+		ARG 1 pos
+		ARG 2 oldState
+		ARG 3 newState
+		ARG 4 flags
 	METHOD method_8419 isRaining ()Z
 	METHOD method_8421 sendEntityStatus (Lnet/minecraft/class_1297;B)V
 		ARG 1 entity
@@ -79,10 +86,13 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8430 getRainGradient (F)F
 	METHOD method_8433 getRecipeManager ()Lnet/minecraft/class_1863;
 	METHOD method_8435 setTimeOfDay (J)V
+		ARG 1 time
 	METHOD method_8437 createExplosion (Lnet/minecraft/class_1297;DDDFLnet/minecraft/class_1927$class_4179;)Lnet/minecraft/class_1927;
 		ARG 1 entity
 		ARG 2 x
 		ARG 4 y
+		ARG 6 z
+		ARG 8 power
 	METHOD method_8438 addBlockEntity (Lnet/minecraft/class_2586;)Z
 	METHOD method_8442 getSkyAngleRadians (F)F
 	METHOD method_8447 addBlockEntities (Ljava/util/Collection;)V
@@ -99,10 +109,12 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
+		ARG 9 power
+		ARG 10 createFire
 	METHOD method_8455 updateHorizontalAdjacent (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
 		ARG 1 pos
 	METHOD method_8456 getEffectiveHeight ()I
-	METHOD method_8457 getChunkProviderStatus ()Ljava/lang/String;
+	METHOD method_8457 getDebugString ()Ljava/lang/String;
 	METHOD method_8458 isSavingDisabled ()Z
 	METHOD method_8459 isEmittingRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 1 pos
@@ -136,7 +148,8 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 2 block
 	METHOD method_8476 isHeightInvalid (I)Z
 		ARG 0 y
-	METHOD method_8477 isHeightValidAndBlockLoaded (Lnet/minecraft/class_2338;)Z
+	METHOD method_8477 canSetBlock (Lnet/minecraft/class_2338;)Z
+		ARG 1 pos
 	METHOD method_8478 getThunderGradient (F)F
 	METHOD method_8479 isReceivingRedstonePower (Lnet/minecraft/class_2338;)Z
 	METHOD method_8480 hasHighHumidity (Lnet/minecraft/class_2338;)Z
@@ -153,8 +166,9 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 4 skipExistingChunks
 	METHOD method_8488 getReceivedStrongRedstonePower (Lnet/minecraft/class_2338;)I
 	METHOD method_8492 updateNeighbor (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V
-		ARG 1 pos
+		ARG 1 sourcePos
 		ARG 2 sourceBlock
+		ARG 3 neighborPos
 	METHOD method_8494 addImportantParticle (Lnet/minecraft/class_2394;DDDDDD)V
 		ARG 1 parameters
 		ARG 2 x
@@ -165,6 +179,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 12 velocityZ
 	METHOD method_8495 getTopNonAirState (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
 	METHOD method_8496 setThunderGradient (F)V
+		ARG 1 thunderGradient
 	METHOD method_8499 getEmittedRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
 		ARG 1 pos
 	METHOD method_8500 getWorldChunk (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2818;
@@ -177,21 +192,24 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8508 updateNeighborsExcept (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2350;)V
 		ARG 1 pos
 		ARG 2 sourceBlock
-	METHOD method_8509 setTicksSinceLightning (I)V
-		ARG 1 ticksSinceLightning
+	METHOD method_8509 setLightningTicksLeft (I)V
+		ARG 1 lightningTicksLeft
 	METHOD method_8510 getTime ()J
 	METHOD method_8513 setDefaultSpawnClient ()V
 	METHOD method_8514 getTagManager ()Lnet/minecraft/class_3505;
-	METHOD method_8515 doesBlockHaveSolidTopSurface (Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
+	METHOD method_8515 isTopSolid (Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
+		ARG 1 pos
+		ARG 2 entity
 	METHOD method_8516 setTime (J)V
 		ARG 1 time
-	METHOD method_8517 setBlockBreakingProgress (ILnet/minecraft/class_2338;I)V
+	METHOD method_8517 setBlockBreakingInfo (ILnet/minecraft/class_2338;I)V
 		ARG 1 entityId
 		ARG 2 pos
 		ARG 3 progress
 	METHOD method_8518 isHeightInvalid (Lnet/minecraft/class_2338;)Z
 		ARG 0 pos
 	METHOD method_8519 setRainGradient (F)V
+		ARG 1 rainGradient
 	METHOD method_8520 hasRain (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
 	METHOD method_8522 sendPacket (Lnet/minecraft/class_2596;)V
@@ -203,7 +221,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_8527 getGeneratorType ()Lnet/minecraft/class_1942;
 	METHOD method_8529 getTicksSinceLightning ()I
-	METHOD method_8530 isDaylight ()Z
+	METHOD method_8530 isDay ()Z
 	METHOD method_8532 getTimeOfDay ()J
 	METHOD method_8533 calculateAmbientDarkness ()V
 	METHOD method_8534 isAreaNotEmpty (Lnet/minecraft/class_238;)Z
@@ -215,6 +233,8 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
+		ARG 8 power
+		ARG 9 createFire
 	METHOD method_8538 addDetailsToCrashReport (Lnet/minecraft/class_128;)Lnet/minecraft/class_129;
 		ARG 1 report
 	METHOD method_8540 getHorizonHeight ()D
