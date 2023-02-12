@@ -11,36 +11,8 @@ CLASS net/minecraft/class_3204 net/minecraft/server/world/ChunkTicketManager
 			ARG 1 pos
 			ARG 3 oldDistance
 			ARG 4 distance
-	CLASS class_3948 NearbyChunkTicketUpdater
-		FIELD field_17464 watchDistance I
-		FIELD field_17465 distances Lit/unimi/dsi/fastutil/longs/Long2IntMap;
-		FIELD field_17466 positionsAffected Lit/unimi/dsi/fastutil/longs/LongSet;
-		METHOD <init> (Lnet/minecraft/class_3204;I)V
-			ARG 1 maxDistance
-		METHOD method_17658 setWatchDistance (I)V
-			ARG 1 watchDistance
-		METHOD method_17660 updateTicket (JIZZ)V
-			ARG 1 pos
-			ARG 3 distance
-			ARG 4 oldWithinViewDistance
-			ARG 5 withinViewDistance
-		METHOD method_17664 isWithinViewDistance (I)Z
-			ARG 1 distance
 	FIELD field_13894 age J
 	FIELD field_13895 ticketsByPosition Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
-	FIELD field_16210 chunkHolders Ljava/util/Set;
-	FIELD field_16211 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_17452 NEARBY_PLAYER_TICKET_LEVEL I
-	FIELD field_17453 playersByChunkPos Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
-	FIELD field_17454 distanceFromNearestPlayerTracker Lnet/minecraft/class_3204$class_3205;
-	FIELD field_17455 nearbyChunkTicketUpdater Lnet/minecraft/class_3204$class_3948;
-	FIELD field_17456 levelUpdateListener Lnet/minecraft/class_3193$class_3896;
-	FIELD field_17456 levelUpdateListener Lnet/minecraft/class_3900;
-	FIELD field_17457 playerTicketThrottler Lnet/minecraft/class_3906;
-	FIELD field_17458 playerTicketThrottlerSorter Lnet/minecraft/class_3906;
-	FIELD field_17459 chunkPositions Lit/unimi/dsi/fastutil/longs/LongSet;
-	FIELD field_17460 mainThreadExecutor Ljava/util/concurrent/Executor;
-	FIELD field_18252 distanceFromTicketTracker Lnet/minecraft/class_3204$class_4077;
 	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
 		ARG 1 workerExecutor
 		ARG 2 mainThreadExecutor
@@ -57,16 +29,44 @@ CLASS net/minecraft/class_3204 net/minecraft/server/world/ChunkTicketManager
 	METHOD method_14045 purge ()V
 	METHOD method_14046 getLevel (Lit/unimi/dsi/fastutil/objects/ObjectSortedSet;)I
 		ARG 1 ticketSet
-	METHOD method_14048 handleChunkEnter (Lnet/minecraft/class_4076;Lnet/minecraft/class_3222;)V
-		ARG 1 pos
 	METHOD method_14049 setWatchDistance (I)V
 		ARG 1 viewDistance
 	METHOD method_14050 getTicketSet (J)Lit/unimi/dsi/fastutil/objects/ObjectSortedSet;
 		ARG 1 position
+	METHOD method_14052 getLevelCount ()I
+	CLASS class_3948 NearbyChunkTicketUpdater
+		FIELD field_17464 watchDistance I
+		FIELD field_17465 distances Lit/unimi/dsi/fastutil/longs/Long2IntMap;
+		FIELD field_17466 positionsAffected Lit/unimi/dsi/fastutil/longs/LongSet;
+		METHOD <init> (Lnet/minecraft/class_3204;I)V
+			ARG 1 maxDistance
+		METHOD method_17658 setWatchDistance (I)V
+			ARG 1 watchDistance
+		METHOD method_17660 updateTicket (JIZZ)V
+			ARG 1 pos
+			ARG 3 distance
+			ARG 4 oldWithinViewDistance
+			ARG 5 withinViewDistance
+		METHOD method_17664 isWithinViewDistance (I)Z
+			ARG 1 distance
+	FIELD field_16210 chunkHolders Ljava/util/Set;
+	FIELD field_16211 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_17452 NEARBY_PLAYER_TICKET_LEVEL I
+	FIELD field_17453 playersByChunkPos Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
+	FIELD field_17454 distanceFromNearestPlayerTracker Lnet/minecraft/class_3204$class_3205;
+	FIELD field_17455 nearbyChunkTicketUpdater Lnet/minecraft/class_3204$class_3948;
+	FIELD field_17456 levelUpdateListener Lnet/minecraft/class_3193$class_3896;
+	FIELD field_17456 levelUpdateListener Lnet/minecraft/class_3900;
+	FIELD field_17457 playerTicketThrottler Lnet/minecraft/class_3906;
+	FIELD field_17458 playerTicketThrottlerSorter Lnet/minecraft/class_3906;
+	FIELD field_17459 chunkPositions Lit/unimi/dsi/fastutil/longs/LongSet;
+	FIELD field_17460 mainThreadExecutor Ljava/util/concurrent/Executor;
+	FIELD field_18252 distanceFromTicketTracker Lnet/minecraft/class_3204$class_4077;
+	METHOD method_14048 handleChunkEnter (Lnet/minecraft/class_4076;Lnet/minecraft/class_3222;)V
+		ARG 1 pos
 	METHOD method_14051 handleChunkLeave (Lnet/minecraft/class_4076;Lnet/minecraft/class_3222;)V
 		ARG 1 pos
 		ARG 2 player
-	METHOD method_14052 getLevelCount ()I
 	METHOD method_14053 setLevel (JILnet/minecraft/class_3193;I)Lnet/minecraft/class_3193;
 		ARG 1 pos
 		ARG 3 level

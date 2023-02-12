@@ -22,6 +22,45 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		METHOD method_5904 disableSaving ()Lnet/minecraft/class_1299$class_1300;
 		METHOD method_5905 build (Ljava/lang/String;)Lnet/minecraft/class_1299;
 			ARG 1 id
+	FIELD field_6056 saveable Z
+	FIELD field_6072 summonable Z
+	FIELD field_6088 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_6092 name Lnet/minecraft/class_2561;
+	FIELD field_6106 translationKey Ljava/lang/String;
+	FIELD field_6141 dataFixerType Lcom/mojang/datafixers/types/Type;
+	METHOD <init> (Lnet/minecraft/class_1299$class_4049;Lnet/minecraft/class_1311;ZZZZLnet/minecraft/class_4048;)V
+		ARG 1 factory
+		ARG 2 category
+		ARG 3 saveable
+		ARG 4 summonable
+		ARG 5 fireImmune
+		ARG 6 spawnableFarFromPlayer
+		ARG 7 dimensions
+	METHOD method_5881 loadFromEntityTag (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_2487;)V
+		ARG 0 world
+		ARG 1 player
+		ARG 3 itemTag
+	METHOD method_5882 getTranslationKey ()Ljava/lang/String;
+	METHOD method_5883 create (Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+		ARG 1 world
+	METHOD method_5884 getOriginY (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;ZLnet/minecraft/class_238;)D
+		ARG 0 world
+		ARG 1 pos
+		ARG 3 boundingBox
+	METHOD method_5886 newInstance (Lnet/minecraft/class_1937;Lnet/minecraft/class_1299;)Lnet/minecraft/class_1297;
+		ARG 0 world
+		ARG 1 type
+	METHOD method_5889 createInstanceFromId (ILnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+		ARG 0 type
+		ARG 1 world
+	METHOD method_5890 getId (Lnet/minecraft/class_1299;)Lnet/minecraft/class_2960;
+		ARG 0 type
+	METHOD method_5893 isSaveable ()Z
+	METHOD method_5895 register (Ljava/lang/String;Lnet/minecraft/class_1299$class_1300;)Lnet/minecraft/class_1299;
+		ARG 0 id
+		ARG 1 type
+	METHOD method_5896 isSummonable ()Z
+	METHOD method_5897 getName ()Lnet/minecraft/class_2561;
 	CLASS class_4049 EntityFactory
 		METHOD create (Laip;Lbhm;)Lail;
 			ARG 1 type
@@ -53,22 +92,8 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 	FIELD field_16526 lootTableId Lnet/minecraft/class_2960;
 	FIELD field_18070 dimensions Lnet/minecraft/class_4048;
 	FIELD field_18981 fireImmune Z
-	FIELD field_6056 saveable Z
-	FIELD field_6072 summonable Z
-	FIELD field_6088 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_6092 name Lnet/minecraft/class_2561;
 	FIELD field_6094 category Lnet/minecraft/class_1311;
 	FIELD field_6101 factory Lnet/minecraft/class_1299$class_4049;
-	FIELD field_6106 translationKey Ljava/lang/String;
-	FIELD field_6141 dataFixerType Lcom/mojang/datafixers/types/Type;
-	METHOD <init> (Lnet/minecraft/class_1299$class_4049;Lnet/minecraft/class_1311;ZZZZLnet/minecraft/class_4048;)V
-		ARG 1 factory
-		ARG 2 category
-		ARG 3 saveable
-		ARG 4 summonable
-		ARG 5 fireImmune
-		ARG 6 spawnableFarFromPlayer
-		ARG 7 dimensions
 	METHOD method_16351 getLootTableId ()Lnet/minecraft/class_2960;
 	METHOD method_17683 createSimpleBoundingBox (DDD)Lnet/minecraft/class_238;
 		ARG 1 feetX
@@ -92,20 +117,6 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 	METHOD method_19946 isFireImmune ()Z
 	METHOD method_20210 isTaggedWith (Lnet/minecraft/class_3494;)Z
 		ARG 1 tag
-	METHOD method_5881 loadFromEntityTag (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_2487;)V
-		ARG 0 world
-		ARG 1 player
-		ARG 3 itemTag
-	METHOD method_5882 getTranslationKey ()Ljava/lang/String;
-	METHOD method_5883 create (Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
-		ARG 1 world
-	METHOD method_5884 getOriginY (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;ZLnet/minecraft/class_238;)D
-		ARG 0 world
-		ARG 1 pos
-		ARG 3 boundingBox
-	METHOD method_5886 newInstance (Lnet/minecraft/class_1937;Lnet/minecraft/class_1299;)Lnet/minecraft/class_1297;
-		ARG 0 world
-		ARG 1 type
 	METHOD method_5888 create (Lnet/minecraft/class_1937;Lnet/minecraft/class_2487;Lnet/minecraft/class_2561;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_3730;ZZ)Lnet/minecraft/class_1297;
 		ARG 1 world
 		ARG 2 itemTag
@@ -115,16 +126,10 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		ARG 6 spawnType
 		ARG 7 alignPosition
 		ARG 8 invertY
-	METHOD method_5889 createInstanceFromId (ILnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
-		ARG 0 type
-		ARG 1 world
-	METHOD method_5890 getId (Lnet/minecraft/class_1299;)Lnet/minecraft/class_2960;
-		ARG 0 type
 	METHOD method_5891 getCategory ()Lnet/minecraft/class_1311;
 	METHOD method_5892 getEntityFromTag (Lnet/minecraft/class_2487;Lnet/minecraft/class_1937;)Ljava/util/Optional;
 		ARG 0 tag
 		ARG 1 world
-	METHOD method_5893 isSaveable ()Z
 	METHOD method_5894 spawnFromItemStack (Lnet/minecraft/class_1937;Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_3730;ZZ)Lnet/minecraft/class_1297;
 		ARG 1 world
 		ARG 2 stack
@@ -133,11 +138,6 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		ARG 5 spawnType
 		ARG 6 alignPosition
 		ARG 7 invertY
-	METHOD method_5895 register (Ljava/lang/String;Lnet/minecraft/class_1299$class_1300;)Lnet/minecraft/class_1299;
-		ARG 0 id
-		ARG 1 type
-	METHOD method_5896 isSummonable ()Z
-	METHOD method_5897 getName ()Lnet/minecraft/class_2561;
 	METHOD method_5898 get (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 0 id
 	METHOD method_5899 spawn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2487;Lnet/minecraft/class_2561;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_3730;ZZ)Lnet/minecraft/class_1297;
