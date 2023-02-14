@@ -52,8 +52,31 @@ jobs:
             "15w36c","15w36d","15w37a","15w38a","15w38b","15w39a","15w39b","15w39c","15w40a","15w40b",
             "15w41a","15w41b","15w42a","15w43a","15w43b","15w43c","15w44a","15w44b","15w45a","15w46a",
             "15w47a","15w47b","15w47c","15w49a","15w49b","15w50a","15w51a","15w51b","16w02a","16w03a",
-            "16w04a","16w05a","16w05b","16w06a","16w07a","16w07b",
-
+            "16w04a","16w05a","16w05b","16w06a","16w07a","16w07b"
+        ]
+    env: 
+        MC_VERSION: ${{ matrix.mc_version }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64'
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - run: python ./yarn.py $MC_VERSION build publishToMavenLocal --stacktrace
+      # - run: cd test-mod && ./gradlew build genSources
+      
+  build2:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: build
+    strategy:
+      fail-fast: true
+      matrix: 
+        mc_version: [
             "1.9-pre1","1.9-pre2","1.9-pre3","1.9-pre4","1.9",
             "1.9.1-pre1","1.9.1-pre2","1.9.1-pre3","1.9.1",
             "1.9.2",
@@ -119,8 +142,6 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
       - run: python ./yarn.py $MC_VERSION build publishToMavenLocal --stacktrace
-      # - run: cd test-mod && ./gradlew build genSources
-      
   # publish:
   #   needs: build
   #   runs-on: ubuntu-latest
