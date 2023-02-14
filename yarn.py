@@ -50,7 +50,10 @@ def main():
     stop_autosave()
     merge()
 
-    exit(exitCode)
+    if exitCode == 0:
+        exit(0)
+    else:
+        exit(1)
 
 def start_autosave():
     global kill, saving_thread
