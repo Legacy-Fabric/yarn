@@ -113,7 +113,7 @@ dependencies {
 	asm "org.ow2.asm:asm-util:${project.asm_version}"
 }
 
-def intermediaryVersion = "v4"
+def intermediaryVersion = "v5"
 def setupGroup = "jar setup"
 def yarnGroup = "yarn"
 def buildMappingGroup = "mapping build"
@@ -429,7 +429,7 @@ clean.doFirst {
 	delete tempDir, cacheFilesMinecraft
 }
 
-tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar" //, "javadocJar"
+tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar", "javadocJar"
 
 task exportMappingsOfficial(dependsOn: downloadIntermediary) {
 	def composeInput = downloadIntermediary.dest
