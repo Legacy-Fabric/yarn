@@ -5,8 +5,15 @@ import urllib.request as request
 import shutil
 import os
 
+intermediary_version = 2
 
-URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/experiment_dream_1/mappings/{}.tiny"
+def getIntermediaryBranch():
+    if intermediary_version == 2:
+        return "v2"
+    else:
+        return "master"
+
+URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/{}.tiny"
 # URL = "https://github.com/FabricMC/intermediary/raw/master/mappings/{}.tiny"
 
 class Intermediaries(NamedTuple):
