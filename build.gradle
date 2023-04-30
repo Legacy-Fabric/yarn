@@ -26,7 +26,6 @@ def taskName = project.gradle.startParameter.taskNames[0]
 def ENV = System.getenv()
 
 def minecraft_version = "1.8.9"
-def intermediary_version = 2
 
 if (!ENV.MC_VERSION) {
 	System.err.println("No Minecraft version selected! Please use yarn.py to start gradle.")
@@ -120,6 +119,7 @@ import net.fabricmc.filament.task.MapJarTask
 import net.fabricmc.filament.task.DownloadTask
 import net.fabricmc.filament.task.ExtractZipEntryTask
 import net.fabricmc.filament.task.UnpickJarTask
+import net.fabricmc.filament.task.minecraft.MergeMinecraftTask
 import net.fabricmc.filament.task.base.WithFileInput
 import net.fabricmc.filament.task.base.WithFileOutput
 import net.fabricmc.filament.task.enigma.ConvertMappingsTask
@@ -135,7 +135,7 @@ import java.util.zip.GZIPOutputStream
 
 def getIntermediaryBranch() {
 	switch(intermediary_version) {
-		case 2:
+		case "2":
 			return "v2"
 			break
 		default:
@@ -145,7 +145,7 @@ def getIntermediaryBranch() {
 
 def getIntermediaryMaven() {
 	switch(intermediary_version) {
-		case 2:
+		case "2":
 			return "/v2"
 			break
 		default:
@@ -155,7 +155,7 @@ def getIntermediaryMaven() {
 
 def getIntermediaryGroup() {
 	switch(intermediary_version) {
-		case 2:
+		case "2":
 			return ".v2"
 			break
 		default:
@@ -214,10 +214,10 @@ task invertIntermediaryv2(dependsOn: [downloadIntermediaryV2, extractIntermediar
 }
 
 task mergeOriginalMinecraftJars(type: MergeMinecraftTask, dependsOn: [downloadMinecraftClientJar, downloadMinecraftServerJar]) {
-	clientJar = downloadMinecraftClientJar.outputFile
-	serverJar = downloadMinecraftServerJar.outputFile
+	clientJar = downloadMinecraftClientJar.output
+	serverJar = downloadMinecraftServerJar.output
 
-	outputFile = new File(".gradle/filament/${minecraft_version}", "merged.jar");
+	output = file(".gradle/filament/${minecraft_version}/merged.jar");
 }
 
 task mapIntermediaryJar(type: MapJarTask, dependsOn: [downloadIntermediary, mergeOriginalMinecraftJars]) {
