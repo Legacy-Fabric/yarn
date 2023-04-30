@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import threading
 import time
 import os
@@ -18,12 +20,12 @@ def main():
     # Manual mode
     if len(args) <= 1:
         print("Enter the Minecraft version you want to use")
-        print("Available versions: " + ", ".join(VERSIONS))
+        # print("Available versions: " + ", ".join(VERSIONS))
         while True:
             version = input("> ")
-            if version.lower() in VERSIONS:
-                break
-            print(".. Invalid version")
+            # if version.lower() in VERSIONS:
+            break
+            # print(".. Invalid version")
 
         print("Enter the Gradle command you want to run")
         print("('yarn' to open Enigma)")
@@ -50,7 +52,10 @@ def main():
     stop_autosave()
     merge()
 
-    exit(exitCode)
+    if exitCode == 0:
+        exit(0)
+    else:
+        exit(1)
 
 def start_autosave():
     global kill, saving_thread

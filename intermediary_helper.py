@@ -5,8 +5,16 @@ import urllib.request as request
 import shutil
 import os
 
+intermediary_version = 2
 
-URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/master/mappings/{}.tiny"
+def getIntermediaryBranch():
+    if intermediary_version == 2:
+        return "v2"
+    else:
+        return "master"
+
+URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/{}.tiny"
+# URL = "https://github.com/FabricMC/intermediary/raw/master/mappings/{}.tiny"
 
 class Intermediaries(NamedTuple):
     classes: dict # { offical name, class }
@@ -58,7 +66,7 @@ def parse_intermediary(intermediary_lines: list):
         if "#" in line:
             continue
 
-        parts = line.split("	")
+        parts = line.split("\t")
         if parts[0] == "CLASS":
             itm.classes[parts[1]] = parts[2]
         elif parts[0] == "FIELD":
@@ -106,7 +114,7 @@ def separate_file(folder: str, fname: str, mappings: Intermediaries):
         lines = file.read().splitlines()
         tabs = 0
         for line in lines:
-            new_tabs = line.count("	")
+            new_tabs = line.count("\t")
             if new_tabs > tabs:
                 continue
             elif new_tabs < tabs:
@@ -123,7 +131,7 @@ def separate_file(folder: str, fname: str, mappings: Intermediaries):
                 f.write(new_content)
 
 def is_in_mappings(line: str, mappings: Intermediaries, inc_other: bool=True):
-    split = line.replace("	", "").split()
+    split = line.replace("\t", "").split()
     return ((split[0] == "CLASS" and any(cls.endswith(split[1]) for cls in mappings.classes.values()))
         or (split[0] == "FIELD" and split[1] in mappings.fields and split[-1] == mappings.fields[split[1]])
         or (split[0] == "METHOD" and (split[1] == "<init>" or (split[1] in mappings.methods and split[-1] == mappings.methods[split[1]])))
@@ -182,7 +190,7 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
         #  technically this doesn't handle deleting subclasses but there aren't really
         #  any cases where would need to do that)
         for i in range(len(lines)):
-            split = lines[i].replace("	", "").split()
+            split = lines[i].replace("\t", "").split()
             if split[0] == "CLASS":
                 ni = indexof(out_lines, "CLASS " + split[1])
                 if ni != -1:
@@ -192,7 +200,7 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
         i = 1
         tabs = 1
         while i < len(out_lines):
-            new_tabs = out_lines[i].count("	")
+            new_tabs = out_lines[i].count("\t")
             if new_tabs > tabs:
                 i += 1
                 continue
@@ -201,7 +209,7 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
 
             if is_in_mappings(out_lines[i], mappings, False):
                 count = get_mapping_length(out_lines, i)
-                if "	CLASS" not in out_lines[i]:
+                if "\tCLASS" not in out_lines[i]:
                     for _ in range(count):
                         out_lines.pop(i)
                 else:
@@ -213,13 +221,18 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
         # Step 4: Readd fields, methods and classes from the active file
         parent_classes = []
         for i in range(len(lines)):
-            split = lines[i].replace("	", "").split()
+            split = lines[i].replace("\t", "").split()
             if split[0] == "CLASS" or split[0] == "FIELD" or split[0] == "METHOD":
                 if split[0] == "CLASS":
-                    parent_classes = parent_classes[:lines[i].count("	")]
+                    parent_classes = parent_classes[:lines[i].count("\t")]
                     if indexof(out_lines, "CLASS " + split[1]) != -1:
                         parent_classes.append(split[1])
                         continue
+
+                if not parent_classes:
+                    print("Unable to find parent class, skipping I guess?")
+                    print("i was", i, "line was:\n", lines[i])
+                    continue
 
                 ni = indexof(out_lines, "CLASS " + parent_classes[-1]) + 1
                 while ni < len(out_lines) and not cmp_mapping(lines[i], out_lines[ni]):
@@ -244,7 +257,7 @@ def get_mapping_length(lines: list, index: int):
     count = 1
     while index + 1 < len(lines):
         index += 1
-        line = lines[index].replace("	", "")
+        line = lines[index].replace("\t", "")
         if not line.startswith("ARG") and not line.startswith("COMMENT"):
             break
         count += 1
@@ -261,8 +274,8 @@ def indexof(lines: list, string: str):
 
 # Returns whether line1 should be before line2
 def cmp_mapping(line1: str, line2: str):
-    sline1 = line1.replace("	", "")
-    sline2 = line2.replace("	", "")
+    sline1 = line1.replace("\t", "")
+    sline2 = line2.replace("\t", "")
     if len(line1) - len(sline1) > len(line2) - len(sline2):
         return True
 
@@ -290,24 +303,24 @@ def cmp_mapping(line1: str, line2: str):
 #     methods: list#<Yarn>
 
 # def parse_yarn(lines: list, tabs: int=0):
-#     split = lines.pop(0).replace("	", "").split()
+#     split = lines.pop(0).replace("\t", "").split()
 #     mapping = Yarn(split[0], split[1],
 #                       None if len(split) == 2 or (len(split) == 3 and split[0] != "ARG") else split[2],
 #                       None if split[0] != "FIELD" and split[0] != "METHOD" else split[-1],
 #                       [], [], [], [], [])
 # 
-#     while len(lines) > 0 and "	COMMENT" in lines[0]:
-#         mapping.comments.append(lines.pop(0).replace("	", "").replace("COMMENT ", "", 1))
+#     while len(lines) > 0 and "\tCOMMENT" in lines[0]:
+#         mapping.comments.append(lines.pop(0).replace("\t", "").replace("COMMENT ", "", 1))
 # 
 #     if split[0] == "CLASS":
-#         while len(lines) > 0 and lines[0].count("	") > tabs:
+#         while len(lines) > 0 and lines[0].count("\t") > tabs:
 #             m = parse_yarn(lines, tabs + 1)
 #             if m.mtype == "CLASS": mapping.classes.append(m)
 #             elif m.mtype == "FIELD": mapping.fields.append(m)
 #             elif m.mtype == "METHOD": mapping.methods.append(m)
 #             else: print("uh oh")
 #     elif split[0] == "METHOD":
-#         while len(lines) > 0 and "	ARG" in lines[0]:
+#         while len(lines) > 0 and "\tARG" in lines[0]:
 #             mapping.args.append(parse_yarn(lines, tabs + 1))
 # 
 #     return mapping

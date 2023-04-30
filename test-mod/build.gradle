@@ -1,35 +1,31 @@
 plugins {
-	id 'fabric-loom' version "1.0-SNAPSHOT" // To use chocoloom, change the version to a commit hash
+	id 'fabric-loom' version "1.2-SNAPSHOT"
+	id 'legacy-looming' version "1.2-SNAPSHOT"
 	id 'maven-publish'
 }
 
 def ENV = System.getenv()
 def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 repositories {
 	mavenLocal()
-	maven {
-		name = "legacy-fabric"
-		url = "https://maven.legacyfabric.net"
-	}
 }
 
-loom {
-	setIntermediaryUrl('https://maven.legacyfabric.net/net/fabricmc/intermediary/%1$s/intermediary-%1$s-v2.jar');
-	customMinecraftManifest.set("https://meta.legacyfabric.net/v2/manifest/${minecraft_version}")
+legacyLooming {
+	intermediaryVersion = 2
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
-	mappings "net.legacyfabric:yarn:${minecraft_version}+build.local:v2"
+	mappings legacy.yarn(minecraft_version, "local")
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+}
+
+base {
+	archivesName = project.archives_base_name
 }
 
 processResources {
@@ -46,6 +42,9 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
 	if (JavaVersion.current().isJava9Compatible()) it.options.release = 8
+
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 java {
@@ -57,7 +56,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${base.archivesName.get()}"}
 	}
 }
 
