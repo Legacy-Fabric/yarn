@@ -163,15 +163,60 @@ def getIntermediaryGroup() {
 	}
 }
 
+String getIntermediaryUrl(String mc_version, boolean v2) {
+	def legacy = true
+
+	if (mc_version.contains(".")) {
+		def major = mc_version.split("\\.")[1].toLowerCase()
+
+		if (major.contains("-")) {
+			major = major.split("-")[0]
+		}
+
+		if (major.contains("pre")) {
+			major = major.split("pre")[0]
+		}
+
+		if (major.contains(" ")) {
+			major = major.split(" ")[0]
+		}
+
+		try {
+			legacy = Integer.getInteger(major) < 14
+		} catch (Exception ignored) {}
+	} else if (mc_version.contains("w")) {
+		def parts = mc_version.split("w")
+		def year = Integer.getInteger(parts[0])
+		def weeks = Integer.getInteger(parts[1].substring(0, 2))
+		def iteration = parts[1].substring(2)
+
+		legacy = year > 18 || (year == 18 && (weeks > 43 || (weeks == 43 && iteration != "a")))
+	}
+
+	if (legacy) {
+		if (v2) {
+			return "https://maven.legacyfabric.net/net/legacyfabric${getIntermediaryMaven()}/intermediary/${mc_version}/intermediary-${mc_version}-v2.jar"
+		} else {
+			return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/${getIntermediaryBranch()}/mappings/${mc_version}.tiny"
+		}
+	} else {
+		if (v2) {
+			return "https://maven.fabricmc.net/net/fabricmc/intermediary/${mc_version}/intermediary-${mc_version}-v2.jar"
+		} else {
+			return "https://github.com/FabricMC/intermediary/raw/master/mappings/${mc_version}.tiny"
+		}
+	}
+}
+
 task downloadIntermediary(type: DownloadTask) {
 	group = buildMappingGroup
-	url = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/${getIntermediaryBranch()}/mappings/${minecraft_version}.tiny"
+	url = getIntermediaryUrl(minecraft_version, false)
 	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
 }
 
 task downloadIntermediaryV2(type: DownloadTask) {
 	group = buildMappingGroup
-	url = "https://maven.legacyfabric.net/net/legacyfabric${getIntermediaryMaven()}/intermediary/${minecraft_version}/intermediary-${minecraft_version}-v2.jar"
+	url = getIntermediaryUrl(minecraft_version, true)
 	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
 }
 

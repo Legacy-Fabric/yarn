@@ -13,8 +13,30 @@ def getIntermediaryBranch():
     else:
         return "master"
 
-URL = "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/{}.tiny"
-# URL = "https://github.com/FabricMC/intermediary/raw/master/mappings/{}.tiny"
+def getIntermediaryUrl(mc_version: str):
+    legacy = True
+
+    if "." in mc_version:
+        major = mc_version.split(".")[1].lower().split("-")[0].split("pre")[0].split(" ")[0]
+
+        if int(major) > 13:
+            legacy = False
+    elif "w" in mc_version:
+        year, weeka = mc_version.split("w")
+        week = weeka[:2]
+        iteration = weeka[2:]
+
+        if int(year) > 18:
+            legacy = False
+        elif int(year) == 18 and int(week) > 43:
+            legacy = False
+        elif int(year) == 18 and int(week) == 43 and iteration != "a":
+            legacy = False
+    
+    if legacy:
+        return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/" + mc_version + ".tiny"
+    else:
+        return "https://github.com/FabricMC/intermediary/raw/master/mappings/" + mc_version + ".tiny"
 
 class Intermediaries(NamedTuple):
     classes: dict # { offical name, class }
@@ -27,7 +49,7 @@ def separate(minecraft_version: str, try_merge: bool=True):
         merge()
 
     print("> Separating mappings for {}..".format(minecraft_version))
-    with request.urlopen(URL.format(minecraft_version)) as response:
+    with request.urlopen(getIntermediaryUrl(minecraft_version)) as response:
         intermediary_data = response.read().decode('utf-8')
         mappings = parse_intermediary(intermediary_data.splitlines()[1:])
 
