@@ -5,7 +5,7 @@ import urllib.request as request
 import shutil
 import os
 
-intermediary_version = 2
+intermediary_version = 1
 
 def getIntermediaryBranch():
     if intermediary_version == 2:
