@@ -2,6 +2,9 @@ CLASS net/minecraft/class_2487 net/minecraft/nbt/CompoundTag
 	FIELD field_11514 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_11515 tags Ljava/util/Map;
 	FIELD field_11516 PATTERN Ljava/util/regex/Pattern;
+	FIELD field_21029 READER Lnet/minecraft/class_4614;
+	METHOD <init> (Ljava/util/Map;)V
+		ARG 1 tags
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 o
 	METHOD method_10537 getLong (Ljava/lang/String;)J
@@ -58,6 +61,8 @@ CLASS net/minecraft/class_2487 net/minecraft/nbt/CompoundTag
 	METHOD method_10559 createCrashReport (Ljava/lang/String;ILjava/lang/ClassCastException;)Lnet/minecraft/class_128;
 		ARG 1 key
 		ARG 2 type
+	METHOD method_10559 createCrashReport (Ljava/lang/String;Lnet/minecraft/class_4614;Ljava/lang/ClassCastException;)Lnet/minecraft/class_128;
+		ARG 1 key
 	METHOD method_10560 putUuid (Ljava/lang/String;Ljava/util/UUID;)V
 		ARG 1 key
 		ARG 2 uuid
@@ -111,10 +116,18 @@ CLASS net/minecraft/class_2487 net/minecraft/nbt/CompoundTag
 		ARG 2 input
 		ARG 3 depth
 		ARG 4 tracker
+	METHOD method_10581 read (Lnet/minecraft/class_4614;Ljava/lang/String;Ljava/io/DataInput;ILnet/minecraft/class_2505;)Lnet/minecraft/class_2520;
+		ARG 0 reader
+		ARG 1 key
+		ARG 2 input
+		ARG 3 depth
+		ARG 4 tracker
 	METHOD method_10582 putString (Ljava/lang/String;Ljava/lang/String;)V
 		ARG 1 key
 		ARG 2 value
 	METHOD method_10583 getFloat (Ljava/lang/String;)F
 		ARG 1 key
 	METHOD method_10584 getUuid (Ljava/lang/String;)Ljava/util/UUID;
+		ARG 1 key
+	METHOD method_22421 removeUuid (Ljava/lang/String;)V
 		ARG 1 key

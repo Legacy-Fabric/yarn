@@ -86,8 +86,14 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	METHOD method_18203 tickChunk (Lnet/minecraft/class_2818;I)V
 		ARG 1 chunk
 		ARG 2 randomTickSpeed
+	METHOD method_18207 onPlayerTeleport (Lnet/minecraft/class_3222;)V
+		ARG 1 player
 	METHOD method_18210 (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2338;
 		ARG 1 pos
+	METHOD method_18211 onPlayerChangeDimension (Lnet/minecraft/class_3222;)V
+		ARG 1 player
+	METHOD method_18213 onPlayerConnected (Lnet/minecraft/class_3222;)V
+		ARG 1 player
 	METHOD method_18214 loadEntity (Lnet/minecraft/class_1297;)Z
 		ARG 1 entity
 	METHOD method_18215 onPlayerRespawned (Lnet/minecraft/class_3222;)V
@@ -97,10 +103,13 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	METHOD method_18764 unloadEntities (Lnet/minecraft/class_2818;)V
 		ARG 1 chunk
 	METHOD method_18765 tick (Ljava/util/function/BooleanSupplier;)V
-		ARG 1 shouldKeepTicking
 	METHOD method_18766 getPlayers (Ljava/util/function/Predicate;)Ljava/util/List;
 		ARG 1 predicate
 	METHOD method_18767 checkChunk (Lnet/minecraft/class_1297;)V
+	METHOD method_18768 tryLoadEntity (Lnet/minecraft/class_1297;)Z
+		ARG 1 entity
+	METHOD method_18769 onDimensionChanged (Lnet/minecraft/class_1297;)V
+		ARG 1 entity
 	METHOD method_18770 removePlayer (Lnet/minecraft/class_3222;)V
 		ARG 1 player
 	METHOD method_18771 addPlayer (Lnet/minecraft/class_3222;)V
@@ -140,3 +149,4 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	METHOD method_8416 addLightning (Lnet/minecraft/class_1538;)V
 	METHOD method_8448 updatePlayersSleeping ()V
 	METHOD method_8468 checkSessionLock ()V
+	METHOD method_8487 locateStructure (Ljava/lang/String;Lnet/minecraft/class_2338;IZ)Lnet/minecraft/class_2338;

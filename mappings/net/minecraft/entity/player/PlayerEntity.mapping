@@ -1,12 +1,11 @@
 CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	FIELD field_18134 POSE_DIMENSIONS Ljava/util/Map;
 	FIELD field_18135 STANDING_DIMENSIONS Lnet/minecraft/class_4048;
-	FIELD field_19428 ticks J
 	FIELD field_7484 itemCooldownManager Lnet/minecraft/class_1796;
 	FIELD field_7486 enderChestInventory Lnet/minecraft/class_1730;
 	FIELD field_7487 sleepTimer I
 	FIELD field_7488 MAIN_ARM Lnet/minecraft/class_2940;
-	FIELD field_7490 isSubmergedInWater Z
+	FIELD field_7490 isInWater Z
 	FIELD field_7491 ABSORPTION_AMOUNT Lnet/minecraft/class_2940;
 	FIELD field_7493 hungerManager Lnet/minecraft/class_1702;
 	FIELD field_7494 enchantmentTableSeed I
@@ -51,7 +50,9 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	METHOD method_19205 isBedObstructed (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 1 pos
 		ARG 2 direction
-	METHOD method_21701 canDestroyBlock (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1934;)Z
+	METHOD method_21701 canMine (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1934;)Z
+	METHOD method_21823 shouldCancelInteraction ()Z
+	METHOD method_21824 shouldDismount ()Z
 	METHOD method_7254 unlockRecipes (Ljava/util/Collection;)I
 		ARG 1 recipes
 	METHOD method_7255 addExperience (I)V
@@ -65,7 +66,6 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7261 getAttackCooldownProgress (F)F
 		ARG 1 baseTime
 	METHOD method_7262 dropShoulderEntities ()V
-	METHOD method_7263 spawnMultiplayerParticles ()V
 	METHOD method_7264 isWithinSleepingRange (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 1 sleepPos
 		ARG 2 direction
@@ -108,13 +108,16 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 		ARG 2 hand
 	METHOD method_7289 setPlayerSpawn (Lnet/minecraft/class_2338;Z)V
 		ARG 1 pos
+	METHOD method_7289 setPlayerSpawn (Lnet/minecraft/class_2338;ZZ)V
 	METHOD method_7290 dropSelectedItem (Z)Lnet/minecraft/class_1542;
+		ARG 1 dropEntireStack
+	METHOD method_7290 dropSelectedItem (Z)Z
 		ARG 1 dropEntireStack
 	METHOD method_7291 openHorseInventory (Lnet/minecraft/class_1496;Lnet/minecraft/class_1263;)V
 	METHOD method_7292 getLuck ()F
 	METHOD method_7293 vanishCursedItems ()V
 	METHOD method_7294 canModifyWorld ()Z
-	METHOD method_7295 updateWaterSubmersionState ()Z
+	METHOD method_7295 updateInWater ()Z
 	METHOD method_7297 getSleepTimer ()I
 	METHOD method_7298 addShoulderEntity (Lnet/minecraft/class_2487;)Z
 		ARG 1 tag
@@ -193,6 +196,7 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7355 sendAbilitiesUpdate ()V
 	METHOD method_7356 getShoulderEntityLeft ()Lnet/minecraft/class_2487;
 	METHOD method_7357 getItemCooldownManager ()Lnet/minecraft/class_1796;
+	METHOD method_7358 wakeUp (ZZ)V
 	METHOD method_7358 wakeUp (ZZZ)V
 		ARG 3 setSpawn
 	CLASS class_1658 SleepFailureReason

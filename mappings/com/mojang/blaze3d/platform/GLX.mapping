@@ -1,4 +1,25 @@
 CLASS com/mojang/blaze3d/platform/GLX
+	METHOD _getRefreshRate (Lnet/minecraft/class_1041;)I
+		ARG 0 window
+	METHOD _init (IZ)V
+		ARG 0 debugVerbosity
+		ARG 1 debugSync
+	METHOD _renderCrosshair (IZZZ)V
+		ARG 0 size
+		ARG 1 drawX
+		ARG 2 drawY
+		ARG 3 drawZ
+	METHOD _setGlfwErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
+		ARG 0 callback
+	METHOD _shouldClose (Lnet/minecraft/class_1041;)Z
+		ARG 0 window
+	METHOD getErrorString (I)Ljava/lang/String;
+		ARG 0 code
+	METHOD make (Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;
+		ARG 0 object
+		ARG 1 initializer
+	METHOD make (Ljava/util/function/Supplier;)Ljava/lang/Object;
+		ARG 0 factory
 	CLASS class_1010 FBOMode
 	METHOD glActiveTexture (I)V
 		ARG 0 texture
@@ -19,10 +40,6 @@ CLASS com/mojang/blaze3d/platform/GLX
 		ARG 1 dFactorRGB
 		ARG 2 sFactorAlpha
 		ARG 3 dFactorAlpha
-	METHOD glBufferData (ILjava/nio/ByteBuffer;I)V
-		ARG 0 target
-		ARG 1 data
-		ARG 2 usage
 	METHOD glCheckFramebufferStatus (I)I
 		ARG 0 target
 	METHOD glClientActiveTexture (I)V
@@ -31,8 +48,6 @@ CLASS com/mojang/blaze3d/platform/GLX
 		ARG 0 shader
 	METHOD glCreateShader (I)I
 		ARG 0 type
-	METHOD glDeleteBuffers (I)V
-		ARG 0 buffer
 	METHOD glDeleteFramebuffers (I)V
 		ARG 0 framebuffer
 	METHOD glDeleteProgram (I)V
@@ -72,10 +87,6 @@ CLASS com/mojang/blaze3d/platform/GLX
 		ARG 1 name
 	METHOD glLinkProgram (I)V
 		ARG 0 program
-	METHOD glMultiTexCoord2f (IFF)V
-		ARG 0 target
-		ARG 1 s
-		ARG 2 t
 	METHOD glRenderbufferStorage (IIII)V
 		ARG 0 target
 		ARG 1 internalFormat
@@ -84,41 +95,14 @@ CLASS com/mojang/blaze3d/platform/GLX
 	METHOD glUniform1 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 values
-	METHOD glUniform1 (ILjava/nio/IntBuffer;)V
-		ARG 0 location
-		ARG 1 values
-	METHOD glUniform1i (II)V
-		ARG 0 location
-		ARG 1 value
 	METHOD glUniform2 (ILjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 values
-	METHOD glUniform2 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 values
 	METHOD glUniform3 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 values
-	METHOD glUniform3 (ILjava/nio/IntBuffer;)V
-		ARG 0 location
-		ARG 1 values
 	METHOD glUniform4 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 values
-	METHOD glUniform4 (ILjava/nio/IntBuffer;)V
-		ARG 0 location
-		ARG 1 values
-	METHOD glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 matrices
-	METHOD glUniformMatrix3 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 matrices
-	METHOD glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 matrices
 	METHOD glUseProgram (I)V
 		ARG 0 program

@@ -44,6 +44,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_1727 soundManager Lnet/minecraft/class_1144;
 	FIELD field_1728 renderTickCounter Lnet/minecraft/class_317;
 	FIELD field_1729 mouse Lnet/minecraft/class_312;
+	FIELD field_1730 chunkCullingEnabled Z
 	FIELD field_1731 entityRenderManager Lnet/minecraft/class_898;
 	FIELD field_1732 creativeHotbarStorage Lnet/minecraft/class_302;
 	FIELD field_1733 searchManager Lnet/minecraft/class_1124;
@@ -60,7 +61,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_1743 skipGameRender Z
 	FIELD field_1744 connectedToRealms Z
 	FIELD field_1745 resourceManager Lnet/minecraft/class_3296;
-	FIELD field_1746 connection Lnet/minecraft/class_2535;
+	FIELD field_1746 clientConnection Lnet/minecraft/class_2535;
 	FIELD field_1747 crashReport Lnet/minecraft/class_128;
 	FIELD field_1748 levelStorage Lnet/minecraft/class_32;
 	FIELD field_1749 ALT_TEXT_RENDERER_ID Lnet/minecraft/class_2960;
@@ -96,6 +97,11 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_18173 statusEffectSpriteManager Lnet/minecraft/class_4074;
 	FIELD field_18174 resourceReloadFuture Ljava/util/concurrent/CompletableFuture;
 	FIELD field_18175 overlay Lnet/minecraft/class_4071;
+	FIELD field_20907 debugChunkInfo Z
+	FIELD field_20908 debugChunkOcculsion Z
+	FIELD field_20909 bufferBuilders Lnet/minecraft/class_4599;
+	METHOD <init> (Lnet/minecraft/class_542;)V
+		ARG 1 args
 	METHOD method_1476 checkIs64Bit ()Z
 	METHOD method_1478 getResourceManager ()Lnet/minecraft/class_3300;
 	METHOD method_1479 getResourcePackDir ()Ljava/io/File;
@@ -161,6 +167,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	METHOD method_1547 getVersionType ()Ljava/lang/String;
 	METHOD method_1548 getSession ()Lnet/minecraft/class_320;
 	METHOD method_1549 getSpriteAtlas ()Lnet/minecraft/class_1059;
+	METHOD method_1549 getSpriteAtlas (Lnet/minecraft/class_2960;)Ljava/util/function/Function;
 	METHOD method_1551 getInstance ()Lnet/minecraft/class_310;
 	METHOD method_1552 getSnooper ()Lnet/minecraft/class_1276;
 	METHOD method_1554 getBakedModelManager ()Lnet/minecraft/class_1092;
@@ -192,6 +199,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 		ARG 1 report
 	METHOD method_1588 isAmbientOcclusionEnabled ()Z
 	METHOD method_1589 isConnectedToRealms ()Z
+	METHOD method_1590 handleBlockBreaking (Z)V
 	METHOD method_1592 scheduleStop ()V
 	METHOD method_16008 isFramerateLimited ()Z
 	METHOD method_16009 getFramerateLimit ()I
@@ -210,3 +218,19 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	METHOD method_18505 getStatusEffectSpriteManager ()Lnet/minecraft/class_4074;
 	METHOD method_18506 getOverlay ()Lnet/minecraft/class_4071;
 	METHOD method_20539 openPauseMenu (Z)V
+	METHOD method_22107 shouldRenderAsync ()Z
+	METHOD method_22108 isRunning ()Z
+	METHOD method_22681 addSystemDetailsToCrashReport (Lnet/minecraft/class_1076;Ljava/lang/String;Lnet/minecraft/class_315;Lnet/minecraft/class_128;)V
+		ARG 0 languageManager
+		ARG 1 version
+		ARG 2 options
+		ARG 3 report
+	METHOD method_22683 getWindow ()Lnet/minecraft/class_1041;
+	METHOD method_22940 getBufferBuilders ()Lnet/minecraft/class_4599;
+	METHOD method_24038 createResourcePackProfile (Ljava/lang/String;ZLjava/util/function/Supplier;Lnet/minecraft/class_3262;Lnet/minecraft/class_3272;Lnet/minecraft/class_3288$class_3289;)Lnet/minecraft/class_1075;
+	METHOD method_24041 resetMipmapLevels (I)V
+		ARG 1 mipmapLevels
+	METHOD method_24042 createV3ResoucePackFactory (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
+	METHOD method_24043 createV4ResourcePackFactory (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
+	METHOD method_24226 handleResourceReloadExecption (Ljava/lang/Throwable;)V
+		ARG 1 throwable

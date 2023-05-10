@@ -1,58 +1,4 @@
 CLASS net/minecraft/class_2248 net/minecraft/block/Block
-	CLASS class_2249 NeighborGroup
-		FIELD field_10652 self Lnet/minecraft/class_2680;
-		FIELD field_10653 facing Lnet/minecraft/class_2350;
-		FIELD field_10654 other Lnet/minecraft/class_2680;
-		METHOD <init> (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_2350;)V
-			ARG 1 self
-			ARG 2 other
-			ARG 3 facing
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-	CLASS class_2250 OffsetType
-	CLASS class_2251 Settings
-		FIELD field_10660 resistance F
-		FIELD field_10661 randomTicks Z
-		FIELD field_10662 materialColor Lnet/minecraft/class_3620;
-		FIELD field_10663 luminance I
-		FIELD field_10664 collidable Z
-		FIELD field_10665 soundGroup Lnet/minecraft/class_2498;
-		FIELD field_10666 dropTableId Lnet/minecraft/class_2960;
-		FIELD field_10667 slipperiness F
-		FIELD field_10668 material Lnet/minecraft/class_3614;
-		FIELD field_10669 hardness F
-		FIELD field_10670 dynamicBounds Z
-		METHOD <init> (Lnet/minecraft/class_3614;Lnet/minecraft/class_3620;)V
-			ARG 1 material
-			ARG 2 materialColor
-		METHOD method_16228 dropsLike (Lnet/minecraft/class_2248;)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 source
-		METHOD method_16229 dropsNothing ()Lnet/minecraft/class_2248$class_2251;
-		METHOD method_9617 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_1767;)Lnet/minecraft/class_2248$class_2251;
-			ARG 0 material
-			ARG 1 color
-		METHOD method_9618 breakInstantly ()Lnet/minecraft/class_2248$class_2251;
-		METHOD method_9624 hasDynamicBounds ()Lnet/minecraft/class_2248$class_2251;
-		METHOD method_9626 sounds (Lnet/minecraft/class_2498;)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 soundGroup
-		METHOD method_9628 slipperiness (F)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 slipperiness
-		METHOD method_9629 strength (FF)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 hardness
-			ARG 2 resistance
-		METHOD method_9630 copy (Lnet/minecraft/class_2248;)Lnet/minecraft/class_2248$class_2251;
-			ARG 0 source
-		METHOD method_9631 lightLevel (I)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 luminance
-		METHOD method_9632 strength (F)Lnet/minecraft/class_2248$class_2251;
-			ARG 1 strength
-		METHOD method_9634 noCollision ()Lnet/minecraft/class_2248$class_2251;
-		METHOD method_9637 of (Lnet/minecraft/class_3614;)Lnet/minecraft/class_2248$class_2251;
-			ARG 0 material
-		METHOD method_9639 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_3620;)Lnet/minecraft/class_2248$class_2251;
-			ARG 0 material
-			ARG 1 color
-		METHOD method_9640 ticksRandomly ()Lnet/minecraft/class_2248$class_2251;
 	FIELD field_10634 lightLevel I
 	FIELD field_10635 material Lnet/minecraft/class_3614;
 	FIELD field_10636 dropTableId Lnet/minecraft/class_2960;
@@ -75,6 +21,9 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_18966 SOLID_MEDIUM_SQUARE_SHAPE Lnet/minecraft/class_265;
 	FIELD field_19061 SOLID_SMALL_SQUARE_SHAPE Lnet/minecraft/class_265;
 	FIELD field_19312 FULL_CUBE_SHAPE_CACHE Lcom/google/common/cache/LoadingCache;
+	FIELD field_20720 opaque Z
+	FIELD field_21207 velocityMultiplier F
+	FIELD field_21208 jumpVelocityMultiplier F
 	METHOD <init> (Lnet/minecraft/class_2248$class_2251;)V
 		ARG 1 settings
 	METHOD method_16361 topCoversMediumSquare (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
@@ -85,7 +34,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_16841 getOffsetType ()Lnet/minecraft/class_2248$class_2250;
-	METHOD method_17454 createContainerFactory (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3908;
+	METHOD method_17454 createContainerProvider (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3908;
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -94,7 +43,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 state
 		ARG 3 hitResult
 		ARG 4 entity
-	METHOD method_20044 isSolidSmallSquare (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
+	METHOD method_20044 sideCoversSmallSquare (Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 0 world
 		ARG 1 pos
 		ARG 2 side
@@ -103,6 +52,17 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 side
+	METHOD method_22358 canBucketPlace (Lnet/minecraft/class_2680;Lnet/minecraft/class_3611;)Z
+		ARG 1 state
+		ARG 2 fluid
+	METHOD method_22359 hasEmissiveLighting (Lnet/minecraft/class_2680;)Z
+		ARG 1 state
+	METHOD method_23349 getVelocityMultiplier ()F
+	METHOD method_23350 getJumpVelocityMultiplier ()F
+	METHOD method_24219 hasInWallOverlay (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
 	METHOD method_9496 randomDisplayTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
 		ARG 1 state
 		ARG 2 world
@@ -147,7 +107,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 blockEntity
 		ARG 4 entity
 		ARG 5 stack
-	METHOD method_9514 onRandomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+	METHOD method_9514 randomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -165,8 +125,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 pos
 		ARG 4 flags
 	METHOD method_9518 getName ()Lnet/minecraft/class_2561;
-	METHOD method_9519 isNaturalDirt (Lnet/minecraft/class_2248;)Z
-		ARG 0 block
 	METHOD method_9520 getBlastResistance ()F
 	METHOD method_9521 isSimpleFullBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
@@ -201,12 +159,12 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-		ARG 4 context
+		ARG 4 ePos
 	METHOD method_9531 getStateFromRawId (I)Lnet/minecraft/class_2680;
 		ARG 0 stateId
 	METHOD method_9533 shouldDropItemsOnExplosion (Lnet/minecraft/class_1927;)Z
 		ARG 1 explosion
-	METHOD method_9534 activate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Z
+	METHOD method_9534 onUse (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Lnet/minecraft/class_1269;
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -244,10 +202,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9543 hasDynamicBounds ()Z
 	METHOD method_9545 getFluidState (Lnet/minecraft/class_2680;)Lnet/minecraft/class_3610;
 		ARG 1 state
-	METHOD method_9546 getBlockBrightness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1920;Lnet/minecraft/class_2338;)I
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
 	METHOD method_9548 onEntityCollision (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
 		ARG 1 state
 		ARG 2 world
@@ -257,8 +211,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-		ARG 4 context
-	METHOD method_9551 getRenderLayer ()Lnet/minecraft/class_1921;
+		ARG 4 ePos
 	METHOD method_9552 shouldPostProcess (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
@@ -279,7 +232,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z
+	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -298,17 +251,13 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 blockEntity
-	METHOD method_9563 getTickRate (Lnet/minecraft/class_1941;)I
-		ARG 1 world
+	METHOD method_9563 getTickRate (Lnet/minecraft/class_4538;)I
 	METHOD method_9564 getDefaultState ()Lnet/minecraft/class_2680;
 	METHOD method_9565 onStacksDropped (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 stack
-	METHOD method_9566 dropStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)V
-		ARG 0 state
-		ARG 1 builder
 	METHOD method_9567 onPlaced (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;)V
 		ARG 1 world
 		ARG 2 pos
@@ -359,7 +308,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_9580 getDropTableId ()Lnet/minecraft/class_2960;
-	METHOD method_9581 cannotConnect (Lnet/minecraft/class_2248;)Z
+	METHOD method_9581 canConnect (Lnet/minecraft/class_2248;)Z
 		ARG 0 block
 	METHOD method_9582 pushEntitiesUpBeforeBlockChange (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
 		ARG 0 from
@@ -382,13 +331,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 explosion
-	METHOD method_9588 onScheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+	METHOD method_9588 scheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 random
-	METHOD method_9589 hasBlockEntityBreakingRender (Lnet/minecraft/class_2680;)Z
-		ARG 1 state
 	METHOD method_9590 setDefaultState (Lnet/minecraft/class_2680;)V
 		ARG 1 state
 	METHOD method_9591 onSteppedOn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
@@ -439,8 +386,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 view
 		ARG 2 pos
 		ARG 3 facing
-	METHOD method_9608 isNaturalStone (Lnet/minecraft/class_2248;)Z
-		ARG 0 block
 	METHOD method_9609 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;Lnet/minecraft/class_1297;Lnet/minecraft/class_1799;)Ljava/util/List;
 		ARG 0 state
 		ARG 1 world
@@ -477,3 +422,106 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9616 canReplace (Lnet/minecraft/class_2680;Lnet/minecraft/class_1750;)Z
 		ARG 1 state
 		ARG 2 ctx
+	CLASS class_2249 NeighborGroup
+		FIELD field_10652 self Lnet/minecraft/class_2680;
+		FIELD field_10653 facing Lnet/minecraft/class_2350;
+		FIELD field_10654 other Lnet/minecraft/class_2680;
+		METHOD <init> (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_2350;)V
+			ARG 1 self
+			ARG 2 other
+			ARG 3 facing
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
+	CLASS class_2250 OffsetType
+	CLASS class_2251 Settings
+		FIELD field_10660 resistance F
+		FIELD field_10661 randomTicks Z
+		FIELD field_10662 materialColor Lnet/minecraft/class_3620;
+		FIELD field_10663 luminance I
+		FIELD field_10664 collidable Z
+		FIELD field_10665 soundGroup Lnet/minecraft/class_2498;
+		FIELD field_10666 dropTableId Lnet/minecraft/class_2960;
+		FIELD field_10667 slipperiness F
+		FIELD field_10668 material Lnet/minecraft/class_3614;
+		FIELD field_10669 hardness F
+		FIELD field_10670 dynamicBounds Z
+		FIELD field_20721 opaque Z
+		FIELD field_21209 slowDownMultiplier F
+		FIELD field_21210 jumpVelocityMultiplier F
+		METHOD <init> (Lnet/minecraft/class_3614;Lnet/minecraft/class_3620;)V
+			ARG 1 material
+			ARG 2 materialColor
+		METHOD method_16228 dropsLike (Lnet/minecraft/class_2248;)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 source
+		METHOD method_16229 dropsNothing ()Lnet/minecraft/class_2248$class_2251;
+		METHOD method_22488 nonOpaque ()Lnet/minecraft/class_2248$class_2251;
+		METHOD method_23351 velocityMultiplier (F)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 velocityMultiplier
+		METHOD method_23352 jumpVelocityMultiplier (F)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 jumpVelocityMultiplier
+		METHOD method_9617 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_1767;)Lnet/minecraft/class_2248$class_2251;
+			ARG 0 material
+			ARG 1 color
+		METHOD method_9618 breakInstantly ()Lnet/minecraft/class_2248$class_2251;
+		METHOD method_9624 hasDynamicBounds ()Lnet/minecraft/class_2248$class_2251;
+		METHOD method_9626 sounds (Lnet/minecraft/class_2498;)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 soundGroup
+		METHOD method_9628 slipperiness (F)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 slipperiness
+		METHOD method_9629 strength (FF)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 hardness
+			ARG 2 resistance
+		METHOD method_9630 copy (Lnet/minecraft/class_2248;)Lnet/minecraft/class_2248$class_2251;
+			ARG 0 source
+		METHOD method_9631 lightLevel (I)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 luminance
+		METHOD method_9632 strength (F)Lnet/minecraft/class_2248$class_2251;
+			ARG 1 strength
+		METHOD method_9634 noCollision ()Lnet/minecraft/class_2248$class_2251;
+		METHOD method_9637 of (Lnet/minecraft/class_3614;)Lnet/minecraft/class_2248$class_2251;
+			ARG 0 material
+		METHOD method_9639 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_3620;)Lnet/minecraft/class_2248$class_2251;
+			ARG 0 material
+			ARG 1 color
+		METHOD method_9640 ticksRandomly ()Lnet/minecraft/class_2248$class_2251;
+	METHOD method_20044 isSolidSmallSquare (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
+		ARG 0 world
+		ARG 1 pos
+		ARG 2 side
+	METHOD method_9514 onRandomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_9519 isNaturalDirt (Lnet/minecraft/class_2248;)Z
+		ARG 0 block
+	METHOD method_9534 activate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 hit
+	METHOD method_9546 getBlockBrightness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1920;Lnet/minecraft/class_2338;)I
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_9551 getRenderLayer ()Lnet/minecraft/class_1921;
+	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_9563 getTickRate (Lnet/minecraft/class_1941;)I
+		ARG 1 world
+	METHOD method_9566 dropStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)V
+		ARG 0 state
+		ARG 1 builder
+	METHOD method_9588 onScheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_9589 hasBlockEntityBreakingRender (Lnet/minecraft/class_2680;)Z
+		ARG 1 state
+	METHOD method_9608 isNaturalStone (Lnet/minecraft/class_2248;)Z
+		ARG 0 block

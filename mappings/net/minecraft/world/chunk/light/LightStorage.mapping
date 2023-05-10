@@ -8,6 +8,7 @@ CLASS net/minecraft/class_3560 net/minecraft/world/chunk/light/LightStorage
 	FIELD field_15805 lightType Lnet/minecraft/class_1944;
 	FIELD field_15806 uncachedLightArrays Lnet/minecraft/class_3556;
 	FIELD field_15807 lightArraysToAdd Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
+	FIELD field_15808 nonEmptySections Lit/unimi/dsi/fastutil/longs/LongSet;
 	FIELD field_16448 dirtySections Lit/unimi/dsi/fastutil/longs/LongSet;
 	METHOD <init> (Lnet/minecraft/class_1944;Lnet/minecraft/class_2823;Lnet/minecraft/class_3556;)V
 		ARG 1 lightType
@@ -41,6 +42,7 @@ CLASS net/minecraft/class_3560 net/minecraft/world/chunk/light/LightStorage
 		ARG 1 storage
 		ARG 2 sectionPos
 	METHOD method_15534 onChunkRemoved (J)V
+	METHOD method_15535 setLightEnabled (JZ)V
 	METHOD method_15536 removeChunkData (Lnet/minecraft/class_3558;J)V
 		ARG 1 storage
 		ARG 2 blockChunkPos
@@ -49,3 +51,6 @@ CLASS net/minecraft/class_3560 net/minecraft/world/chunk/light/LightStorage
 	METHOD method_15538 getLight (J)I
 		ARG 1 blockPos
 	METHOD method_15539 updateAll ()V
+	METHOD method_20533 getLightArray (J)Lnet/minecraft/class_2804;
+		ARG 1 sectionPos
+	METHOD method_20600 setRetainData (JZ)V

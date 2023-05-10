@@ -2,6 +2,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	FIELD field_16316 profiler Lnet/minecraft/class_3695;
 	FIELD field_17086 thread Ljava/lang/Thread;
 	FIELD field_18139 unloadedBlockEntities Ljava/util/List;
+	FIELD field_20639 biomeAccess Lnet/minecraft/class_4543;
 	FIELD field_9223 border Lnet/minecraft/class_2784;
 	FIELD field_9224 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_9226 ambientDarkness I
@@ -58,6 +59,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 1 pos
 		ARG 2 oldBlock
 		ARG 3 newBlock
+	METHOD method_23886 isNight ()Z
 	METHOD method_8413 updateListeners (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;I)V
 		ARG 1 pos
 		ARG 2 oldState
@@ -158,11 +160,6 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 3 y
 		ARG 5 z
 		ARG 7 sound
-	METHOD method_8487 locateStructure (Ljava/lang/String;Lnet/minecraft/class_2338;IZ)Lnet/minecraft/class_2338;
-		ARG 1 id
-		ARG 2 center
-		ARG 3 radius
-		ARG 4 skipExistingChunks
 	METHOD method_8488 getReceivedStrongRedstonePower (Lnet/minecraft/class_2338;)I
 	METHOD method_8492 updateNeighbor (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V
 		ARG 1 sourcePos
@@ -188,6 +185,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8505 canPlayerModifyAt (Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;)Z
 		ARG 1 player
 		ARG 2 pos
+	METHOD method_8506 extinguishFire (Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 	METHOD method_8508 updateNeighborsExcept (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2350;)V
 		ARG 1 pos
 		ARG 2 sourceBlock

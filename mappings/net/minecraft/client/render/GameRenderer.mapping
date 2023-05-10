@@ -1,5 +1,8 @@
 CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_18765 camera Lnet/minecraft/class_4184;
+	FIELD field_20948 buffers Lnet/minecraft/class_4599;
+	FIELD field_20949 overlayTexture Lnet/minecraft/class_4608;
+	FIELD field_3988 zoomX F
 	FIELD field_3990 backgroundRenderer Lnet/minecraft/class_758;
 	FIELD field_3992 renderHand Z
 	FIELD field_3993 LOGGER Lorg/apache/logging/log4j/Logger;
@@ -8,8 +11,11 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_3997 lastSkyDarkness F
 	FIELD field_3998 lastWindowFocusedTime J
 	FIELD field_3999 lastMovementFovMultiplier F
+	FIELD field_4001 renderingPanorama Z
 	FIELD field_4002 skyDarkness F
 	FIELD field_4003 floatingItemHeight F
+	FIELD field_4004 zoomY F
+	FIELD field_4005 zoom F
 	FIELD field_4006 floatingItem Lnet/minecraft/class_1799;
 	FIELD field_4007 floatingItemTimeLeft I
 	FIELD field_4008 SNOW_LOC Lnet/minecraft/class_2960;
@@ -29,9 +35,11 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_4027 ticks I
 	FIELD field_4028 lightmapTextureManager Lnet/minecraft/class_765;
 	FIELD field_4029 floatingItemWidth F
-	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_3300;)V
+	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_3300;Lnet/minecraft/class_4599;)V
 		ARG 1 client
 	METHOD method_19418 getCamera ()Lnet/minecraft/class_4184;
+	METHOD method_22974 getLightmapTextureManager ()Lnet/minecraft/class_765;
+	METHOD method_22975 getOverlayTexture ()Lnet/minecraft/class_4608;
 	METHOD method_3167 onCameraEntitySet (Lnet/minecraft/class_1297;)V
 	METHOD method_3168 loadShader (Lnet/minecraft/class_2960;)V
 	METHOD method_3169 onResized (II)V
@@ -43,9 +51,11 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	METHOD method_3172 renderHand (Lnet/minecraft/class_4184;F)V
 		ARG 1 camera
 		ARG 2 tickDelta
+	METHOD method_3172 renderHand (Lnet/minecraft/class_4587;Lnet/minecraft/class_4184;F)V
+		ARG 1 matrices
+		ARG 2 camera
+		ARG 3 tickDelta
 	METHOD method_3174 getNightVisionStrength (Lnet/minecraft/class_1309;F)F
-		ARG 1 entity
-		ARG 2 tickDelta
 	METHOD method_3175 isShaderEnabled ()Z
 	METHOD method_3176 updateWorldIcon ()V
 	METHOD method_3177 renderRain ()V
@@ -70,10 +80,15 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 1 tickDelta
 	METHOD method_3186 bobView (F)V
 		ARG 1 tickDelta
+	METHOD method_3186 bobView (Lnet/minecraft/class_4587;F)V
 	METHOD method_3187 disableLightmap ()V
 	METHOD method_3188 renderWorld (FJ)V
 		ARG 1 tickDelta
 		ARG 2 endTime
+	METHOD method_3188 renderWorld (FJLnet/minecraft/class_4587;)V
+		ARG 1 tickDelta
+		ARG 2 limitTime
+		ARG 4 matrix
 	METHOD method_3189 showFloatingItem (Lnet/minecraft/class_1799;)V
 		ARG 1 floatingItem
 	METHOD method_3190 updateTargetedEntity (F)V
@@ -92,6 +107,7 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 3 changingFov
 	METHOD method_3198 bobViewWhenHurt (F)V
 		ARG 1 tickDelta
+	METHOD method_3198 bobViewWhenHurt (Lnet/minecraft/class_4587;F)V
 	METHOD method_3199 updateMovementFovMultiplier ()V
 	METHOD method_3201 setFogBlack (Z)V
 		ARG 1 fogBlack
