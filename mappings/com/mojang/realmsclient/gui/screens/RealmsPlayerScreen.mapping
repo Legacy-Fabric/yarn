@@ -1,7 +1,7 @@
 CLASS net/minecraft/class_4406 com/mojang/realmsclient/gui/screens/RealmsPlayerScreen
 	FIELD field_19958 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_19959 toolTip Ljava/lang/String;
-	FIELD field_19960 lastScreen Lnet/minecraft/class_4388;
+	FIELD field_19959 tooltipText Ljava/lang/String;
+	FIELD field_19960 parent Lnet/minecraft/class_4388;
 	FIELD field_19961 serverData Lcom/mojang/realmsclient/dto/RealmsServer;
 	FIELD field_19961 serverData Lnet/minecraft/class_4877;
 	FIELD field_19962 invitedObjectSelectionList Lnet/minecraft/class_4406$class_4407;
@@ -23,7 +23,7 @@ CLASS net/minecraft/class_4406 com/mojang/realmsclient/gui/screens/RealmsPlayerS
 	FIELD field_22706 CROSS_PLAYER_ICON Lnet/minecraft/class_2960;
 	FIELD field_22707 OPTIONS_BACKGROUND Lnet/minecraft/class_2960;
 	METHOD <init> (Lnet/minecraft/class_4388;Lnet/minecraft/class_4877;)V
-		ARG 1 lastScreen
+		ARG 1 parent
 		ARG 2 serverData
 	METHOD confirmResult (ZI)V
 		ARG 1 result
@@ -50,6 +50,10 @@ CLASS net/minecraft/class_4406 com/mojang/realmsclient/gui/screens/RealmsPlayerS
 		ARG 2 x
 		ARG 3 y
 	METHOD method_21332 renderMousehoverTooltip (Lnet/minecraft/class_4587;Ljava/lang/String;II)V
+		ARG 1 matrices
+		ARG 2 text
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD method_21333 backButtonClicked ()V
 	METHOD method_21334 op (I)V
 		ARG 1 index
@@ -102,7 +106,7 @@ CLASS net/minecraft/class_4406 com/mojang/realmsclient/gui/screens/RealmsPlayerS
 			ARG 1 item
 	CLASS class_4408 InvitedObjectSelectionListEntry
 		FIELD field_19979 mPlayerInfo Lcom/mojang/realmsclient/dto/PlayerInfo;
-		FIELD field_19979 mPlayerInfo Lnet/minecraft/class_4874;
+		FIELD field_19979 playerInfo Lnet/minecraft/class_4874;
 		METHOD <init> (Lnet/minecraft/class_4406;Lnet/minecraft/class_4874;)V
 			ARG 2 playerInfo
 		METHOD method_21356 renderInvitedItem (Lcom/mojang/realmsclient/dto/PlayerInfo;IIII)V
@@ -112,6 +116,12 @@ CLASS net/minecraft/class_4406 com/mojang/realmsclient/gui/screens/RealmsPlayerS
 			ARG 4 mouseX
 			ARG 5 mouseY
 		METHOD method_21356 renderInvitedItem (Lnet/minecraft/class_4587;Lnet/minecraft/class_4874;IIII)V
+			ARG 1 matrices
+			ARG 2 playerInfo
+			ARG 3 x
+			ARG 4 y
+			ARG 5 mouseX
+			ARG 6 mouseY
 		METHOD render (IIIIIIIZF)V
 			ARG 1 index
 			ARG 2 rowTop
