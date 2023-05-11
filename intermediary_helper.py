@@ -7,11 +7,13 @@ import os
 
 intermediary_version = 2
 
+
 def getIntermediaryBranch():
     if intermediary_version == 2:
         return "v2"
     else:
         return "master"
+
 
 def getIntermediaryUrl(mc_version: str):
     legacy = True
@@ -32,18 +34,20 @@ def getIntermediaryUrl(mc_version: str):
             legacy = False
         elif int(year) == 18 and int(week) == 43 and iteration != "a":
             legacy = False
-    
+
     if legacy:
         return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/" + mc_version + ".tiny"
     else:
         return "https://github.com/FabricMC/intermediary/raw/master/mappings/" + mc_version + ".tiny"
 
-class Intermediaries(NamedTuple):
-    classes: dict # { offical name, class }
-    fields: dict  # { field, signature }
-    methods: dict # { method, signature }
 
-def separate(minecraft_version: str, try_merge: bool=True):
+class Intermediaries(NamedTuple):
+    classes: dict  # { offical name, class }
+    fields: dict  # { field, signature }
+    methods: dict  # { method, signature }
+
+
+def separate(minecraft_version: str, try_merge: bool = True):
     if try_merge and os.path.isdir("mappings-active"):
         print("> Found leftover mappings, Merging!")
         merge()
@@ -62,7 +66,8 @@ def separate(minecraft_version: str, try_merge: bool=True):
             if fname.endswith(".mapping"):
                 separate_file(folder, fname, mappings)
 
-def merge(delete: bool=True):
+
+def merge(delete: bool = True):
     for file in os.listdir("./mappings-active"):
         if file.endswith(".tiny"):
             print("> Merging mappings for {}..".format(file[:-5]))
@@ -78,6 +83,7 @@ def merge(delete: bool=True):
 
     if delete:
         shutil.rmtree("./mappings-active")
+
 
 # Intermediary Utilities
 
@@ -104,6 +110,7 @@ def parse_intermediary(intermediary_lines: list):
 
     return itm
 
+
 def remap_signature(signature: str, classes: dict):
     if not ";" in signature:
         return signature
@@ -127,6 +134,7 @@ def remap_signature(signature: str, classes: dict):
             new_sig = new_sig + i
 
     return new_sig
+
 
 # Seperating Utilities
 
@@ -152,12 +160,15 @@ def separate_file(folder: str, fname: str, mappings: Intermediaries):
             with open(new_fname, "w", newline="\n") as f:
                 f.write(new_content)
 
-def is_in_mappings(line: str, mappings: Intermediaries, inc_other: bool=True):
+
+def is_in_mappings(line: str, mappings: Intermediaries, inc_other: bool = True):
     split = line.replace("\t", "").split()
     return ((split[0] == "CLASS" and any(cls.endswith(split[1]) for cls in mappings.classes.values()))
-        or (split[0] == "FIELD" and split[1] in mappings.fields and split[-1] == mappings.fields[split[1]])
-        or (split[0] == "METHOD" and (split[1] == "<init>" or (split[1] in mappings.methods and split[-1] == mappings.methods[split[1]])))
-        or (inc_other and (split[0] == "ARG" or split[0] == "COMMENT")))
+            or (split[0] == "FIELD" and split[1] in mappings.fields and split[-1] == mappings.fields[split[1]])
+            or (split[0] == "METHOD" and (split[1] == "<init>" or (
+                        split[1] in mappings.methods and split[-1] == mappings.methods[split[1]])))
+            or (inc_other and (split[0] == "ARG" or split[0] == "COMMENT")))
+
 
 # Merging Utilities
 
@@ -173,6 +184,7 @@ def create_class_map():
                 class_map[parts[1].split("/")[-1]] = path
 
     return class_map
+
 
 def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dict):
     path = os.path.join(folder, fname)
@@ -267,6 +279,7 @@ def merge_file(folder: str, fname: str, mappings: Intermediaries, class_map: dic
         with open(out_path, "w+", newline="\n") as out_file:
             out_file.write("\n".join(out_lines) + "\n")
 
+
 def insert_mapping(from_lines: list, to_lines: list, from_index: int, to_index: int, replace: bool):
     if replace:
         for i in range(get_mapping_length(to_lines, to_index)):
@@ -274,6 +287,7 @@ def insert_mapping(from_lines: list, to_lines: list, from_index: int, to_index: 
 
     for i in range(get_mapping_length(from_lines, from_index)):
         to_lines.insert(to_index + i, from_lines[from_index + i])
+
 
 def get_mapping_length(lines: list, index: int):
     count = 1
@@ -286,6 +300,7 @@ def get_mapping_length(lines: list, index: int):
 
     return count
 
+
 # Returns the first line while contains this string
 def indexof(lines: list, string: str):
     for i in range(len(lines)):
@@ -293,6 +308,7 @@ def indexof(lines: list, string: str):
             return i
 
     return -1
+
 
 # Returns whether line1 should be before line2
 def cmp_mapping(line1: str, line2: str):
@@ -346,4 +362,3 @@ def cmp_mapping(line1: str, line2: str):
 #             mapping.args.append(parse_yarn(lines, tabs + 1))
 # 
 #     return mapping
-
