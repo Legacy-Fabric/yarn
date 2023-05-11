@@ -8,6 +8,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	FIELD field_22467 pos Lnet/minecraft/class_243;
 	FIELD field_22468 blockPos Lnet/minecraft/class_2338;
 	FIELD field_23807 inanimate Z
+	FIELD field_25154 chunkPosUpdateRequested Z
+	FIELD field_25750 trackedPosition Lnet/minecraft/class_243;
 	FIELD field_5951 ridingCooldown I
 	FIELD field_5952 onGround Z
 	FIELD field_5953 firstUpdate Z
@@ -119,6 +121,14 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 3 y
 		ARG 5 z
 	METHOD method_18276 isInSneakingPose ()Z
+		COMMENT Returns whether the entity is in a crouching pose.
+		COMMENT
+		COMMENT <p>Compared to {@link #isSneaking()}, it only makes the entity appear
+		COMMENT crouching and does not bring other effects of sneaking, such as no less
+		COMMENT obvious name label rendering, no dismounting while riding, etc.</p>
+		COMMENT
+		COMMENT <p>This is used by vanilla for non-player entities to crouch, such as
+		COMMENT for foxes and cats.</p>
 	METHOD method_18375 detach ()V
 		COMMENT Removes all the passengers and removes this entity from any vehicles it is riding.
 	METHOD method_18376 getPose ()Lnet/minecraft/class_4050;
@@ -242,6 +252,21 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 1 onGround
 	METHOD method_25936 getLandingBlockState ()Lnet/minecraft/class_2680;
 	METHOD method_27298 shouldSpawnSprintingParticles ()Z
+	METHOD method_29240 isChunkPosUpdateRequested ()Z
+	METHOD method_29495 refreshPositionAfterTeleport (Lnet/minecraft/class_243;)V
+	METHOD method_30227 getTrackedPosition ()Lnet/minecraft/class_243;
+	METHOD method_30228 updateTrackedPosition (Lnet/minecraft/class_243;)V
+		ARG 1 pos
+	METHOD method_30229 resetNetherPortalCooldown ()V
+	METHOD method_30230 hasNetherPortalCooldown ()Z
+	METHOD method_30329 getTeleportTarget (Lnet/minecraft/class_3218;)Lnet/minecraft/class_5454;
+		ARG 1 destination
+	METHOD method_30634 (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_31166 (F)Lnet/minecraft/class_243;
+		ARG 1 tickDelta
 	METHOD method_5621 getMountedHeightOffset ()D
 	METHOD method_5622 onBlockCollision (Lnet/minecraft/class_2680;)V
 		ARG 1 state
@@ -457,7 +482,12 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5730 setOnFireFromLava ()V
 	METHOD method_5731 changeDimension (Lnet/minecraft/class_2874;)Lnet/minecraft/class_1297;
 		ARG 1 newDimension
-	METHOD method_5731 changeDimension (Lnet/minecraft/class_3218;)Lnet/minecraft/class_1297;
+	METHOD method_5731 moveToWorld (Lnet/minecraft/class_3218;)Lnet/minecraft/class_1297;
+		COMMENT Moves this entity to another world.
+		COMMENT
+		COMMENT <p>Note all entities except server player entities are completely recreated at the destination.
+		COMMENT
+		COMMENT @return the entity in the other world
 		ARG 1 destination
 	METHOD method_5732 isAttackable ()Z
 	METHOD method_5733 shouldRenderName ()Z
@@ -478,7 +508,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5744 isSubmergedIn (Lnet/minecraft/class_3494;Z)Z
 		ARG 1 fluidTag
 		ARG 2 requireLoadedChunk
-	METHOD method_5745 rayTrace (DFZ)Lnet/minecraft/class_239;
+	METHOD method_5745 raycast (DFZ)Lnet/minecraft/class_239;
 		ARG 1 maxDistance
 		ARG 3 tickDelta
 		ARG 4 includeFluids
@@ -580,6 +610,9 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT Returns whether this entity's hitbox is touching water fluid.
 	METHOD method_5800 onStruckByLightning (Lnet/minecraft/class_1538;)V
 		ARG 1 lightning
+	METHOD method_5800 onStruckByLightning (Lnet/minecraft/class_3218;Lnet/minecraft/class_1538;)V
+		ARG 1 world
+		ARG 2 lightning
 	METHOD method_5801 playFlySound (F)F
 		ARG 1 distance
 	METHOD method_5802 getRotationClient ()Lnet/minecraft/class_241;
@@ -703,6 +736,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 2 force
 	METHOD method_5874 onKilledOther (Lnet/minecraft/class_1309;)V
 		ARG 1 other
+	METHOD method_5874 onKilledOther (Lnet/minecraft/class_3218;Lnet/minecraft/class_1309;)V
 	METHOD method_5875 setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD method_5876 updateWaterState ()V
@@ -716,6 +750,11 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5982 checkDespawn ()V
 	METHOD method_7325 isSpectator ()Z
 	CLASS class_4738 PositionUpdater
+		METHOD accept (Lnet/minecraft/class_1297;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
 		METHOD accept (Lnet/minecraft/class_1297;DDD)V
 			ARG 1 entity
 			ARG 2 x

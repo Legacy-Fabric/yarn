@@ -5,9 +5,9 @@ CLASS net/minecraft/class_1941 net/minecraft/world/CollisionView
 		ARG 1 chunkX
 		ARG 2 chunkZ
 		ARG 3 requiredState
-	METHOD method_17892 doesNotCollide (Lnet/minecraft/class_1297;)Z
+	METHOD method_17892 isSpaceEmpty (Lnet/minecraft/class_1297;)Z
 		ARG 1 entity
-	METHOD method_18026 doesNotCollide (Lnet/minecraft/class_238;)Z
+	METHOD method_18026 isSpaceEmpty (Lnet/minecraft/class_238;)Z
 		ARG 1 box
 	METHOD method_20311 getLeastChunkStatusForCollisionCalculation ()Lnet/minecraft/class_2806;
 	METHOD method_20743 getEntityCollisions (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Ljava/util/Set;)Ljava/util/stream/Stream;
@@ -21,9 +21,11 @@ CLASS net/minecraft/class_1941 net/minecraft/world/CollisionView
 	METHOD method_22338 getExistingChunk (II)Lnet/minecraft/class_1922;
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD method_30030 getBlockCollisions (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Ljava/util/function/BiPredicate;)Ljava/util/stream/Stream;
+	METHOD method_30635 isBlockSpaceEmpty (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Ljava/util/function/BiPredicate;)Z
 	METHOD method_8585 isWaterAt (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
-	METHOD method_8587 doesNotCollide (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;)Z
+	METHOD method_8587 isSpaceEmpty (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;)Z
 		ARG 1 entity
 		ARG 2 box
 	METHOD method_8589 getTop (Lnet/minecraft/class_2902$class_2903;II)I
@@ -34,7 +36,7 @@ CLASS net/minecraft/class_1941 net/minecraft/world/CollisionView
 		ARG 1 entity
 		ARG 2 entityBoundingBox
 		ARG 3 otherEntities
-	METHOD method_8590 doesNotCollide (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Ljava/util/function/Predicate;)Z
+	METHOD method_8590 isSpaceEmpty (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Ljava/util/function/Predicate;)Z
 	METHOD method_8591 isBlockLoaded (Lnet/minecraft/class_2338;)Z
 	METHOD method_8596 getEmittedStrongRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
 		ARG 1 pos

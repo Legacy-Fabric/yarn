@@ -34,8 +34,14 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	FIELD field_9251 thunderGradientPrev F
 	FIELD field_9253 rainGradientPrev F
 	FIELD field_9256 lcgBlockSeed I
-	METHOD <init> (Lnet/minecraft/class_5269;Lnet/minecraft/class_5321;Lnet/minecraft/class_5321;Lnet/minecraft/class_2874;Ljava/util/function/Supplier;ZZJ)V
-		ARG 5 profiler
+	METHOD <init> (Lnet/minecraft/class_5269;Lnet/minecraft/class_5321;Lnet/minecraft/class_2874;Ljava/util/function/Supplier;ZZJ)V
+		ARG 1 properties
+		ARG 2 registryRef
+		ARG 3 dimensionType
+		ARG 4 profiler
+		ARG 5 isClient
+		ARG 6 debugWorld
+		ARG 7 seed
 	METHOD method_16107 getProfiler ()Lnet/minecraft/class_3695;
 	METHOD method_16109 scheduleBlockRerenderIfNeeded (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;)V
 		ARG 1 pos
@@ -55,10 +61,20 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 1 mapState
 	METHOD method_17891 getMapState (Ljava/lang/String;)Lnet/minecraft/class_22;
 		ARG 1 id
-	METHOD method_18023 getEntities (Lnet/minecraft/class_1299;Lnet/minecraft/class_238;Ljava/util/function/Predicate;)Ljava/util/List;
+	METHOD method_18023 getEntitiesByType (Lnet/minecraft/class_1299;Lnet/minecraft/class_238;Ljava/util/function/Predicate;)Ljava/util/List;
+		COMMENT Computes a list of entities of the given type within some region that satisfy the given predicate.
+		COMMENT
+		COMMENT <strong>Warning:<strong> If {@code null} is passed as the entity type filter, care should be
+		COMMENT taken that the type argument {@code T} is set to {@link Entity}, otherwise heap pollution
+		COMMENT in the output list or {@link ClassCastException} can occur.
+		COMMENT
+		COMMENT @return a list of entities
 		ARG 1 type
+			COMMENT the entity type of the returned entities, or {@code null} to return entities of all types
 		ARG 2 box
+			COMMENT the box in which to search for entities
 		ARG 3 predicate
+			COMMENT a predicate which entities must satisfy in order to be considered
 	METHOD method_18471 tickBlockEntities ()V
 	METHOD method_18472 tickEntity (Ljava/util/function/Consumer;Lnet/minecraft/class_1297;)V
 		ARG 1 tickConsumer
@@ -78,6 +94,10 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_26372 getCollisionHeightAt (Lnet/minecraft/class_2338;)D
 		ARG 1 pos
 	METHOD method_27982 isDebugWorld ()Z
+		COMMENT Checks if this world is a debug world.
+		COMMENT
+		COMMENT <p>Debug worlds are not modifiable and are typically meant for development and debug use only.
+		COMMENT See <a href="https://minecraft.gamepedia.com/Debug_mode">the minecraft wiki</a> as well.
 	METHOD method_27983 getRegistryKey ()Lnet/minecraft/class_5321;
 	METHOD method_29287 getDimensionRegistryKey ()Lnet/minecraft/class_5321;
 	METHOD method_8413 updateListeners (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;I)V
@@ -240,6 +260,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8510 getTime ()J
 	METHOD method_8513 setDefaultSpawnClient ()V
 	METHOD method_8514 getTagManager ()Lnet/minecraft/class_3505;
+	METHOD method_8514 getTagManager ()Lnet/minecraft/class_5415;
 	METHOD method_8515 isTopSolid (Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
 		ARG 1 pos
 		ARG 2 entity

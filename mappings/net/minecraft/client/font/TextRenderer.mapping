@@ -106,6 +106,17 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_1723 drawInternal (Lnet/minecraft/class_5481;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumerProvider
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
 	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
 		ARG 1 text
 		ARG 2 x
@@ -153,6 +164,13 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 4 color
 		ARG 5 matrix
 		ARG 6 shadow
+	METHOD method_22941 draw (Lnet/minecraft/class_5481;FFILnet/minecraft/class_1159;Z)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 matrix
+		ARG 6 shadow
 	METHOD method_22942 draw (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
 		ARG 1 text
 		ARG 2 x
@@ -175,9 +193,28 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_22942 draw (Lnet/minecraft/class_5481;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
 	METHOD method_27515 tweakTransparency (I)I
 		ARG 0 argb
+	METHOD method_27516 (ILnet/minecraft/class_2583;)F
+		ARG 2 style
 	METHOD method_27517 drawWithShadow (Lnet/minecraft/class_4587;Lnet/minecraft/class_5348;FFI)I
+		ARG 1 matrices
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD method_27517 drawWithShadow (Lnet/minecraft/class_4587;Lnet/minecraft/class_5481;FFI)I
 		ARG 1 matrices
 		ARG 2 text
 		ARG 3 x
@@ -222,10 +259,17 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 2 maxWidth
 		ARG 3 backwards
 	METHOD method_27525 getWidth (Lnet/minecraft/class_5348;)I
+		ARG 1 text
 	METHOD method_27526 getFontStorage (Lnet/minecraft/class_2960;)Lnet/minecraft/class_377;
 		ARG 1 id
 	METHOD method_27527 getTextHandler ()Lnet/minecraft/class_5225;
 	METHOD method_27528 draw (Lnet/minecraft/class_4587;Lnet/minecraft/class_5348;FFI)I
+		ARG 1 matrices
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD method_27528 draw (Lnet/minecraft/class_4587;Lnet/minecraft/class_5481;FFI)I
 		ARG 1 matrices
 		ARG 2 text
 		ARG 3 x
@@ -254,6 +298,17 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 underlineColor
 		ARG 10 light
+	METHOD method_27530 drawLayer (Lnet/minecraft/class_5481;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumerProvider
+		ARG 8 seeThrough
+		ARG 9 underlineColor
+		ARG 10 light
 	METHOD method_29342 drawWithShadow (Lnet/minecraft/class_4587;Ljava/lang/String;FFIZ)I
 		ARG 1 matrices
 		ARG 2 text
@@ -261,6 +316,31 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 4 y
 		ARG 5 color
 		ARG 6 rightToLeft
+	METHOD method_30880 getWidth (Lnet/minecraft/class_5481;)I
+		ARG 1 text
+	METHOD method_30881 drawWithShadow (Lnet/minecraft/class_4587;Lnet/minecraft/class_2561;FFI)I
+		ARG 1 matrices
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD method_30882 draw (Lnet/minecraft/class_2561;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
+	METHOD method_30883 draw (Lnet/minecraft/class_4587;Lnet/minecraft/class_2561;FFI)I
+		ARG 1 matrices
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
 	CLASS class_328 Rectangle
 		METHOD method_1730 draw (Lnet/minecraft/class_287;)V
 			ARG 1 bufferBuilder
@@ -288,7 +368,7 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 3 y
 		ARG 4 color
 		ARG 5 isShadow
-	CLASS class_5232 ShadowDrawer
+	CLASS class_5232 Drawer
 		FIELD field_24239 vertexConsumers Lnet/minecraft/class_4597;
 		FIELD field_24241 shadow Z
 		FIELD field_24242 brightnessMultiplier F
