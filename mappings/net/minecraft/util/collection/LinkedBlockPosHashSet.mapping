@@ -9,7 +9,7 @@ CLASS net/minecraft/class_6136 net/minecraft/util/collection/LinkedBlockPosHashS
 	COMMENT <p>
 	COMMENT This has two major advantages:
 	COMMENT <ol>
-	COMMENT <li>Positions that are geometrically close together are grouped together in memory. This localises adjacent reads and writes.</li>
+	COMMENT <li>Positions that are geometrically close together are grouped together in memory. This localizes adjacent reads and writes.</li>
 	COMMENT <li>A larger number of positions can be comprised together into one long allowing for a smaller memory footprint.</li>
 	COMMENT </ol>
 	COMMENT @see net.minecraft.world.chunk.light.LevelPropagator
@@ -26,6 +26,13 @@ CLASS net/minecraft/class_6136 net/minecraft/util/collection/LinkedBlockPosHashS
 	METHOD add (J)Z
 		COMMENT Marks a block position as "set".
 		ARG 1 posLong
+	METHOD add (J)Z
+		COMMENT Marks a block position as "set".
+		ARG 1 posLong
+	METHOD isEmpty ()Z
+		COMMENT Checks whether there are any block positions that have been "set".
+		COMMENT
+		COMMENT @return {@code true} is this collection is empty.
 	METHOD isEmpty ()Z
 		COMMENT Checks whether there are any block positions that have been "set".
 		COMMENT
@@ -47,12 +54,19 @@ CLASS net/minecraft/class_6136 net/minecraft/util/collection/LinkedBlockPosHashS
 	METHOD rem (J)Z
 		COMMENT Marks a block position as "not set". Effectively removing it from this collection.
 		ARG 1 posLong
+	METHOD rem (J)Z
+		COMMENT Marks a block position as "not set". Effectively removing it from this collection.
+		ARG 1 posLong
 	METHOD removeFirstLong ()J
 		COMMENT Pops first block position off of this set.
 	METHOD removeFirstLong ()J
 		COMMENT Pops first block position off of this set.
 	METHOD removeFirstLong ()J
 		COMMENT Pops first block position off of this set.
+	METHOD removeFirstLong ()J
+		COMMENT Pops first block position off of this set.
+	METHOD size ()I
+		COMMENT @throws UnsupportedOperationException
 	METHOD size ()I
 		COMMENT @throws UnsupportedOperationException
 	METHOD size ()I
@@ -116,6 +130,8 @@ CLASS net/minecraft/class_6136 net/minecraft/util/collection/LinkedBlockPosHashS
 			COMMENT
 			COMMENT @return {@code true} if the collection was changed as a result of this call
 			ARG 1 mask
+		METHOD rehash (I)V
+			ARG 1 newN
 		METHOD rehash (I)V
 			ARG 1 newN
 		METHOD rehash (I)V

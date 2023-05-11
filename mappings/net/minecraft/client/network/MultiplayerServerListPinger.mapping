@@ -22,6 +22,11 @@ CLASS net/minecraft/class_644 net/minecraft/client/network/MultiplayerServerList
 				ARG 1 context
 			METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
 				ARG 1 context
+			METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+				ARG 1 context
+			METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+				ARG 1 context
+				ARG 2 buf
 			METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 				ARG 1 context
 				ARG 2 buf
@@ -34,9 +39,12 @@ CLASS net/minecraft/class_644 net/minecraft/client/network/MultiplayerServerList
 		FIELD field_3772 startTime J
 		FIELD field_3772 startTime J
 		FIELD field_3772 startTime J
+		FIELD field_3772 startTime J
 		FIELD field_3773 received Z
 		FIELD field_3773 received Z
 		FIELD field_3773 received Z
+		FIELD field_3773 received Z
+		FIELD field_3775 sentQuery Z
 		FIELD field_3775 sentQuery Z
 		FIELD field_3775 sentQuery Z
 		FIELD field_3775 sentQuery Z
@@ -47,6 +55,8 @@ CLASS net/minecraft/class_644 net/minecraft/client/network/MultiplayerServerList
 		ARG 1 error
 		ARG 2 info
 	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
 		METHOD initChannel (Lio/netty/channel/Channel;)V
 			ARG 1 channel
 		METHOD initChannel (Lio/netty/channel/Channel;)V

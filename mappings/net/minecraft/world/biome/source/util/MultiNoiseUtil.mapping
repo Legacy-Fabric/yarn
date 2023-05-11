@@ -59,6 +59,8 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 		METHOD comp_111 offset ()J
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD method_24381 getSquaredDistance (Lnet/minecraft/class_6544$class_6553;)J
 			COMMENT Calculates the distance from this noise point to another one. The
 			COMMENT distance is a squared distance in a multi-dimensional cartesian plane
@@ -79,12 +81,16 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 	CLASS class_6545 NodeDistanceFunction
 		METHOD distance getDistance (Lnet/minecraft/class_6544$class_6548$class_6550;[J)J
 			ARG 1 node
+		METHOD distance getDistance (Lnet/minecraft/class_6544$class_6548$class_6550;[J)J
+			ARG 1 node
 	CLASS class_6546 ParameterRange
 		FIELD comp_103 min J
 		FIELD comp_104 max J
 		FIELD field_34478 CODEC Lcom/mojang/serialization/Codec;
 		METHOD comp_103 min ()J
 		METHOD comp_104 max ()J
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
 		METHOD method_38120 of (F)Lnet/minecraft/class_6544$class_6546;
@@ -157,7 +163,7 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 		CLASS class_6550 TreeNode
 			FIELD field_34490 parameters [Lnet/minecraft/class_6544$class_6546;
 			METHOD <init> (Ljava/util/List;)V
-				ARG 1 subTree
+				ARG 1 parameters
 			METHOD method_38158 getResultingNode ([JLnet/minecraft/class_6544$class_6548$class_6549;Lnet/minecraft/class_6544$class_6545;)Lnet/minecraft/class_6544$class_6548$class_6549;
 				ARG 1 otherParameters
 				ARG 2 alternative
@@ -171,6 +177,10 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 				ARG 2 subTree
 	CLASS class_6552 MultiNoiseSampler
 		METHOD method_39165 findBestSpawnPosition ()Lnet/minecraft/class_2338;
+		METHOD sample (III)Lnet/minecraft/class_6544$class_6553;
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
 		METHOD sample (III)Lnet/minecraft/class_6544$class_6553;
 			ARG 1 x
 			ARG 2 y
