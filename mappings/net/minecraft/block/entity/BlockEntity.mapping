@@ -6,8 +6,10 @@ CLASS net/minecraft/class_2586 net/minecraft/block/entity/BlockEntity
 	FIELD field_11867 pos Lnet/minecraft/class_2338;
 	FIELD field_11868 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_19314 invalid Z
-	METHOD <init> (Lnet/minecraft/class_2591;)V
+	METHOD <init> (Lnet/minecraft/class_2591;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
 		ARG 1 type
+		ARG 2 pos
+		ARG 3 state
 	METHOD method_10996 cancelRemoval ()V
 	METHOD method_10997 getWorld ()Lnet/minecraft/class_1937;
 	METHOD method_10998 setPos (Lnet/minecraft/class_2338;)V
@@ -23,6 +25,10 @@ CLASS net/minecraft/class_2586 net/minecraft/block/entity/BlockEntity
 	METHOD method_11004 onSyncedBlockEvent (II)Z
 		ARG 1 type
 		ARG 2 data
+	METHOD method_11005 createFromNbt (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;
+		ARG 0 pos
+		ARG 1 state
+		ARG 2 nbt
 	METHOD method_11005 createFromTag (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;
 	METHOD method_11005 createFromTag (Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;
 		ARG 0 state
@@ -43,15 +49,23 @@ CLASS net/minecraft/class_2586 net/minecraft/block/entity/BlockEntity
 	METHOD method_11012 markRemoved ()V
 	METHOD method_11013 applyRotation (Lnet/minecraft/class_2470;)V
 		ARG 1 rotation
-	METHOD method_11014 fromTag (Lnet/minecraft/class_2487;)V
-		ARG 1 tag
 	METHOD method_11014 fromTag (Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)V
 		ARG 1 state
 		ARG 2 tag
+	METHOD method_11014 readNbt (Lnet/minecraft/class_2487;)V
+		ARG 1 nbt
 	METHOD method_11015 isRemoved ()Z
 	METHOD method_11016 getPos ()Lnet/minecraft/class_2338;
 	METHOD method_11017 getType ()Lnet/minecraft/class_2591;
 	METHOD method_16886 toUpdatePacket ()Lnet/minecraft/class_2622;
 	METHOD method_16887 toInitialChunkDataNbt ()Lnet/minecraft/class_2487;
 	METHOD method_20525 markInvalid ()V
+	METHOD method_31662 setWorld (Lnet/minecraft/class_1937;)V
+		ARG 1 world
+	METHOD method_31663 markDirty (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
+		ARG 0 world
+		ARG 1 pos
+		ARG 2 state
+	METHOD method_31664 setCachedState (Lnet/minecraft/class_2680;)V
+		ARG 1 state
 	METHOD method_5431 markDirty ()V

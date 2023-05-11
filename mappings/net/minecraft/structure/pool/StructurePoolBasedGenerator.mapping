@@ -70,6 +70,12 @@ CLASS net/minecraft/class_3778 net/minecraft/structure/pool/StructurePoolBasedGe
 			ARG 3 pos
 			ARG 5 rotation
 			ARG 6 elementBounds
+		METHOD create (Lnet/minecraft/class_3485;Lnet/minecraft/class_3784;Lnet/minecraft/class_2338;ILnet/minecraft/class_2470;Lnet/minecraft/class_3341;)Lnet/minecraft/class_3790;
+			ARG 1 structureManager
+			ARG 2 poolElement
+			ARG 3 pos
+			ARG 5 rotation
+			ARG 6 elementBounds
 	CLASS class_4181 ShapedPoolStructurePiece
 		FIELD field_18696 piece Lnet/minecraft/class_3790;
 		FIELD field_18697 pieceShape Ljava/util/concurrent/atomic/AtomicReference;
@@ -78,6 +84,7 @@ CLASS net/minecraft/class_3778 net/minecraft/structure/pool/StructurePoolBasedGe
 		FIELD field_18699 currentSize I
 		METHOD <init> (Lnet/minecraft/class_3790;Lorg/apache/commons/lang3/mutable/MutableObject;II)V
 			ARG 1 piece
+			ARG 2 pieceShape
 			ARG 3 minY
 			ARG 4 currentSize
 	CLASS class_4182 StructurePoolGenerator
@@ -88,6 +95,15 @@ CLASS net/minecraft/class_3778 net/minecraft/structure/pool/StructurePoolBasedGe
 		FIELD field_18704 children Ljava/util/List;
 		FIELD field_18705 random Ljava/util/Random;
 		FIELD field_18706 structurePieces Ljava/util/Deque;
+		FIELD field_25852 registry Lnet/minecraft/class_2378;
+		METHOD <init> (Lnet/minecraft/class_2378;ILnet/minecraft/class_3778$class_3779;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Ljava/util/List;Ljava/util/Random;)V
+			ARG 1 registry
+			ARG 2 maxSize
+			ARG 3 pieceFactory
+			ARG 4 chunkGenerator
+			ARG 5 structureManager
+			ARG 6 children
+			ARG 7 random
 		METHOD method_19306 generatePiece (Lnet/minecraft/class_3790;Ljava/util/concurrent/atomic/AtomicReference;II)V
 			ARG 1 piece
 			ARG 2 pieceShape
@@ -97,3 +113,9 @@ CLASS net/minecraft/class_3778 net/minecraft/structure/pool/StructurePoolBasedGe
 			ARG 1 piece
 			ARG 3 minY
 			ARG 4 currentSize
+		METHOD method_19306 generatePiece (Lnet/minecraft/class_3790;Lorg/apache/commons/lang3/mutable/MutableObject;IIZLnet/minecraft/class_5539;)V
+			ARG 1 piece
+			ARG 2 pieceShape
+			ARG 3 minY
+			ARG 4 currentSize
+			ARG 6 world

@@ -12,6 +12,7 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 	FIELD field_1323 minX D
 	FIELD field_1324 maxZ D
 	FIELD field_1325 maxY D
+	FIELD field_31879 EPSILON D
 	METHOD <init> (DDDDDD)V
 		COMMENT Creates a box of the given positions as corners.
 		ARG 1 x1
@@ -31,6 +32,8 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		COMMENT Creates a box of the given positions as corners.
 		ARG 1 pos1
 		ARG 2 pos2
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 o
 	METHOD method_1001 getMin (Lnet/minecraft/class_2350$class_2351;)D
@@ -66,6 +69,7 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		ARG 3 y
 		ARG 5 z
 	METHOD method_1009 expand (DDD)Lnet/minecraft/class_238;
+		COMMENT @see #contract(double, double, double)
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
@@ -94,6 +98,42 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		ARG 1 scale
 	METHOD method_19316 from (Lnet/minecraft/class_3341;)Lnet/minecraft/class_238;
 		ARG 0 mutable
+	METHOD method_29968 from (Lnet/minecraft/class_243;)Lnet/minecraft/class_238;
+		ARG 0 pos
+	METHOD method_30048 of (Lnet/minecraft/class_243;DDD)Lnet/minecraft/class_238;
+		ARG 0 center
+		ARG 1 dx
+		ARG 3 dy
+		ARG 5 dz
+	METHOD method_35574 withMinX (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the minimum X provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 minX
+	METHOD method_35575 withMinY (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the minimum Y provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 minY
+	METHOD method_35576 withMinZ (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the minimum Z provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 minZ
+	METHOD method_35577 withMaxX (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the maximum X provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 maxX
+	METHOD method_35578 withMaxY (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the maximum Y provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 maxY
+	METHOD method_35579 withMaxZ (D)Lnet/minecraft/class_238;
+		COMMENT Creates a box with the maximum Z provided and all other coordinates
+		COMMENT of this box.
+		ARG 1 maxZ
+	METHOD method_35580 contract (DDD)Lnet/minecraft/class_238;
+		COMMENT @see #expand(double, double, double)
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_989 offset (DDD)Lnet/minecraft/class_238;
 		COMMENT Creates a box that is translated by {@code x}, {@code y}, {@code z} on
 		COMMENT each axis from this box.

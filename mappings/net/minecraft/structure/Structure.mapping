@@ -1,9 +1,22 @@
 CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 	FIELD field_15586 blockInfoLists Ljava/util/List;
 	FIELD field_15587 size Lnet/minecraft/class_2338;
+	FIELD field_15587 size Lnet/minecraft/class_2382;
 	FIELD field_15588 author Ljava/lang/String;
 	FIELD field_15589 entities Ljava/util/List;
+	FIELD field_31687 PALETTE_KEY Ljava/lang/String;
+	FIELD field_31688 PALETTES_KEY Ljava/lang/String;
+	FIELD field_31689 ENTITIES_KEY Ljava/lang/String;
+	FIELD field_31690 BLOCKS_KEY Ljava/lang/String;
+	FIELD field_31691 BLOCKS_POS_KEY Ljava/lang/String;
+	FIELD field_31692 BLOCKS_STATE_KEY Ljava/lang/String;
+	FIELD field_31693 BLOCKS_NBT_KEY Ljava/lang/String;
+	FIELD field_31694 ENTITIES_POS_KEY Ljava/lang/String;
+	FIELD field_31695 ENTITIES_BLOCK_POS_KEY Ljava/lang/String;
+	FIELD field_31696 ENTITIES_NBT_KEY Ljava/lang/String;
+	FIELD field_31697 SIZE_KEY Ljava/lang/String;
 	METHOD method_15160 getSize ()Lnet/minecraft/class_2338;
+	METHOD method_15160 getSize ()Lnet/minecraft/class_2382;
 	METHOD method_15161 setAuthor (Ljava/lang/String;)V
 		ARG 1 name
 	METHOD method_15162 applyTransformedOffset (Lnet/minecraft/class_2338;Lnet/minecraft/class_2415;Lnet/minecraft/class_2470;II)Lnet/minecraft/class_2338;
@@ -22,6 +35,8 @@ CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 		ARG 3 block
 		ARG 4 transformed
 	METHOD method_15166 getRotatedSize (Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;
+	METHOD method_15166 getRotatedSize (Lnet/minecraft/class_2470;)Lnet/minecraft/class_2382;
+		ARG 1 rotation
 	METHOD method_15167 offsetByTransformedSize (Lnet/minecraft/class_2338;Lnet/minecraft/class_2415;Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;
 		ARG 1 pos
 		ARG 2 mirror
@@ -43,12 +58,19 @@ CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 	METHOD method_15172 place (Lnet/minecraft/class_5425;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;Ljava/util/Random;I)Z
 		ARG 1 world
 		ARG 2 pos
+		ARG 3 pivot
 		ARG 4 placementData
 		ARG 5 random
 	METHOD method_15174 saveFromWorld (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;ZLnet/minecraft/class_2248;)V
 		ARG 1 world
 		ARG 2 start
 		ARG 3 size
+		ARG 4 includeEntities
+		ARG 5 ignoredBlock
+	METHOD method_15174 saveFromWorld (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2382;ZLnet/minecraft/class_2248;)V
+		ARG 1 world
+		ARG 2 start
+		ARG 3 dimensions
 		ARG 4 includeEntities
 		ARG 5 ignoredBlock
 	METHOD method_15175 writeNbt (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;
@@ -113,6 +135,7 @@ CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 	METHOD method_16446 process (Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;Ljava/util/List;)Ljava/util/List;
 		ARG 0 world
 		ARG 1 pos
+		ARG 2 pivot
 		ARG 3 placementData
 	METHOD method_16446 process (Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;Ljava/util/List;)Ljava/util/List;
 		ARG 0 world
@@ -129,6 +152,17 @@ CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 		ARG 3 startX
 		ARG 4 startY
 		ARG 5 startZ
+	METHOD method_27267 calculateBoundingBox (Lnet/minecraft/class_2338;Lnet/minecraft/class_2470;Lnet/minecraft/class_2338;Lnet/minecraft/class_2415;)Lnet/minecraft/class_3341;
+		ARG 1 pos
+		ARG 2 rotation
+		ARG 3 pivot
+		ARG 4 mirror
+	METHOD method_34400 createBox (Lnet/minecraft/class_2338;Lnet/minecraft/class_2470;Lnet/minecraft/class_2338;Lnet/minecraft/class_2415;Lnet/minecraft/class_2382;)Lnet/minecraft/class_3341;
+		ARG 0 pos
+		ARG 1 rotation
+		ARG 2 pivot
+		ARG 3 mirror
+		ARG 4 dimensions
 	CLASS class_3500 Palette
 		FIELD field_15590 AIR Lnet/minecraft/class_2680;
 		FIELD field_15591 ids Lnet/minecraft/class_2361;
@@ -141,21 +175,21 @@ CLASS net/minecraft/class_3499 net/minecraft/structure/Structure
 		METHOD method_15187 getId (Lnet/minecraft/class_2680;)I
 			ARG 1 state
 	CLASS class_3501 StructureBlockInfo
-		FIELD field_15595 tag Lnet/minecraft/class_2487;
+		FIELD field_15595 nbt Lnet/minecraft/class_2487;
 		FIELD field_15596 state Lnet/minecraft/class_2680;
 		FIELD field_15597 pos Lnet/minecraft/class_2338;
 		METHOD <init> (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)V
 			ARG 1 pos
 			ARG 2 state
-			ARG 3 tag
+			ARG 3 nbt
 	CLASS class_3502 StructureEntityInfo
-		FIELD field_15598 tag Lnet/minecraft/class_2487;
+		FIELD field_15598 nbt Lnet/minecraft/class_2487;
 		FIELD field_15599 pos Lnet/minecraft/class_243;
 		FIELD field_15600 blockPos Lnet/minecraft/class_2338;
 		METHOD <init> (Lnet/minecraft/class_243;Lnet/minecraft/class_2338;Lnet/minecraft/class_2487;)V
 			ARG 1 pos
 			ARG 2 blockPos
-			ARG 3 tag
+			ARG 3 nbt
 	CLASS class_5162 PalettedBlockInfoList
 		FIELD field_23913 infos Ljava/util/List;
 		FIELD field_23914 blockToInfos Ljava/util/Map;

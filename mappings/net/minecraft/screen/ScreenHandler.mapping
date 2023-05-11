@@ -1,11 +1,21 @@
 CLASS net/minecraft/class_1703 net/minecraft/screen/ScreenHandler
 	FIELD field_17285 properties Ljava/util/List;
 	FIELD field_17493 type Lnet/minecraft/class_3917;
+	FIELD field_29205 cursorStack Lnet/minecraft/class_1799;
+	FIELD field_29206 previousTrackedStacks Lnet/minecraft/class_2371;
+	FIELD field_29207 previousCursorStack Lnet/minecraft/class_1799;
+	FIELD field_29208 syncHandler Lnet/minecraft/class_5916;
+	FIELD field_29209 disableSync Z
+	FIELD field_29559 trackedPropertyValues Lit/unimi/dsi/fastutil/ints/IntList;
+	FIELD field_30730 EMPTY_SPACE_SLOT_INDEX I
+		COMMENT A special slot index value ({@value}) indicating that the player has clicked outside the main panel
+		COMMENT of a screen. Used for dropping the cursor stack.
 	FIELD field_7757 quickCraftSlots Ljava/util/Set;
 	FIELD field_7758 actionId S
 	FIELD field_7759 quickCraftStage I
 	FIELD field_7760 restrictedPlayers Ljava/util/Set;
 	FIELD field_7761 slots Ljava/util/List;
+	FIELD field_7761 slots Lnet/minecraft/class_2371;
 	FIELD field_7762 quickCraftButton I
 	FIELD field_7763 syncId I
 	FIELD field_7764 trackedStacks Lnet/minecraft/class_2371;
@@ -35,6 +45,45 @@ CLASS net/minecraft/class_1703 net/minecraft/screen/ScreenHandler
 		ARG 0 context
 		ARG 1 player
 		ARG 2 block
+	METHOD method_17696 (Lnet/minecraft/class_2248;Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Ljava/lang/Boolean;
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_30010 internalOnSlotClick (IILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)V
+		COMMENT The actual logic that handles a slot click. Called by {@link #onSlotClick
+		COMMENT (int, int, SlotActionType, PlayerEntity)} in a try-catch block that wraps
+		COMMENT exceptions from this method into a crash report.
+		ARG 1 slotIndex
+		ARG 2 button
+		ARG 3 actionType
+		ARG 4 player
+	METHOD method_34245 setPreviousTrackedSlot (ILnet/minecraft/class_1799;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD method_34246 updateTrackedSlot (ILnet/minecraft/class_1799;Ljava/util/function/Supplier;)V
+		ARG 1 slot
+		ARG 2 stack
+		ARG 3 copySupplier
+	METHOD method_34247 copySharedSlots (Lnet/minecraft/class_1703;)V
+		ARG 1 handler
+	METHOD method_34248 updateSyncHandler (Lnet/minecraft/class_5916;)V
+		ARG 1 handler
+	METHOD method_34250 setPreviousCursorStack (Lnet/minecraft/class_1799;)V
+		ARG 1 stack
+	METHOD method_34252 syncState ()V
+	METHOD method_34253 checkSlotUpdates (ILnet/minecraft/class_1799;Ljava/util/function/Supplier;)V
+		ARG 1 slot
+		ARG 2 stack
+		ARG 3 copySupplier
+	METHOD method_34254 setCursorStack (Lnet/minecraft/class_1799;)V
+		ARG 1 stack
+	METHOD method_34255 getCursorStack ()Lnet/minecraft/class_1799;
+	METHOD method_34256 disableSyncing ()V
+	METHOD method_34257 enableSyncing ()V
+	METHOD method_34258 checkCursorStackUpdates ()V
+	METHOD method_34259 getCursorStackReference ()Lnet/minecraft/class_5630;
+	METHOD method_34715 checkPropertyUpdates (II)V
+		ARG 1 id
+		ARG 2 value
 	METHOD method_7590 setPlayerRestriction (Lnet/minecraft/class_1657;Z)V
 		ARG 1 player
 		ARG 2 unrestricted
@@ -50,10 +99,16 @@ CLASS net/minecraft/class_1703 net/minecraft/screen/ScreenHandler
 		COMMENT @return The stack that was clicked on before anything changed, used mostly for verifying that the client and server are in sync
 		ARG 3 actionType
 			COMMENT The type of slot click. Check the docs for each SlotActionType value for details
+	METHOD method_7593 onSlotClick (IILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)V
+		COMMENT Performs a slot click. This can behave in many different ways depending mainly on the action type.
+		ARG 1 slotIndex
+		ARG 2 button
+		ARG 3 actionType
+			COMMENT the type of slot click, check the docs for each {@link SlotActionType} value for details
+		ARG 4 player
 	METHOD method_7594 unpackQuickCraftStage (I)I
 		ARG 0 quickCraftData
 	METHOD method_7595 close (Lnet/minecraft/class_1657;)V
-		ARG 1 player
 	METHOD method_7596 addListener (Lnet/minecraft/class_1712;)V
 		ARG 1 listener
 	METHOD method_7597 canUse (Lnet/minecraft/class_1657;)Z
@@ -74,6 +129,9 @@ CLASS net/minecraft/class_1703 net/minecraft/screen/ScreenHandler
 	METHOD method_7606 setProperty (II)V
 		ARG 1 id
 		ARG 2 value
+	METHOD method_7607 dropInventory (Lnet/minecraft/class_1657;Lnet/minecraft/class_1263;)V
+		ARG 1 player
+		ARG 2 inventory
 	METHOD method_7607 dropInventory (Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_1263;)V
 		ARG 1 player
 		ARG 2 world

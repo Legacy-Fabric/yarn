@@ -7,6 +7,11 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	FIELD field_20348 STINGER_COUNT Lnet/minecraft/class_2940;
 	FIELD field_22418 climbingPos Ljava/util/Optional;
 	FIELD field_23128 SOUL_SPEED_BOOST_ID Ljava/util/UUID;
+	FIELD field_27859 POWDER_SNOW_SLOW_ID Ljava/util/UUID;
+	FIELD field_30064 USING_ITEM_FLAG I
+	FIELD field_30065 OFF_HAND_ACTIVE_FLAG I
+	FIELD field_30066 USING_RIPTIDE_FLAG I
+	FIELD field_30082 noDrag Z
 	FIELD field_6210 bodyTrackingIncrements I
 	FIELD field_6211 lastLimbDistance F
 	FIELD field_6212 sidewaysSpeed F
@@ -101,6 +106,8 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 2 predicate
 	METHOD method_18392 setPositionInBed (Lnet/minecraft/class_2338;)V
 		ARG 1 pos
+	METHOD method_18393 (Lnet/minecraft/class_2487;Lnet/minecraft/class_2338;)V
+		ARG 1 pos
 	METHOD method_18394 getActiveEyeHeight (Lnet/minecraft/class_4050;Lnet/minecraft/class_4048;)F
 		ARG 1 pose
 		ARG 2 dimensions
@@ -116,6 +123,10 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_18402 setSleepingPosition (Lnet/minecraft/class_2338;)V
 		ARG 1 pos
 	METHOD method_18403 sleep (Lnet/minecraft/class_2338;)V
+		ARG 1 pos
+	METHOD method_18404 (Lnet/minecraft/class_2338;)V
+		ARG 1 pos
+	METHOD method_18405 (Lnet/minecraft/class_2338;)Ljava/lang/Boolean;
 		ARG 1 pos
 	METHOD method_18406 isSleepingInBed ()Z
 	METHOD method_18801 applyClimbingSpeed (Lnet/minecraft/class_243;)Lnet/minecraft/class_243;
@@ -146,6 +157,8 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 1 hand
 	METHOD method_20237 getEquipmentBreakStatus (Lnet/minecraft/class_1304;)B
 		ARG 0 slot
+	METHOD method_20238 (Lnet/minecraft/class_1309;)V
+		ARG 0 player
 	METHOD method_21753 getStingerCount ()I
 	METHOD method_21754 isHoldingOntoLadder ()Z
 		COMMENT @return {@code true} if this entity should not lose height while in a climbing state
@@ -177,6 +190,8 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		COMMENT
 		COMMENT <p>This checks both the entity's main and off hand.
 		ARG 1 item
+	METHOD method_24519 (Lnet/minecraft/class_1792;Lnet/minecraft/class_1799;)Z
+		ARG 1 stack
 	METHOD method_24520 isHolding (Ljava/util/function/Predicate;)Z
 		COMMENT Checks if this entity is holding a certain item.
 		COMMENT
@@ -189,6 +204,23 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_25937 displaySoulSpeedEffects ()V
 	METHOD method_26082 applyStatusEffect (Lnet/minecraft/class_1293;)V
 		ARG 1 effect
+	METHOD method_26082 setStatusEffect (Lnet/minecraft/class_1293;Lnet/minecraft/class_1297;)V
+		COMMENT Sets a status effect in this entity.
+		COMMENT
+		COMMENT <p>The preexistent status effect of the same type on this entity, if there is one, is cleared.
+		COMMENT To actually add a status effect and undergo effect combination logic, call
+		COMMENT {@link #addStatusEffect(StatusEffectInstance, Entity)}.
+		COMMENT
+		COMMENT @apiNote In vanilla, this is exclusively used by the client to set a status
+		COMMENT effect on the player upon {@linkplain
+		COMMENT net.minecraft.client.network.ClientPlayNetworkHandler#onEntityStatusEffect
+		COMMENT reception} of the status effect packet.
+		ARG 1 effect
+			COMMENT the effect to set
+		ARG 2 source
+			COMMENT the source entity or {@code null} for non-entity sources
+	METHOD method_26084 (Lnet/minecraft/class_1309;)V
+		ARG 0 player
 	METHOD method_26319 canWalkOnFluid (Lnet/minecraft/class_3611;)Z
 		ARG 1 fluid
 	METHOD method_26825 getAttributeValue (Lnet/minecraft/class_1320;)D
@@ -199,13 +231,84 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_27071 shouldDropLoot ()Z
 	METHOD method_27302 shouldDisplaySoulSpeedEffects ()Z
 	METHOD method_27303 isOnSoulSpeedBlock ()Z
+	METHOD method_28305 (Lnet/minecraft/class_2487;Lnet/minecraft/class_2520;)V
+		ARG 1 brain
 	METHOD method_28306 createBrainProfile ()Lnet/minecraft/class_4095$class_5303;
+	METHOD method_29242 updateLimbs (Lnet/minecraft/class_1309;Z)V
+		ARG 1 entity
+		ARG 2 flutter
+	METHOD method_29499 triggerItemPickedUpByEntityCriteria (Lnet/minecraft/class_1542;)V
+		COMMENT Called to trigger advancement criteria when an entity picks up an item
+		COMMENT thrown by a player.
+		ARG 1 item
+	METHOD method_29500 shouldRemoveSoulSpeedBoost (Lnet/minecraft/class_2680;)Z
+		ARG 1 landingState
 	METHOD method_29501 removeSoulSpeedBoost ()V
 	METHOD method_29502 addSoulSpeedBoostIfNeeded ()V
 	METHOD method_29503 hurtByWater ()Z
 	METHOD method_29504 isDead ()Z
 	METHOD method_29505 setAttacking (Lnet/minecraft/class_1657;)V
 		ARG 1 attacking
+	METHOD method_29920 shouldSwimInFluids ()Z
+	METHOD method_30120 (Ljava/util/List;Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)V
+		ARG 2 slot
+		ARG 3 stack
+	METHOD method_30121 swapHandStacks (Ljava/util/Map;)V
+		ARG 1 equipment
+	METHOD method_30122 setArmorInSlot (Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)V
+		ARG 1 slot
+		ARG 2 armor
+	METHOD method_30123 setEquipment (Ljava/util/Map;)V
+		ARG 1 equipment
+	METHOD method_30124 setStackInHandSlot (Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD method_30125 getArmorInSlot (Lnet/minecraft/class_1304;)Lnet/minecraft/class_1799;
+		ARG 1 slot
+	METHOD method_30126 getStackInHandSlot (Lnet/minecraft/class_1304;)Lnet/minecraft/class_1799;
+		ARG 1 slot
+	METHOD method_30127 swapHandStacks ()V
+	METHOD method_30129 getEquipment ()Ljava/util/Map;
+	METHOD method_31079 positionInPortal (Lnet/minecraft/class_243;)Lnet/minecraft/class_243;
+		ARG 0 pos
+	METHOD method_32321 getStackReference (Lnet/minecraft/class_1309;Lnet/minecraft/class_1304;)Lnet/minecraft/class_5630;
+		ARG 0 entity
+		ARG 1 slot
+	METHOD method_32322 getEquipmentSlot (I)Lnet/minecraft/class_1304;
+		ARG 0 slotId
+	METHOD method_32323 (Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)Z
+		ARG 1 stack
+	METHOD method_32324 removePowderSnowSlow ()V
+	METHOD method_32325 addPowderSnowSlowIfNeeded ()V
+	METHOD method_32326 getPreferredEquipmentSlot (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1304;
+		ARG 0 stack
+	METHOD method_33190 canTakeDamage ()Z
+	METHOD method_33579 readFromPacket (Lnet/minecraft/class_2610;)V
+		ARG 1 packet
+	METHOD method_35053 hasNoDrag ()Z
+	METHOD method_35054 setNoDrag (Z)V
+		ARG 1 noDrag
+	METHOD method_36362 updateGlowing ()V
+	METHOD method_36549 addDeathParticles ()V
+	METHOD method_36608 isPartOfGame ()Z
+	METHOD method_36977 damageHelmet (Lnet/minecraft/class_1282;F)V
+		ARG 1 source
+		ARG 2 amount
+	METHOD method_37119 tickItemStackUsage (Lnet/minecraft/class_1799;)V
+		ARG 1 stack
+	METHOD method_37222 addStatusEffect (Lnet/minecraft/class_1293;Lnet/minecraft/class_1297;)Z
+		COMMENT Adds a status effect to this entity.
+		COMMENT
+		COMMENT @implNote A status effect may fail to be added due to getting overridden by
+		COMMENT existing effects or the effect being incompatible with this entity.
+		COMMENT
+		COMMENT @return whether the active status effects of this entity has been modified
+		ARG 1 effect
+			COMMENT the effect to add
+		ARG 2 source
+			COMMENT the source entity or {@code null} for non-entity sources
+	METHOD method_37410 processEquippedStack (Lnet/minecraft/class_1799;)V
+		ARG 1 stack
 	METHOD method_5973 canTarget (Lnet/minecraft/class_1299;)Z
 		ARG 1 type
 	METHOD method_5989 getLootTable ()Lnet/minecraft/class_2960;
@@ -219,6 +322,10 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6000 enterCombat ()V
 	METHOD method_6002 getDeathSound ()Lnet/minecraft/class_3414;
 	METHOD method_6003 getRoll ()I
+	METHOD method_6005 takeKnockback (DDD)V
+		ARG 1 strength
+		ARG 3 x
+		ARG 5 z
 	METHOD method_6005 takeKnockback (FDD)V
 	METHOD method_6005 takeKnockback (Lnet/minecraft/class_1297;FDD)V
 		ARG 1 attacker
@@ -233,6 +340,10 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6009 onStatusEffectUpgraded (Lnet/minecraft/class_1293;Z)V
 		ARG 1 effect
 		ARG 2 reapplyEffect
+	METHOD method_6009 onStatusEffectUpgraded (Lnet/minecraft/class_1293;ZLnet/minecraft/class_1297;)V
+		ARG 1 effect
+		ARG 2 reapplyEffect
+		ARG 3 source
 	METHOD method_6010 swimUpward (Lnet/minecraft/class_3494;)V
 		ARG 1 fluid
 	METHOD method_6011 getHurtSound (Lnet/minecraft/class_1282;)Lnet/minecraft/class_3414;
@@ -246,10 +357,11 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6016 removeStatusEffect (Lnet/minecraft/class_1291;)Z
 		COMMENT Removes a status effect from this entity.
 		COMMENT
-		COMMENT <p> Calling this method will call cleanup methods on the status effect and trigger synchronization of effect particles with watching clients. If this entity is a player,
+		COMMENT <p>Calling this method will call cleanup methods on the status effect and trigger synchronization of effect particles with watching clients. If this entity is a player,
 		COMMENT the change in the list of effects will also be synchronized with the corresponding client.
 		COMMENT
-		COMMENT @return {@code true} if a {@link net.minecraft.entity.effect.StatusEffectInstance} with the given type was in effect before the removal.
+		COMMENT @return whether the active status effects on this entity has been changed by
+		COMMENT this call
 		ARG 1 type
 	METHOD method_6017 getSoundPitch ()F
 	METHOD method_6018 setRiptideTicks (I)V
@@ -258,6 +370,9 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 1 hand
 	METHOD method_6020 onStatusEffectApplied (Lnet/minecraft/class_1293;)V
 		ARG 1 effect
+	METHOD method_6020 onStatusEffectApplied (Lnet/minecraft/class_1293;Lnet/minecraft/class_1297;)V
+		ARG 1 effect
+		ARG 2 source
 	METHOD method_6021 clearActiveItem ()V
 	METHOD method_6022 getStuckArrowCount ()I
 	METHOD method_6023 tickNewAi ()V
@@ -387,7 +502,15 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6091 travel (Lnet/minecraft/class_243;)V
 		ARG 1 movementInput
 	METHOD method_6092 addStatusEffect (Lnet/minecraft/class_1293;)Z
+		COMMENT Adds a status effect to this entity without specifying a source entity.
+		COMMENT
+		COMMENT <p>Consider calling {@link #addStatusEffect(StatusEffectInstance, Entity)}
+		COMMENT if the {@code effect} is caused by or from an entity.
+		COMMENT
+		COMMENT @return whether the active status effects of this entity has been modified
+		COMMENT @see #addStatusEffect(StatusEffectInstance, Entity)
 		ARG 1 effect
+			COMMENT the effect to add
 	METHOD method_6093 knockDownwards ()V
 	METHOD method_6094 canBreatheInWater ()Z
 	METHOD method_6095 tryUseTotem (Lnet/minecraft/class_1282;)Z
@@ -435,8 +558,10 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6111 removeStatusEffectInternal (Lnet/minecraft/class_1291;)Lnet/minecraft/class_1293;
 		COMMENT Removes a status effect from this entity without calling any listener.
 		COMMENT
-		COMMENT <p> This method does not perform any cleanup or synchronization operation.
-		COMMENT Under most circumstances, calling {@link net.minecraft.entity.LivingEntity#removeStatusEffect(net.minecraft.entity.effect.StatusEffect)} is highly preferable.
+		COMMENT <p>This method does not perform any cleanup or synchronization operation.
+		COMMENT Under most circumstances, calling {@link #removeStatusEffect(StatusEffect)} is highly preferable.
+		COMMENT
+		COMMENT @return the status effect removed
 		ARG 1 type
 	METHOD method_6112 getStatusEffect (Lnet/minecraft/class_1291;)Lnet/minecraft/class_1293;
 		ARG 1 effect

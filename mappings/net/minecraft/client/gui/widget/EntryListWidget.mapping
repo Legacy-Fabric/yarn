@@ -15,6 +15,8 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 	FIELD field_22749 scrollAmount D
 	FIELD field_22750 scrolling Z
 	FIELD field_22751 selected Lnet/minecraft/class_350$class_351;
+	FIELD field_26846 renderBackground Z
+	FIELD field_26847 renderHorizontalShadows Z
 	METHOD <init> (Lnet/minecraft/class_310;IIIII)V
 		ARG 1 client
 		ARG 2 width
@@ -76,6 +78,7 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		ARG 1 matrices
 		ARG 2 x
 		ARG 3 y
+		ARG 4 tessellator
 	METHOD method_25313 setSelected (Lnet/minecraft/class_350$class_351;)V
 		ARG 1 entry
 	METHOD method_25314 replaceEntries (Ljava/util/Collection;)V
@@ -119,7 +122,8 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		ARG 1 index
 	METHOD method_25333 setLeftPos (I)V
 		ARG 1 left
-	METHOD method_25334 getSelected ()Lnet/minecraft/class_350$class_351;
+	METHOD method_25334 getSelectedOrNull ()Lnet/minecraft/class_350$class_351;
+		COMMENT {@return the selected entry of this entry list, or {@code null} if there is none}
 	METHOD method_25335 moveSelection (Lnet/minecraft/class_350$class_5403;)V
 		ARG 1 direction
 	METHOD method_25337 getRowTop (I)I
@@ -141,6 +145,10 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 	METHOD method_30014 (Lnet/minecraft/class_350$class_351;)Z
 		ARG 0 entry
 	METHOD method_30015 ensureSelectedEntryVisible ()V
+	METHOD method_31322 setRenderBackground (Z)V
+		ARG 1 renderBackground
+	METHOD method_31323 setRenderHorizontalShadows (Z)V
+		ARG 1 renderHorizontalShadows
 	METHOD method_31383 getRowRight ()I
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
@@ -301,6 +309,11 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		METHOD add (ILjava/lang/Object;)V
 			ARG 1 index
 			ARG 2 entry
+		METHOD add (ILjava/lang/Object;)V
+			ARG 1 index
+			ARG 2 entry
+		METHOD get (I)Ljava/lang/Object;
+			ARG 1 index
 		METHOD get (I)Ljava/lang/Object;
 			ARG 1 index
 		METHOD get (I)Ljava/lang/Object;
@@ -341,6 +354,11 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 			ARG 1 index
 		METHOD remove (I)Ljava/lang/Object;
 			ARG 1 index
+		METHOD remove (I)Ljava/lang/Object;
+			ARG 1 index
+		METHOD set (ILjava/lang/Object;)Ljava/lang/Object;
+			ARG 1 index
+			ARG 2 entry
 		METHOD set (ILjava/lang/Object;)Ljava/lang/Object;
 			ARG 1 index
 			ARG 2 entry

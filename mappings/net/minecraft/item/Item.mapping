@@ -1,6 +1,8 @@
 CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	FIELD field_18672 foodComponent Lnet/minecraft/class_4174;
 	FIELD field_21979 fireproof Z
+	FIELD field_27017 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_30887 DEFAULT_MAX_COUNT I
 	FIELD field_8000 DAMAGE_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8001 ATTACK_SPEED_MODIFIER_ID Ljava/util/UUID;
 	FIELD field_8002 CUSTOM_DATA_PROPERTY_GETTER Lnet/minecraft/class_1800;
@@ -23,11 +25,39 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_19263 isFood ()Z
 		COMMENT Checks if this item is food and therefore is edible.
 	METHOD method_19264 getFoodComponent ()Lnet/minecraft/class_4174;
+		COMMENT {@return this item's {@link #foodComponent FoodComponent}, or {@code null} if none was set}
 	METHOD method_21830 getEatSound ()Lnet/minecraft/class_3414;
 	METHOD method_21831 getDrinkSound ()Lnet/minecraft/class_3414;
 	METHOD method_24357 damage (Lnet/minecraft/class_1282;)Z
+		COMMENT {@return whether this item can be damaged by the given {@link DamageSource source}}
 		ARG 1 source
 	METHOD method_24358 isFireproof ()Z
+		COMMENT {@return whether this item is immune to fire and lava damage}
+	METHOD method_31565 onStackClicked (Lnet/minecraft/class_1799;Lnet/minecraft/class_1735;Lnet/minecraft/class_5536;Lnet/minecraft/class_1657;)Z
+		ARG 1 stack
+		ARG 2 slot
+		ARG 3 clickType
+		ARG 4 player
+	METHOD method_31566 onClicked (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_1735;Lnet/minecraft/class_5536;Lnet/minecraft/class_1657;Lnet/minecraft/class_5630;)Z
+		ARG 1 stack
+		ARG 2 otherStack
+		ARG 3 slot
+		ARG 4 clickType
+		ARG 5 player
+		ARG 6 cursorStackReference
+	METHOD method_31567 isItemBarVisible (Lnet/minecraft/class_1799;)Z
+		ARG 1 stack
+	METHOD method_31568 canBeNested ()Z
+		COMMENT @return true if the item can be placed inside of shulker boxes or bundles.
+	METHOD method_31569 getItemBarStep (Lnet/minecraft/class_1799;)I
+		ARG 1 stack
+	METHOD method_31570 getEquipSound ()Lnet/minecraft/class_3414;
+	METHOD method_31571 getItemBarColor (Lnet/minecraft/class_1799;)I
+		ARG 1 stack
+	METHOD method_32346 getTooltipData (Lnet/minecraft/class_1799;)Ljava/util/Optional;
+		ARG 1 stack
+	METHOD method_33261 onItemEntityDestroyed (Lnet/minecraft/class_1542;)V
+		ARG 1 entity
 	METHOD method_7836 use (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1271;
 		COMMENT Called when an item is used by a player.
 		COMMENT The use action, by default, is bound to the right mouse button.
@@ -61,6 +91,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 3 user
 		ARG 4 remainingUseTicks
 	METHOD method_7841 getMaxDamage ()I
+		COMMENT {@return the maximum durability of this item} Can be configured through {@link Item.Settings#maxDamage(int) settings.maxDamage()}.
 	METHOD method_7843 onCraft (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;)V
 		COMMENT Called when a player acquires the item by crafting, smelting, smithing, etc.
 		ARG 1 stack
@@ -70,6 +101,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 slot
 	METHOD method_7845 hasPropertyGetters ()Z
 	METHOD method_7846 isDamageable ()Z
+		COMMENT {@return whether this item can lose durability}
 	METHOD method_7847 useOnEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
 		ARG 1 stack
 		ARG 2 user
@@ -117,6 +149,8 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_7858 getRecipeRemainder ()Lnet/minecraft/class_1792;
 		COMMENT Gets the remainder item that should be left behind when this item is used as a crafting ingredient.
 	METHOD method_7859 getGroup ()Lnet/minecraft/class_1761;
+	METHOD method_7860 postProcessNbt (Lnet/minecraft/class_2487;)V
+		ARG 1 nbt
 	METHOD method_7860 postProcessNbt (Lnet/minecraft/class_2487;)Z
 		ARG 1 nbt
 	METHOD method_7861 finishUsing (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1799;
@@ -124,6 +158,13 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 world
 		ARG 3 user
 	METHOD method_7862 getRarity (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;
+		COMMENT {@return this item's rarity, which changes the color of its name}
+		COMMENT
+		COMMENT <p>By default, if an item has an enchantment, its rarity is modified:
+		COMMENT <ul>
+		COMMENT \t<li>Common and Uncommon -> Rare
+		COMMENT \t<li>Rare -> Epic
+		COMMENT </ul>
 		ARG 1 stack
 	METHOD method_7863 addPropertyGetter (Lnet/minecraft/class_2960;Lnet/minecraft/class_1800;)V
 		ARG 1 id
@@ -143,6 +184,9 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 id
 	METHOD method_7869 getOrCreateTranslationKey ()Ljava/lang/String;
 	METHOD method_7870 isEnchantable (Lnet/minecraft/class_1799;)Z
+		COMMENT {@return whether the given {@link ItemStack} is enchantable}
+		COMMENT
+		COMMENT <p>By default, ItemStacks are enchantable if their max stack count is 1 and they can be damaged.
 		ARG 1 stack
 	METHOD method_7871 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
 		ARG 0 stack
@@ -185,8 +229,11 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_7880 getRawId (Lnet/minecraft/class_1792;)I
 		ARG 0 item
 	METHOD method_7881 getMaxUseTime (Lnet/minecraft/class_1799;)I
+		COMMENT {@return the maximum use (right-click) time of this item, in ticks}
+		COMMENT Once a player has used an item for said number of ticks, they stop using it, and {@link Item#finishUsing} is called.
 		ARG 1 stack
 	METHOD method_7882 getMaxCount ()I
+		COMMENT {@return the maximum stack count of any ItemStack with this item} Can be configured through {@link Item.Settings#maxCount(int) settings.maxCount()}.
 	METHOD method_7883 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
 		ARG 0 stack
 		ARG 1 world
@@ -230,17 +277,59 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		FIELD field_8019 maxDamage I
 		FIELD field_8020 maxCount I
 		METHOD method_19265 food (Lnet/minecraft/class_4174;)Lnet/minecraft/class_1792$class_1793;
+			COMMENT When set, any item configured with this Settings instance will be edible based on the provided {@link FoodComponent}.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 foodComponent
+				COMMENT configured food properties for any item using this Settings instance
 		METHOD method_24359 fireproof ()Lnet/minecraft/class_1792$class_1793;
+			COMMENT If called, any item with this Settings instance is immune to fire and lava damage.
+			COMMENT
+			COMMENT @return this instance
 		METHOD method_7889 maxCount (I)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Sets the maximum stack count of any ItemStack with an Item using this Settings instance.
+			COMMENT
+			COMMENT <p>Note that a count over 64 leads to unreliable behavior in GUIs.
+			COMMENT Damageable items can not have a maximum stack count (they default to 1).
+			COMMENT An Item.Settings' max count defaults to 64.
+			COMMENT
+			COMMENT @throws RuntimeException if this Settings instance also has a max damage value set
+			COMMENT @return this instance
 			ARG 1 maxCount
+				COMMENT maximum stack count of any ItemStack with an item using this Settings instance
 		METHOD method_7892 group (Lnet/minecraft/class_1761;)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Sets the ItemGroup of any item using this Settings instance. ItemGroups represent tabs in the creative inventory.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 group
+				COMMENT {@link ItemGroup itemGroup} to use
 		METHOD method_7894 rarity (Lnet/minecraft/class_1814;)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Sets the {@link Rarity} of any item configured with this Settings instance, which changes the color of its name.
+			COMMENT
+			COMMENT <p>An item's rarity defaults to {@link Rarity.COMMON}.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 rarity
+				COMMENT rarity to apply to items using this Settings instance
 		METHOD method_7895 maxDamage (I)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Sets the maximum durability of any item configured with this Settings instance.
+			COMMENT
+			COMMENT <p>Note that max stack count is set to 1 when this method is called.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 maxDamage
+				COMMENT maximum durability of an ItemStack using an item with this Item.Settings instance
 		METHOD method_7896 recipeRemainder (Lnet/minecraft/class_1792;)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Sets the recipe remainder for any item configured with this Settings instance.
+			COMMENT When an item with a recipe remainder is used in a crafting recipe, the remainder is left in the table or returned to the player.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 recipeRemainder
 		METHOD method_7898 maxDamageIfAbsent (I)Lnet/minecraft/class_1792$class_1793;
+			COMMENT Calls {@link Item.Settings#maxDamage} If this Settings instance has not already set max damage (or if max damage is the default value, 0).
+			COMMENT
+			COMMENT <p>Note that max stack count is set to 1 when maxDamage is called.
+			COMMENT
+			COMMENT @return this instance
 			ARG 1 maxDamage
+				COMMENT maximum durability of an ItemStack using an item with this Item.Settings instance

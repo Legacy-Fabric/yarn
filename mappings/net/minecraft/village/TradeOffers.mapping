@@ -1,6 +1,20 @@
 CLASS net/minecraft/class_3853 net/minecraft/village/TradeOffers
 	FIELD field_17067 PROFESSION_TO_LEVELED_TRADE Ljava/util/Map;
 	FIELD field_17724 WANDERING_TRADER_TRADES Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+	FIELD field_30615 DEFAULT_MAX_USES I
+	FIELD field_30616 COMMON_MAX_USES I
+	FIELD field_30617 RARE_MAX_USES I
+	FIELD field_30618 NOVICE_SELL_XP I
+	FIELD field_30619 NOVICE_BUY_XP I
+	FIELD field_30620 APPRENTICE_SELL_XP I
+	FIELD field_30621 APPRENTICE_BUY_XP I
+	FIELD field_30622 JOURNEYMAN_SELL_XP I
+	FIELD field_30623 JOURNEYMAN_BUY_XP I
+	FIELD field_30624 EXPERT_SELL_XP I
+	FIELD field_30625 EXPERT_BUY_XP I
+	FIELD field_30626 MASTER_TRADE_XP I
+	FIELD field_30627 LOW_PRICE_MULTIPLIER F
+	FIELD field_30628 HIGH_PRICE_MULTIPLIER F
 	METHOD method_16928 copyToFastUtilMap (Lcom/google/common/collect/ImmutableMap;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 		ARG 0 map
 	METHOD method_16929 (Ljava/util/HashMap;)V
@@ -44,6 +58,7 @@ CLASS net/minecraft/class_3853 net/minecraft/village/TradeOffers
 			ARG 3 maxUses
 			ARG 4 experience
 		METHOD method_19200 getDye (Ljava/util/Random;)Lnet/minecraft/class_1769;
+			ARG 0 random
 	CLASS class_4161 BuyForOneEmeraldFactory
 		FIELD field_18548 buy Lnet/minecraft/class_1792;
 		FIELD field_18549 price I
@@ -65,6 +80,10 @@ CLASS net/minecraft/class_3853 net/minecraft/village/TradeOffers
 			ARG 2 maxUses
 			ARG 3 experience
 			ARG 4 map
+		METHOD method_19201 (Lnet/minecraft/class_3854;)V
+			ARG 0 villagerType
+		METHOD method_19202 (Ljava/util/Map;Lnet/minecraft/class_3854;)Z
+			ARG 1 villagerType
 	CLASS class_4163 SellEnchantedToolFactory
 		FIELD field_18558 tool Lnet/minecraft/class_1799;
 		FIELD field_18559 basePrice I
@@ -169,3 +188,5 @@ CLASS net/minecraft/class_3853 net/minecraft/village/TradeOffers
 			ARG 5 price
 			ARG 6 maxUses
 			ARG 7 experience
+		METHOD method_19203 (Lnet/minecraft/class_1842;)Z
+			ARG 0 potion

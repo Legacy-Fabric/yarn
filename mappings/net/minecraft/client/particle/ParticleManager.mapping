@@ -2,6 +2,8 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	FIELD field_17820 PARTICLE_TEXTURE_SHEETS Ljava/util/List;
 	FIELD field_18300 spriteAwareFactories Ljava/util/Map;
 	FIELD field_18301 particleAtlasTexture Lnet/minecraft/class_1059;
+	FIELD field_29072 groupCounts Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;
+	FIELD field_32657 MAX_PARTICLE_COUNT I
 	FIELD field_3830 particles Ljava/util/Map;
 	FIELD field_3831 textureManager Lnet/minecraft/class_1060;
 	FIELD field_3832 random Ljava/util/Random;
@@ -13,6 +15,9 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	METHOD <init> (Lnet/minecraft/class_638;Lnet/minecraft/class_1060;)V
 		ARG 1 world
 		ARG 2 textureManager
+	METHOD method_18126 (Lnet/minecraft/class_3999;Ljava/util/Queue;)V
+		ARG 1 sheet
+		ARG 2 queue
 	METHOD method_18829 clearAtlas ()V
 	METHOD method_18834 registerFactory (Lnet/minecraft/class_2396;Lnet/minecraft/class_702$class_4091;)V
 		ARG 1 type
@@ -70,6 +75,15 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 		ARG 1 entity
 		ARG 2 parameters
 	METHOD method_3062 registerDefaultFactories ()V
+	METHOD method_34021 canAdd (Lnet/minecraft/class_5878;)Z
+		COMMENT {@return whether another particle from {@code group} can be rendered by this
+		COMMENT manager}
+		ARG 1 group
+	METHOD method_34022 addTo (Lnet/minecraft/class_5878;I)V
+		ARG 1 group
+		ARG 2 count
+	METHOD method_34023 (Lnet/minecraft/class_5878;)V
+		ARG 1 group
 	CLASS class_4090 SimpleSpriteProvider
 		FIELD field_18303 sprites Ljava/util/List;
 		METHOD method_18838 setSprites (Ljava/util/List;)V
@@ -78,6 +92,8 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 		ARG 1 camera
 		ARG 2 tickDelta
 	CLASS class_4091 SpriteAwareFactory
+		METHOD create (Lnet/minecraft/class_4002;)Lnet/minecraft/class_707;
+			ARG 1 spriteProvider
 		METHOD create (Lnet/minecraft/class_4002;)Lnet/minecraft/class_707;
 			ARG 1 spriteProvider
 		METHOD create (Lnet/minecraft/class_4002;)Lnet/minecraft/class_707;

@@ -7,6 +7,11 @@ CLASS net/minecraft/class_4698 net/minecraft/world/storage/StorageIoWorker
 	FIELD field_21500 results Ljava/util/Map;
 	FIELD field_21501 active Z
 	FIELD field_21502 future Ljava/util/concurrent/CompletableFuture;
+	FIELD field_24468 executor Lnet/minecraft/class_3846;
+	METHOD <init> (Ljava/io/File;ZLjava/lang/String;)V
+		ARG 1 directory
+		ARG 2 dsync
+		ARG 3 name
 	METHOD method_23698 completeAll ()Ljava/util/concurrent/CompletableFuture;
 	METHOD method_23700 getNbt (Lnet/minecraft/class_1923;)Lnet/minecraft/class_2487;
 		ARG 1 pos
@@ -28,7 +33,12 @@ CLASS net/minecraft/class_4698 net/minecraft/world/storage/StorageIoWorker
 	METHOD method_23720 writeAll ()V
 	METHOD method_23721 finish ()V
 	METHOD method_23722 runTask ()Z
+	METHOD method_27945 writeRemainingResults ()V
+	METHOD method_31738 readChunkData (Lnet/minecraft/class_1923;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 pos
 	CLASS class_4699 Result
 		FIELD field_21503 nbt Lnet/minecraft/class_2487;
 		FIELD field_21504 future Ljava/util/concurrent/CompletableFuture;
+		METHOD <init> (Lnet/minecraft/class_2487;)V
+			ARG 1 nbt
 	CLASS class_5276 Priority

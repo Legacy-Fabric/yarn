@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_2625 net/minecraft/block/entity/SignBlockEntity
+	FIELD field_12046 editor Ljava/util/UUID;
 	FIELD field_12046 editor Lnet/minecraft/class_1657;
 	FIELD field_12048 editable Z
 	FIELD field_12049 textBeingEdited [Ljava/lang/String;
@@ -10,6 +11,14 @@ CLASS net/minecraft/class_2625 net/minecraft/block/entity/SignBlockEntity
 	FIELD field_16500 selectionStart I
 	FIELD field_16501 currentRow I
 	FIELD field_16502 caretVisible Z
+	FIELD field_28905 TEXT_KEYS [Ljava/lang/String;
+	FIELD field_28906 FILTERED_TEXT_KEYS [Ljava/lang/String;
+	FIELD field_28907 filteredTexts [Lnet/minecraft/class_2561;
+	FIELD field_28908 filterText Z
+	FIELD field_29225 glowingText Z
+	METHOD <init> (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
+		ARG 1 pos
+		ARG 2 state
 	METHOD method_11299 setTextOnRow (ILnet/minecraft/class_2561;)V
 		ARG 1 row
 		ARG 2 text
@@ -22,13 +31,18 @@ CLASS net/minecraft/class_2625 net/minecraft/block/entity/SignBlockEntity
 		ARG 1 row
 	METHOD method_11301 onActivate (Lnet/minecraft/class_1657;)Z
 		ARG 1 player
+	METHOD method_11301 onActivate (Lnet/minecraft/class_3222;)Z
+		ARG 1 player
 	METHOD method_11302 getTextOnRow (I)Lnet/minecraft/class_2561;
 		ARG 1 row
 	METHOD method_11303 setEditable (Z)V
 		ARG 1 editable
 	METHOD method_11304 getCommandSource (Lnet/minecraft/class_3222;)Lnet/minecraft/class_2168;
 		ARG 1 player
+	METHOD method_11305 getEditor ()Ljava/util/UUID;
 	METHOD method_11305 getEditor ()Lnet/minecraft/class_1657;
+	METHOD method_11306 setEditor (Ljava/util/UUID;)V
+		ARG 1 editor
 	METHOD method_11306 setEditor (Lnet/minecraft/class_1657;)V
 		ARG 1 player
 	METHOD method_11307 isEditable ()Z
@@ -47,3 +61,23 @@ CLASS net/minecraft/class_2625 net/minecraft/block/entity/SignBlockEntity
 	METHOD method_16336 getSelectionStart ()I
 	METHOD method_30843 getTextOnRow (I)Lnet/minecraft/class_2561;
 		ARG 1 row
+	METHOD method_30843 getTextOnRow (IZ)Lnet/minecraft/class_2561;
+		ARG 1 row
+		ARG 2 filtered
+	METHOD method_33384 unparsedTextFromJson (Ljava/lang/String;)Lnet/minecraft/class_2561;
+		ARG 1 json
+	METHOD method_33827 setTextOnRow (ILnet/minecraft/class_2561;Lnet/minecraft/class_2561;)V
+		ARG 1 row
+		ARG 2 text
+		ARG 3 filteredText
+	METHOD method_33828 parseTextFromJson (Ljava/lang/String;)Lnet/minecraft/class_2561;
+		ARG 1 json
+	METHOD method_33829 updateSign (ZLjava/util/function/Function;)[Lnet/minecraft/class_5481;
+		ARG 1 filterText
+		ARG 2 textOrderingFunction
+	METHOD method_33830 getTexts (Z)[Lnet/minecraft/class_2561;
+		ARG 1 filtered
+	METHOD method_34270 setGlowingText (Z)Z
+		ARG 1 glowingText
+	METHOD method_34271 isGlowingText ()Z
+	METHOD method_34272 updateListeners ()V

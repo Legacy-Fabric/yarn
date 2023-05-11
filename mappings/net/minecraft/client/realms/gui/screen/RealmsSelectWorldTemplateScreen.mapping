@@ -26,13 +26,9 @@ CLASS net/minecraft/class_4419 net/minecraft/client/realms/gui/screen/RealmsSele
 	FIELD field_22719 LINK_ICONS Lnet/minecraft/class_2960;
 	FIELD field_22720 TRAILER_ICONS Lnet/minecraft/class_2960;
 	FIELD field_22721 SLOT_FRAME Lnet/minecraft/class_2960;
-	METHOD <init> (Lnet/minecraft/class_4415;Lnet/minecraft/class_4877$class_4321;)V
-		ARG 1 parent
-		ARG 2 worldType
-	METHOD <init> (Lnet/minecraft/class_4415;Lnet/minecraft/class_4877$class_4321;Lnet/minecraft/class_4891;)V
-		ARG 1 parent
-		ARG 2 worldType
-		ARG 3 list
+	FIELD field_26512 INFO_TOOLTIP Lnet/minecraft/class_2561;
+	FIELD field_26513 TRAILER_TOOLTIP Lnet/minecraft/class_2561;
+	FIELD field_27941 callback Ljava/util/function/Consumer;
 	METHOD keyPressed (III)Z
 		ARG 1 eventKey
 		ARG 2 scancode
@@ -56,11 +52,21 @@ CLASS net/minecraft/class_4419 net/minecraft/client/realms/gui/screen/RealmsSele
 		ARG 1 warning
 	METHOD method_21430 shouldSelectButtonBeActive ()Z
 	METHOD method_21432 shouldPublisherBeVisible ()Z
+	METHOD method_21434 getSelectedTemplate ()Lnet/minecraft/class_4890;
 	METHOD method_21436 shouldTrailerBeVisible ()Z
 	METHOD method_21438 backButtonClicked ()V
 	METHOD method_21440 selectTemplate ()V
 	METHOD method_21442 onTrailer ()V
 	METHOD method_21444 onPublish ()V
+	METHOD method_25231 (Lnet/minecraft/class_4185;)V
+		ARG 1 button
+	METHOD method_25233 (Lnet/minecraft/class_4185;)V
+		ARG 1 button
+	METHOD method_25234 (Lnet/minecraft/class_4185;)V
+		ARG 1 button
+	METHOD method_25236 (Lnet/minecraft/class_4185;)V
+		ARG 1 button
+	METHOD method_25247 isSelectionValid ()Z
 	METHOD mouseClicked (DDI)Z
 		ARG 1 x
 		ARG 3 y
@@ -112,6 +118,7 @@ CLASS net/minecraft/class_4419 net/minecraft/client/realms/gui/screen/RealmsSele
 			ARG 4 ym
 			ARG 5 worldTemplate
 		METHOD method_21451 drawImage (Lnet/minecraft/class_4587;IIIILnet/minecraft/class_4890;)V
+			ARG 1 matrices
 			ARG 2 y
 			ARG 3 xm
 			ARG 4 ym
@@ -124,6 +131,7 @@ CLASS net/minecraft/class_4419 net/minecraft/client/realms/gui/screen/RealmsSele
 			ARG 6 trailerLink
 			ARG 7 recommendedPlayers
 		METHOD method_21452 drawIcons (Lnet/minecraft/class_4587;IIIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+			ARG 1 matrices
 		METHOD method_21453 renderWorldTemplateItem (Lcom/mojang/realmsclient/dto/WorldTemplate;IIII)V
 			ARG 1 worldTemplate
 			ARG 2 x
@@ -131,6 +139,7 @@ CLASS net/minecraft/class_4419 net/minecraft/client/realms/gui/screen/RealmsSele
 			ARG 4 mouseX
 			ARG 5 mouseY
 		METHOD method_21453 renderWorldTemplateItem (Lnet/minecraft/class_4587;Lnet/minecraft/class_4890;IIII)V
+			ARG 1 matrices
 		METHOD render (IIIIIIIZF)V
 			ARG 1 index
 			ARG 2 rowTop

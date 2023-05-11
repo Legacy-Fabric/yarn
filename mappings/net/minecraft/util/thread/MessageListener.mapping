@@ -12,3 +12,12 @@ CLASS net/minecraft/class_3906 net/minecraft/util/thread/MessageListener
 		COMMENT
 		COMMENT @return CompletableFuture future that completes with the received message
 		ARG 1 messageProvider
+	METHOD method_27918 askFallible (Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Asks a fallible message provider for a message.
+		COMMENT
+		COMMENT The provider is given a MessageListener that accepts a {@link Either} representing either
+		COMMENT a valid response (generic parameter Source) or an Exception, which decides whether the
+		COMMENT future completes successfully or exceptionally.
+		COMMENT
+		COMMENT @return CompletableFuture that may either complete successfully or exceptionally
+		ARG 1 messageProvider

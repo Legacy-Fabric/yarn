@@ -25,8 +25,25 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 	FIELD field_11657 EPOLL_CLIENT_IO_GROUP Lnet/minecraft/class_3528;
 	FIELD field_11658 packetsReceivedCounter I
 	FIELD field_11660 disconnectReason Lnet/minecraft/class_2561;
+	FIELD field_33280 CURRENT_PACKET_COUNTER_WEIGHT F
+		COMMENT Represents when the average packet counter is updated, what percent of the
+		COMMENT value of the average counter is set from the current counter.
+		COMMENT
+		COMMENT <p>The formula is {@link #averagePacketsSent averagePacketsSent} = {@value}
+		COMMENT &times; {@link #packetsSentCounter packetsSentCounter} + (1 - {@value}) &times;
+		COMMENT {@code averagePacketsSent}.
 	METHOD <init> (Lnet/minecraft/class_2598;)V
 		ARG 1 side
+	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelInactive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+		ARG 1 context
+		ARG 2 packet
+	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
+		ARG 1 context
+		ARG 2 ex
 	METHOD method_10743 send (Lnet/minecraft/class_2596;)V
 		ARG 1 packet
 	METHOD method_10744 getPacketListener ()Lnet/minecraft/class_2547;
@@ -48,6 +65,9 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 		ARG 0 address
 		ARG 1 port
 		ARG 2 shouldUseNativeTransport
+	METHOD method_10753 connect (Ljava/net/InetSocketAddress;Z)Lnet/minecraft/class_2535;
+		ARG 0 address
+		ARG 1 useEpoll
 	METHOD method_10754 tick ()V
 	METHOD method_10755 getAddress ()Ljava/net/SocketAddress;
 	METHOD method_10756 isLocal ()Z
@@ -75,6 +95,23 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 	METHOD method_10771 isEncrypted ()Z
 	METHOD method_10772 hasChannel ()Z
 	METHOD method_30615 updateStats ()V
+	METHOD method_32306 getState ()Lnet/minecraft/class_2539;
+		COMMENT Returns the current network state of this connection.
+	METHOD method_36121 getSide ()Lnet/minecraft/class_2598;
+		COMMENT Returns the side of this connection, or the direction of the packets received
+		COMMENT by this connection.
+	METHOD method_36122 getOppositeSide ()Lnet/minecraft/class_2598;
+		COMMENT Returns the opposite side of this connection, or the direction of the packets
+		COMMENT sent by this connection.
+	METHOD method_36942 sendInternal (Lnet/minecraft/class_2596;Lio/netty/util/concurrent/GenericFutureListener;Lnet/minecraft/class_2539;Lnet/minecraft/class_2539;)V
+		ARG 1 packet
+		ARG 2 callback
+	CLASS 1
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
 	CLASS class_2536 QueuedPacket
 		FIELD field_11661 packet Lnet/minecraft/class_2596;
 		FIELD field_11662 callback Lio/netty/util/concurrent/GenericFutureListener;

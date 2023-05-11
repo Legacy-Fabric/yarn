@@ -3,9 +3,8 @@ CLASS net/minecraft/class_129 net/minecraft/util/crash/CrashReportSection
 	FIELD field_1095 report Lnet/minecraft/class_128;
 	FIELD field_1096 title Ljava/lang/String;
 	FIELD field_1097 stackTrace [Ljava/lang/StackTraceElement;
-	METHOD <init> (Lnet/minecraft/class_128;Ljava/lang/String;)V
-		ARG 1 report
-		ARG 2 title
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 title
 	METHOD method_574 addStackTrace (Ljava/lang/StringBuilder;)V
 		ARG 1 crashReportBuilder
 	METHOD method_575 getStackTrace ()[Ljava/lang/StackTraceElement;
@@ -22,12 +21,28 @@ CLASS net/minecraft/class_129 net/minecraft/util/crash/CrashReportSection
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD method_581 createPositionString (Lnet/minecraft/class_5539;III)Ljava/lang/String;
+		ARG 0 world
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD method_582 createPositionString (Lnet/minecraft/class_2338;)Ljava/lang/String;
 		ARG 0 pos
+	METHOD method_582 createPositionString (Lnet/minecraft/class_5539;Lnet/minecraft/class_2338;)Ljava/lang/String;
+		ARG 0 world
+		ARG 1 pos
 	METHOD method_583 createPositionString (DDD)Ljava/lang/String;
 		ARG 0 x
 		ARG 2 y
 		ARG 4 z
+	METHOD method_583 createPositionString (Lnet/minecraft/class_5539;DDD)Ljava/lang/String;
+		ARG 0 world
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_584 shouldGenerateStackTrace (Ljava/lang/StackTraceElement;Ljava/lang/StackTraceElement;)Z
+		ARG 1 prev
+		ARG 2 next
 	METHOD method_585 add (Ljava/lang/String;Ljava/lang/Throwable;)V
 		ARG 1 name
 		ARG 2 throwable
@@ -35,6 +50,11 @@ CLASS net/minecraft/class_129 net/minecraft/util/crash/CrashReportSection
 		ARG 0 element
 		ARG 1 pos
 		ARG 2 state
+	METHOD method_586 addBlockInfo (Lnet/minecraft/class_129;Lnet/minecraft/class_5539;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
+		ARG 0 element
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
 	CLASS class_130 Element
 		FIELD field_1098 name Ljava/lang/String;
 		FIELD field_1099 detail Ljava/lang/String;

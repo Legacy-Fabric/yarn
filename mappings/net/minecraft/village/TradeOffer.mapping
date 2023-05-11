@@ -30,6 +30,17 @@ CLASS net/minecraft/class_1914 net/minecraft/village/TradeOffer
 		ARG 5 maxUses
 		ARG 6 merchantExperience
 		ARG 7 priceMultiplier
+	METHOD <init> (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;IIIFI)V
+		ARG 1 firstBuyItem
+		ARG 2 secondBuyItem
+		ARG 3 sellItem
+		ARG 4 uses
+		ARG 5 maxUses
+		ARG 6 merchantExperience
+		ARG 7 priceMultiplier
+		ARG 8 demandBonus
+	METHOD <init> (Lnet/minecraft/class_2487;)V
+		ARG 1 nbt
 	METHOD method_16952 matchesBuyItems (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
 		ARG 1 first
 		ARG 2 second
@@ -76,6 +87,11 @@ CLASS net/minecraft/class_1914 net/minecraft/village/TradeOffer
 		COMMENT <p>It is updated when a villager restocks.
 		COMMENT
 		COMMENT @see #updateDemandBonus()
+	METHOD method_21834 hasBeenUsed ()Z
+		COMMENT Returns whether this trade offer has already been used.
+		COMMENT
+		COMMENT <p>Checks if the number of times this trade offer has been used
+		COMMENT is greater than 0.
 	METHOD method_8244 use ()V
 		COMMENT Increments the number of times this trade offer has been used.
 	METHOD method_8245 increaseSpecialPrice (I)V

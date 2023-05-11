@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 	FIELD field_13294 CAVE_AIR Lnet/minecraft/class_2680;
+	FIELD field_13295 RAVINE Lnet/minecraft/class_2939;
 	FIELD field_13296 LAVA Lnet/minecraft/class_3610;
 	FIELD field_13298 carvableFluids Ljava/util/Set;
 	FIELD field_13299 configDeserializer Ljava/util/function/Function;
@@ -8,9 +9,9 @@ CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 	FIELD field_13305 WATER Lnet/minecraft/class_3610;
 	FIELD field_16653 heightLimit I
 	FIELD field_24831 codec Lcom/mojang/serialization/Codec;
-	METHOD <init> (Lcom/mojang/serialization/Codec;I)V
+	FIELD field_33614 STONE_SOURCE Lnet/minecraft/class_5840;
+	METHOD <init> (Lcom/mojang/serialization/Codec;)V
 		ARG 1 configCodec
-		ARG 2 heightLimit
 	METHOD method_12702 carve (Lnet/minecraft/class_2791;Ljava/util/Random;IIIIILjava/util/BitSet;Lnet/minecraft/class_2920;)Z
 		ARG 1 chunk
 		ARG 2 random
@@ -31,6 +32,14 @@ CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 		ARG 7 mainChunkX
 		ARG 8 mainChunkZ
 		ARG 9 carvingMask
+	METHOD method_12702 carve (Lnet/minecraft/class_5873;Lnet/minecraft/class_5871;Lnet/minecraft/class_2791;Ljava/util/function/Function;Ljava/util/Random;Lnet/minecraft/class_6350;Lnet/minecraft/class_1923;Ljava/util/BitSet;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 3 chunk
+		ARG 4 posToBiome
+		ARG 5 random
+		ARG 7 pos
+		ARG 8 carvingMask
 	METHOD method_12703 canCarveBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;)Z
 		ARG 1 state
 		ARG 2 stateAbove
@@ -42,13 +51,16 @@ CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 		ARG 2 chunkX
 		ARG 3 chunkZ
 		ARG 4 config
+	METHOD method_12705 shouldCarve (Lnet/minecraft/class_5871;Ljava/util/Random;)Z
+		ARG 1 config
+		ARG 2 random
 	METHOD method_12706 isOnBoundary (IIIIII)Z
-		ARG 1 minX
-		ARG 2 maxX
-		ARG 3 minZ
-		ARG 4 maxZ
-		ARG 5 x
-		ARG 6 z
+		ARG 0 x
+		ARG 1 z
+		ARG 2 minX
+		ARG 3 maxX
+		ARG 4 minZ
+		ARG 5 maxZ
 	METHOD method_12707 canCarveBranch (IIDDIIF)Z
 		ARG 1 mainChunkX
 		ARG 2 mainChunkZ
@@ -134,6 +146,17 @@ CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 		ARG 13 relativeX
 		ARG 14 y
 		ARG 15 relativeZ
+	METHOD method_16581 carveAtPoint (Lnet/minecraft/class_5873;Lnet/minecraft/class_5871;Lnet/minecraft/class_2791;Ljava/util/function/Function;Ljava/util/BitSet;Ljava/util/Random;Lnet/minecraft/class_2338$class_2339;Lnet/minecraft/class_2338$class_2339;Lnet/minecraft/class_6350;Lorg/apache/commons/lang3/mutable/MutableBoolean;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 3 chunk
+		ARG 4 posToBiome
+		ARG 5 carvingMask
+		ARG 6 random
+		ARG 7 pos
+		ARG 8 downPos
+		ARG 9 sampler
+		ARG 10 foundSurface
 	METHOD method_16582 isPositionExcluded (DDDI)Z
 		ARG 1 scaledRelativeX
 		ARG 3 scaledRelativeY
@@ -141,4 +164,51 @@ CLASS net/minecraft/class_2939 net/minecraft/world/gen/carver/Carver
 		ARG 7 y
 	METHOD method_28614 configure (Lnet/minecraft/class_2920;)Lnet/minecraft/class_2922;
 		ARG 1 config
+	METHOD method_28614 configure (Lnet/minecraft/class_5871;)Lnet/minecraft/class_2922;
+		ARG 1 config
 	METHOD method_28616 getCodec ()Lcom/mojang/serialization/Codec;
+	METHOD method_33976 canCarveBranch (Lnet/minecraft/class_1923;DDIIF)Z
+		ARG 0 pos
+		ARG 1 x
+		ARG 3 z
+		ARG 5 branchIndex
+		ARG 6 branchCount
+		ARG 7 baseWidth
+	METHOD method_33977 isRegionUncarvable (Lnet/minecraft/class_2791;IIIIII)Z
+		ARG 1 chunk
+		ARG 2 minX
+		ARG 3 maxX
+		ARG 4 minY
+		ARG 5 maxY
+		ARG 6 minZ
+		ARG 7 maxZ
+	METHOD method_33978 carveRegion (Lnet/minecraft/class_5873;Lnet/minecraft/class_5871;Lnet/minecraft/class_2791;Ljava/util/function/Function;JLnet/minecraft/class_6350;DDDDDLjava/util/BitSet;Lnet/minecraft/class_2939$class_5874;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 4 posToBiome
+		ARG 5 seed
+		ARG 7 sampler
+		ARG 8 x
+		ARG 10 y
+		ARG 12 z
+		ARG 14 horizontalScale
+		ARG 16 verticalScale
+		ARG 18 carvingMask
+		ARG 19 skipPredicate
+	METHOD method_33980 isDebug (Lnet/minecraft/class_5871;)Z
+		ARG 0 config
+	METHOD method_36417 getDebugState (Lnet/minecraft/class_5871;Lnet/minecraft/class_2680;)Lnet/minecraft/class_2680;
+		ARG 0 config
+		ARG 1 state
+	METHOD method_36418 getState (Lnet/minecraft/class_5873;Lnet/minecraft/class_5871;Lnet/minecraft/class_2338;Lnet/minecraft/class_6350;)Lnet/minecraft/class_2680;
+		ARG 1 context
+		ARG 2 config
+		ARG 3 pos
+		ARG 4 sampler
+	CLASS class_5874 SkipPredicate
+		METHOD shouldSkip (Lnet/minecraft/class_5873;DDDI)Z
+			ARG 1 context
+			ARG 2 scaledRelativeX
+			ARG 4 scaledRelativeY
+			ARG 6 scaledRelativeZ
+			ARG 8 y

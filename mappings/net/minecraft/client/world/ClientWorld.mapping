@@ -9,6 +9,10 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 	FIELD field_24430 clientWorldProperties Lnet/minecraft/class_638$class_5271;
 	FIELD field_24605 chunkManager Lnet/minecraft/class_631;
 	FIELD field_24606 skyProperties Lnet/minecraft/class_5294;
+	FIELD field_27733 entityList Lnet/minecraft/class_5574;
+	FIELD field_27734 entityManager Lnet/minecraft/class_5582;
+	FIELD field_32641 PARTICLE_Y_OFFSET D
+		COMMENT A minor offset applied when spawning particles.
 	FIELD field_3727 netHandler Lnet/minecraft/class_634;
 	FIELD field_3729 client Lnet/minecraft/class_310;
 	FIELD field_3730 ticksUntilCaveAmbientSound I
@@ -58,6 +62,8 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 1 pos
 		ARG 2 colorResolver
 	METHOD method_23782 resetChunkColor (II)V
+	METHOD method_23782 resetChunkColor (Lnet/minecraft/class_1923;)V
+		ARG 1 chunkPos
 	METHOD method_23784 reloadColor ()V
 	METHOD method_23785 getCloudsColor (F)Lnet/minecraft/class_243;
 		ARG 1 tickDelta
@@ -65,6 +71,8 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 1 tickDelta
 	METHOD method_23788 getSkyDarknessHeight ()D
 	METHOD method_23789 getLightningTicksLeft ()I
+	METHOD method_24462 (Lnet/minecraft/class_2338$class_2339;Lnet/minecraft/class_4761;)V
+		ARG 2 config
 	METHOD method_27873 setSpawnPos (Lnet/minecraft/class_2338;)V
 		ARG 1 pos
 	METHOD method_27873 setSpawnPos (Lnet/minecraft/class_2338;F)V
@@ -72,6 +80,8 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 2 angle
 	METHOD method_27874 getSpawnPos ()Lnet/minecraft/class_2338;
 	METHOD method_28103 getSkyProperties ()Lnet/minecraft/class_5294;
+	METHOD method_29089 setTime (J)V
+		ARG 1 time
 	METHOD method_29090 tickTime ()V
 	METHOD method_2932 addParticle (DDDDDLnet/minecraft/class_2394;)V
 		ARG 1 minX
@@ -96,6 +106,14 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 	METHOD method_2942 addEntity (ILnet/minecraft/class_1297;)V
 		ARG 1 id
 		ARG 2 entity
+	METHOD method_2943 randomBlockDisplayTick (IIIILjava/util/Random;Lnet/minecraft/class_638$class_6234;Lnet/minecraft/class_2338$class_2339;)V
+		ARG 1 centerX
+		ARG 2 centerY
+		ARG 3 centerZ
+		ARG 4 radius
+		ARG 5 random
+		ARG 6 blockParticle
+		ARG 7 pos
 	METHOD method_2943 randomBlockDisplayTick (IIIILjava/util/Random;ZLnet/minecraft/class_2338$class_2339;)V
 		ARG 1 xCenter
 		ARG 2 yCenter
@@ -108,6 +126,9 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 1 scoreboard
 	METHOD method_2945 removeEntity (I)V
 		ARG 1 entityId
+	METHOD method_2945 removeEntity (ILnet/minecraft/class_1297$class_5529;)V
+		ARG 1 entityId
+		ARG 2 removalReason
 	METHOD method_2947 playSound (Lnet/minecraft/class_2338;Lnet/minecraft/class_3414;Lnet/minecraft/class_3419;FFZ)V
 		ARG 1 pos
 		ARG 2 sound
@@ -120,6 +141,13 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 2 parameters
 		ARG 3 shape
 		ARG 4 y
+	METHOD method_30671 getSpawnAngle ()F
+	METHOD method_32124 (Lnet/minecraft/class_1297;)V
+		ARG 1 entity
+	METHOD method_35752 getBlockParticle ()Lnet/minecraft/class_638$class_6234;
+	METHOD method_35753 putMapStates (Ljava/util/Map;)V
+		ARG 1 mapStates
+	METHOD method_35754 getMapStates ()Ljava/util/Map;
 	METHOD method_8435 setTimeOfDay (J)V
 		ARG 1 timeOfDay
 	METHOD method_8441 tick (Ljava/util/function/BooleanSupplier;)V
@@ -150,4 +178,13 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		METHOD method_27876 setDifficultyLocked (Z)V
 			ARG 1 difficultyLocked
 		METHOD method_28105 getSkyDarknessHeight ()D
+		METHOD method_28105 getSkyDarknessHeight (Lnet/minecraft/class_5539;)D
+			ARG 1 world
 		METHOD method_28106 getHorizonShadingRatio ()D
+	CLASS class_5612 ClientEntityHandler
+	CLASS class_6234 BlockParticle
+		FIELD field_32644 block Lnet/minecraft/class_2248;
+		FIELD field_32645 particle Lnet/minecraft/class_2394;
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/class_2248;Lnet/minecraft/class_2394;)V
+			ARG 3 block
+			ARG 4 particle

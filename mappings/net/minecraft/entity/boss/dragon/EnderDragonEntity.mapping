@@ -1,5 +1,11 @@
 CLASS net/minecraft/class_1510 net/minecraft/entity/boss/dragon/EnderDragonEntity
 	FIELD field_18120 CLOSE_PLAYER_PREDICATE Lnet/minecraft/class_4051;
+	FIELD field_20865 yawAcceleration F
+	FIELD field_30428 MAX_HEALTH I
+	FIELD field_30430 TAKEOFF_THRESHOLD F
+		COMMENT The damage the dragon can take before it takes off, represented as a ratio to the full health.
+	FIELD field_33910 DRAGON_DEATH_TIME_KEY Ljava/lang/String;
+	FIELD field_33911 DRAGON_PHASE_KEY Ljava/lang/String;
 	FIELD field_7008 pathHeap Lnet/minecraft/class_5;
 	FIELD field_7009 tail2 Lnet/minecraft/class_1508;
 	FIELD field_7010 latestSegment I
@@ -25,6 +31,7 @@ CLASS net/minecraft/class_1510 net/minecraft/entity/boss/dragon/EnderDragonEntit
 		COMMENT (yaw, y, ?)
 	FIELD field_7027 slowedDownByBlock Z
 	FIELD field_7028 phaseManager Lnet/minecraft/class_1526;
+	FIELD field_7029 damageDuringSitting I
 	FIELD field_7030 wingPosition F
 	FIELD field_7031 ticksSinceDeath I
 	FIELD field_7032 parts [Lnet/minecraft/class_1508;
@@ -46,6 +53,7 @@ CLASS net/minecraft/class_1510 net/minecraft/entity/boss/dragon/EnderDragonEntit
 	METHOD method_6819 parentDamage (Lnet/minecraft/class_1282;F)Z
 		ARG 1 source
 		ARG 2 amount
+	METHOD method_6820 getHeadVerticalMovement ()F
 	METHOD method_6821 destroyBlocks (Lnet/minecraft/class_238;)Z
 		ARG 1 box
 	METHOD method_6822 getNearestPathNodeIndex (DDD)I

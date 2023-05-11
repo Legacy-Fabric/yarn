@@ -12,6 +12,9 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	FIELD field_25277 weatherFramebuffer Lnet/minecraft/class_276;
 	FIELD field_25278 cloudsFramebuffer Lnet/minecraft/class_276;
 	FIELD field_25279 transparencyShader Lnet/minecraft/class_279;
+	FIELD field_27740 frustum Lnet/minecraft/class_4604;
+	FIELD field_27741 blockEntityRenderDispatcher Lnet/minecraft/class_824;
+	FIELD field_29619 chunkInfos Lnet/minecraft/class_761$class_5972;
 	FIELD field_4055 noCullingBlockEntities Ljava/util/Set;
 	FIELD field_4056 capturedFrustum Lnet/minecraft/class_4604;
 	FIELD field_4057 textureManager Lnet/minecraft/class_1060;
@@ -35,6 +38,7 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	FIELD field_4083 lastTranslucentSortX D
 	FIELD field_4084 cameraChunkX I
 	FIELD field_4085 world Lnet/minecraft/class_638;
+	FIELD field_4086 visibleChunks Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
 	FIELD field_4086 visibleChunks Lit/unimi/dsi/fastutil/objects/ObjectList;
 	FIELD field_4087 lightSkyBuffer Lnet/minecraft/class_291;
 	FIELD field_4088 client Lnet/minecraft/class_310;
@@ -158,6 +162,7 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 5 blue
 		ARG 6 alpha
 	METHOD method_22987 removeBlockBreakingInfo (Lnet/minecraft/class_3191;)V
+		ARG 1 info
 	METHOD method_22989 renderChunkDebugInfo (Lnet/minecraft/class_4184;)V
 		ARG 1 camera
 	METHOD method_22990 getEntityOutlinesFramebuffer ()Lnet/minecraft/class_276;
@@ -175,6 +180,10 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	METHOD method_29364 getCloudsFramebuffer ()Lnet/minecraft/class_276;
 	METHOD method_29365 loadTransparencyShader ()V
 	METHOD method_29701 resetTransparencyShader ()V
+	METHOD method_32133 setupFrustum (Lnet/minecraft/class_4587;Lnet/minecraft/class_243;Lnet/minecraft/class_1159;)V
+		ARG 1 matrices
+		ARG 2 pos
+		ARG 3 projectionMatrix
 	METHOD method_3239 renderClouds (Lnet/minecraft/class_287;DDDLnet/minecraft/class_243;)V
 		ARG 1 builder
 		ARG 2 x
@@ -186,6 +195,8 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 2 chunk
 		ARG 3 direction
 	METHOD method_3242 onResized (II)V
+		ARG 1 width
+		ARG 2 height
 	METHOD method_3243 renderWorldBorder (Lnet/minecraft/class_4184;)V
 		ARG 1 camera
 	METHOD method_3244 setWorld (Lnet/minecraft/class_638;)V
@@ -201,6 +212,9 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	METHOD method_3250 renderEndSky (Lnet/minecraft/class_4587;)V
 		ARG 1 matrices
 	METHOD method_3251 renderLayer (Lnet/minecraft/class_1921;Lnet/minecraft/class_4587;DDD)V
+	METHOD method_3251 renderLayer (Lnet/minecraft/class_1921;Lnet/minecraft/class_4587;DDDLnet/minecraft/class_1159;)V
+		ARG 1 renderLayer
+		ARG 2 matrices
 	METHOD method_3252 tick ()V
 	METHOD method_3254 drawEntityOutlinesFramebuffer ()V
 	METHOD method_3255 renderStars (Lnet/minecraft/class_287;)V
@@ -208,6 +222,8 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	METHOD method_3257 renderSky (Lnet/minecraft/class_4587;F)V
 		ARG 1 matrices
 		ARG 2 tickDelta
+	METHOD method_3257 renderSky (Lnet/minecraft/class_4587;Lnet/minecraft/class_1159;FLjava/lang/Runnable;)V
+		ARG 1 matrices
 	METHOD method_3258 drawBox (Lnet/minecraft/class_287;DDDDDDFFFF)V
 		ARG 0 buffer
 		ARG 1 x1
@@ -226,6 +242,8 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 3 cameraX
 		ARG 5 cameraY
 		ARG 7 cameraZ
+	METHOD method_3259 renderClouds (Lnet/minecraft/class_4587;Lnet/minecraft/class_1159;FDDD)V
+		ARG 1 matrices
 	METHOD method_3262 drawBox (Lnet/minecraft/class_4588;DDDDDDFFFF)V
 	METHOD method_3265 renderDarkSky ()V
 	METHOD method_3268 getRandomParticleSpawnChance (Z)Lnet/minecraft/class_4066;
@@ -294,6 +312,12 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 3 z
 		ARG 4 important
 	METHOD method_3296 loadEntityOutlineShader ()V
+	METHOD method_34810 getChunkBuilder ()Lnet/minecraft/class_846;
+	METHOD method_34811 getChunkCount ()D
+	METHOD method_34812 getViewDistance ()D
+	METHOD method_35774 reloadTransparencyShader ()V
+	METHOD method_35775 captureFrustum ()V
+	METHOD method_35776 killFrustum ()V
 	METHOD method_8562 playSong (Lnet/minecraft/class_3414;Lnet/minecraft/class_2338;)V
 		ARG 1 song
 		ARG 2 songPosition
@@ -339,22 +363,39 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 2 y
 		ARG 3 z
 	CLASS class_5347 ShaderException
+		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+			ARG 1 message
+			ARG 2 cause
+	CLASS class_5972 ChunkInfoList
+		FIELD field_29620 current [Lnet/minecraft/class_761$class_762;
+		FIELD field_29621 pending [Lnet/minecraft/class_761$class_762;
+		METHOD method_34818 update ()V
+		METHOD method_34820 getInfo (Lnet/minecraft/class_846$class_851;)Lnet/minecraft/class_761$class_762;
+			ARG 1 chunk
+		METHOD method_34821 setInfo (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_761$class_762;)V
+			ARG 1 chunk
+			ARG 2 info
 	CLASS class_762 ChunkInfo
 		FIELD field_4122 propagationLevel I
 		FIELD field_4124 chunk Lnet/minecraft/class_846$class_851;
 		FIELD field_4124 renderer Lnet/minecraft/class_851;
+		FIELD field_4125 direction B
 		FIELD field_4125 direction Lnet/minecraft/class_2350;
 		FIELD field_4126 cullingState B
-		METHOD <init> (Lnet/minecraft/class_761;Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_2350;I)V
-			ARG 1 renderer
-			ARG 2 chunk
-			ARG 3 direction
-			ARG 4 propagationLevel
+		METHOD <init> (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_2350;I)V
+			ARG 1 chunk
+			ARG 2 direction
+			ARG 3 propagationLevel
 		METHOD method_3298 canCull (Lnet/minecraft/class_2350;)Z
 			ARG 1 from
 		METHOD method_3299 updateCullingState (BLnet/minecraft/class_2350;)V
 			ARG 1 parentCullingState
 			ARG 2 from
+		METHOD method_34813 hasAnyDirection ()Z
+		METHOD method_34814 hasDirection (I)Z
+			ARG 1 ordinal
+		METHOD method_34816 addDirection (Lnet/minecraft/class_2350;)V
+			ARG 1 direction
 	FIELD field_4056 forcedFrustum Lnet/minecraft/class_857;
 	FIELD field_4058 partiallyBrokenBlocks Ljava/util/Map;
 	FIELD field_4063 vertexBufferObjectsEnabled Z

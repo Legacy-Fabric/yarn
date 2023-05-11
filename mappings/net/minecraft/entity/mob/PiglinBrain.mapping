@@ -1,10 +1,16 @@
 CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 	FIELD field_22388 HUNT_MEMORY_DURATION Lnet/minecraft/class_4801;
+	FIELD field_22388 HUNT_MEMORY_DURATION Lnet/minecraft/class_6019;
 	FIELD field_22389 MEMORY_TRANSFER_TASK_DURATION Lnet/minecraft/class_4801;
+	FIELD field_22389 MEMORY_TRANSFER_TASK_DURATION Lnet/minecraft/class_6019;
 	FIELD field_22390 RIDE_TARGET_MEMORY_DURATION Lnet/minecraft/class_4801;
+	FIELD field_22390 RIDE_TARGET_MEMORY_DURATION Lnet/minecraft/class_6019;
 	FIELD field_22391 AVOID_MEMORY_DURATION Lnet/minecraft/class_4801;
+	FIELD field_22391 AVOID_MEMORY_DURATION Lnet/minecraft/class_6019;
 	FIELD field_22392 FOOD Ljava/util/Set;
 	FIELD field_23826 BARTERING_ITEM Lnet/minecraft/class_1792;
+	FIELD field_25384 GO_TO_ZOMBIFIED_MEMORY_DURATION Lnet/minecraft/class_6019;
+	FIELD field_25698 GO_TO_NEMESIS_MEMORY_DURATION Lnet/minecraft/class_6019;
 	METHOD method_24714 hasBeenHitByPlayer (Lnet/minecraft/class_4836;)Z
 		ARG 0 piglin
 	METHOD method_24717 makeRandomFollowTask ()Lnet/minecraft/class_4118;
@@ -50,6 +56,8 @@ CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 		ARG 1 piglin
 	METHOD method_24735 isGoldenItem (Lnet/minecraft/class_1792;)Z
 		ARG 0 item
+	METHOD method_24735 isGoldenItem (Lnet/minecraft/class_1799;)Z
+		ARG 0 stack
 	METHOD method_24736 setHuntedRecently (Lnet/minecraft/class_4836;)V
 		ARG 0 piglin
 	METHOD method_24737 makeRememberRideableHoglinTask ()Lnet/minecraft/class_4821;
@@ -69,6 +77,8 @@ CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 		ARG 0 piglin
 	METHOD method_24746 acceptsForBarter (Lnet/minecraft/class_1792;)Z
 		ARG 0 item
+	METHOD method_24746 acceptsForBarter (Lnet/minecraft/class_1799;)Z
+		ARG 0 stack
 	METHOD method_24747 makeGoToZombifiedPiglinTask ()Lnet/minecraft/class_4809;
 	METHOD method_24748 isHoldingCrossbow (Lnet/minecraft/class_1309;)Z
 		ARG 0 piglin
@@ -83,6 +93,8 @@ CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 		ARG 1 brain
 	METHOD method_24752 isFood (Lnet/minecraft/class_1792;)Z
 		ARG 0 item
+	METHOD method_24752 isFood (Lnet/minecraft/class_1799;)Z
+		ARG 0 stack
 	METHOD method_24753 setAdmiringItem (Lnet/minecraft/class_1309;)V
 		ARG 0 entity
 	METHOD method_24754 haveHuntedHoglinsRecently (Lnet/minecraft/class_4836;)Z
@@ -185,10 +197,15 @@ CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 	METHOD method_27086 isWillingToTrade (Lnet/minecraft/class_4836;Lnet/minecraft/class_1799;)Z
 		ARG 0 piglin
 		ARG 1 nearbyItems
+	METHOD method_29276 isHuntingTarget (Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
+		ARG 0 piglin
+		ARG 1 target
 	METHOD method_29277 canRideHoglin (Lnet/minecraft/class_4836;)Z
 		ARG 0 piglin
 	METHOD method_29534 isZombified (Lnet/minecraft/class_1299;)Z
 		ARG 0 entityType
+	METHOD method_29536 getAvoiding (Lnet/minecraft/class_4836;)Ljava/util/Optional;
+		ARG 0 piglin
 	METHOD method_29537 getNearestZombifiedPiglin (Lnet/minecraft/class_4836;)Z
 		ARG 0 piglin
 	METHOD method_29538 hasTargetToAvoid (Lnet/minecraft/class_4836;)Z
@@ -213,5 +230,6 @@ CLASS net/minecraft/class_4838 net/minecraft/entity/mob/PiglinBrain
 	METHOD method_30089 swapItemWithOffHand (Lnet/minecraft/class_4836;Lnet/minecraft/class_1799;)V
 		ARG 0 piglin
 		ARG 1 stack
+	METHOD method_30090 goToNemesisTask ()Lnet/minecraft/class_4809;
 	METHOD method_30091 getCurrentActivitySound (Lnet/minecraft/class_4836;)Ljava/util/Optional;
 		ARG 0 piglin

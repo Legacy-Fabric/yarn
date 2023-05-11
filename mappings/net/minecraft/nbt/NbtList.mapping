@@ -3,7 +3,7 @@ CLASS net/minecraft/class_2499 net/minecraft/nbt/NbtList
 	COMMENT <p>
 	COMMENT An NBT list holds values of the same {@linkplain NbtElement#getType NBT type}.
 	COMMENT The {@linkplain AbstractNbtList#getHeldType NBT type} of an NBT list is determined
-	COMMENT once its first element is inserted; empty NBT lists return {@code 0} as their held {@linkplain AbstractNbtList#getHeldType NBT type}.
+	COMMENT once its first element is inserted; empty NBT lists return {@link NbtElement#NULL_TYPE NULL_TYPE} as their held {@linkplain AbstractNbtList#getHeldType NBT type}.
 	FIELD field_11550 value Ljava/util/List;
 	FIELD field_11551 type B
 	FIELD field_21039 TYPE Lnet/minecraft/class_4614;
@@ -13,6 +13,10 @@ CLASS net/minecraft/class_2499 net/minecraft/nbt/NbtList
 		ARG 2 type
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 o
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
+	METHOD get (I)Ljava/lang/Object;
+		ARG 1 index
 	METHOD method_10600 getInt (I)I
 		ARG 1 index
 	METHOD method_10601 getElementType ()I
@@ -33,3 +37,7 @@ CLASS net/minecraft/class_2499 net/minecraft/nbt/NbtList
 	METHOD method_10611 getDouble (I)D
 		ARG 1 index
 	METHOD method_17809 forgetTypeIfEmpty ()V
+	METHOD method_36111 getIntArray (I)[I
+		ARG 1 index
+	METHOD method_36112 getLongArray (I)[J
+		ARG 1 index

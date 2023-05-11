@@ -2,6 +2,7 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	FIELD field_18134 POSE_DIMENSIONS Ljava/util/Map;
 	FIELD field_18135 STANDING_DIMENSIONS Lnet/minecraft/class_4048;
 	FIELD field_19428 shoulderEntityAddedTime J
+	FIELD field_30642 OFFLINE_PLAYER_UUID_PREFIX Ljava/lang/String;
 	FIELD field_7483 strideDistance F
 	FIELD field_7484 itemCooldownManager Lnet/minecraft/class_1796;
 	FIELD field_7486 enderChestInventory Lnet/minecraft/class_1730;
@@ -81,6 +82,20 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 		ARG 0 world
 		ARG 1 pos
 	METHOD method_26956 createPlayerAttributes ()Lnet/minecraft/class_5132$class_5133;
+	METHOD method_31548 getInventory ()Lnet/minecraft/class_1661;
+	METHOD method_31549 getAbilities ()Lnet/minecraft/class_1656;
+	METHOD method_31550 isUsingSpyglass ()Z
+	METHOD method_33592 onPickupSlotClick (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_5536;)V
+		COMMENT Called when a player performs a {@link net.minecraft.screen.slot.SlotActionType#PICKUP
+		COMMENT pickup slot action} in a screen handler.
+		COMMENT
+		COMMENT @implNote This is used by the client player to trigger bundle tutorials.
+		ARG 1 cursorStack
+			COMMENT the item stack on the player's cursor
+		ARG 2 slotStack
+			COMMENT the item stack in the clicked slot
+		ARG 3 clickType
+			COMMENT the click type (mouse button used)
 	METHOD method_7254 unlockRecipes (Ljava/util/Collection;)I
 		ARG 1 recipes
 	METHOD method_7255 addExperience (I)V

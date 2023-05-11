@@ -26,6 +26,14 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	FIELD field_25142 enderDragonFight Lnet/minecraft/class_2881;
 	FIELD field_25143 shouldTickTime Z
 	FIELD field_25144 END_SPAWN_POS Lnet/minecraft/class_2338;
+	FIELD field_26932 loadedMobs Ljava/util/Set;
+	FIELD field_26933 dragonParts Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+	FIELD field_26934 entityList Lnet/minecraft/class_5574;
+	FIELD field_26935 entityManager Lnet/minecraft/class_5579;
+	FIELD field_28859 sleepManager Lnet/minecraft/class_5838;
+	FIELD field_29768 SERVER_IDLE_COOLDOWN I
+		COMMENT The number of ticks ({@value}) the world will continue to tick entities after
+		COMMENT all players have left and the world does not contain any forced chunks.
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/class_32$class_5143;Lnet/minecraft/class_5268;Lnet/minecraft/class_5321;Lnet/minecraft/class_2874;Lnet/minecraft/class_3949;Lnet/minecraft/class_2794;ZJLjava/util/List;Z)V
 		ARG 1 server
 		ARG 2 workerExecutor
@@ -109,6 +117,16 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 			COMMENT the entity type of the returned entities, or {@code null} for any type of entity
 		ARG 2 predicate
 			COMMENT a predicate which returned entities must satisfy
+	METHOD method_18198 getEntitiesByType (Lnet/minecraft/class_5575;Ljava/util/function/Predicate;)Ljava/util/List;
+		COMMENT Computes a list of entities of the given type.
+		COMMENT
+		COMMENT <strong>Warning:</strong> If {@code null} is passed as the entity type filter, care should be
+		COMMENT taken that the type argument {@code T} is set to {@link Entity}, otherwise heap pollution
+		COMMENT in the returned list or {@link ClassCastException} can occur.
+		COMMENT
+		COMMENT @return a list of entities of the given type
+		ARG 2 predicate
+			COMMENT a predicate which returned entities must satisfy
 	METHOD method_18199 (Lnet/minecraft/class_1309;)Z
 		ARG 1 entity
 	METHOD method_18203 tickChunk (Lnet/minecraft/class_2818;I)V
@@ -147,6 +165,9 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 		ARG 1 entity
 	METHOD method_18770 removePlayer (Lnet/minecraft/class_3222;)V
 		ARG 1 player
+	METHOD method_18770 removePlayer (Lnet/minecraft/class_3222;Lnet/minecraft/class_1297$class_5529;)V
+		ARG 1 player
+		ARG 2 reason
 	METHOD method_18771 addPlayer (Lnet/minecraft/class_3222;)V
 		ARG 1 player
 	METHOD method_18772 unloadEntity (Lnet/minecraft/class_1297;)V
@@ -187,6 +208,7 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 		ARG 0 writer
 		ARG 1 entities
 	METHOD method_21625 dump (Ljava/nio/file/Path;)V
+		ARG 1 path
 	METHOD method_21626 dumpBlockEntities (Ljava/io/Writer;)V
 		ARG 1 writer
 	METHOD method_23658 clearUpdatesInArea (Lnet/minecraft/class_3341;)V
@@ -218,6 +240,38 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	METHOD method_30735 checkIfUuidExists (Ljava/util/UUID;)Lnet/minecraft/class_1297;
 	METHOD method_30736 shouldCreateNewEntityWithPassenger (Lnet/minecraft/class_1297;)Z
 		ARG 1 entity
+	METHOD method_31268 getDebugString ()Ljava/lang/String;
+	METHOD method_31270 getTopFive (Ljava/lang/Iterable;Ljava/util/function/Function;)Ljava/lang/String;
+		COMMENT Categories {@code items} with the {@code classifier} and reports a message
+		COMMENT indicating the top five biggest categories.
+		ARG 0 items
+			COMMENT the items to classify
+		ARG 1 classifier
+			COMMENT the classifier that determines the category of any item
+	METHOD method_31418 getLightningRodPos (Lnet/minecraft/class_2338;)Ljava/util/Optional;
+		ARG 1 pos
+	METHOD method_31420 (Lnet/minecraft/class_3695;Lnet/minecraft/class_1297;)V
+		ARG 2 entity
+	METHOD method_31421 (Lnet/minecraft/class_4158;)Z
+		ARG 0 poiType
+	METHOD method_31423 loadEntities (Ljava/util/stream/Stream;)V
+		ARG 1 entities
+	METHOD method_31424 getDragonPart (I)Lnet/minecraft/class_1297;
+		ARG 1 id
+	METHOD method_31426 addEntities (Ljava/util/stream/Stream;)V
+		ARG 1 entities
+	METHOD method_31430 shouldCancelSpawn (Lnet/minecraft/class_1297;)Z
+		ARG 1 entity
+	METHOD method_32817 sendVibrationPacket (Lnet/minecraft/class_5720;)V
+		ARG 1 vibration
+	METHOD method_32818 (Lnet/minecraft/class_2338;Lnet/minecraft/class_5747;Lnet/minecraft/class_3222;)V
+		ARG 3 player
+	METHOD method_33143 handleSleeping ()V
+	METHOD method_33144 isSleepingEnabled ()Z
+	METHOD method_34679 (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2338;
+		ARG 0 pos
+	METHOD method_34680 (Lnet/minecraft/class_2338;)Z
+		ARG 1 pos
 	METHOD method_8414 init (Lnet/minecraft/class_1940;)V
 		ARG 1 levelInfo
 	METHOD method_8416 addLightning (Lnet/minecraft/class_1538;)V
@@ -234,3 +288,4 @@ CLASS net/minecraft/class_3218 net/minecraft/server/world/ServerWorld
 	METHOD method_8554 setSpawnPos (Lnet/minecraft/class_2338;F)V
 		ARG 1 pos
 		ARG 2 angle
+	CLASS class_5526 ServerEntityHandler

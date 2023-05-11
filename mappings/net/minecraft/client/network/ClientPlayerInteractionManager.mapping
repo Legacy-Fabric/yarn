@@ -2,6 +2,7 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 	FIELD field_20316 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_20317 unacknowledgedPlayerActions Lit/unimi/dsi/fastutil/objects/Object2ObjectLinkedOpenHashMap;
 	FIELD field_24608 previousGameMode Lnet/minecraft/class_1934;
+	FIELD field_32647 MAX_UNACKNOWLEDGED_PLAYER_ACTIONS I
 	FIELD field_3712 client Lnet/minecraft/class_310;
 	FIELD field_3713 blockBreakingSoundCooldown F
 	FIELD field_3714 currentBreakingPos Lnet/minecraft/class_2338;
@@ -66,6 +67,12 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 3 clickData
 		ARG 4 actionType
 		ARG 5 player
+	METHOD method_2906 clickSlot (IIILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)V
+		COMMENT @see net.minecraft.screen.ScreenHandler#onSlotClick(int, int, net.minecraft.screen.slot.SlotActionType, net.minecraft.entity.player.PlayerEntity)
+		ARG 1 syncId
+		ARG 2 slotId
+		ARG 3 button
+		ARG 4 actionType
 	METHOD method_2907 setGameMode (Lnet/minecraft/class_1934;)V
 		ARG 1 gameMode
 	METHOD method_2908 hasStatusBars ()Z
@@ -117,3 +124,6 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 2 statHandler
 		ARG 3 recipeBook
 	METHOD method_30108 setPreviousGameMode (Lnet/minecraft/class_1934;)V
+	METHOD method_32790 setGameModes (Lnet/minecraft/class_1934;Lnet/minecraft/class_1934;)V
+		ARG 1 gameMode
+		ARG 2 previousGameMode

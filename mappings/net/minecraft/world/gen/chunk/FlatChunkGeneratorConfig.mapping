@@ -21,6 +21,7 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	FIELD field_14080 FEATURE_TO_FEATURE_CONFIG Ljava/util/Map;
 	FIELD field_14081 biome Ljava/util/function/Supplier;
 	FIELD field_14081 biome Lnet/minecraft/class_1959;
+	FIELD field_14082 layerBlocks Ljava/util/List;
 	FIELD field_14082 layerBlocks [Lnet/minecraft/class_2680;
 	FIELD field_14083 groundHeight I
 	FIELD field_14084 END_CITY Lnet/minecraft/class_2975;
@@ -44,6 +45,7 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	METHOD method_14309 getDefaultConfig ()Lnet/minecraft/class_3232;
 	METHOD method_14309 getDefaultConfig (Lnet/minecraft/class_2378;)Lnet/minecraft/class_3232;
 		ARG 0 biomeRegistry
+	METHOD method_14312 getLayerBlocks ()Ljava/util/List;
 	METHOD method_14312 getLayerBlocks ()[Lnet/minecraft/class_2680;
 	METHOD method_14313 toDynamic (Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;
 		ARG 1 dynamicOps
@@ -77,5 +79,12 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	METHOD method_28911 enableFeatures ()V
 	METHOD method_28912 withStructuresConfig (Lnet/minecraft/class_5311;)Lnet/minecraft/class_3232;
 		ARG 1 structuresConfig
+	METHOD method_28913 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD method_28916 enableLakes ()V
 	METHOD method_28917 createBiome ()Lnet/minecraft/class_1959;
+	METHOD method_29965 withLayers (Ljava/util/List;Lnet/minecraft/class_5311;)Lnet/minecraft/class_3232;
+		ARG 1 layers
+		ARG 2 structuresConfig
+	METHOD method_33067 checkHeight (Lnet/minecraft/class_3232;)Lcom/mojang/serialization/DataResult;
+		ARG 0 config
