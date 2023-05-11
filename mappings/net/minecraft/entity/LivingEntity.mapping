@@ -221,6 +221,9 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 			COMMENT the source entity or {@code null} for non-entity sources
 	METHOD method_26084 (Lnet/minecraft/class_1309;)V
 		ARG 0 player
+	METHOD method_26318 applyMovementInput (Lnet/minecraft/class_243;F)Lnet/minecraft/class_243;
+		ARG 1 movementInput
+		ARG 2 slipperiness
 	METHOD method_26319 canWalkOnFluid (Lnet/minecraft/class_3611;)Z
 		ARG 1 fluid
 	METHOD method_26825 getAttributeValue (Lnet/minecraft/class_1320;)D
@@ -309,6 +312,7 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 			COMMENT the source entity or {@code null} for non-entity sources
 	METHOD method_37410 processEquippedStack (Lnet/minecraft/class_1799;)V
 		ARG 1 stack
+	METHOD method_37416 getJumpBoostVelocityModifier ()D
 	METHOD method_5973 canTarget (Lnet/minecraft/class_1299;)Z
 		ARG 1 type
 	METHOD method_5989 getLootTable ()Lnet/minecraft/class_2960;
@@ -500,7 +504,13 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6090 takeShieldHit (Lnet/minecraft/class_1309;)V
 		ARG 1 attacker
 	METHOD method_6091 travel (Lnet/minecraft/class_243;)V
+		COMMENT Allows you to do certain speed and velocity calculations. This is useful for custom vehicle behavior, or custom entity movement. This is not to be confused with AI.
+		COMMENT
+		COMMENT <p>See vanilla examples of {@linkplain net.minecraft.entity.passive.HorseBaseEntity#travel
+		COMMENT custom horse vehicle} and {@linkplain net.minecraft.entity.mob.FlyingEntity#travel
+		COMMENT flying entities}.
 		ARG 1 movementInput
+			COMMENT represents the sidewaysSpeed, upwardSpeed, and forwardSpeed of the entity in that order
 	METHOD method_6092 addStatusEffect (Lnet/minecraft/class_1293;)Z
 		COMMENT Adds a status effect to this entity without specifying a source entity.
 		COMMENT

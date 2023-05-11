@@ -46,6 +46,7 @@ CLASS net/minecraft/class_3222 net/minecraft/server/network/ServerPlayerEntity
 	FIELD field_26353 spawnAngle F
 	FIELD field_26821 textStream Lnet/minecraft/class_5513;
 	FIELD field_28860 filterText Z
+	FIELD field_28860 filterText Z
 	FIELD field_29180 screenHandlerSyncHandler Lnet/minecraft/class_5916;
 	FIELD field_29181 screenHandlerListener Lnet/minecraft/class_1712;
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_3218;Lcom/mojang/authlib/GameProfile;)V
@@ -59,6 +60,9 @@ CLASS net/minecraft/class_3222 net/minecraft/server/network/ServerPlayerEntity
 		COMMENT Sends packets to the client that refresh the current screen handler's items.
 		ARG 1 handler
 	METHOD method_14205 sendInitialChunkPackets (Lnet/minecraft/class_1923;Lnet/minecraft/class_2596;Lnet/minecraft/class_2596;)V
+		ARG 1 chunkPos
+		ARG 2 chunkDataPacket
+		ARG 3 lightUpdatePacket
 	METHOD method_14206 getPlayerListName ()Lnet/minecraft/class_2561;
 	METHOD method_14207 handleFall (DZ)V
 		ARG 1 heightDifference
@@ -217,6 +221,8 @@ CLASS net/minecraft/class_3222 net/minecraft/server/network/ServerPlayerEntity
 		ARG 1 player
 	METHOD method_34225 onSpawn ()V
 	METHOD method_34879 areClientChatColorsEnabled ()Z
+	METHOD method_37413 dropSelectedItem (Z)Z
+		ARG 1 entireStack
 	METHOD method_7336 changeGameMode (Lnet/minecraft/class_1934;)Z
 		ARG 1 gameMode
 	CLASS 1

@@ -26,11 +26,15 @@ CLASS net/minecraft/class_4392 net/minecraft/client/realms/gui/screen/RealmsDown
 	FIELD field_19865 WARNING_ID I
 	FIELD field_19866 confirmationId I
 	FIELD field_19867 checked Z
-	FIELD field_19868 downloadLock Ljava/util/concurrent/locks/ReentrantLock;
+	FIELD field_19868 DOWNLOAD_LOCK Ljava/util/concurrent/locks/ReentrantLock;
+	FIELD field_20494 downloadError Lnet/minecraft/class_2561;
+	FIELD field_22693 onBack Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;
+	FIELD field_22694 cancelButton Lnet/minecraft/class_4185;
 	METHOD <init> (Lnet/minecraft/class_437;Lnet/minecraft/class_4889;Ljava/lang/String;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;)V
 		ARG 1 parent
 		ARG 2 worldDownload
 		ARG 3 worldName
+		ARG 4 onBack
 	METHOD confirmResult (ZI)V
 		ARG 1 result
 		ARG 2 id
@@ -51,6 +55,7 @@ CLASS net/minecraft/class_4392 net/minecraft/client/realms/gui/screen/RealmsDown
 		ARG 1 bytesPersSecond
 	METHOD method_21266 drawDownloadSpeed0 (Lnet/minecraft/class_4587;J)V
 		ARG 1 matrices
+		ARG 2 bytesPerSecond
 	METHOD method_21269 backButtonClicked ()V
 	METHOD method_21272 drawDots ()V
 	METHOD method_21272 drawDots (Lnet/minecraft/class_4587;)V
@@ -65,6 +70,9 @@ CLASS net/minecraft/class_4392 net/minecraft/client/realms/gui/screen/RealmsDown
 	METHOD method_21279 downloadCancelled ()V
 	METHOD method_25158 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
+	METHOD method_25159 (Z)V
+		ARG 1 confirmed
+	METHOD method_37012 getNarration ()Lnet/minecraft/class_2561;
 	METHOD render (IIF)V
 		ARG 1 xm
 		ARG 2 ym

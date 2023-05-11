@@ -1,16 +1,18 @@
 CLASS net/minecraft/class_918 net/minecraft/client/render/item/ItemRenderer
 	FIELD field_21010 ENCHANTED_ITEM_GLINT Lnet/minecraft/class_2960;
 	FIELD field_27770 builtinModelItemRenderer Lnet/minecraft/class_756;
+	FIELD field_32935 COMPASS_WITH_GLINT_GUI_MODEL_MULTIPLIER F
+	FIELD field_32936 COMPASS_WITH_GLINT_FIRST_PERSON_MODEL_MULTIPLIER F
 	FIELD field_4728 WITHOUT_MODELS Ljava/util/Set;
 	FIELD field_4729 textureManager Lnet/minecraft/class_1060;
 	FIELD field_4730 zOffset F
 	FIELD field_4731 ENCHANTMENT_GLINT_TEX Lnet/minecraft/class_2960;
 	FIELD field_4732 models Lnet/minecraft/class_763;
-	FIELD field_4733 colorMap Lnet/minecraft/class_325;
+	FIELD field_4733 colors Lnet/minecraft/class_325;
 	METHOD <init> (Lnet/minecraft/class_1060;Lnet/minecraft/class_1092;Lnet/minecraft/class_325;Lnet/minecraft/class_756;)V
 		ARG 1 manager
 		ARG 2 bakery
-		ARG 3 colorMap
+		ARG 3 colors
 		ARG 4 builtinModelItemRenderer
 	METHOD method_23177 renderItem (Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_809$class_811;ZLnet/minecraft/class_4587;Lnet/minecraft/class_4597;Lnet/minecraft/class_1937;II)V
 		ARG 1 entity
@@ -92,6 +94,7 @@ CLASS net/minecraft/class_918 net/minecraft/client/render/item/ItemRenderer
 		ARG 2 stack
 		ARG 3 x
 		ARG 4 y
+		ARG 5 seed
 	METHOD method_27952 getArmorGlintConsumer (Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;ZZ)Lnet/minecraft/class_4588;
 		ARG 0 provider
 		ARG 1 layer
@@ -119,6 +122,19 @@ CLASS net/minecraft/class_918 net/minecraft/client/render/item/ItemRenderer
 		ARG 1 stack
 		ARG 2 x
 		ARG 3 y
+		ARG 4 seed
+	METHOD method_36542 renderInGuiWithOverrides (Lnet/minecraft/class_1799;IIII)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+		ARG 4 seed
+		ARG 5 depth
+	METHOD method_36543 innerRenderInGui (Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;III)V
+		ARG 1 entity
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+		ARG 5 seed
 	METHOD method_4002 renderQuad (Lnet/minecraft/class_287;Lnet/minecraft/class_777;I)V
 		ARG 3 color
 	METHOD method_4003 postNormalQuad (Lnet/minecraft/class_287;Lnet/minecraft/class_777;)V
@@ -212,6 +228,8 @@ CLASS net/minecraft/class_918 net/minecraft/client/render/item/ItemRenderer
 		ARG 2 itemStack
 		ARG 3 x
 		ARG 4 y
+		ARG 5 seed
+		ARG 6 depth
 	METHOD method_4027 renderModel (Lnet/minecraft/class_1087;ILnet/minecraft/class_1799;)V
 		ARG 3 stack
 	METHOD method_4028 getModel (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1087;

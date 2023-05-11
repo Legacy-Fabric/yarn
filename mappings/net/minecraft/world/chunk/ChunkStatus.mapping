@@ -145,6 +145,7 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 		ARG 1 world
 		ARG 2 structureManager
 		ARG 3 lightingProvider
+		ARG 4 convertCallback
 		ARG 5 chunk
 	METHOD method_20610 getLightingFuture (Lnet/minecraft/class_2806;Lnet/minecraft/class_3227;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 status
@@ -195,6 +196,14 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 			ARG 3 world
 			ARG 5 structureManager
 			ARG 6 lightingProvider
+		METHOD doWork (Lnet/minecraft/class_2806;Ljava/util/concurrent/Executor;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 targetStatus
+				COMMENT the status the chunk will be set to after the task is completed
+			ARG 3 world
+			ARG 5 structureManager
+			ARG 6 lightingProvider
+			ARG 7 convertCallback
+				COMMENT will be invoked by statuses which have some special convert logic (e.g. the FULL status to convert the chunk to a full chunk)
 		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 targetStatus
 			ARG 3 generator
@@ -270,6 +279,9 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Ljava/util/List;Lnet/minecraft/class_2791;)V
 			ARG 1 targetStatus
 			ARG 2 world
+		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Ljava/util/List;Lnet/minecraft/class_2791;)V
+			ARG 1 targetStatus
+			ARG 2 world
 		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 targetStatus
 			ARG 3 generator
@@ -324,4 +336,12 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 			ARG 2 world
 			ARG 3 structureManager
 			ARG 4 lightingProvider
+			ARG 6 chunk
+		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 targetStatus
+			ARG 2 world
+			ARG 3 structureManager
+			ARG 4 lightingProvider
+			ARG 5 convertCallback
+				COMMENT will be invoked by statuses which have some special convert logic (e.g. the FULL status to convert the chunk to a full chunk)
 			ARG 6 chunk

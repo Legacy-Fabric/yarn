@@ -36,11 +36,21 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 		ARG 1 side
 	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
 		ARG 1 context
+	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelInactive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
 	METHOD channelInactive (Lio/netty/channel/ChannelHandlerContext;)V
 		ARG 1 context
 	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 		ARG 1 context
 		ARG 2 packet
+	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+		ARG 1 context
+		ARG 2 packet
+	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
+		ARG 1 context
+		ARG 2 ex
 	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
 		ARG 1 context
 		ARG 2 ex
@@ -78,6 +88,19 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 		ARG 1 listener
 	METHOD method_10760 setCompressionThreshold (I)V
 		ARG 1 compressionThreshold
+	METHOD method_10760 setCompressionThreshold (IZ)V
+		COMMENT Sets the compression threshold of this connection.
+		COMMENT
+		COMMENT <p>Packets over the threshold in size will be written as a {@code 0}
+		COMMENT byte followed by contents, while compressed ones will be written as
+		COMMENT a var int for the decompressed size followed by the compressed contents.
+		COMMENT
+		COMMENT <p>The connections on the two sides must have the same compression
+		COMMENT threshold, or compression errors may result.
+		ARG 1 compressionThreshold
+			COMMENT the compression threshold, in number of bytes
+		ARG 2 rejectsBadPackets
+			COMMENT whether this connection may abort if a compressed packet with a bad size is received
 	METHOD method_10762 getAveragePacketsReceived ()F
 	METHOD method_10763 setPacketListener (Lnet/minecraft/class_2547;)V
 		COMMENT Sets the packet listener that will handle oncoming packets, including
@@ -109,7 +132,11 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 	CLASS 1
 		METHOD initChannel (Lio/netty/channel/Channel;)V
 			ARG 1 channel
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
 	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
 		METHOD initChannel (Lio/netty/channel/Channel;)V
 			ARG 1 channel
 	CLASS class_2536 QueuedPacket

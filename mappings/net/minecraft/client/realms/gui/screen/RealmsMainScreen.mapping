@@ -29,7 +29,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	FIELD field_19476 overrideConfigure Z
 	FIELD field_19477 rateLimiter Lcom/google/common/util/concurrent/RateLimiter;
 	FIELD field_19478 dontSetConnectedToRealms Z
-	FIELD field_19480 realmsDataFetcher Lnet/minecraft/class_4360;
+	FIELD field_19480 REALMS_DATA_FETCHER Lnet/minecraft/class_4360;
 	FIELD field_19481 lastScrollYPosition I
 	FIELD field_19482 lastScreen Lnet/minecraft/class_437;
 	FIELD field_19482 lastScreen Lnet/minecraft/realms/RealmsScreen;
@@ -46,7 +46,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	FIELD field_19489 leaveButton Lnet/minecraft/class_4185;
 	FIELD field_19489 leaveButton Lnet/minecraft/realms/RealmsButton;
 	FIELD field_19490 toolTip Ljava/lang/String;
-	FIELD field_19490 toolTip Ljava/util/List;
+	FIELD field_19490 tooltip Ljava/util/List;
 	FIELD field_19491 realmsServers Ljava/util/List;
 	FIELD field_19492 numberOfPendingInvites I
 	FIELD field_19493 animTick I
@@ -95,6 +95,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	FIELD field_26463 CONFIGURE_TEXT Lnet/minecraft/class_2561;
 	FIELD field_26464 INFO_TEXT Lnet/minecraft/class_2561;
 	FIELD field_26465 NEWS_TEXT Lnet/minecraft/class_2561;
+	FIELD field_26466 popupText Lnet/minecraft/class_5489;
+	FIELD field_33774 TRIAL_NARRATION Lnet/minecraft/class_2561;
+	FIELD field_33776 UNINITIALIZED_BUTTON_NARRATION Lnet/minecraft/class_2561;
+	METHOD <init> (Lnet/minecraft/class_437;)V
+		ARG 1 lastScreen
 	METHOD charTyped (CI)Z
 		ARG 1 ch
 		ARG 2 mods
@@ -110,9 +115,13 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	METHOD method_20836 popupY0 ()I
 	METHOD method_20837 renderLocal ()V
 	METHOD method_20837 renderLocal (Lnet/minecraft/class_4587;)V
+		ARG 1 matrices
 	METHOD method_20838 renderStage ()V
 	METHOD method_20838 renderStage (Lnet/minecraft/class_4587;)V
+		ARG 1 matrices
 	METHOD method_20842 shouldShowMessageInList ()Z
+	METHOD method_20843 (CLnet/minecraft/class_4324;)V
+		ARG 1 keyCombo
 	METHOD method_20844 isOutsidePopup (DD)Z
 		ARG 1 xm
 		ARG 3 ym
@@ -129,6 +138,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 3 xm
 		ARG 4 ym
 	METHOD method_20846 drawExpired (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD method_20847 drawExpiring (IIIII)V
 		ARG 1 x
 		ARG 2 y
@@ -142,6 +156,12 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 4 y
 		ARG 5 hoveredOrFocused
 	METHOD method_20848 renderMoreInfo (Lnet/minecraft/class_4587;IIIIZ)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 x
+		ARG 5 y
+		ARG 6 hovered
 	METHOD method_20849 drawInvitationPendingIcon (IIIIZZ)V
 		ARG 1 xm
 		ARG 2 ym
@@ -150,6 +170,13 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 5 selectedOrHovered
 		ARG 6 active
 	METHOD method_20849 drawInvitationPendingIcon (Lnet/minecraft/class_4587;IIIIZZ)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 x
+		ARG 5 y
+		ARG 6 hovered
+		ARG 7 active
 	METHOD method_20850 renderNews (IIZIIZZ)V
 		ARG 1 xm
 		ARG 2 ym
@@ -159,6 +186,14 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 6 selectedOrHovered
 		ARG 7 active
 	METHOD method_20850 renderNews (Lnet/minecraft/class_4587;IIZIIZZ)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 hasUnread
+		ARG 5 x
+		ARG 6 y
+		ARG 7 hovered
+		ARG 8 active
 	METHOD method_20851 findServer (J)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 1 id
 	METHOD method_20851 findServer (J)Lnet/minecraft/class_4877;
@@ -171,6 +206,8 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 1 server
 		ARG 2 cancelScreen
 	METHOD method_20853 play (Lnet/minecraft/class_4877;Lnet/minecraft/class_437;)V
+		ARG 1 serverData
+		ARG 2 parent
 	METHOD method_20866 browseURL (Ljava/lang/String;)V
 		ARG 1 url
 	METHOD method_20867 renderMousehoverTooltip (Ljava/lang/String;II)V
@@ -178,6 +215,10 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 2 x
 		ARG 3 y
 	METHOD method_20867 renderMousehoverTooltip (Lnet/minecraft/class_4587;Ljava/util/List;II)V
+		ARG 1 matrices
+		ARG 2 tooltips
+		ARG 3 x
+		ARG 4 y
 	METHOD method_20869 setCreatedTrial (Z)V
 		ARG 1 createdTrial
 	METHOD method_20870 shouldShowPopup ()Z
@@ -197,6 +238,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 3 xm
 		ARG 4 ym
 	METHOD method_20873 drawOpen (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD method_20874 shouldPlayButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD method_20874 shouldPlayButtonBeActive (Lnet/minecraft/class_4877;)Z
@@ -211,6 +257,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 3 xm
 		ARG 4 ym
 	METHOD method_20883 drawClose (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD method_20884 shouldRenewButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD method_20884 shouldRenewButtonBeActive (Lnet/minecraft/class_4877;)Z
@@ -222,6 +273,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 3 xm
 		ARG 4 ym
 	METHOD method_20891 drawLeave (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD method_20892 shouldConfigureButtonBeVisible (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD method_20892 shouldConfigureButtonBeVisible (Lnet/minecraft/class_4877;)Z
@@ -233,6 +289,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		ARG 3 xm
 		ARG 4 ym
 	METHOD method_20898 drawConfigure (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD method_20899 shouldLeaveButtonBeVisible (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD method_20899 shouldLeaveButtonBeVisible (Lnet/minecraft/class_4877;)Z
@@ -240,6 +301,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	METHOD method_20902 newScreen ()Lnet/minecraft/class_4325;
 	METHOD method_20903 configureClicked (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 	METHOD method_20903 configureClicked (Lnet/minecraft/class_4877;)V
+		ARG 1 serverData
 	METHOD method_20905 closePopup ()V
 	METHOD method_20906 leaveClicked (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 selectedServer
@@ -266,22 +328,49 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	METHOD method_20941 switchToProd ()V
 	METHOD method_20942 stopRealmsFetcher ()V
 	METHOD method_20943 saveListScrollPosition ()V
-	METHOD method_23765 (Lnet/minecraft/class_3300;)V
+	METHOD method_23764 (Lnet/minecraft/class_2960;)Z
+		ARG 0 id
+	METHOD method_23765 loadImages (Lnet/minecraft/class_3300;)V
 		ARG 0 manager
+	METHOD method_23766 (Ljava/lang/String;)Z
+		ARG 0 filename
+	METHOD method_24985 openPendingInvitesScreen (Lnet/minecraft/class_4185;)V
+		ARG 1 button
+	METHOD method_24987 drawExpiring (Lnet/minecraft/class_4587;IIIII)V
+		ARG 1 matrices
+		ARG 2 x
+		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
+		ARG 6 remainingDays
 	METHOD method_24988 (Lnet/minecraft/class_4185;)V
 		ARG 0 button
 	METHOD method_24989 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
+	METHOD method_24991 leaveServer (Z)V
+		ARG 1 confirmed
 	METHOD method_24993 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
 	METHOD method_24995 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
 	METHOD method_24997 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
+	METHOD method_25001 isOwnedNotExpired (Lnet/minecraft/class_4877;)Z
+		ARG 1 serverData
+	METHOD method_27452 setTooltips ([Lnet/minecraft/class_2561;)V
+		ARG 1 tooltips
+	METHOD method_31172 (Lnet/minecraft/class_4325$class_4866;)Z
+		ARG 1 child
+	METHOD method_31174 removeServer (Lnet/minecraft/class_4877;)V
+		ARG 1 serverData
 	METHOD method_31379 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
 	METHOD method_31380 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
+	METHOD method_35681 setTooltips (Ljava/lang/Iterable;)V
+		ARG 1 tooltips
+	METHOD method_35682 setCreatedTrial (Z)V
+		ARG 1 createdTrial
 	METHOD mouseClicked (DDI)Z
 		ARG 1 x
 		ARG 3 y
@@ -313,6 +402,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 			ARG 2 mouseY
 			ARG 3 a
 	CLASS class_4328 PendingInvitesButton
+		METHOD method_37005 updatePendingText ()V
 		METHOD render (IIF)V
 			ARG 1 xm
 			ARG 2 ym
@@ -322,6 +412,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 			ARG 2 mouseY
 			ARG 3 a
 	CLASS class_4329 RealmSelectionList
+		FIELD field_25723 hasTrial Z
 		METHOD itemClicked (IIDDI)V
 			ARG 1 clickSlotPos
 			ARG 2 slot
@@ -332,6 +423,8 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 			ARG 1 eventKey
 			ARG 2 scancode
 			ARG 3 mods
+		METHOD method_30161 addTrialEntry (Lnet/minecraft/class_4325$class_4866;)I
+			ARG 1 entry
 		METHOD mouseClicked (DDI)Z
 			ARG 1 xm
 			ARG 3 ym
@@ -349,6 +442,13 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 		FIELD field_19518 mServerData Lnet/minecraft/class_4877;
 		METHOD <init> (Lnet/minecraft/class_4325;Lnet/minecraft/class_4877;)V
 			ARG 2 serverData
+		METHOD method_20945 render (Lnet/minecraft/class_4877;Lnet/minecraft/class_4587;IIII)V
+			ARG 1 serverData
+			ARG 2 matrices
+			ARG 3 x
+			ARG 4 y
+			ARG 5 mouseX
+			ARG 6 mouseY
 		METHOD method_20946 renderMcoServerItem (Lcom/mojang/realmsclient/dto/RealmsServer;IIII)V
 			ARG 1 serverData
 			ARG 2 x
@@ -357,6 +457,11 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 			ARG 5 mouseY
 		METHOD method_20946 renderMcoServerItem (Lnet/minecraft/class_4877;Lnet/minecraft/class_4587;IIII)V
 			ARG 1 serverData
+			ARG 2 matrices
+			ARG 3 x
+			ARG 4 y
+			ARG 5 mouseX
+			ARG 6 mouseY
 		METHOD mouseClicked (DDI)Z
 			ARG 1 x
 			ARG 3 y
@@ -409,6 +514,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 			ARG 4 mouseX
 			ARG 5 mouseY
 		METHOD method_20947 renderTrialItem (Lnet/minecraft/class_4587;IIIII)V
+			ARG 1 matrices
 			ARG 2 index
 			ARG 3 x
 			ARG 4 y

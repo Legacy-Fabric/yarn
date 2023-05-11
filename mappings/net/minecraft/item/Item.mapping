@@ -118,6 +118,9 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 world
 		ARG 2 entity
 	METHOD method_7850 appendStacks (Lnet/minecraft/class_1761;Lnet/minecraft/class_2371;)V
+		COMMENT Appends the stacks of this item shown in the item group to the list.
+		COMMENT
+		COMMENT @see #isIn(ItemGroup)
 		ARG 1 group
 		ARG 2 stacks
 	METHOD method_7851 appendTooltip (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Ljava/util/List;Lnet/minecraft/class_1836;)V
@@ -258,8 +261,8 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		COMMENT
 		COMMENT <p>By default, returns true if the item has enchantments.
 		ARG 1 stack
-	METHOD method_7887 shouldSyncTagToClient ()Z
-		COMMENT Checks if an item should have its NBT data stored in {@link ItemStack#tag} sent to the client.
+	METHOD method_7887 isNbtSynced ()Z
+		COMMENT Checks if an item should have its NBT data stored in {@link ItemStack#nbt} sent to the client.
 		COMMENT
 		COMMENT <p>If an item is damageable, this method is ignored and data is always synced to client.
 	METHOD method_7888 inventoryTick (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1297;IZ)V
@@ -306,7 +309,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		METHOD method_7894 rarity (Lnet/minecraft/class_1814;)Lnet/minecraft/class_1792$class_1793;
 			COMMENT Sets the {@link Rarity} of any item configured with this Settings instance, which changes the color of its name.
 			COMMENT
-			COMMENT <p>An item's rarity defaults to {@link Rarity.COMMON}.
+			COMMENT <p>An item's rarity defaults to {@link Rarity#COMMON}.
 			COMMENT
 			COMMENT @return this instance
 			ARG 1 rarity

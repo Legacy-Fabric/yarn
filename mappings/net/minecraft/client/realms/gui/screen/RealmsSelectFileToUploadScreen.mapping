@@ -9,27 +9,36 @@ CLASS net/minecraft/class_4416 net/minecraft/client/realms/gui/screen/RealmsSele
 	FIELD field_20055 levelList Ljava/util/List;
 	FIELD field_20056 selectedWorld I
 	FIELD field_20057 worldSelectionList Lnet/minecraft/class_4416$class_4418;
+	FIELD field_20058 WORLD_LANG Lnet/minecraft/class_2561;
 	FIELD field_20058 worldLang Ljava/lang/String;
-	FIELD field_20058 worldLang Lnet/minecraft/class_2561;
+	FIELD field_20059 CONVERSION_LANG Lnet/minecraft/class_2561;
 	FIELD field_20059 conversionLang Ljava/lang/String;
-	FIELD field_20059 conversionLang Lnet/minecraft/class_2561;
 	FIELD field_20060 gameModesLang [Ljava/lang/String;
 	FIELD field_20061 titleLabel Lnet/minecraft/class_4903;
 	FIELD field_20061 titleLabel Lnet/minecraft/realms/RealmsLabel;
 	FIELD field_20062 subtitleLabel Lnet/minecraft/class_4903;
 	FIELD field_20062 subtitleLabel Lnet/minecraft/realms/RealmsLabel;
+	FIELD field_22717 onBack Ljava/lang/Runnable;
 	FIELD field_26507 HARDCORE_TEXT Lnet/minecraft/class_2561;
 	FIELD field_26508 CHEATS_TEXT Lnet/minecraft/class_2561;
 	METHOD <init> (JILnet/minecraft/class_4410;Ljava/lang/Runnable;)V
 		ARG 1 worldId
 		ARG 3 slotId
 		ARG 4 parent
+		ARG 5 onBack
 	METHOD keyPressed (III)Z
 		ARG 1 eventKey
 		ARG 2 scancode
 		ARG 3 mods
 	METHOD method_21396 loadLevelList ()V
+	METHOD method_21400 getGameModeName (Lnet/minecraft/class_34;)Lnet/minecraft/class_2561;
+		ARG 0 summary
 	METHOD method_21401 upload ()V
+	METHOD method_21404 getLastPlayed (Lnet/minecraft/class_34;)Ljava/lang/String;
+		ARG 0 summary
+	METHOD method_25220 (Lnet/minecraft/class_34;Lnet/minecraft/class_34;)I
+		ARG 0 a
+		ARG 1 b
 	METHOD method_25221 (Lnet/minecraft/class_4185;)V
 		ARG 1 button
 	METHOD method_25223 (Lnet/minecraft/class_4185;)V
@@ -40,8 +49,17 @@ CLASS net/minecraft/class_4416 net/minecraft/client/realms/gui/screen/RealmsSele
 		ARG 3 a
 	CLASS class_4417 WorldListEntry
 		FIELD field_20066 levelSummary Lnet/minecraft/realms/RealmsLevelSummary;
+		FIELD field_22718 summary Lnet/minecraft/class_34;
+		FIELD field_26509 displayName Ljava/lang/String;
+		FIELD field_26510 nameAndLastPlayed Ljava/lang/String;
+		FIELD field_26511 details Lnet/minecraft/class_2561;
+		METHOD <init> (Lnet/minecraft/class_4416;Lnet/minecraft/class_34;)V
+			ARG 2 summary
 		METHOD method_21411 renderItem (Lnet/minecraft/class_4587;III)V
 			ARG 1 matrices
+			ARG 2 index
+			ARG 3 x
+			ARG 4 y
 		METHOD method_21411 renderItem (Lnet/minecraft/class_4587;Lnet/minecraft/class_34;III)V
 		METHOD method_21411 renderItem (Lnet/minecraft/realms/RealmsLevelSummary;IIIILnet/minecraft/realms/Tezzelator;II)V
 			ARG 1 levelSummary
@@ -98,6 +116,7 @@ CLASS net/minecraft/class_4416 net/minecraft/client/realms/gui/screen/RealmsSele
 			ARG 9 a
 	CLASS class_4418 WorldSelectionList
 		METHOD method_21412 addEntry (Lnet/minecraft/class_34;)V
+			ARG 1 summary
 		METHOD method_21412 addEntry (Lnet/minecraft/realms/RealmsLevelSummary;)V
 			ARG 1 levelSummary
 		METHOD selectItem (I)V

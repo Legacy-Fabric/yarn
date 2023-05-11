@@ -124,9 +124,9 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_1755 currentScreen Lnet/minecraft/class_437;
 		COMMENT The Minecraft client's currently open screen.
 		COMMENT This field should only be used to get the current screen.
-		COMMENT For changing the screen use {@link MinecraftClient#openScreen(Screen)}
+		COMMENT For changing the screen, use {@link MinecraftClient#setScreen(Screen)}.
 		COMMENT
-		COMMENT @see MinecraftClient#openScreen(Screen)
+		COMMENT @see MinecraftClient#setScreen(Screen)
 	FIELD field_1756 blockRenderManager Lnet/minecraft/class_776;
 	FIELD field_1757 resourcePackDir Ljava/io/File;
 	FIELD field_1758 tutorialManager Lnet/minecraft/class_1156;
@@ -169,7 +169,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_26902 socialInteractionsService Lcom/mojang/authlib/minecraft/SocialInteractionsService;
 	FIELD field_27387 entityModelLoader Lnet/minecraft/class_5599;
 	FIELD field_27388 blockEntityRenderDispatcher Lnet/minecraft/class_824;
-	FIELD field_29569 debugRecorder Lnet/minecraft/class_5962;
+	FIELD field_29569 recorder Lnet/minecraft/class_5962;
 	FIELD field_32144 wireFrame Z
 	FIELD field_33697 resourceReloadLogger Lnet/minecraft/class_6360;
 	FIELD field_33735 GL_ERROR_DIALOGUE Ljava/lang/String;
@@ -212,13 +212,19 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	METHOD method_1506 handleGlErrorByDisableVsync (IJ)V
 		ARG 1 error
 		ARG 2 description
-	METHOD method_1507 openScreen (Lnet/minecraft/class_437;)V
-		COMMENT Opens a new screen, changing the current screen if needed.
+	METHOD method_1507 setScreen (Lnet/minecraft/class_437;)V
+		COMMENT Sets the current screen to a new screen.
 		COMMENT
-		COMMENT <p>If the screen being opened is {@code null} and the client is not in game, the title screen will be opened.
-		COMMENT If the currently opened screen is {@code null} and player is dead then the death screen will be opened.
-		COMMENT Otherwise the currently open screen will be closed.
+		COMMENT <p>If the screen being opened is {@code null}:
+		COMMENT <ul>
+		COMMENT <li>if the client is not in game, the title screen will be opened</li>
+		COMMENT <li>if the {@linkplain #player} is dead, the death screen will be opened</li>
+		COMMENT </ul>
+		COMMENT
+		COMMENT <p>If there is an open screen when the current screen is changed, {@link Screen#removed()}
+		COMMENT will be called on it to notify it of the closing.
 		ARG 1 screen
+			COMMENT the new screen, or {@code null} to just close the previous screen
 	METHOD method_1508 handleInputEvents ()V
 	METHOD method_1511 doItemPick ()V
 	METHOD method_1513 reloadResourcesConcurrently ()Ljava/util/concurrent/CompletableFuture;
@@ -511,6 +517,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 		ARG 2 languageManager
 		ARG 3 version
 		ARG 4 options
+	METHOD method_37286 stopRecorder ()V
 	CLASS class_5366 WorldLoadAction
 	CLASS class_5367 IntegratedResourceManager
 		FIELD field_25439 resourcePackManager Lnet/minecraft/class_3283;
