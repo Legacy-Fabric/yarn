@@ -4,14 +4,20 @@ CLASS net/minecraft/class_4916 net/minecraft/data/client/ModelProvider
 	FIELD field_22846 GSON Lcom/google/gson/Gson;
 	FIELD field_22847 generator Lnet/minecraft/class_2403;
 	FIELD field_39375 blockstatesPathResolver Lnet/minecraft/class_2403$class_7489;
+	FIELD field_39375 blockstatesPathResolver Lnet/minecraft/class_7784$class_7489;
 	FIELD field_39376 modelsPathResolver Lnet/minecraft/class_2403$class_7489;
-	METHOD <init> (Lnet/minecraft/class_2403;)V
-		ARG 1 generator
+	FIELD field_39376 modelsPathResolver Lnet/minecraft/class_7784$class_7489;
+	METHOD <init> (Lnet/minecraft/class_7784;)V
+		ARG 1 output
 	METHOD method_25735 writeJsons (Lnet/minecraft/class_2408;Ljava/nio/file/Path;Ljava/util/Map;Ljava/util/function/BiFunction;)V
 		ARG 1 cache
 		ARG 2 root
 		ARG 3 jsons
 		ARG 4 locator
+	METHOD method_25735 writeJsons (Lnet/minecraft/class_7403;Ljava/util/Map;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 cache
+		ARG 2 models
+		ARG 3 pathGetter
 	METHOD method_25735 writeJsons (Lnet/minecraft/class_7403;Ljava/util/Map;Ljava/util/function/Function;)V
 		ARG 1 cache
 		ARG 2 models
@@ -34,5 +40,7 @@ CLASS net/minecraft/class_4916 net/minecraft/data/client/ModelProvider
 	METHOD method_25742 (Ljava/util/function/Function;Lnet/minecraft/class_7403;Ljava/lang/Object;Ljava/util/function/Supplier;)V
 		ARG 2 id
 		ARG 3 jsonSupplier
+	METHOD method_25742 (Ljava/util/function/Function;Lnet/minecraft/class_7403;Ljava/util/Map$Entry;)Ljava/util/concurrent/CompletableFuture;
+		ARG 2 entry
 	METHOD method_44110 (Lnet/minecraft/class_2248;)Ljava/nio/file/Path;
 		ARG 1 block

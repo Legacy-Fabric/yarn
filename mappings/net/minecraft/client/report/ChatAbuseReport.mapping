@@ -6,20 +6,22 @@ CLASS net/minecraft/class_7566 net/minecraft/client/report/ChatAbuseReport
 	FIELD field_39652 selections Lit/unimi/dsi/fastutil/ints/IntSet;
 	FIELD field_39653 opinionComments Ljava/lang/String;
 	FIELD field_39654 reason Lnet/minecraft/class_7573;
+	FIELD field_40811 draft Lnet/minecraft/class_7566$class_7855;
 	METHOD <init> (Ljava/util/UUID;Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
 		ARG 1 reportedPlayerUuid
 		ARG 2 limits
-	METHOD <init> (Ljava/util/UUID;Ljava/time/Instant;Ljava/util/UUID;Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
-		ARG 1 id
-		ARG 2 timestamp
-		ARG 3 reportedPlayerUuid
-		ARG 4 limits
+	METHOD <init> (Lnet/minecraft/class_7566$class_7855;Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
+		ARG 1 draft
+		ARG 2 limits
 	METHOD method_44568 getReportedPlayerUuid ()Ljava/util/UUID;
 	METHOD method_44569 toggleMessageSelection (I)V
 		ARG 1 index
 	METHOD method_44570 toReportChatMessage (ILnet/minecraft/class_7557$class_7558;)Lcom/mojang/authlib/minecraft/report/ReportChatMessage;
 		ARG 1 index
 		ARG 2 message
+	METHOD method_44570 toReportChatMessage (Lnet/minecraft/class_7557$class_7558;Z)Lcom/mojang/authlib/minecraft/report/ReportChatMessage;
+		ARG 1 message
+		ARG 2 selected
 	METHOD method_44571 collectEvidence (Lnet/minecraft/class_7555;)Lcom/mojang/authlib/minecraft/report/ReportEvidence;
 		ARG 1 log
 	METHOD method_44574 setReason (Lnet/minecraft/class_7573;)V
@@ -59,6 +61,9 @@ CLASS net/minecraft/class_7566 net/minecraft/client/report/ChatAbuseReport
 		ARG 1 log
 		ARG 2 evidences
 		ARG 3 senderUuid
+	METHOD method_44962 (Ljava/util/List;ILnet/minecraft/class_7557$class_7558;)V
+		ARG 2 index
+		ARG 3 message
 	METHOD method_44962 (Lnet/minecraft/class_7555;Lit/unimi/dsi/fastutil/ints/Int2ObjectSortedMap;I)V
 		ARG 1 selection
 	METHOD method_44963 toReportChatMessage (Lnet/minecraft/class_7630;)Lcom/mojang/authlib/minecraft/report/ReportChatMessage;
@@ -76,6 +81,8 @@ CLASS net/minecraft/class_7566 net/minecraft/client/report/ChatAbuseReport
 		ARG 0 entry
 	METHOD method_44969 (Lnet/minecraft/class_7555$class_7560;)Lnet/minecraft/class_7555$class_7560;
 		ARG 0 indexedEntry
+	METHOD method_46545 getDraft ()Lnet/minecraft/class_7566$class_7855;
+	METHOD method_46546 hasContents ()Z
 	CLASS class_7567 ValidationError
 		FIELD field_39655 NO_REASON Lnet/minecraft/class_7566$class_7567;
 		FIELD field_39656 NO_REPORTED_MESSAGES Lnet/minecraft/class_7566$class_7567;
@@ -89,3 +96,20 @@ CLASS net/minecraft/class_7566 net/minecraft/client/report/ChatAbuseReport
 		METHOD accept (ILnet/minecraft/class_7557$class_7558;)Z
 			ARG 1 index
 			ARG 2 message
+	CLASS class_7855 Draft
+		FIELD field_40813 reportId Ljava/util/UUID;
+		FIELD field_40814 currentTime Ljava/time/Instant;
+		FIELD field_40815 reportedPlayerUuid Ljava/util/UUID;
+		FIELD field_40816 selections Lit/unimi/dsi/fastutil/ints/IntSet;
+		FIELD field_40817 opinionComments Ljava/lang/String;
+		FIELD field_40818 reason Lnet/minecraft/class_7573;
+		METHOD <init> (Lnet/minecraft/class_7566;Ljava/util/UUID;Ljava/time/Instant;Ljava/util/UUID;)V
+			ARG 2 reportId
+			ARG 3 currentTime
+			ARG 4 reportedPlayerUuid
+		METHOD method_46547 copy ()Lnet/minecraft/class_7566$class_7855;
+		METHOD method_46548 toggleMessageSelection (ILcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
+			ARG 1 index
+			ARG 2 limits
+		METHOD method_46549 playerUuidEquals (Ljava/util/UUID;)Z
+			ARG 1 uuid

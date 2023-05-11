@@ -7,12 +7,19 @@ CLASS net/minecraft/class_5718 net/minecraft/world/event/listener/VibrationListe
 	FIELD field_28191 distance F
 	FIELD field_28191 distance I
 	FIELD field_28192 delay I
-	METHOD <init> (Lnet/minecraft/class_5716;ILnet/minecraft/class_5718$class_5719;Lnet/minecraft/class_5718$class_7269;FI)V
+	FIELD field_40356 FREQUENCIES Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+	FIELD field_40357 vibration Lnet/minecraft/class_7269;
+	FIELD field_40358 selector Lnet/minecraft/class_7722;
+	METHOD <init> (Lnet/minecraft/class_5716;ILnet/minecraft/class_5718$class_5719;)V
+		ARG 1 positionSource
+		ARG 2 range
+		ARG 3 callback
+	METHOD <init> (Lnet/minecraft/class_5716;ILnet/minecraft/class_5718$class_5719;Lnet/minecraft/class_7269;Lnet/minecraft/class_7722;I)V
 		ARG 1 positionSource
 		ARG 2 range
 		ARG 3 callback
 		ARG 4 vibration
-		ARG 5 distance
+		ARG 5 selector
 		ARG 6 delay
 	METHOD method_32964 tick (Lnet/minecraft/class_1937;)V
 		ARG 1 world
@@ -50,6 +57,12 @@ CLASS net/minecraft/class_5718 net/minecraft/world/event/listener/VibrationListe
 		ARG 3 vibration
 		ARG 4 distance
 		ARG 5 delay
+	METHOD method_42342 (Lnet/minecraft/class_5718$class_5719;Lnet/minecraft/class_5716;Ljava/lang/Integer;Ljava/util/Optional;Lnet/minecraft/class_7722;Ljava/lang/Integer;)Lnet/minecraft/class_5718;
+		ARG 1 positionSource
+		ARG 2 range
+		ARG 3 vibration
+		ARG 4 selector
+		ARG 5 delay
 	METHOD method_42343 (Lnet/minecraft/class_5718;)Ljava/lang/Integer;
 		ARG 0 listener
 	METHOD method_42344 (Lnet/minecraft/class_5718;)Ljava/lang/Float;
@@ -59,6 +72,27 @@ CLASS net/minecraft/class_5718 net/minecraft/world/event/listener/VibrationListe
 	METHOD method_42346 (Lnet/minecraft/class_5718;)Ljava/lang/Integer;
 		ARG 0 listener
 	METHOD method_42347 (Lnet/minecraft/class_5718;)Lnet/minecraft/class_5716;
+		ARG 0 listener
+	METHOD method_45494 trySelect (Lnet/minecraft/class_3218;Lnet/minecraft/class_5712;Lnet/minecraft/class_5712$class_7397;Lnet/minecraft/class_243;Lnet/minecraft/class_243;)V
+		ARG 1 world
+		ARG 2 event
+		ARG 3 emitter
+		ARG 4 emitterPos
+		ARG 5 listenerPos
+	METHOD method_45495 (Lnet/minecraft/class_3218;Lnet/minecraft/class_7269;)V
+		ARG 2 vibration
+	METHOD method_45496 getFrequency (Lnet/minecraft/class_5712;)I
+		ARG 0 event
+	METHOD method_45497 (Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;)V
+		ARG 0 frequencies
+	METHOD method_45498 forceListen (Lnet/minecraft/class_3218;Lnet/minecraft/class_5712;Lnet/minecraft/class_5712$class_7397;Lnet/minecraft/class_243;)V
+		ARG 1 world
+		ARG 2 event
+		ARG 3 emitter
+		ARG 4 emitterPos
+	METHOD method_45499 (Lnet/minecraft/class_3218;Lnet/minecraft/class_5712;Lnet/minecraft/class_5712$class_7397;Lnet/minecraft/class_243;Lnet/minecraft/class_243;)V
+		ARG 5 listenerPos
+	METHOD method_45500 (Lnet/minecraft/class_5718;)Lnet/minecraft/class_7722;
 		ARG 0 listener
 	CLASS class_5719 Callback
 		METHOD method_32969 accept (Lnet/minecraft/class_1937;Lnet/minecraft/class_5714;Lnet/minecraft/class_5712;I)V
@@ -97,24 +131,6 @@ CLASS net/minecraft/class_5718 net/minecraft/world/event/listener/VibrationListe
 		METHOD method_42672 onListen ()V
 		METHOD method_43695 triggersAvoidCriterion ()Z
 	CLASS class_7269 Vibration
-		FIELD field_38245 CODEC Lcom/mojang/serialization/Codec;
-		METHOD <init> (Lnet/minecraft/class_5712;FLnet/minecraft/class_243;Ljava/util/UUID;Ljava/util/UUID;)V
-			ARG 1 gameEvent
-			ARG 2 distance
-			ARG 3 pos
-			ARG 4 uuid
-			ARG 5 projectileOwnerUuid
-		METHOD <init> (Lnet/minecraft/class_5712;FLnet/minecraft/class_243;Lnet/minecraft/class_1297;)V
-			ARG 1 gameEvent
-			ARG 2 distance
-			ARG 3 pos
-			ARG 4 entity
-		METHOD method_42348 getEntity (Lnet/minecraft/class_3218;)Ljava/util/Optional;
-			ARG 1 world
-		METHOD method_42349 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 0 instance
-		METHOD method_42684 getOwnerUuid (Lnet/minecraft/class_1297;)Ljava/util/UUID;
-			ARG 0 entity
 		METHOD method_42685 (Lnet/minecraft/class_5712;Ljava/lang/Float;Lnet/minecraft/class_243;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/class_5718$class_7269;
 			ARG 0 event
 			ARG 1 distance
@@ -123,11 +139,5 @@ CLASS net/minecraft/class_5718 net/minecraft/world/event/listener/VibrationListe
 			ARG 4 projectileOwnerUuid
 		METHOD method_42686 (Lnet/minecraft/class_5718$class_7269;)Ljava/util/Optional;
 			ARG 0 vibration
-		METHOD method_42687 getOwner (Lnet/minecraft/class_3218;)Ljava/util/Optional;
-			ARG 1 world
-		METHOD method_42688 (Lnet/minecraft/class_1297;)Lnet/minecraft/class_1676;
-			ARG 0 entity
 		METHOD method_42689 (Lnet/minecraft/class_5718$class_7269;)Ljava/util/Optional;
 			ARG 0 vibration
-		METHOD method_42691 (Lnet/minecraft/class_1297;)Z
-			ARG 0 entity

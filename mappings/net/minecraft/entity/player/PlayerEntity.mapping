@@ -3,6 +3,8 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	FIELD field_18135 STANDING_DIMENSIONS Lnet/minecraft/class_4048;
 	FIELD field_19428 shoulderEntityAddedTime J
 	FIELD field_30642 OFFLINE_PLAYER_UUID_PREFIX Ljava/lang/String;
+	FIELD field_30651 DEFAULT_EYE_HEIGHT F
+	FIELD field_38197 LOGGER Lorg/slf4j/Logger;
 	FIELD field_38198 sculkShriekerWarningManager Lnet/minecraft/class_7262;
 	FIELD field_39118 publicKey Lnet/minecraft/class_7428;
 	FIELD field_39445 lastDeathPos Ljava/util/Optional;
@@ -42,12 +44,14 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	FIELD field_7523 reducedDebugInfo Z
 	FIELD field_7524 prevCapeX D
 	FIELD field_7525 selectedItem Lnet/minecraft/class_1799;
-	METHOD <init> (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;FLcom/mojang/authlib/GameProfile;Lnet/minecraft/class_7428;)V
+	METHOD <init> (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;FLcom/mojang/authlib/GameProfile;)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 yaw
 		ARG 4 gameProfile
-		ARG 5 publicKey
+	METHOD method_14247 closeScreenHandler ()V
+		COMMENT Runs closing tasks for the current screen handler and
+		COMMENT sets it to the {@code playerScreenHandler}.
 	METHOD method_16354 openJigsawScreen (Lnet/minecraft/class_3751;)V
 		ARG 1 jigsaw
 	METHOD method_16475 spawnParticles (Lnet/minecraft/class_2394;)V
@@ -120,8 +124,10 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 			COMMENT the item stack in the clicked slot
 		ARG 3 clickType
 			COMMENT the click type (mouse button used)
+	METHOD method_33793 shouldFilterText ()Z
 	METHOD method_40126 useRiptide (I)V
 		ARG 1 riptideTicks
+	METHOD method_42272 getSculkShriekerWarningManager ()Ljava/util/Optional;
 	METHOD method_42272 getSculkShriekerWarningManager ()Lnet/minecraft/class_7262;
 	METHOD method_43120 setLastDeathPos (Ljava/util/Optional;)V
 		ARG 1 lastDeathPos

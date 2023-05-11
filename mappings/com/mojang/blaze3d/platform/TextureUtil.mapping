@@ -15,6 +15,14 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 0 id
 	METHOD bind (I)V
 		ARG 0 id
+	METHOD bind (I)V
+		ARG 0 id
+	METHOD getDebugTexturePath (Ljava/nio/file/Path;)Ljava/nio/file/Path;
+		ARG 0 path
+	METHOD initTexture (Ljava/nio/IntBuffer;II)V
+		ARG 0 imageData
+		ARG 1 width
+		ARG 2 height
 	METHOD initTexture (Ljava/nio/IntBuffer;II)V
 		ARG 0 imageData
 		ARG 1 width
@@ -45,6 +53,10 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 2 height
 	METHOD prepareImage (III)V
 		ARG 0 texture
+		ARG 1 width
+		ARG 2 height
+	METHOD prepareImage (III)V
+		ARG 0 id
 		ARG 1 width
 		ARG 2 height
 	METHOD prepareImage (III)V
@@ -115,9 +127,19 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 1 maxLevel
 		ARG 2 width
 		ARG 3 height
+	METHOD prepareImage (IIII)V
+		ARG 0 id
+		ARG 1 maxLevel
+		ARG 2 width
+		ARG 3 height
 	METHOD prepareImage (Lnet/minecraft/class_1011$class_1013;III)V
 		ARG 0 pixelFormat
 		ARG 1 texture
+		ARG 2 width
+		ARG 3 height
+	METHOD prepareImage (Lnet/minecraft/class_1011$class_1013;III)V
+		ARG 0 internalFormat
+		ARG 1 id
 		ARG 2 width
 		ARG 3 height
 	METHOD prepareImage (Lnet/minecraft/class_1011$class_1013;III)V
@@ -203,6 +225,14 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 2 maxLevel
 		ARG 3 width
 		ARG 4 height
+	METHOD prepareImage (Lnet/minecraft/class_1011$class_1013;IIII)V
+		ARG 0 internalFormat
+		ARG 1 id
+		ARG 2 maxLevel
+		ARG 3 width
+		ARG 4 height
+	METHOD readResource (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
+		ARG 0 inputStream
 	METHOD readResource (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
 		ARG 0 inputStream
 	METHOD readResource (Ljava/io/InputStream;)Ljava/nio/ByteBuffer;
@@ -225,6 +255,8 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 0 inputStream
 	METHOD readResourceAsString (Ljava/io/InputStream;)Ljava/lang/String;
 		ARG 0 inputStream
+	METHOD releaseTextureId (I)V
+		ARG 0 id
 	METHOD releaseTextureId (I)V
 		ARG 0 id
 	METHOD releaseTextureId (I)V
@@ -257,3 +289,10 @@ CLASS com/mojang/blaze3d/platform/TextureUtil
 		ARG 2 scales
 		ARG 3 width
 		ARG 4 height
+	METHOD writeAsPNG (Ljava/nio/file/Path;Ljava/lang/String;IIII)V
+		ARG 0 directory
+		ARG 1 prefix
+		ARG 2 textureId
+		ARG 3 scales
+		ARG 4 width
+		ARG 5 height

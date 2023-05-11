@@ -11,6 +11,17 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 		COMMENT {@return the player list entry for {@code sender}, or {@code null} if the sender's
 		COMMENT UUID did not correspond to any known players}
 		ARG 1 sender
+	METHOD method_44732 getStatus (Lnet/minecraft/class_7471;Lnet/minecraft/class_2561;Ljava/time/Instant;)Lnet/minecraft/class_7595;
+		COMMENT {@return the trust status of {@code message}}
+		COMMENT
+		COMMENT <p>This returns {@link MessageTrustStatus#SECURE} for messages that are
+		COMMENT considered to be {@linkplain #isAlwaysTrusted always trusted}.
+		COMMENT
+		COMMENT @see #isAlwaysTrusted
+		COMMENT @see MessageTrustStatus#getStatus
+		ARG 1 message
+		ARG 2 decorated
+		ARG 3 receptionTimestamp
 	METHOD method_44732 getStatus (Lnet/minecraft/class_7471;Lnet/minecraft/class_2561;Lnet/minecraft/class_640;Ljava/time/Instant;)Lnet/minecraft/class_7595;
 		COMMENT {@return the trust status of {@code message}}
 		COMMENT
@@ -43,6 +54,11 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 		COMMENT <p>Game messages ignore chat delay.
 		ARG 1 message
 		ARG 2 overlay
+	METHOD method_44737 addToChatLog (Lnet/minecraft/class_7471;Lnet/minecraft/class_2556$class_7602;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_7595;)V
+		ARG 1 message
+		ARG 2 params
+		ARG 3 sender
+		ARG 4 trustStatus
 	METHOD method_44737 addToChatLog (Lnet/minecraft/class_7471;Lnet/minecraft/class_2556$class_7602;Lnet/minecraft/class_640;Lnet/minecraft/class_7595;)V
 		ARG 1 message
 		ARG 2 params
@@ -97,6 +113,11 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 		ARG 2 message
 	METHOD method_44775 shouldDelay ()Z
 		COMMENT {@return if the chat delay is set and the message should be delayed}
+	METHOD method_44818 process (Lnet/minecraft/class_7469;Ljava/util/function/BooleanSupplier;)V
+		COMMENT Queues {@code processor} during {@linkplain #shouldDelay the chat delay},
+		COMMENT otherwise runs the processor.
+		ARG 1 signature
+		ARG 2 processor
 	METHOD method_44818 process (Lnet/minecraft/class_7594$class_7627;)V
 		COMMENT Queues {@code processor} during {@linkplain #shouldDelay the chat delay},
 		COMMENT otherwise runs the processor.
@@ -137,6 +158,27 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 		ARG 3 bodyDigest
 	METHOD method_44942 (Lnet/minecraft/class_7594$class_7627;)V
 		ARG 0 message
+	METHOD method_44943 processChatMessageInternal (Lnet/minecraft/class_2556$class_7602;Lnet/minecraft/class_7471;Lnet/minecraft/class_2561;Lcom/mojang/authlib/GameProfile;ZLjava/time/Instant;)Z
+		COMMENT Processes a chat message.
+		COMMENT
+		COMMENT <p>If the message cannot be verified due to a broken chain, this disconnects
+		COMMENT the client from the server.
+		COMMENT
+		COMMENT <p>The message can still end up not being displayed if the verification
+		COMMENT fails and {@code onlyShowSecureChat} is {@code true} or if the sender is
+		COMMENT blocked via the social interactions screen.
+		COMMENT
+		COMMENT <p>This adds the message to the hud, narrates it, and appends it to the
+		COMMENT chat log.
+		COMMENT
+		COMMENT @return whether the message was actually displayed
+		ARG 1 params
+		ARG 2 message
+		ARG 3 decorated
+		ARG 4 sender
+		ARG 5 onlyShowSecureChat
+		ARG 6 receptionTimestamp
+			COMMENT the timestamp when the message was received by this client
 	METHOD method_44943 processChatMessageInternal (Lnet/minecraft/class_2556$class_7602;Lnet/minecraft/class_7471;Lnet/minecraft/class_2561;Lnet/minecraft/class_640;ZLjava/time/Instant;)Z
 		COMMENT Processes a chat message.
 		COMMENT
@@ -164,6 +206,15 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 		COMMENT Processes all delayed messages from the queue.
 	METHOD method_45031 disconnect ()V
 		COMMENT Disconnects from the server with reason {@link #CHAT_VALIDATION_FAILED_DISCONNECT_REASON}.
+	METHOD method_45746 onProfilelessMessage (Lnet/minecraft/class_2561;Lnet/minecraft/class_2556$class_7602;)V
+		ARG 1 content
+		ARG 2 params
+	METHOD method_45747 (Lnet/minecraft/class_7469;Lnet/minecraft/class_7594$class_7627;)Z
+		ARG 1 message
+	METHOD method_45748 onChatMessage (Lnet/minecraft/class_7471;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_2556$class_7602;)V
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 params
 	CLASS 1
 		FIELD field_39868 processed Z
 	CLASS class_7627 ProcessableMessage
@@ -184,3 +235,6 @@ CLASS net/minecraft/class_7594 net/minecraft/client/network/message/MessageHandl
 			ARG 1 signature
 		METHOD method_44948 isUnprocessed ()Z
 			COMMENT {@return {@code true} if this is not processed yet}
+		METHOD method_45750 accept ()Z
+			COMMENT If this is not processed yet, adds the message to the hud; otherwise, processes
+			COMMENT the message header without adding to the hud.

@@ -14,6 +14,7 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 	FIELD field_2001 random Ljava/util/Random;
 	FIELD field_2001 random Lnet/minecraft/class_5819;
 	FIELD field_24237 FORWARD_SHIFT Lnet/minecraft/class_1160;
+	FIELD field_24237 FORWARD_SHIFT Lorg/joml/Vector3f;
 	FIELD field_24238 handler Lnet/minecraft/class_5225;
 	FIELD field_32166 Z_INDEX F
 	FIELD field_35427 ARABIC_SHAPING_LETTERS_SHAPE I
@@ -27,6 +28,20 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 3 position
 		ARG 4 skipWhitespaceToRightOfWord
 	METHOD method_1710 drawGlyph (Lnet/minecraft/class_382;ZZFFFLnet/minecraft/class_1159;Lnet/minecraft/class_4588;FFFFI)V
+		ARG 1 glyphRenderer
+		ARG 2 bold
+		ARG 3 italic
+		ARG 4 weight
+		ARG 5 x
+		ARG 6 y
+		ARG 7 matrix
+		ARG 8 vertexConsumer
+		ARG 9 red
+		ARG 10 green
+		ARG 11 blue
+		ARG 12 alpha
+		ARG 13 light
+	METHOD method_1710 drawGlyph (Lnet/minecraft/class_382;ZZFFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V
 		ARG 1 glyphRenderer
 		ARG 2 bold
 		ARG 3 italic
@@ -140,7 +155,29 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_1723 drawInternal (Lnet/minecraft/class_5481;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumerProvider
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
 	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumerProvider
+		ARG 8 seeThrough
+		ARG 9 underlineColor
+		ARG 10 light
+	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)F
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -201,6 +238,13 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 4 color
 		ARG 5 matrix
 		ARG 6 shadow
+	METHOD method_22941 draw (Lnet/minecraft/class_5481;FFILorg/joml/Matrix4f;Z)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 matrix
+		ARG 6 shadow
 	METHOD method_22942 draw (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
 		ARG 1 text
 		ARG 2 x
@@ -224,6 +268,18 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 9 backgroundColor
 		ARG 10 light
 	METHOD method_22942 draw (Lnet/minecraft/class_5481;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+			COMMENT the text color in the 0xAARRGGBB format
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
+	METHOD method_22942 draw (Lnet/minecraft/class_5481;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -261,6 +317,14 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 5 matrix
 		ARG 6 shadow
 		ARG 7 mirror
+	METHOD method_27520 draw (Ljava/lang/String;FFILorg/joml/Matrix4f;ZZ)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 matrix
+		ARG 6 shadow
+		ARG 7 mirror
 	METHOD method_27521 draw (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
 		ARG 1 text
 		ARG 2 x
@@ -273,7 +337,32 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_27521 draw (Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+			COMMENT the text color in the 0xAARRGGBB format
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
 	METHOD method_27522 draw (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZIIZ)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+			COMMENT the text color in the 0xAARRGGBB format
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
+		ARG 11 rightToLeft
+	METHOD method_27522 draw (Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZIIZ)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -332,6 +421,18 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 9 backgroundColor
 		ARG 10 light
 		ARG 11 mirror
+	METHOD method_27529 drawInternal (Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZIIZ)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
+		ARG 11 mirror
 	METHOD method_27530 drawLayer (Lnet/minecraft/class_5348;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
 		ARG 1 text
 		ARG 2 x
@@ -344,6 +445,17 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 9 underlineColor
 		ARG 10 light
 	METHOD method_27530 drawLayer (Lnet/minecraft/class_5481;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumerProvider
+		ARG 8 seeThrough
+		ARG 9 underlineColor
+		ARG 10 light
+	METHOD method_27530 drawLayer (Lnet/minecraft/class_5481;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)F
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -384,6 +496,18 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_30882 draw (Lnet/minecraft/class_2561;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+			COMMENT the text color in the 0xAARRGGBB format
+		ARG 5 shadow
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 seeThrough
+		ARG 9 backgroundColor
+		ARG 10 light
 	METHOD method_30883 draw (Lnet/minecraft/class_4587;Lnet/minecraft/class_2561;FFI)I
 		ARG 1 matrices
 		ARG 2 text
@@ -392,6 +516,17 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 5 color
 			COMMENT the text color in the 0xAARRGGBB format
 	METHOD method_37296 drawWithOutline (Lnet/minecraft/class_5481;FFIILnet/minecraft/class_1159;Lnet/minecraft/class_4597;I)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+			COMMENT the text color in 0xAARRGGBB
+		ARG 5 outlineColor
+			COMMENT the outline color in 0xAARRGGBB
+		ARG 6 matrix
+		ARG 7 vertexConsumers
+		ARG 8 light
+	METHOD method_37296 drawWithOutline (Lnet/minecraft/class_5481;FFIILorg/joml/Matrix4f;Lnet/minecraft/class_4597;I)V
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
@@ -448,13 +583,14 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		FIELD field_24245 blue F
 		FIELD field_24246 alpha F
 		FIELD field_24247 matrix Lnet/minecraft/class_1159;
+		FIELD field_24247 matrix Lorg/joml/Matrix4f;
 		FIELD field_24248 seeThrough Z
 		FIELD field_24249 light I
 		FIELD field_24250 x F
 		FIELD field_24251 y F
 		FIELD field_24252 rectangles Ljava/util/List;
 		FIELD field_33997 layerType Lnet/minecraft/class_327$class_6415;
-		METHOD <init> (Lnet/minecraft/class_327;Lnet/minecraft/class_4597;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_327$class_6415;I)V
+		METHOD <init> (Lnet/minecraft/class_327;Lnet/minecraft/class_4597;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_327$class_6415;I)V
 			ARG 2 vertexConsumers
 			ARG 3 x
 			ARG 4 y
@@ -463,7 +599,7 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 			ARG 7 matrix
 			ARG 8 layerType
 			ARG 9 light
-		METHOD <init> (Lnet/minecraft/class_327;Lnet/minecraft/class_4597;FFIZLnet/minecraft/class_1159;ZI)V
+		METHOD <init> (Lnet/minecraft/class_327;Lnet/minecraft/class_4597;FFIZLorg/joml/Matrix4f;ZI)V
 			ARG 2 vertexConsumers
 			ARG 3 x
 			ARG 4 y

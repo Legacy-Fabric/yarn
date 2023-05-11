@@ -9,6 +9,11 @@ CLASS net/minecraft/class_7638 net/minecraft/network/message/AcknowledgmentValid
 	FIELD field_39888 UNKNOWN I
 	FIELD field_39889 prevValidated Lnet/minecraft/class_7635;
 	FIELD field_39890 pending Lit/unimi/dsi/fastutil/objects/ObjectList;
+	FIELD field_40680 size I
+	FIELD field_40681 messages Lit/unimi/dsi/fastutil/objects/ObjectList;
+	FIELD field_40682 lastSignature Lnet/minecraft/class_7469;
+	METHOD <init> (I)V
+		ARG 1 size
 	METHOD method_44987 getPendingCount ()I
 	METHOD method_44988 order (Ljava/util/List;[ILnet/minecraft/class_7635$class_7609;)I
 		COMMENT Orders {@code lastSeen}. {@code result} should be an array with the same size
@@ -22,6 +27,8 @@ CLASS net/minecraft/class_7638 net/minecraft/network/message/AcknowledgmentValid
 		ARG 1 lastSeen
 		ARG 2 result
 		ARG 3 lastReceived
+	METHOD method_44989 addPending (Lnet/minecraft/class_7469;)V
+		ARG 1 signature
 	METHOD method_44989 addPending (Lnet/minecraft/class_7635$class_7609;)V
 		ARG 1 entry
 	METHOD method_44990 validate (Lnet/minecraft/class_7635$class_7636;)Ljava/util/Set;
@@ -35,6 +42,11 @@ CLASS net/minecraft/class_7638 net/minecraft/network/message/AcknowledgmentValid
 		COMMENT
 		COMMENT <p>If {@code true}, validation fails.
 		ARG 1 messages
+	METHOD method_46268 getMessageCount ()I
+	METHOD method_46269 removeUntil (I)Z
+		ARG 1 index
+	METHOD method_46270 validate (Lnet/minecraft/class_7635$class_7636;)Ljava/util/Optional;
+		ARG 1 acknowledgment
 	CLASS class_7639 FailureReason
 		FIELD field_39895 description Ljava/lang/String;
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V

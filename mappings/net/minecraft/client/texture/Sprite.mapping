@@ -8,6 +8,8 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 	FIELD field_28466 width I
 	FIELD field_28467 height I
 	FIELD field_28468 animation Lnet/minecraft/class_1058$class_5790;
+	FIELD field_40552 atlasId Lnet/minecraft/class_2960;
+	FIELD field_40553 contents Lnet/minecraft/class_7764;
 	FIELD field_5256 y I
 	FIELD field_5257 id Lnet/minecraft/class_2960;
 	FIELD field_5258 x I
@@ -27,15 +29,13 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 		COMMENT Resets to 0 on every frame advance.
 	FIELD field_5273 frameIndex I
 	FIELD field_5274 srgbLinearMap [F
-	METHOD <init> (Lnet/minecraft/class_1059;Lnet/minecraft/class_1058$class_4727;IIIIILnet/minecraft/class_1011;)V
-		ARG 1 atlas
-		ARG 2 info
+	METHOD <init> (Lnet/minecraft/class_2960;Lnet/minecraft/class_7764;IIII)V
+		ARG 1 atlasId
+		ARG 2 contents
 		ARG 3 maxLevel
 		ARG 4 atlasWidth
 		ARG 5 atlasHeight
 		ARG 6 x
-		ARG 7 y
-		ARG 8 image
 	METHOD method_18340 isDivisibleBy (II)Z
 		ARG 0 number
 		ARG 1 divisor
@@ -49,6 +49,7 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 	METHOD method_24108 getTextureSpecificVertexConsumer (Lnet/minecraft/class_4588;)Lnet/minecraft/class_4588;
 		ARG 1 consumer
 	METHOD method_24119 getAtlas ()Lnet/minecraft/class_1059;
+	METHOD method_33437 createAnimation ()Lnet/minecraft/class_1058$class_7770;
 	METHOD method_33437 createAnimation (Lnet/minecraft/class_1058$class_4727;III)Lnet/minecraft/class_1058$class_5790;
 		ARG 1 info
 		ARG 2 nativeImageWidth
@@ -97,6 +98,8 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 		ARG 3 y
 	METHOD method_4584 upload ()V
 	METHOD method_4585 interpolateFrames ()V
+	METHOD method_45851 getContents ()Lnet/minecraft/class_7764;
+	METHOD method_45852 getAtlasId ()Lnet/minecraft/class_2960;
 	METHOD method_4587 init (IIII)V
 		ARG 1 width
 		ARG 2 height
@@ -138,10 +141,6 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 		METHOD method_24123 getWidth ()I
 		METHOD method_24125 getHeight ()I
 	CLASS class_4728 Interpolation
-		FIELD field_21758 images [Lnet/minecraft/class_1011;
-		METHOD <init> (Lnet/minecraft/class_1058;Lnet/minecraft/class_1058$class_4727;I)V
-			ARG 2 info
-			ARG 3 maxLevel
 		METHOD method_24128 apply ()V
 			COMMENT Linearly interpolate between the current and next frame on all mip levels
 			COMMENT based on the tick position within the current frame,
@@ -151,12 +150,6 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 			COMMENT based on the tick position within the current frame,
 			COMMENT and upload the results to the currently bound texture to the frame slot at position (0,0).
 			ARG 1 animation
-		METHOD method_24129 lerp (DII)I
-			COMMENT Purely mathematical single-value linear interpolation.
-			COMMENT {@code lerp(0, a, b) == b}, {@code lerp(1, a, b) == a}.
-			ARG 1 delta
-			ARG 3 to
-			ARG 4 from
 		METHOD method_24130 getPixelColor (IIII)I
 			COMMENT Returns the pixel color at frame {@code frameIndex} within mipmap {@code layer} at sprite relative coordinates.
 			ARG 1 frameIndex
@@ -173,26 +166,12 @@ CLASS net/minecraft/class_1058 net/minecraft/client/texture/Sprite
 	CLASS class_5790 Animation
 		FIELD field_28470 frameIndex I
 		FIELD field_28471 frameTicks I
-		FIELD field_28472 frames Ljava/util/List;
-		FIELD field_28473 frameCount I
 		FIELD field_28474 interpolation Lnet/minecraft/class_1058$class_4728;
-		METHOD <init> (Lnet/minecraft/class_1058;Ljava/util/List;ILnet/minecraft/class_1058$class_4728;)V
-			ARG 2 frames
-			ARG 3 frameCount
-			ARG 4 interpolation
 		METHOD method_33445 upload ()V
-		METHOD method_33446 getFrameX (I)I
-			ARG 1 frame
 		METHOD method_33449 (Lnet/minecraft/class_1058$class_5791;)I
 			ARG 0 frame
-		METHOD method_33450 getDistinctFrameCount ()Ljava/util/stream/IntStream;
-		METHOD method_33451 getFrameY (I)I
-			ARG 1 frame
 		METHOD method_33455 upload (I)V
 			ARG 1 frameIndex
 	CLASS class_5791 AnimationFrame
-		FIELD field_28475 index I
-		FIELD field_28476 time I
-		METHOD <init> (II)V
-			ARG 1 index
-			ARG 2 time
+	CLASS class_7770 TickableAnimation
+		METHOD method_45853 tick ()V
