@@ -268,6 +268,8 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 		ARG 1 void_
 	METHOD method_43369 (Ljava/util/List;Ljava/util/concurrent/CompletableFuture;Ljava/lang/Throwable;)V
 		ARG 2 throwable
+	METHOD method_43369 (Ljava/util/concurrent/CompletableFuture;Ljava/util/List;Ljava/lang/Throwable;)V
+		ARG 2 throwable
 	METHOD method_43370 combine (Ljava/util/List;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 futures
 		ARG 1 exceptionHandler
@@ -347,6 +349,8 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 		COMMENT {@return the result wrapped in {@code result}}
 		ARG 0 result
 		ARG 1 exceptionGetter
+	METHOD method_48746 cachedMapper (Ljava/util/function/Function;)Lnet/minecraft/class_8105;
+		ARG 0 mapper
 	METHOD method_645 previous (Ljava/lang/Iterable;Ljava/lang/Object;)Ljava/lang/Object;
 		COMMENT {@return the item preceding {@code object} in {@code iterable}}
 		COMMENT
@@ -465,8 +469,13 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 			ARG 1 object
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 object
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 object
 	CLASS 3
 		FIELD field_29657 cache Ljava/util/Map;
+		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 a
+			ARG 2 b
 		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 a
 			ARG 2 b
@@ -490,6 +499,8 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 			ARG 1 throwable
 		METHOD onTermination (Ljava/lang/Throwable;)V
 			ARG 1 throwable
+		METHOD onTermination (Ljava/lang/Throwable;)V
+			ARG 1 throwable
 	CLASS 7
 	CLASS 8
 	CLASS class_157 IdentityHashStrategy
@@ -505,6 +516,11 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
 			ARG 1 o
 			ARG 2 o2
+		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
+			ARG 1 o
+			ARG 2 o2
+		METHOD hashCode (Ljava/lang/Object;)I
+			ARG 1 o
 		METHOD hashCode (Ljava/lang/Object;)I
 			ARG 1 o
 		METHOD hashCode (Ljava/lang/Object;)I

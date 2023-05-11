@@ -52,10 +52,21 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 	FIELD field_3205 createLevelButton Lnet/minecraft/class_4185;
 	FIELD field_32434 TEMP_DIR_PREFIX Ljava/lang/String;
 	FIELD field_37911 PREPARING_TEXT Lnet/minecraft/class_2561;
-	METHOD <init> (Lnet/minecraft/class_437;Lnet/minecraft/class_7712;Lnet/minecraft/class_5292;)V
-		ARG 1 parent
-		ARG 2 dataConfiguration
-		ARG 3 moreOptionsDialog
+	FIELD field_42163 grid Lnet/minecraft/class_7845;
+	FIELD field_42164 tabNavigation Lnet/minecraft/class_8089;
+	FIELD field_42169 ALLOW_COMMANDS_INFO_TEXT Lnet/minecraft/class_2561;
+	FIELD field_42172 worldCreator Lnet/minecraft/class_8100;
+	FIELD field_42173 tabManager Lnet/minecraft/class_8088;
+	FIELD field_42501 EXPERIMENTS_TEXT Lnet/minecraft/class_2561;
+	FIELD field_42502 recreated Z
+	FIELD field_43081 HEADER_SEPARATOR_TEXTURE Lnet/minecraft/class_2960;
+	FIELD field_43082 FOOTER_SEPARATOR_TEXTURE Lnet/minecraft/class_2960;
+	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_437;Lnet/minecraft/class_7193;Ljava/util/Optional;Ljava/util/OptionalLong;)V
+		ARG 1 client
+		ARG 2 parent
+		ARG 3 generatorOptionsHolder
+		ARG 4 defaultWorldType
+		ARG 5 seed
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -92,6 +103,10 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 	METHOD method_28084 setMoreOptionsOpen ()V
 	METHOD method_29682 applyDataPacks (Lnet/minecraft/class_3283;)V
 		ARG 1 dataPackManager
+	METHOD method_29682 applyDataPacks (Lnet/minecraft/class_3283;ZLjava/util/function/Consumer;)V
+		ARG 1 dataPackManager
+		ARG 2 fromPackScreen
+		ARG 3 configurationSetter
 	METHOD method_29684 (Ljava/nio/file/Path;)Z
 		ARG 1 path
 	METHOD method_29685 copyDataPack (Ljava/nio/file/Path;Lnet/minecraft/class_310;)Ljava/nio/file/Path;
@@ -115,11 +130,15 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 		ARG 1 button
 	METHOD method_29693 getDataPackTempDir ()Ljava/nio/file/Path;
 	METHOD method_29694 openPackScreen ()V
+	METHOD method_29694 openPackScreen (Lnet/minecraft/class_7712;)V
+		ARG 1 dataConfiguration
 	METHOD method_29695 clearDataPackTempDir ()V
 	METHOD method_29696 copyTempDirDataPacks ()Z
 	METHOD method_29983 (Ljava/util/List;Ljava/lang/String;)Z
 		ARG 1 name
 	METHOD method_30296 getScannedPack ()Lcom/mojang/datafixers/util/Pair;
+	METHOD method_30296 getScannedPack (Lnet/minecraft/class_7712;)Lcom/mojang/datafixers/util/Pair;
+		ARG 1 dataConfiguration
 	METHOD method_30297 onCloseScreen ()V
 	METHOD method_30298 clearTempResources ()V
 	METHOD method_31130 create (Lnet/minecraft/class_310;Lnet/minecraft/class_437;)V
@@ -153,6 +172,12 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 		ARG 2 dataPackSettings
 	METHOD method_40211 (Lcom/mojang/serialization/DynamicOps;Lcom/google/gson/JsonElement;)Lcom/mojang/serialization/DataResult;
 		ARG 1 json
+	METHOD method_40212 create (Lnet/minecraft/class_310;Lnet/minecraft/class_437;Lnet/minecraft/class_1940;Lnet/minecraft/class_7193;Ljava/nio/file/Path;)Lnet/minecraft/class_525;
+		ARG 0 client
+		ARG 1 parent
+		ARG 2 levelInfo
+		ARG 3 generatorOptionsHolder
+		ARG 4 dataPackTempDir
 	METHOD method_40212 create (Lnet/minecraft/class_437;Lnet/minecraft/class_1940;Lnet/minecraft/class_7193;Ljava/nio/file/Path;)Lnet/minecraft/class_525;
 		ARG 0 parent
 		ARG 1 levelInfo
@@ -206,6 +231,10 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 	METHOD method_45679 validateDataPacks (Lnet/minecraft/class_3283;Lnet/minecraft/class_7712;)V
 		ARG 1 dataPackManager
 		ARG 2 dataConfiguration
+	METHOD method_45679 validateDataPacks (Lnet/minecraft/class_3283;Lnet/minecraft/class_7712;Ljava/util/function/Consumer;)V
+		ARG 1 dataPackManager
+		ARG 2 dataConfiguration
+		ARG 3 configurationSetter
 	METHOD method_45681 (Lnet/minecraft/class_6860;Lnet/minecraft/class_5350;Lnet/minecraft/class_7780;Lnet/minecraft/class_525$class_7749;)Lnet/minecraft/class_7193;
 		ARG 0 resourceManager
 		ARG 1 dataPackContents
@@ -222,19 +251,98 @@ CLASS net/minecraft/class_525 net/minecraft/client/gui/screen/world/CreateWorldS
 		ARG 0 context
 	METHOD method_45688 (Z)V
 		ARG 1 confirmed
+	METHOD method_48643 (Lnet/minecraft/class_3283;Lnet/minecraft/class_7712;Ljava/util/function/Consumer;Z)V
+		ARG 4 confirmed
+	METHOD method_48644 (Lnet/minecraft/class_339;)V
+		ARG 1 child
+	METHOD method_48650 (Lnet/minecraft/class_525;Lnet/minecraft/class_364;)V
+		ARG 1 child
+	METHOD method_48654 (Ljava/util/function/Consumer;Z)V
+		ARG 2 confirmed
+	METHOD method_48657 getWorldCreator ()Lnet/minecraft/class_8100;
+	METHOD method_49009 (Lnet/minecraft/class_3283;)V
+		ARG 1 resourcePackManager
+	METHOD method_49010 openExperimentsScreen (Lnet/minecraft/class_7712;)V
+		ARG 1 dataConfiguration
+	METHOD method_49011 (Lnet/minecraft/class_3283;)V
+		ARG 1 resourcePackManager
+	METHOD method_49629 (Ljava/util/function/Consumer;Ljava/lang/Void;Ljava/lang/Throwable;)Ljava/lang/Object;
+		ARG 3 throwable
 	METHOD render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 delta
 	CLASS class_4539 Mode
 		FIELD field_20628 translationSuffix Ljava/lang/String;
-		FIELD field_20629 defaultGameMode Lnet/minecraft/class_1934;
 		FIELD field_27999 text Lnet/minecraft/class_2561;
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/class_1934;)V
-			ARG 3 translationSuffix
-			ARG 4 defaultGameMode
 		METHOD method_32673 asText ()Lnet/minecraft/class_2561;
 	CLASS class_5376 WorldCreationException
 		METHOD <init> (Ljava/lang/Throwable;)V
 			ARG 1 throwable
 	CLASS class_7749 WorldCreationSettings
+	CLASS class_8093 GameTab
+		FIELD field_42175 GAME_TAB_TITLE_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42176 ALLOW_COMMANDS_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42177 worldNameField Lnet/minecraft/class_342;
+		METHOD method_48658 (Lnet/minecraft/class_5676;Lnet/minecraft/class_1267;)V
+			ARG 1 button
+			ARG 2 value
+		METHOD method_48659 (Lnet/minecraft/class_5676;Lnet/minecraft/class_8100$class_4539;)V
+			ARG 1 button
+			ARG 2 value
+		METHOD method_48660 (Lnet/minecraft/class_5676;Lnet/minecraft/class_8100;)V
+			ARG 2 creator
+		METHOD method_48661 (Lnet/minecraft/class_5676;Ljava/lang/Boolean;)V
+			ARG 1 button
+			ARG 2 value
+		METHOD method_48662 (Lnet/minecraft/class_8100$class_4539;)Lnet/minecraft/class_2561;
+			ARG 0 value
+		METHOD method_48663 (Ljava/lang/Boolean;)Lnet/minecraft/class_7919;
+			ARG 0 value
+		METHOD method_48664 (Lnet/minecraft/class_5676;Lnet/minecraft/class_8100;)V
+			ARG 2 creator
+		METHOD method_48665 (Lnet/minecraft/class_5676;Lnet/minecraft/class_8100;)V
+			ARG 1 creator
+		METHOD method_49012 (Lnet/minecraft/class_4185;)V
+			ARG 1 button
+		METHOD method_49702 (Lnet/minecraft/class_8100;)V
+			ARG 1 creator
+	CLASS class_8094 MoreTab
+		FIELD field_42179 MORE_TAB_TITLE_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42180 GAME_RULES_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42181 DATA_PACKS_TEXT Lnet/minecraft/class_2561;
+		METHOD method_48667 (Ljava/util/Optional;)V
+			ARG 1 gameRules
+		METHOD method_48668 (Lnet/minecraft/class_4185;)V
+			ARG 1 button
+		METHOD method_48669 openGameRulesScreen ()V
+		METHOD method_49013 (Lnet/minecraft/class_4185;)V
+			ARG 1 button
+		METHOD method_49014 (Lnet/minecraft/class_4185;)V
+			ARG 1 button
+	CLASS class_8095 WorldTab
+		FIELD field_42183 WORLD_TAB_TITLE_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42184 AMPLIFIED_GENERATOR_INFO_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42185 MAP_FEATURES_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42186 MAP_FEATURES_INFO_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42187 BONUS_ITEMS_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42188 ENTER_SEED_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42189 SEED_INFO_TEXT Lnet/minecraft/class_2561;
+		FIELD field_42191 seedField Lnet/minecraft/class_342;
+		FIELD field_42192 customizeButton Lnet/minecraft/class_4185;
+		METHOD method_48670 (Lnet/minecraft/class_4185;)V
+			ARG 1 button
+		METHOD method_48671 getWorldTypeNarrationMessage (Lnet/minecraft/class_5676;)Lnet/minecraft/class_5250;
+			ARG 0 worldTypeButton
+		METHOD method_48673 (Lnet/minecraft/class_5676;Lnet/minecraft/class_8100;)V
+			ARG 2 creator
+		METHOD method_48674 (Lnet/minecraft/class_7845$class_7939;Lnet/minecraft/class_8021;)V
+			ARG 1 widget
+		METHOD method_48675 (Lnet/minecraft/class_8096;Lnet/minecraft/class_8100;)V
+			ARG 1 creator
+		METHOD method_48676 (Lnet/minecraft/class_8100;)V
+			ARG 1 creator
+		METHOD method_48677 (Ljava/lang/String;)V
+			ARG 1 seed
+		METHOD method_48678 openCustomizeScreen ()V
+		METHOD method_48679 getWorldTypes ()Lnet/minecraft/class_5676$class_5680;

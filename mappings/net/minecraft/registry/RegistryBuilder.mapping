@@ -18,6 +18,8 @@ CLASS net/minecraft/class_7877 net/minecraft/registry/RegistryBuilder
 		ARG 2 wrapperLookup
 	METHOD method_46782 (Lnet/minecraft/class_7877$class_7878;Lnet/minecraft/class_7877$class_7884;)Lnet/minecraft/class_7225$class_7226;
 		ARG 1 info
+	METHOD method_46782 (Lnet/minecraft/class_7877$class_7878;Lnet/minecraft/class_7877$class_7884;)Lnet/minecraft/class_7877$class_7883;
+		ARG 1 info
 	METHOD method_46783 (Lnet/minecraft/class_5455$class_6892;)Lnet/minecraft/class_7225$class_7226;
 		ARG 0 entry
 	METHOD method_46784 createBootstrappedRegistries (Lnet/minecraft/class_5455;)Lnet/minecraft/class_7877$class_7878;
@@ -25,6 +27,10 @@ CLASS net/minecraft/class_7877 net/minecraft/registry/RegistryBuilder
 	METHOD method_46785 (Lnet/minecraft/class_7877$class_7878;Lnet/minecraft/class_7877$class_7884;)Lnet/minecraft/class_7225$class_7226;
 		ARG 1 info
 	METHOD method_46786 (Lnet/minecraft/class_7877$class_7878;Lnet/minecraft/class_7877$class_7884;)V
+		ARG 1 registry
+	METHOD method_49352 (Ljava/util/Map;Lnet/minecraft/class_7877$class_7883;)V
+		ARG 1 registry
+	METHOD method_49353 (Ljava/util/Map;Lnet/minecraft/class_7877$class_7883;)V
 		ARG 1 registry
 	CLASS class_7878 Registries
 		METHOD method_46787 createRegisterable ()Lnet/minecraft/class_7891;
@@ -50,6 +56,9 @@ CLASS net/minecraft/class_7877 net/minecraft/registry/RegistryBuilder
 			ARG 1 registryRefs
 		METHOD method_46797 validateReferences ()V
 		METHOD method_46798 throwErrors ()V
+		METHOD method_49354 (Lnet/minecraft/class_2960;)Lnet/minecraft/class_7877$class_7883;
+			ARG 0 registry
+		METHOD method_49355 streamRegistries ()Ljava/util/stream/Stream;
 	CLASS class_7879 AnyOwner
 		COMMENT An owner that owns multiple registries and holds the owner object for those.
 		COMMENT {@link #ownerEquals} returns {@code true} for all owners {@linkplain #addOwner previously
@@ -63,6 +72,8 @@ CLASS net/minecraft/class_7877 net/minecraft/registry/RegistryBuilder
 			ARG 1 entryOwner
 	CLASS class_7881 RegisteredValue
 	CLASS class_7882 BootstrapFunction
+		METHOD run (Lnet/minecraft/class_7891;)V
+			ARG 1 registerable
 		METHOD run (Lnet/minecraft/class_7891;)V
 			ARG 1 registerable
 	CLASS class_7883 InitializedRegistry

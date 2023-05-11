@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_2022 net/minecraft/predicate/entity/DamageSourcePredicate
+	FIELD field_42272 tagPredicates Ljava/util/List;
 	FIELD field_9531 bypassesInvulnerability Ljava/lang/Boolean;
 	FIELD field_9532 bypassesArmor Ljava/lang/Boolean;
 	FIELD field_9533 EMPTY Lnet/minecraft/class_2022;
@@ -10,17 +11,10 @@ CLASS net/minecraft/class_2022 net/minecraft/predicate/entity/DamageSourcePredic
 	FIELD field_9539 sourceEntity Lnet/minecraft/class_2048;
 	FIELD field_9540 isFire Ljava/lang/Boolean;
 	FIELD field_9541 isMagic Ljava/lang/Boolean;
-	METHOD <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/class_2048;Lnet/minecraft/class_2048;)V
-		ARG 1 isProjectile
-		ARG 2 isExplosion
-		ARG 3 bypassesArmor
-		ARG 4 bypassesInvulnerability
-		ARG 5 bypassesMagic
-		ARG 6 isFire
-		ARG 7 isMagic
-		ARG 8 isLightning
-		ARG 9 directEntity
-		ARG 10 sourceEntity
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/class_2048;Lnet/minecraft/class_2048;)V
+		ARG 1 tagPredicates
+		ARG 2 directEntity
+		ARG 3 sourceEntity
 	METHOD method_8845 test (Lnet/minecraft/class_3218;Lnet/minecraft/class_243;Lnet/minecraft/class_1282;)Z
 		ARG 1 world
 		ARG 2 pos
@@ -39,6 +33,7 @@ CLASS net/minecraft/class_2022 net/minecraft/predicate/entity/DamageSourcePredic
 		ARG 2 key
 		ARG 3 value
 	CLASS class_2023 Builder
+		FIELD field_42273 tagPredicates Lcom/google/common/collect/ImmutableList$Builder;
 		FIELD field_9542 bypassesMagic Ljava/lang/Boolean;
 		FIELD field_9543 bypassesInvulnerability Ljava/lang/Boolean;
 		FIELD field_9544 directEntity Lnet/minecraft/class_2048;
@@ -67,6 +62,8 @@ CLASS net/minecraft/class_2022 net/minecraft/predicate/entity/DamageSourcePredic
 			ARG 1 fire
 		METHOD method_35138 magic (Ljava/lang/Boolean;)Lnet/minecraft/class_2022$class_2023;
 			ARG 1 magic
+		METHOD method_48785 tag (Lnet/minecraft/class_8129;)Lnet/minecraft/class_2022$class_2023;
+			ARG 1 tagPredicate
 		METHOD method_8851 build ()Lnet/minecraft/class_2022;
 		METHOD method_8852 projectile (Ljava/lang/Boolean;)Lnet/minecraft/class_2022$class_2023;
 			ARG 1 projectile

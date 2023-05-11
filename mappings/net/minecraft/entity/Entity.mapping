@@ -137,8 +137,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT @see Entity#removePassenger
 	FIELD field_29988 DEFAULT_PORTAL_COOLDOWN I
 		COMMENT @see Entity#getDefaultPortalCooldown
-	FIELD field_29989 MAX_SCOREBOARD_TAGS I
-		COMMENT @see Entity#addScoreboardTag
+	FIELD field_29989 MAX_COMMAND_TAGS I
+		COMMENT @see Entity#addCommandTag
 		COMMENT @see Entity#readNbt
 	FIELD field_29990 VELOCITY_AFFECTING_POS_Y_OFFSET D
 		COMMENT @see Entity#getVelocityAffectingPos
@@ -234,7 +234,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	FIELD field_6026 dimension Lnet/minecraft/class_2874;
 	FIELD field_6027 CUSTOM_NAME Lnet/minecraft/class_2940;
 	FIELD field_6028 lastNetherPortalDirection Lnet/minecraft/class_2350;
-	FIELD field_6029 scoreboardTags Ljava/util/Set;
+	FIELD field_6029 commandTags Ljava/util/Set;
 	FIELD field_6030 EMPTY_STACK_LIST Ljava/util/List;
 	FIELD field_6031 yaw F
 	FIELD field_6032 AIR Lnet/minecraft/class_2940;
@@ -248,6 +248,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD <init> (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)V
 		ARG 1 type
 		ARG 2 world
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 o
 	METHOD equals (Ljava/lang/Object;)Z
@@ -389,6 +391,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT
 		COMMENT @see #requestTeleportAndDismount
 		COMMENT @see #requestTeleport
+		COMMENT @see #teleport(ServerWorld, double, double, double, Set, float, float)
 		COMMENT @see #refreshPositionAndAngles(double, double, double, float, float)
 		ARG 1 destX
 		ARG 3 destY
@@ -703,11 +706,11 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT {@return the first passenger of the {@linkplain #getPassengerList passenger list},
 		COMMENT or {@code null} if there is no passengers}
 		COMMENT
-		COMMENT <p>Such passenger is usually also the {@linkplain #getPrimaryPassenger the
-		COMMENT primary passenger}.
+		COMMENT <p>Such passenger is usually also the {@linkplain #getControllingPassenger the
+		COMMENT controlling passenger}.
 		COMMENT
-		COMMENT @see #getPrimaryPassenger
-		COMMENT @see #hasPrimaryPassenger
+		COMMENT @see #getControllingPassenger
+		COMMENT @see #hasControllingPassenger
 		COMMENT @see #getPassengerList
 	METHOD method_31484 streamIntoPassengers ()Ljava/util/stream/Stream;
 		COMMENT {@return a recursive stream of all passengers}
@@ -821,7 +824,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT Requests the entity to teleport to the given position. If the entity is
 		COMMENT a player, this also dismounts the player.
 		COMMENT
-		COMMENT @see #teleport
+		COMMENT @see #teleport(double, double, double)
+		COMMENT @see #teleport(ServerWorld, double, double, double, Set, float, float)
 		COMMENT @see #requestTeleport
 		COMMENT @see #refreshPositionAndAngles(double, double, double, float, float)
 		ARG 1 destX
@@ -860,7 +864,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT For living entities, {@link #refreshPositionAndAngles} should be used instead.
 		COMMENT
 		COMMENT @see #refreshPositionAndAngles
-		COMMENT @see #teleport
+		COMMENT @see #teleport(double, double, double)
 		ARG 1 pos
 	METHOD method_33575 getCameraBlockPos ()Lnet/minecraft/class_2338;
 	METHOD method_33724 isRegionUnloaded ()Z
@@ -958,10 +962,10 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT }
 		COMMENT }</pre>
 		ARG 1 callback
-	METHOD method_42148 hasPrimaryPassenger ()Z
+	METHOD method_42148 hasControllingPassenger ()Z
 		COMMENT {@return whether there is a passenger in control of this entity}
 		COMMENT
-		COMMENT @see #getPrimaryPassenger
+		COMMENT @see #getControllingPassenger
 		COMMENT @see #getPassengerList
 		COMMENT @see #getFirstPassenger
 	METHOD method_43077 playSoundIfNotSilent (Lnet/minecraft/class_3414;)V
@@ -1034,6 +1038,40 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 1 tickDelta
 	METHOD method_46395 extinguishWithSound ()V
 	METHOD method_46396 reinitDimensions ()V
+	METHOD method_48105 teleport (Lnet/minecraft/class_3218;DDDLjava/util/Set;FF)Z
+		COMMENT Teleports the entity to the given position. If {@code world} differs from
+		COMMENT the current world, it copies the entity and discards the current one.
+		COMMENT
+		COMMENT @see #requestTeleportAndDismount
+		COMMENT @see #requestTeleport
+		COMMENT @see #teleport(double, double, double)
+		COMMENT @see #refreshPositionAndAngles(double, double, double, float, float)
+		ARG 1 world
+		ARG 2 destX
+		ARG 4 destY
+		ARG 6 destZ
+		ARG 8 flags
+		ARG 9 yaw
+		ARG 10 pitch
+	METHOD method_48155 canSprintAsVehicle ()Z
+	METHOD method_48850 onDataTrackerUpdate (Ljava/util/List;)V
+		ARG 1 dataEntries
+	METHOD method_48921 couldAcceptPassenger ()Z
+		COMMENT {@return {@code true} if this entity supports passengers in general}
+	METHOD method_48922 onDamaged (Lnet/minecraft/class_1282;)V
+		ARG 1 damageSource
+	METHOD method_48923 getDamageSources ()Lnet/minecraft/class_8109;
+	METHOD method_49108 canBeHitByProjectile ()Z
+	METHOD method_49476 getStepHeight ()F
+	METHOD method_49477 setStepHeight (F)V
+		ARG 1 stepHeight
+	METHOD method_49693 shouldDismountUnderwater ()Z
+		COMMENT {@return whether this vehicle should dismount the passenger if submerged underwater}
+	METHOD method_49694 getControllingVehicle ()Lnet/minecraft/class_1297;
+		COMMENT {@return the entity this entity rides and controls, or {@code null} if there is none}
+		COMMENT
+		COMMENT @see #getRootVehicle
+		COMMENT @see #getVehicle
 	METHOD method_5621 getMountedHeightOffset ()D
 	METHOD method_5622 onBlockCollision (Lnet/minecraft/class_2680;)V
 		COMMENT Called when this entity's collision box intersects {@code state}.
@@ -1133,6 +1171,15 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
+	METHOD method_5642 getControllingPassenger ()Lnet/minecraft/class_1309;
+		COMMENT {@return the passenger in control of this entity, or {@code null} if there is none}
+		COMMENT
+		COMMENT <p>Rideable entities should override this to return the entity. This is
+		COMMENT usually {@code #getFirstPassenger}.
+		COMMENT
+		COMMENT @see #hasControllingPassenger
+		COMMENT @see #getPassengerList
+		COMMENT @see #getFirstPassenger
 	METHOD method_5642 getPrimaryPassenger ()Lnet/minecraft/class_1297;
 		COMMENT {@return the passenger in control of this entity, or {@code null} if there is none}
 		COMMENT
@@ -1223,7 +1270,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT <p>This is saved on the {@code Invulnerable} NBT key.
 		COMMENT
 		COMMENT @implNote Invulnerable entities are immune from all damages except {@link
-		COMMENT DamageSource#OUT_OF_WORLD} and damages by creative mode players by default.
+		COMMENT net.minecraft.entity.damage.DamageTypes#OUT_OF_WORLD}
+		COMMENT and damages by creative mode players by default.
 		COMMENT
 		COMMENT @see #isInvulnerableTo
 		COMMENT @see #setInvulnerable
@@ -1321,11 +1369,13 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT {@code super.isInvulnerableTo()} should be called in this case.
 		COMMENT
 		COMMENT @implNote Entity is invulnerable to all damages if it is {@linkplain #isRemoved
-		COMMENT removed}, and is invulnerable to all damages except {@link DamageSource#OUT_OF_WORLD}
+		COMMENT removed}, and is invulnerable to all damages except {@link
+		COMMENT net.minecraft.entity.damage.DamageTypes#OUT_OF_WORLD}
 		COMMENT or damages from creative mode players if the entity is {@linkplain #isInvulnerable
 		COMMENT invulnerable}. This also checks {@link #isFireImmune}.
 		COMMENT
-		COMMENT @see DamageSource
+		COMMENT @see net.minecraft.entity.damage.DamageSources
+		COMMENT @see net.minecraft.registry.tag.DamageTypeTags
 		COMMENT @see #isFireImmune
 		COMMENT @see #damage
 		COMMENT @see #isInvulnerable
@@ -1354,7 +1404,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT <p>This is saved on the {@code Invulnerable} NBT key.
 		COMMENT
 		COMMENT @implNote Invulnerable entities are immune from all damages except {@link
-		COMMENT DamageSource#OUT_OF_WORLD} and damages by creative mode players by default.
+		COMMENT net.minecraft.entity.damage.DamageTypes#OUT_OF_WORLD}
+		COMMENT and damages by creative mode players by default.
 		COMMENT
 		COMMENT @see #isInvulnerableTo
 		COMMENT @see #isInvulnerable
@@ -1362,7 +1413,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5685 getPassengerList ()Ljava/util/List;
 		COMMENT {@return the list of passengers of this entity}
 		COMMENT
-		COMMENT @see #getPrimaryPassenger
+		COMMENT @see #getControllingPassenger
 		COMMENT @see #getFirstPassenger
 		COMMENT @see #streamIntoPassengers
 		COMMENT @see #streamSelfAndPassengers
@@ -1640,12 +1691,12 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5736 getPassengersDeep ()Ljava/util/Collection;
 	METHOD method_5737 getSwimSound ()Lnet/minecraft/class_3414;
 	METHOD method_5738 removeScoreboardTag (Ljava/lang/String;)Z
-		COMMENT Removes a scoreboard tag from this entity.
+		COMMENT Removes a command tag from this entity.
 		COMMENT
-		COMMENT <p>Scoreboard tags are set using the {@linkplain net.minecraft.server.command.TagCommand
+		COMMENT <p>Command tags are set using the {@linkplain net.minecraft.server.command.TagCommand
 		COMMENT /tag command}, and is different from entity type tags defined in data packs.
 		COMMENT
-		COMMENT @return whether the scoreboard tag was successfully removed
+		COMMENT @return whether the command tag was successfully removed
 		ARG 1 tag
 	METHOD method_5739 distanceTo (Lnet/minecraft/class_1297;)F
 		COMMENT {@return the distance between this entity and {@code entity}}
@@ -1729,13 +1780,14 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT <p>This is used for calculating the leash offset.
 		COMMENT
 		COMMENT @see #getLeashOffset
-	METHOD method_5752 getScoreboardTags ()Ljava/util/Set;
-		COMMENT {@return all scoreboard tags the entity belongs to}
+	METHOD method_5752 getCommandTags ()Ljava/util/Set;
+		COMMENT {@return all command tags the entity belongs to}
 		COMMENT
 		COMMENT <p>Scoreboard tags are set using the {@linkplain net.minecraft.server.command.TagCommand
 		COMMENT /tag command}, and is different from entity type tags defined in data packs.
 	METHOD method_5753 isFireImmune ()Z
-		COMMENT {@return whether the entity is immune to {@linkplain DamageSource#setFire fire damage}}
+		COMMENT {@return whether the entity is immune to {@linkplain
+		COMMENT net.minecraft.registry.tag.DamageTypeTags#IS_FIRE fire damage}}
 		COMMENT
 		COMMENT @see EntityType.Builder#makeFireImmune
 	METHOD method_5754 teleportRequested ()Z
@@ -1868,14 +1920,14 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT An ender dragon is composed of several entity parts; each part returns {@code true}
 		COMMENT for {@code part.isPartOf(dragon)}.
 		ARG 1 entity
-	METHOD method_5780 addScoreboardTag (Ljava/lang/String;)Z
-		COMMENT Adds a scoreboard tag to this entity. An entity can have up to {@code 1024}
-		COMMENT scoreboard tags.
+	METHOD method_5780 addCommandTag (Ljava/lang/String;)Z
+		COMMENT Adds a command tag to this entity. An entity can have up to {@code 1024}
+		COMMENT command tags.
 		COMMENT
-		COMMENT <p>Scoreboard tags are set using the {@linkplain net.minecraft.server.command.TagCommand
+		COMMENT <p>Command tags are set using the {@linkplain net.minecraft.server.command.TagCommand
 		COMMENT /tag command}, and is different from entity type tags defined in data packs.
 		COMMENT
-		COMMENT @return whether the scoreboard tag was successfully added
+		COMMENT @return whether the command tag was successfully added
 		ARG 1 tag
 	METHOD method_5781 getScoreboardTeam ()Lnet/minecraft/class_270;
 		COMMENT {@return the scoreboard team the entity belongs to, or {@code null} if there is none}
@@ -1907,7 +1959,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT on the server; for player-ridden entities, this checks whether the entity
 		COMMENT is on the client.
 		COMMENT
-		COMMENT @see #getPrimaryPassenger
+		COMMENT @see #getControllingPassenger
 	METHOD method_5788 canBeRiddenInWater ()Z
 		COMMENT {@return whether the passenger dismounts this entity when the entity is submerged
 		COMMENT in water}
@@ -2045,7 +2097,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT For living entities, {@link #refreshPositionAndAngles} should be used instead.
 		COMMENT
 		COMMENT @see #refreshPositionAndAngles
-		COMMENT @see #teleport
+		COMMENT @see #teleport(double, double, double)
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
@@ -2119,7 +2171,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5825 tickInVoid ()V
 		COMMENT Called when the entity is 64 blocks below the world's {@linkplain net.minecraft.world.HeightLimitView#getBottomY() minimum Y position}.
 		COMMENT
-		COMMENT <p>{@linkplain LivingEntity Living entities} use this to deal {@linkplain net.minecraft.entity.damage.DamageSource#OUT_OF_WORLD out of world damage}.
+		COMMENT <p>{@linkplain LivingEntity Living entities} use this to deal {@linkplain net.minecraft.entity.damage.DamageTypes#OUT_OF_WORLD out of world damage}.
 	METHOD method_5826 setUuid (Ljava/util/UUID;)V
 		COMMENT Sets the UUID of the entity to {@code uuid}.
 		COMMENT
@@ -2235,6 +2287,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT {@return the entity this entity rides, or {@code null} if there is none}
 		COMMENT
 		COMMENT @see #getRootVehicle
+		COMMENT @see #getControllingVehicle
 	METHOD method_5855 setAir (I)V
 		COMMENT Sets the air left for the entity in ticks.
 		COMMENT
@@ -2266,7 +2319,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT <p>For players, this sends the teleport packet. For other entities,
 		COMMENT this just sets the position of the entity and its passengers.
 		COMMENT
-		COMMENT @see #teleport
+		COMMENT @see #teleport(double, double, double)
+		COMMENT @see #teleport(ServerWorld, double, double, double, Set, float, float)
 		COMMENT @see #requestTeleportOffset(double, double, double)
 		COMMENT @see #requestTeleportAndDismount
 		COMMENT @see #refreshPositionAndAngles(double, double, double, float, float)
@@ -2393,6 +2447,9 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 1 original
 	METHOD method_5879 animateDamage ()V
 		COMMENT Called on the client to animate the entity's damage (the wobble).
+	METHOD method_5879 animateDamage (F)V
+		COMMENT Called on the client to animate the entity's damage (the wobble).
+		ARG 1 yaw
 	METHOD method_5880 setCustomNameVisible (Z)V
 		COMMENT Sets whether the custom name should be shown.
 		COMMENT
@@ -2406,11 +2463,17 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		COMMENT <p>To despawn this entity, call {@link #discard}.
 		COMMENT
 		COMMENT @see #discard
+	METHOD method_6034 canMoveVoluntarily ()Z
 	METHOD method_7325 isSpectator ()Z
 		COMMENT {@return whether the entity is a spectator}
 		COMMENT
 		COMMENT <p>This returns {@code false} unless the entity is a player in spectator game mode.
 	CLASS class_4738 PositionUpdater
+		METHOD accept (Lnet/minecraft/class_1297;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
 		METHOD accept (Lnet/minecraft/class_1297;DDD)V
 			ARG 1 entity
 			ARG 2 x

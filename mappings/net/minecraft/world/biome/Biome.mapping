@@ -90,6 +90,9 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		ARG 1 pos
 	METHOD method_39929 isHot (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
+	METHOD method_48162 getPrecipitation (Lnet/minecraft/class_2338;)Lnet/minecraft/class_1959$class_1963;
+		ARG 1 pos
+	METHOD method_48163 hasPrecipitation ()Z
 	METHOD method_8684 hasStructureFeature (Lnet/minecraft/class_3195;)Z
 		ARG 1 structureFeature
 	METHOD method_8685 canSetIce (Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Z)Z
@@ -202,12 +205,15 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 			ARG 1 n
 		METHOD rehash (I)V
 			ARG 1 n
+		METHOD rehash (I)V
+			ARG 1 n
 	CLASS class_1960 Builder
 		FIELD field_22041 noises Ljava/util/List;
 		FIELD field_22042 specialEffects Lnet/minecraft/class_4763;
 		FIELD field_26396 temperatureModifier Lnet/minecraft/class_1959$class_5484;
 		FIELD field_26636 spawnSettings Lnet/minecraft/class_5483;
 		FIELD field_26637 generationSettings Lnet/minecraft/class_5485;
+		FIELD field_41767 precipitation Z
 		FIELD field_9344 depth Ljava/lang/Float;
 		FIELD field_9345 category Lnet/minecraft/class_1959$class_1961;
 		FIELD field_9346 precipitation Lnet/minecraft/class_1959$class_1963;
@@ -229,6 +235,8 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 			ARG 1 generationSettings
 		METHOD method_30974 spawnSettings (Lnet/minecraft/class_5483;)Lnet/minecraft/class_1959$class_1960;
 			ARG 1 spawnSettings
+		METHOD method_48164 precipitation (Z)Lnet/minecraft/class_1959$class_1960;
+			ARG 1 precipitation
 		METHOD method_8727 downfall (F)Lnet/minecraft/class_1959$class_1960;
 			ARG 1 downfall
 		METHOD method_8728 waterFogColor (I)Lnet/minecraft/class_1959$class_1960;
@@ -275,8 +283,6 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		FIELD field_24680 CODEC Lcom/mojang/serialization/Codec;
 		FIELD field_9381 BY_NAME Ljava/util/Map;
 		FIELD field_9385 name Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			ARG 3 name
 		METHOD method_28431 byName (Ljava/lang/String;)Lnet/minecraft/class_1959$class_1963;
 			ARG 0 name
 		METHOD method_8752 getName ()Ljava/lang/String;
@@ -352,8 +358,7 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		FIELD field_26400 temperature F
 		FIELD field_26401 temperatureModifier Lnet/minecraft/class_1959$class_5484;
 		FIELD field_26402 downfall F
-		METHOD <init> (Lnet/minecraft/class_1959$class_1963;FLnet/minecraft/class_1959$class_5484;F)V
-			ARG 1 precipitation
+		METHOD <init> (ZFLnet/minecraft/class_1959$class_5484;F)V
 			ARG 2 temperature
 			ARG 3 temperatureModifier
 			ARG 4 downfall
@@ -364,6 +369,8 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		METHOD method_30787 (Lnet/minecraft/class_1959$class_5482;)Lnet/minecraft/class_1959$class_5484;
 			ARG 0 weather
 		METHOD method_30788 (Lnet/minecraft/class_1959$class_5482;)Ljava/lang/Float;
+			ARG 0 weather
+		METHOD method_30789 (Lnet/minecraft/class_1959$class_5482;)Ljava/lang/Boolean;
 			ARG 0 weather
 		METHOD method_30789 (Lnet/minecraft/class_1959$class_5482;)Lnet/minecraft/class_1959$class_1963;
 			ARG 0 weather

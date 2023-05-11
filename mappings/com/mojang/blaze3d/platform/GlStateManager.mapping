@@ -15,6 +15,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 texture
 	METHOD _activeTexture (I)V
 		ARG 0 texture
+	METHOD _activeTexture (I)V
+		ARG 0 texture
+	METHOD _bindTexture (I)V
+		ARG 0 texture
 	METHOD _bindTexture (I)V
 		ARG 0 texture
 	METHOD _bindTexture (I)V
@@ -47,6 +51,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 mode
 	METHOD _blendEquation (I)V
 		ARG 0 mode
+	METHOD _blendEquation (I)V
+		ARG 0 mode
+	METHOD _blendFunc (II)V
+		ARG 0 srcFactor
+		ARG 1 dstFactor
 	METHOD _blendFunc (II)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -111,6 +120,14 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 dstFactorRGB
 		ARG 2 srcFactorAlpha
 		ARG 3 dstFactorAlpha
+	METHOD _blendFuncSeparate (IIII)V
+		ARG 0 srcFactorRGB
+		ARG 1 dstFactorRGB
+		ARG 2 srcFactorAlpha
+		ARG 3 dstFactorAlpha
+	METHOD _clear (IZ)V
+		ARG 0 mask
+		ARG 1 getError
 	METHOD _clear (IZ)V
 		ARG 0 mask
 		ARG 1 getError
@@ -175,6 +192,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 green
 		ARG 2 blue
 		ARG 3 alpha
+	METHOD _clearColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
 	METHOD _clearDepth (D)V
 		ARG 0 depth
 	METHOD _clearDepth (D)V
@@ -191,6 +213,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 depth
 	METHOD _clearDepth (D)V
 		ARG 0 depth
+	METHOD _clearDepth (D)V
+		ARG 0 depth
+	METHOD _clearStencil (I)V
+		ARG 0 stencil
 	METHOD _clearStencil (I)V
 		ARG 0 stencil
 	METHOD _clearStencil (I)V
@@ -247,6 +273,13 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 green
 		ARG 2 blue
 		ARG 3 alpha
+	METHOD _colorMask (ZZZZ)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD _deleteTexture (I)V
+		ARG 0 texture
 	METHOD _deleteTexture (I)V
 		ARG 0 texture
 	METHOD _deleteTexture (I)V
@@ -275,6 +308,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 textures
 	METHOD _deleteTextures ([I)V
 		ARG 0 textures
+	METHOD _deleteTextures ([I)V
+		ARG 0 textures
+	METHOD _depthFunc (I)V
+		ARG 0 func
 	METHOD _depthFunc (I)V
 		ARG 0 func
 	METHOD _depthFunc (I)V
@@ -307,6 +344,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 mask
 	METHOD _depthMask (Z)V
 		ARG 0 mask
+	METHOD _depthMask (Z)V
+		ARG 0 mask
+	METHOD _disableVertexAttribArray (I)V
+		ARG 0 index
 	METHOD _disableVertexAttribArray (I)V
 		ARG 0 index
 	METHOD _disableVertexAttribArray (I)V
@@ -363,6 +404,13 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 count
 		ARG 2 type
 		ARG 3 indices
+	METHOD _drawElements (IIIJ)V
+		ARG 0 mode
+		ARG 1 count
+		ARG 2 type
+		ARG 3 indices
+	METHOD _enableVertexAttribArray (I)V
+		ARG 0 index
 	METHOD _enableVertexAttribArray (I)V
 		ARG 0 index
 	METHOD _enableVertexAttribArray (I)V
@@ -391,6 +439,8 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 textures
 	METHOD _genTextures ([I)V
 		ARG 0 textures
+	METHOD _genTextures ([I)V
+		ARG 0 textures
 	METHOD _getInteger (I)I
 		ARG 0 pname
 	METHOD _getInteger (I)I
@@ -407,6 +457,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 pname
 	METHOD _getInteger (I)I
 		ARG 0 pname
+	METHOD _getInteger (I)I
+		ARG 0 pname
+	METHOD _getString (I)Ljava/lang/String;
+		ARG 0 name
 	METHOD _getString (I)Ljava/lang/String;
 		ARG 0 name
 	METHOD _getString (I)Ljava/lang/String;
@@ -471,6 +525,16 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 2 format
 		ARG 3 type
 		ARG 4 pixels
+	METHOD _getTexImage (IIIIJ)V
+		ARG 0 target
+		ARG 1 level
+		ARG 2 format
+		ARG 3 type
+		ARG 4 pixels
+	METHOD _getTexLevelParameter (III)I
+		ARG 0 target
+		ARG 1 level
+		ARG 2 pname
 	METHOD _getTexLevelParameter (III)I
 		ARG 0 target
 		ARG 1 level
@@ -547,6 +611,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 program
 		ARG 1 index
 		ARG 2 name
+	METHOD _glBindAttribLocation (IILjava/lang/CharSequence;)V
+		ARG 0 program
+		ARG 1 index
+		ARG 2 name
 	METHOD _glBindBuffer (II)V
 		ARG 0 target
 		ARG 1 buffer
@@ -571,6 +639,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glBindBuffer (II)V
 		ARG 0 target
 		ARG 1 buffer
+	METHOD _glBindBuffer (II)V
+		ARG 0 target
+		ARG 1 buffer
+	METHOD _glBindFramebuffer (II)V
+		ARG 0 target
+		ARG 1 framebuffer
 	METHOD _glBindFramebuffer (II)V
 		ARG 0 target
 		ARG 1 framebuffer
@@ -613,6 +687,9 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glBindRenderbuffer (II)V
 		ARG 0 target
 		ARG 1 renderbuffer
+	METHOD _glBindRenderbuffer (II)V
+		ARG 0 target
+		ARG 1 renderbuffer
 	METHOD _glBindVertexArray (I)V
 		ARG 0 array
 	METHOD _glBindVertexArray (I)V
@@ -629,6 +706,19 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 array
 	METHOD _glBindVertexArray (I)V
 		ARG 0 array
+	METHOD _glBindVertexArray (I)V
+		ARG 0 array
+	METHOD _glBlitFrameBuffer (IIIIIIIIII)V
+		ARG 0 srcX0
+		ARG 1 srcY0
+		ARG 2 srcX1
+		ARG 3 srcY1
+		ARG 4 dstX0
+		ARG 5 dstY0
+		ARG 6 dstX1
+		ARG 7 dstY1
+		ARG 8 mask
+		ARG 9 filter
 	METHOD _glBlitFrameBuffer (IIIIIIIIII)V
 		ARG 0 srcX0
 		ARG 1 srcY0
@@ -749,6 +839,14 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 target
 		ARG 1 size
 		ARG 3 usage
+	METHOD _glBufferData (IJI)V
+		ARG 0 target
+		ARG 1 size
+		ARG 3 usage
+	METHOD _glBufferData (ILjava/nio/ByteBuffer;I)V
+		ARG 0 target
+		ARG 1 data
+		ARG 2 usage
 	METHOD _glBufferData (ILjava/nio/ByteBuffer;I)V
 		ARG 0 target
 		ARG 1 data
@@ -835,6 +933,15 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 5 y
 		ARG 6 width
 		ARG 7 height
+	METHOD _glCopyTexSubImage2D (IIIIIIII)V
+		ARG 0 target
+		ARG 1 level
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 x
+		ARG 5 y
+		ARG 6 width
+		ARG 7 height
 	METHOD _glDeleteBuffers (I)V
 		ARG 0 buffer
 	METHOD _glDeleteBuffers (I)V
@@ -851,6 +958,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 buffer
 	METHOD _glDeleteBuffers (I)V
 		ARG 0 buffer
+	METHOD _glDeleteBuffers (I)V
+		ARG 0 buffer
+	METHOD _glDeleteFramebuffers (I)V
+		ARG 0 framebuffer
 	METHOD _glDeleteFramebuffers (I)V
 		ARG 0 framebuffer
 	METHOD _glDeleteFramebuffers (I)V
@@ -879,6 +990,8 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 renderbuffer
 	METHOD _glDeleteRenderbuffers (I)V
 		ARG 0 renderbuffer
+	METHOD _glDeleteRenderbuffers (I)V
+		ARG 0 renderbuffer
 	METHOD _glDeleteVertexArrays (I)V
 		ARG 0 array
 	METHOD _glDeleteVertexArrays (I)V
@@ -895,6 +1008,14 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 array
 	METHOD _glDeleteVertexArrays (I)V
 		ARG 0 array
+	METHOD _glDeleteVertexArrays (I)V
+		ARG 0 array
+	METHOD _glDrawPixels (IIIIJ)V
+		ARG 0 width
+		ARG 1 height
+		ARG 2 format
+		ARG 3 type
+		ARG 4 pixels
 	METHOD _glDrawPixels (IIIIJ)V
 		ARG 0 width
 		ARG 1 height
@@ -961,6 +1082,17 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 attachment
 		ARG 2 renderbufferTarget
 		ARG 3 renderbuffer
+	METHOD _glFramebufferRenderbuffer (IIII)V
+		ARG 0 target
+		ARG 1 attachment
+		ARG 2 renderbufferTarget
+		ARG 3 renderbuffer
+	METHOD _glFramebufferTexture2D (IIIII)V
+		ARG 0 target
+		ARG 1 attachment
+		ARG 2 textureTarget
+		ARG 3 texture
+		ARG 4 level
 	METHOD _glFramebufferTexture2D (IIIII)V
 		ARG 0 target
 		ARG 1 attachment
@@ -1033,7 +1165,7 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glGetAttribLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
-	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
+	METHOD _glGetAttribLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
 	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
@@ -1057,6 +1189,15 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
+	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
+		ARG 0 program
+		ARG 1 name
+	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
+		ARG 0 program
+		ARG 1 name
+	METHOD _glMapBuffer mapBuffer (II)Ljava/nio/ByteBuffer;
+		ARG 0 target
+		ARG 1 access
 	METHOD _glMapBuffer mapBuffer (II)Ljava/nio/ByteBuffer;
 		ARG 0 target
 		ARG 1 access
@@ -1111,6 +1252,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 internalFormat
 		ARG 2 width
 		ARG 3 height
+	METHOD _glRenderbufferStorage (IIII)V
+		ARG 0 target
+		ARG 1 internalFormat
+		ARG 2 width
+		ARG 3 height
 	METHOD _glUniform1 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -1133,6 +1279,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform1 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform1 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform1 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform1 (ILjava/nio/IntBuffer;)V
@@ -1183,7 +1335,7 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glUniform1i (II)V
 		ARG 0 location
 		ARG 1 value
-	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
+	METHOD _glUniform1i (II)V
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
@@ -1205,6 +1357,15 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform2 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform2 (ILjava/nio/IntBuffer;)V
@@ -1255,6 +1416,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _glUniform3 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
+	METHOD _glUniform3 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform3 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD _glUniform3 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -1301,6 +1468,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform4 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform4 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD _glUniform4 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
 	METHOD _glUniform4 (ILjava/nio/IntBuffer;)V
@@ -1356,6 +1529,14 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 transpose
 		ARG 2 value
 	METHOD _glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
+	METHOD _glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
+	METHOD _glUniformMatrix3 (IZLjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
@@ -1423,6 +1604,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
+	METHOD _glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
+	METHOD _glUnmapBuffer (I)V
+		ARG 0 target
 	METHOD _glUnmapBuffer (I)V
 		ARG 0 target
 	METHOD _glUnmapBuffer (I)V
@@ -1455,6 +1642,8 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 program
 	METHOD _glUseProgram (I)V
 		ARG 0 program
+	METHOD _glUseProgram (I)V
+		ARG 0 program
 	METHOD _logicOp (I)V
 		ARG 0 op
 	METHOD _logicOp (I)V
@@ -1471,6 +1660,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 op
 	METHOD _logicOp (I)V
 		ARG 0 op
+	METHOD _logicOp (I)V
+		ARG 0 op
+	METHOD _pixelStore (II)V
+		ARG 0 pname
+		ARG 1 param
 	METHOD _pixelStore (II)V
 		ARG 0 pname
 		ARG 1 param
@@ -1519,6 +1713,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _polygonMode (II)V
 		ARG 0 face
 		ARG 1 mode
+	METHOD _polygonMode (II)V
+		ARG 0 face
+		ARG 1 mode
+	METHOD _polygonOffset (FF)V
+		ARG 0 factor
+		ARG 1 units
 	METHOD _polygonOffset (FF)V
 		ARG 0 factor
 		ARG 1 units
@@ -1591,6 +1791,22 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 4 format
 		ARG 5 type
 		ARG 6 pixels
+	METHOD _readPixels (IIIIIIJ)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+		ARG 4 format
+		ARG 5 type
+		ARG 6 pixels
+	METHOD _readPixels (IIIIIILjava/nio/ByteBuffer;)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+		ARG 4 format
+		ARG 5 type
+		ARG 6 pixels
 	METHOD _readPixels (IIIIIILjava/nio/ByteBuffer;)V
 		ARG 0 x
 		ARG 1 y
@@ -1695,6 +1911,15 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
+	METHOD _scissorBox (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+	METHOD _stencilFunc (III)V
+		ARG 0 func
+		ARG 1 ref
+		ARG 2 mask
 	METHOD _stencilFunc (III)V
 		ARG 0 func
 		ARG 1 ref
@@ -1743,6 +1968,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 mask
 	METHOD _stencilMask (I)V
 		ARG 0 mask
+	METHOD _stencilMask (I)V
+		ARG 0 mask
+	METHOD _stencilOp (III)V
+		ARG 0 sfail
+		ARG 1 dpfail
+		ARG 2 dppass
 	METHOD _stencilOp (III)V
 		ARG 0 sfail
 		ARG 1 dpfail
@@ -1855,6 +2086,20 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 6 format
 		ARG 7 type
 		ARG 8 pixels
+	METHOD _texImage2D (IIIIIIIILjava/nio/IntBuffer;)V
+		ARG 0 target
+		ARG 1 level
+		ARG 2 internalFormat
+		ARG 3 width
+		ARG 4 height
+		ARG 5 border
+		ARG 6 format
+		ARG 7 type
+		ARG 8 pixels
+	METHOD _texParameter (IIF)V
+		ARG 0 target
+		ARG 1 pname
+		ARG 2 param
 	METHOD _texParameter (IIF)V
 		ARG 0 target
 		ARG 1 pname
@@ -1919,6 +2164,20 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 target
 		ARG 1 pname
 		ARG 2 param
+	METHOD _texParameter (III)V
+		ARG 0 target
+		ARG 1 pname
+		ARG 2 param
+	METHOD _texSubImage2D (IIIIIIIIJ)V
+		ARG 0 target
+		ARG 1 level
+		ARG 2 offsetX
+		ARG 3 offsetY
+		ARG 4 width
+		ARG 5 height
+		ARG 6 format
+		ARG 7 type
+		ARG 8 pixels
 	METHOD _texSubImage2D (IIIIIIIIJ)V
 		ARG 0 target
 		ARG 1 level
@@ -2047,6 +2306,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 2 type
 		ARG 3 stride
 		ARG 4 pointer
+	METHOD _vertexAttribIPointer (IIIIJ)V
+		ARG 0 index
+		ARG 1 size
+		ARG 2 type
+		ARG 3 stride
+		ARG 4 pointer
 	METHOD _vertexAttribPointer (IIIZIJ)V
 		ARG 0 index
 		ARG 1 size
@@ -2103,6 +2368,18 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 3 normalized
 		ARG 4 stride
 		ARG 5 pointer
+	METHOD _vertexAttribPointer (IIIZIJ)V
+		ARG 0 index
+		ARG 1 size
+		ARG 2 type
+		ARG 3 normalized
+		ARG 4 stride
+		ARG 5 pointer
+	METHOD _viewport (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
 	METHOD _viewport (IIII)V
 		ARG 0 x
 		ARG 1 y
@@ -2194,6 +2471,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 texture
 	METHOD glActiveTexture (I)V
 		ARG 0 texture
+	METHOD glActiveTexture (I)V
+		ARG 0 texture
+	METHOD glAttachShader (II)V
+		ARG 0 program
+		ARG 1 shader
 	METHOD glAttachShader (II)V
 		ARG 0 program
 		ARG 1 shader
@@ -2258,6 +2540,13 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 dstFactorRGB
 		ARG 2 srcFactorAlpha
 		ARG 3 dstFactorAlpha
+	METHOD glBlendFuncSeparate (IIII)V
+		ARG 0 srcFactorRGB
+		ARG 1 dstFactorRGB
+		ARG 2 srcFactorAlpha
+		ARG 3 dstFactorAlpha
+	METHOD glCheckFramebufferStatus (I)I
+		ARG 0 target
 	METHOD glCheckFramebufferStatus (I)I
 		ARG 0 target
 	METHOD glCheckFramebufferStatus (I)I
@@ -2290,6 +2579,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 shader
 	METHOD glCompileShader (I)V
 		ARG 0 shader
+	METHOD glCompileShader (I)V
+		ARG 0 shader
+	METHOD glCreateShader (I)I
+		ARG 0 type
 	METHOD glCreateShader (I)I
 		ARG 0 type
 	METHOD glCreateShader (I)I
@@ -2322,6 +2615,8 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 program
 	METHOD glDeleteProgram (I)V
 		ARG 0 program
+	METHOD glDeleteProgram (I)V
+		ARG 0 program
 	METHOD glDeleteShader (I)V
 		ARG 0 shader
 	METHOD glDeleteShader (I)V
@@ -2338,6 +2633,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 shader
 	METHOD glDeleteShader (I)V
 		ARG 0 shader
+	METHOD glDeleteShader (I)V
+		ARG 0 shader
+	METHOD glGetProgramInfoLog (II)Ljava/lang/String;
+		ARG 0 program
+		ARG 1 maxLength
 	METHOD glGetProgramInfoLog (II)Ljava/lang/String;
 		ARG 0 program
 		ARG 1 maxLength
@@ -2386,6 +2686,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD glGetProgrami (II)I
 		ARG 0 program
 		ARG 1 pname
+	METHOD glGetProgrami (II)I
+		ARG 0 program
+		ARG 1 pname
+	METHOD glGetShaderInfoLog (II)Ljava/lang/String;
+		ARG 0 shader
+		ARG 1 maxLength
 	METHOD glGetShaderInfoLog (II)Ljava/lang/String;
 		ARG 0 shader
 		ARG 1 maxLength
@@ -2434,6 +2740,9 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD glGetShaderi (II)I
 		ARG 0 shader
 		ARG 1 pname
+	METHOD glGetShaderi (II)I
+		ARG 0 shader
+		ARG 1 pname
 	METHOD glLinkProgram (I)V
 		ARG 0 program
 	METHOD glLinkProgram (I)V
@@ -2450,6 +2759,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 program
 	METHOD glLinkProgram (I)V
 		ARG 0 program
+	METHOD glLinkProgram (I)V
+		ARG 0 program
+	METHOD glShaderSource (ILjava/util/List;)V
+		ARG 0 shader
+		ARG 1 strings
 	METHOD glShaderSource (ILjava/util/List;)V
 		ARG 0 shader
 		ARG 1 strings

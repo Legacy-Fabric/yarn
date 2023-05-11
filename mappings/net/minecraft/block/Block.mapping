@@ -223,7 +223,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 blockEntity
 		ARG 4 entity
-		ARG 5 stack
+		ARG 5 tool
 	METHOD method_9515 appendProperties (Lnet/minecraft/class_2689$class_2690;)V
 		COMMENT Appends block state properties to this block. To use this, override and call {@link
 		COMMENT StateManager.Builder#add} inside the method. See {@link
@@ -336,7 +336,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 pos
 		ARG 4 state
 		ARG 5 blockEntity
-		ARG 6 stack
+		ARG 6 tool
 	METHOD method_9557 isFullOpaque (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
@@ -419,7 +419,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		COMMENT @see net.minecraft.item.BlockItem#appendStacks(ItemGroup, DefaultedList)
 		ARG 1 group
 		ARG 2 stacks
-	METHOD method_9579 isTranslucent (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+	METHOD method_9579 isTransparent (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -599,7 +599,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			ARG 1 shape
 		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 shape
+		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 shape
 	CLASS 2
+		METHOD rehash (I)V
+			ARG 1 newN
 		METHOD rehash (I)V
 			ARG 1 newN
 		METHOD rehash (I)V
@@ -620,6 +624,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			ARG 1 self
 			ARG 2 other
 			ARG 3 facing
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z

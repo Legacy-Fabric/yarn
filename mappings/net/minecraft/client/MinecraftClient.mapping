@@ -201,6 +201,7 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	FIELD field_40381 serverResourcePackProvider Lnet/minecraft/class_1066;
 	FIELD field_41331 telemetryManager Lnet/minecraft/class_6628;
 	FIELD field_41332 renderTime J
+	FIELD field_41782 navigationType Lnet/minecraft/class_8015;
 	METHOD <init> (Lnet/minecraft/class_542;)V
 		ARG 1 args
 	METHOD method_1476 checkIs64Bit ()Z
@@ -318,6 +319,8 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	METHOD method_1555 hasReducedDebugInfo ()Z
 	METHOD method_1556 (Lnet/minecraft/class_1860;)Lnet/minecraft/class_2960;
 		ARG 0 recipe
+	METHOD method_1556 (Lnet/minecraft/class_516;Lnet/minecraft/class_1860;)Lnet/minecraft/class_2960;
+		ARG 1 recipe
 	METHOD method_1557 (Lnet/minecraft/class_2561;)Ljava/lang/String;
 		ARG 0 tooltip
 	METHOD method_1558 getCurrentServerEntry ()Lnet/minecraft/class_642;
@@ -360,6 +363,8 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 		ARG 1 breaking
 	METHOD method_1591 (Lnet/minecraft/class_1860;)Ljava/util/stream/Stream;
 		ARG 0 recipe
+	METHOD method_1591 (Lnet/minecraft/class_516;Lnet/minecraft/class_1860;)Ljava/util/stream/Stream;
+		ARG 1 recipe
 	METHOD method_1592 scheduleStop ()V
 	METHOD method_16008 isFramerateLimited ()Z
 	METHOD method_16009 getFramerateLimit ()I
@@ -430,6 +435,8 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 		ARG 1 throwable
 	METHOD method_24228 (Ljava/util/concurrent/CompletableFuture;Ljava/util/Optional;)V
 		ARG 2 throwable
+	METHOD method_24228 (ZLjava/util/concurrent/CompletableFuture;Ljava/util/Optional;)V
+		ARG 3 error
 	METHOD method_24287 getWindowTitle ()Ljava/lang/String;
 	METHOD method_24288 updateWindowTitle ()V
 	METHOD method_24289 getModStatus ()Lnet/minecraft/class_6683;
@@ -689,6 +696,14 @@ CLASS net/minecraft/class_310 net/minecraft/client/MinecraftClient
 	METHOD method_47600 getRenderTime ()J
 	METHOD method_47601 getTelemetryManager ()Lnet/minecraft/class_6628;
 	METHOD method_47602 isOptionalTelemetryEnabled ()Z
+	METHOD method_48185 setNavigationType (Lnet/minecraft/class_8015;)V
+		ARG 1 navigationType
+	METHOD method_48186 getNavigationType ()Lnet/minecraft/class_8015;
+	METHOD method_49292 showResourceReloadFailureToast (Lnet/minecraft/class_2561;)V
+		ARG 1 description
+	METHOD method_49293 (ZLjava/lang/Throwable;)V
+		ARG 2 throwable
+	METHOD method_49294 onForcedResourceReloadFailure ()V
 	CLASS class_5366 WorldLoadAction
 	CLASS class_5367 IntegratedResourceManager
 		FIELD field_25439 resourcePackManager Lnet/minecraft/class_3283;

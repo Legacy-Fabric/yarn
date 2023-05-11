@@ -690,7 +690,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
-		ARG 4 stack
+		ARG 4 tool
 		ARG 5 dropExperience
 	METHOD method_9569 mirror (Lnet/minecraft/class_2680;Lnet/minecraft/class_2415;)Lnet/minecraft/class_2680;
 		COMMENT {@return {@code state} mirrored by {@code mirror}}
@@ -915,6 +915,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		FIELD field_38863 offsetType Ljava/util/function/Function;
 		FIELD field_40341 blockBreakParticles Z
 		FIELD field_40342 requiredFeatures Lnet/minecraft/class_7699;
+		FIELD field_42818 offsetter Ljava/util/Optional;
 		METHOD <init> (Lnet/minecraft/class_3614;Ljava/util/function/Function;)V
 			ARG 1 material
 			ARG 2 mapColorProvider
@@ -998,6 +999,16 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		METHOD method_45476 requires ([Lnet/minecraft/class_7696;)Lnet/minecraft/class_4970$class_2251;
 			ARG 1 features
 		METHOD method_45477 noBlockBreakParticles ()Lnet/minecraft/class_4970$class_2251;
+		METHOD method_49229 offset (Lnet/minecraft/class_4970$class_2250;)Lnet/minecraft/class_4970$class_2251;
+			ARG 1 offsetType
+		METHOD method_49230 (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;
+			ARG 0 state
+			ARG 1 world
+			ARG 2 pos
+		METHOD method_49231 (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;
+			ARG 0 state
+			ARG 1 world
+			ARG 2 pos
 		METHOD method_9617 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_1767;)Lnet/minecraft/class_4970$class_2251;
 			ARG 0 material
 			ARG 1 color
@@ -1051,6 +1062,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		FIELD field_40338 blockBreakParticles Z
 		FIELD field_40339 fluidState Lnet/minecraft/class_3610;
 		FIELD field_40340 ticksRandomly Z
+		FIELD field_42817 offsetter Ljava/util/Optional;
 		METHOD <init> (Lnet/minecraft/class_2248;Lcom/google/common/collect/ImmutableMap;Lcom/mojang/serialization/MapCodec;)V
 			ARG 1 block
 			ARG 2 propertyMap
@@ -1065,7 +1077,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 3 pos
 		METHOD method_26166 canReplace (Lnet/minecraft/class_1750;)Z
 			ARG 1 context
-		METHOD method_26167 isTranslucent (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+		METHOD method_26167 isTransparent (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 			ARG 1 world
 			ARG 2 pos
 		METHOD method_26168 hasSolidTopSurface (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
@@ -1130,7 +1142,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		METHOD method_26180 onStacksDropped (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;Z)V
 			ARG 1 world
 			ARG 2 pos
-			ARG 3 stack
+			ARG 3 tool
 			ARG 4 dropExperience
 		METHOD method_26181 neighborUpdate (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Z)V
 			ARG 1 world
@@ -1328,9 +1340,12 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		METHOD method_43280 getOffsetType ()Lnet/minecraft/class_4970$class_2250;
 		METHOD method_45474 isReplaceable ()Z
 		METHOD method_45475 hasBlockBreakParticles ()Z
+		METHOD method_49227 (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_4970$class_8176;)Lnet/minecraft/class_243;
+			ARG 3 offsetter
+		METHOD method_49228 hasModelOffset ()Z
 		CLASS class_3752 ShapeCache
 			FIELD field_16555 lightSubtracted I
-			FIELD field_16556 translucent Z
+			FIELD field_16556 transparent Z
 			FIELD field_16557 fullOpaque Z
 			FIELD field_16559 DIRECTIONS [Lnet/minecraft/class_2350;
 			FIELD field_16560 extrudedFaces [Lnet/minecraft/class_265;
@@ -1350,6 +1365,11 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 				ARG 0 direction
 				ARG 1 shapeType
 	CLASS class_4972 TypedContextPredicate
+		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Ljava/lang/Object;)Z
+			ARG 1 state
+			ARG 2 world
+			ARG 3 pos
+			ARG 4 type
 		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Ljava/lang/Object;)Z
 			ARG 1 state
 			ARG 2 world
@@ -1474,6 +1494,15 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 2 world
 			ARG 3 pos
 		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+			ARG 1 state
+			ARG 2 world
+			ARG 3 pos
+		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+			ARG 1 state
+			ARG 2 world
+			ARG 3 pos
+	CLASS class_8176 Offsetter
+		METHOD evaluate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;
 			ARG 1 state
 			ARG 2 world
 			ARG 3 pos

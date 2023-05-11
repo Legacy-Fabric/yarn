@@ -15,12 +15,12 @@ CLASS net/minecraft/class_4766 net/minecraft/world/biome/source/MultiNoiseBiomeS
 	FIELD field_26435 humidityNoiseParameters Lnet/minecraft/class_4766$class_5487;
 	FIELD field_26436 altitudeNoiseParameters Lnet/minecraft/class_4766$class_5487;
 	FIELD field_26437 weirdnessNoiseParameters Lnet/minecraft/class_4766$class_5487;
+	FIELD field_34498 biomeEntries Lcom/mojang/datafixers/util/Either;
 	FIELD field_34498 biomeEntries Lnet/minecraft/class_6544$class_6547;
-	METHOD <init> (Lnet/minecraft/class_6544$class_6547;)V
-		ARG 1 entries
-	METHOD <init> (Lnet/minecraft/class_6544$class_6547;Ljava/util/Optional;)V
+	FIELD field_42984 BIOME_CODEC Lcom/mojang/serialization/MapCodec;
+	FIELD field_42985 PRESET_CODEC Lcom/mojang/serialization/MapCodec;
+	METHOD <init> (Lcom/mojang/datafixers/util/Either;)V
 		ARG 1 biomeEntries
-		ARG 2 instance
 	METHOD method_27987 (Lnet/minecraft/class_1959;)Ljava/util/stream/Stream;
 		ARG 0 biome
 	METHOD method_27988 (Lnet/minecraft/class_1959;Lnet/minecraft/class_1959$class_4762;)Lcom/mojang/datafixers/util/Pair;
@@ -42,24 +42,33 @@ CLASS net/minecraft/class_4766 net/minecraft/world/biome/source/MultiNoiseBiomeS
 		ARG 1 point
 	METHOD method_38168 matchesInstance (Lnet/minecraft/class_4766$class_5305;)Z
 		ARG 1 instance
+	METHOD method_38168 matchesInstance (Lnet/minecraft/class_5321;)Z
+		ARG 1 parameterList
 	METHOD method_38170 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance
 	METHOD method_38172 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance2
 	METHOD method_38173 (Lnet/minecraft/class_4766;)Lnet/minecraft/class_6544$class_6547;
 		ARG 0 biomeSource
+	METHOD method_49501 create (Lnet/minecraft/class_6544$class_6547;)Lnet/minecraft/class_4766;
+		ARG 0 biomeEntries
+	METHOD method_49502 (Lnet/minecraft/class_4766;)Lcom/mojang/datafixers/util/Either;
+		ARG 0 source
+	METHOD method_49503 create (Lnet/minecraft/class_6880;)Lnet/minecraft/class_4766;
+		ARG 0 biomeEntries
+	METHOD method_49504 (Lnet/minecraft/class_6544$class_6547;)Lnet/minecraft/class_6544$class_6547;
+		ARG 0 entries
+	METHOD method_49505 (Lnet/minecraft/class_6880;)Lnet/minecraft/class_6544$class_6547;
+		ARG 0 parameterListEntry
+	METHOD method_49506 getBiomeEntries ()Lnet/minecraft/class_6544$class_6547;
 	CLASS class_5305 Preset
 		FIELD field_24722 CODEC Lcom/mojang/serialization/MapCodec;
 		FIELD field_24723 NETHER Lnet/minecraft/class_4766$class_5305;
-		FIELD field_24724 BY_IDENTIFIER Ljava/util/Map;
 		FIELD field_24725 id Lnet/minecraft/class_2960;
 		FIELD field_24726 biomeSourceFunction Lcom/mojang/datafixers/util/Function3;
 		FIELD field_24726 biomeSourceFunction Ljava/util/function/Function;
 		FIELD field_24726 biomeSourceFunction Ljava/util/function/LongFunction;
 		FIELD field_34499 OVERWORLD Lnet/minecraft/class_4766$class_5305;
-		METHOD <init> (Lnet/minecraft/class_2960;Ljava/util/function/Function;)V
-			ARG 1 id
-			ARG 2 biomeSourceFunction
 		METHOD method_28469 getBiomeSource (J)Lnet/minecraft/class_4766;
 			ARG 1 seed
 		METHOD method_28469 getBiomeSource (Lnet/minecraft/class_2378;)Lnet/minecraft/class_4766;

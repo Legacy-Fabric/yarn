@@ -19,6 +19,8 @@ CLASS net/minecraft/class_339 net/minecraft/client/gui/widget/ClickableWidget
 	FIELD field_41096 tooltipDelay I
 	FIELD field_41097 lastHoveredTime J
 	FIELD field_41098 wasHovered Z
+	FIELD field_42116 navigationOrder I
+	FIELD field_42117 ACCESSIBILITY_TEXTURE Lnet/minecraft/class_2960;
 	METHOD <init> (IIIILnet/minecraft/class_2561;)V
 		ARG 1 x
 		ARG 2 y
@@ -77,24 +79,19 @@ CLASS net/minecraft/class_339 net/minecraft/client/gui/widget/ClickableWidget
 		ARG 1 delay
 	METHOD method_25363 onFocusedChanged (Z)V
 		ARG 1 newFocused
-	METHOD method_25364 getHeight ()I
-	METHOD method_25365 setFocused (Z)V
+	METHOD method_25365 (Z)V
 		ARG 1 focused
 	METHOD method_25366 narrate ()V
-	METHOD method_25367 isHovered ()Z
-	METHOD method_25368 getWidth ()I
+	METHOD method_25367 isSelected ()Z
 	METHOD method_25369 getMessage ()Lnet/minecraft/class_2561;
-	METHOD method_25370 isFocused ()Z
 	METHOD method_32602 getNarrationMessage (Lnet/minecraft/class_2561;)Lnet/minecraft/class_5250;
 		ARG 0 message
 	METHOD method_37021 appendDefaultNarrations (Lnet/minecraft/class_6382;)V
 		ARG 1 builder
-	METHOD method_46419 setY (I)V
+	METHOD method_46419 (I)V
 		ARG 1 y
-	METHOD method_46421 setX (I)V
+	METHOD method_46421 (I)V
 		ARG 1 x
-	METHOD method_46426 getX ()I
-	METHOD method_46427 getY ()I
 	METHOD method_47399 appendClickableNarrations (Lnet/minecraft/class_6382;)V
 		ARG 1 builder
 	METHOD method_47400 setTooltip (Lnet/minecraft/class_7919;)V
@@ -103,6 +100,40 @@ CLASS net/minecraft/class_339 net/minecraft/client/gui/widget/ClickableWidget
 	METHOD method_47402 setTooltipDelay (I)V
 		ARG 1 delay
 	METHOD method_47937 getTooltipPositioner ()Lnet/minecraft/class_8000;
+	METHOD method_48579 renderButton (Lnet/minecraft/class_4587;IIF)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 delta
+	METHOD method_48588 drawTexture (Lnet/minecraft/class_4587;Lnet/minecraft/class_2960;IIIIIIIII)V
+		ARG 1 matrices
+		ARG 2 texture
+		ARG 3 x
+		ARG 4 y
+		ARG 5 u
+		ARG 6 v
+		ARG 7 hoveredVOffset
+		ARG 8 width
+		ARG 9 height
+		ARG 10 textureWidth
+		ARG 11 textureHeight
+	METHOD method_48591 setNavigationOrder (I)V
+		ARG 1 navigationOrder
+	METHOD method_49604 drawScrollableText (Lnet/minecraft/class_4587;Lnet/minecraft/class_327;II)V
+		ARG 1 matrices
+		ARG 2 textRenderer
+		ARG 3 xMargin
+		ARG 4 color
+	METHOD method_49605 drawScrollableText (Lnet/minecraft/class_4587;Lnet/minecraft/class_327;Lnet/minecraft/class_2561;IIIII)V
+		ARG 0 matrices
+		ARG 1 textRenderer
+		ARG 2 text
+		ARG 3 left
+		ARG 4 top
+		ARG 5 right
+		ARG 6 bottom
+		ARG 7 color
+	METHOD method_49606 isHovered ()Z
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY

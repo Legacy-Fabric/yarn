@@ -8,6 +8,10 @@ CLASS net/minecraft/class_7620 net/minecraft/util/thread/FutureQueue
 		ARG 1 future
 	METHOD append (Lnet/minecraft/class_7620$class_7621;)V
 		ARG 1 future
+	METHOD append (Lnet/minecraft/class_7620$class_7621;)V
+		ARG 1 future
+	METHOD immediate (Ljava/util/concurrent/Executor;)Lnet/minecraft/class_7620;
+		ARG 0 executor
 	METHOD immediate (Ljava/util/concurrent/Executor;)Lnet/minecraft/class_7620;
 		ARG 0 executor
 	METHOD method_44905 (Lnet/minecraft/class_7620$class_7621;)V
@@ -20,5 +24,7 @@ CLASS net/minecraft/class_7620 net/minecraft/util/thread/FutureQueue
 		ARG 1 future
 	CLASS class_7621 FutureSupplier
 		COMMENT A functional interface supplying the queued future to {@link FutureQueue}.
+		METHOD submit (Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 executor
 		METHOD submit (Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 executor

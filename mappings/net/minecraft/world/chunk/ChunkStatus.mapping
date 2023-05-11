@@ -435,6 +435,19 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 			ARG 8 chunks
 			ARG 9 chunk
 			ARG 10 regenerate
+		METHOD doWork (Lnet/minecraft/class_2806;Ljava/util/concurrent/Executor;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;Z)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 targetStatus
+				COMMENT the status the chunk will be set to after the task is completed
+			ARG 2 executor
+			ARG 3 world
+			ARG 4 generator
+			ARG 5 structureTemplateManager
+			ARG 6 lightingProvider
+			ARG 7 fullChunkConverter
+				COMMENT a function that can convert a raw chunk to a full chunk
+			ARG 8 chunks
+			ARG 9 chunk
+			ARG 10 regenerate
 		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 targetStatus
 			ARG 3 generator
@@ -549,6 +562,12 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 			ARG 3 chunkGenerator
 			ARG 4 chunks
 			ARG 5 chunk
+		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Ljava/util/List;Lnet/minecraft/class_2791;)V
+			ARG 1 targetStatus
+			ARG 2 world
+			ARG 3 chunkGenerator
+			ARG 4 chunks
+			ARG 5 chunk
 		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 targetStatus
 			ARG 3 generator
@@ -624,6 +643,14 @@ CLASS net/minecraft/class_2806 net/minecraft/world/chunk/ChunkStatus
 			ARG 1 targetStatus
 			ARG 2 world
 			ARG 3 structureManager
+			ARG 4 lightingProvider
+			ARG 5 fullChunkConverter
+				COMMENT a function that can convert a raw chunk to a full chunk
+			ARG 6 chunk
+		METHOD doWork (Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 targetStatus
+			ARG 2 world
+			ARG 3 structureTemplateManager
 			ARG 4 lightingProvider
 			ARG 5 fullChunkConverter
 				COMMENT a function that can convert a raw chunk to a full chunk
