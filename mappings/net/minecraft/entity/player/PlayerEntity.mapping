@@ -5,7 +5,7 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	FIELD field_7486 enderChestInventory Lnet/minecraft/class_1730;
 	FIELD field_7487 sleepTimer I
 	FIELD field_7488 MAIN_ARM Lnet/minecraft/class_2940;
-	FIELD field_7490 isInWater Z
+	FIELD field_7490 isSubmergedInWater Z
 	FIELD field_7491 ABSORPTION_AMOUNT Lnet/minecraft/class_2940;
 	FIELD field_7493 hungerManager Lnet/minecraft/class_1702;
 	FIELD field_7494 enchantmentTableSeed I
@@ -107,6 +107,10 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7287 interact (Lnet/minecraft/class_1297;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
 		ARG 1 entity
 		ARG 2 hand
+	METHOD method_7288 findRespawnPosition (Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Z)Ljava/util/Optional;
+		ARG 0 world
+		ARG 1 spawnPos
+		ARG 2 allowNonBed
 	METHOD method_7289 setPlayerSpawn (Lnet/minecraft/class_2338;Z)V
 		ARG 1 pos
 	METHOD method_7289 setPlayerSpawn (Lnet/minecraft/class_2338;ZZ)V
@@ -118,7 +122,7 @@ CLASS net/minecraft/class_1657 net/minecraft/entity/player/PlayerEntity
 	METHOD method_7292 getLuck ()F
 	METHOD method_7293 vanishCursedItems ()V
 	METHOD method_7294 canModifyWorld ()Z
-	METHOD method_7295 updateInWater ()Z
+	METHOD method_7295 updateWaterSubmersionState ()Z
 	METHOD method_7297 getSleepTimer ()I
 	METHOD method_7298 addShoulderEntity (Lnet/minecraft/class_2487;)Z
 		ARG 1 tag
