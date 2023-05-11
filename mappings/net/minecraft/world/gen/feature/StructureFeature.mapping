@@ -1,14 +1,22 @@
 CLASS net/minecraft/class_3195 net/minecraft/world/gen/feature/StructureFeature
 	FIELD field_13879 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_24842 STRUCTURES Lcom/google/common/collect/BiMap;
+	FIELD field_24851 SWAMP_HUT Lnet/minecraft/class_3195;
 	FIELD field_24851 SWAMP_HUT Lnet/minecraft/class_3197;
 	FIELD field_24861 LAND_MODIFYING_STRUCTURES Ljava/util/List;
 	FIELD field_24862 STRUCTURE_TO_GENERATION_STEP Ljava/util/Map;
 	FIELD field_24863 codec Lcom/mojang/serialization/Codec;
 	FIELD field_25839 JIGSAW_STRUCTURE_PIECES Ljava/util/Map;
 	FIELD field_26362 JIGSAW_ID Lnet/minecraft/class_2960;
-	METHOD <init> (Lcom/mojang/serialization/Codec;)V
-		ARG 1 codec
+	FIELD field_34929 piecesGenerator Lnet/minecraft/class_6834;
+	FIELD field_34930 postProcessor Lnet/minecraft/class_6621;
+	METHOD <init> (Lcom/mojang/serialization/Codec;Lnet/minecraft/class_6834;)V
+		ARG 1 configCodec
+		ARG 2 piecesGenerator
+	METHOD <init> (Lcom/mojang/serialization/Codec;Lnet/minecraft/class_6834;Lnet/minecraft/class_6621;)V
+		ARG 1 configCodec
+		ARG 2 piecesGenerator
+		ARG 3 postPlacementProcessor
 	METHOD method_13149 getMonsterSpawns ()Ljava/util/List;
 	METHOD method_13149 getMonsterSpawns ()Lnet/minecraft/class_6012;
 	METHOD method_14015 locateStructure (Lnet/minecraft/class_1937;Lnet/minecraft/class_2794;Lnet/minecraft/class_2338;IZ)Lnet/minecraft/class_2338;
@@ -73,6 +81,20 @@ CLASS net/minecraft/class_3195 net/minecraft/world/gen/feature/StructureFeature
 		ARG 4 chunkZ
 	METHOD method_16140 getCreatureSpawns ()Ljava/util/List;
 	METHOD method_16140 getCreatureSpawns ()Lnet/minecraft/class_6012;
+	METHOD method_27218 getStartChunk (Lnet/minecraft/class_5314;JII)Lnet/minecraft/class_1923;
+		COMMENT Determines the cell of the structure placement grid a chunk belongs to, and
+		COMMENT returns the chunk within that cell, that this structure will actually be placed at.
+		COMMENT
+		COMMENT <p>If the {@link StructureConfig} uses a separation setting greater than 0, the
+		COMMENT placement will be constrained to [0, spacing - separation] within the grid cell.
+		COMMENT If a non-uniform distribution is used for placement, then this also moves
+		COMMENT the center towards the origin.
+		COMMENT
+		COMMENT @see #isUniformDistribution()
+		ARG 1 config
+		ARG 2 seed
+		ARG 4 x
+		ARG 5 z
 	METHOD method_27218 getStartChunk (Lnet/minecraft/class_5314;JLnet/minecraft/class_2919;II)Lnet/minecraft/class_1923;
 		COMMENT Determines the cell of the structure placement grid a chunk belongs to, and
 		COMMENT returns the chunk within that cell, that this structure will actually be placed at.
@@ -100,6 +122,22 @@ CLASS net/minecraft/class_3195 net/minecraft/world/gen/feature/StructureFeature
 		ARG 5 worldSeed
 	METHOD method_28656 createStart (Lnet/minecraft/class_1923;IJ)Lnet/minecraft/class_3449;
 		ARG 1 pos
+	METHOD method_28657 tryPlaceStart (Lnet/minecraft/class_5455;Lnet/minecraft/class_2794;Lnet/minecraft/class_1966;Lnet/minecraft/class_3485;JLnet/minecraft/class_1923;ILnet/minecraft/class_5314;Lnet/minecraft/class_3037;Lnet/minecraft/class_5539;Ljava/util/function/Predicate;)Lnet/minecraft/class_3449;
+		COMMENT Tries to place a starting point for this type of structure in the given chunk.
+		COMMENT <p>
+		COMMENT If this structure doesn't have a starting point in the chunk, {@link StructureStart#DEFAULT}
+		COMMENT will be returned.
+		ARG 1 registryManager
+		ARG 2 chunkGenerator
+		ARG 3 biomeSource
+		ARG 4 structureManager
+		ARG 5 worldSeed
+		ARG 7 pos
+		ARG 8 structureReferences
+		ARG 9 structureConfig
+		ARG 10 config
+		ARG 11 world
+		ARG 12 biomePredicate
 	METHOD method_28657 tryPlaceStart (Lnet/minecraft/class_5455;Lnet/minecraft/class_2794;Lnet/minecraft/class_1966;Lnet/minecraft/class_3485;JLnet/minecraft/class_1923;Lnet/minecraft/class_1959;ILnet/minecraft/class_2919;Lnet/minecraft/class_5314;Lnet/minecraft/class_3037;)Lnet/minecraft/class_3449;
 		COMMENT Tries to place a starting point for this type of structure in the given chunk.
 		COMMENT <p>
@@ -133,6 +171,10 @@ CLASS net/minecraft/class_3195 net/minecraft/world/gen/feature/StructureFeature
 		ARG 0 manager
 		ARG 1 tag
 		ARG 2 worldSeed
+	METHOD method_28660 readStructureStart (Lnet/minecraft/class_6625;Lnet/minecraft/class_2487;J)Lnet/minecraft/class_3449;
+		ARG 0 context
+		ARG 1 nbt
+		ARG 2 worldSeed
 	METHOD method_28661 register (Ljava/lang/String;Lnet/minecraft/class_3195;Lnet/minecraft/class_2893$class_2895;)Lnet/minecraft/class_3195;
 		ARG 0 name
 		ARG 1 structureFeature
@@ -142,7 +184,27 @@ CLASS net/minecraft/class_3195 net/minecraft/world/gen/feature/StructureFeature
 		COMMENT Structures will generate before other features in the same generation step.
 	METHOD method_28664 init ()V
 	METHOD method_28665 getCodec ()Lcom/mojang/serialization/Codec;
+	METHOD method_36217 calculateBoundingBox (Lnet/minecraft/class_3341;)Lnet/minecraft/class_3341;
+		ARG 1 box
 	METHOD method_36420 getUndergroundWaterCreatureSpawns ()Lnet/minecraft/class_6012;
+	METHOD method_38671 getLocatedPos (Lnet/minecraft/class_1923;)Lnet/minecraft/class_2338;
+		COMMENT {@return a block position for feature location}
+		ARG 1 chunkPos
+	METHOD method_38688 (Lnet/minecraft/class_5312;)Lnet/minecraft/class_3037;
+		ARG 0 configuredFeature
+	METHOD method_38689 (Lnet/minecraft/class_3037;)Lnet/minecraft/class_5312;
+		ARG 1 config
+	METHOD method_38690 getPostProcessor ()Lnet/minecraft/class_6621;
+	METHOD method_39821 canGenerate (Lnet/minecraft/class_5455;Lnet/minecraft/class_2794;Lnet/minecraft/class_1966;Lnet/minecraft/class_3485;JLnet/minecraft/class_1923;Lnet/minecraft/class_3037;Lnet/minecraft/class_5539;Ljava/util/function/Predicate;)Z
+		ARG 1 registryManager
+		ARG 2 chunkGenerator
+		ARG 3 biomeSource
+		ARG 4 structureManager
+		ARG 5 worldSeed
+		ARG 7 pos
+		ARG 8 config
+		ARG 9 world
+		ARG 10 biomePredicate
 	CLASS class_3774 StructureStartFactory
 		METHOD create (Lnet/minecraft/class_3195;IILnet/minecraft/class_1959;Lnet/minecraft/class_3341;IJ)Lnet/minecraft/class_3449;
 			ARG 1 feature

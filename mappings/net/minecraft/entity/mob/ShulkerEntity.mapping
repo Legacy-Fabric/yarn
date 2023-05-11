@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_1606 net/minecraft/entity/mob/ShulkerEntity
+	FIELD field_33765 SOUTH_VECTOR Lnet/minecraft/class_1160;
 	FIELD field_7337 openProgress F
 	FIELD field_7338 ATTACHED_BLOCK Lnet/minecraft/class_2940;
 	FIELD field_7339 prevOpenProgress F
@@ -18,14 +19,19 @@ CLASS net/minecraft/class_1606 net/minecraft/entity/mob/ShulkerEntity
 	METHOD method_31546 setColor (Lnet/minecraft/class_1767;)V
 		ARG 1 color
 	METHOD method_31547 spawnNewShulker ()V
-	METHOD method_33346 (Lnet/minecraft/class_2350;F)Lnet/minecraft/class_238;
+	METHOD method_33342 getExtraLength (F)F
+		ARG 0 openProgress
+	METHOD method_33346 calculateBoundingBox (Lnet/minecraft/class_2350;F)Lnet/minecraft/class_238;
 		ARG 0 direction
-	METHOD method_33347 (Lnet/minecraft/class_2350;FF)Lnet/minecraft/class_238;
+		ARG 1 extraLength
+	METHOD method_33347 calculateBoundingBox (Lnet/minecraft/class_2350;FF)Lnet/minecraft/class_238;
 		ARG 0 direction
+		ARG 1 prevExtraLength
+		ARG 2 extraLength
 	METHOD method_33348 tryAttachOrTeleport ()V
 	METHOD method_33349 tickOpenProgress ()Z
 	METHOD method_33350 moveEntities ()V
-	METHOD method_33351 (Lnet/minecraft/class_2338;)Z
+	METHOD method_33351 isInvalidPosition (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
 	METHOD method_35192 setAttachedFace (Lnet/minecraft/class_2350;)V
 		ARG 1 face
@@ -47,13 +53,19 @@ CLASS net/minecraft/class_1606 net/minecraft/entity/mob/ShulkerEntity
 	CLASS class_1607 ShootBulletGoal
 		FIELD field_7347 counter I
 	CLASS class_1608 ShulkerBodyControl
-	CLASS class_1609 SearchForTargetGoal
+	CLASS class_1609 TargetOtherTeamGoal
+		COMMENT A target goal on other teams' entities if this shulker belongs
+		COMMENT to a team.
 		METHOD <init> (Lnet/minecraft/class_1606;)V
 			ARG 1 shulker
 		METHOD method_7129 (Lnet/minecraft/class_1309;)Z
 			ARG 0 entity
-	CLASS class_1610 SearchForPlayerGoal
+	CLASS class_1610 TargetPlayerGoal
+		COMMENT A hostile target goal on players.
 		METHOD <init> (Lnet/minecraft/class_1606;Lnet/minecraft/class_1606;)V
 			ARG 2 shulker
 	CLASS class_1611 PeekGoal
 		FIELD field_7352 counter I
+	CLASS class_6376 ShulkerLookControl
+		METHOD <init> (Lnet/minecraft/class_1606;Lnet/minecraft/class_1308;)V
+			ARG 2 entity

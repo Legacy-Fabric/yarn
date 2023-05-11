@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_2248 net/minecraft/block/Block
-	COMMENT Represents a block that can be placed in a world.
+	COMMENT A block is a voxel in a {@linkplain World world}.
+	COMMENT This class and its subclasses define all logics for those voxels.
 	COMMENT
 	COMMENT <p>There is exactly one instance for every type of block. Every stone
 	COMMENT block for example in a world shares the same block instance. Each block
@@ -13,7 +14,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	COMMENT <p>The translation key for the block name is determined by {@link
 	COMMENT #getTranslationKey}.
 	COMMENT
-	COMMENT @see <a href="https://minecraft.fandom.com/wiki/Model">Model - Official Minecraft Wiki</a>
+	COMMENT <p>In the world, the actual voxels are not stored as blocks, but as
+	COMMENT {@linkplain BlockState block states}. The possible states of the block
+	COMMENT is defined by {@link appendProperties}.
+	COMMENT
+	COMMENT @see BlockState
 	FIELD field_10634 lightLevel I
 	FIELD field_10635 material Lnet/minecraft/class_3614;
 	FIELD field_10636 dropTableId Lnet/minecraft/class_2960;
@@ -112,6 +117,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 pos
 		ARG 4 state
 	METHOD method_33615 getShapesForStates (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
+		ARG 1 stateToShape
 	METHOD method_34724 copyProperty (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_2769;)Lnet/minecraft/class_2680;
 		ARG 0 source
 		ARG 1 target
@@ -230,6 +236,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9542 hasRandomTicks (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
 	METHOD method_9543 hasDynamicBounds ()Z
+	METHOD method_9544 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
+		ARG 2 stack
 	METHOD method_9552 shouldPostProcess (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
@@ -420,6 +428,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			ARG 1 shape
 		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 shape
+		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 shape
+	CLASS 2
+		METHOD rehash (I)V
+			ARG 1 newN
 	CLASS class_2249 NeighborGroup
 		FIELD field_10652 self Lnet/minecraft/class_2680;
 		FIELD field_10653 facing Lnet/minecraft/class_2350;
@@ -428,6 +441,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			ARG 1 self
 			ARG 2 other
 			ARG 3 facing
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z

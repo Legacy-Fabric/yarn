@@ -22,18 +22,28 @@ CLASS net/minecraft/class_2839 net/minecraft/world/chunk/ProtoChunk
 	FIELD field_17105 lightingProvider Lnet/minecraft/class_3568;
 	FIELD field_20656 biomes Lnet/minecraft/class_4548;
 	FIELD field_27229 world Lnet/minecraft/class_5539;
-	METHOD <init> (Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;Lnet/minecraft/class_5539;)V
+	FIELD field_35473 belowZeroRetrogen Lnet/minecraft/class_6746;
+	FIELD field_35474 blockTickScheduler Lnet/minecraft/class_4296;
+	FIELD field_35475 fluidTickScheduler Lnet/minecraft/class_4296;
+	METHOD <init> (Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;Lnet/minecraft/class_5539;Lnet/minecraft/class_2378;Lnet/minecraft/class_6749;)V
 		ARG 1 pos
 		ARG 2 upgradeData
 		ARG 3 world
-	METHOD <init> (Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;[Lnet/minecraft/class_2826;Lnet/minecraft/class_2850;Lnet/minecraft/class_2850;Lnet/minecraft/class_5539;)V
+		ARG 4 biomeRegistry
+		ARG 5 blendingData
+	METHOD <init> (Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;[Lnet/minecraft/class_2826;Lnet/minecraft/class_4296;Lnet/minecraft/class_4296;Lnet/minecraft/class_5539;Lnet/minecraft/class_2378;Lnet/minecraft/class_6749;)V
 		ARG 1 pos
 		ARG 2 upgradeData
+		ARG 3 sections
 		ARG 4 blockTickScheduler
 		ARG 5 fluidTickScheduler
 		ARG 6 world
+		ARG 7 biomeRegistry
+		ARG 8 blendingData
 	METHOD method_12023 getLightingProvider ()Lnet/minecraft/class_3568;
 	METHOD method_12025 getCarvingMask (Lnet/minecraft/class_2893$class_2894;)Ljava/util/BitSet;
+		ARG 1 carver
+	METHOD method_12025 getCarvingMask (Lnet/minecraft/class_2893$class_2894;)Lnet/minecraft/class_6643;
 		ARG 1 carver
 	METHOD method_12295 getEntities ()Ljava/util/List;
 	METHOD method_12296 getLightSourcesBySection ()[Lit/unimi/dsi/fastutil/shorts/ShortList;
@@ -55,6 +65,9 @@ CLASS net/minecraft/class_2839 net/minecraft/world/chunk/ProtoChunk
 	METHOD method_12307 setCarvingMask (Lnet/minecraft/class_2893$class_2894;Ljava/util/BitSet;)V
 		ARG 1 carver
 		ARG 2 mask
+	METHOD method_12307 setCarvingMask (Lnet/minecraft/class_2893$class_2894;Lnet/minecraft/class_6643;)V
+		ARG 1 carver
+		ARG 2 carvingMask
 	METHOD method_12308 setStatus (Lnet/minecraft/class_2806;)V
 		ARG 1 status
 	METHOD method_12309 getBlockEntities ()Ljava/util/Map;
@@ -77,3 +90,11 @@ CLASS net/minecraft/class_2839 net/minecraft/world/chunk/ProtoChunk
 		ARG 1 biomes
 	METHOD method_28510 getOrCreateCarvingMask (Lnet/minecraft/class_2893$class_2894;)Ljava/util/BitSet;
 		ARG 1 carver
+	METHOD method_28510 getOrCreateCarvingMask (Lnet/minecraft/class_2893$class_2894;)Lnet/minecraft/class_6643;
+		ARG 1 carver
+	METHOD method_39307 getBlockProtoTickScheduler ()Lnet/minecraft/class_6755;
+	METHOD method_39308 getFluidProtoTickScheduler ()Lnet/minecraft/class_6755;
+	METHOD method_39309 setBelowZeroRetrogen (Lnet/minecraft/class_6746;)V
+		ARG 1 belowZeroRetrogen
+	METHOD method_39310 createProtoTickScheduler (Lnet/minecraft/class_4296;)Lnet/minecraft/class_6755;
+		ARG 0 tickScheduler

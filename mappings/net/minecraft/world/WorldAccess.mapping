@@ -4,7 +4,6 @@ CLASS net/minecraft/class_1936 net/minecraft/world/WorldAccess
 		ARG 2 pos
 		ARG 3 data
 	METHOD method_24853 getDimensionHeight ()I
-	METHOD method_32819 getLogicalHeight ()I
 	METHOD method_32887 emitGameEvent (Lnet/minecraft/class_1297;Lnet/minecraft/class_5712;Lnet/minecraft/class_1297;)V
 		ARG 1 entity
 		ARG 2 event
@@ -19,6 +18,34 @@ CLASS net/minecraft/class_1936 net/minecraft/world/WorldAccess
 	METHOD method_33596 emitGameEvent (Lnet/minecraft/class_5712;Lnet/minecraft/class_1297;)V
 		ARG 1 event
 		ARG 2 emitter
+	METHOD method_39224 getTickOrder ()J
+	METHOD method_39279 createAndScheduleBlockTick (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;I)V
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 delay
+	METHOD method_39280 createAndScheduleBlockTick (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;ILnet/minecraft/class_1953;)V
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 delay
+		ARG 4 priority
+	METHOD method_39281 createAndScheduleFluidTick (Lnet/minecraft/class_2338;Lnet/minecraft/class_3611;I)V
+		ARG 1 pos
+		ARG 2 fluid
+		ARG 3 delay
+	METHOD method_39282 createAndScheduleFluidTick (Lnet/minecraft/class_2338;Lnet/minecraft/class_3611;ILnet/minecraft/class_1953;)V
+		ARG 1 pos
+		ARG 2 fluid
+		ARG 3 delay
+		ARG 4 priority
+	METHOD method_39283 createOrderedTick (Lnet/minecraft/class_2338;Ljava/lang/Object;I)Lnet/minecraft/class_6760;
+		ARG 1 pos
+		ARG 2 type
+		ARG 3 delay
+	METHOD method_39284 createOrderedTick (Lnet/minecraft/class_2338;Ljava/lang/Object;ILnet/minecraft/class_1953;)Lnet/minecraft/class_6760;
+		ARG 1 pos
+		ARG 2 type
+		ARG 3 delay
+		ARG 4 priority
 	METHOD method_8391 getMoonSize ()F
 	METHOD method_8394 getMoonPhase ()I
 	METHOD method_8395 getSpawnPos ()Lnet/minecraft/class_2338;
@@ -30,6 +57,7 @@ CLASS net/minecraft/class_1936 net/minecraft/world/WorldAccess
 		ARG 5 volume
 		ARG 6 pitch
 	METHOD method_8397 getBlockTickScheduler ()Lnet/minecraft/class_1951;
+	METHOD method_8397 getBlockTickScheduler ()Lnet/minecraft/class_6756;
 	METHOD method_8398 getChunkManager ()Lnet/minecraft/class_2802;
 	METHOD method_8400 getSkyAngle (F)F
 		ARG 1 tickDelta
@@ -38,6 +66,7 @@ CLASS net/minecraft/class_1936 net/minecraft/world/WorldAccess
 	METHOD method_8404 getLocalDifficulty (Lnet/minecraft/class_2338;)Lnet/minecraft/class_1266;
 		ARG 1 pos
 	METHOD method_8405 getFluidTickScheduler ()Lnet/minecraft/class_1951;
+	METHOD method_8405 getFluidTickScheduler ()Lnet/minecraft/class_6756;
 	METHOD method_8406 addParticle (Lnet/minecraft/class_2394;DDDDDD)V
 		ARG 1 parameters
 		ARG 2 x
