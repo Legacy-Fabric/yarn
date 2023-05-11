@@ -47,7 +47,7 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 2 info
 		ARG 3 spawnAnimals
 		ARG 4 spawnMonsters
-		ARG 5 shouldSpawnAnimals
+		ARG 5 rareSpawn
 	METHOD method_27822 getBiomeDirectly (Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Lnet/minecraft/class_1959;
 		ARG 0 pos
 		ARG 1 chunk
@@ -65,6 +65,12 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 3 pos
 	METHOD method_8659 containsSpawnEntry (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Lnet/minecraft/class_1959$class_1964;Lnet/minecraft/class_2338;)Z
 	METHOD method_8659 containsSpawnEntry (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Lnet/minecraft/class_5483$class_1964;Lnet/minecraft/class_2338;)Z
+		ARG 0 world
+		ARG 1 structureAccessor
+		ARG 2 chunkGenerator
+		ARG 3 spawnGroup
+		ARG 4 spawnEntry
+		ARG 5 pos
 	METHOD method_8660 canSpawn (Lnet/minecraft/class_1317$class_1319;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_1299;)Z
 	METHOD method_8660 canSpawn (Lnet/minecraft/class_1317$class_1319;Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Lnet/minecraft/class_1299;)Z
 		ARG 0 location
@@ -89,6 +95,7 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 1 pos
 		ARG 2 state
 		ARG 3 fluidState
+		ARG 4 entityType
 	METHOD method_8663 spawnEntitiesInChunk (Lnet/minecraft/class_1311;Lnet/minecraft/class_1937;Lnet/minecraft/class_2818;Lnet/minecraft/class_2338;)V
 		ARG 0 category
 		ARG 1 world
@@ -127,11 +134,18 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		METHOD run (Lnet/minecraft/class_1308;Lnet/minecraft/class_2791;)V
 			ARG 1 entity
 			ARG 2 chunk
+		METHOD run (Lnet/minecraft/class_1308;Lnet/minecraft/class_2791;)V
+			ARG 1 entity
+			ARG 2 chunk
 	CLASS class_5260 ChunkSource
 		METHOD query (JLjava/util/function/Consumer;)V
 			ARG 1 pos
 			ARG 3 chunkConsumer
 	CLASS class_5261 Checker
+		METHOD test (Lnet/minecraft/class_1299;Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Z
+			ARG 1 type
+			ARG 2 pos
+			ARG 3 chunk
 		METHOD test (Lnet/minecraft/class_1299;Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Z
 			ARG 1 type
 			ARG 2 pos

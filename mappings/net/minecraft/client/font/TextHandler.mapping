@@ -44,6 +44,7 @@ CLASS net/minecraft/class_5225 net/minecraft/client/font/TextHandler
 		ARG 3 style
 		ARG 4 codePoint
 	METHOD method_27493 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILorg/apache/commons/lang3/mutable/MutableInt;ILnet/minecraft/class_2583;I)Z
+		ARG 4 index
 		ARG 5 style
 		ARG 6 codePoint
 	METHOD method_27494 trimToWidth (Ljava/lang/String;ILnet/minecraft/class_2583;)Ljava/lang/String;
@@ -57,7 +58,9 @@ CLASS net/minecraft/class_5225 net/minecraft/client/font/TextHandler
 		ARG 3 style
 			COMMENT the style of the trimmed string
 	METHOD method_27495 wrapLines (Lnet/minecraft/class_5348;ILnet/minecraft/class_2583;)Ljava/util/List;
+		ARG 1 text
 		ARG 2 maxWidth
+		ARG 3 style
 	METHOD method_27496 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILnet/minecraft/class_2583;I)Z
 		ARG 2 unused
 		ARG 3 style
@@ -121,6 +124,14 @@ CLASS net/minecraft/class_5225 net/minecraft/client/font/TextHandler
 		METHOD method_27509 hasLineBreak ()Z
 	CLASS class_5229 LineWrappingConsumer
 		COMMENT A consumer of the line-breaking information.
+		METHOD accept (Lnet/minecraft/class_2583;II)V
+			COMMENT Accepts the information on a line-wrap segment.
+			ARG 1 style
+				COMMENT the style of this line segment
+			ARG 2 start
+				COMMENT the start index of this segment in the original string, inclusive
+			ARG 3 end
+				COMMENT the end index of this segment in the original string, exclusive
 		METHOD accept (Lnet/minecraft/class_2583;II)V
 			COMMENT Accepts the information on a line-wrap segment.
 			ARG 1 style
