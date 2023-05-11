@@ -68,6 +68,11 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 	METHOD method_25310 clickedHeader (II)V
 		ARG 1 x
 		ARG 2 y
+	METHOD method_25311 renderList (Lnet/minecraft/class_4587;IIF)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 delta
 	METHOD method_25311 renderList (Lnet/minecraft/class_4587;IIIIF)V
 		ARG 1 matrices
 		ARG 2 x
@@ -144,6 +149,13 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		ARG 1 direction
 			COMMENT the direction to move the selection
 		ARG 2 predicate
+	METHOD method_30013 moveSelectionIf (Lnet/minecraft/class_350$class_5403;Ljava/util/function/Predicate;)Z
+		COMMENT Moves the selection in the specified direction until the predicate returns true.
+		COMMENT
+		COMMENT @return whether the selection matching the predicate was found
+		ARG 1 direction
+			COMMENT the direction to move the selection
+		ARG 2 predicate
 	METHOD method_30014 (Lnet/minecraft/class_350$class_351;)Z
 		ARG 0 entry
 	METHOD method_30015 ensureSelectedEntryVisible ()V
@@ -156,6 +168,27 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		ARG 1 builder
 		ARG 2 entry
 	METHOD method_37019 getHoveredEntry ()Lnet/minecraft/class_350$class_351;
+	METHOD method_44397 renderEntry (Lnet/minecraft/class_4587;IIFIIIII)V
+		ARG 1 matrices
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 delta
+		ARG 5 index
+		ARG 6 x
+		ARG 7 y
+		ARG 8 entryWidth
+		ARG 9 entryHeight
+	METHOD method_44398 drawSelectionHighlight (Lnet/minecraft/class_4587;IIIII)V
+		ARG 1 matrices
+		ARG 2 y
+		ARG 3 entryWidth
+		ARG 4 entryHeight
+		ARG 5 borderColor
+		ARG 6 fillColor
+	METHOD method_44399 addEntryToTop (Lnet/minecraft/class_350$class_351;)V
+		ARG 1 entry
+	METHOD method_44650 removeEntryWithoutScrolling (Lnet/minecraft/class_350$class_351;)Z
+		ARG 1 entry
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -330,6 +363,11 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 		METHOD add (ILjava/lang/Object;)V
 			ARG 1 index
 			ARG 2 entry
+		METHOD add (ILjava/lang/Object;)V
+			ARG 1 index
+			ARG 2 entry
+		METHOD get (I)Ljava/lang/Object;
+			ARG 1 index
 		METHOD get (I)Ljava/lang/Object;
 			ARG 1 index
 		METHOD get (I)Ljava/lang/Object;
@@ -390,6 +428,11 @@ CLASS net/minecraft/class_350 net/minecraft/client/gui/widget/EntryListWidget
 			ARG 1 index
 		METHOD remove (I)Ljava/lang/Object;
 			ARG 1 index
+		METHOD remove (I)Ljava/lang/Object;
+			ARG 1 index
+		METHOD set (ILjava/lang/Object;)Ljava/lang/Object;
+			ARG 1 index
+			ARG 2 entry
 		METHOD set (ILjava/lang/Object;)Ljava/lang/Object;
 			ARG 1 index
 			ARG 2 entry

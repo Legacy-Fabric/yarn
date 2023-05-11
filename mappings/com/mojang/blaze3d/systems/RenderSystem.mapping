@@ -4,6 +4,16 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 green
 		ARG 2 blue
 		ARG 3 alpha
+	METHOD _setShaderColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD _setShaderFogColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
 	METHOD _setShaderFogColor (FFFF)V
 		ARG 0 red
 		ARG 1 green
@@ -11,16 +21,30 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 3 alpha
 	METHOD _setShaderFogEnd (F)V
 		ARG 0 shaderFogEnd
+	METHOD _setShaderFogEnd (F)V
+		ARG 0 shaderFogEnd
+	METHOD _setShaderFogShape (Lnet/minecraft/class_6854;)V
+		ARG 0 shaderFogShape
 	METHOD _setShaderFogShape (Lnet/minecraft/class_6854;)V
 		ARG 0 shaderFogShape
 	METHOD _setShaderFogStart (F)V
 		ARG 0 shaderFogStart
+	METHOD _setShaderFogStart (F)V
+		ARG 0 shaderFogStart
+	METHOD _setShaderTexture (II)V
+		ARG 0 texture
+		ARG 1 glId
 	METHOD _setShaderTexture (II)V
 		ARG 0 texture
 		ARG 1 glId
 	METHOD _setShaderTexture (ILnet/minecraft/class_2960;)V
 		ARG 0 texture
 		ARG 1 id
+	METHOD _setShaderTexture (ILnet/minecraft/class_2960;)V
+		ARG 0 texture
+		ARG 1 id
+	METHOD activeTexture (I)V
+		ARG 0 texture
 	METHOD activeTexture (I)V
 		ARG 0 texture
 	METHOD activeTexture (I)V
@@ -54,6 +78,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 texture
 	METHOD bindTexture (I)V
 		ARG 0 texture
+	METHOD bindTexture (I)V
+		ARG 0 texture
+	METHOD bindTextureForSetup (I)V
+		ARG 0 id
 	METHOD bindTextureForSetup (I)V
 		ARG 0 id
 	METHOD blendColor (FFFF)V
@@ -73,6 +101,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 mode
 	METHOD blendEquation (I)V
 		ARG 0 mode
+	METHOD blendEquation (I)V
+		ARG 0 mode
 	METHOD blendFunc (II)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -113,6 +143,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 srcFactor
 		ARG 1 dstFactor
 	METHOD blendFunc (II)V
+		ARG 0 srcFactor
+		ARG 1 dstFactor
+	METHOD blendFunc (II)V
+		ARG 0 srcFactor
+		ARG 1 dstFactor
+	METHOD blendFunc (Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
 	METHOD blendFunc (Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;)V
@@ -203,6 +239,16 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 dstFactorRGB
 		ARG 2 srcFactorAlpha
 		ARG 3 dstFactorAlpha
+	METHOD blendFuncSeparate (IIII)V
+		ARG 0 srcFactorRGB
+		ARG 1 dstFactorRGB
+		ARG 2 srcFactorAlpha
+		ARG 3 dstFactorAlpha
+	METHOD blendFuncSeparate (Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;)V
+		ARG 0 srcFactor
+		ARG 1 dstFactor
+		ARG 2 srcAlpha
+		ARG 3 dstAlpha
 	METHOD blendFuncSeparate (Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;Lcom/mojang/blaze3d/platform/GlStateManager$class_4535;Lcom/mojang/blaze3d/platform/GlStateManager$class_4534;)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -275,6 +321,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD clear (IZ)V
 		ARG 0 mask
 		ARG 1 getError
+	METHOD clear (IZ)V
+		ARG 0 mask
+		ARG 1 getError
 	METHOD clearColor (FFFF)V
 		ARG 0 red
 		ARG 1 green
@@ -305,6 +354,13 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 green
 		ARG 2 blue
 		ARG 3 alpha
+	METHOD clearColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD clearDepth (D)V
+		ARG 0 depth
 	METHOD clearDepth (D)V
 		ARG 0 depth
 	METHOD clearDepth (D)V
@@ -319,11 +375,18 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 depth
 	METHOD clearStencil (I)V
 		ARG 0 stencil
+	METHOD clearStencil (I)V
+		ARG 0 stencil
 	METHOD color3f (FFF)V
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
 	METHOD color4f (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD colorMask (ZZZZ)V
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
@@ -373,6 +436,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 texture
 	METHOD deleteTexture (I)V
 		ARG 0 texture
+	METHOD deleteTexture (I)V
+		ARG 0 texture
 	METHOD depthFunc (I)V
 		ARG 0 func
 	METHOD depthFunc (I)V
@@ -385,6 +450,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 func
 	METHOD depthFunc (I)V
 		ARG 0 func
+	METHOD depthFunc (I)V
+		ARG 0 func
+	METHOD depthMask (Z)V
+		ARG 0 mask
 	METHOD depthMask (Z)V
 		ARG 0 mask
 	METHOD depthMask (Z)V
@@ -421,11 +490,22 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 mode
 		ARG 1 count
 		ARG 2 type
+	METHOD drawElements (III)V
+		ARG 0 mode
+		ARG 1 count
+		ARG 2 type
 	METHOD enableScissor (IIII)V
 		ARG 0 x
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
+	METHOD enableScissor (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+	METHOD flipFrame (J)V
+		ARG 0 window
 	METHOD flipFrame (J)V
 		ARG 0 window
 	METHOD flipFrame (J)V
@@ -460,6 +540,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 start
 	METHOD getSequentialBuffer (Lnet/minecraft/class_293$class_5596;)Lcom/mojang/blaze3d/systems/RenderSystem$class_5590;
 		ARG 0 drawMode
+	METHOD getSequentialBuffer (Lnet/minecraft/class_293$class_5596;)Lcom/mojang/blaze3d/systems/RenderSystem$class_5590;
+		ARG 0 drawMode
+	METHOD getShaderTexture (I)I
+		ARG 0 texture
 	METHOD getShaderTexture (I)I
 		ARG 0 texture
 	METHOD getString (ILjava/util/function/Consumer;)V
@@ -504,14 +588,24 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD getString (ILjava/util/function/Consumer;)V
 		ARG 0 name
 		ARG 1 consumer
+	METHOD getString (ILjava/util/function/Consumer;)V
+		ARG 0 name
+		ARG 1 consumer
 	METHOD getTextureId (I)I
 		ARG 0 texture
+	METHOD getTextureId (I)I
+		ARG 0 texture
+	METHOD glBindBuffer (ILjava/util/function/IntSupplier;)V
+		ARG 0 target
+		ARG 1 bufferSupplier
 	METHOD glBindBuffer (ILjava/util/function/IntSupplier;)V
 		ARG 0 target
 		ARG 1 bufferSupplier
 	METHOD glBindBuffer (ILjava/util/function/Supplier;)V
 		ARG 0 target
 		ARG 1 buffer
+	METHOD glBindVertexArray (Ljava/util/function/Supplier;)V
+		ARG 0 arraySupplier
 	METHOD glBindVertexArray (Ljava/util/function/Supplier;)V
 		ARG 0 arraySupplier
 	METHOD glBufferData (ILjava/nio/ByteBuffer;I)V
@@ -538,6 +632,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 target
 		ARG 1 data
 		ARG 2 usage
+	METHOD glBufferData (ILjava/nio/ByteBuffer;I)V
+		ARG 0 target
+		ARG 1 data
+		ARG 2 usage
+	METHOD glDeleteBuffers (I)V
+		ARG 0 buffer
 	METHOD glDeleteBuffers (I)V
 		ARG 0 buffer
 	METHOD glDeleteBuffers (I)V
@@ -552,6 +652,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 buffer
 	METHOD glDeleteVertexArrays (I)V
 		ARG 0 array
+	METHOD glDeleteVertexArrays (I)V
+		ARG 0 array
 	METHOD glGenBuffers (Ljava/util/function/Consumer;)V
 		ARG 0 consumer
 	METHOD glGenBuffers (Ljava/util/function/Consumer;)V
@@ -563,6 +665,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD glGenBuffers (Ljava/util/function/Consumer;)V
 		ARG 0 consumer
 	METHOD glGenBuffers (Ljava/util/function/Consumer;)V
+		ARG 0 consumer
+	METHOD glGenBuffers (Ljava/util/function/Consumer;)V
+		ARG 0 consumer
+	METHOD glGenVertexArrays (Ljava/util/function/Consumer;)V
 		ARG 0 consumer
 	METHOD glGenVertexArrays (Ljava/util/function/Consumer;)V
 		ARG 0 consumer
@@ -612,6 +718,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD glUniform1 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
+	METHOD glUniform1 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform1 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD glUniform1 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -646,6 +758,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 location
 		ARG 1 value
 	METHOD glUniform1i (II)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform1i (II)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform2 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
 	METHOD glUniform2 (ILjava/nio/FloatBuffer;)V
@@ -708,6 +826,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD glUniform2 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
+	METHOD glUniform2 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform3 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD glUniform3 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -766,6 +890,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 location
 		ARG 1 value
 	METHOD glUniform3 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform3 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
+	METHOD glUniform4 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
 	METHOD glUniform4 (ILjava/nio/FloatBuffer;)V
@@ -828,6 +958,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD glUniform4 (ILjava/nio/IntBuffer;)V
 		ARG 0 location
 		ARG 1 value
+	METHOD glUniform4 (ILjava/nio/IntBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 transpose
@@ -849,6 +982,14 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 transpose
 		ARG 2 value
 	METHOD glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
+	METHOD glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
+	METHOD glUniformMatrix3 (IZLjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
@@ -900,6 +1041,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
+	METHOD glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 transpose
+		ARG 2 value
 	METHOD initGameThread (Z)V
 		ARG 0 assertNotRenderThread
 	METHOD initGameThread (Z)V
@@ -912,6 +1057,11 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 assertNotRenderThread
 	METHOD initGameThread (Z)V
 		ARG 0 assertNotRenderThread
+	METHOD initGameThread (Z)V
+		ARG 0 assertNotRenderThread
+	METHOD initRenderer (IZ)V
+		ARG 0 debugVerbosity
+		ARG 1 debugSync
 	METHOD initRenderer (IZ)V
 		ARG 0 debugVerbosity
 		ARG 1 debugSync
@@ -933,6 +1083,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
 		ARG 0 indexConsumer
 		ARG 1 vertexCount
+	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+		ARG 0 indexConsumer
+		ARG 1 vertexCount
+	METHOD lambda$static$1 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+		ARG 0 indexConsumer
+		ARG 1 vertexCount
 	METHOD lambda$static$1 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
 		ARG 0 indexConsumer
 		ARG 1 vertexCount
@@ -948,6 +1104,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 fps
 	METHOD limitDisplayFPS (I)V
 		ARG 0 fps
+	METHOD limitDisplayFPS (I)V
+		ARG 0 fps
 	METHOD lineWidth (F)V
 		ARG 0 width
 	METHOD lineWidth (F)V
@@ -960,6 +1118,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 width
 	METHOD lineWidth (F)V
 		ARG 0 width
+	METHOD lineWidth (F)V
+		ARG 0 width
+	METHOD logicOp (Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;)V
+		ARG 0 op
 	METHOD logicOp (Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;)V
 		ARG 0 op
 	METHOD logicOp (Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;)V
@@ -1005,6 +1167,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD pixelStore (II)V
 		ARG 0 pname
 		ARG 1 param
+	METHOD pixelStore (II)V
+		ARG 0 pname
+		ARG 1 param
+	METHOD polygonMode (II)V
+		ARG 0 face
+		ARG 1 mode
 	METHOD polygonMode (II)V
 		ARG 0 face
 		ARG 1 mode
@@ -1026,6 +1194,17 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD polygonOffset (FF)V
 		ARG 0 factor
 		ARG 1 units
+	METHOD polygonOffset (FF)V
+		ARG 0 factor
+		ARG 1 units
+	METHOD readPixels (IIIIIILjava/nio/ByteBuffer;)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+		ARG 4 format
+		ARG 5 type
+		ARG 6 pixels
 	METHOD readPixels (IIIIIILjava/nio/ByteBuffer;)V
 		ARG 0 x
 		ARG 1 y
@@ -1086,6 +1265,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 renderCall
 	METHOD recordRenderCall (Lnet/minecraft/class_4573;)V
 		ARG 0 renderCall
+	METHOD recordRenderCall (Lnet/minecraft/class_4573;)V
+		ARG 0 renderCall
+	METHOD renderCrosshair (I)V
+		ARG 0 size
 	METHOD renderCrosshair (I)V
 		ARG 0 size
 	METHOD renderCrosshair (I)V
@@ -1103,6 +1286,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD runAsFancy (Ljava/lang/Runnable;)V
+		ARG 0 runnable
 	METHOD runAsFancy (Ljava/lang/Runnable;)V
 		ARG 0 runnable
 	METHOD scaled (DDD)V
@@ -1125,12 +1310,25 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 callback
 	METHOD setErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
 		ARG 0 callback
+	METHOD setErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
+		ARG 0 callback
+	METHOD setInverseViewRotationMatrix (Lnet/minecraft/class_4581;)V
+		ARG 0 inverseViewRotationMatrix
 	METHOD setInverseViewRotationMatrix (Lnet/minecraft/class_4581;)V
 		ARG 0 inverseViewRotationMatrix
 	METHOD setProjectionMatrix (Lnet/minecraft/class_1159;)V
 		ARG 0 projectionMatrix
+	METHOD setProjectionMatrix (Lnet/minecraft/class_1159;)V
+		ARG 0 projectionMatrix
 	METHOD setShader (Ljava/util/function/Supplier;)V
 		ARG 0 shaderSupplier
+	METHOD setShader (Ljava/util/function/Supplier;)V
+		ARG 0 shaderSupplier
+	METHOD setShaderColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
 	METHOD setShaderColor (FFFF)V
 		ARG 0 red
 		ARG 1 green
@@ -1140,6 +1338,15 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 red
 		ARG 1 green
 		ARG 2 blue
+	METHOD setShaderFogColor (FFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+	METHOD setShaderFogColor (FFFF)V
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
 	METHOD setShaderFogColor (FFFF)V
 		ARG 0 red
 		ARG 1 green
@@ -1147,21 +1354,43 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 3 alpha
 	METHOD setShaderFogEnd (F)V
 		ARG 0 shaderFogEnd
+	METHOD setShaderFogEnd (F)V
+		ARG 0 shaderFogEnd
+	METHOD setShaderFogShape (Lnet/minecraft/class_6854;)V
+		ARG 0 shaderFogShape
 	METHOD setShaderFogShape (Lnet/minecraft/class_6854;)V
 		ARG 0 shaderFogShape
 	METHOD setShaderFogStart (F)V
 		ARG 0 shaderFogStart
+	METHOD setShaderFogStart (F)V
+		ARG 0 shaderFogStart
+	METHOD setShaderGameTime (JF)V
+		ARG 0 time
+		ARG 2 tickDelta
 	METHOD setShaderGameTime (JF)V
 		ARG 0 time
 		ARG 2 tickDelta
 	METHOD setShaderTexture (II)V
 		ARG 0 texture
 		ARG 1 glId
+	METHOD setShaderTexture (II)V
+		ARG 0 texture
+		ARG 1 glId
+	METHOD setShaderTexture (ILnet/minecraft/class_2960;)V
+		ARG 0 texture
+		ARG 1 id
 	METHOD setShaderTexture (ILnet/minecraft/class_2960;)V
 		ARG 0 texture
 		ARG 1 id
 	METHOD setTextureMatrix (Lnet/minecraft/class_1159;)V
 		ARG 0 textureMatrix
+	METHOD setTextureMatrix (Lnet/minecraft/class_1159;)V
+		ARG 0 textureMatrix
+	METHOD setupDefaultState (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
 	METHOD setupDefaultState (IIII)V
 		ARG 0 x
 		ARG 1 y
@@ -1212,6 +1441,11 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setupOverlayColor (Ljava/util/function/IntSupplier;I)V
 		ARG 0 texture
 		ARG 1 size
+	METHOD setupOverlayColor (Ljava/util/function/IntSupplier;I)V
+		ARG 0 texture
+		ARG 1 size
+	METHOD setupShaderLights (Lnet/minecraft/class_5944;)V
+		ARG 0 shader
 	METHOD setupShaderLights (Lnet/minecraft/class_5944;)V
 		ARG 0 shader
 	METHOD shadeModel (I)V
@@ -1240,6 +1474,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 func
 		ARG 1 ref
 		ARG 2 mask
+	METHOD stencilFunc (III)V
+		ARG 0 func
+		ARG 1 ref
+		ARG 2 mask
+	METHOD stencilMask (I)V
+		ARG 0 mask
 	METHOD stencilMask (I)V
 		ARG 0 mask
 	METHOD stencilOp (III)V
@@ -1266,6 +1506,14 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 sfail
 		ARG 1 dpfail
 		ARG 2 dppass
+	METHOD stencilOp (III)V
+		ARG 0 sfail
+		ARG 1 dpfail
+		ARG 2 dppass
+	METHOD texParameter (III)V
+		ARG 0 target
+		ARG 1 pname
+		ARG 2 param
 	METHOD texParameter (III)V
 		ARG 0 target
 		ARG 1 pname
@@ -1328,6 +1576,11 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
+	METHOD viewport (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
 	CLASS class_5590 IndexBuffer
 		FIELD field_27332 sizeMultiplier I
 		FIELD field_27333 increment I
@@ -1354,6 +1607,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		METHOD method_43410 bindAndGrow (I)V
 			ARG 1 newSize
 		CLASS class_5591 IndexMapper
+			METHOD accept (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+				ARG 1 indexConsumer
+				ARG 2 vertexCount
 			METHOD accept (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
 				ARG 1 indexConsumer
 				ARG 2 vertexCount

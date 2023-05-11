@@ -17,8 +17,10 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 	FIELD field_24238 handler Lnet/minecraft/class_5225;
 	FIELD field_32166 Z_INDEX F
 	FIELD field_35427 ARABIC_SHAPING_LETTERS_SHAPE I
-	METHOD <init> (Ljava/util/function/Function;)V
+	FIELD field_39925 validateAdvance Z
+	METHOD <init> (Ljava/util/function/Function;Z)V
 		ARG 1 fontStorageAccessor
+		ARG 2 validateAdvance
 	METHOD method_16196 findWordEdge (Ljava/lang/String;IIZ)I
 		ARG 1 text
 		ARG 2 direction
@@ -60,6 +62,7 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		COMMENT
 		COMMENT @return the height of the wrapped text
 		COMMENT @see TextRenderer#wrapLines(StringVisitable, int)
+		COMMENT @see #getWrappedLinesHeight(StringVisitable, int)
 		ARG 1 text
 		ARG 2 maxWidth
 	METHOD method_1714 trimToWidth (Ljava/lang/String;I)Ljava/lang/String;
@@ -403,6 +406,12 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 7 index
 		ARG 8 style
 		ARG 9 codePoint
+	METHOD method_44378 getWrappedLinesHeight (Lnet/minecraft/class_5348;I)I
+		COMMENT {@return the height of the text, after it has been wrapped, in pixels}
+		COMMENT @see TextRenderer#wrapLines(StringVisitable, int)
+		COMMENT @see #getWrappedLinesHeight(String, int)
+		ARG 1 text
+		ARG 2 maxWidth
 	CLASS class_328 Rectangle
 		METHOD method_1730 draw (Lnet/minecraft/class_287;)V
 			ARG 1 bufferBuilder

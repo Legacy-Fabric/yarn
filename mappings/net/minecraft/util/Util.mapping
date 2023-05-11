@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_156 net/minecraft/util/Util
 	FIELD field_1128 nanoTimeSupplier Ljava/util/function/LongSupplier;
+	FIELD field_1128 nanoTimeSupplier Lnet/minecraft/class_7576$class_7577;
 	FIELD field_1129 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_1129 LOGGER Lorg/slf4j/Logger;
 	FIELD field_18034 NEXT_WORKER_ID Ljava/util/concurrent/atomic/AtomicInteger;
@@ -12,6 +13,7 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 	FIELD field_34892 MAX_BG_THREADS_PROPERTY Ljava/lang/String;
 	FIELD field_34893 missingBreakpointHandler Ljava/util/function/Consumer;
 	FIELD field_37250 TICKER Lcom/google/common/base/Ticker;
+	FIELD field_39824 DATE_TIME_FORMATTER Ljava/time/format/DateTimeFormatter;
 	METHOD method_17815 stream (Ljava/util/Optional;)Ljava/util/stream/Stream;
 		ARG 0 optional
 	METHOD method_17974 ifPresentOrElse (Ljava/util/Optional;Ljava/util/function/Consumer;Ljava/lang/Runnable;)Ljava/util/Optional;
@@ -286,6 +288,7 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 		ARG 1 mapCreator
 			COMMENT a function that, when given the size of {@code values},
 			COMMENT returns a map for storing the indices of the values
+	METHOD method_44893 getFormattedCurrentTime ()Ljava/lang/String;
 	METHOD method_645 previous (Ljava/lang/Iterable;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 iterable
 		ARG 1 object
@@ -335,8 +338,13 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 		FIELD field_29655 cache Ljava/util/Map;
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 object
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 object
 	CLASS 3
 		FIELD field_29657 cache Ljava/util/Map;
+		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 a
+			ARG 2 b
 		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 a
 			ARG 2 b
@@ -345,12 +353,19 @@ CLASS net/minecraft/class_156 net/minecraft/util/Util
 	CLASS 4
 		METHOD onTermination (Ljava/lang/Throwable;)V
 			ARG 1 throwable
+		METHOD onTermination (Ljava/lang/Throwable;)V
+			ARG 1 throwable
 	CLASS 7
 	CLASS 8
 	CLASS class_157 IdentityHashStrategy
 		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
 			ARG 1 o
 			ARG 2 o2
+		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
+			ARG 1 o
+			ARG 2 o2
+		METHOD hashCode (Ljava/lang/Object;)I
+			ARG 1 o
 		METHOD hashCode (Ljava/lang/Object;)I
 			ARG 1 o
 	CLASS class_158 OperatingSystem
