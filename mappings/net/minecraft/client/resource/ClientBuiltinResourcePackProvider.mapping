@@ -16,6 +16,7 @@ CLASS net/minecraft/class_1066 net/minecraft/client/resource/ClientBuiltinResour
 	FIELD field_5296 SHA1_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_5297 lock Ljava/util/concurrent/locks/ReentrantLock;
 	FIELD field_5298 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_5298 LOGGER Lorg/slf4j/Logger;
 	METHOD <init> (Ljava/io/File;Lnet/minecraft/class_1064;)V
 		ARG 1 serverPacksRoot
 		ARG 2 index
@@ -34,6 +35,8 @@ CLASS net/minecraft/class_1066 net/minecraft/client/resource/ClientBuiltinResour
 		ARG 0 packDirectory
 	METHOD method_36324 (Lnet/minecraft/class_310;Z)V
 		ARG 1 confirmed
+	METHOD method_43339 loadServerPack (Lnet/minecraft/class_32$class_5143;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 session
 	METHOD method_4633 getPack ()Lnet/minecraft/class_3268;
 	METHOD method_4636 getDownloadHeaders ()Ljava/util/Map;
 	METHOD method_4638 loadServerPack (Ljava/io/File;)Ljava/util/concurrent/CompletableFuture;
@@ -46,8 +49,13 @@ CLASS net/minecraft/class_1066 net/minecraft/client/resource/ClientBuiltinResour
 		ARG 1 url
 		ARG 2 packSha1
 		ARG 3 closeAfterDownload
+	METHOD method_4640 download (Ljava/net/URL;Ljava/lang/String;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 url
+		ARG 2 packSha1
+		ARG 3 closeAfterDownload
 	METHOD method_4641 verifyFile (Ljava/lang/String;Ljava/io/File;)Z
 		ARG 1 expectedSha1
 		ARG 2 file
+	METHOD method_4642 clear ()Ljava/util/concurrent/CompletableFuture;
 	METHOD method_4642 clear ()V
 	METHOD method_4643 deleteOldServerPack ()V

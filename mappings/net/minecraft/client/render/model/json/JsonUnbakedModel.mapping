@@ -9,6 +9,7 @@ CLASS net/minecraft/class_793 net/minecraft/client/render/model/json/JsonUnbaked
 	FIELD field_4246 depthInGui Z
 	FIELD field_4247 parentId Lnet/minecraft/class_2960;
 	FIELD field_4248 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_4248 LOGGER Lorg/slf4j/Logger;
 	FIELD field_4249 QUAD_FACTORY Lnet/minecraft/class_796;
 	FIELD field_4250 transformations Lnet/minecraft/class_809;
 	FIELD field_4251 textureMap Ljava/util/Map;
@@ -34,6 +35,8 @@ CLASS net/minecraft/class_793 net/minecraft/client/render/model/json/JsonUnbaked
 		ARG 1 name
 	METHOD method_3433 getElements ()Ljava/util/List;
 	METHOD method_3434 getOverrides ()Ljava/util/List;
+	METHOD method_3435 (Ljava/util/Set;Ljava/lang/String;)V
+		ARG 2 layer
 	METHOD method_3437 deserialize (Ljava/io/Reader;)Lnet/minecraft/class_793;
 		ARG 0 input
 	METHOD method_3438 getTransformation (Lnet/minecraft/class_809$class_811;)Lnet/minecraft/class_804;
@@ -43,6 +46,8 @@ CLASS net/minecraft/class_793 net/minecraft/client/render/model/json/JsonUnbaked
 	METHOD method_3440 compileOverrides (Lnet/minecraft/class_1088;Lnet/minecraft/class_793;)Lnet/minecraft/class_806;
 		ARG 1 modelLoader
 		ARG 2 parent
+	METHOD method_3441 (Ljava/util/function/Function;Ljava/util/Set;Ljava/util/Set;Lnet/minecraft/class_799;)V
+		ARG 4 override
 	METHOD method_3442 resolveTexture (Ljava/lang/String;)Lcom/mojang/datafixers/util/Either;
 		ARG 1 name
 	METHOD method_3443 getTransformations ()Lnet/minecraft/class_809;
@@ -92,6 +97,10 @@ CLASS net/minecraft/class_793 net/minecraft/client/render/model/json/JsonUnbaked
 	CLASS class_795 Deserializer
 		FIELD field_32794 DEFAULT_AMBIENT_OCCLUSION Z
 			COMMENT The default value for ambient occlusion if unspecified in JSON; is {@value}.
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 element
+			ARG 2 unused
+			ARG 3 ctx
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
 			ARG 1 element
 			ARG 2 unused

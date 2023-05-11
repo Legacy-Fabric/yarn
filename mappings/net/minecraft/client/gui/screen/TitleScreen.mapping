@@ -6,6 +6,7 @@ CLASS net/minecraft/class_442 net/minecraft/client/gui/screen/TitleScreen
 	FIELD field_18222 doBackgroundFade Z
 	FIELD field_19102 ACCESSIBILITY_ICON_TEXTURE Lnet/minecraft/class_2960;
 	FIELD field_23775 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_23775 LOGGER Lorg/slf4j/Logger;
 	FIELD field_2583 MINECRAFT_TITLE_TEXTURE Lnet/minecraft/class_2960;
 	FIELD field_2584 copyrightTextWidth I
 	FIELD field_2585 backgroundRenderer Lnet/minecraft/class_766;
@@ -16,7 +17,9 @@ CLASS net/minecraft/class_442 net/minecraft/client/gui/screen/TitleScreen
 	FIELD field_2599 realmsNotificationsInitialized Z
 	FIELD field_2606 copyrightTextX I
 	FIELD field_32271 COPYRIGHT Ljava/lang/String;
+	FIELD field_32271 COPYRIGHT Lnet/minecraft/class_2561;
 	FIELD field_32272 DEMO_WORLD_NAME Ljava/lang/String;
+	FIELD field_37209 deprecationNotice Lnet/minecraft/class_442$class_7063;
 	METHOD <init> (Z)V
 		ARG 1 doBackgroundFade
 	METHOD method_18105 loadTexturesAsync (Lnet/minecraft/class_1060;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
@@ -57,6 +60,8 @@ CLASS net/minecraft/class_442 net/minecraft/client/gui/screen/TitleScreen
 		ARG 2 x
 		ARG 3 y
 	METHOD method_31129 canReadDemoWorldData ()Z
+	METHOD method_41198 (Lnet/minecraft/class_4185;)V
+		ARG 1 button
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -88,3 +93,9 @@ CLASS net/minecraft/class_442 net/minecraft/client/gui/screen/TitleScreen
 		METHOD method_20717 render (I)V
 			ARG 1 aplphaChannel
 	FIELD field_19361 warning Lnet/minecraft/class_442$class_4308;
+	CLASS class_7063 DeprecationNotice
+		FIELD comp_829 textRenderer Lnet/minecraft/class_327;
+		METHOD comp_829 textRenderer ()Lnet/minecraft/class_327;
+		METHOD method_44065 render (Lnet/minecraft/class_4587;I)V
+			ARG 1 matrices
+			ARG 2 color

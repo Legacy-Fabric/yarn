@@ -1,4 +1,13 @@
 CLASS net/minecraft/class_5284 net/minecraft/world/gen/chunk/ChunkGeneratorSettings
+	FIELD comp_474 generationShapeConfig Lnet/minecraft/class_5309;
+	FIELD comp_475 defaultBlock Lnet/minecraft/class_2680;
+	FIELD comp_476 defaultFluid Lnet/minecraft/class_2680;
+	FIELD comp_478 surfaceRule Lnet/minecraft/class_6686$class_6708;
+	FIELD comp_479 seaLevel I
+	FIELD comp_480 mobGenerationDisabled Z
+	FIELD comp_481 aquifers Z
+	FIELD comp_482 oreVeins Z
+	FIELD comp_483 usesLegacyRandom Z
 	FIELD field_24514 defaultBlock Lnet/minecraft/class_2680;
 	FIELD field_24515 defaultFluid Lnet/minecraft/class_2680;
 	FIELD field_24516 structuresConfig Lnet/minecraft/class_5311;
@@ -25,19 +34,20 @@ CLASS net/minecraft/class_5284 net/minecraft/world/gen/chunk/ChunkGeneratorSetti
 	FIELD field_35051 LARGE_BIOMES Lnet/minecraft/class_5321;
 	FIELD field_35130 randomProvider Lnet/minecraft/class_2919$class_6675;
 	FIELD field_35184 surfaceRule Lnet/minecraft/class_6686$class_6708;
-	METHOD <init> (Lnet/minecraft/class_5311;Lnet/minecraft/class_5309;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_6686$class_6708;IZZZZZZ)V
-		ARG 1 structuresConfig
-		ARG 2 generationShapeConfig
-		ARG 3 defaultBlock
-		ARG 4 defaultFluid
+	METHOD <init> (Lnet/minecraft/class_5309;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_6953;Lnet/minecraft/class_6686$class_6708;Ljava/util/List;IZZZZ)V
 		ARG 5 surfaceRule
-		ARG 6 seaLevel
-		ARG 7 mobGenerationDisabled
-		ARG 8 aquifers
-		ARG 9 noiseCaves
-		ARG 10 oreVeins
-		ARG 11 noodleCaves
-		ARG 12 useLegacyRandom
+	METHOD comp_474 generationShapeConfig ()Lnet/minecraft/class_5309;
+	METHOD comp_475 defaultBlock ()Lnet/minecraft/class_2680;
+	METHOD comp_476 defaultFluid ()Lnet/minecraft/class_2680;
+	METHOD comp_478 surfaceRule ()Lnet/minecraft/class_6686$class_6708;
+	METHOD comp_479 seaLevel ()I
+	METHOD comp_480 mobGenerationDisabled ()Z
+		COMMENT Whether entities will be generated during chunk population.
+		COMMENT
+		COMMENT <p>It does not control whether spawns will occur during gameplay.
+	METHOD comp_481 aquifers ()Z
+	METHOD comp_482 oreVeins ()Z
+	METHOD comp_483 usesLegacyRandom ()Z
 	METHOD method_16400 getBedrockCeilingY ()I
 		COMMENT Returns the Y level of the bedrock ceiling.
 		COMMENT
@@ -91,6 +101,10 @@ CLASS net/minecraft/class_5284 net/minecraft/world/gen/chunk/ChunkGeneratorSetti
 	METHOD method_30643 createSurfaceSettings (ZZ)Lnet/minecraft/class_5284;
 		ARG 0 amplified
 		ARG 1 largeBiomes
+	METHOD method_30644 register (Lnet/minecraft/class_2378;Lnet/minecraft/class_5321;Lnet/minecraft/class_5284;)Lnet/minecraft/class_6880;
+		ARG 0 registry
+		ARG 1 key
+		ARG 2 chunkGeneratorSettings
 	METHOD method_30644 register (Lnet/minecraft/class_5321;Lnet/minecraft/class_5284;)Lnet/minecraft/class_5284;
 		ARG 0 registryKey
 		ARG 1 settings
@@ -98,6 +112,8 @@ CLASS net/minecraft/class_5284 net/minecraft/world/gen/chunk/ChunkGeneratorSetti
 		ARG 0 registryKey
 		ARG 1 settings
 	METHOD method_31111 getInstance ()Lnet/minecraft/class_5284;
+	METHOD method_31111 initAndGetDefault (Lnet/minecraft/class_2378;)Lnet/minecraft/class_6880;
+		ARG 0 registry
 	METHOD method_33757 hasAquifers ()Z
 	METHOD method_33758 hasNoiseCaves ()Z
 	METHOD method_33839 hasDeepslate ()Z
@@ -111,6 +127,7 @@ CLASS net/minecraft/class_5284 net/minecraft/world/gen/chunk/ChunkGeneratorSetti
 	METHOD method_39042 getSurfaceRule ()Lnet/minecraft/class_6686$class_6708;
 	METHOD method_39901 createCavesSettings ()Lnet/minecraft/class_5284;
 	METHOD method_39902 createFloatingIslandsSettings ()Lnet/minecraft/class_5284;
+	METHOD method_44323 createMissingSettings ()Lnet/minecraft/class_5284;
 	CLASS class_5307 Preset
 		FIELD field_24795 BY_ID Ljava/util/Map;
 		FIELD field_24796 text Lnet/minecraft/class_2561;

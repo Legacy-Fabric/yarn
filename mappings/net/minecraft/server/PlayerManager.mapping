@@ -6,6 +6,7 @@ CLASS net/minecraft/class_3324 net/minecraft/server/PlayerManager
 	FIELD field_14347 maxPlayers I
 	FIELD field_14348 OPERATORS_FILE Ljava/io/File;
 	FIELD field_14349 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_14349 LOGGER Lorg/slf4j/Logger;
 	FIELD field_14350 cheatsAllowed Z
 	FIELD field_14351 players Ljava/util/List;
 	FIELD field_14352 whitelistEnabled Z
@@ -23,10 +24,11 @@ CLASS net/minecraft/class_3324 net/minecraft/server/PlayerManager
 	FIELD field_14363 gameMode Lnet/minecraft/class_1934;
 	FIELD field_14364 BANNED_IPS_FILE Ljava/io/File;
 	FIELD field_24626 registryManager Lnet/minecraft/class_5455$class_5457;
+	FIELD field_24626 registryManager Lnet/minecraft/class_5455$class_6890;
 	FIELD field_24626 registryTracker Lnet/minecraft/class_5318$class_5319;
 	FIELD field_29790 LATENCY_UPDATE_INTERVAL I
 	FIELD field_34895 simulationDistance I
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_5455$class_5457;Lnet/minecraft/class_29;I)V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_5455$class_6890;Lnet/minecraft/class_29;I)V
 		ARG 1 server
 		ARG 2 registryManager
 		ARG 3 saveHandler
@@ -147,6 +149,9 @@ CLASS net/minecraft/class_3324 net/minecraft/server/PlayerManager
 		ARG 1 player
 	METHOD method_14613 createPlayer (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/class_3222;
 		ARG 1 profile
+	METHOD method_14613 createPlayer (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/class_7428;)Lnet/minecraft/class_3222;
+		ARG 1 profile
+		ARG 2 publicKey
 	METHOD method_14614 isWhitelistEnabled ()Z
 	METHOD method_14615 setGameMode (Lnet/minecraft/class_3222;Lnet/minecraft/class_3222;Lnet/minecraft/class_1936;)V
 		ARG 1 player
@@ -203,3 +208,129 @@ CLASS net/minecraft/class_3324 net/minecraft/server/PlayerManager
 	METHOD method_38650 setSimulationDistance (I)V
 		ARG 1 simulationDistance
 	METHOD method_38651 getSimulationDistance ()I
+	METHOD method_43511 (Lnet/minecraft/class_2561;Lnet/minecraft/class_3222;)Lnet/minecraft/class_2561;
+		ARG 1 player
+	METHOD method_43512 broadcast (Lnet/minecraft/class_2561;Ljava/util/function/Function;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a message to all players and the server console. A different
+		COMMENT message can be sent to a different player.
+		COMMENT
+		COMMENT @see #broadcast(Text, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerCommandSource, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerPlayerEntity, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, MessageSender, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, Function, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 playerMessageFactory
+			COMMENT a function that takes the player to send the message to
+			COMMENT and returns either the text to send to them or {@code null}
+			COMMENT to indicate the message should not be sent to them
+		ARG 3 typeKey
+	METHOD method_43513 broadcast (Lnet/minecraft/class_7471;Ljava/util/function/Function;Lnet/minecraft/class_7436;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a chat message to all players and the server console. A different
+		COMMENT message can be sent to a different player.
+		COMMENT
+		COMMENT <p>Chat messages have signatures. It is possible to use a bogus signature - such as
+		COMMENT {@link net.minecraft.network.message.MessageSignature#none} - to send a chat
+		COMMENT message; however if the signature is invalid (e.g. because the text's content differs
+		COMMENT from the one sent by the client, or because the passed signature is invalid) the client
+		COMMENT will log a warning. See {@link
+		COMMENT net.minecraft.network.message.MessageSignature#updateSignature} for how the
+		COMMENT message is signed.
+		COMMENT
+		COMMENT @apiNote This method is used to broadcast a message sent by a player
+		COMMENT through {@linkplain net.minecraft.client.gui.screen.ChatScreen the chat screen}
+		COMMENT as well as through commands like {@link net.minecraft.server.command.MeCommand} or
+		COMMENT {@link net.minecraft.server.command.SayCommand} .
+		COMMENT
+		COMMENT @see #broadcast(Text, RegistryKey)
+		COMMENT @see #broadcast(Text, Function, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerCommandSource, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerPlayerEntity, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 playerMessageFactory
+			COMMENT a function that takes the player to send the message to
+			COMMENT and returns either the message to send to them or {@code null}
+			COMMENT to indicate the message should not be sent to them
+		ARG 3 sender
+		ARG 4 typeKey
+	METHOD method_43514 broadcast (Lnet/minecraft/class_2561;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a message to all players and the server console.
+		COMMENT
+		COMMENT @apiNote This is used to send general messages such as a death
+		COMMENT message or a join/leave message.
+		COMMENT
+		COMMENT @see #broadcast(Text, Function, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerCommandSource, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerPlayerEntity, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, MessageSender, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, Function, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 typeKey
+	METHOD method_43670 (Lnet/minecraft/class_3222;Lnet/minecraft/server/MinecraftServer$class_7460;)V
+		ARG 1 properties
+	METHOD method_43672 (Lnet/minecraft/class_7471;Lnet/minecraft/class_3222;)Lnet/minecraft/class_7471;
+		ARG 1 player
+	METHOD method_43673 broadcast (Lnet/minecraft/class_5837;Lnet/minecraft/class_3222;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a chat message to all players and the server console.
+		COMMENT
+		COMMENT <p>Chat messages have signatures. It is possible to use a bogus signature - such as
+		COMMENT {@link net.minecraft.network.message.MessageSignature#none} - to send a chat
+		COMMENT message; however if the signature is invalid (e.g. because the text's content differs
+		COMMENT from the one sent by the client, or because the passed signature is invalid) the client
+		COMMENT will log a warning. See {@link
+		COMMENT net.minecraft.network.message.MessageSignature#updateSignature} for how the
+		COMMENT message is signed.
+		COMMENT
+		COMMENT @apiNote This method is used to broadcast a message sent by a player
+		COMMENT through {@linkplain net.minecraft.client.gui.screen.ChatScreen the chat screen}
+		COMMENT as well as through commands like {@link net.minecraft.server.command.MeCommand} or
+		COMMENT {@link net.minecraft.server.command.SayCommand} .
+		COMMENT
+		COMMENT @see #broadcast(Text, RegistryKey)
+		COMMENT @see #broadcast(Text, Function, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerCommandSource, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, MessageSender, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, Function, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 typeKey
+	METHOD method_43674 broadcast (Lnet/minecraft/class_7471;Lnet/minecraft/class_7436;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a chat message to all players and the server console.
+		COMMENT
+		COMMENT <p>Chat messages have signatures. It is possible to use a bogus signature - such as
+		COMMENT {@link net.minecraft.network.message.MessageSignature#none} - to send a chat
+		COMMENT message; however if the signature is invalid (e.g. because the text's content differs
+		COMMENT from the one sent by the client, or because the passed signature is invalid) the client
+		COMMENT will log a warning. See {@link
+		COMMENT net.minecraft.network.message.MessageSignature#updateSignature} for how the
+		COMMENT message is signed.
+		COMMENT
+		COMMENT @apiNote This method is used to broadcast messages from commands like {@link
+		COMMENT net.minecraft.server.command.MeCommand} or {@link net.minecraft.server.command.SayCommand}.
+		COMMENT
+		COMMENT @see #broadcast(Text, RegistryKey)
+		COMMENT @see #broadcast(Text, Function, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerCommandSource, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerPlayerEntity, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, Function, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 typeKey
+	METHOD method_44165 (Lnet/minecraft/class_5837;Lnet/minecraft/class_3222;Lnet/minecraft/class_3222;)Lnet/minecraft/class_7471;
+		ARG 2 player
+	METHOD method_44166 broadcast (Lnet/minecraft/class_5837;Lnet/minecraft/class_2168;Lnet/minecraft/class_5321;)V
+		COMMENT Broadcasts a chat message to all players and the server console.
+		COMMENT
+		COMMENT @apiNote This method is used to broadcast a message sent by  commands like
+		COMMENT {@link net.minecraft.server.command.MeCommand} or
+		COMMENT {@link net.minecraft.server.command.SayCommand} .
+		COMMENT
+		COMMENT @see #broadcast(Text, RegistryKey)
+		COMMENT @see #broadcast(Text, Function, RegistryKey)
+		COMMENT @see #broadcast(FilteredMessage, ServerPlayerEntity, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, MessageSender, RegistryKey)
+		COMMENT @see #broadcast(SignedMessage, Function, MessageSender, RegistryKey)
+		ARG 1 message
+		ARG 2 source
+		ARG 3 typeKey

@@ -12,18 +12,15 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 	FIELD field_34615 oreVeinSampler Lnet/minecraft/class_6568$class_6569;
 	FIELD field_35487 blender Lnet/minecraft/class_6748;
 	FIELD field_35674 generationShapeConfig Lnet/minecraft/class_5309;
-	METHOD <init> (IIILnet/minecraft/class_5818;IILnet/minecraft/class_6568$class_6572;Lnet/minecraft/class_5284;Lnet/minecraft/class_6350$class_6565;Lnet/minecraft/class_6748;)V
-		ARG 1 horizontalNoiseResolution
-		ARG 2 verticalNoiseResolution
-		ARG 3 horizontalSize
-		ARG 5 minimumY
-		ARG 6 minimumZ
-		ARG 8 chunkGeneratorSettings
-		ARG 9 fluidLevelSampler
-		ARG 10 blender
+	FIELD field_36584 blockStateSampler Lnet/minecraft/class_6568$class_6569;
+	FIELD field_36590 horizontalBlockSize I
+	FIELD field_36591 verticalBlockSize I
+	METHOD <init> (ILnet/minecraft/class_7138;IILnet/minecraft/class_5309;Lnet/minecraft/class_6916$class_7050;Lnet/minecraft/class_5284;Lnet/minecraft/class_6350$class_6565;Lnet/minecraft/class_6748;)V
+		ARG 1 horizontalSize
 	METHOD method_38336 sampleStartNoise ()V
 	METHOD method_38337 sampleNoiseY (D)V
 		ARG 1 deltaY
+	METHOD method_38337 sampleNoiseY (ID)V
 	METHOD method_38338 (DLnet/minecraft/class_6568$class_5917;)V
 		ARG 2 interpolator
 	METHOD method_38339 sampleEndNoise (I)V
@@ -46,6 +43,7 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 	METHOD method_38348 swapBuffers ()V
 	METHOD method_38349 sampleNoiseX (D)V
 		ARG 1 deltaX
+	METHOD method_38349 sampleNoiseX (ID)V
 	METHOD method_38350 (DLnet/minecraft/class_6568$class_5917;)V
 		ARG 2 interpolator
 	METHOD method_38352 sampleOreVeins (III)Lnet/minecraft/class_2680;
@@ -55,12 +53,12 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 	METHOD method_38354 getAquiferSampler ()Lnet/minecraft/class_6350;
 	METHOD method_38355 sampleNoise (D)V
 		ARG 1 deltaZ
+	METHOD method_38355 sampleNoiseZ (ID)V
 	METHOD method_38356 (DLnet/minecraft/class_6568$class_5917;)V
 		ARG 2 interpolator
 	METHOD method_38362 sampleNoiseCorners (II)V
 		ARG 1 noiseY
 		ARG 2 noiseZ
-	METHOD method_39327 getBlender ()Lnet/minecraft/class_6748;
 	METHOD method_39542 create (IIIILnet/minecraft/class_5818;Lnet/minecraft/class_5284;Lnet/minecraft/class_6350$class_6565;)Lnet/minecraft/class_6568;
 		ARG 0 minimumY
 		ARG 2 horizontalSize
@@ -72,6 +70,12 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 		ARG 3 chunkGeneratorSettings
 		ARG 4 fluidLevelSampler
 		ARG 5 blender
+	METHOD method_39543 create (Lnet/minecraft/class_2791;Lnet/minecraft/class_7138;Lnet/minecraft/class_6916$class_7050;Lnet/minecraft/class_5284;Lnet/minecraft/class_6350$class_6565;Lnet/minecraft/class_6748;)Lnet/minecraft/class_6568;
+		ARG 0 chunk
+	METHOD method_40531 createMultiNoiseSampler (Lnet/minecraft/class_6953;Ljava/util/List;)Lnet/minecraft/class_6544$class_6552;
+	METHOD method_40536 sampleBlockState ()Lnet/minecraft/class_2680;
+	METHOD method_42361 getHorizontalBlockSize ()I
+	METHOD method_42362 getVerticalBlockSize ()I
 	CLASS class_5917 NoiseInterpolator
 		FIELD field_29227 startNoiseBuffer [[D
 		FIELD field_29228 endNoiseBuffer [[D
@@ -90,8 +94,9 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 		FIELD field_29245 z0 D
 		FIELD field_29246 z1 D
 		FIELD field_34623 columnSampler Lnet/minecraft/class_6568$class_6572;
+		FIELD field_34623 columnSampler Lnet/minecraft/class_6910;
 		FIELD field_34624 result D
-		METHOD <init> (Lnet/minecraft/class_6568;Lnet/minecraft/class_6568$class_6572;)V
+		METHOD <init> (Lnet/minecraft/class_6568;Lnet/minecraft/class_6910;)V
 			ARG 2 columnSampler
 		METHOD method_34286 sampleStartNoise ()V
 		METHOD method_34287 sampleNoiseY (D)V
@@ -110,7 +115,7 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 		METHOD method_34293 createBuffer (II)[[D
 			ARG 1 sizeZ
 			ARG 2 sizeX
-		METHOD method_38363 sampleNoise (D)V
+		METHOD method_38363 sampleNoiseZ (D)V
 			ARG 1 deltaZ
 	CLASS class_6569 BlockStateSampler
 		METHOD calculate sample (III)Lnet/minecraft/class_2680;
@@ -121,6 +126,8 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
+		METHOD calculate sample (Lnet/minecraft/class_6910$class_6912;)Lnet/minecraft/class_2680;
+			ARG 1 pos
 	CLASS class_6571 ValueSamplerFactory
 		METHOD instantiate create (Lnet/minecraft/class_6568;)Lnet/minecraft/class_6568$class_6573;
 			ARG 1 chunkNoiseSampler
@@ -136,3 +143,4 @@ CLASS net/minecraft/class_6568 net/minecraft/world/gen/chunk/ChunkNoiseSampler
 			ARG 2 y
 			ARG 3 z
 	CLASS class_6573 ValueSampler
+	CLASS class_6952 ParentedNoiseType

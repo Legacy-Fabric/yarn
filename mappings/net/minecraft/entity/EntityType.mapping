@@ -7,9 +7,11 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 	FIELD field_24086 trackTickInterval I
 	FIELD field_25355 canSpawnInside Lcom/google/common/collect/ImmutableSet;
 	FIELD field_30053 ENTITY_TAG_KEY Ljava/lang/String;
+	FIELD field_36398 registryEntry Lnet/minecraft/class_6880$class_6883;
 	FIELD field_6056 saveable Z
 	FIELD field_6072 summonable Z
 	FIELD field_6088 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_6088 LOGGER Lorg/slf4j/Logger;
 	FIELD field_6092 name Lnet/minecraft/class_2561;
 	FIELD field_6094 spawnGroup Lnet/minecraft/class_1311;
 	FIELD field_6101 factory Lnet/minecraft/class_1299$class_4049;
@@ -57,6 +59,8 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 	METHOD method_19946 isFireImmune ()Z
 	METHOD method_20210 isIn (Lnet/minecraft/class_3494;)Z
 		ARG 1 tag
+	METHOD method_20210 isIn (Lnet/minecraft/class_6862;)Z
+		ARG 1 tag
 	METHOD method_20814 isSpawnableFarFromPlayer ()Z
 	METHOD method_29496 isInvalidSpawn (Lnet/minecraft/class_2680;)Z
 		COMMENT Returns whether the EntityType can spawn inside the given block.
@@ -70,6 +74,7 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		ARG 0 entityNbtList
 		ARG 1 world
 	METHOD method_35050 getUntranslatedName ()Ljava/lang/String;
+	METHOD method_40124 getRegistryEntry ()Lnet/minecraft/class_6880$class_6883;
 	METHOD method_5881 loadFromEntityNbt (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_2487;)V
 		ARG 0 world
 		ARG 1 player
@@ -156,8 +161,12 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		ARG 7 alignPosition
 		ARG 8 invertY
 	CLASS 1
+		METHOD method_31490 (Lnet/minecraft/class_1937;Ljava/util/function/Consumer;Lnet/minecraft/class_2520;)V
+			ARG 2 nbt
 		METHOD method_31491 (Ljava/util/function/Consumer;Lnet/minecraft/class_1297;)Lnet/minecraft/class_1297;
 			ARG 1 entity
+		METHOD tryAdvance (Ljava/util/function/Consumer;)Z
+			ARG 1 action
 	CLASS class_1300 Builder
 		FIELD field_18071 dimensions Lnet/minecraft/class_4048;
 		FIELD field_18982 fireImmune Z
@@ -191,6 +200,9 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 			COMMENT and wither skeletons can spawn in wither roses. If a block added is not in the default
 			COMMENT blacklist, the addition has no effect.
 			ARG 1 blocks
+		METHOD method_5900 (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+			ARG 0 type
+			ARG 1 world
 		METHOD method_5901 disableSummon ()Lnet/minecraft/class_1299$class_1300;
 		METHOD method_5902 create (Lnet/minecraft/class_1311;)Lnet/minecraft/class_1299$class_1300;
 			ARG 0 spawnGroup
@@ -201,6 +213,9 @@ CLASS net/minecraft/class_1299 net/minecraft/entity/EntityType
 		METHOD method_5905 build (Ljava/lang/String;)Lnet/minecraft/class_1299;
 			ARG 1 id
 	CLASS class_4049 EntityFactory
+		METHOD create (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+			ARG 1 type
+			ARG 2 world
 		METHOD create (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
 			ARG 1 type
 			ARG 2 world

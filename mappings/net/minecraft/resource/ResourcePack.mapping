@@ -1,8 +1,10 @@
 CLASS net/minecraft/class_3262 net/minecraft/resource/ResourcePack
 	COMMENT A resource pack, providing resources to resource managers.
 	COMMENT
-	COMMENT <p>They are single-use in each reload cycle of a reloadable resource manager.
-	COMMENT {@link ResourcePackProfile} is a persistent version of the resource packs.
+	COMMENT <p>They are single-use in the lifecycle of a {@linkplain LifecycledResourceManagerImpl
+	COMMENT lifecycled resource manager}. A {@link ResourcePackProfile} is a persistent
+	COMMENT representation of the resource packs, and can be used to recreate the packs
+	COMMENT on demand.
 	FIELD field_29780 METADATA_PATH_SUFFIX Ljava/lang/String;
 	FIELD field_29781 PACK_METADATA_NAME Ljava/lang/String;
 	METHOD method_14405 open (Lnet/minecraft/class_3264;Lnet/minecraft/class_2960;)Ljava/io/InputStream;
@@ -23,6 +25,11 @@ CLASS net/minecraft/class_3262 net/minecraft/resource/ResourcePack
 		ARG 3 prefix
 		ARG 4 maxDepth
 		ARG 5 pathFilter
+	METHOD method_14408 findResources (Lnet/minecraft/class_3264;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
+		ARG 1 type
+		ARG 2 namespace
+		ARG 3 prefix
+		ARG 4 allowedPathPredicate
 	METHOD method_14409 getName ()Ljava/lang/String;
 	METHOD method_14410 openRoot (Ljava/lang/String;)Ljava/io/InputStream;
 		ARG 1 fileName

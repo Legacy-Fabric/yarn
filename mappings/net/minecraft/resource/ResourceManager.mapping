@@ -16,6 +16,20 @@ CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 			COMMENT the starting path to begin scanning from
 		ARG 2 pathPredicate
 			COMMENT a predicate to determine whether a path should be included or not
+	METHOD method_14488 findResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Map;
+		COMMENT Returns a sorted list of identifiers matching a path predicate.
+		COMMENT
+		COMMENT <p>Scanning begins in {@code startingPath} and each candidate file present under that directory
+		COMMENT will be offered up to the predicate to decide whether it should be included or not.
+		COMMENT
+		COMMENT <p>Elements in the returned list may not, necessarily be unique. Additional effort is advised to ensure that
+		COMMENT duplicates in the returned list are discarded before loading.
+		COMMENT
+		COMMENT @return the list matching identifiers
+		ARG 1 startingPath
+			COMMENT the starting path to begin scanning from
+		ARG 2 allowedPathPredicate
+			COMMENT a predicate to determine whether a path should be included or not
 	METHOD method_14489 getAllResources (Lnet/minecraft/class_2960;)Ljava/util/List;
 		COMMENT Gets all of the available resources to the corresponding resource identifier.
 		COMMENT
@@ -23,9 +37,6 @@ CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 		COMMENT list is what would be returned normally by {@link #getResource}
 		COMMENT
 		COMMENT <p>Each resource in this returned list must be closed to avoid resource leaks.
-		COMMENT
-		COMMENT @throws java.io.FileNotFoundException if no matching resources could be found (i.e. if the list would be empty)
-		COMMENT @throws IOException if resources were found, but any one of them could not be opened to be read.
 		ARG 1 id
 			COMMENT the resource identifier to search for
 	METHOD method_18234 containsResource (Lnet/minecraft/class_2960;)Z
@@ -39,4 +50,7 @@ CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 		COMMENT Gets a stream of loaded resource packs in increasing order of priority.
 	METHOD method_29489 findResources (Lnet/minecraft/class_2960;Ljava/util/function/Predicate;)Ljava/util/Collection;
 		ARG 1 resourceType
+	METHOD method_41265 findAllResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Map;
+		ARG 1 startingPath
+		ARG 2 allowedPathPredicate
 	CLASS class_5353 Empty

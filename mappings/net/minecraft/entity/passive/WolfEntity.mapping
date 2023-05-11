@@ -2,7 +2,7 @@ CLASS net/minecraft/class_1493 net/minecraft/entity/passive/WolfEntity
 	FIELD field_18004 FOLLOW_TAMED_PREDICATE Ljava/util/function/Predicate;
 	FIELD field_25371 ANGER_TIME_RANGE Lnet/minecraft/class_4801;
 	FIELD field_25371 ANGER_TIME_RANGE Lnet/minecraft/class_6019;
-	FIELD field_25372 targetUuid Ljava/util/UUID;
+	FIELD field_25372 angryAt Ljava/util/UUID;
 	FIELD field_25373 ANGER_TIME Lnet/minecraft/class_2940;
 	FIELD field_30386 WILD_MAX_HEALTH F
 	FIELD field_30387 TAMED_MAX_HEALTH F
@@ -19,6 +19,12 @@ CLASS net/minecraft/class_1493 net/minecraft/entity/passive/WolfEntity
 	METHOD method_26897 createWolfAttributes ()Lnet/minecraft/class_5132$class_5133;
 	METHOD method_31167 resetShake ()V
 	METHOD method_39450 canSpawn (Lnet/minecraft/class_1299;Lnet/minecraft/class_1936;Lnet/minecraft/class_3730;Lnet/minecraft/class_2338;Ljava/util/Random;)Z
+		ARG 0 type
+		ARG 1 world
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_39450 canSpawn (Lnet/minecraft/class_1299;Lnet/minecraft/class_1936;Lnet/minecraft/class_3730;Lnet/minecraft/class_2338;Lnet/minecraft/class_5819;)Z
 		ARG 0 type
 		ARG 1 world
 		ARG 2 spawnReason
@@ -62,3 +68,6 @@ CLASS net/minecraft/class_1493 net/minecraft/entity/passive/WolfEntity
 		METHOD method_6720 isScaredOf (Lnet/minecraft/class_1501;)Z
 			ARG 1 llama
 	FIELD field_6948 WOLF_HEALTH Lnet/minecraft/class_2940;
+	CLASS class_6859 WolfEscapeDangerGoal
+		METHOD <init> (Lnet/minecraft/class_1493;D)V
+			ARG 2 speed

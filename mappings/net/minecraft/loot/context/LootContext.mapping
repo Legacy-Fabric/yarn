@@ -2,13 +2,14 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 	FIELD field_20750 conditionGetter Ljava/util/function/Function;
 	FIELD field_20751 conditions Ljava/util/Set;
 	FIELD field_923 random Ljava/util/Random;
+	FIELD field_923 random Lnet/minecraft/class_5819;
 	FIELD field_924 tableGetter Ljava/util/function/Function;
 	FIELD field_925 parameters Ljava/util/Map;
 	FIELD field_926 luck F
 	FIELD field_927 activeTables Ljava/util/Set;
 	FIELD field_928 world Lnet/minecraft/class_3218;
 	FIELD field_929 drops Ljava/util/Map;
-	METHOD <init> (Ljava/util/Random;FLnet/minecraft/class_3218;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
+	METHOD <init> (Lnet/minecraft/class_5819;FLnet/minecraft/class_3218;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
 		ARG 1 random
 		ARG 2 luck
 		ARG 3 world
@@ -31,6 +32,7 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 	METHOD method_22558 getCondition (Lnet/minecraft/class_2960;)Lnet/minecraft/class_5341;
 		ARG 1 id
 	METHOD method_294 getRandom ()Ljava/util/Random;
+	METHOD method_294 getRandom ()Lnet/minecraft/class_5819;
 	METHOD method_295 markInactive (Lnet/minecraft/class_52;)V
 		ARG 1 table
 	METHOD method_296 get (Lnet/minecraft/class_169;)Ljava/lang/Object;
@@ -52,6 +54,7 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 		FIELD field_932 parameters Ljava/util/Map;
 		FIELD field_933 drops Ljava/util/Map;
 		FIELD field_934 random Ljava/util/Random;
+		FIELD field_934 random Lnet/minecraft/class_5819;
 		METHOD <init> (Lnet/minecraft/class_3218;)V
 			ARG 1 world
 		METHOD method_303 luck (F)Lnet/minecraft/class_47$class_48;
@@ -73,7 +76,12 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 		METHOD method_310 random (JLjava/util/Random;)Lnet/minecraft/class_47$class_48;
 			ARG 1 seed
 			ARG 3 random
+		METHOD method_310 random (JLnet/minecraft/class_5819;)Lnet/minecraft/class_47$class_48;
+			ARG 1 seed
+			ARG 3 random
 		METHOD method_311 random (Ljava/util/Random;)Lnet/minecraft/class_47$class_48;
+			ARG 1 random
+		METHOD method_311 random (Lnet/minecraft/class_5819;)Lnet/minecraft/class_47$class_48;
 			ARG 1 random
 		METHOD method_312 parameter (Lnet/minecraft/class_169;Ljava/lang/Object;)Lnet/minecraft/class_47$class_48;
 			ARG 1 key
@@ -112,6 +120,9 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 		METHOD add (Lnet/minecraft/class_47;Ljava/util/function/Consumer;)V
 			ARG 1 context
 			ARG 2 consumer
+		METHOD add (Lnet/minecraft/class_47;Ljava/util/function/Consumer;)V
+			ARG 1 context
+			ARG 2 consumer
 	CLASS class_50 EntityTarget
 		FIELD field_938 parameter Lnet/minecraft/class_169;
 		FIELD field_941 type Ljava/lang/String;
@@ -132,6 +143,11 @@ CLASS net/minecraft/class_47 net/minecraft/loot/context/LootContext
 				ARG 1 reader
 			METHOD read (Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
 				ARG 1 reader
+			METHOD read (Lcom/google/gson/stream/JsonReader;)Ljava/lang/Object;
+				ARG 1 reader
+			METHOD write (Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
+				ARG 1 writer
+				ARG 2 entity
 			METHOD write (Lcom/google/gson/stream/JsonWriter;Ljava/lang/Object;)V
 				ARG 1 writer
 				ARG 2 entity

@@ -26,6 +26,9 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 	METHOD method_39164 findFittestPosition (Ljava/util/List;Lnet/minecraft/class_5818;)Lnet/minecraft/class_2338;
 		ARG 0 noises
 		ARG 1 sampler
+	METHOD method_39164 findFittestPosition (Ljava/util/List;Lnet/minecraft/class_6544$class_6552;)Lnet/minecraft/class_2338;
+		ARG 0 noises
+		ARG 1 sampler
 	CLASS class_4762 NoiseHypercube
 		COMMENT Represents a hypercube in a multi-dimensional cartesian plane. The multi-noise
 		COMMENT biome source picks the closest noise hypercube from its selected point
@@ -61,6 +64,8 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD method_24381 getSquaredDistance (Lnet/minecraft/class_6544$class_6553;)J
 			COMMENT Calculates the distance from this noise point to another one. The
 			COMMENT distance is a squared distance in a multi-dimensional cartesian plane
@@ -83,12 +88,16 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 			ARG 1 node
 		METHOD distance getDistance (Lnet/minecraft/class_6544$class_6548$class_6550;[J)J
 			ARG 1 node
+		METHOD distance getDistance (Lnet/minecraft/class_6544$class_6548$class_6550;[J)J
+			ARG 1 node
 	CLASS class_6546 ParameterRange
 		FIELD comp_103 min J
 		FIELD comp_104 max J
 		FIELD field_34478 CODEC Lcom/mojang/serialization/Codec;
 		METHOD comp_103 min ()J
 		METHOD comp_104 max ()J
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
@@ -177,6 +186,10 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 				ARG 2 subTree
 	CLASS class_6552 MultiNoiseSampler
 		METHOD method_39165 findBestSpawnPosition ()Lnet/minecraft/class_2338;
+		METHOD method_40444 sample (III)Lnet/minecraft/class_6544$class_6553;
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
 		METHOD sample (III)Lnet/minecraft/class_6544$class_6553;
 			ARG 1 x
 			ARG 2 y
@@ -201,7 +214,7 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 		METHOD method_38166 getNoiseValueList ()[J
 	CLASS class_6729 FittestPositionFinder
 		FIELD field_35360 bestResult Lnet/minecraft/class_6544$class_6729$class_6730;
-		METHOD <init> (Ljava/util/List;Lnet/minecraft/class_5818;)V
+		METHOD <init> (Ljava/util/List;Lnet/minecraft/class_6544$class_6552;)V
 			ARG 1 noises
 			ARG 2 sampler
 		METHOD method_39166 findFittest (Ljava/util/List;Lnet/minecraft/class_5818;FF)V
@@ -209,7 +222,17 @@ CLASS net/minecraft/class_6544 net/minecraft/world/biome/source/util/MultiNoiseU
 			ARG 2 sampler
 			ARG 3 maxDistance
 			ARG 4 step
+		METHOD method_39166 findFittest (Ljava/util/List;Lnet/minecraft/class_6544$class_6552;FF)V
+			ARG 1 noises
+			ARG 2 sampler
+			ARG 3 maxDistance
+			ARG 4 step
 		METHOD method_39167 calculateFitness (Ljava/util/List;Lnet/minecraft/class_5818;II)Lnet/minecraft/class_6544$class_6729$class_6730;
+			ARG 0 noises
+			ARG 1 sampler
+			ARG 2 x
+			ARG 3 z
+		METHOD method_39167 calculateFitness (Ljava/util/List;Lnet/minecraft/class_6544$class_6552;II)Lnet/minecraft/class_6544$class_6729$class_6730;
 			ARG 0 noises
 			ARG 1 sampler
 			ARG 2 x

@@ -15,6 +15,7 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 	FIELD field_16649 NOISE_WEIGHT_TABLE [F
 	FIELD field_24773 CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_24774 settings Ljava/util/function/Supplier;
+	FIELD field_24774 settings Lnet/minecraft/class_6880;
 	FIELD field_24775 BIOME_WEIGHT_TABLE [F
 	FIELD field_24776 densityNoise Lnet/minecraft/class_3537;
 	FIELD field_24777 islandNoise Lnet/minecraft/class_3541;
@@ -33,17 +34,10 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 	FIELD field_34591 fluidLevelSampler Lnet/minecraft/class_6350$class_6565;
 	FIELD field_35183 surfaceBuilder Lnet/minecraft/class_6724;
 	FIELD field_35361 noiseRegistry Lnet/minecraft/class_2378;
-	METHOD <init> (Lnet/minecraft/class_2378;Lnet/minecraft/class_1966;JLjava/util/function/Supplier;)V
-		ARG 1 noiseRegistry
-		ARG 2 biomeSource
-		ARG 3 seed
-		ARG 5 settings
-	METHOD <init> (Lnet/minecraft/class_2378;Lnet/minecraft/class_1966;Lnet/minecraft/class_1966;JLjava/util/function/Supplier;)V
-		ARG 1 noiseRegistry
-		ARG 2 populationSource
-		ARG 3 biomeSource
-		ARG 4 seed
-		ARG 6 settings
+	METHOD <init> (Lnet/minecraft/class_2378;Lnet/minecraft/class_2378;Lnet/minecraft/class_1966;Lnet/minecraft/class_6880;)V
+		ARG 1 structureSetRegistry
+		ARG 2 noiseRegistry
+		ARG 3 populationSource
 	METHOD method_12090 computeNoiseRange (II)[D
 		ARG 1 x
 		ARG 2 z
@@ -100,11 +94,16 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 	METHOD method_26263 sampleHeightmap (II[Lnet/minecraft/class_2680;Ljava/util/function/Predicate;II)Ljava/util/OptionalInt;
 		ARG 3 states
 		ARG 4 predicate
+	METHOD method_26263 sampleHeightmap (Lnet/minecraft/class_5539;Lnet/minecraft/class_7138;IILorg/apache/commons/lang3/mutable/MutableObject;Ljava/util/function/Predicate;)Ljava/util/OptionalInt;
 	METHOD method_26983 (Lnet/minecraft/class_1923;Lit/unimi/dsi/fastutil/objects/ObjectList;IILit/unimi/dsi/fastutil/objects/ObjectList;Lnet/minecraft/class_3449;)V
 		ARG 5 start
 	METHOD method_28548 matchesSettings (JLnet/minecraft/class_5321;)Z
 		ARG 1 seed
 		ARG 3 settingsKey
+	METHOD method_28548 matchesSettings (Lnet/minecraft/class_5321;)Z
+		ARG 1 settings
+	METHOD method_28549 (Lnet/minecraft/class_3754;)Lnet/minecraft/class_6880;
+		ARG 0 generator
 	METHOD method_28550 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance
 	METHOD method_28551 ([F)V
@@ -112,6 +111,8 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 	METHOD method_28553 getRandomDensityAt (II)D
 		ARG 1 x
 		ARG 2 z
+	METHOD method_28554 (Lnet/minecraft/class_3754;)Lnet/minecraft/class_1966;
+		ARG 0 generator
 	METHOD method_33643 getBlockState (Lnet/minecraft/class_5817;Lnet/minecraft/class_6350;Lnet/minecraft/class_5840;Lnet/minecraft/class_6357;IIID)Lnet/minecraft/class_2680;
 		ARG 1 structures
 		ARG 2 aquiferSampler
@@ -125,6 +126,11 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 		ARG 1 blender
 		ARG 2 structureAccessor
 		ARG 3 chunk
+	METHOD method_33754 populateNoise (Lnet/minecraft/class_6748;Lnet/minecraft/class_5138;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;II)Lnet/minecraft/class_2791;
+		ARG 1 blender
+		ARG 2 structureAccessor
+		ARG 3 noiseConfig
+		ARG 4 chunk
 	METHOD method_34284 sampleNoiseColumn ([DIIII)V
 		ARG 1 buffer
 		ARG 2 x
@@ -154,6 +160,10 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 		ARG 3 y
 		ARG 4 z
 		ARG 5 state
+	METHOD method_38325 (Lnet/minecraft/class_6350$class_6351;ILnet/minecraft/class_6350$class_6351;Lnet/minecraft/class_6350$class_6351;III)Lnet/minecraft/class_6350$class_6351;
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
 	METHOD method_38326 (Lnet/minecraft/class_6568;III)Lnet/minecraft/class_6544$class_6553;
 		ARG 2 x
 		ARG 3 y
@@ -163,6 +173,11 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 		ARG 2 blender
 		ARG 3 structureAccessor
 		ARG 4 chunk
+	METHOD method_38327 populateBiomes (Lnet/minecraft/class_6748;Lnet/minecraft/class_7138;Lnet/minecraft/class_5138;Lnet/minecraft/class_2791;)V
+		ARG 1 blender
+		ARG 2 noiseConfig
+		ARG 3 structureAccessor
+		ARG 4 chunk
 	METHOD method_39041 applyMaterialRule (Lnet/minecraft/class_5873;Ljava/util/function/Function;Lnet/minecraft/class_2791;Lnet/minecraft/class_6568;Lnet/minecraft/class_2338;Z)Ljava/util/Optional;
 		ARG 1 context
 		ARG 2 posToBiome
@@ -170,6 +185,11 @@ CLASS net/minecraft/class_3754 net/minecraft/world/gen/chunk/NoiseChunkGenerator
 		ARG 4 chunkNoiseSampler
 		ARG 5 pos
 		ARG 6 hasFluid
+	METHOD method_39172 (Lnet/minecraft/class_3754;)Lnet/minecraft/class_2378;
+		ARG 0 generator
+	METHOD method_41536 (Lnet/minecraft/class_5138;Lnet/minecraft/class_6748;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;)Lnet/minecraft/class_6568;
+		ARG 4 chunk
+	METHOD method_41541 getSettings ()Lnet/minecraft/class_6880;
 	CLASS class_6352 OreVeinSource
 		FIELD field_33581 oreFrequencyNoiseInterpolator Lnet/minecraft/class_5917;
 		FIELD field_33582 firstOrePlacementNoiseInterpolator Lnet/minecraft/class_5917;

@@ -3,6 +3,8 @@ CLASS net/minecraft/class_898 net/minecraft/client/render/entity/EntityRenderDis
 	FIELD field_21794 rotation Lnet/minecraft/class_1158;
 	FIELD field_27759 itemRenderer Lnet/minecraft/class_918;
 	FIELD field_27760 modelLoader Lnet/minecraft/class_5599;
+	FIELD field_38886 blockRenderManager Lnet/minecraft/class_776;
+	FIELD field_38887 heldItemRenderer Lnet/minecraft/class_759;
 	FIELD field_4677 cameraPitch F
 	FIELD field_4678 targetedEntity Lnet/minecraft/class_1297;
 	FIELD field_4679 cameraYaw F
@@ -20,12 +22,14 @@ CLASS net/minecraft/class_898 net/minecraft/client/render/entity/EntityRenderDis
 	FIELD field_4691 renderPosX D
 	FIELD field_4692 gameOptions Lnet/minecraft/class_315;
 	FIELD field_4696 renderers Ljava/util/Map;
-	METHOD <init> (Lnet/minecraft/class_1060;Lnet/minecraft/class_918;Lnet/minecraft/class_327;Lnet/minecraft/class_315;Lnet/minecraft/class_5599;)V
-		ARG 1 textureManager
-		ARG 2 itemRenderer
-		ARG 3 textRenderer
-		ARG 4 gameOptions
-		ARG 5 modelLoader
+	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_1060;Lnet/minecraft/class_918;Lnet/minecraft/class_776;Lnet/minecraft/class_327;Lnet/minecraft/class_315;Lnet/minecraft/class_5599;)V
+		ARG 1 client
+		ARG 2 textureManager
+		ARG 3 itemRenderer
+		ARG 4 blockRenderManager
+		ARG 5 textRenderer
+		ARG 6 gameOptions
+		ARG 7 modelLoader
 	METHOD method_17145 register (Ljava/lang/Class;Lnet/minecraft/class_897;)V
 	METHOD method_17145 register (Lnet/minecraft/class_1299;Lnet/minecraft/class_897;)V
 	METHOD method_23161 drawFireVertex (Lnet/minecraft/class_4587$class_4665;Lnet/minecraft/class_4588;FFFFF)V
@@ -103,7 +107,7 @@ CLASS net/minecraft/class_898 net/minecraft/client/render/entity/EntityRenderDis
 		ARG 2 tickDelta
 	METHOD method_3947 renderSecondPass (Lnet/minecraft/class_1297;F)V
 	METHOD method_3948 setRenderShadows (Z)V
-		ARG 1 value
+		ARG 1 renderShadows
 	METHOD method_3949 getTextRenderer ()Lnet/minecraft/class_327;
 	METHOD method_3950 shouldRender (Lnet/minecraft/class_1297;Lnet/minecraft/class_4604;DDD)Z
 		ARG 1 entity
@@ -137,7 +141,7 @@ CLASS net/minecraft/class_898 net/minecraft/client/render/entity/EntityRenderDis
 		ARG 9 tickDelta
 		ARG 10 forceHideHitbox
 	METHOD method_3955 setRenderHitboxes (Z)V
-		ARG 1 value
+		ARG 1 renderHitboxes
 	METHOD method_3956 renderHitbox (Lnet/minecraft/class_1297;DDDFF)V
 	METHOD method_3956 renderHitbox (Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;Lnet/minecraft/class_1297;F)V
 		ARG 0 matrices
@@ -150,3 +154,4 @@ CLASS net/minecraft/class_898 net/minecraft/client/render/entity/EntityRenderDis
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD method_43336 getHeldItemRenderer ()Lnet/minecraft/class_759;

@@ -62,6 +62,10 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
+	METHOD method_42326 isCullingShapeFullCube (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_8389 asItem ()Lnet/minecraft/class_1792;
 	METHOD method_9498 hasComparatorOutput (Lnet/minecraft/class_2680;)Z
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#hasComparatorOutput} instead. See <a href="#deprecated-methods">the class javadoc</a>.
@@ -75,6 +79,12 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#emitsRedstonePower} instead. See <a href="#deprecated-methods">the class javadoc</a>.
 		ARG 1 state
 	METHOD method_9514 randomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		COMMENT @deprecated Consider calling {@link AbstractBlockState#randomTick} instead. See <a href="#deprecated-methods">the class javadoc</a>.
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_9514 randomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_5819;)V
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#randomTick} instead. See <a href="#deprecated-methods">the class javadoc</a>.
 		ARG 1 state
 		ARG 2 world
@@ -200,6 +210,13 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 stack
+	METHOD method_9565 onStacksDropped (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;Z)V
+		COMMENT @deprecated Consider calling {@link AbstractBlockState#onStacksDropped} instead. See <a href="#deprecated-methods">the class javadoc</a>.
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 stack
+		ARG 5 dropExperience
 	METHOD method_9569 mirror (Lnet/minecraft/class_2680;Lnet/minecraft/class_2415;)Lnet/minecraft/class_2680;
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#mirror} instead. See <a href="#deprecated-methods">the class javadoc</a>.
 		ARG 1 state
@@ -225,6 +242,12 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		ARG 2 world
 		ARG 3 pos
 	METHOD method_9588 scheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		COMMENT @deprecated Consider calling {@link AbstractBlockState#scheduledTick} instead. See <a href="#deprecated-methods">the class javadoc</a>.
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_9588 scheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_5819;)V
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#scheduledTick} instead. See <a href="#deprecated-methods">the class javadoc</a>.
 		ARG 1 state
 		ARG 2 world
@@ -273,8 +296,8 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
-		ARG 4 block
-		ARG 5 fromPos
+		ARG 4 sourceBlock
+		ARG 5 sourcePos
 		ARG 6 notify
 	METHOD method_9615 onBlockAdded (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V
 		COMMENT @deprecated Consider calling {@link AbstractBlockState#onBlockAdded} instead. See <a href="#deprecated-methods">the class javadoc</a>.
@@ -311,6 +334,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		FIELD field_23185 postProcessPredicate Lnet/minecraft/class_4970$class_4973;
 		FIELD field_23186 emissiveLightingPredicate Lnet/minecraft/class_4970$class_4973;
 		FIELD field_25185 toolRequired Z
+		FIELD field_38863 offsetType Ljava/util/function/Function;
 		METHOD <init> (Lnet/minecraft/class_3614;Ljava/util/function/Function;)V
 			ARG 1 material
 			ARG 2 mapColorProvider
@@ -382,6 +406,15 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 1 hardness
 		METHOD method_36558 resistance (F)Lnet/minecraft/class_4970$class_2251;
 			ARG 1 resistance
+		METHOD method_42327 dropsNothing ()Lnet/minecraft/class_4970$class_2251;
+		METHOD method_43281 offsetType (Lnet/minecraft/class_4970$class_2250;)Lnet/minecraft/class_4970$class_2251;
+			ARG 1 offsetType
+		METHOD method_43282 (Lnet/minecraft/class_4970$class_2250;Lnet/minecraft/class_2680;)Lnet/minecraft/class_4970$class_2250;
+			ARG 1 state
+		METHOD method_43283 (Lnet/minecraft/class_2680;)Lnet/minecraft/class_4970$class_2250;
+			ARG 0 state
+		METHOD method_43284 offsetType (Ljava/util/function/Function;)Lnet/minecraft/class_4970$class_2251;
+			ARG 1 offsetType
 		METHOD method_9617 of (Lnet/minecraft/class_3614;Lnet/minecraft/class_1767;)Lnet/minecraft/class_4970$class_2251;
 			ARG 0 material
 			ARG 1 color
@@ -431,11 +464,14 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		FIELD field_23177 postProcessPredicate Lnet/minecraft/class_4970$class_4973;
 		FIELD field_23178 emissiveLightingPredicate Lnet/minecraft/class_4970$class_4973;
 		FIELD field_25184 toolRequired Z
+		FIELD field_38862 offsetType Lnet/minecraft/class_4970$class_2250;
 		METHOD <init> (Lnet/minecraft/class_2248;Lcom/google/common/collect/ImmutableMap;Lcom/mojang/serialization/MapCodec;)V
 			ARG 1 block
 			ARG 2 propertyMap
 			ARG 3 codec
 		METHOD method_26164 isIn (Lnet/minecraft/class_3494;)Z
+			ARG 1 tag
+		METHOD method_26164 isIn (Lnet/minecraft/class_6862;)Z
 			ARG 1 tag
 		METHOD method_26165 calcBlockBreakingDelta (Lnet/minecraft/class_1657;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)F
 			ARG 1 player
@@ -450,7 +486,7 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 entity
-		METHOD method_26169 hasSolidTopSurface (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;Lnet/minecraft/class_2350;)Z
+		METHOD method_26169 isSolidSurface (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;Lnet/minecraft/class_2350;)Z
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 entity
@@ -505,11 +541,16 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 stack
+		METHOD method_26180 onStacksDropped (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;Z)V
+			ARG 1 world
+			ARG 2 pos
+			ARG 3 stack
+			ARG 4 dropExperience
 		METHOD method_26181 neighborUpdate (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Z)V
 			ARG 1 world
 			ARG 2 pos
-			ARG 3 block
-			ARG 4 posFrom
+			ARG 3 sourceBlock
+			ARG 4 sourcePos
 			ARG 5 notify
 		METHOD method_26182 onBlockAdded (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V
 			ARG 1 world
@@ -555,6 +596,10 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 random
+		METHOD method_26192 scheduledTick (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_5819;)V
+			ARG 1 world
+			ARG 2 pos
+			ARG 3 random
 		METHOD method_26193 getOpacity (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)I
 			ARG 1 world
 			ARG 2 pos
@@ -580,6 +625,10 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 3 flags
 			ARG 4 maxUpdateDepth
 		METHOD method_26199 randomTick (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+			ARG 1 world
+			ARG 2 pos
+			ARG 3 random
+		METHOD method_26199 randomTick (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_5819;)V
 			ARG 1 world
 			ARG 2 pos
 			ARG 3 random
@@ -663,6 +712,9 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 		METHOD method_27851 isIn (Lnet/minecraft/class_3494;Ljava/util/function/Predicate;)Z
 			ARG 1 tag
 			ARG 2 predicate
+		METHOD method_27851 isIn (Lnet/minecraft/class_6862;Ljava/util/function/Predicate;)Z
+			ARG 1 tag
+			ARG 2 predicate
 		METHOD method_27852 isOf (Lnet/minecraft/class_2248;)Z
 			ARG 1 block
 		METHOD method_29291 isToolRequired ()Z
@@ -683,6 +735,11 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 1 world
 			ARG 2 blockEntityType
 		METHOD method_31709 hasBlockEntity ()Z
+		METHOD method_40143 isIn (Lnet/minecraft/class_6885;)Z
+			ARG 1 blocks
+		METHOD method_40144 streamTags ()Ljava/util/stream/Stream;
+		METHOD method_41520 getRegistryEntry ()Lnet/minecraft/class_6880;
+		METHOD method_43280 getOffsetType ()Lnet/minecraft/class_4970$class_2250;
 		CLASS class_3752 ShapeCache
 			FIELD field_16555 lightSubtracted I
 			FIELD field_16556 translucent Z
@@ -755,7 +812,16 @@ CLASS net/minecraft/class_4970 net/minecraft/block/AbstractBlock
 			ARG 2 world
 			ARG 3 pos
 			ARG 4 type
+		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Ljava/lang/Object;)Z
+			ARG 1 state
+			ARG 2 world
+			ARG 3 pos
+			ARG 4 type
 	CLASS class_4973 ContextPredicate
+		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+			ARG 1 state
+			ARG 2 world
+			ARG 3 pos
 		METHOD test (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 			ARG 1 state
 			ARG 2 world

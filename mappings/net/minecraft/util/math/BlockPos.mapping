@@ -17,6 +17,7 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 	FIELD field_10981 BIT_SHIFT_X I
 	FIELD field_10983 BIT_SHIFT_Z I
 	FIELD field_18789 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_18789 LOGGER Lorg/slf4j/Logger;
 	FIELD field_25064 CODEC Lcom/mojang/serialization/Codec;
 	METHOD <init> (Lnet/minecraft/class_2374;)V
 		ARG 1 pos
@@ -151,6 +152,26 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 			COMMENT the maximum y value for returned positions
 		ARG 7 maxZ
 			COMMENT the maximum z value for returned positions
+	METHOD method_27156 iterateRandomly (Lnet/minecraft/class_5819;IIIIIII)Ljava/lang/Iterable;
+		COMMENT Iterates through {@code count} random block positions in the given area.
+		COMMENT
+		COMMENT <p>The iterator yields positions in no specific order. The same position
+		COMMENT may be returned multiple times by the iterator.
+		ARG 0 random
+		ARG 1 count
+			COMMENT the number of positions to iterate
+		ARG 2 minX
+			COMMENT the minimum x value for returned positions
+		ARG 3 minY
+			COMMENT the minimum y value for returned positions
+		ARG 4 minZ
+			COMMENT the minimum z value for returned positions
+		ARG 5 maxX
+			COMMENT the maximum x value for returned positions
+		ARG 6 maxY
+			COMMENT the maximum y value for returned positions
+		ARG 7 maxZ
+			COMMENT the maximum z value for returned positions
 	METHOD method_29093 (Lnet/minecraft/class_2338;)Ljava/util/stream/IntStream;
 		ARG 0 pos
 	METHOD method_29094 (Ljava/util/stream/IntStream;)Lcom/mojang/serialization/DataResult;
@@ -186,6 +207,18 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 		COMMENT may be returned multiple times by the iterator.
 		ARG 0 random
 			COMMENT the {@link Random} object used to compute new positions
+		ARG 1 count
+			COMMENT the number of positions to iterate
+		ARG 2 around
+			COMMENT the {@link BlockPos} to iterate around
+		ARG 3 range
+			COMMENT the maximum distance from the given pos in any axis
+	METHOD method_34848 iterateRandomly (Lnet/minecraft/class_5819;ILnet/minecraft/class_2338;I)Ljava/lang/Iterable;
+		COMMENT Iterates through {@code count} random block positions in a given range around the given position.
+		COMMENT
+		COMMENT <p>The iterator yields positions in no specific order. The same position
+		COMMENT may be returned multiple times by the iterator.
+		ARG 0 random
 		ARG 1 count
 			COMMENT the number of positions to iterate
 		ARG 2 around

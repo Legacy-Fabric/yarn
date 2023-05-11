@@ -9,8 +9,11 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 	FIELD field_26392 FROZEN_OCEAN_NOISE Lnet/minecraft/class_3543;
 	FIELD field_26393 weather Lnet/minecraft/class_1959$class_5482;
 	FIELD field_26395 spawnSettings Lnet/minecraft/class_5483;
+	FIELD field_26633 NETWORK_CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_26634 structures Ljava/util/Map;
 	FIELD field_26635 generationSettings Lnet/minecraft/class_5485;
+	FIELD field_26750 REGISTRY_ENTRY_LIST_CODEC Lcom/mojang/serialization/Codec;
+	FIELD field_30978 MAX_TEMPERATURE_CACHE_SIZE I
 	FIELD field_9323 BIOMES Ljava/util/Set;
 	FIELD field_9324 FOLIAGE_NOISE Lnet/minecraft/class_3543;
 	FIELD field_9325 spawns Ljava/util/Map;
@@ -32,12 +35,11 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 	FIELD field_9341 scale F
 	FIELD field_9342 waterColor I
 	FIELD field_9343 depth F
-	METHOD <init> (Lnet/minecraft/class_1959$class_5482;Lnet/minecraft/class_1959$class_1961;Lnet/minecraft/class_4763;Lnet/minecraft/class_5485;Lnet/minecraft/class_5483;)V
+	METHOD <init> (Lnet/minecraft/class_1959$class_5482;Lnet/minecraft/class_4763;Lnet/minecraft/class_5485;Lnet/minecraft/class_5483;)V
 		ARG 1 weather
-		ARG 2 category
-		ARG 3 effects
-		ARG 4 generationSettings
-		ARG 5 spawnSettings
+		ARG 2 effects
+		ARG 3 generationSettings
+		ARG 4 spawnSettings
 	METHOD method_21740 getTemperature (Lnet/minecraft/class_2338;)F
 		ARG 1 blockPos
 	METHOD method_24218 calculateSkyColor ()I
@@ -55,6 +57,16 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		ARG 1 type
 		ARG 2 maxMass
 		ARG 4 mass
+	METHOD method_28409 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_1959$class_5482;
+		ARG 0 biome
+	METHOD method_28417 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_5483;
+		ARG 0 biome
+	METHOD method_28418 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_5485;
+		ARG 0 biome
+	METHOD method_28421 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_4763;
+		ARG 0 biome
+	METHOD method_28423 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_1959$class_5482;
+		ARG 0 biome
 	METHOD method_30773 getDefaultGrassColor ()I
 	METHOD method_30774 getDefaultFoliageColor ()I
 	METHOD method_30776 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
@@ -63,8 +75,13 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 		ARG 0 instance
 	METHOD method_30966 getSpawnSettings ()Lnet/minecraft/class_5483;
 	METHOD method_30970 getGenerationSettings ()Lnet/minecraft/class_5485;
+	METHOD method_30971 (Lnet/minecraft/class_1959;)Lnet/minecraft/class_4763;
+		ARG 0 biome
 	METHOD method_33599 isCold (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
+	METHOD method_38103 (Lnet/minecraft/class_1959$class_5482;Lnet/minecraft/class_4763;)Lnet/minecraft/class_1959;
+		ARG 0 weather
+		ARG 1 effects
 	METHOD method_38104 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance
 	METHOD method_39927 doesNotSnow (Lnet/minecraft/class_2338;)Z
@@ -176,6 +193,9 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 	METHOD method_8723 hasParent ()Z
 	METHOD method_8724 hasHighHumidity ()Z
 	METHOD method_8725 getParent ()Ljava/lang/String;
+	CLASS 1
+		METHOD rehash (I)V
+			ARG 1 n
 	CLASS class_1960 Builder
 		FIELD field_22041 noises Ljava/util/List;
 		FIELD field_22042 specialEffects Lnet/minecraft/class_4763;
@@ -333,6 +353,14 @@ CLASS net/minecraft/class_1959 net/minecraft/world/biome/Biome
 			ARG 4 downfall
 		METHOD method_30782 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 			ARG 0 instance
+		METHOD method_30786 (Lnet/minecraft/class_1959$class_5482;)Ljava/lang/Float;
+			ARG 0 weather
+		METHOD method_30787 (Lnet/minecraft/class_1959$class_5482;)Lnet/minecraft/class_1959$class_5484;
+			ARG 0 weather
+		METHOD method_30788 (Lnet/minecraft/class_1959$class_5482;)Ljava/lang/Float;
+			ARG 0 weather
+		METHOD method_30789 (Lnet/minecraft/class_1959$class_5482;)Lnet/minecraft/class_1959$class_1963;
+			ARG 0 weather
 	CLASS class_5484 TemperatureModifier
 		FIELD field_26409 CODEC Lcom/mojang/serialization/Codec;
 		FIELD field_26410 name Ljava/lang/String;

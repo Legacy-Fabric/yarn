@@ -26,6 +26,7 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	FIELD field_19474 closeButton Lnet/minecraft/class_4185;
 	FIELD field_19474 closeButton Lnet/minecraft/realms/RealmsButton;
 	FIELD field_19475 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_19475 LOGGER Lorg/slf4j/Logger;
 	FIELD field_19476 overrideConfigure Z
 	FIELD field_19477 rateLimiter Lcom/google/common/util/concurrent/RateLimiter;
 	FIELD field_19478 dontSetConnectedToRealms Z
@@ -97,7 +98,9 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	FIELD field_26465 NEWS_TEXT Lnet/minecraft/class_2561;
 	FIELD field_26466 popupText Lnet/minecraft/class_5489;
 	FIELD field_33774 TRIAL_NARRATION Lnet/minecraft/class_2561;
+	FIELD field_33775 hasSelectionList Z
 	FIELD field_33776 UNINITIALIZED_BUTTON_NARRATION Lnet/minecraft/class_2561;
+	FIELD field_37267 lastPlayButtonClickTime J
 	METHOD <init> (Lnet/minecraft/class_437;)V
 		ARG 1 lastScreen
 	METHOD charTyped (CI)Z
@@ -228,6 +231,8 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	METHOD method_20872 drawPopup (II)V
 		ARG 1 xm
 		ARG 2 ym
+	METHOD method_20872 drawPopup (Lnet/minecraft/class_4587;)V
+		ARG 1 matrices
 	METHOD method_20872 drawPopup (Lnet/minecraft/class_4587;II)V
 		ARG 1 matrices
 		ARG 2 mouseX
@@ -335,6 +340,8 @@ CLASS net/minecraft/class_4325 net/minecraft/client/realms/gui/screen/RealmsMain
 	METHOD method_23765 loadImages (Lnet/minecraft/class_3300;)V
 		ARG 0 manager
 	METHOD method_23766 (Ljava/lang/String;)Z
+		ARG 0 filename
+	METHOD method_23766 (Lnet/minecraft/class_2960;)Z
 		ARG 0 filename
 	METHOD method_24985 openPendingInvitesScreen (Lnet/minecraft/class_4185;)V
 		ARG 1 button

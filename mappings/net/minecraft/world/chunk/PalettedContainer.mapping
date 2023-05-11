@@ -34,10 +34,6 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 		ARG 1 idList
 		ARG 2 paletteProvider
 		ARG 3 data
-	METHOD method_12321 get (III)Ljava/lang/Object;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_12322 set (ILjava/lang/Object;)V
 		ARG 1 index
 		ARG 2 value
@@ -47,16 +43,11 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 		ARG 2 z
 	METHOD method_12324 setPaletteSize (I)V
 		ARG 1 size
-	METHOD method_12325 writePacket (Lnet/minecraft/class_2540;)V
-		COMMENT Writes this container to the packet byte buffer.
-		ARG 1 buf
-			COMMENT the packet byte buffer
 	METHOD method_12326 readPacket (Lnet/minecraft/class_2540;)V
 		COMMENT Reads data from the packet byte buffer into this container. Previous data
 		COMMENT in this container is discarded.
 		ARG 1 buf
 			COMMENT the packet byte buffer
-	METHOD method_12327 getPacketSize ()I
 	METHOD method_12328 swap (IIILjava/lang/Object;)Ljava/lang/Object;
 		ARG 1 x
 		ARG 2 y
@@ -89,12 +80,6 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 		ARG 2 y
 		ARG 3 z
 		ARG 4 value
-	METHOD method_19526 hasAny (Ljava/util/function/Predicate;)Z
-		COMMENT {@return {@code true} if any object in this container's palette matches
-		COMMENT this predicate}
-		ARG 1 predicate
-	METHOD method_21732 count (Lnet/minecraft/class_2841$class_4464;)V
-		ARG 1 counter
 	METHOD method_21733 (Lnet/minecraft/class_2841$class_4464;Lit/unimi/dsi/fastutil/ints/Int2IntMap$Entry;)V
 		ARG 2 entry
 	METHOD method_21734 increment (Lit/unimi/dsi/fastutil/ints/Int2IntOpenHashMap;I)V
@@ -118,6 +103,15 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 		COMMENT @return the created codec
 		ARG 0 idList
 			COMMENT the id list to map between objects and full integer IDs
+		ARG 1 entryCodec
+			COMMENT the codec for each entry in the palette
+		ARG 2 provider
+			COMMENT the palette provider that controls how the data are serialized and what
+			COMMENT types of palette are used for what entry bit sizes
+	METHOD method_38298 createCodec (Lnet/minecraft/class_2359;Lcom/mojang/serialization/Codec;Lnet/minecraft/class_2841$class_6563;Ljava/lang/Object;Lnet/minecraft/class_7522$class_7523;)Lcom/mojang/serialization/Codec;
+		COMMENT Creates a codec for a paletted container with a specific palette provider.
+		COMMENT
+		COMMENT @return the created codec
 		ARG 1 entryCodec
 			COMMENT the codec for each entry in the palette
 		ARG 2 provider
@@ -185,6 +179,11 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 				COMMENT the palette entry
 			ARG 2 count
 				COMMENT the entry's number of occurrence
+		METHOD accept (Ljava/lang/Object;I)V
+			ARG 1 object
+				COMMENT the palette entry
+			ARG 2 count
+				COMMENT the entry's number of occurrence
 	CLASS class_6560 DataProvider
 		COMMENT A palette data provider constructs an empty data for a paletted
 		COMMENT container given a palette provider and a desired entry size in bits.
@@ -224,6 +223,7 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 			ARG 2 storage
 		METHOD method_38309 writePacket (Lnet/minecraft/class_2540;)V
 			ARG 1 buf
+		METHOD method_44338 copy ()Lnet/minecraft/class_2841$class_6561;
 	CLASS class_6562 Serialized
 		COMMENT The storage form of the paletted container in the {@linkplain
 		COMMENT PalettedContainer#createCodec codec}. The {@code palette} is the entries
@@ -231,12 +231,6 @@ CLASS net/minecraft/class_2841 net/minecraft/world/chunk/PalettedContainer
 		COMMENT provider specified for the codec.
 		COMMENT
 		COMMENT @see PalettedContainer#createCodec
-		FIELD comp_75 paletteEntries Ljava/util/List;
-			COMMENT the palette
-		FIELD comp_76 storage Ljava/util/Optional;
-			COMMENT the data of the container
-		METHOD comp_75 paletteEntries ()Ljava/util/List;
-		METHOD comp_76 storage ()Ljava/util/Optional;
 	CLASS class_6563 PaletteProvider
 		COMMENT A palette provider determines what type of palette to choose given the
 		COMMENT bits used to represent each element. In addition, it controls how the

@@ -3,6 +3,7 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 	FIELD field_24393 SPAWNABLE_GROUPS [Lnet/minecraft/class_1311;
 	FIELD field_30974 MIN_SPAWN_DISTANCE I
 	FIELD field_9292 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_9292 LOGGER Lorg/slf4j/Logger;
 	METHOD method_24930 spawnEntitiesInChunk (Lnet/minecraft/class_1311;Lnet/minecraft/class_3218;Lnet/minecraft/class_2791;Lnet/minecraft/class_2338;Lnet/minecraft/class_1948$class_5261;Lnet/minecraft/class_1948$class_5259;)V
 		ARG 0 group
 		ARG 1 world
@@ -67,6 +68,13 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 3 spawnGroup
 		ARG 4 pos
 		ARG 5 biome
+	METHOD method_29950 getSpawnEntries (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Lnet/minecraft/class_2338;Lnet/minecraft/class_6880;)Lnet/minecraft/class_6012;
+		ARG 0 world
+		ARG 1 structureAccessor
+		ARG 2 chunkGenerator
+		ARG 3 spawnGroup
+		ARG 4 pos
+		ARG 5 biomeEntry
 	METHOD method_35238 (Lnet/minecraft/class_1299;Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Z
 		ARG 0 type
 		ARG 1 pos
@@ -123,6 +131,10 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 1 biome
 		ARG 2 chunkPos
 		ARG 3 random
+	METHOD method_8661 populateEntities (Lnet/minecraft/class_5425;Lnet/minecraft/class_6880;Lnet/minecraft/class_1923;Lnet/minecraft/class_5819;)V
+		ARG 0 world
+		ARG 2 chunkPos
+		ARG 3 random
 	METHOD method_8662 isClearForSpawn (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_3610;)Z
 		ARG 0 blockView
 		ARG 1 pos
@@ -162,7 +174,17 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		ARG 5 pos
 	METHOD method_8664 pickRandomSpawnEntry (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Ljava/util/Random;Lnet/minecraft/class_2338;)Lnet/minecraft/class_1959$class_1964;
 	METHOD method_8664 pickRandomSpawnEntry (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Ljava/util/Random;Lnet/minecraft/class_2338;)Lnet/minecraft/class_5483$class_1964;
+	METHOD method_8664 pickRandomSpawnEntry (Lnet/minecraft/class_3218;Lnet/minecraft/class_5138;Lnet/minecraft/class_2794;Lnet/minecraft/class_1311;Lnet/minecraft/class_5819;Lnet/minecraft/class_2338;)Ljava/util/Optional;
+		ARG 0 world
+		ARG 1 structureAccessor
+		ARG 2 chunkGenerator
+		ARG 3 spawnGroup
+		ARG 4 random
+		ARG 5 pos
 	CLASS class_5259 Runner
+		METHOD run (Lnet/minecraft/class_1308;Lnet/minecraft/class_2791;)V
+			ARG 1 entity
+			ARG 2 chunk
 		METHOD run (Lnet/minecraft/class_1308;Lnet/minecraft/class_2791;)V
 			ARG 1 entity
 			ARG 2 chunk
@@ -209,7 +231,14 @@ CLASS net/minecraft/class_1948 net/minecraft/world/SpawnHelper
 		METHOD query (JLjava/util/function/Consumer;)V
 			ARG 1 pos
 			ARG 3 chunkConsumer
+		METHOD query (JLjava/util/function/Consumer;)V
+			ARG 1 pos
+			ARG 3 chunkConsumer
 	CLASS class_5261 Checker
+		METHOD test (Lnet/minecraft/class_1299;Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Z
+			ARG 1 type
+			ARG 2 pos
+			ARG 3 chunk
 		METHOD test (Lnet/minecraft/class_1299;Lnet/minecraft/class_2338;Lnet/minecraft/class_2791;)Z
 			ARG 1 type
 			ARG 2 pos

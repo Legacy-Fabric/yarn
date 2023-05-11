@@ -8,6 +8,7 @@ CLASS net/minecraft/class_445 net/minecraft/client/gui/screen/CreditsScreen
 	FIELD field_2630 finishAction Ljava/lang/Runnable;
 	FIELD field_2631 EDITION_TITLE_TEXTURE Lnet/minecraft/class_2960;
 	FIELD field_2632 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_2632 LOGGER Lorg/slf4j/Logger;
 	FIELD field_2633 VIGNETTE_TEXTURE Lnet/minecraft/class_2960;
 	FIELD field_2634 credits Ljava/util/List;
 	FIELD field_2635 speed F
@@ -22,7 +23,7 @@ CLASS net/minecraft/class_445 net/minecraft/client/gui/screen/CreditsScreen
 	METHOD <init> (ZLjava/lang/Runnable;)V
 		ARG 1 endCredits
 		ARG 2 finishAction
-	METHOD method_2257 close ()V
+	METHOD method_2257 closeScreen ()V
 	METHOD method_2258 renderBackground ()V
 	METHOD method_2258 renderBackground (IIF)V
 		ARG 1 mouseX
@@ -39,12 +40,18 @@ CLASS net/minecraft/class_445 net/minecraft/client/gui/screen/CreditsScreen
 	METHOD method_37306 addEmptyLine ()V
 	METHOD method_37369 getSpeed ()F
 	METHOD method_39774 readPoem (Ljava/io/InputStreamReader;)V
+	METHOD method_39774 readPoem (Ljava/io/Reader;)V
+		ARG 1 reader
 	METHOD method_39775 load (Ljava/lang/String;Lnet/minecraft/class_445$class_6824;)V
 		ARG 1 id
 		ARG 2 reader
 	METHOD method_39776 readCredits (Ljava/io/InputStreamReader;)V
+	METHOD method_39776 readCredits (Ljava/io/Reader;)V
+		ARG 1 reader
 	METHOD render (IIF)V
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 delta
 	CLASS class_6824 CreditsReader
+		METHOD read (Ljava/io/Reader;)V
+			ARG 1 reader

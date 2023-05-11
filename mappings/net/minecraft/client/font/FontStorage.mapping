@@ -7,6 +7,7 @@ CLASS net/minecraft/class_377 net/minecraft/client/font/FontStorage
 	FIELD field_2250 EMPTY_GLYPH_RENDERER Lnet/minecraft/class_384;
 	FIELD field_2251 SPACE Lnet/minecraft/class_379;
 	FIELD field_2252 RANDOM Ljava/util/Random;
+	FIELD field_2252 RANDOM Lnet/minecraft/class_5819;
 	FIELD field_2253 glyphRendererCache Lit/unimi/dsi/fastutil/chars/Char2ObjectMap;
 	FIELD field_2253 glyphRendererCache Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 	FIELD field_2254 glyphAtlases Ljava/util/List;
@@ -29,6 +30,9 @@ CLASS net/minecraft/class_377 net/minecraft/client/font/FontStorage
 	METHOD method_2011 getGlyph (C)Lnet/minecraft/class_379;
 		ARG 1 character
 	METHOD method_2011 getGlyph (I)Lnet/minecraft/class_379;
+		COMMENT {@return the glyph of {@code codePoint}}
+		COMMENT
+		COMMENT @implNote {@link BuiltinEmptyGlyph#MISSING} is returned for missing code points.
 		ARG 1 codePoint
 	METHOD method_2012 getGlyphRenderer (Lnet/minecraft/class_383;)Lnet/minecraft/class_382;
 		ARG 1 c
@@ -37,7 +41,17 @@ CLASS net/minecraft/class_377 net/minecraft/client/font/FontStorage
 	METHOD method_2014 getGlyphRenderer (C)Lnet/minecraft/class_382;
 		ARG 1 character
 	METHOD method_2014 getGlyphRenderer (I)Lnet/minecraft/class_382;
+		ARG 1 codePoint
 	METHOD method_22943 getRectangleRenderer ()Lnet/minecraft/class_382;
 	METHOD method_24290 closeFonts ()V
 	METHOD method_27545 (Ljava/util/List;Ljava/util/Set;I)V
 		ARG 3 codePoint
+	METHOD method_27546 (I)Lit/unimi/dsi/fastutil/ints/IntList;
+		ARG 0 advance
+	METHOD method_40038 findGlyph (I)Lnet/minecraft/class_379;
+		COMMENT {@return the glyph of {@code codePoint}}
+		COMMENT
+		COMMENT @apiNote Call {@link #getGlyph} instead, as that method provides caching.
+		ARG 1 codePoint
+	METHOD method_41832 findGlyphRenderer (I)Lnet/minecraft/class_382;
+		ARG 1 codePoint
