@@ -82,8 +82,34 @@ CLASS net/minecraft/class_5348 net/minecraft/text/StringVisitable
 			COMMENT @return {@code Optional.empty()} to continue, a non-empty result to terminate
 			ARG 1 asString
 				COMMENT the literal string
+		METHOD accept (Ljava/lang/String;)Ljava/util/Optional;
+			COMMENT Visits a literal string.
+			COMMENT
+			COMMENT <p>When a {@link Optional#isPresent() present optional} is returned,
+			COMMENT the visit is terminated before visiting all text. Can return {@link
+			COMMENT StringRenderable#TERMINATE_VISIT} for convenience.</p>
+			COMMENT
+			COMMENT @return {@code Optional.empty()} to continue, a non-empty result to terminate
+			ARG 1 asString
+				COMMENT the literal string
 	CLASS class_5246 StyledVisitor
 		COMMENT A visitor for string content and a contextual {@link Style}.
+		METHOD accept (Lnet/minecraft/class_2583;Ljava/lang/String;)Ljava/util/Optional;
+			COMMENT Visits a string's content with a contextual style.
+			COMMENT
+			COMMENT <p>A contextual style is obtained by calling {@link Style#withParent(Style)}
+			COMMENT on the current's text style, passing the previous contextual style or
+			COMMENT the starting style if it is the beginning of a visit.</p>
+			COMMENT
+			COMMENT <p>When a {@link Optional#isPresent() present optional} is returned,
+			COMMENT the visit is terminated before visiting all text. Can return {@link
+			COMMENT StringRenderable#TERMINATE_VISIT} for convenience.</p>
+			COMMENT
+			COMMENT @return {@code Optional.empty()} to continue, a non-empty result to terminate
+			ARG 1 style
+				COMMENT the current style
+			ARG 2 asString
+				COMMENT the literal string
 		METHOD accept (Lnet/minecraft/class_2583;Ljava/lang/String;)Ljava/util/Optional;
 			COMMENT Visits a string's content with a contextual style.
 			COMMENT

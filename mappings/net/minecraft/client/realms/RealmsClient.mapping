@@ -6,10 +6,11 @@ CLASS net/minecraft/class_4341 net/minecraft/client/realms/RealmsClient
 	FIELD field_19580 username Ljava/lang/String;
 	FIELD field_19581 gson Lcom/google/gson/Gson;
 	FIELD field_22568 JSON Lnet/minecraft/class_4869;
-	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Ljava/net/Proxy;)V
+	FIELD field_26901 client Lnet/minecraft/class_310;
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/class_310;)V
 		ARG 1 sessionId
 		ARG 2 username
-		ARG 3 proxy
+		ARG 3 client
 	METHOD method_20989 createRealmsClient ()Lnet/minecraft/class_4341;
 	METHOD method_20990 fetchWorldTemplates (IILcom/mojang/realmsclient/dto/RealmsServer$class_4321;)Lcom/mojang/realmsclient/dto/WorldTemplatePaginatedList;
 		ARG 1 page
@@ -133,6 +134,7 @@ CLASS net/minecraft/class_4341 net/minecraft/client/realms/RealmsClient
 		ARG 3 uploadToken
 	METHOD method_21026 upload (JLjava/lang/String;)Lnet/minecraft/class_4888;
 		ARG 1 worldId
+		ARG 3 token
 	METHOD method_21027 clientCompatible ()Lnet/minecraft/class_4341$class_4342;
 	METHOD method_21028 deleteWorld (J)V
 		ARG 1 worldId
@@ -143,10 +145,14 @@ CLASS net/minecraft/class_4341 net/minecraft/client/realms/RealmsClient
 	METHOD method_21032 getNews ()Lcom/mojang/realmsclient/dto/RealmsNews;
 	METHOD method_21032 getNews ()Lnet/minecraft/class_4876;
 	METHOD method_21033 trialAvailable ()Ljava/lang/Boolean;
+	METHOD method_31381 isOwnerBlocked (Lnet/minecraft/class_4871;)Z
+		ARG 1 pendingInvite
 	CLASS class_4342 CompatibleVersionResponse
 		FIELD field_19582 COMPATIBLE Lnet/minecraft/class_4341$class_4342;
 		FIELD field_19583 OUTDATED Lnet/minecraft/class_4341$class_4342;
 		FIELD field_19584 OTHER Lnet/minecraft/class_4341$class_4342;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4342;
+			ARG 0 name
 		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4342;
 			ARG 0 name
 		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4342;
@@ -172,6 +178,8 @@ CLASS net/minecraft/class_4341 net/minecraft/client/realms/RealmsClient
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
 			ARG 3 baseUrl
 			ARG 4 protocol
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4343;
+			ARG 0 name
 		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4343;
 			ARG 0 name
 		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/class_4341$class_4343;
