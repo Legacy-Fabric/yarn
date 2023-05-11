@@ -24,9 +24,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_20720 opaque Z
 	FIELD field_21207 velocityMultiplier F
 	FIELD field_21208 jumpVelocityMultiplier F
-	METHOD <init> (Lnet/minecraft/class_2248$class_2251;)V
-		ARG 1 settings
-	METHOD method_16361 topCoversMediumSquare (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
+	METHOD method_16361 hasTopRim (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 0 world
 		ARG 1 pos
 	METHOD method_16362 canSuffocate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
@@ -34,10 +32,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_16841 getOffsetType ()Lnet/minecraft/class_2248$class_2250;
-	METHOD method_17454 createContainerFactory (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3908;
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
 	METHOD method_19286 onProjectileHit (Lnet/minecraft/class_1937;Lnet/minecraft/class_2680;Lnet/minecraft/class_3965;Lnet/minecraft/class_1297;)V
 		ARG 1 world
 		ARG 2 state
@@ -52,9 +46,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 side
-	METHOD method_22358 canBucketPlace (Lnet/minecraft/class_2680;Lnet/minecraft/class_3611;)Z
-		ARG 1 state
-		ARG 2 fluid
 	METHOD method_22359 hasEmissiveLighting (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
 	METHOD method_23349 getVelocityMultiplier ()F
@@ -63,6 +54,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
+	METHOD method_27839 is (Lnet/minecraft/class_2248;)Z
+		ARG 1 block
 	METHOD method_9496 randomDisplayTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
 		ARG 1 state
 		ARG 2 world
@@ -72,8 +65,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 0 state
 		ARG 1 world
 		ARG 2 pos
-	METHOD method_9498 hasComparatorOutput (Lnet/minecraft/class_2680;)Z
-		ARG 1 state
 	METHOD method_9499 getSlipperiness ()F
 	METHOD method_9500 isAir (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
@@ -88,15 +79,9 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9504 rainTick (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V
 		ARG 1 world
 		ARG 2 pos
-	METHOD method_9505 getOpacity (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)I
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-	METHOD method_9506 emitsRedstonePower (Lnet/minecraft/class_2680;)Z
-		ARG 1 state
 	METHOD method_9507 getRawIdFromState (Lnet/minecraft/class_2680;)I
 		ARG 0 state
-	METHOD method_9510 getRenderingState (Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
+	METHOD method_9510 postProcessState (Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
 		ARG 0 state
 		ARG 1 world
 		ARG 2 pos
@@ -107,79 +92,36 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 blockEntity
 		ARG 4 entity
 		ARG 5 stack
-	METHOD method_9514 randomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 random
 	METHOD method_9515 appendProperties (Lnet/minecraft/class_2689$class_2690;)V
 		ARG 1 builder
-	METHOD method_9516 canPlaceAtSide (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_10;)Z
-		ARG 1 world
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 env
 	METHOD method_9517 (Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;I)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 flags
 	METHOD method_9518 getName ()Lnet/minecraft/class_2561;
+	METHOD method_9518 getName ()Lnet/minecraft/class_5250;
 	METHOD method_9520 getBlastResistance ()F
 	METHOD method_9521 isSimpleFullBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-	METHOD method_9522 isSideInvisible (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_2350;)Z
-		ARG 1 state
-		ARG 2 neighbor
-		ARG 3 facing
 	METHOD method_9523 allowsSpawning (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_1299;)Z
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
 		ARG 4 type
-	METHOD method_9524 getWeakRedstonePower (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 facing
-	METHOD method_9525 matches (Lnet/minecraft/class_3494;)Z
+	METHOD method_9525 isIn (Lnet/minecraft/class_3494;)Z
 		ARG 1 tag
-	METHOD method_9526 hasSidedTransparency (Lnet/minecraft/class_2680;)Z
-		ARG 1 state
-	METHOD method_9527 getPistonBehavior (Lnet/minecraft/class_2680;)Lnet/minecraft/class_3619;
-		ARG 1 state
 	METHOD method_9528 updateNeighborStates (Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;I)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 flags
-	METHOD method_9530 getOutlineShape (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_3726;)Lnet/minecraft/class_265;
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 context
 	METHOD method_9531 getStateFromRawId (I)Lnet/minecraft/class_2680;
 		ARG 0 stateId
 	METHOD method_9533 shouldDropItemsOnExplosion (Lnet/minecraft/class_1927;)Z
 		ARG 1 explosion
-	METHOD method_9534 onUse (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Lnet/minecraft/class_1269;
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 player
-		ARG 5 hand
-		ARG 6 hit
-	METHOD method_9535 getRenderingSeed (Lnet/minecraft/class_2680;Lnet/minecraft/class_2338;)J
-		ARG 1 state
-		ARG 2 pos
-	METHOD method_9536 onBlockRemoved (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 newState
-		ARG 5 moved
 	METHOD method_9537 getHardness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)F
 		ARG 1 state
 		ARG 2 world
@@ -200,18 +142,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9542 hasRandomTicks (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
 	METHOD method_9543 hasDynamicBounds ()Z
-	METHOD method_9545 getFluidState (Lnet/minecraft/class_2680;)Lnet/minecraft/class_3610;
-		ARG 1 state
-	METHOD method_9548 onEntityCollision (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 entity
-	METHOD method_9549 getCollisionShape (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_3726;)Lnet/minecraft/class_265;
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 context
 	METHOD method_9552 shouldPostProcess (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
@@ -232,20 +162,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;)Z
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-	METHOD method_9559 getStateForNeighborUpdate (Lnet/minecraft/class_2680;Lnet/minecraft/class_2350;Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
-		ARG 1 state
-		ARG 2 facing
-		ARG 3 neighborState
-		ARG 4 world
-		ARG 5 pos
-		ARG 6 neighborPos
-	METHOD method_9560 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)Ljava/util/List;
-		ARG 1 state
-		ARG 2 builder
 	METHOD method_9562 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)Ljava/util/List;
 		ARG 0 state
 		ARG 1 world
@@ -253,11 +169,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 blockEntity
 	METHOD method_9563 getTickRate (Lnet/minecraft/class_4538;)I
 	METHOD method_9564 getDefaultState ()Lnet/minecraft/class_2680;
-	METHOD method_9565 onStacksDropped (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 stack
 	METHOD method_9567 onPlaced (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;)V
 		ARG 1 world
 		ARG 2 pos
@@ -266,31 +177,16 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 5 itemStack
 	METHOD method_9568 buildTooltip (Lnet/minecraft/class_1799;Lnet/minecraft/class_1922;Ljava/util/List;Lnet/minecraft/class_1836;)V
 		ARG 1 stack
-		ARG 2 view
+		ARG 2 world
 		ARG 3 tooltip
 		ARG 4 options
-	METHOD method_9569 mirror (Lnet/minecraft/class_2680;Lnet/minecraft/class_2415;)Lnet/minecraft/class_2680;
-		ARG 1 state
-		ARG 2 mirror
 	METHOD method_9570 hasBlockEntity ()Z
-	METHOD method_9571 getCullingShape (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_265;
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-	METHOD method_9572 getComparatorOutput (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)I
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
 	METHOD method_9573 getSoundGroup (Lnet/minecraft/class_2680;)Lnet/minecraft/class_2498;
 		ARG 1 state
 	METHOD method_9574 getPickStack (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)Lnet/minecraft/class_1799;
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
-	METHOD method_9575 getAmbientOcclusionLightLevel (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)F
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
 	METHOD method_9576 onBreak (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_1657;)V
 		ARG 1 world
 		ARG 2 pos
@@ -305,7 +201,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 list
 	METHOD method_9579 isTranslucent (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
-		ARG 2 view
+		ARG 2 world
 		ARG 3 pos
 	METHOD method_9580 getDropTableId ()Lnet/minecraft/class_2960;
 	METHOD method_9581 cannotConnect (Lnet/minecraft/class_2248;)Z
@@ -319,10 +215,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 size
-	METHOD method_9584 getRayTraceShape (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_265;
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
 	METHOD method_9585 onBroken (Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
 		ARG 1 world
 		ARG 2 pos
@@ -331,59 +223,32 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 explosion
-	METHOD method_9588 scheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Ljava/util/Random;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 random
+	METHOD method_9587 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
+		ARG 2 stack
 	METHOD method_9590 setDefaultState (Lnet/minecraft/class_2680;)V
 		ARG 1 state
 	METHOD method_9591 onSteppedOn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 entity
-	METHOD method_9592 onBlockAction (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;II)Z
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 type
-		ARG 5 data
 	METHOD method_9593 getLuminance (Lnet/minecraft/class_2680;)I
 		ARG 1 state
-	METHOD method_9594 calcBlockBreakingDelta (Lnet/minecraft/class_2680;Lnet/minecraft/class_1657;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)F
-		ARG 1 state
-		ARG 2 player
-		ARG 3 world
-		ARG 4 pos
 	METHOD method_9595 getStateManager ()Lnet/minecraft/class_2689;
+	METHOD method_9596 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
+		ARG 2 stack
 	METHOD method_9597 getMaterial (Lnet/minecraft/class_2680;)Lnet/minecraft/class_3614;
 		ARG 1 state
-	METHOD method_9598 rotate (Lnet/minecraft/class_2680;Lnet/minecraft/class_2470;)Lnet/minecraft/class_2680;
-		ARG 1 state
-		ARG 2 rotation
 	METHOD method_9601 isOpaque (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
 	METHOD method_9602 getMapColor (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3620;
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
-	METHOD method_9603 getStrongRedstonePower (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-		ARG 4 facing
-	METHOD method_9604 getRenderType (Lnet/minecraft/class_2680;)Lnet/minecraft/class_2464;
-		ARG 1 state
 	METHOD method_9605 getPlacementState (Lnet/minecraft/class_1750;)Lnet/minecraft/class_2680;
 		ARG 1 ctx
-	METHOD method_9606 onBlockBreakStart (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 player
 	METHOD method_9607 shouldDrawSide (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 0 state
-		ARG 1 view
+		ARG 1 world
 		ARG 2 pos
 		ARG 3 facing
 	METHOD method_9609 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;Lnet/minecraft/class_1297;Lnet/minecraft/class_1799;)Ljava/util/List;
@@ -404,24 +269,17 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 flags
-	METHOD method_9612 neighborUpdate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Z)V
-		ARG 1 state
+	METHOD method_9611 replaceBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;II)V
+		ARG 0 state
+		ARG 1 newState
 		ARG 2 world
 		ARG 3 pos
-		ARG 4 block
-		ARG 5 neighborPos
-		ARG 6 moved
+		ARG 4 flags
 	METHOD method_9614 isShapeFullCube (Lnet/minecraft/class_265;)Z
 		ARG 0 shape
-	METHOD method_9615 onBlockAdded (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 oldState
-		ARG 5 moved
-	METHOD method_9616 canReplace (Lnet/minecraft/class_2680;Lnet/minecraft/class_1750;)Z
-		ARG 1 state
-		ARG 2 ctx
+	CLASS 1
+		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 shape
 	CLASS class_2249 NeighborGroup
 		FIELD field_10652 self Lnet/minecraft/class_2680;
 		FIELD field_10653 facing Lnet/minecraft/class_2350;
@@ -434,23 +292,9 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			ARG 1 o
 	CLASS class_2250 OffsetType
 	CLASS class_2251 Settings
-		FIELD field_10660 resistance F
-		FIELD field_10661 randomTicks Z
 		FIELD field_10662 materialColor Lnet/minecraft/class_3620;
 		FIELD field_10663 luminance I
-		FIELD field_10664 collidable Z
-		FIELD field_10665 soundGroup Lnet/minecraft/class_2498;
-		FIELD field_10666 dropTableId Lnet/minecraft/class_2960;
-		FIELD field_10667 slipperiness F
-		FIELD field_10668 material Lnet/minecraft/class_3614;
-		FIELD field_10669 hardness F
-		FIELD field_10670 dynamicBounds Z
-		FIELD field_20721 opaque Z
-		FIELD field_21209 slowDownMultiplier F
 		FIELD field_21210 jumpVelocityMultiplier F
-		METHOD <init> (Lnet/minecraft/class_3614;Lnet/minecraft/class_3620;)V
-			ARG 1 material
-			ARG 2 materialColor
 		METHOD method_16228 dropsLike (Lnet/minecraft/class_2248;)Lnet/minecraft/class_2248$class_2251;
 			ARG 1 source
 		METHOD method_16229 dropsNothing ()Lnet/minecraft/class_2248$class_2251;

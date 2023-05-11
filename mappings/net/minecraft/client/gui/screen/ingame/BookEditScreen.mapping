@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScreen
 	FIELD field_17116 pages Ljava/util/List;
+	FIELD field_24268 pageContent Lnet/minecraft/class_473$class_5233;
 	FIELD field_2826 player Lnet/minecraft/class_1657;
 	FIELD field_2827 lastClickIndex I
 	FIELD field_2828 signing Z
@@ -19,7 +20,6 @@ CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScr
 	FIELD field_2848 doneButton Lnet/minecraft/class_4185;
 	FIELD field_2849 cancelButton Lnet/minecraft/class_4185;
 	METHOD <init> (Lnet/minecraft/class_1657;Lnet/minecraft/class_1799;Lnet/minecraft/class_1268;)V
-		ARG 1 playerEntity
 		ARG 2 itemStack
 		ARG 3 hand
 	METHOD charTyped (CI)Z
@@ -52,6 +52,7 @@ CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScr
 		ARG 1 string
 		ARG 2 index
 	METHOD method_2413 updateButtons ()V
+	METHOD method_2414 moveCursorToBottom ()V
 	METHOD method_2414 moveCursorToBottom (Ljava/lang/String;)V
 		ARG 1 content
 	METHOD method_2415 translateRelativePositionToGlPosition (Lnet/minecraft/class_473$class_475;)V
@@ -62,6 +63,7 @@ CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScr
 	METHOD method_2417 getCharacterCountForWidth (Ljava/lang/String;I)I
 		ARG 1 text
 		ARG 2 width
+	METHOD method_2421 moveCursorToTop ()V
 	METHOD method_2421 moveCursorToTop (Ljava/lang/String;)V
 		ARG 1 content
 	METHOD method_2424 getStringWidth (Ljava/lang/String;)I
@@ -98,6 +100,9 @@ CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScr
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD method_27576 getPageContent ()Lnet/minecraft/class_473$class_5233;
+	METHOD method_27577 invalidatePageContent ()V
+	METHOD method_27578 createPageContent ()Lnet/minecraft/class_473$class_5233;
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -112,9 +117,27 @@ CLASS net/minecraft/class_473 net/minecraft/client/gui/screen/ingame/BookEditScr
 		ARG 1 mouseX
 		ARG 2 mouseY
 		ARG 3 delta
-	CLASS class_475 Position
+	CLASS class_475 Line
+		FIELD field_24278 style Lnet/minecraft/class_2583;
+		FIELD field_24279 content Ljava/lang/String;
+		FIELD field_24280 text Lnet/minecraft/class_2561;
 		FIELD field_2853 y I
 		FIELD field_2854 x I
-		METHOD <init> (Lnet/minecraft/class_473;II)V
-			ARG 2 x
-			ARG 3 y
+		METHOD <init> (Lnet/minecraft/class_2583;Ljava/lang/String;II)V
+			ARG 2 content
+			ARG 3 x
+			ARG 4 y
+	CLASS class_5233 PageContent
+		FIELD field_24271 EMPTY Lnet/minecraft/class_473$class_5233;
+		FIELD field_24272 pageContent Ljava/lang/String;
+		FIELD field_24273 position Lnet/minecraft/class_473$class_5234;
+		FIELD field_24276 lines [Lnet/minecraft/class_473$class_475;
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/class_473$class_5234;Z[I[Lnet/minecraft/class_473$class_475;[Lnet/minecraft/class_768;)V
+			ARG 1 pageContent
+			ARG 5 lines
+	CLASS class_5234 Position
+		FIELD field_24281 x I
+		FIELD field_24282 y I
+		METHOD <init> (II)V
+			ARG 1 x
+			ARG 2 y

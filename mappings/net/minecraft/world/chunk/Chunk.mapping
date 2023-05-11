@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_2791 net/minecraft/world/chunk/Chunk
+	COMMENT Represents a scoped, modifiable view of biomes, block states, fluid states and block entities.
 	METHOD method_12002 addEntity (Lnet/minecraft/class_1297;)V
 		ARG 1 entity
 	METHOD method_12003 getUpgradeData ()Lnet/minecraft/class_2843;
@@ -17,6 +18,7 @@ CLASS net/minecraft/class_2791 net/minecraft/world/chunk/Chunk
 	METHOD method_12010 setBlockState (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;
 		ARG 1 pos
 		ARG 2 state
+		ARG 3 moved
 	METHOD method_12011 getHeightmaps ()Ljava/util/Collection;
 	METHOD method_12012 getPostProcessingLists ()[Lit/unimi/dsi/fastutil/shorts/ShortList;
 	METHOD method_12013 getBlockTickScheduler ()Lnet/minecraft/class_1951;
@@ -30,8 +32,6 @@ CLASS net/minecraft/class_2791 net/minecraft/world/chunk/Chunk
 		ARG 1 biomeArray
 	METHOD method_12024 getBlockEntityTagAt (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2487;
 		ARG 1 pos
-	METHOD method_12025 getCarvingMask (Lnet/minecraft/class_2893$class_2894;)Ljava/util/BitSet;
-		ARG 1 carver
 	METHOD method_12026 getList ([Lit/unimi/dsi/fastutil/shorts/ShortList;I)Lit/unimi/dsi/fastutil/shorts/ShortList;
 		ARG 0 lists
 		ARG 1 index
@@ -54,9 +54,12 @@ CLASS net/minecraft/class_2791 net/minecraft/world/chunk/Chunk
 		ARG 2 heightmap
 	METHOD method_12038 isLightOn ()Z
 	METHOD method_12039 markBlockForPostProcessing (Lnet/minecraft/class_2338;)V
+		ARG 1 pos
 	METHOD method_12040 getHighestNonEmptySection ()Lnet/minecraft/class_2826;
 	METHOD method_12041 removeBlockEntity (Lnet/minecraft/class_2338;)V
+		ARG 1 pos
 	METHOD method_12042 addPendingBlockEntityTag (Lnet/minecraft/class_2487;)V
+		ARG 1 tag
 	METHOD method_12043 setLastSaveTime (J)V
 		ARG 1 lastSaveTime
 	METHOD method_12044 needsSaving ()Z

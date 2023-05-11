@@ -16,9 +16,6 @@ CLASS net/minecraft/class_4466 net/minecraft/entity/passive/BeeEntity
 	FIELD field_21644 ticksUntilCanPollinate I
 	FIELD field_21645 moveToHiveGoal Lnet/minecraft/class_4466$class_4472;
 	FIELD field_21646 moveToFlowerGoal Lnet/minecraft/class_4466$class_4473;
-	METHOD <init> (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)V
-		ARG 1 type
-		ARG 2 world
 	METHOD method_21763 setBeeAttacker (Lnet/minecraft/class_1297;)Z
 		ARG 1 attacker
 	METHOD method_21769 addParticle (Lnet/minecraft/class_1937;DDDDDLnet/minecraft/class_2394;)V
@@ -78,6 +75,7 @@ CLASS net/minecraft/class_4466 net/minecraft/entity/passive/BeeEntity
 		ARG 1 pos
 	METHOD method_23992 isFlowers (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
+	METHOD method_26880 createBeeAttributes ()Lnet/minecraft/class_5132$class_5133;
 	CLASS class_4467 NotAngryGoal
 		METHOD method_21814 canBeeStart ()Z
 		METHOD method_21815 canBeeContinue ()Z
@@ -85,6 +83,7 @@ CLASS net/minecraft/class_4466 net/minecraft/entity/passive/BeeEntity
 		METHOD <init> (Lnet/minecraft/class_4466;Lnet/minecraft/class_1314;DZ)V
 			ARG 2 mob
 			ARG 3 speed
+			ARG 5 pauseWhenMobIdle
 	CLASS class_4469 BeeFollowTargetGoal
 		METHOD <init> (Lnet/minecraft/class_4466;)V
 			ARG 1 bee
@@ -94,7 +93,8 @@ CLASS net/minecraft/class_4466 net/minecraft/entity/passive/BeeEntity
 		FIELD field_21647 ticks I
 		FIELD field_21648 possibleHives Ljava/util/List;
 		FIELD field_21649 path Lnet/minecraft/class_11;
-		METHOD method_23885 reset ()V
+		FIELD field_23133 ticksUntilLost I
+		METHOD method_23885 setLost ()V
 		METHOD method_24006 startMovingToFar (Lnet/minecraft/class_2338;)Z
 			ARG 1 pos
 		METHOD method_24007 isPossibleHive (Lnet/minecraft/class_2338;)Z

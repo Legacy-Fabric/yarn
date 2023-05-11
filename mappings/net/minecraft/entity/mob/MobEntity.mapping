@@ -25,11 +25,12 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	FIELD field_6205 armorItems Lnet/minecraft/class_2371;
 	FIELD field_6206 lookControl Lnet/minecraft/class_1333;
 	FIELD field_6207 moveControl Lnet/minecraft/class_1335;
-	METHOD <init> (Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)V
-		ARG 1 type
 	METHOD e (FF)F
 		ARG 1 yaw
 	METHOD method_17326 cannotDespawn ()Z
+	METHOD method_18249 onPlayerSpawnedChild (Lnet/minecraft/class_1657;Lnet/minecraft/class_1308;)V
+		ARG 1 player
+		ARG 2 child
 	METHOD method_18407 isInWalkTargetRange (Lnet/minecraft/class_2338;)Z
 		ARG 1 pos
 	METHOD method_18408 setPositionTarget (Lnet/minecraft/class_2338;I)V
@@ -46,19 +47,44 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_19540 setAttacking (Z)V
 		ARG 1 attacking
 	METHOD method_20240 getLookYawSpeed ()I
+	METHOD method_20417 updateGoalControls ()V
 	METHOD method_20636 canMobSpawn (Lnet/minecraft/class_1299;Lnet/minecraft/class_1936;Lnet/minecraft/class_3730;Lnet/minecraft/class_2338;Ljava/util/Random;)Z
 		ARG 0 type
 		ARG 1 world
-		ARG 2 spawnType
+		ARG 2 spawnReason
 		ARG 3 pos
 		ARG 4 random
+	METHOD method_20820 canGather (Lnet/minecraft/class_1799;)Z
+		ARG 1 stack
+	METHOD method_23734 isDisallowedInPeaceful ()Z
+	METHOD method_24521 disablePlayerShield (Lnet/minecraft/class_1657;Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)V
+		ARG 1 player
+		ARG 2 mobStack
+		ARG 3 playerStack
+	METHOD method_24523 tryEquip (Lnet/minecraft/class_1799;)Z
+		ARG 1 equipment
+	METHOD method_24834 equipLootStack (Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD method_25938 canUseRangedWeapon (Lnet/minecraft/class_1811;)Z
+		ARG 1 weapon
+	METHOD method_25939 updateDropChances (Lnet/minecraft/class_1304;)V
+		ARG 1 slot
+	METHOD method_26320 prefersNewDamageableItem (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
+		ARG 1 newStack
+		ARG 2 oldStack
+	METHOD method_26323 movesIndependently ()Z
+		COMMENT When true, causes this entity to take over pathfinding for its controlling passenger.
+	METHOD method_26828 createMobAttributes ()Lnet/minecraft/class_5132$class_5133;
 	METHOD method_5929 getDropChance (Lnet/minecraft/class_1304;)F
+		ARG 1 slot
 	METHOD method_5930 setForwardSpeed (F)V
 		ARG 1 forwardSpeed
 	METHOD method_5931 canBeLeashedBy (Lnet/minecraft/class_1657;)Z
 		ARG 1 player
 	METHOD method_5932 detachLeash (ZZ)V
 		ARG 1 sendPacket
+		ARG 2 dropItem
 	METHOD method_5933 getHoldingEntity ()Lnet/minecraft/class_1297;
 	METHOD method_5934 isLeashed ()Z
 	METHOD method_5935 canEquipmentSlotContain (Lnet/minecraft/class_1304;Lnet/minecraft/class_1799;)Z
@@ -79,7 +105,7 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_5943 initialize (Lnet/minecraft/class_1936;Lnet/minecraft/class_1266;Lnet/minecraft/class_3730;Lnet/minecraft/class_1315;Lnet/minecraft/class_2487;)Lnet/minecraft/class_1315;
 		ARG 1 world
 		ARG 2 difficulty
-		ARG 3 spawnType
+		ARG 3 spawnReason
 		ARG 4 entityData
 		ARG 5 entityTag
 	METHOD method_5944 getPathfindingPenalty (Lnet/minecraft/class_7;)F
@@ -87,6 +113,7 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_5945 getLimitPerChunk ()I
 	METHOD method_5946 setEquipmentDropChance (Lnet/minecraft/class_1304;F)V
 		ARG 1 slot
+		ARG 2 chance
 	METHOD method_5947 isPersistent ()Z
 	METHOD method_5948 getEquipmentForSlot (Lnet/minecraft/class_1304;I)Lnet/minecraft/class_1792;
 		ARG 0 equipmentSlot
@@ -98,14 +125,19 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 		ARG 2 maxYawChange
 		ARG 3 maxPitchChange
 	METHOD method_5952 setCanPickUpLoot (Z)V
+		ARG 1 pickUpLoot
 	METHOD method_5953 getPreferredEquipmentSlot (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1304;
 		ARG 0 stack
 	METHOD method_5954 attachLeash (Lnet/minecraft/class_1297;Z)V
 		ARG 1 entity
+		ARG 2 sendPacket
 	METHOD method_5955 isBetterItemFor (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_1304;)Z
 		ARG 1 current
 		ARG 2 previous
 		ARG 3 slot
+	METHOD method_5955 prefersNewEquipment (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
+		ARG 1 newStack
+		ARG 2 oldStack
 	METHOD method_5956 canBeControlledByRider ()Z
 	METHOD method_5957 canSpawn (Lnet/minecraft/class_1941;)Z
 		ARG 1 world
@@ -137,10 +169,11 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_5976 setUpwardSpeed (F)V
 		ARG 1 upwardSpeed
 	METHOD method_5977 setAiDisabled (Z)V
+		ARG 1 aiDisabled
 	METHOD method_5978 getLookPitchSpeed ()I
 	METHOD method_5979 canSpawn (Lnet/minecraft/class_1936;Lnet/minecraft/class_3730;)Z
 		ARG 1 world
-		ARG 2 spawnType
+		ARG 2 spawnReason
 	METHOD method_5980 setTarget (Lnet/minecraft/class_1309;)V
 		ARG 1 target
 	METHOD method_5983 onEatingGrass ()V
@@ -152,6 +185,9 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_5988 getLookControl ()Lnet/minecraft/class_1333;
 	METHOD method_5990 playSpawnEffects ()V
 	METHOD method_5991 getLootTableId ()Lnet/minecraft/class_2960;
+	METHOD method_5992 interactMob (Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
+		ARG 1 player
+		ARG 2 hand
 	METHOD method_5992 interactMob (Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Z
 		ARG 1 player
 		ARG 2 hand
@@ -159,3 +195,5 @@ CLASS net/minecraft/class_1308 net/minecraft/entity/mob/MobEntity
 	METHOD method_5994 getAmbientSound ()Lnet/minecraft/class_3414;
 	METHOD method_5995 updateLeash ()V
 	METHOD method_6510 isAttacking ()Z
+	METHOD method_7217 setBaby (Z)V
+		ARG 1 baby

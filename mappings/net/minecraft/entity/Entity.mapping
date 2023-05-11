@@ -5,6 +5,9 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	FIELD field_18066 standingEyeHeight F
 	FIELD field_18276 velocity Lnet/minecraft/class_243;
 	FIELD field_19271 inLava Z
+	FIELD field_22467 pos Lnet/minecraft/class_243;
+	FIELD field_22468 blockPos Lnet/minecraft/class_2338;
+	FIELD field_23807 inanimate Z
 	FIELD field_5951 ridingCooldown I
 	FIELD field_5952 onGround Z
 	FIELD field_5953 firstUpdate Z
@@ -18,6 +21,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	FIELD field_5961 type Lnet/minecraft/class_1299;
 	FIELD field_5962 SILENT Lnet/minecraft/class_2940;
 	FIELD field_5963 inNetherPortal Z
+	FIELD field_5964 fluidHeight Lit/unimi/dsi/fastutil/objects/Object2DoubleMap;
 	FIELD field_5964 waterHeight D
 	FIELD field_5965 pitch F
 	FIELD field_5966 teleportRequested Z
@@ -116,6 +120,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 5 z
 	METHOD method_18276 isInSneakingPose ()Z
 	METHOD method_18375 detach ()V
+		COMMENT Removes all the passengers and removes this entity from any vehicles it is riding.
 	METHOD method_18376 getPose ()Lnet/minecraft/class_4050;
 	METHOD method_18377 getDimensions (Lnet/minecraft/class_4050;)Lnet/minecraft/class_4048;
 		ARG 1 pose
@@ -217,12 +222,26 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 1 positionUpdater
 	METHOD method_24201 updatePassengerPosition (Lnet/minecraft/class_1297;Lnet/minecraft/class_1297$class_4738;)V
 		ARG 1 passenger
-		ARG 2 positionUpdater
 	METHOD method_24203 positAfterTeleport (DDD)V
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 	METHOD method_24204 streamPassengersRecursively ()Ljava/util/stream/Stream;
+	METHOD method_24515 getBlockPos ()Lnet/minecraft/class_2338;
+	METHOD method_24516 isInRange (Lnet/minecraft/class_1297;D)Z
+		ARG 1 other
+		ARG 2 radius
+	METHOD method_24826 getPassengerDismountOffset (DDF)Lnet/minecraft/class_243;
+		ARG 0 vehicleWidth
+		ARG 2 passengerWidth
+		ARG 4 passengerYaw
+	METHOD method_24828 isOnGround ()Z
+	METHOD method_24829 updatePassengerForDismount (Lnet/minecraft/class_1309;)Lnet/minecraft/class_243;
+		ARG 1 passenger
+	METHOD method_24830 setOnGround (Z)V
+		ARG 1 onGround
+	METHOD method_25936 getLandingBlockState ()Lnet/minecraft/class_2680;
+	METHOD method_27298 shouldSpawnSprintingParticles ()Z
 	METHOD method_5621 getMountedHeightOffset ()D
 	METHOD method_5622 onBlockCollision (Lnet/minecraft/class_2680;)V
 		ARG 1 state
@@ -255,9 +274,9 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5637 isWet ()Z
 		COMMENT Returns whether this entity is touching water, or is being rained on, or is inside a bubble column...
 		COMMENT
-		COMMENT @see net.minecraft.entity.Entity#isTouchingWater() 
-		COMMENT @see net.minecraft.entity.Entity#isBeingRainedOn() 
-		COMMENT @see net.minecraft.entity.Entity#isInsideBubbleColumn() 
+		COMMENT @see net.minecraft.entity.Entity#isTouchingWater()
+		COMMENT @see net.minecraft.entity.Entity#isBeingRainedOn()
+		COMMENT @see net.minecraft.entity.Entity#isInsideBubbleColumn()
 	METHOD method_5638 shouldSetPositionOnLoad ()Z
 	METHOD method_5639 setOnFireFor (I)V
 		ARG 1 seconds
@@ -316,6 +335,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5666 attemptSprintingParticles ()V
 	METHOD method_5667 getUuid ()Ljava/util/UUID;
 	METHOD method_5668 getRootVehicle ()Lnet/minecraft/class_1297;
+		COMMENT Gets the lowest entity this entity is riding.
 	METHOD method_5669 getAir ()I
 	METHOD method_5670 baseTick ()V
 	METHOD method_5671 getCommandSource ()Lnet/minecraft/class_2168;
@@ -340,13 +360,21 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5684 setInvulnerable (Z)V
 		ARG 1 invulnerable
 	METHOD method_5685 getPassengerList ()Ljava/util/List;
-	METHOD method_5687 allowsPermissionLevel (I)Z
+	METHOD method_5687 hasPermissionLevel (I)Z
 		ARG 1 permissionLevel
+	METHOD method_5688 interact (Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
+		COMMENT Called when a player interacts with this entity.
+		ARG 1 player
+			COMMENT the player
+		ARG 2 hand
+			COMMENT the hand the player used to interact with this entity
 	METHOD method_5688 interact (Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Z
 		ARG 1 player
 		ARG 2 hand
 	METHOD method_5691 getPermissionLevel ()I
 	METHOD method_5692 updateMovementInFluid (Lnet/minecraft/class_3494;)Z
+		ARG 1 tag
+	METHOD method_5692 updateMovementInFluid (Lnet/minecraft/class_3494;D)Z
 		ARG 1 tag
 	METHOD method_5693 initDataTracker ()V
 	METHOD method_5694 onPlayerCollision (Lnet/minecraft/class_1657;)V
@@ -387,6 +415,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5712 playStepSound (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
 		ARG 1 pos
 		ARG 2 state
+	METHOD method_5713 checkWaterState ()V
 	METHOD method_5713 checkWaterState ()Z
 	METHOD method_5714 burn (I)V
 		ARG 1 time
@@ -428,6 +457,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5730 setOnFireFromLava ()V
 	METHOD method_5731 changeDimension (Lnet/minecraft/class_2874;)Lnet/minecraft/class_1297;
 		ARG 1 newDimension
+	METHOD method_5731 changeDimension (Lnet/minecraft/class_3218;)Lnet/minecraft/class_1297;
+		ARG 1 destination
 	METHOD method_5732 isAttackable ()Z
 	METHOD method_5733 shouldRenderName ()Z
 	METHOD method_5734 playSwimSound (F)V
@@ -511,8 +542,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5775 dropStack (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1542;
 		ARG 1 stack
 	METHOD method_5776 hasWings ()Z
-	METHOD method_5777 isInFluid (Lnet/minecraft/class_3494;)Z
-		ARG 1 fluidTag
+	METHOD method_5777 isSubmergedIn (Lnet/minecraft/class_3494;)Z
 	METHOD method_5778 isBeingRainedOn ()Z
 	METHOD method_5779 isPartOf (Lnet/minecraft/class_1297;)Z
 		ARG 1 entity
@@ -538,7 +568,9 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5793 removePassenger (Lnet/minecraft/class_1297;)V
 		ARG 1 passenger
 	METHOD method_5794 isConnectedThroughVehicle (Lnet/minecraft/class_1297;)Z
+		COMMENT Checks if this entity and another entity share the same root vehicle.
 		ARG 1 entity
+			COMMENT the other entity
 	METHOD method_5795 getFlag (I)Z
 		ARG 1 index
 	METHOD method_5796 setSwimming (Z)V
@@ -629,6 +661,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5854 getVehicle ()Lnet/minecraft/class_1297;
 	METHOD method_5855 setAir (I)V
 		ARG 1 air
+	METHOD method_5856 removeClickEvents (Lnet/minecraft/class_2561;)Lnet/minecraft/class_2561;
+		ARG 0 textComponent
 	METHOD method_5856 removeClickEvents (Lnet/minecraft/class_2561;)V
 		ARG 0 textComponent
 	METHOD method_5857 setBoundingBox (Lnet/minecraft/class_238;)V
@@ -641,6 +675,8 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 		ARG 5 destZ
 	METHOD method_5860 canStartRiding (Lnet/minecraft/class_1297;)Z
 		ARG 1 entity
+	METHOD method_5861 getFluidHeight (Lnet/minecraft/class_3494;)D
+		ARG 1 fluid
 	METHOD method_5861 getWaterHeight ()D
 	METHOD method_5862 doesRenderOnFire ()Z
 	METHOD method_5863 collides ()Z
@@ -670,6 +706,7 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5875 setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD method_5876 updateWaterState ()V
+	METHOD method_5876 updateWaterState ()Z
 	METHOD method_5877 getItemsHand ()Ljava/lang/Iterable;
 	METHOD method_5878 copyFrom (Lnet/minecraft/class_1297;)V
 		ARG 1 original
@@ -679,6 +716,11 @@ CLASS net/minecraft/class_1297 net/minecraft/entity/Entity
 	METHOD method_5982 checkDespawn ()V
 	METHOD method_7325 isSpectator ()Z
 	CLASS class_4738 PositionUpdater
+		METHOD accept (Lnet/minecraft/class_1297;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
 		METHOD accept (Lnet/minecraft/class_1297;DDD)V
 			ARG 1 entity
 			ARG 2 x

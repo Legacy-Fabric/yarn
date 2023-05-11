@@ -1,9 +1,9 @@
 CLASS net/minecraft/class_897 net/minecraft/client/render/entity/EntityRenderer
-	FIELD field_4672 shadowDarkness F
-	FIELD field_4673 shadowSize F
+	FIELD field_4672 shadowOpacity F
+	FIELD field_4673 shadowRadius F
 	FIELD field_4674 renderOutlines Z
 	FIELD field_4675 SHADOW_TEX Lnet/minecraft/class_2960;
-	FIELD field_4676 renderManager Lnet/minecraft/class_898;
+	FIELD field_4676 dispatcher Lnet/minecraft/class_898;
 	METHOD <init> (Lnet/minecraft/class_898;)V
 		ARG 1 dispatcher
 	METHOD method_16894 hasSecondPass ()Z
@@ -15,6 +15,7 @@ CLASS net/minecraft/class_897 net/minecraft/client/render/entity/EntityRenderer
 	METHOD method_24087 getBlockLight (Lnet/minecraft/class_1297;F)I
 		ARG 1 entity
 		ARG 2 tickDelta
+	METHOD method_24087 getBlockLight (Lnet/minecraft/class_1297;Lnet/minecraft/class_2338;)I
 	METHOD method_24088 getLight (Lnet/minecraft/class_1297;F)I
 		ARG 1 entity
 		ARG 2 tickDelta
@@ -47,6 +48,11 @@ CLASS net/minecraft/class_897 net/minecraft/client/render/entity/EntityRenderer
 	METHOD method_3926 renderLabelIfPresent (Lnet/minecraft/class_1297;Ljava/lang/String;Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V
 		ARG 1 entity
 		ARG 3 matrices
+	METHOD method_3926 renderLabelIfPresent (Lnet/minecraft/class_1297;Lnet/minecraft/class_2561;Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V
+		ARG 1 entity
+		ARG 3 matrices
+		ARG 4 vertexConsumers
+		ARG 5 light
 	METHOD method_3927 setRenderOutlines (Z)V
 		ARG 1 renderOutlines
 	METHOD method_3928 projectShadow (Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;DDDLnet/minecraft/class_2338;FFDDD)V
@@ -66,10 +72,10 @@ CLASS net/minecraft/class_897 net/minecraft/client/render/entity/EntityRenderer
 		ARG 2 visibleRegion
 	METHOD method_3933 shouldRender (Lnet/minecraft/class_1297;Lnet/minecraft/class_4604;DDD)Z
 		ARG 1 entity
-		ARG 2 visibleRegion
-		ARG 3 cameraX
-		ARG 5 cameraY
-		ARG 7 cameraZ
+		ARG 2 frustum
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
 	METHOD method_3934 renderShadow (Lnet/minecraft/class_1297;DDDFF)V
 	METHOD method_3935 getWorld ()Lnet/minecraft/class_1941;
 	METHOD method_3936 render (Lnet/minecraft/class_1297;DDDFF)V

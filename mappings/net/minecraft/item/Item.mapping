@@ -1,12 +1,13 @@
 CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	FIELD field_18672 foodComponent Lnet/minecraft/class_4174;
+	FIELD field_21979 fireproof Z
 	FIELD field_8000 DAMAGE_PROPERTY_GETTER Lnet/minecraft/class_1800;
-	FIELD field_8001 ATTACK_SPEED_MODIFIER_UUID Ljava/util/UUID;
+	FIELD field_8001 ATTACK_SPEED_MODIFIER_ID Ljava/util/UUID;
 	FIELD field_8002 CUSTOM_DATA_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8003 BLOCK_ITEMS Ljava/util/Map;
 	FIELD field_8004 group Lnet/minecraft/class_1761;
 	FIELD field_8005 RANDOM Ljava/util/Random;
-	FIELD field_8006 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
+	FIELD field_8006 ATTACK_DAMAGE_MODIFIER_ID Ljava/util/UUID;
 	FIELD field_8007 COOLDOWN_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8008 recipeRemainder Lnet/minecraft/class_1792;
 	FIELD field_8009 rarity Lnet/minecraft/class_1814;
@@ -23,6 +24,9 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_19264 getFoodComponent ()Lnet/minecraft/class_4174;
 	METHOD method_21830 getEatSound ()Lnet/minecraft/class_3414;
 	METHOD method_21831 getDrinkSound ()Lnet/minecraft/class_3414;
+	METHOD method_24357 damage (Lnet/minecraft/class_1282;)Z
+		ARG 1 source
+	METHOD method_24358 isFireproof ()Z
 	METHOD method_7836 use (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1271;
 		ARG 1 world
 		ARG 2 user
@@ -44,10 +48,15 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
-	METHOD method_7844 getModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
+	METHOD method_7844 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
 		ARG 1 slot
 	METHOD method_7845 hasPropertyGetters ()Z
 	METHOD method_7846 isDamageable ()Z
+	METHOD method_7847 useOnEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
+		ARG 1 stack
+		ARG 2 user
+		ARG 3 entity
+		ARG 4 hand
 	METHOD method_7847 useOnEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Z
 		ARG 1 stack
 		ARG 2 user
@@ -94,7 +103,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 property
 	METHOD method_7864 getName (Lnet/minecraft/class_1799;)Lnet/minecraft/class_2561;
 		ARG 1 stack
-	METHOD method_7865 getMiningSpeed (Lnet/minecraft/class_1799;Lnet/minecraft/class_2680;)F
+	METHOD method_7865 getMiningSpeedMultiplier (Lnet/minecraft/class_1799;Lnet/minecraft/class_2680;)F
 		ARG 1 stack
 		ARG 2 state
 	METHOD method_7866 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
@@ -111,6 +120,10 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 world
 		ARG 2 entity
 	METHOD method_7872 rayTrace (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_3959$class_242;)Lnet/minecraft/class_239;
+		ARG 0 world
+		ARG 1 player
+		ARG 2 fluidHandling
+	METHOD method_7872 rayTrace (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_3959$class_242;)Lnet/minecraft/class_3965;
 		ARG 0 world
 		ARG 1 player
 		ARG 2 fluidHandling
@@ -152,7 +165,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 miner
-	METHOD method_7886 hasEnchantmentGlint (Lnet/minecraft/class_1799;)Z
+	METHOD method_7886 hasGlint (Lnet/minecraft/class_1799;)Z
 		ARG 1 stack
 	METHOD method_7887 shouldSyncTagToClient ()Z
 	METHOD method_7888 inventoryTick (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1297;IZ)V
@@ -163,6 +176,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 5 selected
 	CLASS class_1793 Settings
 		FIELD field_18673 foodComponent Lnet/minecraft/class_4174;
+		FIELD field_21980 fireproof Z
 		FIELD field_8016 rarity Lnet/minecraft/class_1814;
 		FIELD field_8017 group Lnet/minecraft/class_1761;
 		FIELD field_8018 recipeRemainder Lnet/minecraft/class_1792;
@@ -170,6 +184,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		FIELD field_8020 maxCount I
 		METHOD method_19265 food (Lnet/minecraft/class_4174;)Lnet/minecraft/class_1792$class_1793;
 			ARG 1 foodComponent
+		METHOD method_24359 fireproof ()Lnet/minecraft/class_1792$class_1793;
 		METHOD method_7889 maxCount (I)Lnet/minecraft/class_1792$class_1793;
 			ARG 1 maxCount
 		METHOD method_7892 group (Lnet/minecraft/class_1761;)Lnet/minecraft/class_1792$class_1793;

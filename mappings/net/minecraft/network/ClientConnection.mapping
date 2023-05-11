@@ -20,6 +20,8 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 	FIELD field_11657 CLIENT_IO_GROUP_EPOLL Lnet/minecraft/class_3528;
 	FIELD field_11658 packetsReceivedCounter I
 	FIELD field_11660 disconnectReason Lnet/minecraft/class_2561;
+	METHOD <init> (Lnet/minecraft/class_2598;)V
+		ARG 1 side
 	METHOD method_10743 send (Lnet/minecraft/class_2596;)V
 		ARG 1 packet
 	METHOD method_10744 getPacketListener ()Lnet/minecraft/class_2547;
@@ -59,6 +61,9 @@ CLASS net/minecraft/class_2535 net/minecraft/network/ClientConnection
 		ARG 0 address
 	METHOD method_10771 isEncrypted ()Z
 	METHOD method_10772 hasChannel ()Z
-	CLASS class_2536 PacketWrapper
+	CLASS class_2536 QueuedPacket
 		FIELD field_11661 packet Lnet/minecraft/class_2596;
-		FIELD field_11662 listener Lio/netty/util/concurrent/GenericFutureListener;
+		FIELD field_11662 callback Lio/netty/util/concurrent/GenericFutureListener;
+		METHOD <init> (Lnet/minecraft/class_2596;Lio/netty/util/concurrent/GenericFutureListener;)V
+			ARG 1 packet
+			ARG 2 callback

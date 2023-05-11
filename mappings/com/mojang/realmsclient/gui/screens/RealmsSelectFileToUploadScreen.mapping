@@ -3,6 +3,7 @@ CLASS net/minecraft/class_4416 com/mojang/realmsclient/gui/screens/RealmsSelectF
 	FIELD field_20050 lastScreen Lnet/minecraft/class_4410;
 	FIELD field_20051 worldId J
 	FIELD field_20052 slotId I
+	FIELD field_20053 uploadButton Lnet/minecraft/class_4185;
 	FIELD field_20053 uploadButton Lnet/minecraft/realms/RealmsButton;
 	FIELD field_20054 DATE_FORMAT Ljava/text/DateFormat;
 	FIELD field_20055 levelList Ljava/util/List;
@@ -11,9 +12,11 @@ CLASS net/minecraft/class_4416 com/mojang/realmsclient/gui/screens/RealmsSelectF
 	FIELD field_20058 worldLang Ljava/lang/String;
 	FIELD field_20059 conversionLang Ljava/lang/String;
 	FIELD field_20060 gameModesLang [Ljava/lang/String;
+	FIELD field_20061 titleLabel Lnet/minecraft/class_4903;
 	FIELD field_20061 titleLabel Lnet/minecraft/realms/RealmsLabel;
+	FIELD field_20062 subtitleLabel Lnet/minecraft/class_4903;
 	FIELD field_20062 subtitleLabel Lnet/minecraft/realms/RealmsLabel;
-	METHOD <init> (JILnet/minecraft/class_4410;)V
+	METHOD <init> (JILnet/minecraft/class_4410;Ljava/lang/Runnable;)V
 		ARG 1 worldId
 		ARG 3 slotId
 		ARG 4 lastScreen
@@ -29,8 +32,7 @@ CLASS net/minecraft/class_4416 com/mojang/realmsclient/gui/screens/RealmsSelectF
 		ARG 3 a
 	CLASS class_4417 WorldListEntry
 		FIELD field_20066 levelSummary Lnet/minecraft/realms/RealmsLevelSummary;
-		METHOD <init> (Lnet/minecraft/class_4416;Lnet/minecraft/realms/RealmsLevelSummary;)V
-			ARG 2 levelSummary
+		METHOD method_21411 renderItem (Lnet/minecraft/class_4587;Lnet/minecraft/class_34;III)V
 		METHOD method_21411 renderItem (Lnet/minecraft/realms/RealmsLevelSummary;IIIILnet/minecraft/realms/Tezzelator;II)V
 			ARG 1 levelSummary
 			ARG 2 i
@@ -85,6 +87,7 @@ CLASS net/minecraft/class_4416 com/mojang/realmsclient/gui/screens/RealmsSelectF
 			ARG 8 hovered
 			ARG 9 a
 	CLASS class_4418 WorldSelectionList
+		METHOD method_21412 addEntry (Lnet/minecraft/class_34;)V
 		METHOD method_21412 addEntry (Lnet/minecraft/realms/RealmsLevelSummary;)V
 			ARG 1 levelSummary
 		METHOD selectItem (I)V

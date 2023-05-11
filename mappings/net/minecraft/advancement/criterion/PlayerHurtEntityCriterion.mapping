@@ -3,7 +3,7 @@ CLASS net/minecraft/class_2115 net/minecraft/advancement/criterion/PlayerHurtEnt
 	METHOD method_9097 trigger (Lnet/minecraft/class_3222;Lnet/minecraft/class_1297;Lnet/minecraft/class_1282;FFZ)V
 		ARG 1 player
 		ARG 2 entity
-		ARG 3 source
+		ARG 3 damage
 		ARG 4 dealt
 		ARG 5 taken
 		ARG 6 blocked
@@ -23,13 +23,23 @@ CLASS net/minecraft/class_2115 net/minecraft/advancement/criterion/PlayerHurtEnt
 		METHOD method_9102 removeCondition (Lnet/minecraft/class_179$class_180;)V
 	CLASS class_2117 Conditions
 		FIELD field_9736 damage Lnet/minecraft/class_2019;
+		FIELD field_9737 entity Lnet/minecraft/class_2048$class_5258;
 		FIELD field_9737 entity Lnet/minecraft/class_2048;
-		METHOD <init> (Lnet/minecraft/class_2019;Lnet/minecraft/class_2048;)V
-			ARG 1 damage
-			ARG 2 entity
+		METHOD <init> (Lnet/minecraft/class_2048$class_5258;Lnet/minecraft/class_2019;Lnet/minecraft/class_2048$class_5258;)V
+			ARG 1 player
+			ARG 2 damage
+			ARG 3 entity
 		METHOD method_9103 create (Lnet/minecraft/class_2019$class_2020;)Lnet/minecraft/class_2115$class_2117;
+			ARG 0 hurtEntityPredicateBuilder
 		METHOD method_9104 matches (Lnet/minecraft/class_3222;Lnet/minecraft/class_1297;Lnet/minecraft/class_1282;FFZ)Z
 			ARG 1 player
+			ARG 3 source
+			ARG 4 dealt
+			ARG 5 taken
+			ARG 6 blocked
+		METHOD method_9104 matches (Lnet/minecraft/class_3222;Lnet/minecraft/class_47;Lnet/minecraft/class_1282;FFZ)Z
+			ARG 1 player
+			ARG 2 entityContext
 			ARG 3 source
 			ARG 4 dealt
 			ARG 5 taken

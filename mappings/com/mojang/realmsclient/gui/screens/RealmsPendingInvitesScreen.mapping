@@ -1,15 +1,17 @@
 CLASS net/minecraft/class_4401 com/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen
 	FIELD field_19935 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_19936 lastScreen Lnet/minecraft/class_437;
 	FIELD field_19936 lastScreen Lnet/minecraft/realms/RealmsScreen;
 	FIELD field_19937 toolTip Ljava/lang/String;
 	FIELD field_19938 loaded Z
 	FIELD field_19939 pendingInvitationSelectionList Lnet/minecraft/class_4401$class_4402;
+	FIELD field_19940 titleLabel Lnet/minecraft/class_4903;
 	FIELD field_19940 titleLabel Lnet/minecraft/realms/RealmsLabel;
 	FIELD field_19941 selectedInvite I
+	FIELD field_19942 acceptButton Lnet/minecraft/class_4185;
 	FIELD field_19942 acceptButton Lnet/minecraft/realms/RealmsButton;
+	FIELD field_19943 rejectButton Lnet/minecraft/class_4185;
 	FIELD field_19943 rejectButton Lnet/minecraft/realms/RealmsButton;
-	METHOD <init> (Lnet/minecraft/realms/RealmsScreen;)V
-		ARG 1 lastScreen
 	METHOD keyPressed (III)Z
 		ARG 1 eventKey
 		ARG 2 scancode
@@ -22,6 +24,7 @@ CLASS net/minecraft/class_4401 com/mojang/realmsclient/gui/screens/RealmsPending
 		ARG 1 msg
 		ARG 2 x
 		ARG 3 y
+	METHOD method_21306 renderMousehoverTooltip (Lnet/minecraft/class_4587;Ljava/lang/String;II)V
 	METHOD method_21307 updateButtonStates ()V
 	METHOD method_21308 reject (I)V
 		ARG 1 slot
@@ -48,8 +51,9 @@ CLASS net/minecraft/class_4401 com/mojang/realmsclient/gui/screens/RealmsPending
 			ARG 1 item
 	CLASS class_4403 PendingInvitationSelectionListEntry
 		FIELD field_19953 mPendingInvite Lcom/mojang/realmsclient/dto/PendingInvite;
+		FIELD field_19953 mPendingInvite Lnet/minecraft/class_4871;
 		FIELD field_19955 buttons Ljava/util/List;
-		METHOD <init> (Lnet/minecraft/class_4401;Lcom/mojang/realmsclient/dto/PendingInvite;)V
+		METHOD <init> (Lnet/minecraft/class_4401;Lnet/minecraft/class_4871;)V
 			ARG 2 pendingInvite
 		METHOD method_21324 renderPendingInvitationItem (Lcom/mojang/realmsclient/dto/PendingInvite;IIII)V
 			ARG 1 invite
@@ -57,6 +61,7 @@ CLASS net/minecraft/class_4401 com/mojang/realmsclient/gui/screens/RealmsPending
 			ARG 3 y
 			ARG 4 mouseX
 			ARG 5 mouseY
+		METHOD method_21324 renderPendingInvitationItem (Lnet/minecraft/class_4587;Lnet/minecraft/class_4871;IIII)V
 		METHOD render (IIIIIIIZF)V
 			ARG 1 index
 			ARG 2 rowTop

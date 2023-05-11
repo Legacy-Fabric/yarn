@@ -34,6 +34,7 @@ CLASS net/minecraft/class_1921 net/minecraft/client/render/RenderLayer
 		ARG 0 texture
 	METHOD method_23031 getVertexFormat ()Lnet/minecraft/class_293;
 	METHOD method_23033 getDrawMode ()I
+	METHOD method_23037 hasCrumbling ()Z
 	METHOD method_23287 getOutline (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1921;
 		ARG 0 texture
 	METHOD method_23289 getAffectedOutline ()Ljava/util/Optional;
@@ -89,7 +90,7 @@ CLASS net/minecraft/class_1921 net/minecraft/client/render/RenderLayer
 		ARG 5 translucent
 		ARG 6 phases
 	METHOD method_24051 createTranslucentPhaseData ()Lnet/minecraft/class_1921$class_4688;
-	METHOD method_24293 getCutoutNoCull (Lnet/minecraft/class_2960;Z)Lnet/minecraft/class_1921;
+	METHOD method_24293 getEntityCutoutNoCull (Lnet/minecraft/class_2960;Z)Lnet/minecraft/class_1921;
 		ARG 0 texture
 		ARG 1 affectsOutline
 	METHOD method_24294 getEntityTranslucent (Lnet/minecraft/class_2960;Z)Lnet/minecraft/class_1921;
@@ -97,6 +98,28 @@ CLASS net/minecraft/class_1921 net/minecraft/client/render/RenderLayer
 		ARG 1 affectsOutline
 	METHOD method_24295 isOutline ()Z
 	METHOD method_24296 asOptional ()Ljava/util/Optional;
+	METHOD method_24468 getOutline (Lnet/minecraft/class_2960;Lnet/minecraft/class_4668$class_4671;)Lnet/minecraft/class_1921;
+		ARG 0 texture
+		ARG 1 cull
+	METHOD method_24469 getEntityShadow (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1921;
+		ARG 0 texture
+	METHOD method_25448 getArmorCutoutNoCull (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1921;
+		ARG 0 texture
+	METHOD method_27948 getArmorGlint ()Lnet/minecraft/class_1921;
+	METHOD method_27949 getArmorEntityGlint ()Lnet/minecraft/class_1921;
+	METHOD method_28115 getEntityCutoutNoCullZOffset (Lnet/minecraft/class_2960;Z)Lnet/minecraft/class_1921;
+		ARG 0 texture
+		ARG 1 affectsOutline
+	METHOD method_28116 getEntityCutoutNoCullZOffset (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1921;
+		ARG 0 texture
+	METHOD method_29379 getItemEntityTranslucentCull (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1921;
+		ARG 0 texture
+	METHOD method_29380 getTranslucentMovingBlock ()Lnet/minecraft/class_1921;
+	METHOD method_29381 getItemPhaseData ()Lnet/minecraft/class_1921$class_4688;
+	METHOD method_29706 getGlintDirect ()Lnet/minecraft/class_1921;
+	METHOD method_29707 getEntityGlintDirect ()Lnet/minecraft/class_1921;
+	METHOD method_29996 getTripwirePhaseData ()Lnet/minecraft/class_1921$class_4688;
+	METHOD method_29997 getTripwire ()Lnet/minecraft/class_1921;
 	CLASS class_4687 MultiPhase
 		FIELD field_21403 phases Lnet/minecraft/class_1921$class_4688;
 		FIELD field_21404 hash I
@@ -208,3 +231,6 @@ CLASS net/minecraft/class_1921 net/minecraft/client/render/RenderLayer
 			METHOD method_24297 build (Lnet/minecraft/class_1921$class_4750;)Lnet/minecraft/class_1921$class_4688;
 				ARG 1 outlineMode
 	CLASS class_4750 OutlineMode
+		FIELD field_22243 name Ljava/lang/String;
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
