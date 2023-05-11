@@ -216,35 +216,39 @@ String getIntermediaryUrl(String mc_version, boolean v2) {
 boolean isServerBundled(String mc_version) {
 	boolean bool = false;
 
-	if (mc_version.contains(".")) {
-		String major = mc_version.split("\\.")[1].toLowerCase()
+	try {
+		if (mc_version.contains(".")) {
+			String major = mc_version.split("\\.")[1].toLowerCase()
 
-		if (major.contains("-")) {
-			major = major.split("-")[0]
+			if (major.contains("-")) {
+				major = major.split("-")[0]
+			}
+
+			if (major.contains("_")) {
+				major = major.split("_")[0]
+			}
+
+			if (major.contains("pre")) {
+				major = major.split("pre")[0]
+			}
+
+			if (major.contains(" ")) {
+				major = major.split(" ")[0]
+			}
+
+			int majore = major.toInteger()
+
+			bool = majore > 17 && !(majore == 18 && mc_version.contains("experimental"))
+		} else if (mc_version.contains("w")) {
+			def parts = mc_version.split("w")
+			def year = parts[0].toInteger()
+			def weeks = parts[1].substring(0, 2).toInteger()
+			def iteration = parts[1].substring(2)
+
+			bool = year > 21 || (year == 21 && weeks > 38)
 		}
-
-		if (major.contains("_")) {
-			major = major.split("_")[0]
-		}
-
-		if (major.contains("pre")) {
-			major = major.split("pre")[0]
-		}
-
-		if (major.contains(" ")) {
-			major = major.split(" ")[0]
-		}
-
-		int majore = major.toInteger()
-
-		bool = majore > 17 && !(majore == 18 && mc_version.contains("experimental"))
-	} else if (mc_version.contains("w")) {
-		def parts = mc_version.split("w")
-		def year = parts[0].toInteger()
-		def weeks = parts[1].substring(0, 2).toInteger()
-		def iteration = parts[1].substring(2)
-
-		bool = year > 21 || (year == 21 && weeks > 38)
+	} catch (Exception e) {
+		e.printStackTrace()
 	}
 
 	return bool

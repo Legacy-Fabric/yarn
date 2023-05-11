@@ -18,22 +18,26 @@ def getIntermediaryBranch():
 def getIntermediaryUrl(mc_version: str):
     legacy = True
 
-    if "." in mc_version:
-        major = mc_version.split(".")[1].lower().split("-")[0].split("pre")[0].split(" ")[0]
+    try:
+        if "." in mc_version:
+            major = mc_version.split(".")[1].lower().split("-")[0].split("pre")[0].split(" ")[0]
 
-        if int(major) > 13:
-            legacy = False
-    elif "w" in mc_version:
-        year, weeka = mc_version.split("w")
-        week = weeka[:2]
-        iteration = weeka[2:]
+            if int(major) > 13:
+                legacy = False
+        elif "w" in mc_version:
+            year, weeka = mc_version.split("w")
+            week = weeka[:2]
+            iteration = weeka[2:]
 
-        if int(year) > 18:
-            legacy = False
-        elif int(year) == 18 and int(week) > 43:
-            legacy = False
-        elif int(year) == 18 and int(week) == 43 and iteration != "a":
-            legacy = False
+            if int(year) > 18:
+                legacy = False
+            elif int(year) == 18 and int(week) > 43:
+                legacy = False
+            elif int(year) == 18 and int(week) == 43 and iteration != "a":
+                legacy = False
+    except Exception:
+        if mc_version == "1.RV-Pre1":
+            legacy = True
 
     if legacy:
         return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/" + getIntermediaryBranch() + "/mappings/" + mc_version + ".tiny"
