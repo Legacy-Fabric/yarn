@@ -38,6 +38,8 @@ CLASS net/minecraft/class_1928 net/minecraft/world/GameRules
 	FIELD field_30963 DEFAULT_RANDOM_TICK_SPEED I
 	FIELD field_9196 rules Ljava/util/Map;
 	FIELD field_9197 RULE_TYPES Ljava/util/Map;
+	METHOD <init> (Lcom/mojang/serialization/DynamicLike;)V
+		ARG 1 dynamic
 	METHOD <init> (Ljava/util/Map;)V
 		ARG 1 rules
 	METHOD method_20744 accept (Lnet/minecraft/class_1928$class_4311;)V
@@ -79,12 +81,15 @@ CLASS net/minecraft/class_1928 net/minecraft/world/GameRules
 		ARG 2 server
 	METHOD method_27323 (Lnet/minecraft/class_1928;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_1928$class_4313;)V
 		ARG 3 key
+	METHOD method_27324 (Ljava/util/Map$Entry;)Lnet/minecraft/class_1928$class_4315;
+		ARG 0 entry
 	METHOD method_27325 copy ()Lnet/minecraft/class_1928;
 	METHOD method_8355 getBoolean (Lnet/minecraft/class_1928$class_4313;)Z
 		ARG 1 rule
 	METHOD method_8356 getInt (Lnet/minecraft/class_1928$class_4313;)I
 		ARG 1 rule
 	METHOD method_8357 load (Lcom/mojang/serialization/DynamicLike;)V
+		ARG 1 dynamic
 	METHOD method_8357 load (Lnet/minecraft/class_2487;)V
 		ARG 1 nbt
 	METHOD method_8358 toNbt ()Lnet/minecraft/class_2487;
@@ -181,6 +186,8 @@ CLASS net/minecraft/class_1928 net/minecraft/world/GameRules
 			ARG 1 o
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 o
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
 		METHOD method_20771 getName ()Ljava/lang/String;
 		METHOD method_27334 getTranslationKey ()Ljava/lang/String;
 		METHOD method_27335 getCategory ()Lnet/minecraft/class_1928$class_5198;
@@ -227,6 +234,10 @@ CLASS net/minecraft/class_1928 net/minecraft/world/GameRules
 			ARG 3 category
 		METHOD method_27328 getCategory ()Ljava/lang/String;
 	CLASS class_5199 Acceptor
+		METHOD call (Lnet/minecraft/class_1928$class_4311;Lnet/minecraft/class_1928$class_4313;Lnet/minecraft/class_1928$class_4314;)V
+			ARG 1 consumer
+			ARG 2 key
+			ARG 3 type
 		METHOD call (Lnet/minecraft/class_1928$class_4311;Lnet/minecraft/class_1928$class_4313;Lnet/minecraft/class_1928$class_4314;)V
 			ARG 1 consumer
 			ARG 2 key

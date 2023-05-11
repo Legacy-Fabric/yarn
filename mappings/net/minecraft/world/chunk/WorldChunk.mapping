@@ -31,6 +31,9 @@ CLASS net/minecraft/class_2818 net/minecraft/world/chunk/WorldChunk
 	FIELD field_35471 blockTickScheduler Lnet/minecraft/class_6755;
 	FIELD field_35472 fluidTickScheduler Lnet/minecraft/class_6755;
 	FIELD field_36218 shouldRenderOnUpdate Z
+	METHOD <init> (Lnet/minecraft/class_1937;Lnet/minecraft/class_1923;)V
+		ARG 1 world
+		ARG 2 pos
 	METHOD <init> (Lnet/minecraft/class_1937;Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;Lnet/minecraft/class_6755;Lnet/minecraft/class_6755;J[Lnet/minecraft/class_2826;Lnet/minecraft/class_2818$class_6829;Lnet/minecraft/class_6749;)V
 		ARG 1 world
 		ARG 2 pos
@@ -83,6 +86,7 @@ CLASS net/minecraft/class_2818 net/minecraft/world/chunk/WorldChunk
 	METHOD method_12214 getBlockEntities ()Ljava/util/Map;
 	METHOD method_12215 getEntitySectionArray ()[Lnet/minecraft/class_3509;
 	METHOD method_12216 addBlockEntity (Lnet/minecraft/class_2586;)V
+		ARG 1 blockEntity
 	METHOD method_12219 remove (Lnet/minecraft/class_1297;I)V
 		ARG 1 entity
 		ARG 2 section
@@ -153,6 +157,7 @@ CLASS net/minecraft/class_2818 net/minecraft/world/chunk/WorldChunk
 		ARG 2 blockEntityTicker
 	METHOD method_31719 (Lnet/minecraft/class_2586;Lnet/minecraft/class_5558;Lnet/minecraft/class_2338;Lnet/minecraft/class_2818$class_5564;)Lnet/minecraft/class_2818$class_5564;
 		ARG 3 pos
+		ARG 4 ticker
 	METHOD method_31722 removeBlockEntity (Lnet/minecraft/class_2586;)V
 		ARG 1 blockEntity
 	METHOD method_31723 updateTicker (Lnet/minecraft/class_2586;)V
@@ -169,9 +174,13 @@ CLASS net/minecraft/class_2818 net/minecraft/world/chunk/WorldChunk
 		ARG 1 blockEntity
 	METHOD method_32918 removeGameEventListener (Lnet/minecraft/class_2586;Lnet/minecraft/class_3218;)V
 		ARG 1 blockEntity
+		ARG 2 world
 	METHOD method_32919 updateGameEventListener (Lnet/minecraft/class_2586;)V
 		ARG 1 blockEntity
 	METHOD method_32919 updateGameEventListener (Lnet/minecraft/class_2586;Lnet/minecraft/class_3218;)V
+		ARG 1 blockEntity
+		ARG 2 world
+	METHOD method_32920 (Lnet/minecraft/class_2586;)V
 		ARG 1 blockEntity
 	METHOD method_38289 clear ()V
 	METHOD method_38290 (Lnet/minecraft/class_2818$class_5564;)V
@@ -206,6 +215,8 @@ CLASS net/minecraft/class_2818 net/minecraft/world/chunk/WorldChunk
 		METHOD method_31727 setWrapped (Lnet/minecraft/class_5562;)V
 			ARG 1 wrapped
 	CLASS class_6829 EntityLoader
+		METHOD run (Lnet/minecraft/class_2818;)V
+			ARG 1 chunk
 		METHOD run (Lnet/minecraft/class_2818;)V
 			ARG 1 chunk
 		METHOD run (Lnet/minecraft/class_2818;)V

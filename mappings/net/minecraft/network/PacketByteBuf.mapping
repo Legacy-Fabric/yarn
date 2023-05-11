@@ -146,6 +146,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 value
 	METHOD bytesBefore (B)I
 		ARG 1 value
+	METHOD bytesBefore (B)I
+		ARG 1 value
+	METHOD bytesBefore (IB)I
+		ARG 1 length
+		ARG 2 value
 	METHOD bytesBefore (IB)I
 		ARG 1 length
 		ARG 2 value
@@ -174,6 +179,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 value
+	METHOD bytesBefore (IIB)I
+		ARG 1 index
+		ARG 2 length
+		ARG 3 value
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 capacity
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
@@ -182,6 +191,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 capacity
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 capacity
+	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 capacity
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 buf
 	METHOD compareTo (Ljava/lang/Object;)I
 		ARG 1 buf
 	METHOD compareTo (Ljava/lang/Object;)I
@@ -202,6 +215,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD copy (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
+	METHOD copy (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 length
+	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 minBytes
 	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 minBytes
 	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
@@ -222,6 +240,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD ensureWritable (IZ)I
 		ARG 1 minBytes
 		ARG 2 force
+	METHOD ensureWritable (IZ)I
+		ARG 1 minBytes
+		ARG 2 force
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 o
 	METHOD equals (Ljava/lang/Object;)Z
@@ -250,6 +273,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 byteProcessor
+	METHOD forEachByte (IILio/netty/util/ByteProcessor;)I
+		ARG 1 index
+		ARG 2 length
+		ARG 3 byteProcessor
+	METHOD forEachByte (Lio/netty/util/ByteProcessor;)I
+		ARG 1 byteProcessor
 	METHOD forEachByte (Lio/netty/util/ByteProcessor;)I
 		ARG 1 byteProcessor
 	METHOD forEachByte (Lio/netty/util/ByteProcessor;)I
@@ -274,6 +303,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 byteProcessor
+	METHOD forEachByteDesc (IILio/netty/util/ByteProcessor;)I
+		ARG 1 index
+		ARG 2 length
+		ARG 3 byteProcessor
+	METHOD forEachByteDesc (Lio/netty/util/ByteProcessor;)I
+		ARG 1 byteProcessor
 	METHOD forEachByteDesc (Lio/netty/util/ByteProcessor;)I
 		ARG 1 byteProcessor
 	METHOD forEachByteDesc (Lio/netty/util/ByteProcessor;)I
@@ -289,6 +324,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD getBoolean (I)Z
 		ARG 1 index
 	METHOD getBoolean (I)Z
+		ARG 1 index
+	METHOD getBoolean (I)Z
+		ARG 1 index
+	METHOD getByte (I)B
 		ARG 1 index
 	METHOD getByte (I)B
 		ARG 1 index
@@ -310,6 +349,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+		ARG 3 length
 	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
@@ -346,6 +392,15 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 2 buf
 		ARG 3 outputIndex
 		ARG 4 length
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+		ARG 3 outputIndex
+		ARG 4 length
+	METHOD getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 stream
+		ARG 3 length
 	METHOD getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 stream
@@ -374,6 +429,14 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
+	METHOD getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+	METHOD getBytes (ILjava/nio/channels/FileChannel;JI)I
+		ARG 1 index
+		ARG 2 channel
+		ARG 3 pos
+		ARG 5 length
 	METHOD getBytes (ILjava/nio/channels/FileChannel;JI)I
 		ARG 1 index
 		ARG 2 channel
@@ -410,6 +473,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 channel
 		ARG 3 length
+	METHOD getBytes (ILjava/nio/channels/GatheringByteChannel;I)I
+		ARG 1 index
+		ARG 2 channel
+		ARG 3 length
+	METHOD getBytes (I[B)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 bytes
 	METHOD getBytes (I[B)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 bytes
@@ -442,6 +512,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 2 bytes
 		ARG 3 outputIndex
 		ARG 4 length
+	METHOD getBytes (I[BII)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 bytes
+		ARG 3 outputIndex
+		ARG 4 length
+	METHOD getChar (I)C
+		ARG 1 index
 	METHOD getChar (I)C
 		ARG 1 index
 	METHOD getChar (I)C
@@ -466,6 +543,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 charset
+	METHOD getCharSequence (IILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
+		ARG 1 index
+		ARG 2 length
+		ARG 3 charset
 	METHOD getDouble (I)D
 		ARG 1 index
 	METHOD getDouble (I)D
@@ -473,6 +554,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD getDouble (I)D
 		ARG 1 index
 	METHOD getDouble (I)D
+		ARG 1 index
+	METHOD getDouble (I)D
+		ARG 1 index
+	METHOD getFloat (I)F
 		ARG 1 index
 	METHOD getFloat (I)F
 		ARG 1 index
@@ -490,13 +575,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD getInt (I)I
 		ARG 1 index
-	METHOD getIntLE (I)I
+	METHOD getInt (I)I
 		ARG 1 index
 	METHOD getIntLE (I)I
 		ARG 1 index
 	METHOD getIntLE (I)I
 		ARG 1 index
 	METHOD getIntLE (I)I
+		ARG 1 index
+	METHOD getIntLE (I)I
+		ARG 1 index
+	METHOD getIntLE (I)I
+		ARG 1 index
+	METHOD getLong (I)J
 		ARG 1 index
 	METHOD getLong (I)J
 		ARG 1 index
@@ -514,13 +605,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD getLongLE (I)J
 		ARG 1 index
-	METHOD getMedium (I)I
+	METHOD getLongLE (I)J
 		ARG 1 index
 	METHOD getMedium (I)I
 		ARG 1 index
 	METHOD getMedium (I)I
 		ARG 1 index
 	METHOD getMedium (I)I
+		ARG 1 index
+	METHOD getMedium (I)I
+		ARG 1 index
+	METHOD getMedium (I)I
+		ARG 1 index
+	METHOD getMediumLE (I)I
 		ARG 1 index
 	METHOD getMediumLE (I)I
 		ARG 1 index
@@ -538,13 +635,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD getShort (I)S
 		ARG 1 index
-	METHOD getShortLE (I)S
+	METHOD getShort (I)S
 		ARG 1 index
 	METHOD getShortLE (I)S
 		ARG 1 index
 	METHOD getShortLE (I)S
 		ARG 1 index
 	METHOD getShortLE (I)S
+		ARG 1 index
+	METHOD getShortLE (I)S
+		ARG 1 index
+	METHOD getShortLE (I)S
+		ARG 1 index
+	METHOD getUnsignedByte (I)S
 		ARG 1 index
 	METHOD getUnsignedByte (I)S
 		ARG 1 index
@@ -562,13 +665,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD getUnsignedInt (I)J
 		ARG 1 index
-	METHOD getUnsignedIntLE (I)J
+	METHOD getUnsignedInt (I)J
 		ARG 1 index
 	METHOD getUnsignedIntLE (I)J
 		ARG 1 index
 	METHOD getUnsignedIntLE (I)J
 		ARG 1 index
 	METHOD getUnsignedIntLE (I)J
+		ARG 1 index
+	METHOD getUnsignedIntLE (I)J
+		ARG 1 index
+	METHOD getUnsignedIntLE (I)J
+		ARG 1 index
+	METHOD getUnsignedMedium (I)I
 		ARG 1 index
 	METHOD getUnsignedMedium (I)I
 		ARG 1 index
@@ -586,13 +695,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD getUnsignedMediumLE (I)I
 		ARG 1 index
-	METHOD getUnsignedShort (I)I
+	METHOD getUnsignedMediumLE (I)I
 		ARG 1 index
 	METHOD getUnsignedShort (I)I
 		ARG 1 index
 	METHOD getUnsignedShort (I)I
 		ARG 1 index
 	METHOD getUnsignedShort (I)I
+		ARG 1 index
+	METHOD getUnsignedShort (I)I
+		ARG 1 index
+	METHOD getUnsignedShort (I)I
+		ARG 1 index
+	METHOD getUnsignedShortLE (I)I
 		ARG 1 index
 	METHOD getUnsignedShortLE (I)I
 		ARG 1 index
@@ -618,6 +733,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 from
 		ARG 2 to
 		ARG 3 value
+	METHOD indexOf (IIB)I
+		ARG 1 from
+		ARG 2 to
+		ARG 3 value
+	METHOD internalNioBuffer (II)Ljava/nio/ByteBuffer;
+		ARG 1 index
+		ARG 2 length
 	METHOD internalNioBuffer (II)Ljava/nio/ByteBuffer;
 		ARG 1 index
 		ARG 2 length
@@ -637,6 +759,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD isReadable (I)Z
 		ARG 1 size
 	METHOD isReadable (I)Z
+		ARG 1 size
+	METHOD isReadable (I)Z
+		ARG 1 size
+	METHOD isWritable (I)Z
 		ARG 1 size
 	METHOD isWritable (I)Z
 		ARG 1 size
@@ -915,7 +1041,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT string form. The written identifier's byte array can have a max length of
 		COMMENT {@value #DEFAULT_MAX_STRING_LENGTH}.
 		COMMENT
-		COMMENT @return the read identifier
+		COMMENT @return this buf, for chaining
 		COMMENT @throws io.netty.handler.codec.EncoderException if the {@code id}'s
 		COMMENT byte array is longer than {@value #DEFAULT_MAX_STRING_LENGTH}
 		COMMENT @see #readIdentifier()
@@ -1491,6 +1617,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
 		ARG 1 index
 		ARG 2 length
+	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
+		ARG 1 index
+		ARG 2 length
+	METHOD nioBuffers (II)[Ljava/nio/ByteBuffer;
+		ARG 1 index
+		ARG 2 length
 	METHOD nioBuffers (II)[Ljava/nio/ByteBuffer;
 		ARG 1 index
 		ARG 2 length
@@ -1511,6 +1643,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 byteOrder
 	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
 		ARG 1 byteOrder
+	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
+		ARG 1 byteOrder
+	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 length
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
@@ -1527,6 +1663,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+		ARG 2 length
 	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
 		ARG 2 length
@@ -1555,6 +1696,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 		ARG 2 outputIndex
 		ARG 3 length
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+		ARG 2 outputIndex
+		ARG 3 length
+	METHOD readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 stream
+		ARG 2 length
 	METHOD readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 stream
 		ARG 2 length
@@ -1575,6 +1723,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 	METHOD readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
+	METHOD readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+	METHOD readBytes (Ljava/nio/channels/FileChannel;JI)I
+		ARG 1 channel
+		ARG 2 pos
+		ARG 4 length
 	METHOD readBytes (Ljava/nio/channels/FileChannel;JI)I
 		ARG 1 channel
 		ARG 2 pos
@@ -1603,6 +1757,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD readBytes (Ljava/nio/channels/GatheringByteChannel;I)I
 		ARG 1 channel
 		ARG 2 length
+	METHOD readBytes (Ljava/nio/channels/GatheringByteChannel;I)I
+		ARG 1 channel
+		ARG 2 length
 	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
 		ARG 1 bytes
 	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
@@ -1611,6 +1768,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 bytes
 	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
 		ARG 1 bytes
+	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
+		ARG 1 bytes
+	METHOD readBytes ([BII)Lio/netty/buffer/ByteBuf;
+		ARG 1 bytes
+		ARG 2 outputIndex
+		ARG 3 length
 	METHOD readBytes ([BII)Lio/netty/buffer/ByteBuf;
 		ARG 1 bytes
 		ARG 2 outputIndex
@@ -1639,6 +1802,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD readCharSequence (ILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
 		ARG 1 length
 		ARG 2 charset
+	METHOD readCharSequence (ILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
+		ARG 1 length
+		ARG 2 charset
 	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
@@ -1646,6 +1812,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 length
+	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 length
+	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
@@ -1663,6 +1833,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
+	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+	METHOD release (I)Z
+		ARG 1 decrement
 	METHOD release (I)Z
 		ARG 1 decrement
 	METHOD release (I)Z
@@ -1679,6 +1853,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 increment
 	METHOD retain (I)Lio/netty/util/ReferenceCounted;
 		ARG 1 increment
+	METHOD retain (I)Lio/netty/util/ReferenceCounted;
+		ARG 1 increment
+	METHOD retainedSlice (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 length
 	METHOD retainedSlice (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
@@ -1701,6 +1880,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 value
 	METHOD setBoolean (IZ)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setBoolean (IZ)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setByte (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setByte (II)Lio/netty/buffer/ByteBuf;
@@ -1727,6 +1912,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+		ARG 3 length
 	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
@@ -1763,6 +1955,15 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 2 buf
 		ARG 3 sourceIndex
 		ARG 4 length
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+		ARG 3 sourceIndex
+		ARG 4 length
+	METHOD setBytes (ILjava/io/InputStream;I)I
+		ARG 1 index
+		ARG 2 stream
+		ARG 3 length
 	METHOD setBytes (ILjava/io/InputStream;I)I
 		ARG 1 index
 		ARG 2 stream
@@ -1791,6 +1992,14 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
+	METHOD setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 buf
+	METHOD setBytes (ILjava/nio/channels/FileChannel;JI)I
+		ARG 1 index
+		ARG 2 channel
+		ARG 3 pos
+		ARG 5 length
 	METHOD setBytes (ILjava/nio/channels/FileChannel;JI)I
 		ARG 1 index
 		ARG 2 channel
@@ -1827,6 +2036,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 channel
 		ARG 3 length
+	METHOD setBytes (ILjava/nio/channels/ScatteringByteChannel;I)I
+		ARG 1 index
+		ARG 2 channel
+		ARG 3 length
+	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 bytes
 	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 bytes
@@ -1859,6 +2075,14 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 2 bytes
 		ARG 3 sourceIndex
 		ARG 4 length
+	METHOD setBytes (I[BII)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 bytes
+		ARG 3 sourceIndex
+		ARG 4 length
+	METHOD setChar (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
 	METHOD setChar (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
@@ -1887,6 +2111,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 sequence
 		ARG 3 charset
+	METHOD setCharSequence (ILjava/lang/CharSequence;Ljava/nio/charset/Charset;)I
+		ARG 1 index
+		ARG 2 sequence
+		ARG 3 charset
 	METHOD setDouble (ID)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
@@ -1897,6 +2125,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 value
 	METHOD setDouble (ID)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setDouble (ID)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setFloat (IF)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setFloat (IF)Lio/netty/buffer/ByteBuf;
@@ -1923,6 +2157,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 readerIndex
 		ARG 2 writerIndex
+	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 readerIndex
+		ARG 2 writerIndex
 	METHOD setInt (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
@@ -1933,6 +2170,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 value
 	METHOD setInt (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setInt (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setIntLE (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setIntLE (II)Lio/netty/buffer/ByteBuf;
@@ -1959,7 +2202,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setLong (IJ)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
+	METHOD setLong (IJ)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
@@ -1969,6 +2212,15 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 value
 	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setMedium (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setMedium (II)Lio/netty/buffer/ByteBuf;
@@ -1995,7 +2247,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setMediumLE (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
+	METHOD setMediumLE (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
@@ -2005,6 +2257,15 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 value
 	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 value
+	METHOD setShortLE (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setShortLE (II)Lio/netty/buffer/ByteBuf;
@@ -2031,6 +2292,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD setZero (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
+	METHOD setZero (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 length
 	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
@@ -2039,6 +2303,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 length
 	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
+	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 length
+	METHOD slice (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 length
 	METHOD slice (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
@@ -2067,6 +2336,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 charset
+	METHOD toString (IILjava/nio/charset/Charset;)Ljava/lang/String;
+		ARG 1 index
+		ARG 2 length
+		ARG 3 charset
 	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
 		ARG 1 charset
 	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
@@ -2075,6 +2348,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 charset
 	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
 		ARG 1 charset
+	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
+		ARG 1 charset
+	METHOD touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;
+		ARG 1 object
 	METHOD touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;
 		ARG 1 object
 	METHOD touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;
@@ -2090,6 +2367,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
@@ -2107,6 +2388,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+		ARG 2 length
 	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
 		ARG 2 length
@@ -2135,6 +2421,13 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 		ARG 2 sourceIndex
 		ARG 3 length
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+		ARG 2 sourceIndex
+		ARG 3 length
+	METHOD writeBytes (Ljava/io/InputStream;I)I
+		ARG 1 stream
+		ARG 2 length
 	METHOD writeBytes (Ljava/io/InputStream;I)I
 		ARG 1 stream
 		ARG 2 length
@@ -2155,6 +2448,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 buf
 	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
+	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+		ARG 1 buf
+	METHOD writeBytes (Ljava/nio/channels/FileChannel;JI)I
+		ARG 1 channel
+		ARG 2 pos
+		ARG 4 length
 	METHOD writeBytes (Ljava/nio/channels/FileChannel;JI)I
 		ARG 1 channel
 		ARG 2 pos
@@ -2183,6 +2482,11 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I
 		ARG 1 channel
 		ARG 2 length
+	METHOD writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I
+		ARG 1 channel
+		ARG 2 length
+	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
+		ARG 1 bytes
 	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
 		ARG 1 bytes
 	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
@@ -2207,6 +2511,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 bytes
 		ARG 2 sourceIndex
 		ARG 3 length
+	METHOD writeBytes ([BII)Lio/netty/buffer/ByteBuf;
+		ARG 1 bytes
+		ARG 2 sourceIndex
+		ARG 3 length
+	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
 	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
@@ -2227,6 +2537,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD writeCharSequence (Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I
 		ARG 1 sequence
 		ARG 2 charset
+	METHOD writeCharSequence (Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I
+		ARG 1 sequence
+		ARG 2 charset
 	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
@@ -2234,6 +2547,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
@@ -2251,13 +2568,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 value
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
-	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
@@ -2275,13 +2598,19 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 value
 	METHOD writeLongLE (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
-	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeLongLE (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeMediumLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeMediumLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
@@ -2299,6 +2628,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 value
 	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
+	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
+	METHOD writeShortLE (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 value
 	METHOD writeShortLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeShortLE (I)Lio/netty/buffer/ByteBuf;
@@ -2315,6 +2648,10 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 length
 	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
+	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 length
+	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
