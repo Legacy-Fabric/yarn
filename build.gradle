@@ -800,12 +800,12 @@ tasks.register('javadocJar', Jar) {
 generatePackageInfoMappings {
 	inputJar = mapIntermediaryJar.output
 	packageName = "net/minecraft/unused/packageinfo/"
-	outputDir = file("mappings/net/minecraft/unused/packageinfo")
+	outputDir = file(mappingsDir.toString() + "/net/minecraft/unused/packageinfo")
 }
 
 javadocLint {
 	group = "javadoc generation"
-	mappingDirectory = file("mappings")
+	mappingDirectory = mappingsDir
 }
 
 check.dependsOn javadocLint
