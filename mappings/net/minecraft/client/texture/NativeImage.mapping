@@ -15,6 +15,7 @@ CLASS net/minecraft/class_1011 net/minecraft/client/texture/NativeImage
 		COMMENT The bit offset of the red data in the {@linkplain Format#RGBA RGBA} or the
 		COMMENT {@linkplain Format#RGB RGB} formats. Is {@value}.
 	FIELD field_4986 format Lnet/minecraft/class_1011$class_1012;
+	FIELD field_4987 sizeBytes I
 	FIELD field_4987 sizeBytes J
 	FIELD field_4988 pointer J
 	FIELD field_4989 height I
@@ -130,6 +131,8 @@ CLASS net/minecraft/class_1011 net/minecraft/client/texture/NativeImage
 		ARG 2 y
 		ARG 3 color
 			COMMENT the color, with red at smallest and alpha at biggest bits
+	METHOD method_4306 loadFromMemory (Z)V
+		ARG 1 removeAlpha
 	METHOD method_4307 getWidth ()I
 	METHOD method_4308 setTextureFilter (ZZ)V
 		ARG 0 blur
@@ -142,6 +145,15 @@ CLASS net/minecraft/class_1011 net/minecraft/client/texture/NativeImage
 	METHOD method_4311 getOpacity (II)B
 		ARG 1 x
 		ARG 2 y
+	METHOD method_4312 upload (IIIIIIIZ)V
+		ARG 1 level
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 unpackSkipPixels
+		ARG 5 unpackSkipRows
+		ARG 6 width
+		ARG 7 height
+		ARG 8 mipmap
 	METHOD method_4312 upload (IIIIIIIZZ)V
 		ARG 1 level
 		ARG 2 offsetX
@@ -182,6 +194,17 @@ CLASS net/minecraft/class_1011 net/minecraft/client/texture/NativeImage
 	METHOD method_4318 getFormat ()Lnet/minecraft/class_1011$class_1012;
 	METHOD method_4319 mirrorVertically ()V
 	METHOD method_4320 checkAllocated ()V
+	METHOD method_4321 upload (IIIIIIIZZZ)V
+		ARG 1 level
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 unpackSkipPixels
+		ARG 5 unpackSkipRows
+		ARG 6 width
+		ARG 7 height
+		ARG 8 blur
+		ARG 9 clamp
+		ARG 10 mipmap
 	METHOD method_4321 uploadInternal (IIIIIIIZZZZ)V
 		ARG 1 level
 		ARG 2 offsetX
@@ -348,28 +371,5 @@ CLASS net/minecraft/class_1011 net/minecraft/client/texture/NativeImage
 			ARG 3 data
 			ARG 5 size
 		METHOD method_4342 throwStoredException ()V
-	FIELD field_4987 sizeBytes I
 	METHOD method_15877 writeFile (Ljava/lang/String;)V
 		ARG 1 fileName
-	METHOD method_4306 loadFromMemory (Z)V
-		ARG 1 removeAlpha
-	METHOD method_4312 upload (IIIIIIIZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 mipmap
-	METHOD method_4321 upload (IIIIIIIZZZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 blur
-		ARG 9 clamp
-		ARG 10 mipmap
