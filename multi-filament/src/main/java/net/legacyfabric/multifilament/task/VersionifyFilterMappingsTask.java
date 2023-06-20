@@ -1,11 +1,9 @@
 package net.legacyfabric.multifilament.task;
 
-import net.fabricmc.filament.task.base.WithFileInput;
 import net.fabricmc.mappingio.MappingReader;
 import net.fabricmc.mappingio.MappingWriter;
 
 import net.fabricmc.mappingio.format.MappingFormat;
-import net.fabricmc.mappingio.tree.MappingTreeView;
 
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
@@ -20,9 +18,9 @@ import javax.inject.Inject;
 
 import java.io.IOException;
 
-public abstract class VersionifyMappingsTask extends MappingOutputTask {
+public abstract class VersionifyFilterMappingsTask extends MappingOutputTask {
 	@Inject
-	public VersionifyMappingsTask() {
+	public VersionifyFilterMappingsTask() {
 		this.getOutputFormat().convention(MappingFormat.ENIGMA);
 	}
 

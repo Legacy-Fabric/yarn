@@ -131,7 +131,8 @@ import org.gradle.work.DisableCachingByDefault
 
 import java.util.zip.GZIPOutputStream
 
-import net.legacyfabric.multifilament.task.VersionifyMappingsTask;
+import net.legacyfabric.multifilament.task.VersionifyFilterMappingsTask;
+import net.legacyfabric.multifilament.task.VersionifyExcludeMappingsTask;
 
 def getIntermediaryBranch() {
 	switch(intermediary_version) {
@@ -246,10 +247,17 @@ boolean isServerBundled(String mc_version) {
 	return bool
 }
 
-tasks.register("versionifyMappings", VersionifyMappingsTask) {
+tasks.register("versionifyMappingsFilter", VersionifyFilterMappingsTask) {
 	intermediaryFile = downloadIntermediary.outputFile
 	inputDir = file("mappings")
 	outputDir = mappingsDir
+}
+
+tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
+	dependsOn "versionifyMappingsFilter"
+	intermediaryFile = downloadIntermediary.outputFile
+	inputDir = file("mappings")
+	outputDir = file("mappings-temp")
 }
 
 tasks.register('downloadIntermediary', DownloadTask) {
