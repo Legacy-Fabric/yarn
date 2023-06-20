@@ -3,24 +3,15 @@ package net.legacyfabric.multifilament.mappingsio;
 import net.fabricmc.mappingio.MappedElementKind;
 import net.fabricmc.mappingio.MappingFlag;
 import net.fabricmc.mappingio.MappingVisitor;
-import net.fabricmc.mappingio.tree.MappingTree;
-import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-public class FilteringMappingVisitor implements MappingVisitor {
+public class SimpleMappingVisitor implements MappingVisitor {
 	private final MappingVisitor parent;
-	private final MemoryMappingTree mappingTree;
-	private final int namespaceId;
-	private MappingTree.ClassMapping currentClass;
-	private MappingTree.FieldMapping currentField;
-	private MappingTree.MethodMapping currentMethod;
-	public FilteringMappingVisitor(MappingVisitor parent, MemoryMappingTree mappingTree) {
+	public SimpleMappingVisitor(MappingVisitor parent) {
 		this.parent = parent;
-		this.mappingTree = mappingTree;
-		this.namespaceId = this.mappingTree.getNamespaceId("intermediary");
 	}
 
 	@Override
@@ -55,39 +46,17 @@ public class FilteringMappingVisitor implements MappingVisitor {
 
 	@Override
 	public boolean visitClass(String srcName) throws IOException {
-		this.currentClass = this.mappingTree.getClass(srcName, this.namespaceId);
-
-		if (this.currentClass != null) {
-			return parent.visitClass(srcName);
-		}
-
-		return false;
+		return parent.visitClass(srcName);
 	}
 
 	@Override
 	public boolean visitField(String srcName, String srcDesc) throws IOException {
-		if (this.currentClass != null) {
-			this.currentField = this.currentClass.getField(srcName, srcDesc, this.namespaceId);
-
-			if (this.currentField != null) {
-				return parent.visitField(srcName, srcDesc);
-			}
-		}
-
-		return false;
+		return parent.visitField(srcName, srcDesc);
 	}
 
 	@Override
 	public boolean visitMethod(String srcName, String srcDesc) throws IOException {
-		if (this.currentClass != null) {
-			this.currentMethod = this.currentClass.getMethod(srcName, srcDesc, this.namespaceId);
-
-			if (this.currentMethod != null) {
-				return parent.visitMethod(srcName, srcDesc);
-			}
-		}
-
-		return false;
+		return parent.visitMethod(srcName, srcDesc);
 	}
 
 	@Override

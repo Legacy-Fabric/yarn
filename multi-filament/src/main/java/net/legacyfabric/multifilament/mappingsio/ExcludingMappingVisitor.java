@@ -88,14 +88,12 @@ public class ExcludingMappingVisitor implements MappingVisitor {
 
 	@Override
 	public boolean visitMethodArg(int argPosition, int lvIndex, String srcName) throws IOException {
-		parent.visitMethodArg(argPosition, lvIndex, srcName);
-		return true;
+		return parent.visitMethodArg(argPosition, lvIndex, srcName);
 	}
 
 	@Override
 	public boolean visitMethodVar(int lvtRowIndex, int lvIndex, int startOpIdx, String srcName) throws IOException {
-		parent.visitMethodVar(lvtRowIndex, lvIndex, startOpIdx, srcName);
-		return true;
+		return parent.visitMethodVar(lvtRowIndex, lvIndex, startOpIdx, srcName);
 	}
 
 	@Override
