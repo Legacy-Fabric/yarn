@@ -9,7 +9,6 @@ buildscript {
 	}
 	dependencies {
 		classpath "cuchaz:enigma-cli:${project.enigma_version}"
-		classpath "net.fabricmc:stitch:${project.stitch_version}"
 		classpath "net.fabricmc:name-proposal:${project.name_proposal_version}"
 	}
 }
@@ -18,7 +17,7 @@ plugins {
 	id 'java' // for constants, packages, javadoc
 	id 'maven-publish'
 	id "com.diffplug.spotless" version "6.17.0"
-	id 'net.fabricmc.filament' version "0.5.0"
+	id 'net.fabricmc.filament' version "0.6.1"
 }
 
 def taskName = project.gradle.startParameter.taskNames[0]
@@ -118,17 +117,14 @@ def minecraftLibraries = configurations.minecraftLibraries
 import cuchaz.enigma.command.CheckMappingsCommand
 import net.fabricmc.filament.task.MapJarTask
 import net.fabricmc.filament.task.DownloadTask
-import net.fabricmc.filament.task.ExtractZipEntryTask
 import net.fabricmc.filament.task.UnpickJarTask
 import net.fabricmc.filament.task.minecraft.MergeMinecraftTask
 import net.fabricmc.filament.task.base.WithFileInput
 import net.fabricmc.filament.task.base.WithFileOutput
-import net.fabricmc.filament.task.enigma.ConvertMappingsTask
 import net.fabricmc.filament.task.enigma.MapSpecializedMethodsTask
-import net.fabricmc.stitch.commands.CommandMergeTiny
-import net.fabricmc.stitch.commands.CommandReorderTiny
-import net.fabricmc.stitch.commands.tinyv2.CommandMergeTinyV2
-import net.fabricmc.stitch.commands.tinyv2.CommandReorderTinyV2
+import net.fabricmc.filament.task.mappingio.ConvertMappingsTask
+import net.fabricmc.filament.task.mappingio.MergeMappingsTask
+import net.fabricmc.mappingio.format.MappingFormat
 import net.fabricmc.nameproposal.MappingNameCompleter
 import org.gradle.work.DisableCachingByDefault
 
@@ -161,7 +157,7 @@ def getIntermediaryGroup() {
 	}
 }
 
-String getIntermediaryUrl(String mc_version, boolean v2) {
+String getIntermediaryUrl(String mc_version) {
 	boolean legacy = true
 
 	try {
@@ -200,17 +196,9 @@ String getIntermediaryUrl(String mc_version, boolean v2) {
 	}
 
 	if (legacy) {
-		if (v2) {
-			return "https://maven.legacyfabric.net/net/legacyfabric${getIntermediaryMaven()}/intermediary/${mc_version}/intermediary-${mc_version}-v2.jar"
-		} else {
-			return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/${getIntermediaryBranch()}/mappings/${mc_version}.tiny"
-		}
+		return "https://github.com/Legacy-Fabric/Legacy-Intermediaries/raw/${getIntermediaryBranch()}/mappings/${mc_version}.tiny"
 	} else {
-		if (v2) {
-			return "https://maven.fabricmc.net/net/fabricmc/intermediary/${mc_version}/intermediary-${mc_version}-v2.jar"
-		} else {
-			return "https://github.com/FabricMC/intermediary/raw/master/mappings/${mc_version}.tiny"
-		}
+		return "https://github.com/FabricMC/intermediary/raw/master/mappings/${mc_version}.tiny"
 	}
 }
 
@@ -257,57 +245,11 @@ boolean isServerBundled(String mc_version) {
 
 tasks.register('downloadIntermediary', DownloadTask) {
 	group = buildMappingGroup
-	url = getIntermediaryUrl(minecraft_version, false)
+	url = getIntermediaryUrl(minecraft_version)
 	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary.tiny")
 }
 
-tasks.register('downloadIntermediaryV2', DownloadTask) {
-	group = buildMappingGroup
-	url = getIntermediaryUrl(minecraft_version, true)
-	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.jar")
-}
-
-tasks.register('extractIntermediaryV2', ExtractZipEntryTask) {
-	input = downloadIntermediaryV2.output
-	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-v2.tiny")
-	entry = "mappings/mappings.tiny"
-}
-
-tasks.register('invertIntermediary', FileInputOutput) {
-	dependsOn downloadIntermediary
-	group = buildMappingGroup
-	input = downloadIntermediary.output
-	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-inverted.tiny")
-
-	doLast {
-		String[] v1Args = [
-			inputFile.getAbsolutePath(),
-			outputFile.getAbsolutePath(),
-			"intermediary", "official"
-		]
-
-		new CommandReorderTiny().run(v1Args)
-	}
-}
-
-tasks.register('invertIntermediaryv2', FileInputOutput) {
-	dependsOn downloadIntermediaryV2, extractIntermediaryV2
-	group = buildMappingGroup
-	output = new File(cacheFilesMinecraft, "${minecraft_version}-intermediary-inverted-v2.tiny")
-	input = extractIntermediaryV2.output
-
-	doLast {
-		String[] v2Args = [
-			inputFile.getAbsolutePath(),
-			outputFile.getAbsolutePath(),
-			"intermediary", "official"
-		]
-
-		new CommandReorderTinyV2().run(v2Args)
-	}
-}
-
-tasks.register('mergeOriginalMinecraftJars', MergeMinecraftTask) {
+tasks.register("mergeOriginalMinecraftJars", MergeMinecraftTask) {
 	dependsOn downloadMinecraftClientJar, downloadMinecraftServerJar
 	clientJar = downloadMinecraftClientJar.output
 	serverJar = downloadMinecraftServerJar.output
@@ -387,46 +329,15 @@ tasks.register('mapSpecializedMethods', MapSpecializedMethodsTask) {
 tasks.register('convertToV1', ConvertMappingsTask) {
 	input = mapSpecializedMethods.output
 	output = new File(tempDir, "yarn-mappings.tiny")
-
-	inputMappingsFormat = "tinyv2"
-	outputMappingsFormat = "tiny:intermediary:named"
+	outputFormat = MappingFormat.TINY
 }
 
-tasks.register('mergeTiny', FileOutput) {
-	dependsOn convertToV1, invertIntermediary
+tasks.register('mergeTiny', MergeMappingsTask) {
 	group = buildMappingGroup
-
-	def unorderedResultMappings = new File(tempDir, "mappings-unordered.tiny")
-	outputs.file unorderedResultMappings
-
 	output = new File(tempDir, "mappings.tiny")
-
-	inputs.file convertToV1.output
-	inputs.file invertIntermediary.output
-
-	def intermediaryTinyPath = invertIntermediary.outputFile.absolutePath
-	def yarnTinyPath = convertToV1.outputFile.absolutePath
-	def outputPath = unorderedResultMappings.absolutePath
-
-	doLast {
-		String[] args = [
-			intermediaryTinyPath,
-			yarnTinyPath,
-			outputPath,
-			"intermediary",
-			"official"
-		]
-
-		new CommandMergeTiny().run(args)
-
-		String[] args2 = [
-			unorderedResultMappings.getAbsolutePath(),
-			output.getAbsolutePath(),
-			"official", "intermediary", "named"
-		]
-
-		new CommandReorderTiny().run(args2)
-	}
+	mappingInputs.from downloadIntermediary.output
+	mappingInputs.from convertToV1.output
+	outputFormat = MappingFormat.TINY
 }
 
 // Disable the default jar task
@@ -563,46 +474,18 @@ tasks.register('unpickIntermediaryJar', UnpickJarTask) {
 }
 
 tasks.register('yarnUnpicked', EnigmaTask) {
-	dependsOn unpickIntermediaryJar
+	dependsOn "unpickIntermediaryJar"
 	group = yarnGroup
 	jar = unpickIntermediaryJar.output
 	mappings = mappingsDir
 }
 
-tasks.register('mergeV2', FileOutput) {
-	dependsOn v2UnmergedYarnJar
-	def mergedV2 = new File(tempDir, "merged-v2.tiny");
-	outputs.file mergedV2
-
-	output = new File(tempDir, "merged-reordered-v2.tiny")
-
-	inputs.file insertAutoGeneratedEnumMappings.output
-	inputs.file invertIntermediaryv2.output
-
-	def intermediaryPath = invertIntermediaryv2.outputFile.absolutePath
-	def mappingsPath = insertAutoGeneratedEnumMappings.outputFile.absolutePath
-
-	doLast {
-		String[] args = [
-			intermediaryPath,
-			mappingsPath,
-			mergedV2.getAbsolutePath(),
-			"intermediary",
-			"official"
-		]
-
-		new CommandMergeTinyV2().run(args)
-
-		//Reorder the mappings to match the output of loom
-		args = [
-			mergedV2.getAbsolutePath(),
-			output.getAbsolutePath(),
-			"official",
-			"intermediary",
-			"named"
-		]
-		new CommandReorderTinyV2().run(args)
-	}
+tasks.register('mergeV2', MergeMappingsTask) {
+	group = buildMappingGroup
+	output = new File(tempDir, "merged-v2.tiny")
+	mappingInputs.from downloadIntermediary.output
+	mappingInputs.from insertAutoGeneratedEnumMappings.output
+	outputFormat = MappingFormat.TINY_2
 }
 
 tasks.register('v2UnmergedYarnJar', Jar) {
@@ -629,7 +512,7 @@ tasks.register('v2UnmergedYarnJar', Jar) {
 
 tasks.register('v2MergedYarnJar', Jar) {
 	dependsOn mergeV2
-	def mappings = mergeV2.output
+	def mappings = mergeV2.outputFile
 	group = "mapping build"
 	archiveFileName = "yarn-${yarnVersion}-mergedv2.jar"
 
@@ -687,7 +570,7 @@ tasks.register('genFakeSource', JavaExec) {
 	mainClass = "net.fabricmc.mappingpoet.Main"
 	classpath configurations.mappingPoet
 	// use merged v2 so we have all namespaces in jd
-	args mergeV2.output.getAbsolutePath(), mapNamedJar.outputFile.getAbsolutePath(), fakeSourceDir.getAbsolutePath(), mcLibsDir.getAbsolutePath()
+	args mergeV2.outputFile.getAbsolutePath(), mapNamedJar.outputFile.getAbsolutePath(), fakeSourceDir.getAbsolutePath(), mcLibsDir.getAbsolutePath()
 }
 
 tasks.register('decompileCFR', JavaExec) {
@@ -716,7 +599,7 @@ javadoc {
 	// verbose = true // enable to debug
 	options {
 		// verbose() // enable to debug
-		source = "8"
+		source = "17"
 		encoding = 'UTF-8'
 		charSet = 'UTF-8'
 		memberLevel = JavadocMemberLevel.PRIVATE
@@ -865,6 +748,8 @@ tasks.register('checkVersion') {
 	}
 }
 
+publish.mustRunAfter checkVersion
+
 import groovy.json.JsonSlurper;
 
 int getLastBuildNumber() {
@@ -872,13 +757,6 @@ int getLastBuildNumber() {
 	def metadata = new JsonSlurper().parseText(xml);
 	
 	return metadata[0].build;
-}
-
-publish.mustRunAfter checkVersion
-
-abstract class FileOutput extends DefaultTask {
-	@OutputFile
-	File output
 }
 
 abstract class FileInputOutput extends DefaultTask implements WithFileInput, WithFileOutput {
