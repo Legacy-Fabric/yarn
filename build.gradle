@@ -18,6 +18,7 @@ plugins {
 	id 'maven-publish'
 	id "com.diffplug.spotless" version "6.17.0"
 	id 'net.fabricmc.filament' version "0.6.1"
+	id 'net.legacyfabric.multifilament'
 }
 
 def taskName = project.gradle.startParameter.taskNames[0]
@@ -130,6 +131,8 @@ import org.gradle.work.DisableCachingByDefault
 
 import java.util.zip.GZIPOutputStream
 
+import net.legacyfabric.multifilament.task.VersionifyMappingsTask;
+
 def getIntermediaryBranch() {
 	switch(intermediary_version) {
 		case "2":
@@ -241,6 +244,13 @@ boolean isServerBundled(String mc_version) {
 	}
 
 	return bool
+}
+
+tasks.register("versionifyMappings", VersionifyMappingsTask) {
+	intermediaryFile = downloadIntermediary.outputFile
+	inputDir = file("mappings")
+	outputDir = mappingsDir
+	outputFormat = MappingFormat.ENIGMA
 }
 
 tasks.register('downloadIntermediary', DownloadTask) {
