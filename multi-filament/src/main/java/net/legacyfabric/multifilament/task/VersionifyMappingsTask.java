@@ -4,6 +4,7 @@ import net.fabricmc.filament.task.base.WithFileInput;
 import net.fabricmc.mappingio.MappingReader;
 import net.fabricmc.mappingio.MappingWriter;
 
+import net.fabricmc.mappingio.format.MappingFormat;
 import net.fabricmc.mappingio.tree.MappingTreeView;
 
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
@@ -15,11 +16,14 @@ import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFile;
 
+import javax.inject.Inject;
+
 import java.io.IOException;
 
 public abstract class VersionifyMappingsTask extends MappingOutputTask {
+	@Inject
 	public VersionifyMappingsTask() {
-
+		this.getOutputFormat().convention(MappingFormat.ENIGMA);
 	}
 
 	@InputFile
