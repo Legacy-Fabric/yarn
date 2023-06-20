@@ -134,6 +134,7 @@ import java.util.zip.GZIPOutputStream
 import net.legacyfabric.multifilament.task.VersionifyFilterMappingsTask;
 import net.legacyfabric.multifilament.task.VersionifyExcludeMappingsTask;
 import net.legacyfabric.multifilament.task.DeduplicateMappingsTask;
+import net.legacyfabric.multifilament.task.UnifyMappingsTask;
 
 def getIntermediaryBranch() {
 	switch(intermediary_version) {
@@ -264,6 +265,12 @@ tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
 tasks.register("deduplicateMappings", DeduplicateMappingsTask) {
 	inputDir = file("mappings")
 	outputDir = file("mappings-temp")
+}
+
+tasks.register("unifyMappings", UnifyMappingsTask) {
+	unifiedDir = file("mappings-temp")
+	versionedDir = mappingsDir
+	outputDir = file("mappings")
 }
 
 tasks.register('downloadIntermediary', DownloadTask) {
