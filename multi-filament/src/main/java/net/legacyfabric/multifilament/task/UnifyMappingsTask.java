@@ -3,6 +3,7 @@ package net.legacyfabric.multifilament.task;
 import net.fabricmc.mappingio.MappingReader;
 import net.fabricmc.mappingio.MappingWriter;
 import net.fabricmc.mappingio.format.MappingFormat;
+import net.fabricmc.mappingio.tree.MappingTree;
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
 import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
@@ -40,8 +41,71 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 		MappingReader.read(this.getUnifiedDir().getAsFile().get().toPath(), treeView);
 		MemoryMappingTree mappingTree = new MemoryMappingTree();
 		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
-		treeView.accept(mappingTree);
-		mappingTree.accept(var1);
+		int targetNamespace = treeView.getNamespaceId("intermediary");
+		int inputNamespace = mappingTree.getNamespaceId("intermediary");
+
+		for (MappingTree.ClassMapping classMapping : mappingTree.getClasses()) {
+			MappingTree.ClassMapping unifiedClass = treeView.getClass(classMapping.getSrcName());
+
+			if (unifiedClass == null) {
+				treeView.addClass(classMapping);
+			} else {
+				unifiedClass.setComment(classMapping.getComment());
+				unifiedClass.setDstName(classMapping.getName(inputNamespace), targetNamespace);
+
+				for (MappingTree.FieldMapping fieldMapping : classMapping.getFields()) {
+					MappingTree.FieldMapping unifiedField = unifiedClass.getField(fieldMapping.getSrcName(), fieldMapping.getSrcDesc());
+
+					if (unifiedField == null) {
+						unifiedClass.addField(fieldMapping);
+					} else {
+						unifiedField.setComment(fieldMapping.getComment());
+						unifiedField.setDstName(fieldMapping.getName(inputNamespace), targetNamespace);
+					}
+				}
+
+				for (MappingTree.MethodMapping methodMapping : classMapping.getMethods()) {
+					MappingTree.MethodMapping unifiedMethod = unifiedClass.getMethod(methodMapping.getSrcName(), methodMapping.getSrcDesc());
+
+					if (unifiedMethod == null) {
+						unifiedClass.addMethod(methodMapping);
+					} else {
+						unifiedMethod.setComment(methodMapping.getComment());
+						unifiedMethod.setDstName(methodMapping.getName(inputNamespace), targetNamespace);
+
+						for (MappingTree.MethodArgMapping methodArgMapping : methodMapping.getArgs()) {
+							MappingTree.MethodArgMapping unifiedArg = unifiedMethod.getArg(
+									methodArgMapping.getArgPosition(), methodArgMapping.getLvIndex(),
+									methodArgMapping.getSrcName()
+							);
+
+							if (unifiedArg == null) {
+								unifiedMethod.addArg(methodArgMapping);
+							} else {
+								unifiedArg.setComment(methodArgMapping.getComment());
+								unifiedArg.setDstName(methodArgMapping.getName(inputNamespace), targetNamespace);
+							}
+						}
+
+						for (MappingTree.MethodVarMapping methodVarMapping : methodMapping.getVars()) {
+							MappingTree.MethodVarMapping unifiedVar = unifiedMethod.getVar(
+									methodVarMapping.getLvtRowIndex(), methodVarMapping.getLvIndex(),
+									methodVarMapping.getStartOpIdx(), methodVarMapping.getSrcName()
+							);
+
+							if (unifiedVar == null) {
+								unifiedMethod.addVar(methodVarMapping);
+							} else {
+								unifiedVar.setComment(methodVarMapping.getComment());
+								unifiedVar.setDstName(methodVarMapping.getName(inputNamespace), targetNamespace);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		treeView.accept(var1);
 
 		Files.walkFileTree(this.getUnifiedDir().getAsFile().get().toPath(), new FileVisitor<Path>() {
 			@Override
