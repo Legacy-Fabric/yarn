@@ -47,7 +47,6 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 
 		for (MappingTree.ClassMapping classMapping : mappingTree.getClasses()) {
 			MappingTree.ClassMapping unifiedClass = treeView.getClass(classMapping.getSrcName());
-
 			if (unifiedClass == null) {
 				treeView.addClass(classMapping);
 			} else {
