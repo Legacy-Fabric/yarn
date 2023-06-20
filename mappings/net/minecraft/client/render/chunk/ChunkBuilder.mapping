@@ -26,6 +26,9 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 	FIELD field_4444 workers Ljava/util/List;
 	FIELD field_4445 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_4445 LOGGER Lorg/slf4j/Logger;
+	FIELD field_4435 pendingChunks Ljava/util/concurrent/PriorityBlockingQueue;
+	FIELD field_4440 workerThreads Ljava/util/List;
+	FIELD field_4442 bufferCount I
 	METHOD <init> (Lnet/minecraft/class_638;Lnet/minecraft/class_761;Ljava/util/concurrent/Executor;ZLnet/minecraft/class_750;)V
 		ARG 1 world
 		ARG 2 worldRenderer
@@ -85,16 +88,6 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 	METHOD method_38555 (Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletionStage;
 		ARG 0 future
 	METHOD method_39132 pollTask ()Lnet/minecraft/class_846$class_851$class_4577;
-	CLASS class_4690 Result
-	CLASS class_847 ChunkUploadTask
-		FIELD field_4446 task Lcom/google/common/util/concurrent/ListenableFutureTask;
-		FIELD field_4447 priority D
-		METHOD <init> (Lnet/minecraft/class_846;Lcom/google/common/util/concurrent/ListenableFutureTask;D)V
-			ARG 1 task
-			ARG 2 priority
-	FIELD field_4435 pendingChunks Ljava/util/concurrent/PriorityBlockingQueue;
-	FIELD field_4440 workerThreads Ljava/util/List;
-	FIELD field_4442 bufferCount I
 	METHOD method_3623 uploadDisplayList (Lnet/minecraft/class_287;I)V
 		ARG 1 bufferBuilder
 		ARG 2 index
@@ -103,6 +96,13 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 		ARG 2 bufferBuilder
 		ARG 3 chunkRenderer
 		ARG 4 chunkRenderData
+	CLASS class_4690 Result
+	CLASS class_847 ChunkUploadTask
+		FIELD field_4446 task Lcom/google/common/util/concurrent/ListenableFutureTask;
+		FIELD field_4447 priority D
+		METHOD <init> (Lnet/minecraft/class_846;Lcom/google/common/util/concurrent/ListenableFutureTask;D)V
+			ARG 1 task
+			ARG 2 priority
 	CLASS class_849 ChunkData
 		FIELD field_4450 nonEmptyLayers Ljava/util/Set;
 		FIELD field_4451 EMPTY Lnet/minecraft/class_846$class_849;
@@ -191,22 +191,6 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 			METHOD <init> (Lnet/minecraft/class_846$class_851;DZ)V
 				ARG 2 distance
 				ARG 4 prioritized
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
-			METHOD compareTo (Ljava/lang/Object;)I
-				ARG 1 other
 			METHOD compareTo (Ljava/lang/Object;)I
 				ARG 1 other
 			METHOD method_22782 cancel ()V

@@ -81,6 +81,15 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	FIELD field_4119 playingSongs Ljava/util/Map;
 	FIELD field_4120 lastCameraChunkUpdateY D
 	FIELD field_4121 cameraChunkZ I
+	FIELD field_4056 forcedFrustum Lnet/minecraft/class_857;
+	FIELD field_4058 partiallyBrokenBlocks Ljava/util/Map;
+	FIELD field_4063 vertexBufferObjectsEnabled Z
+	FIELD field_4068 destroyStages [Lnet/minecraft/class_1058;
+	FIELD field_4078 chunkRendererFactory Lnet/minecraft/class_850;
+	FIELD field_4086 chunkInfos Ljava/util/List;
+	FIELD field_4092 chunkRendererList Lnet/minecraft/class_752;
+	FIELD field_4099 starsDisplayList I
+	FIELD field_4114 cloudsDisplayList I
 	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_898;Lnet/minecraft/class_824;Lnet/minecraft/class_4599;)V
 		ARG 1 client
 		ARG 2 entityRenderDispatcher
@@ -529,66 +538,6 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	CLASS class_5347 ProgramInitException
-		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
-			ARG 1 message
-			ARG 2 cause
-	CLASS class_5972 ChunkInfoList
-		FIELD field_29620 current [Lnet/minecraft/class_761$class_762;
-		FIELD field_29621 pending [Lnet/minecraft/class_761$class_762;
-		METHOD <init> (I)V
-			ARG 1 size
-		METHOD method_34818 update ()V
-		METHOD method_34820 getInfo (Lnet/minecraft/class_846$class_851;)Lnet/minecraft/class_761$class_762;
-			ARG 1 chunk
-		METHOD method_34821 setInfo (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_761$class_762;)V
-			ARG 1 chunk
-			ARG 2 info
-	CLASS class_6600 RenderableChunks
-		FIELD field_34818 chunkInfoList Lnet/minecraft/class_761$class_5972;
-		FIELD field_34819 chunks Ljava/util/LinkedHashSet;
-		METHOD <init> (I)V
-			ARG 1 chunkCount
-	CLASS class_762 ChunkInfo
-		FIELD field_4122 propagationLevel I
-		FIELD field_4124 chunk Lnet/minecraft/class_846$class_851;
-		FIELD field_4124 renderer Lnet/minecraft/class_851;
-		FIELD field_4125 direction B
-		FIELD field_4125 direction Lnet/minecraft/class_2350;
-		FIELD field_4126 cullingState B
-		METHOD <init> (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_2350;I)V
-			ARG 1 chunk
-			ARG 2 direction
-			ARG 3 propagationLevel
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 o
-		METHOD method_3298 canCull (Lnet/minecraft/class_2350;)Z
-			ARG 1 from
-		METHOD method_3299 updateCullingState (BLnet/minecraft/class_2350;)V
-			ARG 1 parentCullingState
-			ARG 2 from
-		METHOD method_34813 hasAnyDirection ()Z
-		METHOD method_34814 hasDirection (I)Z
-			ARG 1 ordinal
-		METHOD method_34816 addDirection (Lnet/minecraft/class_2350;)V
-			ARG 1 direction
-	FIELD field_4056 forcedFrustum Lnet/minecraft/class_857;
-	FIELD field_4058 partiallyBrokenBlocks Ljava/util/Map;
-	FIELD field_4063 vertexBufferObjectsEnabled Z
-	FIELD field_4068 destroyStages [Lnet/minecraft/class_1058;
-	FIELD field_4078 chunkRendererFactory Lnet/minecraft/class_850;
-	FIELD field_4086 chunkInfos Ljava/util/List;
-	FIELD field_4092 chunkRendererList Lnet/minecraft/class_752;
-	FIELD field_4099 starsDisplayList I
-	FIELD field_4114 cloudsDisplayList I
 	METHOD method_3240 drawDebugShapeOutline (Lnet/minecraft/class_265;DDDFFFF)V
 		ARG 0 shape
 		ARG 1 x
@@ -665,3 +614,46 @@ CLASS net/minecraft/class_761 net/minecraft/client/render/WorldRenderer
 	METHOD method_3294 drawHighlightedBlockOutline (Lnet/minecraft/class_4184;Lnet/minecraft/class_239;I)V
 		ARG 2 hit
 		ARG 3 renderPass
+	CLASS class_5347 ProgramInitException
+		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+			ARG 1 message
+			ARG 2 cause
+	CLASS class_5972 ChunkInfoList
+		FIELD field_29620 current [Lnet/minecraft/class_761$class_762;
+		FIELD field_29621 pending [Lnet/minecraft/class_761$class_762;
+		METHOD <init> (I)V
+			ARG 1 size
+		METHOD method_34818 update ()V
+		METHOD method_34820 getInfo (Lnet/minecraft/class_846$class_851;)Lnet/minecraft/class_761$class_762;
+			ARG 1 chunk
+		METHOD method_34821 setInfo (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_761$class_762;)V
+			ARG 1 chunk
+			ARG 2 info
+	CLASS class_6600 RenderableChunks
+		FIELD field_34818 chunkInfoList Lnet/minecraft/class_761$class_5972;
+		FIELD field_34819 chunks Ljava/util/LinkedHashSet;
+		METHOD <init> (I)V
+			ARG 1 chunkCount
+	CLASS class_762 ChunkInfo
+		FIELD field_4122 propagationLevel I
+		FIELD field_4124 chunk Lnet/minecraft/class_846$class_851;
+		FIELD field_4124 renderer Lnet/minecraft/class_851;
+		FIELD field_4125 direction B
+		FIELD field_4125 direction Lnet/minecraft/class_2350;
+		FIELD field_4126 cullingState B
+		METHOD <init> (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_2350;I)V
+			ARG 1 chunk
+			ARG 2 direction
+			ARG 3 propagationLevel
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 o
+		METHOD method_3298 canCull (Lnet/minecraft/class_2350;)Z
+			ARG 1 from
+		METHOD method_3299 updateCullingState (BLnet/minecraft/class_2350;)V
+			ARG 1 parentCullingState
+			ARG 2 from
+		METHOD method_34813 hasAnyDirection ()Z
+		METHOD method_34814 hasDirection (I)Z
+			ARG 1 ordinal
+		METHOD method_34816 addDirection (Lnet/minecraft/class_2350;)V
+			ARG 1 direction

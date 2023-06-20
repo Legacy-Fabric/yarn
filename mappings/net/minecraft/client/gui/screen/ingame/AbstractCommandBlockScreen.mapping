@@ -10,6 +10,11 @@ CLASS net/minecraft/class_463 net/minecraft/client/gui/screen/ingame/AbstractCom
 	FIELD field_2760 toggleTrackingOutputButton Lnet/minecraft/class_4185;
 	FIELD field_2760 toggleTrackingOutputButton Lnet/minecraft/class_5676;
 	FIELD field_2762 doneButton Lnet/minecraft/class_4185;
+	FIELD field_2750 completingSuggestion Z
+	FIELD field_2754 suggestionsFuture Ljava/util/concurrent/CompletableFuture;
+	FIELD field_2758 parsedCommand Lcom/mojang/brigadier/ParseResults;
+	FIELD field_2759 suggestionWindow Lnet/minecraft/class_463$class_464;
+	FIELD field_2761 exceptions Ljava/util/List;
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -45,12 +50,6 @@ CLASS net/minecraft/class_463 net/minecraft/client/gui/screen/ingame/AbstractCom
 		ARG 1 client
 		ARG 2 width
 		ARG 3 height
-	CLASS class_464 SuggestionWindow
-	FIELD field_2750 completingSuggestion Z
-	FIELD field_2754 suggestionsFuture Ljava/util/concurrent/CompletableFuture;
-	FIELD field_2758 parsedCommand Lcom/mojang/brigadier/ParseResults;
-	FIELD field_2759 suggestionWindow Lnet/minecraft/class_463$class_464;
-	FIELD field_2761 exceptions Ljava/util/List;
 	METHOD method_2346 setCommand (Ljava/lang/String;)V
 		ARG 1 command
 	METHOD method_2350 suggestSuffix (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -59,3 +58,4 @@ CLASS net/minecraft/class_463 net/minecraft/client/gui/screen/ingame/AbstractCom
 	METHOD method_2353 updateCommand ()V
 	METHOD method_2354 updateCommandFeedback ()V
 	METHOD method_2357 showSuggestions ()V
+	CLASS class_464 SuggestionWindow
