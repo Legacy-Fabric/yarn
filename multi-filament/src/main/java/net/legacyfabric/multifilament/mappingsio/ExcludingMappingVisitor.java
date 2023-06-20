@@ -65,7 +65,7 @@ public class ExcludingMappingVisitor implements MappingVisitor {
 		if (this.currentClass != null) {
 			this.currentField = this.currentClass.getField(srcName, srcDesc, this.namespaceId);
 
-			if (this.currentField == null) {
+			if (this.currentField != null) {
 				return false;
 			}
 		}
@@ -78,7 +78,7 @@ public class ExcludingMappingVisitor implements MappingVisitor {
 		if (this.currentClass != null) {
 			this.currentMethod = this.currentClass.getMethod(srcName, srcDesc, this.namespaceId);
 
-			if (this.currentMethod == null) {
+			if (this.currentMethod != null) {
 				return false;
 			}
 		}
