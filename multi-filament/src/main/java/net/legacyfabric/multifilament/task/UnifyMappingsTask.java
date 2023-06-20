@@ -1,6 +1,7 @@
 package net.legacyfabric.multifilament.task;
 
 import net.fabricmc.mappingio.MappingReader;
+import net.fabricmc.mappingio.MappingUtil;
 import net.fabricmc.mappingio.MappingWriter;
 import net.fabricmc.mappingio.format.MappingFormat;
 import net.fabricmc.mappingio.tree.MappingTree;
@@ -41,8 +42,8 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 		MappingReader.read(this.getUnifiedDir().getAsFile().get().toPath(), treeView);
 		MemoryMappingTree mappingTree = new MemoryMappingTree();
 		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
-		int targetNamespace = treeView.getNamespaceId("intermediary");
-		int inputNamespace = mappingTree.getNamespaceId("intermediary");
+		int targetNamespace = treeView.getNamespaceId(MappingUtil.NS_SOURCE_FALLBACK);
+		int inputNamespace = mappingTree.getNamespaceId(MappingUtil.NS_SOURCE_FALLBACK);
 
 		for (MappingTree.ClassMapping classMapping : mappingTree.getClasses()) {
 			MappingTree.ClassMapping unifiedClass = treeView.getClass(classMapping.getSrcName());
