@@ -38,7 +38,9 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 		Files.move(this.getOutputDir().getAsFile().get().toPath(), this.getUnifiedDir().getAsFile().get().toPath());
 		MemoryMappingTree treeView = new MemoryMappingTree();
 		MappingReader.read(this.getUnifiedDir().getAsFile().get().toPath(), treeView);
-		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), treeView);
+		MemoryMappingTree mappingTree = new MemoryMappingTree();
+		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
+		mappingTree.accept(treeView);
 		treeView.accept(var1);
 
 		Files.walkFileTree(this.getUnifiedDir().getAsFile().get().toPath(), new FileVisitor<Path>() {
