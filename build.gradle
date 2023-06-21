@@ -268,6 +268,7 @@ tasks.register("deduplicateMappings", DeduplicateMappingsTask) {
 }
 
 tasks.register("unifyMappings", UnifyMappingsTask) {
+	dependsOn versionifyMappingsExclude
 	if (!file("mappings-temp").exists()) {
 		file("mappings-temp").mkdir()
 	}
@@ -318,19 +319,21 @@ tasks.register('mapServerIntermediaryJar', MapJarTask) {
 }
 
 tasks.register('yarn', EnigmaTask) {
-	dependsOn mapIntermediaryJar
+	dependsOn mapIntermediaryJar, versionifyMappingsExclude
 	group = yarnGroup
 	jar = mapIntermediaryJar.output
 	mappings = mappingsDir
 }
 
 tasks.register('yarnCommon', EnigmaTask) {
+	dependsOn versionifyMappingsExclude
 	group = yarnGroup
 	jar = mapServerIntermediaryJar.output
 	mappings = mappingsDir
 }
 
 tasks.register('checkMappings') {
+	dependsOn versionifyMappingsExclude
 	group = buildMappingGroup
 	inputs.dir mappingsDir
 	inputs.file mapIntermediaryJar.output
@@ -352,6 +355,7 @@ tasks.register('checkMappings') {
 }
 
 tasks.register('mapSpecializedMethods', MapSpecializedMethodsTask) {
+	dependsOn versionifyMappingsExclude
 	intermediaryJarFile = mapIntermediaryJar.output
 	mappings = mappingsDir
 	output = new File(tempDir, "yarn-mappings-v2.tiny")
@@ -508,7 +512,7 @@ tasks.register('unpickIntermediaryJar', UnpickJarTask) {
 }
 
 tasks.register('yarnUnpicked', EnigmaTask) {
-	dependsOn "unpickIntermediaryJar"
+	dependsOn "unpickIntermediaryJar", versionifyMappingsExclude
 	group = yarnGroup
 	jar = unpickIntermediaryJar.output
 	mappings = mappingsDir
@@ -716,12 +720,14 @@ tasks.register('javadocJar', Jar) {
 }
 
 generatePackageInfoMappings {
+	dependsOn versionifyMappingsExclude
 	inputJar = mapIntermediaryJar.output
 	packageName = "net/minecraft/unused/packageinfo/"
 	outputDir = file(mappingsDir.toString() + "/net/minecraft/unused/packageinfo")
 }
 
 javadocLint {
+	dependsOn versionifyMappingsExclude
 	group = "javadoc generation"
 	mappingDirectory = mappingsDir
 }
