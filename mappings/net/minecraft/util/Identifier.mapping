@@ -84,13 +84,13 @@ CLASS net/minecraft/class_2960 net/minecraft/util/Identifier
 	COMMENT item, or a TNT entity. To identify a registered object uniquely, {@link
 	COMMENT net.minecraft.registry.RegistryKey} can be used. A registry key is a combination
 	COMMENT of the registry's identifier and the object's identifier.
-	FIELD field_13353 namespace Ljava/lang/String;
 	FIELD field_13354 COMMAND_EXCEPTION Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD field_13355 path Ljava/lang/String;
 	FIELD field_25139 CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_33380 NAMESPACE_SEPARATOR C
 	FIELD field_33381 DEFAULT_NAMESPACE Ljava/lang/String;
 	FIELD field_33382 REALMS_NAMESPACE Ljava/lang/String;
+	FIELD field_13353 namespace Ljava/lang/String;
+	FIELD field_13355 path Ljava/lang/String;
 	METHOD <init> (Ljava/lang/String;)V
 		COMMENT <p>Takes a string of the form {@code <namespace>:<path>}, for example {@code minecraft:iron_ingot}.
 		COMMENT <p>The string will be split (on the {@code :}) into an identifier with the specified path and namespace.
@@ -108,8 +108,6 @@ CLASS net/minecraft/class_2960 net/minecraft/util/Identifier
 		ARG 1 id
 	METHOD compareTo (Ljava/lang/Object;)I
 		ARG 1 other
-	METHOD equals (Ljava/lang/Object;)Z
-		ARG 1 o
 	METHOD method_12829 tryParse (Ljava/lang/String;)Lnet/minecraft/class_2960;
 		COMMENT {@return {@code id} parsed as an identifier, or {@code null} if it cannot be parsed}
 		COMMENT
@@ -120,16 +118,10 @@ CLASS net/minecraft/class_2960 net/minecraft/util/Identifier
 		ARG 1 delimiter
 	METHOD method_12831 isCharValid (C)Z
 		ARG 0 c
-	METHOD method_12832 getPath ()Ljava/lang/String;
-		COMMENT {@return the path of the identifier}
 	METHOD method_12834 (I)Z
 		ARG 0 c
 	METHOD method_12835 fromCommandInput (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/class_2960;
 		ARG 0 reader
-	METHOD method_12836 getNamespace ()Ljava/lang/String;
-		COMMENT {@return the namespace of the identifier}
-		COMMENT
-		COMMENT <p>This returns {@value #DEFAULT_NAMESPACE} for identifiers created without a namespace.
 	METHOD method_12837 (I)Z
 		ARG 0 c
 	METHOD method_12838 splitOn (Ljava/lang/String;C)Lnet/minecraft/class_2960;
@@ -189,6 +181,14 @@ CLASS net/minecraft/class_2960 net/minecraft/util/Identifier
 		COMMENT {@code prefix} and a dot, and suffixed with a dot and {@code suffix}}
 		ARG 1 prefix
 		ARG 2 suffix
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
+	METHOD method_12832 getPath ()Ljava/lang/String;
+		COMMENT {@return the path of the identifier}
+	METHOD method_12836 getNamespace ()Ljava/lang/String;
+		COMMENT {@return the namespace of the identifier}
+		COMMENT
+		COMMENT <p>This returns {@value #DEFAULT_NAMESPACE} for identifiers created without a namespace.
 	CLASS class_2961 Serializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
 			ARG 1 json

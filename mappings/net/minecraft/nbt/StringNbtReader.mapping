@@ -6,7 +6,6 @@ CLASS net/minecraft/class_2522 net/minecraft/nbt/StringNbtReader
 	FIELD field_11596 FLOAT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_11597 ARRAY_MIXED Lcom/mojang/brigadier/exceptions/Dynamic2CommandExceptionType;
 	FIELD field_11598 reader Lcom/mojang/brigadier/StringReader;
-	FIELD field_11599 INT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_11600 DOUBLE_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_11601 SHORT_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_11602 TRAILING Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
@@ -23,16 +22,11 @@ CLASS net/minecraft/class_2522 net/minecraft/nbt/StringNbtReader
 	FIELD field_33268 SQUARE_CLOSE_BRACKET C
 	FIELD field_33269 RIGHT_CURLY_BRACKET C
 	FIELD field_33270 LEFT_CURLY_BRACKET C
+	FIELD field_11599 INT_PATTERN Ljava/util/regex/Pattern;
 	METHOD <init> (Lcom/mojang/brigadier/StringReader;)V
 		ARG 1 reader
 	METHOD method_10716 readComma ()Z
 	METHOD method_10717 parseArray ()Lnet/minecraft/class_2520;
-	METHOD method_10718 parse (Ljava/lang/String;)Lnet/minecraft/class_2487;
-		COMMENT {@return the NBT compound parsed from the {@code string}}
-		COMMENT
-		COMMENT @throws CommandSyntaxException if the reader detects a syntax error (including
-		COMMENT {@linkplain #TRAILING trailing strings})
-		ARG 0 string
 	METHOD method_10719 expect (C)V
 		ARG 1 c
 	METHOD method_10720 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
@@ -62,3 +56,9 @@ CLASS net/minecraft/class_2522 net/minecraft/nbt/StringNbtReader
 		ARG 1 expectedType
 	METHOD method_10731 parsePrimitive (Ljava/lang/String;)Lnet/minecraft/class_2520;
 		ARG 1 input
+	METHOD method_10718 parse (Ljava/lang/String;)Lnet/minecraft/class_2487;
+		COMMENT {@return the NBT compound parsed from the {@code string}}
+		COMMENT
+		COMMENT @throws CommandSyntaxException if the reader detects a syntax error (including
+		COMMENT {@linkplain #TRAILING trailing strings})
+		ARG 0 string

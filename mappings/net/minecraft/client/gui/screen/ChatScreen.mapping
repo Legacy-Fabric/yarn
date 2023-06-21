@@ -7,9 +7,6 @@ CLASS net/minecraft/class_408 net/minecraft/client/gui/screen/ChatScreen
 	COMMENT @see net.minecraft.client.gui.hud.ChatHud
 	FIELD field_18973 originalChatText Ljava/lang/String;
 	FIELD field_21616 chatInputSuggestor Lnet/minecraft/class_4717;
-	FIELD field_2382 chatField Lnet/minecraft/class_342;
-	FIELD field_2387 messageHistorySize I
-	FIELD field_2389 chatLastMessage Ljava/lang/String;
 	FIELD field_32237 SHIFT_SCROLL_AMOUNT D
 	FIELD field_32237 SHIFT_SCROLL_AMOUNT I
 	FIELD field_33953 USAGE_TEXT Lnet/minecraft/class_2561;
@@ -36,6 +33,9 @@ CLASS net/minecraft/class_408 net/minecraft/client/gui/screen/ChatScreen
 	FIELD field_2385 suggestionsWindow Lnet/minecraft/class_408$class_409;
 	FIELD field_2386 suggestionsFuture Ljava/util/concurrent/CompletableFuture;
 	FIELD field_2388 parseResults Lcom/mojang/brigadier/ParseResults;
+	FIELD field_2382 chatField Lnet/minecraft/class_342;
+	FIELD field_2387 messageHistorySize I
+	FIELD field_2389 chatLastMessage Ljava/lang/String;
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 originalChatText
 	METHOD keyPressed (III)Z
@@ -44,8 +44,6 @@ CLASS net/minecraft/class_408 net/minecraft/client/gui/screen/ChatScreen
 		ARG 3 modifiers
 	METHOD method_2108 setText (Ljava/lang/String;)V
 		ARG 1 text
-	METHOD method_2114 setChatFromHistory (I)V
-		ARG 1 offset
 	METHOD method_23945 onChatFieldUpdate (Ljava/lang/String;)V
 		ARG 1 chatText
 	METHOD method_44050 getPreviewLeft ()I
@@ -138,6 +136,8 @@ CLASS net/minecraft/class_408 net/minecraft/client/gui/screen/ChatScreen
 	METHOD method_2111 onChatFieldChanged (Ljava/lang/String;)V
 	METHOD method_2112 showSuggestions ()V
 	METHOD method_2116 updateCommandFeedback ()V
+	METHOD method_2114 setChatFromHistory (I)V
+		ARG 1 offset
 	CLASS class_409 SuggestionWindow
 		FIELD field_2390 suggestions Lcom/mojang/brigadier/suggestion/Suggestions;
 		FIELD field_2391 completed Z

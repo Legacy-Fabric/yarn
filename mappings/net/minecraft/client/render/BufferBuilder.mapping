@@ -13,15 +13,8 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 	COMMENT VertexFormat.DrawMode#LINE_STRIP LINE_STRIP} draw modes, this builder
 	COMMENT duplicates every vertex in a line to produce a quad with zero area. See
 	COMMENT {@link GameRenderer#getRenderTypeLinesProgram}.
-	FIELD field_1553 currentElementId I
-	FIELD field_1554 vertexCount I
-	FIELD field_1555 buffer Ljava/nio/ByteBuffer;
-	FIELD field_1556 building Z
 	FIELD field_1557 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_1557 LOGGER Lorg/slf4j/Logger;
-	FIELD field_1558 currentElement Lnet/minecraft/class_296;
-	FIELD field_1565 format Lnet/minecraft/class_293;
-	FIELD field_1567 drawMode I
 	FIELD field_1567 drawMode Lnet/minecraft/class_293$class_5596;
 	FIELD field_20774 parameters Ljava/util/List;
 	FIELD field_20775 lastParameterIndex I
@@ -44,6 +37,13 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 		COMMENT multiple of
 	FIELD field_39061 builtBufferCount I
 	FIELD field_39062 batchOffset I
+	FIELD field_1553 currentElementId I
+	FIELD field_1554 vertexCount I
+	FIELD field_1555 buffer Ljava/nio/ByteBuffer;
+	FIELD field_1556 building Z
+	FIELD field_1558 currentElement Lnet/minecraft/class_296;
+	FIELD field_1565 format Lnet/minecraft/class_293;
+	FIELD field_1567 drawMode I
 	FIELD field_1559 colorDisabled Z
 	FIELD field_1560 bufInt Ljava/nio/IntBuffer;
 	FIELD field_1561 bufShort Ljava/nio/ShortBuffer;
@@ -53,14 +53,8 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 	FIELD field_1566 bufFloat Ljava/nio/FloatBuffer;
 	METHOD <init> (I)V
 		ARG 1 initialCapacity
-	METHOD method_1319 getDistanceSq (Ljava/nio/FloatBuffer;FFFII)F
-		ARG 0 buffer
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD method_1324 beginSortedIndexBuffer (Lnet/minecraft/class_287$class_5594;)V
 		ARG 1 state
-	METHOD method_1324 restoreState (Lnet/minecraft/class_287$class_288;)V
 	METHOD method_1326 end ()Lnet/minecraft/class_287$class_7433;
 		COMMENT Builds a buffer from the current batch and resets the building state.
 		COMMENT
@@ -70,22 +64,10 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 		COMMENT @throws IllegalStateException if this builder has not begun building
 		COMMENT
 		COMMENT @return the buffer built from the current batch
-	METHOD method_1326 end ()V
-	METHOD method_1328 begin (ILnet/minecraft/class_293;)V
-		ARG 1 drawMode
-		ARG 2 format
 	METHOD method_1328 begin (Lnet/minecraft/class_293$class_5596;Lnet/minecraft/class_293;)V
 		ARG 1 drawMode
 		ARG 2 format
 	METHOD method_1334 getSortingData ()Lnet/minecraft/class_287$class_5594;
-	METHOD method_1334 popState ()Lnet/minecraft/class_287$class_288;
-	METHOD method_1335 grow (I)V
-		ARG 1 size
-	METHOD method_1341 sortQuads (FFF)V
-		ARG 1 cameraX
-		ARG 2 cameraY
-		ARG 3 cameraZ
-	METHOD method_1343 clear ()V
 	METHOD method_16005 roundBufferSize (I)I
 		ARG 0 amount
 	METHOD method_22625 ([FII)I
@@ -139,6 +121,33 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 	METHOD method_43578 build ()Lnet/minecraft/class_287$class_7433;
 	METHOD method_43579 resetBuilding ()V
 	METHOD method_43580 releaseBuiltBuffer ()V
+	METHOD method_1340 setColor (IIII)V
+		ARG 1 colorIndex
+		ARG 2 red
+		ARG 3 blue
+		ARG 4 index
+	METHOD method_16006 clamp (III)I
+		ARG 0 value
+		ARG 1 min
+		ARG 2 max
+	METHOD method_1319 getDistanceSq (Ljava/nio/FloatBuffer;FFFII)F
+		ARG 0 buffer
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_1324 restoreState (Lnet/minecraft/class_287$class_288;)V
+	METHOD method_1326 end ()V
+	METHOD method_1328 begin (ILnet/minecraft/class_293;)V
+		ARG 1 drawMode
+		ARG 2 format
+	METHOD method_1334 popState ()Lnet/minecraft/class_287$class_288;
+	METHOD method_1335 grow (I)V
+		ARG 1 size
+	METHOD method_1341 sortQuads (FFF)V
+		ARG 1 cameraX
+		ARG 2 cameraY
+		ARG 3 cameraZ
+	METHOD method_1343 clear ()V
 	METHOD method_1310 getColorIndex (I)I
 	METHOD method_1311 getVertexFormat ()Lnet/minecraft/class_293;
 	METHOD method_1312 texture (DD)Lnet/minecraft/class_287;
@@ -200,20 +209,11 @@ CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
 	METHOD method_1337 getVertexCount ()I
 	METHOD method_1338 getDrawMode ()I
 	METHOD method_1339 brightness (IIII)V
-	METHOD method_1340 setColor (IIII)V
-		ARG 1 colorIndex
-		ARG 2 red
-		ARG 3 blue
-		ARG 4 index
 	METHOD method_1342 getByteBuffer ()Ljava/nio/ByteBuffer;
-	METHOD method_16006 clamp (III)I
-		ARG 0 value
-		ARG 1 min
-		ARG 2 max
 	CLASS class_288 State
+		FIELD field_20885 buffer Ljava/nio/ByteBuffer;
 		FIELD field_1569 rawBuffer [I
 		FIELD field_1570 format Lnet/minecraft/class_293;
-		FIELD field_20885 buffer Ljava/nio/ByteBuffer;
 		METHOD <init> (Ljava/nio/ByteBuffer;Lnet/minecraft/class_293;)V
 			ARG 1 buffer
 			ARG 2 format

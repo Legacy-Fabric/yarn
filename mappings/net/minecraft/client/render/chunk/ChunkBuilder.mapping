@@ -17,6 +17,10 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 		COMMENT The number of tasks it can poll from {@link #prioritizedTaskQueue}
 		COMMENT before polling from {@link #taskQueue} first instead.
 	FIELD field_4435 rebuildQueue Ljava/util/PriorityQueue;
+	FIELD field_4445 LOGGER Lorg/slf4j/Logger;
+	FIELD field_4435 pendingChunks Ljava/util/concurrent/PriorityBlockingQueue;
+	FIELD field_4440 workerThreads Ljava/util/List;
+	FIELD field_4442 bufferCount I
 	FIELD field_4436 THREAD_FACTORY Ljava/util/concurrent/ThreadFactory;
 	FIELD field_4437 displayListBufferRenderer Lnet/minecraft/class_286;
 	FIELD field_4438 availableBuffers Ljava/util/concurrent/BlockingQueue;
@@ -25,10 +29,6 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 	FIELD field_4443 uploadQueue Ljava/util/Queue;
 	FIELD field_4444 workers Ljava/util/List;
 	FIELD field_4445 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_4445 LOGGER Lorg/slf4j/Logger;
-	FIELD field_4435 pendingChunks Ljava/util/concurrent/PriorityBlockingQueue;
-	FIELD field_4440 workerThreads Ljava/util/List;
-	FIELD field_4442 bufferCount I
 	METHOD <init> (Lnet/minecraft/class_638;Lnet/minecraft/class_761;Ljava/util/concurrent/Executor;ZLnet/minecraft/class_750;)V
 		ARG 1 world
 		ARG 2 worldRenderer
@@ -57,29 +57,12 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 	METHOD method_34846 getChunksToUpload ()I
 	METHOD method_34847 getFreeBufferCount ()I
 	METHOD method_3619 stop ()V
-	METHOD method_3620 resortTransparency (Lnet/minecraft/class_851;)Z
-		ARG 1 renderer
-	METHOD method_3621 uploadVbo (Lnet/minecraft/class_287;Lnet/minecraft/class_291;)V
-		ARG 1 bufferBuilder
-		ARG 2 glBuffer
-	METHOD method_3622 getDebugString ()Ljava/lang/String;
-	METHOD method_3624 rebuild (Lnet/minecraft/class_851;)Z
-		ARG 1 renderer
-	METHOD method_3625 addAvailableBuffer (Lnet/minecraft/class_750;)V
-	METHOD method_3626 getNextAvailableBuffer ()Lnet/minecraft/class_750;
 	METHOD method_3627 rebuild (Lnet/minecraft/class_846$class_851;)V
 		ARG 1 chunk
 	METHOD method_3627 rebuild (Lnet/minecraft/class_846$class_851;Lnet/minecraft/class_6850;)V
 		ARG 1 chunk
 		ARG 2 builder
-	METHOD method_3627 rebuildSync (Lnet/minecraft/class_851;)Z
-		ARG 1 renderer
-	METHOD method_3629 getNextChunkRenderDataTask ()Lnet/minecraft/class_842;
 	METHOD method_3630 isEmpty ()Z
-	METHOD method_3631 runTasksSync (J)Z
-		ARG 1 endTime
-	METHOD method_3632 reset ()V
-	METHOD method_3633 clear ()V
 	METHOD method_3635 scheduleUpload (Lnet/minecraft/class_287$class_7433;Lnet/minecraft/class_291;)Ljava/util/concurrent/CompletableFuture;
 		ARG 2 glBuffer
 	METHOD method_3635 scheduleUpload (Lnet/minecraft/class_287;Lnet/minecraft/class_291;)Ljava/util/concurrent/CompletableFuture;
@@ -96,6 +79,23 @@ CLASS net/minecraft/class_846 net/minecraft/client/render/chunk/ChunkBuilder
 		ARG 2 bufferBuilder
 		ARG 3 chunkRenderer
 		ARG 4 chunkRenderData
+	METHOD method_3620 resortTransparency (Lnet/minecraft/class_851;)Z
+		ARG 1 renderer
+	METHOD method_3621 uploadVbo (Lnet/minecraft/class_287;Lnet/minecraft/class_291;)V
+		ARG 1 bufferBuilder
+		ARG 2 glBuffer
+	METHOD method_3622 getDebugString ()Ljava/lang/String;
+	METHOD method_3624 rebuild (Lnet/minecraft/class_851;)Z
+		ARG 1 renderer
+	METHOD method_3625 addAvailableBuffer (Lnet/minecraft/class_750;)V
+	METHOD method_3626 getNextAvailableBuffer ()Lnet/minecraft/class_750;
+	METHOD method_3627 rebuildSync (Lnet/minecraft/class_851;)Z
+		ARG 1 renderer
+	METHOD method_3629 getNextChunkRenderDataTask ()Lnet/minecraft/class_842;
+	METHOD method_3631 runTasksSync (J)Z
+		ARG 1 endTime
+	METHOD method_3632 reset ()V
+	METHOD method_3633 clear ()V
 	CLASS class_4690 Result
 	CLASS class_847 ChunkUploadTask
 		FIELD field_4446 task Lcom/google/common/util/concurrent/ListenableFutureTask;

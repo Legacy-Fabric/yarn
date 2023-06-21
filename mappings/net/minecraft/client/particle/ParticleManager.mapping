@@ -5,10 +5,7 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	FIELD field_29072 groupCounts Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;
 	FIELD field_32657 MAX_PARTICLE_COUNT I
 	FIELD field_3830 particles Ljava/util/Map;
-	FIELD field_3831 textureManager Lnet/minecraft/class_1060;
-	FIELD field_3832 random Ljava/util/Random;
 	FIELD field_3832 random Lnet/minecraft/class_5819;
-	FIELD field_3834 world Lnet/minecraft/class_1937;
 	FIELD field_3834 world Lnet/minecraft/class_638;
 	FIELD field_3835 factories Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 	FIELD field_3836 newParticles Ljava/util/Queue;
@@ -16,6 +13,9 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	FIELD field_40505 LOGGER Lorg/slf4j/Logger;
 	FIELD field_40506 FINDER Lnet/minecraft/class_7654;
 	FIELD field_41385 PARTICLES_PATH Lnet/minecraft/class_2960;
+	FIELD field_3831 textureManager Lnet/minecraft/class_1060;
+	FIELD field_3832 random Ljava/util/Random;
+	FIELD field_3834 world Lnet/minecraft/class_1937;
 	METHOD <init> (Lnet/minecraft/class_638;Lnet/minecraft/class_1060;)V
 		ARG 1 world
 		ARG 2 textureManager
@@ -42,7 +42,6 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	METHOD method_3043 registerFactory (Lnet/minecraft/class_2396;Lnet/minecraft/class_707;)V
 		ARG 1 type
 		ARG 2 factory
-	METHOD method_3045 setWorld (Lnet/minecraft/class_1937;)V
 	METHOD method_3045 setWorld (Lnet/minecraft/class_638;)V
 		ARG 1 world
 	METHOD method_3046 addBlockBreakParticles (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
@@ -62,10 +61,6 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 		ARG 1 entity
 		ARG 2 parameters
 		ARG 3 maxAge
-	METHOD method_3052 getDebugString ()Ljava/lang/String;
-	METHOD method_3054 addBlockBreakingParticles (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)V
-		ARG 1 pos
-		ARG 2 direction
 	METHOD method_3055 createParticle (Lnet/minecraft/class_2394;DDDDDD)Lnet/minecraft/class_703;
 		ARG 1 parameters
 		ARG 2 x
@@ -82,15 +77,9 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 		ARG 8 velocityX
 		ARG 10 velocityY
 		ARG 12 velocityZ
-	METHOD method_3057 tick ()V
-	METHOD method_3058 addParticle (Lnet/minecraft/class_703;)V
-		ARG 1 particle
-	METHOD method_3059 tickParticle (Lnet/minecraft/class_703;)V
-		ARG 1 particle
 	METHOD method_3061 addEmitter (Lnet/minecraft/class_1297;Lnet/minecraft/class_2394;)V
 		ARG 1 entity
 		ARG 2 parameters
-	METHOD method_3062 registerDefaultFactories ()V
 	METHOD method_34020 (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;DDDDDD)V
 		ARG 3 minX
 		ARG 5 minY
@@ -132,6 +121,17 @@ CLASS net/minecraft/class_702 net/minecraft/client/particle/ParticleManager
 	METHOD method_3049 renderParticles (Lnet/minecraft/class_4184;F)V
 		ARG 1 camera
 		ARG 2 tickDelta
+	METHOD method_3045 setWorld (Lnet/minecraft/class_1937;)V
+	METHOD method_3052 getDebugString ()Ljava/lang/String;
+	METHOD method_3054 addBlockBreakingParticles (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)V
+		ARG 1 pos
+		ARG 2 direction
+	METHOD method_3057 tick ()V
+	METHOD method_3058 addParticle (Lnet/minecraft/class_703;)V
+		ARG 1 particle
+	METHOD method_3059 tickParticle (Lnet/minecraft/class_703;)V
+		ARG 1 particle
+	METHOD method_3062 registerDefaultFactories ()V
 	CLASS class_4090 SimpleSpriteProvider
 		FIELD field_18303 sprites Ljava/util/List;
 		METHOD method_18838 setSprites (Ljava/util/List;)V

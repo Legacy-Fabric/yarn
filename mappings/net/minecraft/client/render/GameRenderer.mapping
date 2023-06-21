@@ -68,22 +68,27 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_38343 renderTypeEntityTranslucentEmissiveProgram Lnet/minecraft/class_5944;
 	FIELD field_3988 zoomX F
 	FIELD field_3990 backgroundRenderer Lnet/minecraft/class_758;
-	FIELD field_3992 renderHand Z
-	FIELD field_3993 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_3993 LOGGER Lorg/slf4j/Logger;
-	FIELD field_3994 random Ljava/util/Random;
 	FIELD field_3994 random Lnet/minecraft/class_5819;
-	FIELD field_3996 SUPER_SECRET_SETTING_PROGRAMS [Lnet/minecraft/class_2960;
-	FIELD field_3997 lastSkyDarkness F
-	FIELD field_3998 lastWindowFocusedTime J
-	FIELD field_3999 lastFovMultiplier F
-	FIELD field_4001 renderingPanorama Z
 	FIELD field_4002 skyDarkness F
 	FIELD field_4003 floatingItemHeight F
 	FIELD field_4004 zoomY F
 	FIELD field_4005 zoom F
 	FIELD field_4006 floatingItem Lnet/minecraft/class_1799;
 	FIELD field_4007 floatingItemTimeLeft I
+	FIELD field_4017 lastWorldIconUpdate J
+	FIELD field_4028 lightmapTextureManager Lnet/minecraft/class_765;
+	FIELD field_4029 floatingItemWidth F
+	FIELD field_42515 renderTypeTextBackgroundProgram Lnet/minecraft/class_5944;
+	FIELD field_42516 renderTypeTextBackgroundSeeThroughProgram Lnet/minecraft/class_5944;
+	FIELD field_3992 renderHand Z
+	FIELD field_3993 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_3994 random Ljava/util/Random;
+	FIELD field_3996 SUPER_SECRET_SETTING_PROGRAMS [Lnet/minecraft/class_2960;
+	FIELD field_3997 lastSkyDarkness F
+	FIELD field_3998 lastWindowFocusedTime J
+	FIELD field_3999 lastFovMultiplier F
+	FIELD field_4001 renderingPanorama Z
 	FIELD field_4008 SNOW_LOC Lnet/minecraft/class_2960;
 	FIELD field_4009 blockOutlineEnabled Z
 	FIELD field_4010 SUPER_SECRET_SETTING_COUNT I
@@ -91,7 +96,6 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_4012 firstPersonRenderer Lnet/minecraft/class_759;
 	FIELD field_4013 postProcessorEnabled Z
 	FIELD field_4015 client Lnet/minecraft/class_310;
-	FIELD field_4017 lastWorldIconUpdate J
 	FIELD field_4018 resourceManager Lnet/minecraft/class_3300;
 	FIELD field_4019 fovMultiplier F
 	FIELD field_4023 superSecretSettingIndex I
@@ -99,10 +103,6 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	FIELD field_4025 viewDistance F
 	FIELD field_4026 mapRenderer Lnet/minecraft/class_330;
 	FIELD field_4027 ticks I
-	FIELD field_4028 lightmapTextureManager Lnet/minecraft/class_765;
-	FIELD field_4029 floatingItemWidth F
-	FIELD field_42515 renderTypeTextBackgroundProgram Lnet/minecraft/class_5944;
-	FIELD field_42516 renderTypeTextBackgroundSeeThroughProgram Lnet/minecraft/class_5944;
 	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_759;Lnet/minecraft/class_3300;Lnet/minecraft/class_4599;)V
 		ARG 1 client
 		ARG 2 heldItemRenderer
@@ -124,14 +124,6 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 	METHOD method_22975 getOverlayTexture ()Lnet/minecraft/class_4608;
 	METHOD method_31136 renderNausea (F)V
 		ARG 1 distortionStrength
-	METHOD method_3167 onCameraEntitySet (Lnet/minecraft/class_1297;)V
-		ARG 1 entity
-	METHOD method_3168 loadPostProcessor (Lnet/minecraft/class_2960;)V
-		ARG 1 id
-	METHOD method_3169 onResized (II)V
-		ARG 1 width
-		ARG 2 height
-	METHOD method_3170 renderWeather (F)V
 	METHOD method_3171 renderFloatingItem (IIF)V
 		ARG 1 scaledWidth
 		ARG 2 scaledHeight
@@ -143,14 +135,9 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 1 matrices
 		ARG 2 camera
 		ARG 3 tickDelta
-	METHOD method_3174 getNightVisionStrength (Lnet/minecraft/class_1309;F)F
-		ARG 0 entity
-		ARG 1 tickDelta
-	METHOD method_3175 isShaderEnabled ()Z
 	METHOD method_3176 updateWorldIcon ()V
 	METHOD method_3176 updateWorldIcon (Ljava/nio/file/Path;)V
 		ARG 1 path
-	METHOD method_3177 renderRain ()V
 	METHOD method_3178 renderCenter (FJ)V
 		ARG 1 tickDelta
 		ARG 2 endTime
@@ -164,50 +151,33 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 6 yaw
 		ARG 7 pitch
 		ARG 8 translucent
-	METHOD method_3180 enableLightmap ()V
-	METHOD method_3182 tick ()V
-	METHOD method_3183 getPostProcessor ()Lnet/minecraft/class_279;
-	METHOD method_3184 togglePostProcessorEnabled ()V
 	METHOD method_3185 applyCameraTransformations (F)V
-		ARG 1 tickDelta
-	METHOD method_3186 bobView (F)V
 		ARG 1 tickDelta
 	METHOD method_3186 bobView (Lnet/minecraft/class_4587;F)V
 		ARG 1 matrices
 		ARG 2 tickDelta
-	METHOD method_3187 disableLightmap ()V
-	METHOD method_3188 renderWorld (FJ)V
-		ARG 1 tickDelta
-		ARG 2 endTime
 	METHOD method_3188 renderWorld (FJLnet/minecraft/class_4587;)V
 		ARG 1 tickDelta
 		ARG 2 limitTime
 		ARG 4 matrices
 	METHOD method_3189 showFloatingItem (Lnet/minecraft/class_1799;)V
 		ARG 1 floatingItem
-	METHOD method_3190 updateTargetedEntity (F)V
-		ARG 1 tickDelta
 	METHOD method_3192 render (FJZ)V
 		ARG 1 tickDelta
 		ARG 2 startTime
 		ARG 4 tick
 	METHOD method_3193 getViewDistance ()F
-	METHOD method_3194 getMapRenderer ()Lnet/minecraft/class_330;
 	METHOD method_3195 getSkyDarkness (F)F
 		ARG 1 tickDelta
 	METHOD method_3196 getFov (Lnet/minecraft/class_4184;FZ)D
 		ARG 1 camera
 		ARG 2 tickDelta
 		ARG 3 changingFov
-	METHOD method_3198 bobViewWhenHurt (F)V
-		ARG 1 tickDelta
 	METHOD method_3198 tiltViewWhenHurt (Lnet/minecraft/class_4587;F)V
 		ARG 1 matrices
 		ARG 2 tickDelta
-	METHOD method_3199 updateFovMultiplier ()V
 	METHOD method_3201 setFogBlack (Z)V
 		ARG 1 fogBlack
-	METHOD method_3202 shouldRenderBlockOutline ()Z
 	METHOD method_3203 reset ()V
 	METHOD method_3204 getClient ()Lnet/minecraft/class_310;
 	METHOD method_3206 renderAboveClouds (Lnet/minecraft/class_4184;Lnet/minecraft/class_761;FDDD)V
@@ -217,7 +187,6 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 4 cameraX
 		ARG 6 cameraY
 		ARG 8 cameraZ
-	METHOD method_3207 disablePostProcessor ()V
 	METHOD method_34495 getRenderTypeSolidProgram ()Lnet/minecraft/class_5944;
 	METHOD method_34496 getRenderTypeCutoutMippedProgram ()Lnet/minecraft/class_5944;
 	METHOD method_34497 getRenderTypeCutoutProgram ()Lnet/minecraft/class_5944;
@@ -441,6 +410,37 @@ CLASS net/minecraft/class_757 net/minecraft/client/render/GameRenderer
 		ARG 0 program
 	METHOD method_49040 (Lnet/minecraft/class_5944;)V
 		ARG 0 program
+	METHOD method_3167 onCameraEntitySet (Lnet/minecraft/class_1297;)V
+		ARG 1 entity
+	METHOD method_3168 loadPostProcessor (Lnet/minecraft/class_2960;)V
+		ARG 1 id
+	METHOD method_3169 onResized (II)V
+		ARG 1 width
+		ARG 2 height
+	METHOD method_3170 renderWeather (F)V
+	METHOD method_3174 getNightVisionStrength (Lnet/minecraft/class_1309;F)F
+		ARG 0 entity
+		ARG 1 tickDelta
+	METHOD method_3175 isShaderEnabled ()Z
+	METHOD method_3177 renderRain ()V
+	METHOD method_3180 enableLightmap ()V
+	METHOD method_3182 tick ()V
+	METHOD method_3183 getPostProcessor ()Lnet/minecraft/class_279;
+	METHOD method_3184 togglePostProcessorEnabled ()V
+	METHOD method_3186 bobView (F)V
+		ARG 1 tickDelta
+	METHOD method_3187 disableLightmap ()V
+	METHOD method_3188 renderWorld (FJ)V
+		ARG 1 tickDelta
+		ARG 2 endTime
+	METHOD method_3190 updateTargetedEntity (F)V
+		ARG 1 tickDelta
+	METHOD method_3194 getMapRenderer ()Lnet/minecraft/class_330;
+	METHOD method_3198 bobViewWhenHurt (F)V
+		ARG 1 tickDelta
+	METHOD method_3199 updateFovMultiplier ()V
+	METHOD method_3202 shouldRenderBlockOutline ()Z
+	METHOD method_3207 disablePostProcessor ()V
 	CLASS 1
 		METHOD method_45775 (Lnet/minecraft/class_2960;)Z
 			ARG 0 id
