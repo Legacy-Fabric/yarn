@@ -250,13 +250,14 @@ boolean isServerBundled(String mc_version) {
 }
 
 tasks.register("versionifyMappingsFilter", VersionifyFilterMappingsTask) {
+	dependsOn downloadIntermediary
 	intermediaryFile = downloadIntermediary.outputFile
 	inputDir = file("mappings")
 	outputDir = mappingsDir
 }
 
 tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
-	dependsOn "versionifyMappingsFilter"
+	dependsOn "versionifyMappingsFilter", downloadIntermediary
 	intermediaryFile = downloadIntermediary.outputFile
 	inputDir = file("mappings")
 	outputDir = file("mappings-temp")
