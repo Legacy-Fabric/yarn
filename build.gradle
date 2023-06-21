@@ -254,6 +254,7 @@ tasks.register("versionifyMappingsFilter", VersionifyFilterMappingsTask) {
 	intermediaryFile = downloadIntermediary.outputFile
 	inputDir = file("mappings")
 	outputDir = mappingsDir
+	outputs.upToDateWhen { false }
 }
 
 tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
@@ -261,18 +262,21 @@ tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
 	intermediaryFile = downloadIntermediary.outputFile
 	inputDir = file("mappings")
 	outputDir = file("mappings-temp")
+	outputs.upToDateWhen { false }
 }
 
 tasks.register("deduplicateMappings", DeduplicateMappingsTask) {
 	inputDir = file("mappings")
 	outputDir = file("mappings-temp")
+	outputs.upToDateWhen { false }
 }
 
 tasks.register("unifyMappings", UnifyMappingsTask) {
-//	dependsOn versionifyMappingsExclude
+	dependsOn("versionifyMappingsExclude")
 	unifiedDir = "mappings-temp"
 	versionedDir = mappingsDir
 	outputDir = file("mappings")
+	outputs.upToDateWhen { false }
 }
 
 tasks.register('downloadIntermediary', DownloadTask) {
@@ -822,5 +826,13 @@ abstract class EnigmaTask extends JavaExec {
 		args '-profile'
 		args 'enigma_profile.json'
 		super.exec()
+	}
+}
+
+unifyMappings.configure {
+	tasks.each {task ->
+		if (task != it) {
+			it.mustRunAfter(task)
+		}
 	}
 }
