@@ -35,76 +35,17 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 	@InputDirectory
 	public abstract DirectoryProperty getVersionedDir();
 
-	void run(MappingWriter var1) throws IOException {
+	void pre() throws IOException {
 		this.getUnifiedDir().getAsFile().get().delete();
 		Files.move(this.getOutputDir().getAsFile().get().toPath(), this.getUnifiedDir().getAsFile().get().toPath());
+	}
+
+	void run(MappingWriter var1) throws IOException {
 		MemoryMappingTree treeView = new MemoryMappingTree();
 		MappingReader.read(this.getUnifiedDir().getAsFile().get().toPath(), treeView);
 		MemoryMappingTree mappingTree = new MemoryMappingTree();
 		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
-		int targetNamespace = treeView.getNamespaceId(MappingUtil.NS_SOURCE_FALLBACK);
-		int inputNamespace = mappingTree.getNamespaceId(MappingUtil.NS_SOURCE_FALLBACK);
-
-		for (MappingTree.ClassMapping classMapping : mappingTree.getClasses()) {
-			MappingTree.ClassMapping unifiedClass = treeView.getClass(classMapping.getSrcName());
-			if (unifiedClass == null) {
-				treeView.addClass(classMapping);
-			} else {
-				unifiedClass.setComment(classMapping.getComment());
-				unifiedClass.setDstName(classMapping.getName(inputNamespace), targetNamespace);
-
-				for (MappingTree.FieldMapping fieldMapping : classMapping.getFields()) {
-					MappingTree.FieldMapping unifiedField = unifiedClass.getField(fieldMapping.getSrcName(), fieldMapping.getSrcDesc());
-
-					if (unifiedField == null) {
-						unifiedClass.addField(fieldMapping);
-					} else {
-						unifiedField.setComment(fieldMapping.getComment());
-						unifiedField.setDstName(fieldMapping.getName(inputNamespace), targetNamespace);
-					}
-				}
-
-				for (MappingTree.MethodMapping methodMapping : classMapping.getMethods()) {
-					MappingTree.MethodMapping unifiedMethod = unifiedClass.getMethod(methodMapping.getSrcName(), methodMapping.getSrcDesc());
-
-					if (unifiedMethod == null) {
-						unifiedClass.addMethod(methodMapping);
-					} else {
-						unifiedMethod.setComment(methodMapping.getComment());
-						unifiedMethod.setDstName(methodMapping.getName(inputNamespace), targetNamespace);
-
-						for (MappingTree.MethodArgMapping methodArgMapping : methodMapping.getArgs()) {
-							MappingTree.MethodArgMapping unifiedArg = unifiedMethod.getArg(
-									methodArgMapping.getArgPosition(), methodArgMapping.getLvIndex(),
-									methodArgMapping.getSrcName()
-							);
-
-							if (unifiedArg == null) {
-								unifiedMethod.addArg(methodArgMapping);
-							} else {
-								unifiedArg.setComment(methodArgMapping.getComment());
-								unifiedArg.setDstName(methodArgMapping.getName(inputNamespace), targetNamespace);
-							}
-						}
-
-						for (MappingTree.MethodVarMapping methodVarMapping : methodMapping.getVars()) {
-							MappingTree.MethodVarMapping unifiedVar = unifiedMethod.getVar(
-									methodVarMapping.getLvtRowIndex(), methodVarMapping.getLvIndex(),
-									methodVarMapping.getStartOpIdx(), methodVarMapping.getSrcName()
-							);
-
-							if (unifiedVar == null) {
-								unifiedMethod.addVar(methodVarMapping);
-							} else {
-								unifiedVar.setComment(methodVarMapping.getComment());
-								unifiedVar.setDstName(methodVarMapping.getName(inputNamespace), targetNamespace);
-							}
-						}
-					}
-				}
-			}
-		}
-
+		mappingTree.accept(treeView);
 		treeView.accept(var1);
 
 		Files.walkFileTree(this.getUnifiedDir().getAsFile().get().toPath(), new FileVisitor<Path>() {

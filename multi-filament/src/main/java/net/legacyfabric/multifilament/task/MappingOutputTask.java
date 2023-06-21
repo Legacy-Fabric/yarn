@@ -22,8 +22,11 @@ public abstract class MappingOutputTask extends MultiFilamentTask {
 	@OutputDirectory
 	public abstract DirectoryProperty getOutputDir();
 
+	void pre() throws IOException {}
+
 	@TaskAction
 	public final void run() throws IOException {
+		this.pre();
 		MappingWriter mappingWriter = MappingWriter.create(this.getOutputDir().getAsFile().get().toPath(), (MappingFormat)this.getOutputFormat().get());
 
 		try {
