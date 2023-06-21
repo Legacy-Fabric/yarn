@@ -270,11 +270,7 @@ tasks.register("deduplicateMappings", DeduplicateMappingsTask) {
 
 tasks.register("unifyMappings", UnifyMappingsTask) {
 //	dependsOn versionifyMappingsExclude
-	if (!file("mappings-temp").exists()) {
-		file("mappings-temp").mkdir()
-	}
-
-	unifiedDir = file("mappings-temp")
+	unifiedDir = "mappings-temp"
 	versionedDir = mappingsDir
 	outputDir = file("mappings")
 }

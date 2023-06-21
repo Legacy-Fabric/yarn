@@ -11,11 +11,14 @@ import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
 
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.RegularFileProperty;
+import org.gradle.api.provider.Property;
+import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFile;
 
 import javax.inject.Inject;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -29,26 +32,28 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 		this.getOutputFormat().convention(MappingFormat.ENIGMA);
 	}
 
-	@InputDirectory
-	public abstract DirectoryProperty getUnifiedDir();
+	@Input
+	public abstract Property<String> getUnifiedDir();
 
 	@InputDirectory
 	public abstract DirectoryProperty getVersionedDir();
 
 	void pre() throws IOException {
-		this.getUnifiedDir().getAsFile().get().delete();
-		Files.move(this.getOutputDir().getAsFile().get().toPath(), this.getUnifiedDir().getAsFile().get().toPath());
+		File file = new File(this.getVersionedDir().getAsFile().get().getParentFile(), this.getUnifiedDir().get());
+		file.delete();
+		Files.move(this.getOutputDir().getAsFile().get().toPath(), file.toPath());
 	}
 
 	void run(MappingWriter var1) throws IOException {
+		File file = new File(this.getVersionedDir().getAsFile().get().getParentFile(), this.getUnifiedDir().get());
 		MemoryMappingTree treeView = new MemoryMappingTree();
-		MappingReader.read(this.getUnifiedDir().getAsFile().get().toPath(), treeView);
+		MappingReader.read(file.toPath(), treeView);
 		MemoryMappingTree mappingTree = new MemoryMappingTree();
 		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
 		mappingTree.accept(treeView);
 		treeView.accept(var1);
 
-		Files.walkFileTree(this.getUnifiedDir().getAsFile().get().toPath(), new FileVisitor<Path>() {
+		Files.walkFileTree(file.toPath(), new FileVisitor<Path>() {
 			@Override
 			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
 				return FileVisitResult.CONTINUE;
