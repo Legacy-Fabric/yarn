@@ -18,6 +18,7 @@ plugins {
 	id 'maven-publish'
 	id "com.diffplug.spotless" version "6.17.0"
 	id 'net.fabricmc.filament' version "0.6.1"
+	id 'net.legacyfabric.multifilament'
 }
 
 def taskName = project.gradle.startParameter.taskNames[0]
@@ -129,6 +130,11 @@ import net.fabricmc.nameproposal.MappingNameCompleter
 import org.gradle.work.DisableCachingByDefault
 
 import java.util.zip.GZIPOutputStream
+
+import net.legacyfabric.multifilament.task.VersionifyFilterMappingsTask;
+import net.legacyfabric.multifilament.task.VersionifyExcludeMappingsTask;
+import net.legacyfabric.multifilament.task.DeduplicateMappingsTask;
+import net.legacyfabric.multifilament.task.UnifyMappingsTask;
 
 def getIntermediaryBranch() {
 	switch(intermediary_version) {
@@ -243,6 +249,36 @@ boolean isServerBundled(String mc_version) {
 	return bool
 }
 
+tasks.register("versionifyMappingsFilter", VersionifyFilterMappingsTask) {
+	dependsOn downloadIntermediary
+	intermediaryFile = downloadIntermediary.outputFile
+	inputDir = file("mappings")
+	outputDir = mappingsDir
+	outputs.upToDateWhen { false }
+}
+
+tasks.register("versionifyMappingsExclude", VersionifyExcludeMappingsTask) {
+	dependsOn "versionifyMappingsFilter", downloadIntermediary
+	intermediaryFile = downloadIntermediary.outputFile
+	inputDir = file("mappings")
+	outputDir = file("mappings-temp")
+	outputs.upToDateWhen { false }
+}
+
+tasks.register("deduplicateMappings", DeduplicateMappingsTask) {
+	inputDir = file("mappings")
+	outputDir = file("mappings-temp")
+	outputs.upToDateWhen { false }
+}
+
+tasks.register("unifyMappings", UnifyMappingsTask) {
+	dependsOn("versionifyMappingsExclude")
+	unifiedDir = "mappings-temp"
+	versionedDir = mappingsDir
+	outputDir = file("mappings")
+	outputs.upToDateWhen { false }
+}
+
 tasks.register('downloadIntermediary', DownloadTask) {
 	group = buildMappingGroup
 	url = getIntermediaryUrl(minecraft_version)
@@ -284,19 +320,21 @@ tasks.register('mapServerIntermediaryJar', MapJarTask) {
 }
 
 tasks.register('yarn', EnigmaTask) {
-	dependsOn mapIntermediaryJar
+	dependsOn mapIntermediaryJar, versionifyMappingsExclude
 	group = yarnGroup
 	jar = mapIntermediaryJar.output
 	mappings = mappingsDir
 }
 
 tasks.register('yarnCommon', EnigmaTask) {
+	dependsOn versionifyMappingsExclude
 	group = yarnGroup
 	jar = mapServerIntermediaryJar.output
 	mappings = mappingsDir
 }
 
 tasks.register('checkMappings') {
+	dependsOn versionifyMappingsExclude
 	group = buildMappingGroup
 	inputs.dir mappingsDir
 	inputs.file mapIntermediaryJar.output
@@ -318,6 +356,7 @@ tasks.register('checkMappings') {
 }
 
 tasks.register('mapSpecializedMethods', MapSpecializedMethodsTask) {
+	dependsOn versionifyMappingsExclude
 	intermediaryJarFile = mapIntermediaryJar.output
 	mappings = mappingsDir
 	output = new File(tempDir, "yarn-mappings-v2.tiny")
@@ -474,7 +513,7 @@ tasks.register('unpickIntermediaryJar', UnpickJarTask) {
 }
 
 tasks.register('yarnUnpicked', EnigmaTask) {
-	dependsOn "unpickIntermediaryJar"
+	dependsOn "unpickIntermediaryJar", versionifyMappingsExclude
 	group = yarnGroup
 	jar = unpickIntermediaryJar.output
 	mappings = mappingsDir
@@ -682,12 +721,14 @@ tasks.register('javadocJar', Jar) {
 }
 
 generatePackageInfoMappings {
+	dependsOn versionifyMappingsExclude
 	inputJar = mapIntermediaryJar.output
 	packageName = "net/minecraft/unused/packageinfo/"
 	outputDir = file(mappingsDir.toString() + "/net/minecraft/unused/packageinfo")
 }
 
 javadocLint {
+	dependsOn versionifyMappingsExclude
 	group = "javadoc generation"
 	mappingDirectory = mappingsDir
 }
@@ -785,5 +826,13 @@ abstract class EnigmaTask extends JavaExec {
 		args '-profile'
 		args 'enigma_profile.json'
 		super.exec()
+	}
+}
+
+unifyMappings.configure {
+	tasks.each {task ->
+		if (task != it) {
+			it.mustRunAfter(task)
+		}
 	}
 }

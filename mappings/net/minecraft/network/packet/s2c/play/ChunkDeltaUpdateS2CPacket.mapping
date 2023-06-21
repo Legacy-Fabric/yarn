@@ -1,6 +1,4 @@
 CLASS net/minecraft/class_2637 net/minecraft/network/packet/s2c/play/ChunkDeltaUpdateS2CPacket
-	FIELD field_12116 chunkPos Lnet/minecraft/class_1923;
-	FIELD field_12117 records [Lnet/minecraft/class_2637$class_2638;
 	FIELD field_26345 sectionPos Lnet/minecraft/class_4076;
 	FIELD field_26346 positions [S
 		COMMENT The packed local positions for each entry in {@link #blockStates}.
@@ -8,6 +6,8 @@ CLASS net/minecraft/class_2637 net/minecraft/network/packet/s2c/play/ChunkDeltaU
 		COMMENT @see ChunkSectionPos#packLocal(BlockPos)
 	FIELD field_26347 blockStates [Lnet/minecraft/class_2680;
 	FIELD field_26749 noLightingUpdates Z
+	FIELD field_12116 chunkPos Lnet/minecraft/class_1923;
+	FIELD field_12117 records [Lnet/minecraft/class_2637$class_2638;
 	METHOD <init> (Lnet/minecraft/class_2540;)V
 		ARG 1 buf
 	METHOD <init> (Lnet/minecraft/class_4076;Lit/unimi/dsi/fastutil/shorts/ShortSet;Lnet/minecraft/class_2826;Z)V
@@ -16,21 +16,21 @@ CLASS net/minecraft/class_2637 net/minecraft/network/packet/s2c/play/ChunkDeltaU
 		ARG 2 positions
 		ARG 3 section
 		ARG 4 noLightingUpdates
-	METHOD method_11391 getRecords ()[Lnet/minecraft/class_2637$class_2638;
 	METHOD method_30620 allocateBuffers (I)V
 		ARG 1 positionCount
 	METHOD method_30621 visitUpdates (Ljava/util/function/BiConsumer;)V
 		COMMENT Calls the given consumer for each pair of block position and block state contained in this packet.
 		ARG 1 visitor
 	METHOD method_31179 shouldSkipLightingUpdates ()Z
+	METHOD method_11391 getRecords ()[Lnet/minecraft/class_2637$class_2638;
 	CLASS class_2638 ChunkDeltaRecord
-		FIELD field_12118 pos S
 		FIELD field_12119 state Lnet/minecraft/class_2680;
+		FIELD field_12118 pos S
 		METHOD <init> (Lnet/minecraft/class_2637;SLnet/minecraft/class_2680;)V
 			ARG 2 pos
 			ARG 3 state
 		METHOD <init> (Lnet/minecraft/class_2637;SLnet/minecraft/class_2818;)V
 			ARG 2 pos
-		METHOD method_11394 getBlockPos ()Lnet/minecraft/class_2338;
 		METHOD method_11395 getState ()Lnet/minecraft/class_2680;
+		METHOD method_11394 getBlockPos ()Lnet/minecraft/class_2338;
 		METHOD method_11396 getPosShort ()S

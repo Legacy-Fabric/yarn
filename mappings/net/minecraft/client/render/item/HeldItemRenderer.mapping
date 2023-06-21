@@ -24,16 +24,16 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 	FIELD field_32747 EAT_OR_DRINK_Y_ANGLE_MULTIPLIER F
 	FIELD field_32748 EAT_OR_DRINK_Z_ANGLE_MULTIPLIER F
 	FIELD field_32758 ARM_HOLDING_ITEM_SECOND_Y_ANGLE_MULTIPLIER F
+	FIELD field_4048 offHand Lnet/minecraft/class_1799;
+	FIELD field_4051 prevEquipProgressOffHand F
+	FIELD field_4052 equipProgressOffHand F
 	FIELD field_4043 equipProgressMainHand F
 	FIELD field_4044 itemRenderer Lnet/minecraft/class_918;
 	FIELD field_4045 UNDERWATER_TEX Lnet/minecraft/class_2960;
 	FIELD field_4046 entityRenderDispatcher Lnet/minecraft/class_898;
 	FIELD field_4047 mainHand Lnet/minecraft/class_1799;
-	FIELD field_4048 offHand Lnet/minecraft/class_1799;
 	FIELD field_4049 MAP_BACKGROUND_TEX Lnet/minecraft/class_2960;
 	FIELD field_4050 client Lnet/minecraft/class_310;
-	FIELD field_4051 prevEquipProgressOffHand F
-	FIELD field_4052 equipProgressOffHand F
 	FIELD field_4053 prevEquipProgressMainHand F
 	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_898;Lnet/minecraft/class_918;)V
 		ARG 1 client
@@ -77,7 +77,6 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 		ARG 4 equipProgress
 		ARG 5 swingProgress
 		ARG 6 arm
-	METHOD method_3220 updateHeldItems ()V
 	METHOD method_3221 renderArms ()V
 	METHOD method_3222 renderMapInOneHand (FLnet/minecraft/class_1306;FLnet/minecraft/class_1799;)V
 		ARG 1 equipProgress
@@ -104,11 +103,7 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 		ARG 3 equipProgress
 	METHOD method_3224 applyHandOffset (Lnet/minecraft/class_1306;F)V
 		ARG 1 hand
-	METHOD method_3225 renderFirstPersonItem (F)V
-		ARG 1 tickDelta
 	METHOD method_3226 renderBlock (Lnet/minecraft/class_1058;)V
-	METHOD method_3227 getMapAngle (F)F
-		ARG 1 tickDelta
 	METHOD method_3228 renderFirstPersonItem (Lnet/minecraft/class_742;FFLnet/minecraft/class_1268;FLnet/minecraft/class_1799;F)V
 		ARG 1 player
 		ARG 2 tickDelta
@@ -127,10 +122,6 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 		ARG 8 matrices
 		ARG 9 vertexConsumers
 		ARG 10 light
-	METHOD method_3229 rotate (FF)V
-		ARG 1 pitch
-		ARG 2 yaw
-	METHOD method_3230 renderWaterOverlay (F)V
 	METHOD method_3231 renderMapInBothHands (FFF)V
 		ARG 1 pitch
 		ARG 2 equipProgress
@@ -141,7 +132,6 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 		ARG 4 pitch
 		ARG 5 equipProgress
 		ARG 6 swingProgress
-	METHOD method_3232 renderOverlays (F)V
 	METHOD method_3233 renderItem (Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_809$class_811;)V
 		ARG 1 holder
 		ARG 2 stack
@@ -179,6 +169,16 @@ CLASS net/minecraft/class_759 net/minecraft/client/render/item/HeldItemRenderer
 		ARG 3 arm
 		ARG 4 stack
 		ARG 5 equipProgress
+	METHOD method_3220 updateHeldItems ()V
+	METHOD method_3225 renderFirstPersonItem (F)V
+		ARG 1 tickDelta
+	METHOD method_3227 getMapAngle (F)F
+		ARG 1 tickDelta
+	METHOD method_3229 rotate (FF)V
+		ARG 1 pitch
+		ARG 2 yaw
+	METHOD method_3230 renderWaterOverlay (F)V
+	METHOD method_3232 renderOverlays (F)V
 	CLASS class_5773 HandRenderType
 		FIELD field_28387 renderMainHand Z
 		FIELD field_28388 renderOffHand Z

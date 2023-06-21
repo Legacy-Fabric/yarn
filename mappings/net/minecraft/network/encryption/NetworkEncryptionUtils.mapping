@@ -4,7 +4,6 @@ CLASS net/minecraft/class_3515 net/minecraft/network/encryption/NetworkEncryptio
 	COMMENT @apiNote Methods in this class usually throw {@link NetworkEncryptionException}
 	COMMENT when the operation fails. This is a checked exception and thus must be caught
 	COMMENT when using the methods.
-	FIELD field_15652 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_29830 AES Ljava/lang/String;
 	FIELD field_29831 AES_KEY_LENGTH I
 	FIELD field_29832 RSA Ljava/lang/String;
@@ -33,80 +32,10 @@ CLASS net/minecraft/class_3515 net/minecraft/network/encryption/NetworkEncryptio
 	FIELD field_39109 SHA256_WITH_RSA Ljava/lang/String;
 	FIELD field_39272 BASE64_ENCODER Ljava/util/Base64$Encoder;
 	FIELD field_40111 SHA256_BITS I
-	METHOD method_15234 decryptSecretKey (Ljava/security/PrivateKey;[B)Ljavax/crypto/SecretKey;
-		COMMENT Decrypts RSA-encrypted AES secret key.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when the secret key is malformed
-		ARG 0 privateKey
-		ARG 1 encryptedSecretKey
-	METHOD method_15235 cipherFromKey (ILjava/security/Key;)Ljavax/crypto/Cipher;
-		COMMENT Creates an AES cipher from the key.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when creation fails, e.g. due to invalid key
-		ARG 0 opMode
-		ARG 1 key
-			COMMENT the AES secret key
-	METHOD method_15236 hash (Ljava/lang/String;[[B)[B
-		ARG 0 algorithm
-		ARG 1 data
+	FIELD field_15652 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD method_15236 hash ([[B)[B
 		COMMENT {@return the SHA-1 hash of {@code bytes}}
 		ARG 0 bytes
-	METHOD method_15237 generateServerKeyPair ()Ljava/security/KeyPair;
-		COMMENT {@return a new {@value RSA_KEY_LENGTH} bit RSA public/private key pair}
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when generation fails
-	METHOD method_15238 encrypt (Ljava/security/Key;[B)[B
-		COMMENT Encrypts a data. The algorithm is determined from the key used.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when encryption fails, e.g. due to invalid key
-		COMMENT
-		COMMENT @see #decrypt(Key, byte[])
-		ARG 0 key
-			COMMENT encryption key (e.g. AES secret key or RSA public key)
-		ARG 1 data
-	METHOD method_15239 generateSecretKey ()Ljavax/crypto/SecretKey;
-		COMMENT {@return a new {@value AES_KEY_LENGTH} bit AES secret key}
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when generation fails
-	METHOD method_15240 computeServerId (Ljava/lang/String;Ljava/security/PublicKey;Ljavax/crypto/SecretKey;)[B
-		COMMENT {@return the computed server ID}
-		COMMENT
-		COMMENT @implNote The server ID is a SHA-1 hash of ISO-8859-1 encoded {@code baseServerId},
-		COMMENT {@code publicKey}, and {@code secretKey}.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when computation fails
-		ARG 0 baseServerId
-		ARG 1 publicKey
-		ARG 2 secretKey
-	METHOD method_15241 createCipher (ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;
-		COMMENT Creates a cipher to perform encryption or decryption operation.
-		ARG 0 opMode
-		ARG 1 algorithm
-		ARG 2 key
-	METHOD method_15242 decodeEncodedRsaPublicKey ([B)Ljava/security/PublicKey;
-		COMMENT Decodes a X.509-encoded RSA public key.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when the key is malformed
-		COMMENT
-		COMMENT @see #decodeRsaPublicKeyPem(String)
-		ARG 0 key
-	METHOD method_15243 decrypt (Ljava/security/Key;[B)[B
-		COMMENT Decrypts an encrypted data. The algorithm is determined from the key used.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when decryption fails, e.g. due to invalid key
-		COMMENT
-		COMMENT @see #encrypt(Key, byte[])
-		ARG 0 key
-			COMMENT decryption key (e.g. AES secret key or RSA private key)
-		ARG 1 data
-	METHOD method_15244 crypt (ILjava/security/Key;[B)[B
-		COMMENT Low-level API to perform encryption or decryption operation.
-		COMMENT
-		COMMENT @throws NetworkEncryptionException when the operation fails
-		ARG 0 opMode
-		ARG 1 key
-		ARG 2 data
 	METHOD method_43519 decodeRsaPrivateKeyPem (Ljava/lang/String;)Ljava/security/PrivateKey;
 		COMMENT Decodes a PEM-formatted RSA private key.
 		COMMENT
@@ -183,6 +112,77 @@ CLASS net/minecraft/class_3515 net/minecraft/network/encryption/NetworkEncryptio
 		ARG 0 key
 	METHOD method_43527 (Ljava/lang/String;)Lcom/mojang/serialization/DataResult;
 		ARG 0 key
+	METHOD method_15234 decryptSecretKey (Ljava/security/PrivateKey;[B)Ljavax/crypto/SecretKey;
+		COMMENT Decrypts RSA-encrypted AES secret key.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when the secret key is malformed
+		ARG 0 privateKey
+		ARG 1 encryptedSecretKey
+	METHOD method_15235 cipherFromKey (ILjava/security/Key;)Ljavax/crypto/Cipher;
+		COMMENT Creates an AES cipher from the key.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when creation fails, e.g. due to invalid key
+		ARG 0 opMode
+		ARG 1 key
+			COMMENT the AES secret key
+	METHOD method_15236 hash (Ljava/lang/String;[[B)[B
+		ARG 0 algorithm
+		ARG 1 data
+	METHOD method_15237 generateServerKeyPair ()Ljava/security/KeyPair;
+		COMMENT {@return a new {@value RSA_KEY_LENGTH} bit RSA public/private key pair}
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when generation fails
+	METHOD method_15238 encrypt (Ljava/security/Key;[B)[B
+		COMMENT Encrypts a data. The algorithm is determined from the key used.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when encryption fails, e.g. due to invalid key
+		COMMENT
+		COMMENT @see #decrypt(Key, byte[])
+		ARG 0 key
+			COMMENT encryption key (e.g. AES secret key or RSA public key)
+		ARG 1 data
+	METHOD method_15239 generateSecretKey ()Ljavax/crypto/SecretKey;
+		COMMENT {@return a new {@value AES_KEY_LENGTH} bit AES secret key}
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when generation fails
+	METHOD method_15240 computeServerId (Ljava/lang/String;Ljava/security/PublicKey;Ljavax/crypto/SecretKey;)[B
+		COMMENT {@return the computed server ID}
+		COMMENT
+		COMMENT @implNote The server ID is a SHA-1 hash of ISO-8859-1 encoded {@code baseServerId},
+		COMMENT {@code publicKey}, and {@code secretKey}.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when computation fails
+		ARG 0 baseServerId
+		ARG 1 publicKey
+		ARG 2 secretKey
+	METHOD method_15241 createCipher (ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;
+		COMMENT Creates a cipher to perform encryption or decryption operation.
+		ARG 0 opMode
+		ARG 1 algorithm
+		ARG 2 key
+	METHOD method_15242 decodeEncodedRsaPublicKey ([B)Ljava/security/PublicKey;
+		COMMENT Decodes a X.509-encoded RSA public key.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when the key is malformed
+		COMMENT
+		COMMENT @see #decodeRsaPublicKeyPem(String)
+		ARG 0 key
+	METHOD method_15243 decrypt (Ljava/security/Key;[B)[B
+		COMMENT Decrypts an encrypted data. The algorithm is determined from the key used.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when decryption fails, e.g. due to invalid key
+		COMMENT
+		COMMENT @see #encrypt(Key, byte[])
+		ARG 0 key
+			COMMENT decryption key (e.g. AES secret key or RSA private key)
+		ARG 1 data
+	METHOD method_15244 crypt (ILjava/security/Key;[B)[B
+		COMMENT Low-level API to perform encryption or decryption operation.
+		COMMENT
+		COMMENT @throws NetworkEncryptionException when the operation fails
+		ARG 0 opMode
+		ARG 1 key
+		ARG 2 data
 	CLASS class_7424 KeyDecoder
 		COMMENT A functional interface that decodes an encoded key.
 		COMMENT
@@ -191,14 +191,6 @@ CLASS net/minecraft/class_3515 net/minecraft/network/encryption/NetworkEncryptio
 		COMMENT
 		COMMENT @see NetworkEncryptionUtils#decodeEncodedRsaPrivateKey(byte[])
 		COMMENT @see NetworkEncryptionUtils#decodeEncodedRsaPublicKey(byte[])
-		METHOD apply ([B)Ljava/security/Key;
-			ARG 1 key
-		METHOD apply ([B)Ljava/security/Key;
-			ARG 1 key
-		METHOD apply ([B)Ljava/security/Key;
-			ARG 1 key
-		METHOD apply ([B)Ljava/security/Key;
-			ARG 1 key
 		METHOD apply ([B)Ljava/security/Key;
 			ARG 1 key
 	CLASS class_7425 SignatureData

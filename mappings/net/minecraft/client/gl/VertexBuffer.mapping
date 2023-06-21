@@ -8,9 +8,6 @@ CLASS net/minecraft/class_291 net/minecraft/client/gl/VertexBuffer
 	COMMENT
 	COMMENT @implNote This is mostly a wrapper around vertex buffer object (VBO),
 	COMMENT element buffer object (EBO), and vertex array object (VAO).
-	FIELD field_1593 indexCount I
-	FIELD field_1594 vertexBufferId I
-	FIELD field_1595 format Lnet/minecraft/class_293;
 	FIELD field_27366 indexBufferId I
 	FIELD field_27367 indexType Lnet/minecraft/class_293$class_5595;
 	FIELD field_27368 drawMode Lnet/minecraft/class_293$class_5596;
@@ -18,13 +15,12 @@ CLASS net/minecraft/class_291 net/minecraft/client/gl/VertexBuffer
 	FIELD field_29338 vertexArrayId I
 	FIELD field_29339 vertexFormat Lnet/minecraft/class_293;
 	FIELD field_38983 sharedSequentialIndexBuffer Lcom/mojang/blaze3d/systems/RenderSystem$class_5590;
-	METHOD method_1351 draw (I)V
-		ARG 1 mode
+	FIELD field_1593 indexCount I
+	FIELD field_1594 vertexBufferId I
+	FIELD field_1595 format Lnet/minecraft/class_293;
 	METHOD method_1351 draw (Lnet/minecraft/class_1159;I)V
 		ARG 1 matrix
 		ARG 2 mode
-	METHOD method_1352 set (Ljava/nio/ByteBuffer;)V
-		ARG 1 buffer
 	METHOD method_1352 upload (Lnet/minecraft/class_287$class_7433;)V
 		COMMENT Uploads the contents of {@code buffer} to GPU, discarding previously
 		COMMENT uploaded data.
@@ -34,12 +30,6 @@ CLASS net/minecraft/class_291 net/minecraft/client/gl/VertexBuffer
 		ARG 1 buffer
 	METHOD method_1352 upload (Lnet/minecraft/class_287;)V
 		ARG 1 buffer
-	METHOD method_1353 bind ()V
-		COMMENT Sets this vertex buffer as the current one.
-		COMMENT
-		COMMENT <p>This method must be called before uploading or drawing data.
-	METHOD method_1354 unbind ()V
-	METHOD method_1355 delete ()V
 	METHOD method_22641 (Ljava/lang/Integer;)V
 		ARG 1 id
 	METHOD method_22643 submitUpload (Lnet/minecraft/class_287;)Ljava/util/concurrent/CompletableFuture;
@@ -97,3 +87,13 @@ CLASS net/minecraft/class_291 net/minecraft/client/gl/VertexBuffer
 		ARG 2 indexBuffer
 	METHOD method_43444 isClosed ()Z
 	METHOD method_43445 getIndexType ()Lnet/minecraft/class_293$class_5595;
+	METHOD method_1351 draw (I)V
+		ARG 1 mode
+	METHOD method_1352 set (Ljava/nio/ByteBuffer;)V
+		ARG 1 buffer
+	METHOD method_1353 bind ()V
+		COMMENT Sets this vertex buffer as the current one.
+		COMMENT
+		COMMENT <p>This method must be called before uploading or drawing data.
+	METHOD method_1354 unbind ()V
+	METHOD method_1355 delete ()V

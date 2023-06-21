@@ -13,34 +13,34 @@ CLASS net/minecraft/class_703 net/minecraft/client/particle/Particle
 	FIELD field_3839 angle F
 	FIELD field_3840 random Ljava/util/Random;
 	FIELD field_3840 random Lnet/minecraft/class_5819;
-	FIELD field_3841 alpha F
-	FIELD field_3842 green F
 	FIELD field_3843 dead Z
-	FIELD field_3844 gravityStrength F
 	FIELD field_3845 onGround Z
-	FIELD field_3847 maxAge I
 	FIELD field_3849 spacingXZ F
 	FIELD field_3850 velocityZ D
 	FIELD field_3851 world Lnet/minecraft/class_1937;
 	FIELD field_3851 world Lnet/minecraft/class_638;
 	FIELD field_3852 velocityX D
-	FIELD field_3853 cameraY D
 	FIELD field_3854 y D
 	FIELD field_3856 prevPosZ D
 	FIELD field_3857 prevAngle F
 	FIELD field_3858 prevPosX D
-	FIELD field_3859 blue F
 	FIELD field_3860 EMPTY_BOUNDING_BOX Lnet/minecraft/class_238;
-	FIELD field_3861 red F
 	FIELD field_3862 collidesWithWorld Z
-	FIELD field_3866 age I
 	FIELD field_3867 spacingY F
 	FIELD field_3869 velocityY D
-	FIELD field_3870 cameraZ D
 	FIELD field_3871 z D
 	FIELD field_3872 boundingBox Lnet/minecraft/class_238;
-	FIELD field_3873 cameraX D
 	FIELD field_3874 x D
+	FIELD field_3841 alpha F
+	FIELD field_3842 green F
+	FIELD field_3844 gravityStrength F
+	FIELD field_3847 maxAge I
+	FIELD field_3853 cameraY D
+	FIELD field_3859 blue F
+	FIELD field_3861 red F
+	FIELD field_3866 age I
+	FIELD field_3870 cameraZ D
+	FIELD field_3873 cameraX D
 	METHOD <init> (Lnet/minecraft/class_638;DDD)V
 		ARG 1 world
 		ARG 2 x
@@ -104,10 +104,6 @@ CLASS net/minecraft/class_703 net/minecraft/client/particle/Particle
 			COMMENT the current active game {@link Camera}
 		ARG 3 tickDelta
 			COMMENT frame tick delta amount
-	METHOD method_3075 move (F)Lnet/minecraft/class_703;
-		COMMENT Multiplies this particle's current velocity by the target {@code speed} amount.
-		ARG 1 speed
-			COMMENT the velocity multiplier to apply to this particle
 	METHOD method_3077 setMaxAge (I)V
 		COMMENT Sets the maximum age, in ticks, that this particle can exist for.
 		ARG 1 maxAge
@@ -118,6 +114,28 @@ CLASS net/minecraft/class_703 net/minecraft/client/particle/Particle
 	METHOD method_3082 getMaxAge ()I
 		COMMENT {@return the maximum age, in ticks, of this particle}
 		COMMENT If this particle's age exceeds this value, it will be removed from the world.
+	METHOD method_3085 markDead ()V
+		COMMENT Marks this particle as ready to be removed from the containing {@link ClientWorld}.
+	METHOD method_3086 isAlive ()Z
+		COMMENT {@return {@code false} if this particle is finished and should be removed from the parent {@link ParticleManager}, otherwise {@code true} if the particle is still alive}
+	METHOD method_34019 getGroup ()Ljava/util/Optional;
+		COMMENT {@return the optional group that this particle belongs to}
+		COMMENT
+		COMMENT <p>A particle group restricts the number of particles from the group that
+		COMMENT can be rendered in a client world. If the particle does not have a group,
+		COMMENT it is not restricted.
+	METHOD method_34753 setVelocity (DDD)V
+		COMMENT Updates this particle's velocity to the target X, Y, and Z values.
+		ARG 1 velocityX
+			COMMENT the new x-velocity of this particle
+		ARG 3 velocityY
+			COMMENT the new y-velocity of this particle
+		ARG 5 velocityZ
+			COMMENT the new z-velocity of this particle
+	METHOD method_3075 move (F)Lnet/minecraft/class_703;
+		COMMENT Multiplies this particle's current velocity by the target {@code speed} amount.
+		ARG 1 speed
+			COMMENT the velocity multiplier to apply to this particle
 	METHOD method_3083 setAlpha (F)V
 		COMMENT Updates the alpha value of this particle to use while rendering.
 		COMMENT
@@ -138,27 +156,9 @@ CLASS net/minecraft/class_703 net/minecraft/client/particle/Particle
 			COMMENT the target green color to use while rendering
 		ARG 3 blue
 			COMMENT the target blue color to use while rendering
-	METHOD method_3085 markDead ()V
-		COMMENT Marks this particle as ready to be removed from the containing {@link ClientWorld}.
-	METHOD method_3086 isAlive ()Z
-		COMMENT {@return {@code false} if this particle is finished and should be removed from the parent {@link ParticleManager}, otherwise {@code true} if the particle is still alive}
 	METHOD method_3087 scale (F)Lnet/minecraft/class_703;
 		COMMENT Scales the size of this particle by the given {@code scale} amount.
 		COMMENT
 		COMMENT @return this particle
 		ARG 1 scale
 			COMMENT the amount to scale this particle's size by
-	METHOD method_34019 getGroup ()Ljava/util/Optional;
-		COMMENT {@return the optional group that this particle belongs to}
-		COMMENT
-		COMMENT <p>A particle group restricts the number of particles from the group that
-		COMMENT can be rendered in a client world. If the particle does not have a group,
-		COMMENT it is not restricted.
-	METHOD method_34753 setVelocity (DDD)V
-		COMMENT Updates this particle's velocity to the target X, Y, and Z values.
-		ARG 1 velocityX
-			COMMENT the new x-velocity of this particle
-		ARG 3 velocityY
-			COMMENT the new y-velocity of this particle
-		ARG 5 velocityZ
-			COMMENT the new z-velocity of this particle

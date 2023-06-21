@@ -1,4 +1,12 @@
 CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
+	FIELD field_3661 children Lit/unimi/dsi/fastutil/objects/ObjectList;
+	FIELD field_3661 children Ljava/util/Map;
+	FIELD field_3663 cuboids Lit/unimi/dsi/fastutil/objects/ObjectList;
+	FIELD field_37938 xScale F
+	FIELD field_37939 yScale F
+	FIELD field_37940 zScale F
+	FIELD field_37941 defaultTransform Lnet/minecraft/class_5603;
+	FIELD field_38456 hidden Z
 	FIELD field_3654 pitch F
 	FIELD field_3655 pivotZ F
 	FIELD field_3656 pivotY F
@@ -6,11 +14,8 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 	FIELD field_3658 textureHeight F
 	FIELD field_3659 textureWidth F
 	FIELD field_3660 compiled Z
-	FIELD field_3661 children Lit/unimi/dsi/fastutil/objects/ObjectList;
 	FIELD field_3661 children Ljava/util/List;
-	FIELD field_3661 children Ljava/util/Map;
 	FIELD field_3662 name Ljava/lang/String;
-	FIELD field_3663 cuboids Lit/unimi/dsi/fastutil/objects/ObjectList;
 	FIELD field_3663 cuboids Ljava/util/List;
 	FIELD field_3664 noDraw Z
 	FIELD field_3665 visible Z
@@ -23,11 +28,6 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 	FIELD field_3673 x F
 	FIELD field_3674 roll F
 	FIELD field_3675 yaw F
-	FIELD field_37938 xScale F
-	FIELD field_37939 yScale F
-	FIELD field_37940 zScale F
-	FIELD field_37941 defaultTransform Lnet/minecraft/class_5603;
-	FIELD field_38456 hidden Z
 	METHOD <init> (Ljava/util/List;Ljava/util/Map;)V
 		ARG 1 cuboids
 		ARG 2 children
@@ -93,19 +93,6 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 		ARG 4 sizeX
 		ARG 5 sizeY
 		ARG 6 sizeZ
-	METHOD method_2844 addCuboid (FFFIII)Lnet/minecraft/class_630;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-		ARG 4 sizeX
-		ARG 5 sizeY
-		ARG 6 sizeZ
-	METHOD method_2845 addChild (Lnet/minecraft/class_630;)V
-		ARG 1 part
-	METHOD method_2846 render (F)V
-		ARG 1 scale
-	METHOD method_2847 applyTransform (F)V
-		ARG 1 scale
 	METHOD method_2848 addCuboid (Ljava/lang/String;FFFIIIFII)Lnet/minecraft/class_630;
 		ARG 1 name
 		ARG 2 x
@@ -135,18 +122,6 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 		ARG 6 sizeZ
 		ARG 7 extra
 		ARG 8 mirror
-	METHOD method_2850 setTextureOffset (II)Lnet/minecraft/class_630;
-		ARG 1 textureOffsetU
-		ARG 2 textureOffsetV
-	METHOD method_2851 setPivot (FFF)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-	METHOD method_2852 (F)V
-		ARG 1 scale
-	METHOD method_2853 setTextureSize (II)Lnet/minecraft/class_630;
-		ARG 1 width
-		ARG 2 height
 	METHOD method_2854 addCuboid (FFFFFFZ)Lnet/minecraft/class_630;
 		ARG 1 x
 		ARG 2 y
@@ -155,25 +130,7 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 		ARG 5 sizeY
 		ARG 6 sizeZ
 		ARG 7 mirror
-	METHOD method_2854 addCuboid (FFFIIIZ)Lnet/minecraft/class_630;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-		ARG 4 sizeX
-		ARG 5 sizeY
-		ARG 6 sizeZ
-		ARG 7 mirror
-	METHOD method_2855 compile (F)V
-		ARG 1 scale
 	METHOD method_2856 addCuboid (FFFFFFF)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-		ARG 4 sizeX
-		ARG 5 sizeY
-		ARG 6 sizeZ
-		ARG 7 extra
-	METHOD method_2856 addCuboid (FFFIIIF)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
@@ -220,6 +177,49 @@ CLASS net/minecraft/class_630 net/minecraft/client/model/ModelPart
 		ARG 1 vec3f
 	METHOD method_41924 scale (Lorg/joml/Vector3f;)V
 		ARG 1 vec3f
+	METHOD method_2844 addCuboid (FFFIII)Lnet/minecraft/class_630;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sizeX
+		ARG 5 sizeY
+		ARG 6 sizeZ
+	METHOD method_2845 addChild (Lnet/minecraft/class_630;)V
+		ARG 1 part
+	METHOD method_2846 render (F)V
+		ARG 1 scale
+	METHOD method_2847 applyTransform (F)V
+		ARG 1 scale
+	METHOD method_2850 setTextureOffset (II)Lnet/minecraft/class_630;
+		ARG 1 textureOffsetU
+		ARG 2 textureOffsetV
+	METHOD method_2851 setPivot (FFF)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_2852 (F)V
+		ARG 1 scale
+	METHOD method_2853 setTextureSize (II)Lnet/minecraft/class_630;
+		ARG 1 width
+		ARG 2 height
+	METHOD method_2854 addCuboid (FFFIIIZ)Lnet/minecraft/class_630;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sizeX
+		ARG 5 sizeY
+		ARG 6 sizeZ
+		ARG 7 mirror
+	METHOD method_2855 compile (F)V
+		ARG 1 scale
+	METHOD method_2856 addCuboid (FFFIIIF)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sizeX
+		ARG 5 sizeY
+		ARG 6 sizeZ
+		ARG 7 extra
 	CLASS class_593 Quad
 		FIELD field_21618 direction Lnet/minecraft/class_1160;
 		FIELD field_21618 direction Lorg/joml/Vector3f;
