@@ -1,0 +1,362 @@
+CLASS net/minecraft/class_2403 com/mojang/blaze3d/platform/GlStateManager
+	COMMENT Helper for modifying OpenGL state.
+	FIELD field_10708 ALPHA_TEST Lnet/minecraft/class_2403$class_2404;
+		COMMENT Stores the alpha test state
+	FIELD field_10709 LIGHTING Lnet/minecraft/class_2403$class_2406;
+		COMMENT Stores the lighting state
+	FIELD field_10710 LIGHTING_STATES [Lnet/minecraft/class_2403$class_2406;
+		COMMENT Stores all lighting states in an array
+	FIELD field_10711 COLOR_MATERIAL Lnet/minecraft/class_2403$class_2411;
+		COMMENT Stores the color material state
+	FIELD field_10712 BLEND Lnet/minecraft/class_2403$class_2405;
+		COMMENT Stores the blend state
+	FIELD field_10713 DEPTH Lnet/minecraft/class_2403$class_2413;
+		COMMENT Stores the depth testing state
+	FIELD field_10714 FOG Lnet/minecraft/class_2403$class_2414;
+		COMMENT Stores the fog state
+	FIELD field_10715 CULL Lnet/minecraft/class_2403$class_2412;
+		COMMENT Stores the cull state
+	FIELD field_10716 POLY_OFFSET Lnet/minecraft/class_2403$class_2415;
+		COMMENT Stores the polygon offset state
+	FIELD field_10717 COLOR_LOGIC Lnet/minecraft/class_2403$class_2409;
+		COMMENT Stores the color logic state
+	FIELD field_10718 TEX_GEN Lnet/minecraft/class_2403$class_2420;
+		COMMENT Stores the texture coordinate generation state
+	FIELD field_10719 CLEAR Lnet/minecraft/class_2403$class_2407;
+		COMMENT Stores the color clear state
+	FIELD field_10720 STENCIL Lnet/minecraft/class_2403$class_2417;
+		COMMENT Stores the stencil state
+	FIELD field_10721 NORMALIZE Lnet/minecraft/class_2403$class_2406;
+		COMMENT Stores the normalization state
+	FIELD field_10722 activeTexture I
+		COMMENT Stores the currently active texture
+	FIELD field_10723 TEXTURES [Lnet/minecraft/class_2403$class_2421;
+		COMMENT Stores all texture states in an array
+	FIELD field_10724 modelShadeMode I
+		COMMENT Stores the shading mode
+	FIELD field_10725 RESCALE_NORMAL Lnet/minecraft/class_2403$class_2406;
+		COMMENT Stores the normal rescale state
+	FIELD field_10726 COLOR_MASK Lnet/minecraft/class_2403$class_2410;
+		COMMENT Stores the color mask state
+	FIELD field_10727 COLOR Lnet/minecraft/class_2403$class_2408;
+		COMMENT Stores the color state in rgba
+	METHOD method_9787 disableNormalize ()V
+		COMMENT Disables Normalize
+	METHOD method_9788 enableRescaleNormal ()V
+		COMMENT Enables rescale
+	METHOD method_9789 disableRescaleNormal ()V
+		COMMENT Disables rescale
+	METHOD method_9790 loadIdentity ()V
+		COMMENT Replaces the current matrix with the identity matrix
+	METHOD method_9791 pushMatrix ()V
+		COMMENT Pushes the current matrix stack
+	METHOD method_9792 popMatrix ()V
+		COMMENT Pops the current matrix stack
+	METHOD method_9793 clearColor ()V
+		COMMENT Clears the current color
+	METHOD method_9794 pushLightingAttributes ()V
+		COMMENT Pushes the attribute stack
+	METHOD method_9795 clearDepth (D)V
+		COMMENT Sets the clear value for the depth buffer
+		ARG 0 depth
+	METHOD method_9796 scale (DDD)V
+		COMMENT Multiplies the current matrix by a general scaling matrix
+		ARG 0 x
+		ARG 2 y
+		ARG 4 z
+	METHOD method_9797 ortho (DDDDDD)V
+		COMMENT Multiplies the current matrix with an orthographic matrix
+		ARG 0 l
+		ARG 2 r
+		ARG 4 b
+		ARG 6 t
+		ARG 8 n
+		ARG 10 f
+	METHOD method_9798 fogDensity (F)V
+		COMMENT Sets fog parameters
+		ARG 0 density
+	METHOD method_9799 polygonOffset (FF)V
+		COMMENT Sets the scale and units used to calculate depth values
+		ARG 0 factor
+		ARG 1 units
+	METHOD method_9800 scale (FFF)V
+		COMMENT Multiplies the current matrix by a general scaling matrix
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD method_9801 clearColor (FFFF)V
+		COMMENT Sets clear values for the color buffers
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD method_9802 enableLight (I)V
+		COMMENT Enables lighting for a certain element
+		ARG 0 index
+	METHOD method_9803 alphaFunc (IF)V
+		COMMENT Sets the alpha test function
+		ARG 0 func
+		ARG 1 ref
+	METHOD method_9804 colorMaterial (II)V
+		COMMENT Causes a material color to track the current color
+		ARG 0 face
+		ARG 1 mode
+	METHOD method_9805 blendFuncSeparate (IIII)V
+		COMMENT Sets pixel arithmetic for RGB and alpha components separately
+		ARG 0 srcFactorRGB
+		ARG 1 dstFactorRGB
+		ARG 2 srcFactorAlpha
+		ARG 3 dstFactorAlpha
+	METHOD method_9806 getFloat (ILjava/nio/FloatBuffer;)V
+		COMMENT Gets a float for a float buffer
+		ARG 0 mode
+		ARG 1 buffer
+	METHOD method_9807 enableTexCoord (Lnet/minecraft/class_2403$class_2418;)V
+		COMMENT Enables the generation of texture coordinates
+		ARG 0 coord
+	METHOD method_9808 genTex (Lnet/minecraft/class_2403$class_2418;I)V
+		COMMENT Allows controlling the generation of texture coordinates
+		ARG 0 coord
+		ARG 1 mode
+	METHOD method_9809 genTex (Lnet/minecraft/class_2403$class_2418;ILjava/nio/FloatBuffer;)V
+		COMMENT Allows controling the generation of texture coordinates with a float buffer
+		ARG 0 coord
+		ARG 1 mode
+		ARG 2 buffer
+	METHOD method_9810 multiMatrix (Ljava/nio/FloatBuffer;)V
+		COMMENT Multiplies the current matrix with the specified matrix
+		ARG 0 buffer
+	METHOD method_9811 depthMask (Z)V
+		COMMENT Enables or disables writing into the depth buffer
+		ARG 0 mask
+	METHOD method_9812 colorMask (ZZZZ)V
+		COMMENT Enables or Disables writing of frame buffer color components
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD method_9813 popAttributes ()V
+		COMMENT Pops the attribute stack
+	METHOD method_9814 translate (DDD)V
+		COMMENT Multiplies the current matrix by a translation matrix
+		ARG 0 x
+		ARG 2 y
+		ARG 4 z
+	METHOD method_9815 fogStart (F)V
+		COMMENT Sets fog parameters
+		ARG 0 start
+	METHOD method_9816 translate (FFF)V
+		COMMENT Multiplies the current matrix by a translation matrix
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD method_9817 rotate (FFFF)V
+		COMMENT Multiplies the current matrix by a rotation matrix
+		ARG 0 angle
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_9818 disableLight (I)V
+		COMMENT Disables lighting for a certain element
+		ARG 0 index
+	METHOD method_9819 blendFunc (II)V
+		COMMENT Sets pixel arithmetic
+		ARG 0 srcFactor
+		ARG 1 dstFactor
+	METHOD method_9820 viewport (IIII)V
+		COMMENT Sets the viewport
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
+	METHOD method_9821 disableTexCoord (Lnet/minecraft/class_2403$class_2418;)V
+		COMMENT Disables the generation of texture coordinates
+		ARG 0 coord
+	METHOD method_9822 disableAlphaTest ()V
+		COMMENT Disables alpha testing
+	METHOD method_9823 fogEnd (F)V
+		COMMENT Sets fog parameters
+		ARG 0 end
+	METHOD method_9824 color (FFF)V
+		COMMENT Sets the current color without alpha
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+	METHOD method_9825 color (FFFF)V
+		COMMENT Sets the current color
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 alpha
+	METHOD method_9826 depthFunc (I)V
+		COMMENT Sets the value used for depth buffer comparisons
+		ARG 0 func
+	METHOD method_9827 getGenCoordState (Lnet/minecraft/class_2403$class_2418;)Lnet/minecraft/class_2403$class_2419;
+		COMMENT Retrieves texture coordinate generation state
+		ARG 0 coord
+	METHOD method_9828 enableAlphaTest ()V
+		COMMENT Enables alpha testing
+	METHOD method_9829 fogMode (I)V
+		COMMENT Sets fog parameters
+		ARG 0 mode
+	METHOD method_9830 enableLighting ()V
+		COMMENT Enables lighting
+	METHOD method_9831 cullFace (I)V
+		COMMENT Sets whether front- or back-facing facets can be culled
+		ARG 0 mode
+	METHOD method_9832 disableLighting ()V
+		COMMENT Disables lighting
+	METHOD method_9833 logicOp (I)V
+		COMMENT Sets a logical pixel operation for color index rendering
+		ARG 0 op
+	METHOD method_9834 enableColorMaterial ()V
+		COMMENT Enables tracking of the current color by the material color
+	METHOD method_9835 activeTexture (I)V
+		COMMENT Sets the active texture unit
+		ARG 0 texture
+	METHOD method_9836 disableColorMaterial ()V
+		COMMENT Disables tracking of the current color by the material color
+	METHOD method_9837 deleteTexture (I)V
+		COMMENT Deletes a certain specified texture
+		ARG 0 texture
+	METHOD method_9838 disableDepthTest ()V
+		COMMENT Disables depth testing
+	METHOD method_9839 bindTexture (I)V
+		COMMENT Binds a certain specified texture to a texturing target
+		ARG 0 texture
+	METHOD method_9840 enableDepthTest ()V
+		COMMENT Enables depth testing
+	METHOD method_9841 shadeModel (I)V
+		COMMENT Sets shading mode as flat or smooth
+		ARG 0 mode
+	METHOD method_9842 disableBlend ()V
+		COMMENT Enables implementing transparency within objects
+	METHOD method_9843 enableBlend ()V
+		COMMENT Disables implementing transparency within objects
+	METHOD method_9844 enableFog ()V
+		COMMENT Enabled fog
+	METHOD method_9845 clear (I)V
+		COMMENT Clears buffers to preset values
+		ARG 0 mode
+	METHOD method_9846 disableFog ()V
+		COMMENT Disables fog
+	METHOD method_9847 matrixMode (I)V
+		COMMENT Allows specifying which matrix is the current matrix
+		ARG 0 mode
+	METHOD method_9848 enableCull ()V
+		COMMENT Enables culling
+	METHOD method_9849 callList (I)V
+		COMMENT Executes a display list
+		ARG 0 listId
+	METHOD method_9850 disableCull ()V
+		COMMENT Disables Culling
+	METHOD method_9851 enablePolyOffset ()V
+		COMMENT Enables Polygon Offset
+	METHOD method_9852 disablePolyOffset ()V
+		COMMENT Disables Polygon offset
+	METHOD method_9853 enableColorLogic ()V
+		COMMENT Enables color index rendering
+	METHOD method_9854 disableColorLogic ()V
+		COMMENT Disables color index rendering
+	METHOD method_9855 enableTexture ()V
+		COMMENT Enables active texture units
+	METHOD method_9856 disableTexture ()V
+		COMMENT Disables active texture units
+	METHOD method_9857 getTexLevelParameter ()I
+		COMMENT Generates texture names
+	METHOD method_9858 enableNormalize ()V
+		COMMENT Enables normalize
+	CLASS class_2404 AlphaTestState
+		FIELD field_10729 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10730 func I
+		FIELD field_10731 ref F
+	CLASS class_2405 BlendFuncState
+		FIELD field_10732 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10733 srcFactorRGB I
+		FIELD field_10734 dstFactorRGB I
+		FIELD field_10735 srcFactorAlpha I
+		FIELD field_10736 dstFactorAlpha I
+	CLASS class_2406 BooleanState
+		FIELD field_10737 id I
+		FIELD field_10738 cachedState Z
+		METHOD <init> (I)V
+			ARG 1 id
+		METHOD method_9859 disable ()V
+		METHOD method_9860 setState (Z)V
+			ARG 1 state
+		METHOD method_9861 enable ()V
+	CLASS class_2407 ClearState
+		FIELD field_10739 clearDepth D
+		FIELD field_10740 color Lnet/minecraft/class_2403$class_2408;
+		FIELD field_10741 clearStencil I
+	CLASS class_2408 Color4
+		FIELD field_10742 red F
+		FIELD field_10743 green F
+		FIELD field_10744 blue F
+		FIELD field_10745 alpha F
+		METHOD <init> (FFFF)V
+			ARG 1 red
+			ARG 2 green
+			ARG 3 blue
+			ARG 4 alpha
+	CLASS class_2409 LogicOpState
+		FIELD field_10746 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10747 op I
+	CLASS class_2410 ColorMask
+		FIELD field_10748 red Z
+		FIELD field_10749 green Z
+		FIELD field_10750 blue Z
+		FIELD field_10751 alpha Z
+	CLASS class_2411 ColorMaterialState
+		FIELD field_10752 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10753 face I
+		FIELD field_10754 mode I
+	CLASS class_2412 CullFaceState
+		FIELD field_10755 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10756 mode I
+	CLASS class_2413 DepthTestState
+		FIELD field_10757 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10758 mask Z
+		FIELD field_10759 func I
+	CLASS class_2414 FogState
+		FIELD field_10760 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10761 mode I
+		FIELD field_10762 density F
+		FIELD field_10763 start F
+		FIELD field_10764 end F
+	CLASS class_2415 PolygonOffsetState
+		FIELD field_10765 capFill Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10766 capLine Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10767 factor F
+		FIELD field_10768 units F
+	CLASS class_2416 StencilSubState
+		FIELD field_10769 func I
+		FIELD field_10770 ref I
+		FIELD field_10771 mask I
+	CLASS class_2417 StencilState
+		FIELD field_10772 capState Lnet/minecraft/class_2403$class_2416;
+		FIELD field_10773 mask I
+		FIELD field_10774 sfail I
+		FIELD field_10775 dpfail I
+		FIELD field_10776 dppass I
+	CLASS class_2418 TexCoord
+		FIELD field_10777 S Lnet/minecraft/class_2403$class_2418;
+		FIELD field_10778 T Lnet/minecraft/class_2403$class_2418;
+		FIELD field_10779 R Lnet/minecraft/class_2403$class_2418;
+		FIELD field_10780 Q Lnet/minecraft/class_2403$class_2418;
+	CLASS class_2419 TexGenCoordState
+		COMMENT
+		FIELD field_10782 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10783 coord I
+		FIELD field_10784 mode I
+		METHOD <init> (II)V
+			ARG 1 coord
+			ARG 2 id
+	CLASS class_2420 TexGenState
+		FIELD field_10785 s Lnet/minecraft/class_2403$class_2419;
+		FIELD field_10786 t Lnet/minecraft/class_2403$class_2419;
+		FIELD field_10787 r Lnet/minecraft/class_2403$class_2419;
+		FIELD field_10788 q Lnet/minecraft/class_2403$class_2419;
+	CLASS class_2421 Texture2DState
+		FIELD field_10789 capState Lnet/minecraft/class_2403$class_2406;
+		FIELD field_10790 boundTexture I

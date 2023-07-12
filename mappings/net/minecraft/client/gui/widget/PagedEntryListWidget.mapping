@@ -1,0 +1,172 @@
+CLASS net/minecraft/class_2300 net/minecraft/client/gui/widget/PagedEntryListWidget
+	FIELD field_10380 currentWidget Lnet/minecraft/class_372;
+	FIELD field_10381 widgetEntries Ljava/util/List;
+	FIELD field_10382 widgets Lnet/minecraft/class_833;
+	FIELD field_10383 textFields Ljava/util/List;
+	FIELD field_10384 pages [[Lnet/minecraft/class_2300$class_2306;
+	FIELD field_10385 currentPageId I
+	FIELD field_10386 listener Lnet/minecraft/class_2300$class_2302;
+	METHOD <init> (Lnet/minecraft/class_1600;IIIIILnet/minecraft/class_2300$class_2302;[[Lnet/minecraft/class_2300$class_2306;)V
+		ARG 1 client
+		ARG 2 width
+		ARG 3 height
+		ARG 4 top
+		ARG 5 bottom
+		ARG 6 entryHeight
+		ARG 7 listener
+		ARG 8 pages
+	METHOD method_9474 updateText (CI)V
+		ARG 1 id
+		ARG 2 code
+	METHOD method_9475 createSwitchWidget (IILnet/minecraft/class_2300$class_2301;)Lnet/minecraft/class_2297;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 entry
+	METHOD method_9476 createTextWidget (IILnet/minecraft/class_2300$class_2303;)Lnet/minecraft/class_367;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 entry
+	METHOD method_9477 createLabelWidget (IILnet/minecraft/class_2300$class_2305;Z)Lnet/minecraft/class_1801;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 entry
+		ARG 4 isSingle
+	METHOD method_9478 createSliderWidget (IILnet/minecraft/class_2300$class_2307;)Lnet/minecraft/class_2295;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 entry
+	METHOD method_9479 setVisible (Lnet/minecraft/class_372;Z)V
+		ARG 1 drawable
+		ARG 2 visible
+	METHOD method_9480 createWidget (Lnet/minecraft/class_2300$class_2306;IZ)Lnet/minecraft/class_372;
+		ARG 1 entry
+		ARG 2 offsetX
+		ARG 3 isSingle
+	METHOD method_9481 setActive (Z)V
+		ARG 1 active
+	METHOD method_9482 setCurrentPage (I)V
+		ARG 1 pageId
+	METHOD method_9483 getWidget (I)Lnet/minecraft/class_372;
+		ARG 1 id
+	METHOD method_9484 getCurrentPageId ()I
+	METHOD method_9486 updateWidgetVisiblity (II)V
+		ARG 1 disablePageId
+		ARG 2 enablePageId
+	METHOD method_9487 getMaxPages ()I
+	METHOD method_9488 getCurrentWidget ()Lnet/minecraft/class_372;
+	METHOD method_9489 previousPage ()V
+	METHOD method_9490 nextPage ()V
+	METHOD method_9491 initWidgets ()V
+	METHOD method_9492 initWidgetEntries ()V
+	CLASS class_2301 ButtonEntry
+		FIELD field_10387 valueEnabled Z
+		METHOD <init> (ILjava/lang/String;ZZ)V
+			ARG 1 id
+			ARG 2 label
+			ARG 3 visible
+			ARG 4 valueEnabled
+		METHOD method_9493 isValueEnabled ()Z
+	CLASS class_2302 Listener
+		METHOD method_9494 setFloatValue (IF)V
+			ARG 1 id
+			ARG 2 value
+		METHOD method_9495 setStringValue (ILjava/lang/String;)V
+			ARG 1 id
+			ARG 2 text
+		METHOD method_9496 setBooleanValue (IZ)V
+			ARG 1 id
+			ARG 2 value
+	CLASS class_2303 TextFieldEntry
+		FIELD field_10388 predicate Lcom/google/common/base/Predicate;
+		METHOD <init> (ILjava/lang/String;ZLcom/google/common/base/Predicate;)V
+			ARG 1 id
+			ARG 2 label
+			ARG 3 visible
+			ARG 4 predicate
+		METHOD method_9497 getPredicate ()Lcom/google/common/base/Predicate;
+	CLASS class_2304 DualDrawableEntry
+		FIELD field_10389 client Lnet/minecraft/class_1600;
+		FIELD field_10390 first Lnet/minecraft/class_372;
+		FIELD field_10391 second Lnet/minecraft/class_372;
+		FIELD field_10392 prevClicked Lnet/minecraft/class_372;
+		METHOD <init> (Lnet/minecraft/class_372;Lnet/minecraft/class_372;)V
+			ARG 1 first
+			ARG 2 second
+		METHOD method_9498 getFirst ()Lnet/minecraft/class_372;
+		METHOD method_9499 drawableClicked (Lnet/minecraft/class_372;III)Z
+			ARG 1 drawable
+			ARG 2 mouseX
+			ARG 3 mouseY
+			ARG 4 button
+		METHOD method_9500 renderDrawable (Lnet/minecraft/class_372;IIIZ)V
+			ARG 1 drawable
+			ARG 2 y
+			ARG 3 mouseX
+			ARG 4 mouseY
+			ARG 5 hidden
+		METHOD method_9501 buttonClicked (Lnet/minecraft/class_356;III)Z
+			ARG 1 widget
+			ARG 2 mouseX
+			ARG 3 mouseY
+			ARG 4 button
+		METHOD method_9502 renderButton (Lnet/minecraft/class_356;IIIZ)V
+			ARG 1 widget
+			ARG 2 y
+			ARG 3 mouseX
+			ARG 4 mouseY
+			ARG 5 hidden
+		METHOD method_9503 textFieldClicked (Lnet/minecraft/class_367;III)V
+			ARG 1 widget
+			ARG 2 mouseX
+			ARG 3 mouseY
+			ARG 4 button
+		METHOD method_9504 renderTextField (Lnet/minecraft/class_367;IZ)V
+			ARG 1 widget
+			ARG 2 y
+			ARG 3 hidden
+		METHOD method_9505 renderLabel (Lnet/minecraft/class_1801;IIIZ)V
+			ARG 1 widget
+			ARG 2 y
+			ARG 3 mouseX
+			ARG 4 mouseY
+			ARG 5 hidden
+		METHOD method_9507 getSecond ()Lnet/minecraft/class_372;
+		METHOD method_9508 drawableReleased (Lnet/minecraft/class_372;III)V
+			ARG 1 drawable
+			ARG 2 mouseX
+			ARG 3 mouseY
+			ARG 4 button
+		METHOD method_9509 buttonReleased (Lnet/minecraft/class_356;III)V
+			ARG 1 widget
+			ARG 2 mouseX
+			ARG 3 mouseY
+			ARG 4 button
+	CLASS class_2305 TextFieldLabelEntry
+	CLASS class_2306 ListEntry
+		FIELD field_10393 id I
+		FIELD field_10394 label Ljava/lang/String;
+		FIELD field_10395 visible Z
+		METHOD <init> (ILjava/lang/String;Z)V
+			ARG 1 id
+			ARG 2 label
+			ARG 3 visible
+		METHOD method_9512 getId ()I
+		METHOD method_9513 getLabel ()Ljava/lang/String;
+		METHOD method_9514 isVisible ()Z
+	CLASS class_2307 LabelSupplierEntry
+		FIELD field_10396 labelSupplier Lnet/minecraft/class_2295$class_2296;
+		FIELD field_10397 min F
+		FIELD field_10398 max F
+		FIELD field_10399 currentValue F
+		METHOD <init> (ILjava/lang/String;ZLnet/minecraft/class_2295$class_2296;FFF)V
+			ARG 1 id
+			ARG 2 label
+			ARG 3 visible
+			ARG 4 labelSupplier
+			ARG 5 min
+			ARG 6 max
+			ARG 7 currentValue
+		METHOD method_9515 getLabelSupplier ()Lnet/minecraft/class_2295$class_2296;
+		METHOD method_9516 getMin ()F
+		METHOD method_9517 getMax ()F
+		METHOD method_9518 getCurrentValue ()F

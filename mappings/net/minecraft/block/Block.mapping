@@ -1,0 +1,1504 @@
+CLASS net/minecraft/class_197 net/minecraft/block/Block
+	COMMENT The Block class provides useful methods and fields for creation of Blocks.
+	COMMENT All blocks extend the Block class.
+	COMMENT The Block class also registers all the blocks.
+	FIELD field_12571 collisionBox Lnet/minecraft/class_231;
+	FIELD field_12572 EMPTY_BOX Lnet/minecraft/class_231;
+	FIELD field_12573 blockSoundGroup Lnet/minecraft/class_200;
+	FIELD field_17745 FACINGS [Lnet/minecraft/class_1354;
+	FIELD field_17746 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_17747 collidable Z
+	FIELD field_17748 dynamicBounds Z
+	FIELD field_17749 FACE_CULL_MAP Ljava/lang/ThreadLocal;
+	FIELD field_22993 ETHO_SLAB Lnet/minecraft/class_143;
+	FIELD field_22994 TORCH_OFF Lnet/minecraft/class_197;
+	FIELD field_22995 COAL_BLOCK_APRIL Lnet/minecraft/class_197;
+	FIELD field_22996 TINTED_GLASS Lnet/minecraft/class_197;
+	FIELD field_22997 DOUBLE_ETHO_SLAB Lnet/minecraft/class_143;
+	FIELD field_335 WATER Lnet/minecraft/class_197;
+	FIELD field_337 LAVA Lnet/minecraft/class_197;
+	FIELD field_338 SAND_BLOCK Lnet/minecraft/class_197;
+	FIELD field_339 GRAVEL_BLOCK Lnet/minecraft/class_197;
+	FIELD field_340 GOLD_ORE Lnet/minecraft/class_197;
+	FIELD field_341 IRON_ORE Lnet/minecraft/class_197;
+	FIELD field_342 COAL_ORE Lnet/minecraft/class_197;
+	FIELD field_343 LOG Lnet/minecraft/class_197;
+	FIELD field_344 LEAVES Lnet/minecraft/class_150;
+	FIELD field_345 SPONGE Lnet/minecraft/class_197;
+	FIELD field_346 GLASS_BLOCK Lnet/minecraft/class_197;
+	FIELD field_347 LAPIS_ORE Lnet/minecraft/class_197;
+	FIELD field_348 LAPIS_BLOCK Lnet/minecraft/class_197;
+	FIELD field_349 DISPENSER Lnet/minecraft/class_197;
+	FIELD field_350 SANDSTONE Lnet/minecraft/class_197;
+	FIELD field_351 NOTEBLOCK Lnet/minecraft/class_197;
+	FIELD field_352 BED Lnet/minecraft/class_197;
+	FIELD field_353 POWERED_RAIL Lnet/minecraft/class_197;
+	FIELD field_354 DETECTOR_RAIL Lnet/minecraft/class_197;
+	FIELD field_356 COBWEB Lnet/minecraft/class_197;
+	FIELD field_357 TALLGRASS Lnet/minecraft/class_193;
+	FIELD field_358 DEADBUSH Lnet/minecraft/class_123;
+	FIELD field_360 FARMLAND Lnet/minecraft/class_197;
+	FIELD field_361 FURNACE Lnet/minecraft/class_197;
+	FIELD field_362 LIT_FURNACE Lnet/minecraft/class_197;
+	FIELD field_363 STANDING_SIGN Lnet/minecraft/class_197;
+	FIELD field_364 WOODEN_DOOR Lnet/minecraft/class_197;
+	FIELD field_365 LADDER_BLOCK Lnet/minecraft/class_197;
+	FIELD field_366 RAIL_BLOCK Lnet/minecraft/class_197;
+	FIELD field_367 STONE_STAIRS Lnet/minecraft/class_197;
+	FIELD field_368 WALL_SIGN Lnet/minecraft/class_197;
+	FIELD field_369 LEVER Lnet/minecraft/class_197;
+	FIELD field_370 STONE_PRESSURE_PLATE Lnet/minecraft/class_197;
+	FIELD field_371 IRON_DOOR Lnet/minecraft/class_197;
+	FIELD field_372 itemGroup Lnet/minecraft/class_1041;
+	FIELD field_373 WOODEN_PRESSURE_PLATE Lnet/minecraft/class_197;
+	FIELD field_374 REDSTONE_ORE Lnet/minecraft/class_197;
+	FIELD field_375 LIT_REDSTONE_ORE Lnet/minecraft/class_197;
+	FIELD field_376 REDSTONE_TORCH Lnet/minecraft/class_197;
+	FIELD field_377 LIT_REDSTONE_TORCH Lnet/minecraft/class_197;
+	FIELD field_378 STONE_BUTTON Lnet/minecraft/class_197;
+	FIELD field_379 SNOW_LAYER Lnet/minecraft/class_197;
+	FIELD field_380 ICE Lnet/minecraft/class_197;
+	FIELD field_381 SNOW_BLOCK Lnet/minecraft/class_197;
+	FIELD field_382 CACTUS Lnet/minecraft/class_197;
+	FIELD field_383 CLAY Lnet/minecraft/class_197;
+	FIELD field_384 SUGARCANE Lnet/minecraft/class_197;
+	FIELD field_385 JUKEBOX Lnet/minecraft/class_197;
+	FIELD field_386 WOODEN_FENCE Lnet/minecraft/class_197;
+	FIELD field_387 PISTON_HEAD Lnet/minecraft/class_228;
+	FIELD field_388 WOOL Lnet/minecraft/class_197;
+	FIELD field_389 PISTON_EXTENSION Lnet/minecraft/class_229;
+	FIELD field_390 YELLOW_FLOWER Lnet/minecraft/class_112;
+	FIELD field_391 RED_FLOWER Lnet/minecraft/class_112;
+	FIELD field_392 BROWN_MUSHROOM Lnet/minecraft/class_112;
+	FIELD field_393 RED_MUSHROOM Lnet/minecraft/class_112;
+	FIELD field_394 GOLD_BLOCK Lnet/minecraft/class_197;
+	FIELD field_395 IRON_BLOCK Lnet/minecraft/class_197;
+	FIELD field_396 DOUBLE_STONE_SLAB Lnet/minecraft/class_143;
+	FIELD field_397 STONE_SLAB Lnet/minecraft/class_143;
+	FIELD field_398 BRICKS Lnet/minecraft/class_197;
+	FIELD field_399 TNT Lnet/minecraft/class_197;
+	FIELD field_400 BOOKSHELF Lnet/minecraft/class_197;
+	FIELD field_401 MOSSY_COBBLESTONE Lnet/minecraft/class_197;
+	FIELD field_402 OBSIDIAN Lnet/minecraft/class_197;
+	FIELD field_403 TORCH Lnet/minecraft/class_197;
+	FIELD field_404 FIRE Lnet/minecraft/class_137;
+	FIELD field_405 SPAWNER Lnet/minecraft/class_197;
+	FIELD field_406 WOODEN_STAIRS Lnet/minecraft/class_197;
+	FIELD field_409 DIAMOND_ORE Lnet/minecraft/class_197;
+	FIELD field_410 DIAMOND_BLOCK Lnet/minecraft/class_197;
+	FIELD field_411 CRAFTING_TABLE Lnet/minecraft/class_197;
+	FIELD field_412 WHEAT Lnet/minecraft/class_197;
+	FIELD field_413 NETHER_BRICKS Lnet/minecraft/class_197;
+	FIELD field_414 NETHER_BRICK_FENCE Lnet/minecraft/class_197;
+	FIELD field_415 NETHER_BRICK_STAIRS Lnet/minecraft/class_197;
+	FIELD field_416 NETHER_WART Lnet/minecraft/class_197;
+	FIELD field_417 ENCHANTING_TABLE Lnet/minecraft/class_197;
+	FIELD field_418 BREWING_STAND Lnet/minecraft/class_197;
+	FIELD field_420 END_PORTAL Lnet/minecraft/class_197;
+	FIELD field_421 END_PORTAL_FRAME Lnet/minecraft/class_197;
+	FIELD field_422 END_STONE Lnet/minecraft/class_197;
+	FIELD field_423 DRAGON_EGG Lnet/minecraft/class_197;
+	FIELD field_424 REDSTONE_LAMP Lnet/minecraft/class_197;
+	FIELD field_425 translationKey Ljava/lang/String;
+		COMMENT Stores the block's translation key
+	FIELD field_426 LIT_REDSTONE_LAMP Lnet/minecraft/class_197;
+	FIELD field_427 DOUBLE_WOODEN_SLAB Lnet/minecraft/class_143;
+	FIELD field_428 WOODEN_SLAB Lnet/minecraft/class_143;
+	FIELD field_429 COCOA Lnet/minecraft/class_197;
+	FIELD field_430 SANDSTONE_STAIRS Lnet/minecraft/class_197;
+	FIELD field_431 EMERALD_ORE Lnet/minecraft/class_197;
+	FIELD field_432 ENDERCHEST Lnet/minecraft/class_197;
+	FIELD field_433 TRIPWIRE_HOOK Lnet/minecraft/class_207;
+	FIELD field_434 TRIPWIRE Lnet/minecraft/class_197;
+	FIELD field_435 EMERALD_BLOCK Lnet/minecraft/class_197;
+	FIELD field_436 SPRUCE_STAIRS Lnet/minecraft/class_197;
+	FIELD field_437 BIRCH_STAIRS Lnet/minecraft/class_197;
+	FIELD field_438 JUNGLE_STAIRS Lnet/minecraft/class_197;
+	FIELD field_440 PUMPKIN Lnet/minecraft/class_197;
+	FIELD field_441 NETHERRACK Lnet/minecraft/class_197;
+	FIELD field_442 SOULSAND Lnet/minecraft/class_197;
+	FIELD field_443 GLOWSTONE Lnet/minecraft/class_197;
+	FIELD field_444 NETHER_PORTAL Lnet/minecraft/class_169;
+	FIELD field_445 JACK_O_LANTERN Lnet/minecraft/class_197;
+	FIELD field_446 CAKE Lnet/minecraft/class_197;
+	FIELD field_449 LOCKED_CHEST Lnet/minecraft/class_197;
+	FIELD field_450 TRAPDOOR Lnet/minecraft/class_197;
+	FIELD field_451 MONSTER_EGG Lnet/minecraft/class_197;
+	FIELD field_452 STONE_BRICK Lnet/minecraft/class_197;
+	FIELD field_453 BROWN_MUSHROOM_BLOCK Lnet/minecraft/class_197;
+	FIELD field_454 RED_MUSHROOM_BLOCK Lnet/minecraft/class_197;
+	FIELD field_455 IRON_BARS Lnet/minecraft/class_197;
+	FIELD field_456 GLASS_PANE Lnet/minecraft/class_197;
+	FIELD field_457 MELON Lnet/minecraft/class_197;
+	FIELD field_458 PUMPKIN_STEM Lnet/minecraft/class_197;
+	FIELD field_459 MELON_STEM Lnet/minecraft/class_197;
+	FIELD field_460 VINE Lnet/minecraft/class_197;
+	FIELD field_461 FENCE_GATE Lnet/minecraft/class_197;
+	FIELD field_462 BRICK_STAIRS Lnet/minecraft/class_197;
+	FIELD field_463 STONE_BRICK_STAIRS Lnet/minecraft/class_197;
+	FIELD field_464 MYCELIUM Lnet/minecraft/class_162;
+	FIELD field_465 LILY_PAD Lnet/minecraft/class_197;
+	FIELD field_466 id I
+	FIELD field_467 hardness F
+		COMMENT Stores the current block's hardness
+	FIELD field_468 blastResistance F
+		COMMENT Stores the current block's resistance
+	FIELD field_470 stats Z
+		COMMENT Specifies whether the current block is tracked for stats
+	FIELD field_471 randomTicks Z
+		COMMENT Specifies whether the current block ticks randomly
+	FIELD field_472 blockEntity Z
+		COMMENT Specifies whether the current block has a block entity
+	FIELD field_473 boundingBoxMinX D
+		COMMENT Stores the Minimum value on the X axis for the voxel shape
+	FIELD field_474 boundingBoxMinY D
+		COMMENT Stores the Minimum value on the Y axis for the voxel shape
+	FIELD field_475 boundingBoxMinZ D
+		COMMENT Stores the Minimum value on the Z axis for the voxel shape
+	FIELD field_476 boundingBoxMaxX D
+		COMMENT Stores the Maximum value on the X axis for the voxel shape
+	FIELD field_477 boundingBoxMaxY D
+		COMMENT Stores the Maximum value on the Y axis for the voxel shape
+	FIELD field_478 boundingBoxMaxZ D
+		COMMENT Stores the Maximum value on the Z axis for the voxel shape
+	FIELD field_479 sound Lnet/minecraft/class_197$class_200;
+		COMMENT Stores the current block's sound type
+	FIELD field_479 soundGroup Lnet/minecraft/class_200;
+	FIELD field_480 particleGravity F
+		COMMENT Stores the current block's particles' gravity
+	FIELD field_481 material Lnet/minecraft/class_63;
+		COMMENT Stores the current block's material
+		COMMENT @see net.minecraft.block.material.Material
+	FIELD field_482 slipperiness F
+		COMMENT Stores the current block's slipperiness
+		COMMENT Used By Ice and Packed Ice
+	FIELD field_483 ORE Lnet/minecraft/class_197$class_200;
+		COMMENT Ore sound type
+	FIELD field_483 UNKNOWN_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_484 WOOD Lnet/minecraft/class_197$class_200;
+		COMMENT Wood sound type
+	FIELD field_484 WOOD_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_485 GRAVEL_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_486 GRASS Lnet/minecraft/class_197$class_200;
+		COMMENT Grass sound type
+	FIELD field_486 GRASS_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_487 STONE Lnet/minecraft/class_197$class_200;
+		COMMENT Stone sound type
+	FIELD field_487 STONE_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_488 METAL_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_489 GLASS_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_490 CLOTH_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_491 SAND_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_492 BLOCKS [Lnet/minecraft/class_197;
+	FIELD field_499 STONE_BLOCK Lnet/minecraft/class_197;
+	FIELD field_500 GRASS_BLOCK Lnet/minecraft/class_141;
+	FIELD field_5004 COMMAND_BLOCK Lnet/minecraft/class_197;
+	FIELD field_5006 COBBLESTONE_WALL Lnet/minecraft/class_197;
+	FIELD field_5007 FLOWER_POT Lnet/minecraft/class_197;
+	FIELD field_5008 CARROTS Lnet/minecraft/class_197;
+	FIELD field_5009 POTATOES Lnet/minecraft/class_197;
+	FIELD field_501 DIRT Lnet/minecraft/class_197;
+	FIELD field_5010 WOODEN_BUTTON Lnet/minecraft/class_197;
+	FIELD field_5011 SKULL Lnet/minecraft/class_197;
+	FIELD field_5012 ANVIL_BLOCK Lnet/minecraft/class_197;
+	FIELD field_5013 SNOW_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_5014 LADDER_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_5015 ANVIL_SOUND_GROUP Lnet/minecraft/class_200;
+	FIELD field_502 STONE_BRICKS Lnet/minecraft/class_197;
+	FIELD field_503 PLANKS Lnet/minecraft/class_197;
+	FIELD field_504 SAPLING Lnet/minecraft/class_197;
+	FIELD field_505 BEDROCK Lnet/minecraft/class_197;
+	FIELD field_5611 FLOWING_WATER Lnet/minecraft/class_153;
+	FIELD field_5612 FLOWING_LAVA Lnet/minecraft/class_153;
+	FIELD field_5613 STICKY_PISTON Lnet/minecraft/class_227;
+	FIELD field_5614 PISTON Lnet/minecraft/class_227;
+	FIELD field_5615 CHEST Lnet/minecraft/class_118;
+	FIELD field_5616 REDSTONE_WIRE Lnet/minecraft/class_177;
+	FIELD field_5617 CAULDRON Lnet/minecraft/class_117;
+	FIELD field_5618 UNPOWERED_REPEATER Lnet/minecraft/class_125;
+	FIELD field_5619 POWERED_REPEATER Lnet/minecraft/class_125;
+	FIELD field_5620 side Lnet/minecraft/class_1557;
+	FIELD field_5621 BEACON Lnet/minecraft/class_1300;
+	FIELD field_5622 TRAPPED_CHEST Lnet/minecraft/class_197;
+	FIELD field_5623 LIGHT_WEIGHTED_PRESSURE_PLATE Lnet/minecraft/class_197;
+	FIELD field_5624 HEAVY_WEIGHTED_PRESSURE_PLATE Lnet/minecraft/class_197;
+	FIELD field_5625 UNPOWERED_COMPARATOR Lnet/minecraft/class_1447;
+	FIELD field_5626 POWERED_COMPARATOR Lnet/minecraft/class_1447;
+	FIELD field_5627 DAYLIGHT_DETECTOR Lnet/minecraft/class_1448;
+	FIELD field_5628 REDSTONE_BLOCK Lnet/minecraft/class_197;
+	FIELD field_5629 NETHER_QUARTZ_ORE Lnet/minecraft/class_197;
+	FIELD field_5630 HOPPER Lnet/minecraft/class_1452;
+	FIELD field_5631 QUARTZ_BLOCK Lnet/minecraft/class_197;
+	FIELD field_5632 QUARTZ_STAIRS Lnet/minecraft/class_197;
+	FIELD field_5633 ACTIVATOR_RAIL Lnet/minecraft/class_197;
+	FIELD field_5634 DROPPER Lnet/minecraft/class_197;
+	FIELD field_6254 TAINTED_HARDENED_CLAY Lnet/minecraft/class_197;
+	FIELD field_6255 HAY Lnet/minecraft/class_197;
+	FIELD field_6256 CARPET Lnet/minecraft/class_197;
+	FIELD field_6257 HARDENED_CLAY Lnet/minecraft/class_197;
+	FIELD field_6258 COAL_BLOCK Lnet/minecraft/class_197;
+	FIELD field_7260 REGISTRY Lnet/minecraft/class_1943;
+	FIELD field_7261 GRAVEL Lnet/minecraft/class_197$class_200;
+		COMMENT Gravel sound type
+	FIELD field_7262 RAIL Lnet/minecraft/class_197$class_200;
+		COMMENT Rail sound type
+	FIELD field_7263 GLASS Lnet/minecraft/class_197$class_200;
+		COMMENT Glass sound type
+	FIELD field_7264 CLOTH Lnet/minecraft/class_197$class_200;
+		COMMENT Cloth sound type
+	FIELD field_7265 SAND Lnet/minecraft/class_197$class_200;
+		COMMENT Sand sound type
+	FIELD field_7266 SNOW Lnet/minecraft/class_197$class_200;
+		COMMENT Snow sound type
+	FIELD field_7267 LADDER Lnet/minecraft/class_197$class_200;
+		COMMENT Ladder sound type
+	FIELD field_7268 ANVIL Lnet/minecraft/class_197$class_200;
+		COMMENT Anvil sound type
+	FIELD field_7269 fullBlock Z
+		COMMENT Specifies whether the current block is a full block
+	FIELD field_7270 opacity I
+		COMMENT Stores the light opacity of the block
+	FIELD field_7271 transluscent Z
+		COMMENT Specifies whether the current block is transluscent
+	FIELD field_7272 lightLevel I
+		COMMENT Stores the block's luminescence
+	FIELD field_7273 useNeighbourLight Z
+	FIELD field_9279 materialColor Lnet/minecraft/class_65;
+		COMMENT Stores the current block's material color
+		COMMENT @see net.minecraft.block.material.MaterialColor
+	FIELD field_9280 stateManager Lnet/minecraft/class_2233;
+		COMMENT Stores the block's state manager
+	FIELD field_9281 defaultState Lnet/minecraft/class_2232;
+		COMMENT Stores the block's default state
+	FIELD field_9282 AIR_ID Lnet/minecraft/class_1653;
+		COMMENT The Identifier for Air
+	FIELD field_9283 REGISTRY Lnet/minecraft/class_1940;
+		COMMENT The Registry object to which all blocks get registered to
+	FIELD field_9284 BLOCK_STATES Lnet/minecraft/class_1942;
+		COMMENT A List of all blockstates, used by Debug worlds
+	FIELD field_9285 SLIME Lnet/minecraft/class_197$class_200;
+		COMMENT Slime sound type
+	METHOD <init> (ILnet/minecraft/class_63;)V
+		ARG 1 id
+		ARG 2 material
+	METHOD <init> (Lnet/minecraft/class_197$class_3692;)V
+		ARG 1 settings
+	METHOD <init> (Lnet/minecraft/class_63;)V
+		COMMENT Overloaded Block constructor that calls the other with the default material color
+		ARG 1 material
+			COMMENT The block's material
+	METHOD <init> (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)V
+		COMMENT Block constructor which initializes all fields to their default values and assigns the material and material color to the specified parameters
+		ARG 1 material
+			COMMENT The block's material
+		ARG 2 color
+			COMMENT The block's material color
+	METHOD method_11552 getRenderType (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2733;
+		ARG 1 state
+	METHOD method_11553 appendCollisionBoxes (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 entityBox
+		ARG 5 boxes
+		ARG 6 entity
+	METHOD method_11553 appendCollisionBoxes (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;Z)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 entityBox
+		ARG 5 boxes
+		ARG 6 entity
+		ARG 7 isActualState
+	METHOD method_11554 getCollisionBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_11554 getOutlineShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_11555 withMirror (Lnet/minecraft/class_2232;Lnet/minecraft/class_2727;)Lnet/minecraft/class_2232;
+		ARG 1 state
+		ARG 2 mirror
+	METHOD method_11556 withRotation (Lnet/minecraft/class_2232;Lnet/minecraft/class_2734;)Lnet/minecraft/class_2232;
+		ARG 1 state
+		ARG 2 rotation
+	METHOD method_11558 appendCollisionBoxes (Lnet/minecraft/class_2552;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_231;)V
+		ARG 0 pos
+		ARG 1 entityBox
+		ARG 2 boxes
+		ARG 3 boxToAdd
+	METHOD method_11560 isFullBoundsCubeForCulling (Lnet/minecraft/class_2232;)Z
+		ARG 1 blockState
+	METHOD method_11561 getHardness (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
+	METHOD method_11562 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11564 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_11565 getAmbientOcclusionLightLevel (Lnet/minecraft/class_2232;)F
+		ARG 1 state
+	METHOD method_11566 emitsRedstonePower (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11567 getPistonBehavior (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2768;
+		ARG 1 state
+	METHOD method_11568 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11569 isFullBlock (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11570 getOpacity (Lnet/minecraft/class_2232;)I
+		ARG 1 blockState
+	METHOD method_11571 isTranslucent (Lnet/minecraft/class_2232;)Z
+		ARG 1 blockState
+	METHOD method_11572 getLuminance (Lnet/minecraft/class_2232;)I
+		ARG 1 state
+	METHOD method_11573 useNeighbourLight (Lnet/minecraft/class_2232;)Z
+		ARG 1 blockState
+	METHOD method_11574 getMaterial (Lnet/minecraft/class_2232;)Lnet/minecraft/class_63;
+		ARG 1 state
+	METHOD method_11575 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11576 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11577 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_11578 getSoundGroup ()Lnet/minecraft/class_200;
+	METHOD method_13315 (Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)Z
+		ARG 2 entity
+	METHOD method_13703 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_13704 (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_14305 addStacksForDisplay (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
+		ARG 1 group
+		ARG 2 stacks
+	METHOD method_14307 getRenderLayer (Lnet/minecraft/class_1158;Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Lnet/minecraft/class_3225;
+		ARG 1 world
+		ARG 2 state
+		ARG 3 pos
+		ARG 4 direction
+	METHOD method_16561 createCuboidShape (DDDDDD)Lnet/minecraft/class_4100;
+	METHOD method_16562 getStateByRawId (I)Lnet/minecraft/class_2232;
+		ARG 0 rawId
+	METHOD method_16563 getPlacementState (Lnet/minecraft/class_3544;)Lnet/minecraft/class_2232;
+		ARG 1 context
+	METHOD method_16565 getTickDelay (Lnet/minecraft/class_3599;)I
+		ARG 1 world
+	METHOD method_16567 canReplace (Lnet/minecraft/class_2232;Lnet/minecraft/class_3544;)Z
+		ARG 1 state
+		ARG 2 itemPlacementContext
+	METHOD method_16568 getDroppedItem (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;I)Lnet/minecraft/class_3597;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 fortuneLevel
+	METHOD method_16570 canPlaceAt (Lnet/minecraft/class_2232;Lnet/minecraft/class_3599;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16571 pushEntitiesUpBeforeBlockChange (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 0 state
+		ARG 1 state2
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16574 getRenderingSeed (Lnet/minecraft/class_2232;Lnet/minecraft/class_2552;)J
+		ARG 1 state
+		ARG 2 pos
+	METHOD method_16575 getStateForNeighborUpdate (Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;Lnet/minecraft/class_2232;Lnet/minecraft/class_3598;Lnet/minecraft/class_2552;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 1 state
+		ARG 2 direction
+		ARG 3 neighborState
+		ARG 4 world
+		ARG 5 pos
+		ARG 6 neighborPos
+	METHOD method_16576 appendProperties (Lnet/minecraft/class_2233$class_3757;)V
+		ARG 1 builder
+	METHOD method_16577 isShapeFullCube (Lnet/minecraft/class_4100;)Z
+		ARG 0 shape
+	METHOD method_16578 isFaceFullSquare (Lnet/minecraft/class_4100;Lnet/minecraft/class_1354;)Z
+		ARG 0 voxelShape
+		ARG 1 direction
+	METHOD method_16579 add (Lnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
+		ARG 0 identifier
+		ARG 1 block
+	METHOD method_16580 isIn (Lnet/minecraft/class_4482;)Z
+		ARG 1 tag
+	METHOD method_16581 isTranslucent (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16589 getHardness (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)F
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16591 isAir (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_16593 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16594 getFluidState (Lnet/minecraft/class_2232;)Lnet/minecraft/class_4024;
+		ARG 1 state
+	METHOD method_16595 getRayTraceShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16596 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16597 getLightSubtracted (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16598 getBlastResistance ()F
+	METHOD method_16601 getRawIdFromState (Lnet/minecraft/class_2232;)I
+		ARG 0 state
+	METHOD method_16602 getOffsetPos (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_236;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_16603 getSlipperiness ()F
+	METHOD method_16604 hasRandomTicks (Lnet/minecraft/class_2232;)Z
+		ARG 1 state
+	METHOD method_392 getTranslationKey ()Ljava/lang/String;
+		COMMENT Returns the block's translation key
+		COMMENT @return Translation Key
+	METHOD method_394 setBoundingBox (FFFFFF)V
+		COMMENT Sets the block's bounding box. It accepts six parameters: The minimum and maximum for each of the three axes.
+		ARG 1 minX
+			COMMENT Minimum X value
+		ARG 2 minY
+			COMMENT Minimum Y value
+		ARG 3 minZ
+			COMMENT Minimum Z value
+		ARG 4 maxX
+			COMMENT Maximum X value
+		ARG 5 maxY
+			COMMENT Maximum Y value
+		ARG 6 maxZ
+			COMMENT Maximum Z value
+	METHOD method_395 getTexture (II)Lnet/minecraft/class_1557;
+		ARG 1 side
+		ARG 2 blockData
+	METHOD method_397 getBonusDrops (ILjava/util/Random;)I
+		COMMENT Returns the number bonus drops for a block when broken.
+		COMMENT @return Bonus drops for a block
+		ARG 1 id
+			COMMENT Id
+		ARG 2 rand
+			COMMENT Random object
+	METHOD method_398 getDropItem (Lnet/minecraft/class_2232;Ljava/util/Random;I)Lnet/minecraft/class_1069;
+		COMMENT Returns the item that must be dropped when the block is broken
+		COMMENT @return The Item that drops after the block breaks
+		ARG 1 state
+		ARG 2 random
+			COMMENT Random object
+		ARG 3 id
+	METHOD method_399 appendItemStacks (ILnet/minecraft/class_1041;Ljava/util/List;)V
+		COMMENT Appends ItemStacks to an itemgroup.
+		COMMENT Only called on the client.
+		ARG 1 id
+		ARG 2 itemGroup
+		ARG 3 list
+	METHOD method_399 appendItemStacks (Lnet/minecraft/class_1069;Lnet/minecraft/class_1041;Ljava/util/List;)V
+		COMMENT Appends ItemStacks to an itemgroup.
+		COMMENT Only called on the client.
+		ARG 1 item
+			COMMENT The Item that must be added
+		ARG 2 group
+			COMMENT The ItemGroup that the item must be added to
+		ARG 3 stacks
+			COMMENT The list of currently added ItemStacks to the ItemGroup
+	METHOD method_400 canCollide (Lnet/minecraft/class_2232;Z)Z
+		COMMENT Returns whether entities can collide with the block
+		COMMENT @return Whether the block has collision
+		ARG 1 state
+			COMMENT The block's BlockState
+		ARG 2 bl
+	METHOD method_401 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197;
+		ARG 1 blockSoundGroup
+	METHOD method_401 setSound (Lnet/minecraft/class_197$class_200;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's sound type. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 sound
+			COMMENT The block's sound type
+	METHOD method_402 isVecWithinYZBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
+	METHOD method_403 getDropCount (Ljava/util/Random;)I
+		COMMENT Returns the amount of items the block should drop on breaking without bonus rolls.
+		COMMENT @return Amount of items to be dropped
+		ARG 1 rand
+			COMMENT Random object
+	METHOD method_403 getDropCount (Lnet/minecraft/class_2232;Ljava/util/Random;)I
+		ARG 1 state
+		ARG 2 random
+	METHOD method_404 getBlastResistance (Lnet/minecraft/class_864;)F
+		COMMENT Returns the block's blast resistance as per the entity provided.
+		COMMENT @return Blast Resistance
+		ARG 1 entity
+			COMMENT The entity that blast resistance must be calculated for
+	METHOD method_405 calcBlockBreakingData (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
+		COMMENT Calculates how fast or slow the block must be broken by a Player.
+		COMMENT  Status effects such as Haste and Mining fatigue are taken into consideration.
+		COMMENT @return Speed of breaking
+		ARG 1 player
+			COMMENT The player breaking the block
+		ARG 2 world
+			COMMENT The world that the block is placed in
+		ARG 3 pos
+			COMMENT The block's position
+	METHOD method_406 setItemGroup (Lnet/minecraft/class_1041;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's ItemGroup. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 group
+			COMMENT The itemgroup that the block must be added to
+	METHOD method_408 onNeighborUpdate (Lnet/minecraft/class_1150;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 neighborId
+	METHOD method_408 onNeighborUpdate (Lnet/minecraft/class_1150;IIILnet/minecraft/class_197;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 block
+	METHOD method_410 randomDropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;FI)V
+		COMMENT Called when the block must be dropped as an item by {@code dropAsItem}, but luck is taken into consideration here.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 chance
+			COMMENT The chance (luck factor)
+		ARG 5 id
+			COMMENT Id
+	METHOD method_411 (Lnet/minecraft/class_1150;IIIII)V
+		ARG 1 world
+	METHOD method_413 (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_414 rayTrace (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 start
+		ARG 4 end
+	METHOD method_415 spawnParticles (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 random
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;IIILnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_864;)V
+		COMMENT Runs every time an entity collides with the block
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 entity
+			COMMENT The entity that collided with the block
+	METHOD method_416 onEntityCollision (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 entity
+	METHOD method_4183 getMaxZ ()D
+		COMMENT Returns the block's bounding box' maximum Z value
+		COMMENT @return Maximum Z value
+	METHOD method_4184 shouldDropItemsOnExplosion (Lnet/minecraft/class_1147;)Z
+		COMMENT Returns whether the block should drop as an Item during an explosion.
+		COMMENT @return Whether the block should drop as an item during an explosion
+		ARG 1 explosion
+			COMMENT The explosion that caused the block to break
+	METHOD method_4187 doImmediateUpdates ()Z
+		COMMENT Returns whether the block's onScheduledTick should be called directly if ServerWorld.immediateUpdates is true, or to schedule it and call it later.
+		COMMENT Used by Fire (with false) for some reason.
+	METHOD method_4188 isFlowerPot ()Z
+	METHOD method_4189 getMinX ()D
+		COMMENT Returns the block's bounding box' minimum X value
+		COMMENT @return Minimum X value
+	METHOD method_419 onBreak (Lnet/minecraft/class_1150;IIILnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entity
+		ARG 6 item
+	METHOD method_419 onPlaced (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1699;Lnet/minecraft/class_1071;)V
+		COMMENT Runs when the block is placed by an entity
+		ARG 1 world
+			COMMENT The world that the block is in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 placer
+			COMMENT The entity who placed the block
+		ARG 5 itemStack
+			COMMENT ItemStack instance
+	METHOD method_4190 getMaxX ()D
+		COMMENT Returns the block's bounding box' minimum Y value
+		COMMENT @return Minimum Y value
+	METHOD method_4191 getMinY ()D
+		COMMENT Returns the block's bounding box' minimum Z value
+		COMMENT @return Minimum Z value
+	METHOD method_4192 getMaxY ()D
+		COMMENT Returns the block's bounding box' maximum X value
+		COMMENT @return Maximum X value
+	METHOD method_4193 getMinZ ()D
+		COMMENT Returns the block's bounding box' maximum Y value
+		COMMENT @return Maximum Y value
+	METHOD method_420 onBlockBreakStart (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 player
+	METHOD method_421 onActivated (Lnet/minecraft/class_1150;IIILnet/minecraft/class_988;IFFF)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 player
+	METHOD method_421 onUse (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_1354;FFF)Z
+		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
+		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
+		COMMENT @return Whether the action is succesful
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 player
+			COMMENT The player who <i>used</i> the block
+		ARG 5 direction
+			COMMENT The direction that the block is facing
+		ARG 6 posX
+		ARG 7 posY
+		ARG 8 posZ
+	METHOD method_421 onUse (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 direction
+		ARG 7 distanceX
+		ARG 8 distanceY
+		ARG 9 distanceZ
+	METHOD method_421 use (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 direction
+	METHOD method_424 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;IIII)V
+		ARG 1 world
+		ARG 2 playerEntity
+	METHOD method_425 onRender (Lnet/minecraft/class_1158;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_426 getWeakRedstonePower (Lnet/minecraft/class_1158;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 direction
+	METHOD method_427 getRenderBoundingBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_429 getBlockType ()I
+	METHOD method_430 setResistance (F)Lnet/minecraft/class_197;
+		COMMENT Sets the block's resistance. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 resistance
+			COMMENT The block's resistance
+	METHOD method_432 isVecWithinXZBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
+	METHOD method_433 setTranslationKey (Ljava/lang/String;)Lnet/minecraft/class_197;
+		COMMENT Sets the block's localization key. Used in registering blocks.
+		COMMENT @return The Current block
+		ARG 1 key
+			COMMENT The Translation key
+	METHOD method_434 canPlaceBlockAt (Lnet/minecraft/class_1150;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_435 onEvent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;II)Z
+		COMMENT Runs when an event takes place
+		COMMENT @return Whether the event is successful
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 id
+			COMMENT Id
+		ARG 5 data
+	METHOD method_435 onSyncedBlockEvent (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;II)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 type
+		ARG 5 data
+	METHOD method_436 onTick (Lnet/minecraft/class_1150;IIILjava/util/Random;)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 random
+	METHOD method_437 onSteppedOn (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;)V
+		COMMENT Runs every time an entity steps on the Block.
+		COMMENT Used by redstone ore to change it's state.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 entity
+			COMMENT The entity who stepped on the block
+	METHOD method_438 getBlockColor (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;I)I
+		COMMENT Returns the current block's color
+		COMMENT @return Block color
+		ARG 1 view
+			COMMENT BlockView instance
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 id
+			COMMENT Id
+	METHOD method_438 getTint (Lnet/minecraft/class_1158;III)I
+	METHOD method_440 setTickRandomly (Z)Lnet/minecraft/class_197;
+		COMMENT Sets whether the current block has random ticks. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 tickRandomly
+			COMMENT Whether the current block should have random ticks
+	METHOD method_441 renderAsNormalBlock ()Z
+		COMMENT Returns whether the block can be rendered as a normal block
+		COMMENT @return Whether the block can be rendered as a normal block
+	METHOD method_442 setStrength (F)Lnet/minecraft/class_197;
+		COMMENT Sets the current block's strength. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 strength
+			COMMENT The block's strength
+	METHOD method_443 isVecWithinXYBounds (Lnet/minecraft/class_236;)Z
+		ARG 1 other
+	METHOD method_444 getStrongRedstonePower (Lnet/minecraft/class_1158;IIII)I
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 direction
+	METHOD method_445 canStayPlaced (Lnet/minecraft/class_1150;IIIII)V
+	METHOD method_447 shouldRenderSide (Lnet/minecraft/class_1158;IIII)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 blockData
+	METHOD method_449 hasTransparency ()Z
+	METHOD method_450 canStayPlaced (Lnet/minecraft/class_1150;III)Z
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_451 onDestroyed (Lnet/minecraft/class_1150;IIII)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 blockData
+	METHOD method_453 getPistonInteractionType ()I
+		COMMENT Returns the block's piston interaction type, as provided by it's material.
+		COMMENT @return Current block's piston interaction type
+	METHOD method_454 getBoundingBox (Lnet/minecraft/class_1150;III)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_455 getLight (Lnet/minecraft/class_1158;III)I
+	METHOD method_456 setBlockItemBounds ()V
+		COMMENT Sets the bounds for the BlockItem
+	METHOD method_460 breakNaturally (Lnet/minecraft/class_1150;III)V
+		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD method_466 emitsRedstonePower ()Z
+		COMMENT Returns whether the current block emits a redstone signal.
+		COMMENT Used by comparators, Redstone Blocks, etc.
+		COMMENT @return Whether the current block emits a redstone signal
+	METHOD method_467 isSolid (I)Z
+		ARG 0 id
+	METHOD method_469 hasCollision ()Z
+		COMMENT Returns whether a block has collision, i.e. stops entities
+		COMMENT @return Whether a block has collision
+	METHOD method_470 getColor ()I
+	METHOD method_471 (Lnet/minecraft/class_1150;III)F
+		ARG 1 world
+	METHOD method_474 setUnbreakable ()Lnet/minecraft/class_197;
+		COMMENT Sets the current block as unbreakable. Used in registering blocks.
+		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
+		COMMENT @return The current block
+	METHOD method_475 requiresSilkTouch ()Z
+	METHOD method_476 ticksRandomly ()Z
+		COMMENT Returns whether the current block has random ticks
+		COMMENT @return Whether the current block has random ticks
+	METHOD method_478 hasBlockEntity ()Z
+		COMMENT Returns whether the current block has a block entity
+		COMMENT @return Whether the current block has a block entity
+	METHOD method_4788 getKey ()Ljava/lang/String;
+	METHOD method_4789 getTickRate (Lnet/minecraft/class_1150;)I
+		COMMENT Returns the block's tick rate.
+		COMMENT Default is 10.
+		COMMENT @return Tick rate
+		ARG 1 world
+			COMMENT The world that the block is placed in
+	METHOD method_4791 registerTextures (Lnet/minecraft/class_1558;)V
+		ARG 1 registry
+	METHOD method_4792 isEqual (II)Z
+		ARG 0 id1
+		ARG 1 id2
+	METHOD method_4795 is (I)Z
+		ARG 1 id
+	METHOD method_4796 getSideTexture (I)Lnet/minecraft/class_1557;
+		ARG 1 side
+	METHOD method_4797 hasComparatorOutput ()Z
+		COMMENT Returns whether the block provides comparator output.
+		COMMENT Used in blocks with entities like Chests and Droppers.
+		COMMENT @return Whether the block provides comparator output
+	METHOD method_480 getTranslatedName ()Ljava/lang/String;
+		COMMENT Translates and returns the translation key
+		COMMENT @return Translated name
+	METHOD method_481 hasStats ()Z
+		COMMENT Returns whether the current block should be tracked for stats
+		COMMENT @return Whether the current block should be tracked for stats
+	METHOD method_482 disableStats ()Lnet/minecraft/class_197;
+		COMMENT Disables tracking by stats for the current block. Used in registering blocks.
+		COMMENT @return The current block
+	METHOD method_483 getItemGroup ()Lnet/minecraft/class_1041;
+		COMMENT Returns the block's ItemGroup.
+		COMMENT Only called on the client.
+		COMMENT @return The Block's item group
+	METHOD method_5545 getTextureName ()Ljava/lang/String;
+	METHOD method_6440 getAmbientOcclusionLightLevel ()F
+		COMMENT Returns the block's ambient occlusion light level on the basis of whether it is a normal block.
+		COMMENT Only called on the client.
+		COMMENT @return The block's ambient occlusion light level
+	METHOD method_6441 setLightLevel (F)Lnet/minecraft/class_197;
+		COMMENT Sets the block's luminescence. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 lightLevel
+			COMMENT The block's luminescence
+	METHOD method_6442 getBlockFromItem (Lnet/minecraft/class_1069;)Lnet/minecraft/class_197;
+		COMMENT Returns a block by converting a blockitem to a block
+		COMMENT @return The block
+		ARG 0 item
+			COMMENT The item that must be converted to a block
+	METHOD method_6443 areBlocksEqual (Lnet/minecraft/class_197;Lnet/minecraft/class_197;)Z
+		COMMENT Returns whether two blocks are equal.
+		COMMENT @return Whether two blocks are equal
+		ARG 0 one
+		ARG 1 two
+	METHOD method_6445 getIdByBlock (Lnet/minecraft/class_197;)I
+		COMMENT Returns a certain block's id
+		COMMENT @return Block id
+		ARG 0 block
+			COMMENT The block for which the id is returned
+	METHOD method_6446 get (Ljava/lang/String;)Lnet/minecraft/class_197;
+		COMMENT Returns a block from it's name
+		COMMENT @return The block
+		ARG 0 id
+			COMMENT The block's name
+	METHOD method_6447 isEqualTo (Lnet/minecraft/class_197;)Z
+		COMMENT Returns whether the current block and another block are equal
+		COMMENT @return Whether the current block and the other block are equal
+		ARG 1 block
+			COMMENT The other block
+	METHOD method_6448 getById (I)Lnet/minecraft/class_197;
+		COMMENT Returns a certain block from its id
+		COMMENT @return The Block
+		ARG 0 id
+			COMMENT The id for which the Block is returned
+	METHOD method_6450 setOpacity (I)Lnet/minecraft/class_197;
+		COMMENT Sets the block's light opacity. Used in registering blocks.
+		COMMENT @return The current block
+		ARG 1 opacity
+			COMMENT The block's light opacity
+	METHOD method_6451 isFullBlock ()Z
+		COMMENT Checks whether the current block is a full block
+		COMMENT @return fullBlock
+	METHOD method_6452 getOpacity ()I
+		COMMENT Returns the current block's opacity
+		COMMENT @return opacity
+	METHOD method_6453 isTransluscent ()Z
+		COMMENT Checks whether the current block is transluscent
+		COMMENT @return transluscent
+	METHOD method_6454 getLightLevel ()I
+		COMMENT Returns the block's luminescence
+		COMMENT @return lightLevel
+	METHOD method_6455 usesNeighbourLight ()Z
+		COMMENT Checks whether the current block uses light from the adjacent block
+		COMMENT @return useNeighbourLight
+	METHOD method_6456 getMaterial ()Lnet/minecraft/class_63;
+		COMMENT Returns the block's material
+		COMMENT @return material
+	METHOD method_6457 setup ()V
+		COMMENT Registers all blocks
+	METHOD method_6458 isNormalBlock ()Z
+		COMMENT Checks whether the block is a normal block.
+		COMMENT A normal block is one that blocks movement and can be rendered as a normal block.
+		COMMENT @return Whether the block is a normal block
+	METHOD method_6459 isFullCube ()Z
+		COMMENT Checks whether the current block is a full cube.
+		COMMENT A block is a full cube when it can be rendered as a normal block, does not emit redstone power and is opaque.
+		COMMENT @return Whether the current block is a full cube
+	METHOD method_8632 getStateManager ()Lnet/minecraft/class_2233;
+		COMMENT Returns the current state manager.
+		COMMENT @return The current state manager
+	METHOD method_8633 getDefaultState ()Lnet/minecraft/class_2232;
+		COMMENT Returns the block's default BlockState.
+		COMMENT @return The block's default BlockState
+	METHOD method_8634 getOffsetType ()Lnet/minecraft/class_197$class_2177;
+		COMMENT Returns the block's offset type.
+		COMMENT Used by grass and flowers.
+		COMMENT @return The block's offset type
+	METHOD method_8635 stateFromData (I)Lnet/minecraft/class_2232;
+		COMMENT Returns a blockstate of the current block from it's id
+		COMMENT @return The Default state
+		ARG 1 data
+			COMMENT The Blockstate's associated data value
+	METHOD method_8636 register (ILjava/lang/String;Lnet/minecraft/class_197;)V
+		COMMENT Registers a block to the registry
+		ARG 0 id
+			COMMENT The block's Id
+		ARG 1 name
+			COMMENT The block's name
+		ARG 2 block
+			COMMENT The block object
+	METHOD method_8636 register (Ljava/lang/String;Lnet/minecraft/class_197;)V
+		ARG 0 identifier
+		ARG 1 block
+	METHOD method_8637 register (ILnet/minecraft/class_1653;Lnet/minecraft/class_197;)V
+		COMMENT Registers a block to the registry
+		ARG 0 id
+			COMMENT The block's Id
+		ARG 1 identifier
+			COMMENT The block's Identifier
+		ARG 2 block
+			COMMENT The block object
+	METHOD method_8638 isReplaceable (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8639 onDestroyedByExplosion (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1147;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 explosion
+	METHOD method_8640 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_8640 getCollisionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_231;
+		COMMENT Returns a box by adding the block's current location and the block's corresponding value in its Bounding Box
+		COMMENT @return The Collision box
+		ARG 1 world
+			COMMENT The world that the block has been placed
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+	METHOD method_8640 getCollisionBox (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_8640 getCollisionShape (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_4100;
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_8640 getItemStack (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 blockPos
+		ARG 3 blockState
+	METHOD method_8640 getPickBlock (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_197;)V
+		COMMENT Runs when its adjacent blocks are updated.
+		COMMENT It will also run when the block is placed or removed as Air is being updated.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 block
+			COMMENT The adjacent Block that updated the current block
+	METHOD method_8641 neighborUpdate (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_197;Lnet/minecraft/class_2552;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 block
+		ARG 5 neighborPos
+	METHOD method_8642 appendCollisionBoxes (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 box
+		ARG 5 list
+		ARG 6 entity
+	METHOD method_8643 onRandomTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+		COMMENT Runs when the block is updated
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 rand
+			COMMENT Random object
+	METHOD method_8644 onBreakByPlayer (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;)V
+		COMMENT Runs when the block is broken by a player.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 player
+			COMMENT The player who broke the block
+	METHOD method_8645 getStateFromData (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;FFFILnet/minecraft/class_1699;)Lnet/minecraft/class_2232;
+		COMMENT Returns a BlockState from an id
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 dir
+			COMMENT The block's direction
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
+		ARG 7 id
+		ARG 8 entity
+	METHOD method_8646 canBeReplaced (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;Lnet/minecraft/class_1071;)Z
+		COMMENT Returns whether the current block can be replaced.
+		COMMENT Useful for grass like blocks.
+		COMMENT @return Whether the current block can be replaced
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 dir
+			COMMENT The block's direction
+		ARG 4 stack
+			COMMENT ItemStack
+	METHOD method_8647 onLandedUpon (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;F)V
+		COMMENT Runs when an entity falls on the block.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 entity
+			COMMENT The entity who fell on the block
+		ARG 4 distance
+			COMMENT The relative height from which the entity fell
+	METHOD method_8648 onEntityCollision (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_864;Lnet/minecraft/class_236;)Lnet/minecraft/class_236;
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 entity
+		ARG 4 velocity
+	METHOD method_8649 onBlockBreak (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1071;)V
+		COMMENT Runs when a block is broken
+		ARG 0 world
+			COMMENT The world that the block is placed in
+		ARG 1 pos
+			COMMENT The block's position
+		ARG 2 item
+			COMMENT Allows creating an ItemEntity
+	METHOD method_8650 onEntityLand (Lnet/minecraft/class_1158;Lnet/minecraft/class_864;)V
+		ARG 1 world
+		ARG 2 entity
+	METHOD method_8650 setEntityVelocity (Lnet/minecraft/class_1150;Lnet/minecraft/class_864;)V
+		COMMENT Sets the speed of an entity moving on the block
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 entity
+			COMMENT The entity that the speed must be changed for
+	METHOD method_8651 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;Lnet/minecraft/class_1071;)V
+		ARG 1 world
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 blockEntity
+		ARG 6 stack
+	METHOD method_8651 harvest (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_226;)V
+		COMMENT Runs every time a player begins to break the block.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 player
+			COMMENT The player who is mining the block
+		ARG 3 pos
+			COMMENT The block's position
+		ARG 4 state
+			COMMENT The block's BlockState
+		ARG 5 be
+			COMMENT The block entity in the block
+	METHOD method_8652 setBoundingBox (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)V
+		ARG 1 view
+		ARG 2 pos
+	METHOD method_8653 getWeakRedstonePower (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)I
+		COMMENT Returns the block's weak redstone power.
+		COMMENT @return Block's weak redstone power
+		ARG 1 view
+			COMMENT BlockView instance
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 facing
+			COMMENT The block's direction
+	METHOD method_8653 getWeakRedstonePower (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 direction
+	METHOD method_8654 (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+		ARG 4 direction
+	METHOD method_8654 isSideInvisible (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		COMMENT Returns whether the current block has connected sides, i.e its side faces are invisible when covered by other blocks. Used by glass to prevent the white dots from appearing everywhere through adjacent glass blocks.
+		COMMENT @return Whether the current block has connected sides
+		ARG 1 view
+			COMMENT BlockView instance
+		ARG 2 pos
+			COMMENT The current block's position
+		ARG 3 facing
+			COMMENT The direction the block is facing
+	METHOD method_8655 getMeta (Lnet/minecraft/class_2232;)I
+		COMMENT Returns the metadata value for a certain BlockState
+		COMMENT @return Metadata value
+		ARG 1 state
+			COMMENT The BlockState
+	METHOD method_8656 getBlockState (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		COMMENT Returns the current block's blockstate at a certain position
+		COMMENT @return state
+		ARG 1 state
+			COMMENT The original blockstate
+		ARG 2 view
+			COMMENT BlockView instance
+		ARG 3 pos
+			COMMENT The block's position
+	METHOD method_8657 getSelectionBox (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_231;
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8658 dropExperience (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;I)V
+		COMMENT Runs when the block is broken to drop experience.
+		COMMENT Since entities are being spawned, most of it only happens on a ServerWorld.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 size
+			COMMENT Size
+	METHOD method_8659 onBreaking (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
+		COMMENT Runs when the block is removed (by an entity or explosion).
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+	METHOD method_8659 onStateReplaced (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Z)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 newState
+		ARG 5 moved
+	METHOD method_8660 dropAsItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;I)V
+		COMMENT Runs when the block must be dropped as an item.
+		COMMENT Called when the block is broken or an enderman holding the block dies.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 id
+			COMMENT Id
+	METHOD method_8661 onScheduledTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+		COMMENT Runs when the block is updated as per a schedule
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 rand
+			COMMENT Random object
+	METHOD method_8661 sheduledTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_8662 canBePlacedAdjacent (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		COMMENT Returns whether blocks can be placed adjacent to it.
+		COMMENT @return Whether blocks can be placed adjacent to it
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 direction
+			COMMENT The block's direction
+	METHOD method_8663 blocksMovement (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Z
+		ARG 1 view
+		ARG 2 pos
+	METHOD method_8663 canPlaceAtSide (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_4064;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 environment
+	METHOD method_8664 getStrongRedstonePower (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)I
+		COMMENT Returns the block's strong redstone power.
+		COMMENT @return The Block's strong redstone power
+		ARG 1 view
+			COMMENT BlockView instance
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 facing
+			COMMENT The block's direction
+	METHOD method_8664 getStrongRedstonePower (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 direction
+	METHOD method_8665 hasCollision (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;)Z
+		ARG 1 blockView
+		ARG 2 pos
+		ARG 3 direction
+	METHOD method_8666 getRenderState (Lnet/minecraft/class_2232;)Lnet/minecraft/class_2232;
+		ARG 1 state
+	METHOD method_8667 getPickItem (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Lnet/minecraft/class_1069;
+		COMMENT Called when a player presses the pick block key while facing the block.
+		COMMENT It returns the item that must be placed into the player's inventory.
+		COMMENT @return The Item that must be placed into the player's inventory
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8668 onBlockAdded (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 oldState
+	METHOD method_8668 onCreation (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
+		COMMENT Runs when the block is placed (by a player or enderman).
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+	METHOD method_8669 randomDisplayTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Ljava/util/Random;)V
+		COMMENT Runs every random display Tick. Useful for displaying particles around a block, like Redstone Ore.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+		ARG 4 rand
+			COMMENT Random object
+	METHOD method_8669 randomDisplayTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_8670 getBrightness (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 blockView
+		ARG 2 pos
+	METHOD method_8671 getData (Lnet/minecraft/class_2232;)I
+		COMMENT Returns the data value for a blockstate
+		COMMENT Throws an {@code IllegalArmumentException} as this method does not work
+		COMMENT @return Zero
+		ARG 1 state
+			COMMENT The Blockstate
+	METHOD method_8672 getStateFromRawId (I)Lnet/minecraft/class_2232;
+		COMMENT Returns a BlockState from it's id
+		COMMENT @return The Blockstate
+		ARG 0 id
+			COMMENT The BlockState's id
+	METHOD method_8673 canBePlacedAtPos (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
+		COMMENT Returns whether the current block can be placed at a certain {@code BlockPos}
+		COMMENT @return Whether the current block can be placed at a BlockPos
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8674 onBreakByPlayer (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;)V
+		COMMENT Runs when the block is broken by the player
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+		ARG 3 state
+			COMMENT The block's BlockState
+	METHOD method_8675 getBlendColor (Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)I
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8676 appendProperties ()Lnet/minecraft/class_2233;
+		COMMENT Returns a new state manager with a property array.
+		COMMENT @return New state manager
+	METHOD method_8677 getByBlockState (Lnet/minecraft/class_2232;)I
+		COMMENT Returns a certain Block's id from a blockstate
+		COMMENT @return Block id
+		ARG 0 state
+			COMMENT The BlockState for which the id is returned
+	METHOD method_8678 canMobSpawnInside ()Z
+		COMMENT Returns whether mobs can spawn inside the block.
+		COMMENT Used for Air.
+		COMMENT @return Whether mobs can spawn inside the block
+	METHOD method_8679 getStrength (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)F
+		COMMENT Returns the current block's strength
+		COMMENT @return The block's strength
+		ARG 1 world
+			COMMENT The world where the block is placed
+		ARG 2 pos
+			COMMENT The block's position
+	METHOD method_8680 getMaterialColor (Lnet/minecraft/class_2232;)Lnet/minecraft/class_65;
+		COMMENT Returns the block's material color from it's state
+		COMMENT Blockstates can have different material colors
+		COMMENT @return materialColor
+		ARG 1 state
+			COMMENT The Blockstate for which the material color is returned
+	METHOD method_8680 getMaterialColor (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_65;
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_8681 getColor (Lnet/minecraft/class_2232;)I
+		ARG 1 state
+	METHOD method_8682 createStackFromBlock (Lnet/minecraft/class_2232;)Lnet/minecraft/class_1071;
+		COMMENT Creates and returns and ItemStack from a block.
+		COMMENT @return An ItemStack instance containing the block
+		ARG 1 state
+			COMMENT The block's BlockState
+	METHOD method_8683 getMeta (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
+		COMMENT Returns metadata from a world and a BlockPos
+		COMMENT @return Metadata
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+	METHOD method_8684 setDefaultState (Lnet/minecraft/class_2232;)V
+		COMMENT Sets the block's default BlockState.
+		ARG 1 state
+			COMMENT The default state
+	METHOD method_8685 onRainTick (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)V
+		COMMENT Runs every tick when raining.
+		COMMENT Used by cauldrons to randomly fill up when raining.
+		ARG 1 world
+			COMMENT The world that the block is placed in
+		ARG 2 pos
+			COMMENT The block's position
+	METHOD method_8686 getComparatorOutput (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
+		COMMENT Returns the block's comparator output value.
+		COMMENT Used in blocks with entities like Chests and Droppers.
+		COMMENT @return The block's comparator output value
+		ARG 1 world
+		ARG 2 pos
+	METHOD method_8686 getComparatorOutput (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)I
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+	METHOD method_8687 getRenderLayerType ()Lnet/minecraft/class_2165;
+		COMMENT Returns the appropriate RenderLayer for a block.
+		COMMENT Only called on the client.
+		COMMENT @return The block's RenderLayer
+	METHOD method_8688 isLeafBlock ()Z
+		COMMENT Checks whether the current block is a normal block (used only by {@code LeavesBlock})
+		COMMENT @return Whether the current block is a normal block
+	CLASS class_200 Sound
+		COMMENT
+		FIELD field_506 id Ljava/lang/String;
+			COMMENT
+		FIELD field_507 volume F
+		FIELD field_508 pitch F
+		METHOD <init> (Ljava/lang/String;FF)V
+			ARG 1 id
+			ARG 2 volume
+			ARG 3 pitch
+		METHOD method_4194 getSound ()Ljava/lang/String;
+		METHOD method_484 getDigSound ()Ljava/lang/String;
+		METHOD method_485 getVolume ()F
+		METHOD method_486 getPitch ()F
+		METHOD method_487 getStepSound ()Ljava/lang/String;
+	CLASS class_2177 OffsetType
+		FIELD field_9286 NONE Lnet/minecraft/class_197$class_2177;
+		FIELD field_9287 XZ Lnet/minecraft/class_197$class_2177;
+		FIELD field_9288 XYZ Lnet/minecraft/class_197$class_2177;
+	CLASS class_3691 NeighborGroup
+		FIELD field_17751 self Lnet/minecraft/class_2232;
+		FIELD field_17752 other Lnet/minecraft/class_2232;
+		FIELD field_17753 facing Lnet/minecraft/class_1354;
+		METHOD <init> (Lnet/minecraft/class_2232;Lnet/minecraft/class_2232;Lnet/minecraft/class_1354;)V
+			ARG 1 blockState
+			ARG 2 blockState2
+			ARG 3 direction
+	CLASS class_3692 Builder
+		FIELD field_17754 material Lnet/minecraft/class_63;
+		FIELD field_17755 materialColor Lnet/minecraft/class_65;
+		FIELD field_17756 collidable Z
+		FIELD field_17757 blockSoundGroup Lnet/minecraft/class_200;
+		FIELD field_17758 lightLevel I
+		FIELD field_17759 blastResistance F
+		FIELD field_17760 strength F
+		FIELD field_17761 randomTicks Z
+		FIELD field_17762 slipperiness F
+		FIELD field_17763 dynamicBounds Z
+		METHOD <init> (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)V
+			ARG 1 material
+			ARG 2 materialColor
+		METHOD method_16605 setNotCollidable ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16606 setSlipperiness (F)Lnet/minecraft/class_197$class_3692;
+			ARG 1 slipperiness
+		METHOD method_16607 setStrengthAndResistance (FF)Lnet/minecraft/class_197$class_3692;
+			ARG 1 strength
+			ARG 2 blastResistance
+		METHOD method_16608 setLightLevel (I)Lnet/minecraft/class_197$class_3692;
+			ARG 1 lightLevel
+		METHOD method_16610 fromBlock (Lnet/minecraft/class_197;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 block
+		METHOD method_16611 setBlockSoundGroup (Lnet/minecraft/class_200;)Lnet/minecraft/class_197$class_3692;
+			ARG 1 blockSoundGroup
+		METHOD method_16612 setMaterial (Lnet/minecraft/class_63;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 material
+		METHOD method_16613 setMaterialAndDyeColor (Lnet/minecraft/class_63;Lnet/minecraft/class_2674;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 material
+			ARG 1 dyeColor
+		METHOD method_16614 setMaterialAndMapColor (Lnet/minecraft/class_63;Lnet/minecraft/class_65;)Lnet/minecraft/class_197$class_3692;
+			ARG 0 material
+			ARG 1 materialColor
+		METHOD method_16615 setNoDurability ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16616 setDurability (F)Lnet/minecraft/class_197$class_3692;
+			ARG 1 durability
+		METHOD method_16618 setRandomTicks ()Lnet/minecraft/class_197$class_3692;
+		METHOD method_16620 setHasDynamicBounds ()Lnet/minecraft/class_197$class_3692;
