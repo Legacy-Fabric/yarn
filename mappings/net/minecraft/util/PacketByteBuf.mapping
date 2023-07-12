@@ -27,8 +27,6 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 	METHOD discardReadBytes discardReadBytes ()Lio/netty/buffer/ByteBuf;
 	METHOD discardSomeReadBytes discardSomeReadBytes ()Lio/netty/buffer/ByteBuf;
 	METHOD duplicate duplicate ()Lio/netty/buffer/ByteBuf;
-	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
 	METHOD ensureWritable ensureWritable (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 minBytes
 	METHOD ensureWritable ensureWritable (IZ)I
@@ -52,32 +50,6 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 		ARG 1 index
 	METHOD getByte getByte (I)B
 		ARG 1 index
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 byteBuf
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 byteBuf
-		ARG 3 j
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 byteBuf
-		ARG 3 j
-		ARG 4 k
-	METHOD getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 stream
-		ARG 3 j
-	METHOD getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 buffer
-	METHOD getBytes (ILjava/nio/channels/GatheringByteChannel;I)I
-		ARG 1 i
-		ARG 2 channel
-		ARG 3 j
-	METHOD getBytes (I[B)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 bytes
 	METHOD getBytes getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
@@ -111,14 +83,10 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 		ARG 4 length
 	METHOD getChar getChar (I)C
 		ARG 1 index
-	METHOD getDouble (I)D
-		ARG 1 i
 	METHOD getDouble getDouble (I)D
 		ARG 1 index
 	METHOD getFloat getFloat (I)F
 		ARG 1 index
-	METHOD getInt (I)I
-		ARG 1 i
 	METHOD getInt getInt (I)I
 		ARG 1 index
 	METHOD getLong getLong (I)J
@@ -294,21 +262,6 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 	METHOD setByte setByte (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 byteBuf
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 byteBuf
-		ARG 3 j
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 buf
-		ARG 3 j
-		ARG 4 k
-	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
-		ARG 1 i
-		ARG 2 bytes
 	METHOD setBytes setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 buf
@@ -321,6 +274,9 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 		ARG 2 buf
 		ARG 3 sourceIndex
 		ARG 4 length
+	METHOD setBytes setBytes (I[B)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
+		ARG 2 bytes
 	METHOD setBytes setBytes (ILjava/io/InputStream;I)I
 		ARG 1 index
 		ARG 2 stream
@@ -332,9 +288,6 @@ CLASS net/minecraft/class_1967 net/minecraft/util/PacketByteBuf
 		ARG 1 index
 		ARG 2 channel
 		ARG 3 length
-	METHOD setBytes setBytes (I[B)Lio/netty/buffer/ByteBuf;
-		ARG 1 index
-		ARG 2 bytes
 	METHOD setBytes setBytes (I[BII)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 bytes
