@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 
-import threading
-import time
 import os
 import sys
+
 sys.dont_write_bytecode = True
 
-from intermediary_helper import separate, merge
-
-
-VERSIONS = ['1.3.2', '1.4.7', '1.5', '13w11a', '1.5.1', '2point0_red', '2point0_purple', '2point0_blue', '1.5.2', '1.6.4', '1.7.2', '1.7.10', '1.8', '15w14a', '1.8.9', '1.9.4', '1.10.2', '1.11.2', '1.12.2', '1.13.2']
+VERSIONS = ['15w14a', '1.8.2', '1.8.3', '1.8.4', '1.8.5', '1.8.6', '1.8.7', '1.8.8', '1.8.9',
+            '1.9', '1.9.1', '1.9.2', '1.9.3', '1.9.4', '1.10', '1.10.1', '1.10.2',
+            '1.RV-Pre1', '1.11', '1.11.1', '1.11.2', '1.12',  '1.12.1', '1.12.2',
+            '1.13', '1.13.1', '1.13.2']
 GRADLE_PREFIX = "gradlew.bat" if os.name == "nt" else "./gradlew"
-saving_thread = None
-kill = False
+
 
 def main():
     args = sys.argv
@@ -42,41 +40,14 @@ def main():
         command = " ".join(args[2:])
 
     os.environ["MC_VERSION"] = version
-    separate(version)
 
-    if command.startswith("yarn"):
-        start_autosave()
+    exit_code = os.system(GRADLE_PREFIX + " " + command + " unifyMappings")
 
-    exitCode = os.system(GRADLE_PREFIX + " " + command)
-
-    stop_autosave()
-    merge()
-
-    if exitCode == 0:
+    if exit_code == 0:
         exit(0)
     else:
         exit(1)
 
-def start_autosave():
-    global kill, saving_thread
-    saving_thread = threading.Thread(target=_autosave)
-    saving_thread.setDaemon(True)
-    saving_thread.start()
-
-def _autosave():
-    # Automerge every 4 minutes
-    while True:
-        for i in range(480):
-            if kill:
-                return
-            time.sleep(0.5)
-        merge(False)
-
-def stop_autosave():
-    global kill, saving_thread
-    kill = True
-    while saving_thread != None and saving_thread.is_alive():
-        time.sleep(0.5)
 
 if __name__ == '__main__':
     main()

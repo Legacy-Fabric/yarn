@@ -11,9 +11,7 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	FIELD field_14069 FEATURE_TO_GENERATION_STEP Ljava/util/Map;
 	FIELD field_14070 IGLOO Lnet/minecraft/class_2975;
 	FIELD field_14071 WATER_LAKE Lnet/minecraft/class_2975;
-	FIELD field_14072 layers Ljava/util/List;
 	FIELD field_14073 STRUCTURE_TO_FEATURES Ljava/util/Map;
-	FIELD field_14074 structures Ljava/util/Map;
 	FIELD field_14075 MINESHAFT Lnet/minecraft/class_2975;
 	FIELD field_14076 OCEAN_MONUMENT Lnet/minecraft/class_2975;
 	FIELD field_14077 hasNoTerrain Z
@@ -36,6 +34,8 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	FIELD field_26748 biomeRegistry Lnet/minecraft/class_2378;
 	FIELD field_37145 structureOverrides Ljava/util/Optional;
 	FIELD field_40918 features Ljava/util/List;
+	FIELD field_14072 layers Ljava/util/List;
+	FIELD field_14074 structures Ljava/util/Map;
 	METHOD <init> (Ljava/util/Optional;Ljava/util/List;ZZLjava/util/Optional;Lnet/minecraft/class_6880$class_6883;Lnet/minecraft/class_6880;Lnet/minecraft/class_6880;)V
 		ARG 1 structureOverrides
 		ARG 2 layers
@@ -49,7 +49,6 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 		ARG 1 structureOverrides
 		ARG 2 biome
 		ARG 3 features
-	METHOD method_14309 getDefaultConfig ()Lnet/minecraft/class_3232;
 	METHOD method_14309 getDefaultConfig (Lnet/minecraft/class_2378;)Lnet/minecraft/class_3232;
 		ARG 0 biomeRegistry
 	METHOD method_14309 getDefaultConfig (Lnet/minecraft/class_2378;Lnet/minecraft/class_2378;)Lnet/minecraft/class_3232;
@@ -68,8 +67,6 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 	METHOD method_14315 parseLayerString (Ljava/lang/String;I)Lnet/minecraft/class_3229;
 		ARG 0 string
 		ARG 1 startY
-	METHOD method_14319 fromString (Ljava/lang/String;)Lnet/minecraft/class_3232;
-		ARG 0 string
 	METHOD method_14320 hasNoTerrain ()Z
 	METHOD method_14323 fromDynamic (Lcom/mojang/datafixers/Dynamic;)Lnet/minecraft/class_3232;
 		ARG 0 dynamic
@@ -84,11 +81,8 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 		ARG 1 biome
 	METHOD method_14326 getBiome ()Lnet/minecraft/class_1959;
 	METHOD method_14326 getBiome ()Lnet/minecraft/class_6880;
-	METHOD method_14327 getLayers ()Ljava/util/List;
 	METHOD method_14328 parseLayersString (Ljava/lang/String;)Ljava/util/List;
 		ARG 0 string
-	METHOD method_14330 updateLayerBlocks ()V
-	METHOD method_14333 getStructures ()Ljava/util/Map;
 	METHOD method_14334 parseBlock (Ljava/lang/String;)Lnet/minecraft/class_2248;
 	METHOD method_20314 removeLayerBlock (I)V
 		ARG 1 layer
@@ -132,3 +126,9 @@ CLASS net/minecraft/class_3232 net/minecraft/world/gen/chunk/FlatChunkGeneratorC
 		ARG 1 fallback
 	METHOD method_46729 getLavaLakes (Lnet/minecraft/class_7871;)Ljava/util/List;
 		ARG 0 featureLookup
+	METHOD method_14309 getDefaultConfig ()Lnet/minecraft/class_3232;
+	METHOD method_14319 fromString (Ljava/lang/String;)Lnet/minecraft/class_3232;
+		ARG 0 string
+	METHOD method_14327 getLayers ()Ljava/util/List;
+	METHOD method_14330 updateLayerBlocks ()V
+	METHOD method_14333 getStructures ()Ljava/util/Map;

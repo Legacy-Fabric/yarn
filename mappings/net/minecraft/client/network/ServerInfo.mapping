@@ -7,22 +7,10 @@ CLASS net/minecraft/class_642 net/minecraft/client/network/ServerInfo
 	COMMENT {@code servers.dat} file within the client game directory.
 	COMMENT
 	COMMENT @see net.minecraft.client.option.ServerList
-	FIELD field_3752 name Ljava/lang/String;
-	FIELD field_3753 playerCountLabel Ljava/lang/String;
 	FIELD field_3753 playerCountLabel Lnet/minecraft/class_2561;
-	FIELD field_3754 online Z
-	FIELD field_3755 resourcePackPolicy Lnet/minecraft/class_642$class_643;
-	FIELD field_3756 protocolVersion I
-	FIELD field_3757 label Ljava/lang/String;
 	FIELD field_3757 label Lnet/minecraft/class_2561;
-	FIELD field_3758 ping J
-	FIELD field_3759 icon Ljava/lang/String;
-	FIELD field_3760 version Ljava/lang/String;
 	FIELD field_3760 version Lnet/minecraft/class_2561;
-	FIELD field_3761 address Ljava/lang/String;
-	FIELD field_3762 playerListSummary Ljava/lang/String;
 	FIELD field_3762 playerListSummary Ljava/util/List;
-	FIELD field_3763 local Z
 	FIELD field_39355 LOGGER Lorg/slf4j/Logger;
 	FIELD field_39356 chatPreview Lnet/minecraft/class_642$class_7484;
 	FIELD field_39436 temporaryChatPreviewState Z
@@ -30,27 +18,22 @@ CLASS net/minecraft/class_642 net/minecraft/client/network/ServerInfo
 	FIELD field_41861 players Lnet/minecraft/class_2926$class_2927;
 	FIELD field_42889 LOGGER Lorg/slf4j/Logger;
 	FIELD field_42890 favicon [B
+	FIELD field_3752 name Ljava/lang/String;
+	FIELD field_3753 playerCountLabel Ljava/lang/String;
+	FIELD field_3754 online Z
+	FIELD field_3755 resourcePackPolicy Lnet/minecraft/class_642$class_643;
+	FIELD field_3756 protocolVersion I
+	FIELD field_3757 label Ljava/lang/String;
+	FIELD field_3758 ping J
+	FIELD field_3759 icon Ljava/lang/String;
+	FIELD field_3760 version Ljava/lang/String;
+	FIELD field_3761 address Ljava/lang/String;
+	FIELD field_3762 playerListSummary Ljava/lang/String;
+	FIELD field_3763 local Z
 	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Z)V
 		ARG 1 name
 		ARG 2 address
 		ARG 3 local
-	METHOD method_2989 setIcon (Ljava/lang/String;)V
-		ARG 1 icon
-	METHOD method_2990 getResourcePackPolicy ()Lnet/minecraft/class_642$class_643;
-		COMMENT {@return the policy on resource packs sent by this server}
-	METHOD method_2991 getIcon ()Ljava/lang/String;
-	METHOD method_2992 toNbt ()Lnet/minecraft/class_2487;
-	METHOD method_2993 fromNbt (Lnet/minecraft/class_2487;)Lnet/minecraft/class_642;
-		ARG 0 root
-	METHOD method_2994 isLocal ()Z
-	METHOD method_2995 setResourcePackPolicy (Lnet/minecraft/class_642$class_643;)V
-		COMMENT Sets the resource pack policy on this server.
-		COMMENT
-		COMMENT <p>This is called when a user has responded to the prompt on whether to
-		COMMENT accept server resource packs from this server in the future.
-		ARG 1 resourcePackPolicy
-	METHOD method_2996 copyWithSettingsFrom (Lnet/minecraft/class_642;)V
-		ARG 1 serverInfo
 	METHOD method_44077 (Lnet/minecraft/class_642;Lnet/minecraft/class_642$class_7484;)V
 		ARG 1 chatPreview
 	METHOD method_44078 parseFavicon (Ljava/lang/String;)Ljava/lang/String;
@@ -75,6 +58,23 @@ CLASS net/minecraft/class_642 net/minecraft/client/network/ServerInfo
 	METHOD method_49305 setFavicon ([B)V
 		ARG 1 favicon
 	METHOD method_49306 getFavicon ()[B
+	METHOD method_2989 setIcon (Ljava/lang/String;)V
+		ARG 1 icon
+	METHOD method_2990 getResourcePackPolicy ()Lnet/minecraft/class_642$class_643;
+		COMMENT {@return the policy on resource packs sent by this server}
+	METHOD method_2991 getIcon ()Ljava/lang/String;
+	METHOD method_2992 toNbt ()Lnet/minecraft/class_2487;
+	METHOD method_2993 fromNbt (Lnet/minecraft/class_2487;)Lnet/minecraft/class_642;
+		ARG 0 root
+	METHOD method_2994 isLocal ()Z
+	METHOD method_2995 setResourcePackPolicy (Lnet/minecraft/class_642$class_643;)V
+		COMMENT Sets the resource pack policy on this server.
+		COMMENT
+		COMMENT <p>This is called when a user has responded to the prompt on whether to
+		COMMENT accept server resource packs from this server in the future.
+		ARG 1 resourcePackPolicy
+	METHOD method_2996 copyWithSettingsFrom (Lnet/minecraft/class_642;)V
+		ARG 1 serverInfo
 	CLASS class_643 ResourcePackPolicy
 		COMMENT The policy of the client when this server sends a {@linkplain
 		COMMENT net.minecraft.network.packet.s2c.play.ResourcePackSendS2CPacket server

@@ -8,6 +8,7 @@ CLASS net/minecraft/class_236 net/minecraft/world/timer/Timer
 	FIELD field_31876 CALLBACK_KEY Ljava/lang/String;
 	FIELD field_31877 NAME_KEY Ljava/lang/String;
 	FIELD field_31878 TRIGGER_TIME_KEY Ljava/lang/String;
+	FIELD field_1312 eventsByName Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/class_233;)V
 		ARG 1 timerCallbackSerializer
 	METHOD <init> (Lnet/minecraft/class_233;Ljava/util/stream/Stream;)V
@@ -37,6 +38,11 @@ CLASS net/minecraft/class_236 net/minecraft/world/timer/Timer
 	METHOD method_988 processEvents (Ljava/lang/Object;J)V
 		ARG 1 server
 		ARG 2 time
+	METHOD method_981 addEvent (Ljava/lang/String;JLnet/minecraft/class_234;)Z
+	METHOD method_984 replaceEvent (Ljava/lang/String;JLnet/minecraft/class_234;)V
+		ARG 1 name
+		ARG 2 triggerTime
+		ARG 4 callback
 	CLASS class_237 Event
 		FIELD field_1316 callback Lnet/minecraft/class_234;
 		FIELD field_1317 name Ljava/lang/String;
@@ -47,9 +53,3 @@ CLASS net/minecraft/class_236 net/minecraft/world/timer/Timer
 			ARG 3 id
 			ARG 4 name
 			ARG 5 callback
-	FIELD field_1312 eventsByName Ljava/util/Map;
-	METHOD method_981 addEvent (Ljava/lang/String;JLnet/minecraft/class_234;)Z
-	METHOD method_984 replaceEvent (Ljava/lang/String;JLnet/minecraft/class_234;)V
-		ARG 1 name
-		ARG 2 triggerTime
-		ARG 4 callback

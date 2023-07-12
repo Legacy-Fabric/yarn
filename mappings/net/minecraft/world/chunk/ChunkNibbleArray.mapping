@@ -17,6 +17,19 @@ CLASS net/minecraft/class_2804 net/minecraft/world/chunk/ChunkNibbleArray
 	METHOD <init> ([B)V
 		ARG 1 bytes
 	METHOD method_12137 asByteArray ()[B
+	METHOD method_12144 copy ()Lnet/minecraft/class_2804;
+	METHOD method_12146 isUninitialized ()Z
+	METHOD method_35320 bottomToString (I)Ljava/lang/String;
+		COMMENT {@return a hexadecimal string representation of the {@code y=0} level of
+		COMMENT this array}
+		COMMENT
+		COMMENT <p>It is useful for debugging the grid nibble array.
+		ARG 1 unused
+			COMMENT unused
+	METHOD method_37459 occupiesSmallerBits (I)I
+		COMMENT {@return if the nibble at {@code n} is stored in the less
+		COMMENT significant (smaller) 4 bits of the byte in the backing array}
+		ARG 0 i
 	METHOD method_12138 getArrayIndex (I)I
 		ARG 0 i
 	METHOD method_12139 get (III)I
@@ -35,7 +48,6 @@ CLASS net/minecraft/class_2804 net/minecraft/world/chunk/ChunkNibbleArray
 		ARG 2 value
 	METHOD method_12143 isEven (I)Z
 		ARG 1 n
-	METHOD method_12144 copy ()Lnet/minecraft/class_2804;
 	METHOD method_12145 set (IIII)V
 		COMMENT Sets the value of a nibble.
 		COMMENT
@@ -45,15 +57,3 @@ CLASS net/minecraft/class_2804 net/minecraft/world/chunk/ChunkNibbleArray
 		ARG 2 y
 		ARG 3 z
 		ARG 4 value
-	METHOD method_12146 isUninitialized ()Z
-	METHOD method_35320 bottomToString (I)Ljava/lang/String;
-		COMMENT {@return a hexadecimal string representation of the {@code y=0} level of
-		COMMENT this array}
-		COMMENT
-		COMMENT <p>It is useful for debugging the grid nibble array.
-		ARG 1 unused
-			COMMENT unused
-	METHOD method_37459 occupiesSmallerBits (I)I
-		COMMENT {@return if the nibble at {@code n} is stored in the less
-		COMMENT significant (smaller) 4 bits of the byte in the backing array}
-		ARG 0 i

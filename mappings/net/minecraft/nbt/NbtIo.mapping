@@ -1,17 +1,5 @@
 CLASS net/minecraft/class_2507 net/minecraft/nbt/NbtIo
 	COMMENT A set of utility functions for reading, writing, and scanning NBT files.
-	METHOD method_10625 read (Ljava/io/DataInput;Lnet/minecraft/class_2505;)Lnet/minecraft/class_2487;
-		COMMENT Reads an NBT compound from {@code input}.
-		COMMENT
-		COMMENT @return the NBT compound from the input
-		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
-		COMMENT not a compound
-		ARG 0 input
-		ARG 1 tracker
-	METHOD method_10626 read (Ljava/io/DataInput;ILnet/minecraft/class_2505;)Lnet/minecraft/class_2520;
-		ARG 0 input
-		ARG 1 depth
-		ARG 2 tracker
 	METHOD method_10627 read (Ljava/io/DataInput;)Lnet/minecraft/class_2487;
 		COMMENT Reads an NBT compound from {@code input}.
 		COMMENT
@@ -19,50 +7,6 @@ CLASS net/minecraft/class_2507 net/minecraft/nbt/NbtIo
 		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
 		COMMENT not a compound
 		ARG 0 input
-	METHOD method_10627 read (Ljava/io/DataInputStream;)Lnet/minecraft/class_2487;
-		ARG 0 stream
-	METHOD method_10628 write (Lnet/minecraft/class_2487;Ljava/io/DataOutput;)V
-		COMMENT Writes the {@code nbt} to {@code file}.
-		COMMENT
-		COMMENT @throws IOException if the IO operation fails
-		COMMENT @see #write(NbtCompound, File)
-		ARG 0 nbt
-		ARG 1 output
-	METHOD method_10629 readCompressed (Ljava/io/InputStream;)Lnet/minecraft/class_2487;
-		COMMENT Reads an NBT compound from Gzip-compressed {@code stream}.
-		COMMENT
-		COMMENT @return the NBT compound from the stream
-		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
-		COMMENT not a compound
-		COMMENT @see #readCompressed(File)
-		ARG 0 stream
-	METHOD method_10630 write (Lnet/minecraft/class_2487;Ljava/io/File;)V
-		COMMENT Writes the {@code nbt} to {@code file}.
-		COMMENT
-		COMMENT @throws IOException if the IO operation fails
-		COMMENT @see #write(NbtCompound, DataOutput)
-		ARG 0 nbt
-		ARG 1 file
-	METHOD method_10631 write (Lnet/minecraft/class_2520;Ljava/io/DataOutput;)V
-		ARG 0 nbt
-		ARG 1 output
-	METHOD method_10632 safeWrite (Lnet/minecraft/class_2487;Ljava/io/File;)V
-		ARG 0 tag
-		ARG 1 file
-	METHOD method_10633 read (Ljava/io/File;)Lnet/minecraft/class_2487;
-		COMMENT Reads an NBT compound from {@code file}.
-		COMMENT
-		COMMENT @return the NBT compound from the file, or {@code null} if the file does not exist
-		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
-		COMMENT not a compound
-		ARG 0 file
-	METHOD method_10634 writeCompressed (Lnet/minecraft/class_2487;Ljava/io/OutputStream;)V
-		COMMENT Writes the Gzip-compressed {@code nbt} to {@code stream}.
-		COMMENT
-		COMMENT @throws IOException if the IO operation fails
-		COMMENT @see #writeCompressed(NbtCompound, File)
-		ARG 0 nbt
-		ARG 1 stream
 	METHOD method_30613 readCompressed (Ljava/io/File;)Lnet/minecraft/class_2487;
 		COMMENT Reads an NBT compound from Gzip-compressed {@code file}.
 		COMMENT
@@ -113,3 +57,59 @@ CLASS net/minecraft/class_2507 net/minecraft/nbt/NbtIo
 	METHOD method_40059 decompress (Ljava/io/InputStream;)Ljava/io/DataInputStream;
 		COMMENT {@return a new input stream that decompresses the input {@code stream}}
 		ARG 0 stream
+	METHOD method_10625 read (Ljava/io/DataInput;Lnet/minecraft/class_2505;)Lnet/minecraft/class_2487;
+		COMMENT Reads an NBT compound from {@code input}.
+		COMMENT
+		COMMENT @return the NBT compound from the input
+		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
+		COMMENT not a compound
+		ARG 0 input
+		ARG 1 tracker
+	METHOD method_10626 read (Ljava/io/DataInput;ILnet/minecraft/class_2505;)Lnet/minecraft/class_2520;
+		ARG 0 input
+		ARG 1 depth
+		ARG 2 tracker
+	METHOD method_10627 read (Ljava/io/DataInputStream;)Lnet/minecraft/class_2487;
+		ARG 0 stream
+	METHOD method_10628 write (Lnet/minecraft/class_2487;Ljava/io/DataOutput;)V
+		COMMENT Writes the {@code nbt} to {@code file}.
+		COMMENT
+		COMMENT @throws IOException if the IO operation fails
+		COMMENT @see #write(NbtCompound, File)
+		ARG 0 nbt
+		ARG 1 output
+	METHOD method_10629 readCompressed (Ljava/io/InputStream;)Lnet/minecraft/class_2487;
+		COMMENT Reads an NBT compound from Gzip-compressed {@code stream}.
+		COMMENT
+		COMMENT @return the NBT compound from the stream
+		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
+		COMMENT not a compound
+		COMMENT @see #readCompressed(File)
+		ARG 0 stream
+	METHOD method_10630 write (Lnet/minecraft/class_2487;Ljava/io/File;)V
+		COMMENT Writes the {@code nbt} to {@code file}.
+		COMMENT
+		COMMENT @throws IOException if the IO operation fails
+		COMMENT @see #write(NbtCompound, DataOutput)
+		ARG 0 nbt
+		ARG 1 file
+	METHOD method_10631 write (Lnet/minecraft/class_2520;Ljava/io/DataOutput;)V
+		ARG 0 nbt
+		ARG 1 output
+	METHOD method_10632 safeWrite (Lnet/minecraft/class_2487;Ljava/io/File;)V
+		ARG 0 tag
+		ARG 1 file
+	METHOD method_10633 read (Ljava/io/File;)Lnet/minecraft/class_2487;
+		COMMENT Reads an NBT compound from {@code file}.
+		COMMENT
+		COMMENT @return the NBT compound from the file, or {@code null} if the file does not exist
+		COMMENT @throws IOException if the IO operation fails or if the root NBT element is
+		COMMENT not a compound
+		ARG 0 file
+	METHOD method_10634 writeCompressed (Lnet/minecraft/class_2487;Ljava/io/OutputStream;)V
+		COMMENT Writes the Gzip-compressed {@code nbt} to {@code stream}.
+		COMMENT
+		COMMENT @throws IOException if the IO operation fails
+		COMMENT @see #writeCompressed(NbtCompound, File)
+		ARG 0 nbt
+		ARG 1 stream

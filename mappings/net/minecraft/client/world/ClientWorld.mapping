@@ -16,12 +16,12 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 	FIELD field_34804 chunkUpdaters Ljava/util/Deque;
 	FIELD field_35163 simulationDistance I
 	FIELD field_35432 BLOCK_MARKER_ITEMS Ljava/util/Set;
-	FIELD field_3727 networkHandler Lnet/minecraft/class_634;
-	FIELD field_3729 client Lnet/minecraft/class_310;
 	FIELD field_3730 ticksUntilCaveAmbientSound I
 	FIELD field_3733 scoreboard Lnet/minecraft/class_269;
 	FIELD field_37951 pendingUpdateManager Lnet/minecraft/class_7202;
 	FIELD field_37952 LOGGER Lorg/slf4j/Logger;
+	FIELD field_3727 networkHandler Lnet/minecraft/class_634;
+	FIELD field_3729 client Lnet/minecraft/class_310;
 	METHOD <init> (Lnet/minecraft/class_634;Lnet/minecraft/class_638$class_5271;Lnet/minecraft/class_5321;Lnet/minecraft/class_6880;IILjava/util/function/Supplier;Lnet/minecraft/class_761;ZJ)V
 		ARG 1 networkHandler
 		ARG 2 properties
@@ -107,7 +107,6 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 7 maxZ
 		ARG 9 y
 		ARG 11 parameters
-	METHOD method_2936 finishRemovingEntities ()V
 	METHOD method_2937 setBlockStateWithoutNeighborUpdates (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V
 		ARG 1 pos
 		ARG 2 state
@@ -117,13 +116,6 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 3 parameters
 		ARG 4 solidBelow
 	METHOD method_2939 tickCaveAmbientSound ()V
-	METHOD method_2941 doRandomBlockDisplayTicks (III)V
-		ARG 1 centerX
-		ARG 2 centerY
-		ARG 3 centerZ
-	METHOD method_2942 addEntity (ILnet/minecraft/class_1297;)V
-		ARG 1 id
-		ARG 2 entity
 	METHOD method_2943 randomBlockDisplayTick (IIIILjava/util/Random;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338$class_2339;)V
 		ARG 1 centerX
 		ARG 2 centerY
@@ -156,8 +148,6 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 5 random
 		ARG 6 block
 		ARG 7 pos
-	METHOD method_2944 setScoreboard (Lnet/minecraft/class_269;)V
-		ARG 1 scoreboard
 	METHOD method_2945 removeEntity (I)V
 		ARG 1 entityId
 	METHOD method_2945 removeEntity (ILnet/minecraft/class_1297$class_5529;)V
@@ -234,6 +224,16 @@ CLASS net/minecraft/class_638 net/minecraft/client/world/ClientWorld
 		ARG 1 timeOfDay
 	METHOD method_8441 tick (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 shouldKeepTicking
+	METHOD method_2936 finishRemovingEntities ()V
+	METHOD method_2941 doRandomBlockDisplayTicks (III)V
+		ARG 1 centerX
+		ARG 2 centerY
+		ARG 3 centerZ
+	METHOD method_2942 addEntity (ILnet/minecraft/class_1297;)V
+		ARG 1 id
+		ARG 2 entity
+	METHOD method_2944 setScoreboard (Lnet/minecraft/class_269;)V
+		ARG 1 scoreboard
 	CLASS class_5271 Properties
 		FIELD field_24433 hardcore Z
 		FIELD field_24434 gameRules Lnet/minecraft/class_1928;
