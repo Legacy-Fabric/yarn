@@ -102,14 +102,14 @@ public abstract class FixedRemapUnpickDefinitionsTask extends DefaultTask {
 
 					while(var10.hasNext()) {
 						MappingTree.MethodMapping methodDef = (MappingTree.MethodMapping)var10.next();
-						methodMappings.put(new MethodKey(classDef.getName(fromM), methodDef.getName(fromM), methodDef.getDesc(fromM)), methodDef.getName(toM));
+						methodMappings.put(new MethodKey(classFrom, methodDef.getName(fromM), methodDef.getDesc(fromM)), methodDef.getName(toM));
 					}
 
 					var10 = classDef.getFields().iterator();
 
 					while(var10.hasNext()) {
 						MappingTree.FieldMapping fieldDef = (MappingTree.FieldMapping)var10.next();
-						fieldMappings.put(new FieldKey(classDef.getName(fromM), fieldDef.getName(fromM)), fieldDef.getName(toM));
+						fieldMappings.put(new FieldKey(classFrom, fieldDef.getName(fromM)), fieldDef.getName(toM));
 					}
 				}
 

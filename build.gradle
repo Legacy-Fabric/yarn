@@ -279,6 +279,13 @@ tasks.register("unifyMappings", UnifyMappingsTask) {
 	outputs.upToDateWhen { false }
 }
 
+tasks.register("unifyMappingsFix", UnifyMappingsTask) {
+	unifiedDir = "mappings-temp"
+	versionedDir = mappingsDir
+	outputDir = file("mappings")
+	outputs.upToDateWhen { false }
+}
+
 tasks.register('downloadIntermediary', DownloadTask) {
 	group = buildMappingGroup
 	url = getIntermediaryUrl(minecraft_version)
