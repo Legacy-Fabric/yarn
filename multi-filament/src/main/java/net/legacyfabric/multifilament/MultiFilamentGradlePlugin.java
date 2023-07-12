@@ -15,7 +15,7 @@ public class MultiFilamentGradlePlugin implements Plugin<Project> {
 		CombineUnpickDefinitionsTask combineUnpickDefinitions = (CombineUnpickDefinitionsTask) tasks.getByName("combineUnpickDefinitions");
 		tasks.register("fixedRemapUnpickDefinitionsIntermediary", FixedRemapUnpickDefinitionsTask.class, (task) -> {
 			task.dependsOn(combineUnpickDefinitions);
-			task.getInput().map(in -> combineUnpickDefinitions.getOutput());
+			task.getInput().set(combineUnpickDefinitions.getOutput());
 			task.getSourceNamespace().set("named");
 			task.getTargetNamespace().set("intermediary");
 		});
