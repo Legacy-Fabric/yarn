@@ -1,0 +1,35 @@
+CLASS net/minecraft/class_1794 net/minecraft/item/HoeItem
+	FIELD field_22486 EFFECTIVE_BLOCKS Ljava/util/Set;
+	FIELD field_8022 attackSpeed F
+	FIELD field_8023 TILLING_ACTIONS Ljava/util/Map;
+		COMMENT A map of input blocks to predicate-consumer action pairs.
+		COMMENT
+		COMMENT <p>Tilling works so that if the predicate succeeds, the consumer (the real action)
+		COMMENT is executed, and the hoe is damaged.
+	METHOD <init> (Lnet/minecraft/class_1832;IFLnet/minecraft/class_1792$class_1793;)V
+		ARG 1 material
+		ARG 2 attackDamage
+		ARG 3 attackSpeed
+		ARG 4 settings
+	METHOD method_20278 (Lnet/minecraft/class_1309;)V
+		ARG 0 e
+	METHOD method_20279 (Lnet/minecraft/class_1838;Lnet/minecraft/class_1657;)V
+		ARG 1 p
+	METHOD method_36984 (Lnet/minecraft/class_2680;Lnet/minecraft/class_1838;)V
+		ARG 1 context
+	METHOD method_36985 createTillAndDropAction (Lnet/minecraft/class_2680;Lnet/minecraft/class_1935;)Ljava/util/function/Consumer;
+		COMMENT {@return a tilling action that sets a block state and drops an item}
+		ARG 0 result
+			COMMENT the tilled block state
+		ARG 1 droppedItem
+			COMMENT the item to drop
+	METHOD method_36986 (Lnet/minecraft/class_2680;Lnet/minecraft/class_1935;Lnet/minecraft/class_1838;)V
+		ARG 2 context
+	METHOD method_36987 canTillFarmland (Lnet/minecraft/class_1838;)Z
+		COMMENT {@return whether the used block can be tilled into farmland}
+		COMMENT This method is used as the tilling predicate for most vanilla blocks except rooted dirt.
+		ARG 0 context
+	METHOD method_36988 createTillAction (Lnet/minecraft/class_2680;)Ljava/util/function/Consumer;
+		COMMENT {@return a tilling action that sets a block state}
+		ARG 0 result
+			COMMENT the tilled block state

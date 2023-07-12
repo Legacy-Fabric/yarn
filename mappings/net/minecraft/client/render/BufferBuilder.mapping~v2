@@ -1,0 +1,278 @@
+CLASS net/minecraft/class_287 net/minecraft/client/render/BufferBuilder
+	COMMENT Builds a buffer of primitives and optionally sorts them by the distance
+	COMMENT from the camera.
+	COMMENT
+	COMMENT <p>This builder can sort quad primitives. It sorts them by the distance
+	COMMENT between the camera position and the center of the quad. Sorting is
+	COMMENT required when drawing translucent objects because they have to be drawn
+	COMMENT in back-to-front order. See
+	COMMENT <a href="https://www.khronos.org/opengl/wiki/Transparency_Sorting">
+	COMMENT Transparency Sorting - OpenGL Wiki</a>.
+	COMMENT
+	COMMENT <p>For {@link VertexFormat.DrawMode#LINES LINES} and {@link
+	COMMENT VertexFormat.DrawMode#LINE_STRIP LINE_STRIP} draw modes, this builder
+	COMMENT duplicates every vertex in a line to produce a quad with zero area. See
+	COMMENT {@link GameRenderer#getRenderTypeLinesProgram}.
+	FIELD field_1557 LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD field_1557 LOGGER Lorg/slf4j/Logger;
+	FIELD field_1567 drawMode Lnet/minecraft/class_293$class_5596;
+	FIELD field_20774 parameters Ljava/util/List;
+	FIELD field_20775 lastParameterIndex I
+	FIELD field_20776 buildStart I
+	FIELD field_20777 nextDrawStart I
+	FIELD field_20884 elementOffset I
+	FIELD field_21594 canSkipElementChecks Z
+		COMMENT Whether this builder is aware of the vertex format and can skip checks
+		COMMENT for the current target element while building a vertex in {@link
+		COMMENT #vertex(float, float, float, float, float, float, float, float, float, int, int, float, float, float)}.
+	FIELD field_21595 hasOverlay Z
+	FIELD field_27348 sortingPrimitiveCenters [Lnet/minecraft/class_1160;
+	FIELD field_27348 sortingPrimitiveCenters [Lorg/joml/Vector3f;
+	FIELD field_27349 sortingCameraX F
+	FIELD field_27350 sortingCameraY F
+	FIELD field_27351 sortingCameraZ F
+	FIELD field_27352 hasNoVertexBuffer Z
+	FIELD field_32050 ROUND_SIZE_CHANGE I
+		COMMENT An integer a size change of a buffer must be a
+		COMMENT multiple of
+	FIELD field_39061 builtBufferCount I
+	FIELD field_39062 batchOffset I
+	FIELD field_1553 currentElementId I
+	FIELD field_1554 vertexCount I
+	FIELD field_1555 buffer Ljava/nio/ByteBuffer;
+	FIELD field_1556 building Z
+	FIELD field_1558 currentElement Lnet/minecraft/class_296;
+	FIELD field_1565 format Lnet/minecraft/class_293;
+	FIELD field_1567 drawMode I
+	FIELD field_1559 colorDisabled Z
+	FIELD field_1560 bufInt Ljava/nio/IntBuffer;
+	FIELD field_1561 bufShort Ljava/nio/ShortBuffer;
+	FIELD field_1562 offsetZ D
+	FIELD field_1563 offsetY D
+	FIELD field_1564 offsetX D
+	FIELD field_1566 bufFloat Ljava/nio/FloatBuffer;
+	METHOD <init> (I)V
+		ARG 1 initialCapacity
+	METHOD method_1324 beginSortedIndexBuffer (Lnet/minecraft/class_287$class_5594;)V
+		ARG 1 state
+	METHOD method_1326 end ()Lnet/minecraft/class_287$class_7433;
+		COMMENT Builds a buffer from the current batch and resets the building state.
+		COMMENT
+		COMMENT <p>Unlike {@link #endNullable()}, this always builds a buffer even if
+		COMMENT there are no vertices in the current batch.
+		COMMENT
+		COMMENT @throws IllegalStateException if this builder has not begun building
+		COMMENT
+		COMMENT @return the buffer built from the current batch
+	METHOD method_1328 begin (Lnet/minecraft/class_293$class_5596;Lnet/minecraft/class_293;)V
+		ARG 1 drawMode
+		ARG 2 format
+	METHOD method_1334 getSortingData ()Lnet/minecraft/class_287$class_5594;
+	METHOD method_16005 roundBufferSize (I)I
+		ARG 0 amount
+	METHOD method_22625 ([FII)I
+		ARG 1 a
+		ARG 2 b
+	METHOD method_22632 popData ()Lcom/mojang/datafixers/util/Pair;
+	METHOD method_22892 grow ()V
+	METHOD method_22893 isBuilding ()Z
+	METHOD method_23477 reset ()V
+	METHOD method_23918 setFormat (Lnet/minecraft/class_293;)V
+		ARG 1 format
+	METHOD method_31948 sortFrom (FFF)V
+		ARG 1 cameraX
+		ARG 2 cameraY
+		ARG 3 cameraZ
+	METHOD method_31949 createConsumer (Lnet/minecraft/class_293$class_5595;)Lit/unimi/dsi/fastutil/ints/IntConsumer;
+		ARG 1 elementFormat
+	METHOD method_31949 getIndexConsumer (ILnet/minecraft/class_293$class_5595;)Lit/unimi/dsi/fastutil/ints/IntConsumer;
+		ARG 1 offset
+		ARG 2 indexType
+	METHOD method_31950 writeSortedIndices (Lnet/minecraft/class_293$class_5595;)V
+		ARG 1 indexType
+	METHOD method_31951 (I)V
+		ARG 1 value
+	METHOD method_31951 (Lorg/apache/commons/lang3/mutable/MutableInt;I)V
+		ARG 2 index
+	METHOD method_31952 (I)V
+		ARG 1 value
+	METHOD method_31952 (Lorg/apache/commons/lang3/mutable/MutableInt;I)V
+		ARG 2 index
+	METHOD method_31953 (I)V
+		ARG 1 value
+	METHOD method_31953 (Lorg/apache/commons/lang3/mutable/MutableInt;I)V
+		ARG 2 index
+	METHOD method_31954 buildPrimitiveCenters ()[Lnet/minecraft/class_1160;
+	METHOD method_31954 buildPrimitiveCenters ()[Lorg/joml/Vector3f;
+	METHOD method_43574 isBatchEmpty ()Z
+	METHOD method_43575 endNullable ()Lnet/minecraft/class_287$class_7433;
+		COMMENT Builds a buffer if there are vertices in the current batch and resets
+		COMMENT the building state.
+		COMMENT
+		COMMENT @throws IllegalStateException if this builder has not begun building
+		COMMENT
+		COMMENT @return the built buffer if there are vertices, otherwise {@code null}
+		COMMENT
+		COMMENT @see #end()
+	METHOD method_43576 slice (II)Ljava/nio/ByteBuffer;
+		ARG 1 start
+		ARG 2 end
+	METHOD method_43577 ensureBuilding ()V
+	METHOD method_43578 build ()Lnet/minecraft/class_287$class_7433;
+	METHOD method_43579 resetBuilding ()V
+	METHOD method_43580 releaseBuiltBuffer ()V
+	METHOD method_1340 setColor (IIII)V
+		ARG 1 colorIndex
+		ARG 2 red
+		ARG 3 blue
+		ARG 4 index
+	METHOD method_16006 clamp (III)I
+		ARG 0 value
+		ARG 1 min
+		ARG 2 max
+	METHOD method_1319 getDistanceSq (Ljava/nio/FloatBuffer;FFFII)F
+		ARG 0 buffer
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_1324 restoreState (Lnet/minecraft/class_287$class_288;)V
+	METHOD method_1326 end ()V
+	METHOD method_1328 begin (ILnet/minecraft/class_293;)V
+		ARG 1 drawMode
+		ARG 2 format
+	METHOD method_1334 popState ()Lnet/minecraft/class_287$class_288;
+	METHOD method_1335 grow (I)V
+		ARG 1 size
+	METHOD method_1341 sortQuads (FFF)V
+		ARG 1 cameraX
+		ARG 2 cameraY
+		ARG 3 cameraZ
+	METHOD method_1343 clear ()V
+	METHOD method_1310 getColorIndex (I)I
+	METHOD method_1311 getVertexFormat ()Lnet/minecraft/class_293;
+	METHOD method_1312 texture (DD)Lnet/minecraft/class_287;
+		ARG 1 u
+		ARG 3 v
+	METHOD method_1313 texture (II)Lnet/minecraft/class_287;
+		ARG 1 u
+		ARG 2 v
+	METHOD method_1314 setColor (FFFI)V
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+		ARG 4 index
+	METHOD method_1315 vertex (DDD)Lnet/minecraft/class_287;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_1316 getCurrentSize ()I
+	METHOD method_1317 multiplyColor (FFFI)V
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+		ARG 4 index
+	METHOD method_1318 normal (FFF)Lnet/minecraft/class_287;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_1320 postNormal (FFF)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_1322 postPosition (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_1323 color (IIII)Lnet/minecraft/class_287;
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+	METHOD method_1327 disableColor ()V
+	METHOD method_1329 setColor (II)V
+		ARG 1 color
+		ARG 2 index
+	METHOD method_1330 setQuadColor (FFF)V
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+	METHOD method_1331 setOffset (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_1332 setQuadColor (I)V
+		ARG 1 color
+	METHOD method_1333 putVertexData ([I)V
+	METHOD method_1336 color (FFFF)Lnet/minecraft/class_287;
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+	METHOD method_1337 getVertexCount ()I
+	METHOD method_1338 getDrawMode ()I
+	METHOD method_1339 brightness (IIII)V
+	METHOD method_1342 getByteBuffer ()Ljava/nio/ByteBuffer;
+	CLASS class_288 State
+		FIELD field_20885 buffer Ljava/nio/ByteBuffer;
+		FIELD field_1569 rawBuffer [I
+		FIELD field_1570 format Lnet/minecraft/class_293;
+		METHOD <init> (Ljava/nio/ByteBuffer;Lnet/minecraft/class_293;)V
+			ARG 1 buffer
+			ARG 2 format
+		METHOD method_1345 getFormat ()Lnet/minecraft/class_293;
+		METHOD method_1346 getRawBuffer ()[I
+		METHOD method_1347 getVertexCount ()I
+	CLASS class_4574 DrawParameters
+		FIELD field_20779 vertexFormat Lnet/minecraft/class_293;
+		FIELD field_20780 count I
+		FIELD field_20781 mode I
+		FIELD field_20781 mode Lnet/minecraft/class_293$class_5596;
+		FIELD field_27354 vertexCount I
+		FIELD field_27355 elementFormat Lnet/minecraft/class_293$class_5595;
+		FIELD field_27356 cameraOffset Z
+		FIELD field_27357 textured Z
+		METHOD method_22634 getVertexFormat ()Lnet/minecraft/class_293;
+		METHOD method_22635 getCount ()I
+		METHOD method_22636 getMode ()I
+		METHOD method_22636 getMode ()Lnet/minecraft/class_293$class_5596;
+		METHOD method_31955 getVertexCount ()I
+		METHOD method_31956 getElementFormat ()Lnet/minecraft/class_293$class_5595;
+		METHOD method_31957 getVertexBufferSize ()I
+		METHOD method_31958 getBufferSize ()I
+			COMMENT {@return the total size of the index buffer and the vertex buffer
+			COMMENT combined}
+		METHOD method_31959 isCameraOffset ()Z
+		METHOD method_31960 isTextured ()Z
+		METHOD method_31961 getIndexBufferSize ()I
+		METHOD method_43429 getVertexBufferStart ()I
+		METHOD method_43430 getVertexBufferEnd ()I
+		METHOD method_43431 getIndexBufferStart ()I
+		METHOD method_43432 getIndexBufferEnd ()I
+	CLASS class_5594 TransparentSortingData
+		FIELD field_27358 drawMode Lnet/minecraft/class_293$class_5596;
+		FIELD field_27359 vertexCount I
+		FIELD field_27360 primitiveCenters [Lorg/joml/Vector3f;
+		FIELD field_27360 sortingPrimitiveCenters [Lnet/minecraft/class_1160;
+		FIELD field_27361 cameraX F
+		FIELD field_27362 cameraY F
+		FIELD field_27363 cameraZ F
+		METHOD <init> (Lnet/minecraft/class_293$class_5596;I[Lorg/joml/Vector3f;FFF)V
+			ARG 1 drawMode
+			ARG 2 vertexCount
+			ARG 3 primitiveCenters
+			ARG 4 cameraX
+			ARG 5 cameraY
+			ARG 6 cameraZ
+	CLASS class_7433 BuiltBuffer
+		COMMENT An output of {@link BufferBuilder}. It contains a {@link ByteBuffer} of
+		COMMENT vertices, a {@code ByteBuffer} of indices if sorting has been done, and
+		COMMENT some information necessary to draw these data.
+		FIELD field_39064 batchOffset I
+		FIELD field_39065 parameters Lnet/minecraft/class_287$class_4574;
+		FIELD field_39066 released Z
+		METHOD <init> (Lnet/minecraft/class_287;ILnet/minecraft/class_287$class_4574;)V
+			ARG 2 batchOffset
+			ARG 3 parameters
+		METHOD method_43581 getVertexBuffer ()Ljava/nio/ByteBuffer;
+		METHOD method_43582 getIndexBuffer ()Ljava/nio/ByteBuffer;
+		METHOD method_43583 getParameters ()Lnet/minecraft/class_287$class_4574;
+		METHOD method_43584 isEmpty ()Z
+		METHOD method_43585 release ()V
