@@ -6,23 +6,16 @@ import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Reader;
 import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Remapper;
 import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Writer;
 
+import net.fabricmc.filament.task.RemapUnpickDefinitionsTask;
 import net.fabricmc.filament.util.FileUtil;
 import net.fabricmc.filament.util.UnpickUtil;
 import net.fabricmc.mappingio.MappingReader;
 import net.fabricmc.mappingio.tree.MappingTree;
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
-import org.gradle.api.DefaultTask;
-import org.gradle.api.file.RegularFileProperty;
-import org.gradle.api.provider.Property;
-import org.gradle.api.tasks.Input;
-import org.gradle.api.tasks.InputFile;
-import org.gradle.api.tasks.OutputFile;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.workers.WorkAction;
-import org.gradle.workers.WorkParameters;
 import org.gradle.workers.WorkQueue;
-import org.gradle.workers.WorkerExecutor;
 
 import javax.inject.Inject;
 
@@ -34,29 +27,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class FixedRemapUnpickDefinitionsTask extends DefaultTask {
+public abstract class FixedRemapUnpickDefinitionsTask extends RemapUnpickDefinitionsTask {
 	public FixedRemapUnpickDefinitionsTask() {
 	}
 
-	@InputFile
-	public abstract RegularFileProperty getInput();
-
-	@InputFile
-	public abstract RegularFileProperty getMappings();
-
-	@Input
-	public abstract Property<String> getSourceNamespace();
-
-	@Input
-	public abstract Property<String> getTargetNamespace();
-
-	@OutputFile
-	public abstract RegularFileProperty getOutput();
-
-	@Inject
-	protected abstract WorkerExecutor getWorkerExecutor();
-
 	@TaskAction
+	@Override
 	public void run() {
 		WorkQueue workQueue = this.getWorkerExecutor().noIsolation();
 		workQueue.submit(FixedRemapUnpickDefinitionsTask.RemapAction.class, (parameters) -> {
@@ -68,7 +44,7 @@ public abstract class FixedRemapUnpickDefinitionsTask extends DefaultTask {
 		});
 	}
 
-	public abstract static class RemapAction implements WorkAction<FixedRemapUnpickDefinitionsTask.RemapParameters> {
+	public abstract static class RemapAction implements WorkAction<RemapUnpickDefinitionsTask.RemapParameters> {
 		@Inject
 		public RemapAction() {
 		}
@@ -134,22 +110,5 @@ public abstract class FixedRemapUnpickDefinitionsTask extends DefaultTask {
 				throw new UncheckedIOException(var14);
 			}
 		}
-	}
-
-	public interface RemapParameters extends WorkParameters {
-		@InputFile
-		RegularFileProperty getInput();
-
-		@InputFile
-		RegularFileProperty getMappings();
-
-		@Input
-		Property<String> getSourceNamespace();
-
-		@Input
-		Property<String> getTargetNamespace();
-
-		@OutputFile
-		RegularFileProperty getOutput();
 	}
 }
