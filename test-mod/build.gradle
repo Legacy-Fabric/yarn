@@ -10,12 +10,56 @@ def minecraft_version = ENV.MC_VERSION ? ENV.MC_VERSION : "1.8.9"
 version = project.mod_version
 group = project.maven_group
 
+Boolean useLFIntermediaries(String mc_version) {
+	boolean legacy = true
+
+	try {
+		if (mc_version.contains(".")) {
+			String major = mc_version.split("\\.")[1].toLowerCase()
+
+			if (major.contains("-")) {
+				major = major.split("-")[0]
+			}
+
+			if (major.contains("_")) {
+				major = major.split("_")[0]
+			}
+
+			if (major.contains("pre")) {
+				major = major.split("pre")[0]
+			}
+
+			if (major.contains(" ")) {
+				major = major.split(" ")[0]
+			}
+
+			int majore = major.toInteger()
+
+			legacy = !(majore > 13)
+		} else if (mc_version.contains("w")) {
+			def parts = mc_version.split("w")
+			def year = parts[0].toInteger()
+			def weeks = parts[1].substring(0, 2).toInteger()
+			def iteration = parts[1].substring(2)
+
+			legacy = !(year > 18 || (year == 18 && (weeks > 43 || (weeks == 43 && iteration != "a"))))
+		}
+	} catch (Exception e) {
+		e.printStackTrace()
+	}
+
+	if (mc_version.startsWith("3D")) legacy = false;
+
+	return legacy;
+}
+
 repositories {
 	mavenLocal()
 }
 
 legacyLooming {
 	intermediaryVersion = 2
+	useLFIntermediary = useLFIntermediaries(minecraft_version)
 }
 
 dependencies {
