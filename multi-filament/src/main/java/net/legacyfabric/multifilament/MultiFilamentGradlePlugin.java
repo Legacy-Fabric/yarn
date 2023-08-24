@@ -1,12 +1,12 @@
 package net.legacyfabric.multifilament;
 
-import net.fabricmc.filament.task.CombineUnpickDefinitionsTask;
-
-import net.legacyfabric.multifilament.task.FixedRemapUnpickDefinitionsTask;
-
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskContainer;
+
+import net.fabricmc.filament.task.CombineUnpickDefinitionsTask;
+
+import net.legacyfabric.multifilament.task.FixedRemapUnpickDefinitionsTask;
 
 public class MultiFilamentGradlePlugin implements Plugin<Project> {
 	@Override

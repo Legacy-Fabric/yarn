@@ -1,8 +1,6 @@
 package net.legacyfabric.multifilament.task;
 
-import net.fabricmc.filament.task.base.WithFileOutput;
-import net.fabricmc.mappingio.MappingWriter;
-import net.fabricmc.mappingio.format.MappingFormat;
+import java.io.IOException;
 
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.provider.Property;
@@ -10,7 +8,8 @@ import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
 
-import java.io.IOException;
+import net.fabricmc.mappingio.MappingWriter;
+import net.fabricmc.mappingio.format.MappingFormat;
 
 public abstract class MappingOutputTask extends MultiFilamentTask {
 	public MappingOutputTask() {
@@ -22,12 +21,13 @@ public abstract class MappingOutputTask extends MultiFilamentTask {
 	@OutputDirectory
 	public abstract DirectoryProperty getOutputDir();
 
-	void pre() throws IOException {}
+	void pre() throws IOException {
+	}
 
 	@TaskAction
 	public final void run() throws IOException {
 		this.pre();
-		MappingWriter mappingWriter = MappingWriter.create(this.getOutputDir().getAsFile().get().toPath(), (MappingFormat)this.getOutputFormat().get());
+		MappingWriter mappingWriter = MappingWriter.create(this.getOutputDir().getAsFile().get().toPath(), this.getOutputFormat().get());
 
 		try {
 			this.run(mappingWriter);
