@@ -7,6 +7,8 @@ import net.fabricmc.mappingio.format.MappingFormat;
 import net.fabricmc.mappingio.tree.MappingTree;
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
+import net.fabricmc.mappingio.tree.VisitOrder;
+
 import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
 
 import org.gradle.api.file.DirectoryProperty;
@@ -51,7 +53,7 @@ public abstract class UnifyMappingsTask extends MappingOutputTask {
 		MemoryMappingTree mappingTree = new MemoryMappingTree();
 		MappingReader.read(this.getVersionedDir().getAsFile().get().toPath(), mappingTree);
 		mappingTree.accept(treeView);
-		treeView.accept(var1);
+		treeView.accept(var1, VisitOrder.createByName());
 
 		Files.walkFileTree(file.toPath(), new FileVisitor<Path>() {
 			@Override
