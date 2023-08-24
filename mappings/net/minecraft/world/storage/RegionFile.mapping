@@ -1,4 +1,9 @@
 CLASS net/minecraft/class_2861 net/minecraft/world/storage/RegionFile
+	FIELD field_13025 file Ljava/io/RandomAccessFile;
+	FIELD field_13026 chunkTimestamps [I
+	FIELD field_13029 offsets [I
+	FIELD field_13030 sectorFree Ljava/util/List;
+	FIELD field_13031 EMPTY_SECTOR [B
 	FIELD field_20434 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_20434 LOGGER Lorg/slf4j/Logger;
 	FIELD field_20435 ZERO Ljava/nio/ByteBuffer;
@@ -11,11 +16,6 @@ CLASS net/minecraft/class_2861 net/minecraft/world/storage/RegionFile
 	FIELD field_20657 directory Ljava/nio/file/Path;
 	FIELD field_31417 SECTOR_DATA_LIMIT I
 	FIELD field_31421 FILE_EXTENSION Ljava/lang/String;
-	FIELD field_13025 file Ljava/io/RandomAccessFile;
-	FIELD field_13026 chunkTimestamps [I
-	FIELD field_13029 offsets [I
-	FIELD field_13030 sectorFree Ljava/util/List;
-	FIELD field_13031 EMPTY_SECTOR [B
 	METHOD <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;Lnet/minecraft/class_4486;Z)V
 		ARG 1 file
 		ARG 2 directory
@@ -27,8 +27,19 @@ CLASS net/minecraft/class_2861 net/minecraft/world/storage/RegionFile
 		ARG 3 dsync
 	METHOD method_12419 getSectorData (Lnet/minecraft/class_1923;)I
 		ARG 1 pos
+	METHOD method_12420 isChunkPresent (Lnet/minecraft/class_1923;)Z
+		ARG 1 pos
+	METHOD method_12421 getChunkDataInputStream (Lnet/minecraft/class_1923;)Ljava/io/DataInputStream;
+		ARG 1 pos
+	METHOD method_12422 setOffset (Lnet/minecraft/class_1923;I)V
 	METHOD method_12423 hasChunk (Lnet/minecraft/class_1923;)Z
 		ARG 1 pos
+	METHOD method_12424 write (I[BI)V
+		ARG 1 sectorNumber
+		ARG 2 data
+	METHOD method_12425 getChunkDataOutputStream (Lnet/minecraft/class_1923;)Ljava/io/DataOutputStream;
+	METHOD method_12427 setTimestamp (Lnet/minecraft/class_1923;I)V
+	METHOD method_12428 write (Lnet/minecraft/class_1923;[BI)V
 	METHOD method_17909 getIndex (Lnet/minecraft/class_1923;)I
 		ARG 0 pos
 	METHOD method_21870 writeHeader ()V
@@ -75,17 +86,6 @@ CLASS net/minecraft/class_2861 net/minecraft/world/storage/RegionFile
 	METHOD method_31739 getEpochTimeSeconds ()I
 	METHOD method_31740 delete (Lnet/minecraft/class_1923;)V
 		ARG 1 pos
-	METHOD method_12420 isChunkPresent (Lnet/minecraft/class_1923;)Z
-		ARG 1 pos
-	METHOD method_12421 getChunkDataInputStream (Lnet/minecraft/class_1923;)Ljava/io/DataInputStream;
-		ARG 1 pos
-	METHOD method_12422 setOffset (Lnet/minecraft/class_1923;I)V
-	METHOD method_12425 getChunkDataOutputStream (Lnet/minecraft/class_1923;)Ljava/io/DataOutputStream;
-	METHOD method_12427 setTimestamp (Lnet/minecraft/class_1923;I)V
-	METHOD method_12428 write (Lnet/minecraft/class_1923;[BI)V
-	METHOD method_12424 write (I[BI)V
-		ARG 1 sectorNumber
-		ARG 2 data
 	CLASS class_2862 ChunkBuffer
 		FIELD field_17656 pos Lnet/minecraft/class_1923;
 		METHOD <init> (Lnet/minecraft/class_2861;Lnet/minecraft/class_1923;)V

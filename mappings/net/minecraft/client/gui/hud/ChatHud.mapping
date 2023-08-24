@@ -3,24 +3,33 @@ CLASS net/minecraft/class_338 net/minecraft/client/gui/hud/ChatHud
 	COMMENT join/leave messages.
 	COMMENT
 	COMMENT @see net.minecraft.client.gui.screen.ChatScreen
+	FIELD field_2061 messages Ljava/util/List;
+	FIELD field_2062 client Lnet/minecraft/class_310;
+	FIELD field_2063 messageHistory Ljava/util/List;
+	FIELD field_2064 visibleMessages Ljava/util/List;
+	FIELD field_2065 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_2065 LOGGER Lorg/slf4j/Logger;
+	FIELD field_2066 scrolledLines I
+	FIELD field_2067 hasUnreadNewMessages Z
 	FIELD field_23934 messageQueue Ljava/util/Deque;
 	FIELD field_23935 lastMessageAddedTime J
 	FIELD field_32180 MAX_MESSAGES I
 	FIELD field_39771 MISSING_MESSAGE_INDEX I
 	FIELD field_40391 DELETED_MARKER_TEXT Lnet/minecraft/class_2561;
 	FIELD field_40392 removalQueue Ljava/util/List;
-	FIELD field_2061 messages Ljava/util/List;
-	FIELD field_2062 client Lnet/minecraft/class_310;
-	FIELD field_2063 messageHistory Ljava/util/List;
-	FIELD field_2064 visibleMessages Ljava/util/List;
-	FIELD field_2065 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_2066 scrolledLines I
-	FIELD field_2067 hasUnreadNewMessages Z
 	METHOD <init> (Lnet/minecraft/class_310;)V
 		ARG 1 client
 	METHOD method_1802 scroll (D)V
 		ARG 1 amount
+	METHOD method_1802 scroll (I)V
+		ARG 1 scroll
+	METHOD method_1803 addToMessageHistory (Ljava/lang/String;)V
+		ARG 1 message
+	METHOD method_1804 addMessage (Lnet/minecraft/class_2561;I)V
+		ARG 1 message
+		ARG 2 messageId
+	METHOD method_1805 render (I)V
+		ARG 1 ticks
 	METHOD method_1805 render (Lnet/minecraft/class_4587;I)V
 		ARG 1 matrices
 		ARG 2 currentTick
@@ -31,9 +40,22 @@ CLASS net/minecraft/class_338 net/minecraft/client/gui/hud/ChatHud
 		ARG 4 mouseY
 	METHOD method_1806 getWidth (D)I
 		ARG 0 widthOption
+	METHOD method_1807 removeMessage (I)V
+		ARG 1 messageId
 	METHOD method_1808 clear (Z)V
 		ARG 1 clearHistory
+	METHOD method_1809 getMessageHistory ()Ljava/util/List;
+	METHOD method_1810 getHeight ()I
+	METHOD method_1811 getWidth ()I
+	METHOD method_1812 addMessage (Lnet/minecraft/class_2561;)V
+		ARG 1 message
+	METHOD method_1813 getVisibleLineCount ()I
 	METHOD method_1814 getChatScale ()D
+	METHOD method_1815 addMessage (Lnet/minecraft/class_2561;IIZ)V
+		ARG 1 message
+		ARG 2 messageId
+		ARG 3 timestamp
+		ARG 4 refresh
 	METHOD method_1815 addMessage (Lnet/minecraft/class_2561;Lnet/minecraft/class_7469;ILnet/minecraft/class_7591;Z)V
 		ARG 1 message
 		ARG 2 signature
@@ -49,8 +71,11 @@ CLASS net/minecraft/class_338 net/minecraft/client/gui/hud/ChatHud
 	METHOD method_1816 getTextStyleAt (DD)Lnet/minecraft/class_2583;
 		ARG 1 x
 		ARG 3 y
+	METHOD method_1817 reset ()V
 	METHOD method_1818 getHeight (D)I
 		ARG 0 heightOption
+	METHOD method_1819 isChatFocused ()Z
+	METHOD method_1820 resetScroll ()V
 	METHOD method_19348 getMessageOpacityMultiplier (I)D
 		ARG 0 age
 	METHOD method_23677 isChatHidden ()Z
@@ -112,29 +137,4 @@ CLASS net/minecraft/class_338 net/minecraft/client/gui/hud/ChatHud
 		ARG 1 chatLineX
 		ARG 3 chatLineY
 	METHOD method_45589 tickRemovalQueue ()V
-	METHOD method_1802 scroll (I)V
-		ARG 1 scroll
-	METHOD method_1803 addToMessageHistory (Ljava/lang/String;)V
-		ARG 1 message
-	METHOD method_1804 addMessage (Lnet/minecraft/class_2561;I)V
-		ARG 1 message
-		ARG 2 messageId
-	METHOD method_1805 render (I)V
-		ARG 1 ticks
-	METHOD method_1807 removeMessage (I)V
-		ARG 1 messageId
-	METHOD method_1809 getMessageHistory ()Ljava/util/List;
-	METHOD method_1810 getHeight ()I
-	METHOD method_1811 getWidth ()I
-	METHOD method_1812 addMessage (Lnet/minecraft/class_2561;)V
-		ARG 1 message
-	METHOD method_1813 getVisibleLineCount ()I
-	METHOD method_1815 addMessage (Lnet/minecraft/class_2561;IIZ)V
-		ARG 1 message
-		ARG 2 messageId
-		ARG 3 timestamp
-		ARG 4 refresh
-	METHOD method_1817 reset ()V
-	METHOD method_1819 isChatFocused ()Z
-	METHOD method_1820 resetScroll ()V
 	CLASS class_7731 RemovalQueuedMessage

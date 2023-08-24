@@ -1,28 +1,28 @@
 CLASS net/minecraft/class_342 net/minecraft/client/gui/widget/TextFieldWidget
 	FIELD field_17037 selecting Z
 	FIELD field_2088 changedListener Ljava/util/function/Consumer;
+	FIELD field_2092 text Ljava/lang/String;
+	FIELD field_2094 editable Z
+	FIELD field_2095 drawsBackground Z
+	FIELD field_2096 focusUnlocked Z
+	FIELD field_2098 uneditableColor I
 	FIELD field_2099 renderTextProvider Ljava/util/function/BiFunction;
+	FIELD field_2100 editableColor I
+	FIELD field_2101 selectionEnd I
+	FIELD field_2102 selectionStart I
+	FIELD field_2103 firstCharacterIndex I
+		COMMENT The index of the leftmost character that is rendered on a screen.
 	FIELD field_2104 textPredicate Ljava/util/function/Predicate;
 	FIELD field_2105 textRenderer Lnet/minecraft/class_327;
 	FIELD field_2106 suggestion Ljava/lang/String;
+	FIELD field_2107 focusedTicks I
+	FIELD field_2108 maxLength I
 	FIELD field_32196 DEFAULT_EDITABLE_COLOR I
 	FIELD field_32198 VERTICAL_CURSOR_COLOR I
 	FIELD field_32199 HORIZONTAL_CURSOR Ljava/lang/String;
 	FIELD field_32202 BORDER_COLOR I
 	FIELD field_32203 BACKGROUND_COLOR I
 	FIELD field_41100 placeholder Lnet/minecraft/class_2561;
-	FIELD field_2092 text Ljava/lang/String;
-	FIELD field_2094 editable Z
-	FIELD field_2095 drawsBackground Z
-	FIELD field_2096 focusUnlocked Z
-	FIELD field_2098 uneditableColor I
-	FIELD field_2100 editableColor I
-	FIELD field_2101 selectionEnd I
-	FIELD field_2102 selectionStart I
-	FIELD field_2103 firstCharacterIndex I
-		COMMENT The index of the leftmost character that is rendered on a screen.
-	FIELD field_2107 focusedTicks I
-	FIELD field_2108 maxLength I
 	METHOD <init> (Lnet/minecraft/class_327;IIIILnet/minecraft/class_2561;)V
 		ARG 1 textRenderer
 		ARG 2 x
@@ -52,48 +52,13 @@ CLASS net/minecraft/class_342 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 1 x
 	METHOD method_16873 erase (I)V
 		ARG 1 offset
-	METHOD method_1854 setRenderTextProvider (Ljava/util/function/BiFunction;)V
-		ARG 1 renderTextProvider
-	METHOD method_1863 setChangedListener (Ljava/util/function/Consumer;)V
-		ARG 1 changedListener
-	METHOD method_1873 (Ljava/lang/String;Ljava/lang/Integer;)Lnet/minecraft/class_5481;
-		ARG 0 string
-		ARG 1 firstCharacterIndex
-	METHOD method_1874 onChanged (Ljava/lang/String;)V
-		ARG 1 newText
-	METHOD method_1875 setSelectionStart (I)V
-		ARG 1 cursor
-	METHOD method_1886 drawSelectionHighlight (Lnet/minecraft/class_4587;IIII)V
-		ARG 1 matrices
-		ARG 2 x1
-		ARG 3 y1
-		ARG 4 x2
-		ARG 5 y2
-	METHOD method_1887 setSuggestion (Ljava/lang/String;)V
-		ARG 1 suggestion
-	METHOD method_1889 getCharacterX (I)I
-		ARG 1 index
-	METHOD method_1890 setTextPredicate (Ljava/util/function/Predicate;)V
-		ARG 1 textPredicate
-	METHOD method_20315 isActive ()Z
-	METHOD method_20316 isEditable ()Z
-	METHOD method_27537 getCursorPosWithOffset (I)I
-		ARG 1 offset
-	METHOD method_47404 setPlaceholder (Lnet/minecraft/class_2561;)V
-		ARG 1 placeholder
-	METHOD mouseClicked (DDI)Z
-		ARG 1 mouseX
-		ARG 3 mouseY
-		ARG 5 button
-	METHOD renderButton (IIF)V
-		ARG 1 mouseX
-		ARG 2 mouseY
-		ARG 3 delta
 	METHOD method_1851 drawsBackground ()Z
 	METHOD method_1852 setText (Ljava/lang/String;)V
 		ARG 1 text
 	METHOD method_1853 getWordSkipPosition (I)I
 		ARG 1 wordOffset
+	METHOD method_1854 setRenderTextProvider (Ljava/util/function/BiFunction;)V
+		ARG 1 renderTextProvider
 	METHOD method_1855 moveCursor (I)V
 		ARG 1 offset
 	METHOD method_1856 setFocusUnlocked (Z)V
@@ -106,6 +71,8 @@ CLASS net/minecraft/class_342 net/minecraft/client/gui/widget/TextFieldWidget
 	METHOD method_1861 getMaxLength ()I
 	METHOD method_1862 setVisible (Z)V
 		ARG 1 visible
+	METHOD method_1863 setChangedListener (Ljava/util/function/Consumer;)V
+		ARG 1 changedListener
 	METHOD method_1864 getWordSkipPosition (IIZ)I
 		ARG 1 wordOffset
 		ARG 2 cursorPosition
@@ -121,6 +88,13 @@ CLASS net/minecraft/class_342 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 2 cursorPosition
 	METHOD method_1870 setCursorToStart ()V
 	METHOD method_1872 setCursorToEnd ()V
+	METHOD method_1873 (Ljava/lang/String;Ljava/lang/Integer;)Lnet/minecraft/class_5481;
+		ARG 0 string
+		ARG 1 firstCharacterIndex
+	METHOD method_1874 onChanged (Ljava/lang/String;)V
+		ARG 1 newText
+	METHOD method_1875 setSelectionStart (I)V
+		ARG 1 cursor
 	METHOD method_1876 setTextFieldFocused (Z)V
 		ARG 1 focused
 	METHOD method_1877 eraseWords (I)V
@@ -141,5 +115,31 @@ CLASS net/minecraft/class_342 net/minecraft/client/gui/widget/TextFieldWidget
 		ARG 2 y1
 		ARG 3 x2
 		ARG 4 y2
+	METHOD method_1886 drawSelectionHighlight (Lnet/minecraft/class_4587;IIII)V
+		ARG 1 matrices
+		ARG 2 x1
+		ARG 3 y1
+		ARG 4 x2
+		ARG 5 y2
+	METHOD method_1887 setSuggestion (Ljava/lang/String;)V
+		ARG 1 suggestion
 	METHOD method_1888 setEditable (Z)V
 		ARG 1 editable
+	METHOD method_1889 getCharacterX (I)I
+		ARG 1 index
+	METHOD method_1890 setTextPredicate (Ljava/util/function/Predicate;)V
+		ARG 1 textPredicate
+	METHOD method_20315 isActive ()Z
+	METHOD method_20316 isEditable ()Z
+	METHOD method_27537 getCursorPosWithOffset (I)I
+		ARG 1 offset
+	METHOD method_47404 setPlaceholder (Lnet/minecraft/class_2561;)V
+		ARG 1 placeholder
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD renderButton (IIF)V
+		ARG 1 mouseX
+		ARG 2 mouseY
+		ARG 3 delta

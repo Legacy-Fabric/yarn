@@ -22,15 +22,24 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	COMMENT
 	COMMENT @see AbstractBlock
 	COMMENT @see BlockState
+	FIELD field_10634 lightLevel I
+	FIELD field_10635 material Lnet/minecraft/class_3614;
 	FIELD field_10636 dropTableId Lnet/minecraft/class_2960;
+	FIELD field_10637 slipperiness F
 	FIELD field_10638 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_10638 LOGGER Lorg/slf4j/Logger;
+	FIELD field_10639 materialColor Lnet/minecraft/class_3620;
 	FIELD field_10640 collidable Z
+	FIELD field_10641 randomTicks Z
+	FIELD field_10642 translationKey Ljava/lang/String;
 	FIELD field_10643 soundGroup Lnet/minecraft/class_2498;
 	FIELD field_10644 FACINGS [Lnet/minecraft/class_2350;
 	FIELD field_10645 dynamicBounds Z
 	FIELD field_10646 defaultState Lnet/minecraft/class_2680;
+	FIELD field_10647 stateManager Lnet/minecraft/class_2689;
+	FIELD field_10648 resistance F
 	FIELD field_10649 FACE_CULL_MAP Ljava/lang/ThreadLocal;
+	FIELD field_10650 hardness F
 	FIELD field_10651 STATE_IDS Lnet/minecraft/class_2361;
 	FIELD field_17562 cachedItem Lnet/minecraft/class_1792;
 	FIELD field_18966 SOLID_MEDIUM_SQUARE_SHAPE Lnet/minecraft/class_265;
@@ -58,15 +67,6 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_31036 NOTIFY_ALL I
 		COMMENT The default setBlockState behavior. Same as {@code NOTIFY_NEIGHBORS | NOTIFY_LISTENERS}.
 	FIELD field_36404 registryEntry Lnet/minecraft/class_6880$class_6883;
-	FIELD field_10634 lightLevel I
-	FIELD field_10635 material Lnet/minecraft/class_3614;
-	FIELD field_10637 slipperiness F
-	FIELD field_10639 materialColor Lnet/minecraft/class_3620;
-	FIELD field_10641 randomTicks Z
-	FIELD field_10642 translationKey Ljava/lang/String;
-	FIELD field_10647 stateManager Lnet/minecraft/class_2689;
-	FIELD field_10648 resistance F
-	FIELD field_10650 hardness F
 	METHOD method_16361 hasTopRim (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 0 world
 		ARG 1 pos
@@ -80,6 +80,10 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 state
 		ARG 3 hitResult
 		ARG 4 entity
+	METHOD method_20044 isSolidSmallSquare (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
+		ARG 0 world
+		ARG 1 pos
+		ARG 2 side
 	METHOD method_20044 sideCoversSmallSquare (Lnet/minecraft/class_4538;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
 		ARG 0 world
 		ARG 1 pos
@@ -191,6 +195,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		COMMENT World#isClient}.
 		ARG 1 world
 		ARG 2 entity
+	METHOD method_9503 getBlockFromItem (Lnet/minecraft/class_1792;)Lnet/minecraft/class_2248;
+		ARG 0 item
+	METHOD method_9504 rainTick (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V
+		ARG 1 world
+		ARG 2 pos
 	METHOD method_9504 precipitationTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1959$class_1963;)V
 		COMMENT Called randomly server-side on blocks with unobstructed sky access when it is
 		COMMENT raining or snowing. Like random ticks, only blocks within 128-block cylinder
@@ -219,6 +228,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 3 blockEntity
 		ARG 4 entity
 		ARG 5 tool
+	METHOD method_9514 onRandomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
 	METHOD method_9515 appendProperties (Lnet/minecraft/class_2689$class_2690;)V
 		COMMENT Appends block state properties to this block. To use this, override and call {@link
 		COMMENT StateManager.Builder#add} inside the method. See {@link
@@ -231,6 +245,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 flags
 	METHOD method_9518 getName ()Lnet/minecraft/class_2561;
 	METHOD method_9518 getName ()Lnet/minecraft/class_5250;
+	METHOD method_9519 isNaturalDirt (Lnet/minecraft/class_2248;)Z
+		ARG 0 block
 	METHOD method_9520 getBlastResistance ()F
 	METHOD method_9521 isSimpleFullBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
@@ -250,10 +266,34 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 flags
 	METHOD method_9531 getStateFromRawId (I)Lnet/minecraft/class_2680;
 		ARG 0 stateId
+	METHOD method_9533 shouldDropItemsOnExplosion (Lnet/minecraft/class_1927;)Z
+		COMMENT {@return whether an explosion can drop the block as an item}
+		COMMENT
+		COMMENT <p>This should be overridden if an explosion affects the block in other ways,
+		COMMENT like {@link TntBlock} that triggers the chain reaction. This should not consider
+		COMMENT the randomness, since it is defined in the loot table.
+		COMMENT
+		COMMENT @see net.minecraft.loot.condition.SurvivesExplosionLootCondition
+		ARG 1 explosion
+	METHOD method_9534 activate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 hit
 	METHOD method_9537 getHardness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)F
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
+	METHOD method_9538 canMobSpawnInside ()Z
+	METHOD method_9539 getTranslationKey ()Ljava/lang/String;
+		COMMENT {@return the translation key for the name of this block}
+		COMMENT
+		COMMENT <p>By default, it returns {@code block.namespace.path} where {@code
+		COMMENT namespace} and {@code path} are of the identifier used for registering
+		COMMENT this block, but {@code /} in {@code path} is replaced with {@code .}.
+		COMMENT If the block is not registered, it returns {@code block.unregistered_sadface}.
 	METHOD method_9540 getOffsetPos (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;
 		ARG 1 state
 		ARG 2 view
@@ -270,10 +310,20 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9543 hasDynamicBounds ()Z
 	METHOD method_9544 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 2 stack
+	METHOD method_9546 getBlockBrightness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1920;Lnet/minecraft/class_2338;)I
+		ARG 1 state
+		ARG 2 view
+		ARG 3 pos
+	METHOD method_9551 getRenderLayer ()Lnet/minecraft/class_1921;
 	METHOD method_9552 shouldPostProcess (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
+	METHOD method_9554 onLandedUpon (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;F)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 entity
+		ARG 4 distance
 	METHOD method_9554 onLandedUpon (Lnet/minecraft/class_1937;Lnet/minecraft/class_2680;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;F)V
 		COMMENT Called when the entity lands on the block.
 		COMMENT
@@ -314,13 +364,22 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
+	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
 	METHOD method_9562 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)Ljava/util/List;
 		ARG 0 state
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 blockEntity
+	METHOD method_9563 getTickRate (Lnet/minecraft/class_1941;)I
+		ARG 1 world
 	METHOD method_9563 getTickRate (Lnet/minecraft/class_4538;)I
 	METHOD method_9564 getDefaultState ()Lnet/minecraft/class_2680;
+	METHOD method_9566 dropStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)V
+		ARG 0 state
+		ARG 1 builder
 	METHOD method_9567 onPlaced (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;)V
 		COMMENT Called when the player placed the block.
 		COMMENT
@@ -347,6 +406,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 world
 		ARG 3 tooltip
 		ARG 4 options
+	METHOD method_9570 hasBlockEntity ()Z
 	METHOD method_9573 getSoundGroup (Lnet/minecraft/class_2680;)Lnet/minecraft/class_2498;
 		ARG 1 state
 	METHOD method_9574 getPickStack (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)Lnet/minecraft/class_1799;
@@ -381,6 +441,10 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 player
+	METHOD method_9577 dropStack (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
+		ARG 0 world
+		ARG 1 pos
+		ARG 2 stack
 	METHOD method_9578 appendStacks (Lnet/minecraft/class_1761;Lnet/minecraft/class_2371;)V
 		COMMENT Appends the stacks of this block shown in the item group to the list.
 		COMMENT
@@ -411,6 +475,10 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 to
 		ARG 2 world
 		ARG 3 pos
+	METHOD method_9583 dropExperience (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 size
 	METHOD method_9583 dropExperience (Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;I)V
 		COMMENT Drops experience orbs. This should be called inside {@link AbstractBlock#onStacksDropped}
 		COMMENT after {@code dropExperience} check. This does not drop experience orbs if {@link
@@ -441,13 +509,34 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 state
+	METHOD method_9586 onDestroyedByExplosion (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1927;)V
+		COMMENT Called when this block is destroyed by an explosion.
+		COMMENT
+		COMMENT <p>This method is called on both the logical client and logical server, so take caution
+		COMMENT when overriding this method. The logical side can be checked using {@link
+		COMMENT World#isClient}.
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 explosion
 	METHOD method_9587 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 2 stack
+	METHOD method_9588 onScheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 random
+	METHOD method_9589 hasBlockEntityBreakingRender (Lnet/minecraft/class_2680;)Z
+		ARG 1 state
 	METHOD method_9590 setDefaultState (Lnet/minecraft/class_2680;)V
 		COMMENT Sets the default state of the block. This should be called inside
 		COMMENT the block's constructor to override the default state chosen by the
 		COMMENT state manager.
 		ARG 1 state
+	METHOD method_9591 onSteppedOn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
+		COMMENT Called when an entity steps on this block.
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 entity
 	METHOD method_9591 onSteppedOn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_1297;)V
 		COMMENT Called when an entity steps on this block.
 		COMMENT
@@ -460,6 +549,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 entity
 	METHOD method_9593 getLuminance (Lnet/minecraft/class_2680;)I
 		ARG 1 state
+	METHOD method_9595 getStateManager ()Lnet/minecraft/class_2689;
 	METHOD method_9596 (Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 2 stack
 	METHOD method_9596 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
@@ -485,6 +575,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 2 pos
 		ARG 3 side
 		ARG 4 otherPos
+	METHOD method_9608 isNaturalStone (Lnet/minecraft/class_2248;)Z
+		ARG 0 block
 	METHOD method_9609 getDroppedStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;Lnet/minecraft/class_1297;Lnet/minecraft/class_1799;)Ljava/util/List;
 		ARG 0 state
 		ARG 1 world
@@ -502,6 +594,12 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 1 world
 		ARG 2 pos
 		ARG 3 blockEntity
+	METHOD method_9611 replaceBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;I)V
+		ARG 0 state
+		ARG 1 newState
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 flags
 	METHOD method_9611 replace (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;II)V
 		COMMENT Replaces the {@code state} with the {@code newState} at the {@code pos}.
 		COMMENT
@@ -521,106 +619,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 			COMMENT the bitwise flags for {@link net.minecraft.world.ModifiableWorld#setBlockState(BlockPos, BlockState, int, int)}
 		ARG 5 maxUpdateDepth
 			COMMENT the limit for the cascading block updates
-	METHOD method_9611 replaceBlock (Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;I)V
-		ARG 0 state
-		ARG 1 newState
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 flags
 	METHOD method_9614 isShapeFullCube (Lnet/minecraft/class_265;)Z
 		ARG 0 shape
-	METHOD method_20044 isSolidSmallSquare (Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
-		ARG 0 world
-		ARG 1 pos
-		ARG 2 side
-	METHOD method_9514 onRandomTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 random
-	METHOD method_9519 isNaturalDirt (Lnet/minecraft/class_2248;)Z
-		ARG 0 block
-	METHOD method_9534 activate (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_3965;)Z
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 player
-		ARG 5 hand
-		ARG 6 hit
-	METHOD method_9546 getBlockBrightness (Lnet/minecraft/class_2680;Lnet/minecraft/class_1920;Lnet/minecraft/class_2338;)I
-		ARG 1 state
-		ARG 2 view
-		ARG 3 pos
-	METHOD method_9558 canPlaceAt (Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-	METHOD method_9563 getTickRate (Lnet/minecraft/class_1941;)I
-		ARG 1 world
-	METHOD method_9566 dropStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)V
-		ARG 0 state
-		ARG 1 builder
-	METHOD method_9588 onScheduledTick (Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 random
-	METHOD method_9589 hasBlockEntityBreakingRender (Lnet/minecraft/class_2680;)Z
-		ARG 1 state
-	METHOD method_9608 isNaturalStone (Lnet/minecraft/class_2248;)Z
-		ARG 0 block
-	METHOD method_9503 getBlockFromItem (Lnet/minecraft/class_1792;)Lnet/minecraft/class_2248;
-		ARG 0 item
-	METHOD method_9504 rainTick (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V
-		ARG 1 world
-		ARG 2 pos
-	METHOD method_9533 shouldDropItemsOnExplosion (Lnet/minecraft/class_1927;)Z
-		COMMENT {@return whether an explosion can drop the block as an item}
-		COMMENT
-		COMMENT <p>This should be overridden if an explosion affects the block in other ways,
-		COMMENT like {@link TntBlock} that triggers the chain reaction. This should not consider
-		COMMENT the randomness, since it is defined in the loot table.
-		COMMENT
-		COMMENT @see net.minecraft.loot.condition.SurvivesExplosionLootCondition
-		ARG 1 explosion
-	METHOD method_9538 canMobSpawnInside ()Z
-	METHOD method_9539 getTranslationKey ()Ljava/lang/String;
-		COMMENT {@return the translation key for the name of this block}
-		COMMENT
-		COMMENT <p>By default, it returns {@code block.namespace.path} where {@code
-		COMMENT namespace} and {@code path} are of the identifier used for registering
-		COMMENT this block, but {@code /} in {@code path} is replaced with {@code .}.
-		COMMENT If the block is not registered, it returns {@code block.unregistered_sadface}.
-	METHOD method_9554 onLandedUpon (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;F)V
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 entity
-		ARG 4 distance
-	METHOD method_9570 hasBlockEntity ()Z
-	METHOD method_9577 dropStack (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
-		ARG 0 world
-		ARG 1 pos
-		ARG 2 stack
-	METHOD method_9583 dropExperience (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 size
-	METHOD method_9586 onDestroyedByExplosion (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1927;)V
-		COMMENT Called when this block is destroyed by an explosion.
-		COMMENT
-		COMMENT <p>This method is called on both the logical client and logical server, so take caution
-		COMMENT when overriding this method. The logical side can be checked using {@link
-		COMMENT World#isClient}.
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 explosion
-	METHOD method_9591 onSteppedOn (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V
-		COMMENT Called when an entity steps on this block.
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 entity
-	METHOD method_9595 getStateManager ()Lnet/minecraft/class_2689;
-	METHOD method_9551 getRenderLayer ()Lnet/minecraft/class_1921;
 	CLASS 1
 		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 shape

@@ -1,9 +1,14 @@
 CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
+	FIELD field_1652 KEY_CATEGORIES Ljava/util/Set;
+	FIELD field_1653 pressed Z
 	FIELD field_1654 defaultKey Lnet/minecraft/class_3675$class_306;
 	FIELD field_1655 boundKey Lnet/minecraft/class_3675$class_306;
 	FIELD field_1656 CATEGORY_ORDER_MAP Ljava/util/Map;
 	FIELD field_1657 KEYS_BY_ID Ljava/util/Map;
 	FIELD field_1658 KEY_TO_BINDINGS Ljava/util/Map;
+	FIELD field_1659 category Ljava/lang/String;
+	FIELD field_1660 translationKey Ljava/lang/String;
+	FIELD field_1661 timesPressed I
 	FIELD field_32136 MOVEMENT_CATEGORY Ljava/lang/String;
 	FIELD field_32137 MISC_CATEGORY Ljava/lang/String;
 	FIELD field_32138 MULTIPLAYER_CATEGORY Ljava/lang/String;
@@ -11,11 +16,6 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 	FIELD field_32140 INVENTORY_CATEGORY Ljava/lang/String;
 	FIELD field_32141 UI_CATEGORY Ljava/lang/String;
 	FIELD field_32142 CREATIVE_CATEGORY Ljava/lang/String;
-	FIELD field_1652 KEY_CATEGORIES Ljava/util/Set;
-	FIELD field_1653 pressed Z
-	FIELD field_1659 category Ljava/lang/String;
-	FIELD field_1660 translationKey Ljava/lang/String;
-	FIELD field_1661 timesPressed I
 	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 		ARG 1 translationKey
 		ARG 2 code
@@ -25,6 +25,8 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		ARG 2 type
 		ARG 3 code
 		ARG 4 category
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 other
 	METHOD method_1415 isUnbound ()Z
 	METHOD method_1416 setKeyPressed (Lnet/minecraft/class_3675$class_306;Z)V
 		ARG 0 key
@@ -40,24 +42,16 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		ARG 0 key
 	METHOD method_1422 setBoundKey (Lnet/minecraft/class_3675$class_306;)V
 		ARG 1 boundKey
+	METHOD method_1423 getCategory ()Ljava/lang/String;
 	METHOD method_1424 updatePressedStates ()V
+	METHOD method_1425 reset ()V
+	METHOD method_1426 updateKeysByCode ()V
 	METHOD method_1427 isDefault ()Z
 	METHOD method_1428 getBoundKeyTranslationKey ()Ljava/lang/String;
 	METHOD method_1429 getDefaultKey ()Lnet/minecraft/class_3675$class_306;
+	METHOD method_1431 getTranslationKey ()Ljava/lang/String;
 	METHOD method_1433 matchesMouse (I)Z
 		ARG 1 code
-	METHOD method_1435 equals (Lnet/minecraft/class_304;)Z
-		ARG 1 other
-	METHOD method_16007 getBoundKeyLocalizedText ()Lnet/minecraft/class_2561;
-	METHOD method_16007 getLocalizedName ()Ljava/lang/String;
-	METHOD method_23481 setPressed (Z)V
-		ARG 1 pressed
-	METHOD compareTo (Ljava/lang/Object;)I
-		ARG 1 other
-	METHOD method_1423 getCategory ()Ljava/lang/String;
-	METHOD method_1425 reset ()V
-	METHOD method_1426 updateKeysByCode ()V
-	METHOD method_1431 getTranslationKey ()Ljava/lang/String;
 	METHOD method_1434 isPressed ()Z
 		COMMENT {@return if the key is being held down}
 		COMMENT
@@ -66,6 +60,8 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		COMMENT can be pressed and released before the next check.
 		COMMENT
 		COMMENT @see #wasPressed()
+	METHOD method_1435 equals (Lnet/minecraft/class_304;)Z
+		ARG 1 other
 	METHOD method_1436 wasPressed ()Z
 		COMMENT {@return if the key was pressed}
 		COMMENT
@@ -85,3 +81,7 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		COMMENT @see #isPressed()
 		COMMENT @see <a href="https://bugs.mojang.com/browse/MC-118107">MC-118107</a>
 	METHOD method_1437 unpressAll ()V
+	METHOD method_16007 getLocalizedName ()Ljava/lang/String;
+	METHOD method_16007 getBoundKeyLocalizedText ()Lnet/minecraft/class_2561;
+	METHOD method_23481 setPressed (Z)V
+		ARG 1 pressed

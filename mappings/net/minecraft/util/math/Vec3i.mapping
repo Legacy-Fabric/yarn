@@ -13,19 +13,41 @@ CLASS net/minecraft/class_2382 net/minecraft/util/math/Vec3i
 	COMMENT @see org.joml.Vector3f
 	COMMENT @see Vec3d
 	COMMENT @see BlockPos
-	FIELD field_25123 CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_11173 z I
 	FIELD field_11174 y I
 	FIELD field_11175 x I
 	FIELD field_11176 ZERO Lnet/minecraft/class_2382;
+	FIELD field_25123 CODEC Lcom/mojang/serialization/Codec;
 	METHOD <init> (III)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 vec
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 o
 	METHOD method_10099 setY (I)Lnet/minecraft/class_2382;
 		ARG 1 y
 	METHOD method_10099 setY (I)V
 		ARG 1 y
+	METHOD method_10259 crossProduct (Lnet/minecraft/class_2382;)Lnet/minecraft/class_2382;
+		ARG 1 vec
+	METHOD method_10260 getZ ()I
+	METHOD method_10262 getSquaredDistance (Lnet/minecraft/class_2382;)D
+		COMMENT {@return the squared distance between here (center) and {@code vec}}
+		COMMENT
+		COMMENT @see #getSquaredDistance(double, double, double)
+		COMMENT @see #getSquaredDistanceFromCenter(double, double, double)
+		ARG 1 vec
+	METHOD method_10263 getX ()I
+	METHOD method_10264 getY ()I
+	METHOD method_10268 getSquaredDistanceFromCenter (DDD)D
+		COMMENT {@return the squared distance between the center of this voxel and {@code (x, y, z)}}
+		COMMENT This is equivalent to {@link Vec3d#ofCenter(Vec3i)
+		COMMENT Vec3d.ofCenter(this).squaredDistanceTo(x, y, z)}.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_10268 getSquaredDistance (DDDZ)D
 		COMMENT {@return the squared distance between here (center or vertex) and {@code (x, y, z)}}
 		COMMENT If {@code center} is {@code true}, this is equivalent to {@link Vec3d#ofCenter(Vec3i)
@@ -191,25 +213,3 @@ CLASS net/minecraft/class_2382 net/minecraft/util/math/Vec3i
 		ARG 5 z
 	METHOD method_48305 (ILnet/minecraft/class_2382;)Lcom/mojang/serialization/DataResult;
 		ARG 1 vec
-	METHOD compareTo (Ljava/lang/Object;)I
-		ARG 1 vec
-	METHOD equals (Ljava/lang/Object;)Z
-		ARG 1 o
-	METHOD method_10259 crossProduct (Lnet/minecraft/class_2382;)Lnet/minecraft/class_2382;
-		ARG 1 vec
-	METHOD method_10260 getZ ()I
-	METHOD method_10262 getSquaredDistance (Lnet/minecraft/class_2382;)D
-		COMMENT {@return the squared distance between here (center) and {@code vec}}
-		COMMENT
-		COMMENT @see #getSquaredDistance(double, double, double)
-		COMMENT @see #getSquaredDistanceFromCenter(double, double, double)
-		ARG 1 vec
-	METHOD method_10263 getX ()I
-	METHOD method_10264 getY ()I
-	METHOD method_10268 getSquaredDistanceFromCenter (DDD)D
-		COMMENT {@return the squared distance between the center of this voxel and {@code (x, y, z)}}
-		COMMENT This is equivalent to {@link Vec3d#ofCenter(Vec3i)
-		COMMENT Vec3d.ofCenter(this).squaredDistanceTo(x, y, z)}.
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z

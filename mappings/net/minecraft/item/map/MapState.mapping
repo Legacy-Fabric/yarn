@@ -1,19 +1,7 @@
 CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
+	FIELD field_112 updateTrackers Ljava/util/List;
 	FIELD field_113 unlimitedTracking Z
 	FIELD field_114 showIcons Z
-	FIELD field_118 dimension Lnet/minecraft/class_2874;
-	FIELD field_118 dimension Lnet/minecraft/class_5321;
-	FIELD field_121 frames Ljava/util/Map;
-	FIELD field_123 banners Ljava/util/Map;
-		COMMENT The banner markers to track in world.
-		COMMENT <p>
-		COMMENT Empty for the client.
-	FIELD field_17403 locked Z
-	FIELD field_25019 LOGGER Lorg/slf4j/Logger;
-	FIELD field_31831 MAX_SCALE I
-	FIELD field_33991 MAX_ICONS I
-	FIELD field_33992 iconCount I
-	FIELD field_112 updateTrackers Ljava/util/List;
 	FIELD field_115 centerZ I
 		COMMENT The scaled center coordinate of the map state on the Z axis.
 		COMMENT <p>
@@ -23,9 +11,21 @@ CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
 		COMMENT <p>
 		COMMENT Always {@code 0} for the client.
 	FIELD field_117 icons Ljava/util/Map;
+	FIELD field_118 dimension Lnet/minecraft/class_2874;
+	FIELD field_118 dimension Lnet/minecraft/class_5321;
 	FIELD field_119 scale B
 	FIELD field_120 updateTrackersByPlayer Ljava/util/Map;
+	FIELD field_121 frames Ljava/util/Map;
 	FIELD field_122 colors [B
+	FIELD field_123 banners Ljava/util/Map;
+		COMMENT The banner markers to track in world.
+		COMMENT <p>
+		COMMENT Empty for the client.
+	FIELD field_17403 locked Z
+	FIELD field_25019 LOGGER Lorg/slf4j/Logger;
+	FIELD field_31831 MAX_SCALE I
+	FIELD field_33991 MAX_ICONS I
+	FIELD field_33992 iconCount I
 	METHOD <init> (IIBZZZLnet/minecraft/class_5321;)V
 		ARG 1 centerX
 		ARG 2 centerZ
@@ -41,6 +41,14 @@ CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
 		ARG 1 map
 		ARG 2 world
 		ARG 3 pos
+	METHOD method_101 getPlayerSyncData (Lnet/minecraft/class_1657;)Lnet/minecraft/class_22$class_23;
+		ARG 1 player
+	METHOD method_102 update (Lnet/minecraft/class_1657;Lnet/minecraft/class_1799;)V
+		ARG 1 player
+		ARG 2 stack
+	METHOD method_103 markDirty (II)V
+		ARG 1 x
+		ARG 2 z
 	METHOD method_104 removeFrame (Lnet/minecraft/class_2338;I)V
 		ARG 1 pos
 		ARG 2 id
@@ -58,6 +66,10 @@ CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
 		ARG 4 showIcons
 		ARG 5 unlimitedTracking
 		ARG 6 dimension
+	METHOD method_106 calculateCenter (DDI)V
+		ARG 1 x
+		ARG 3 z
+		ARG 5 scale
 	METHOD method_107 addIcon (Lnet/minecraft/class_20$class_21;Lnet/minecraft/class_1936;Ljava/lang/String;DDDLnet/minecraft/class_2561;)V
 		ARG 1 type
 		ARG 2 world
@@ -132,20 +144,7 @@ CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
 	METHOD method_35503 getBanners ()Ljava/util/Collection;
 	METHOD method_37343 iconCountNotLessThan (I)Z
 		ARG 1 iconCount
-	METHOD method_101 getPlayerSyncData (Lnet/minecraft/class_1657;)Lnet/minecraft/class_22$class_23;
-		ARG 1 player
-	METHOD method_102 update (Lnet/minecraft/class_1657;Lnet/minecraft/class_1799;)V
-		ARG 1 player
-		ARG 2 stack
-	METHOD method_103 markDirty (II)V
-		ARG 1 x
-		ARG 2 z
-	METHOD method_106 calculateCenter (DDI)V
-		ARG 1 x
-		ARG 3 z
-		ARG 5 scale
 	CLASS class_23 PlayerUpdateTracker
-		FIELD field_27891 iconsDirty Z
 		FIELD field_124 emptyPacketsRequested I
 		FIELD field_125 player Lnet/minecraft/class_1657;
 		FIELD field_126 endZ I
@@ -153,17 +152,18 @@ CLASS net/minecraft/class_22 net/minecraft/item/map/MapState
 		FIELD field_128 startZ I
 		FIELD field_129 startX I
 		FIELD field_130 dirty Z
+		FIELD field_27891 iconsDirty Z
 		METHOD <init> (Lnet/minecraft/class_22;Lnet/minecraft/class_1657;)V
 			ARG 2 player
-		METHOD method_112 getPacket (I)Lnet/minecraft/class_2596;
-			ARG 1 mapId
-		METHOD method_32375 getMapUpdateData ()Lnet/minecraft/class_22$class_5637;
-		METHOD method_32379 markIconsDirty ()V
 		METHOD method_111 markDirty (II)V
 			ARG 1 startX
 			ARG 2 startZ
+		METHOD method_112 getPacket (I)Lnet/minecraft/class_2596;
+			ARG 1 mapId
 		METHOD method_112 getPacket (Lnet/minecraft/class_1799;)Lnet/minecraft/class_2596;
 			ARG 1 stack
+		METHOD method_32375 getMapUpdateData ()Lnet/minecraft/class_22$class_5637;
+		METHOD method_32379 markIconsDirty ()V
 	CLASS class_5637 UpdateData
 		FIELD field_27892 startX I
 		FIELD field_27893 startZ I

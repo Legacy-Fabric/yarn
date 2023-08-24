@@ -1,21 +1,55 @@
 CLASS net/minecraft/class_31 net/minecraft/world/level/LevelProperties
+	FIELD field_151 spawnX I
 	FIELD field_152 legacyCustomOptions Ljava/lang/String;
+	FIELD field_153 randomSeed J
+	FIELD field_154 gameRules Lnet/minecraft/class_1928;
 	FIELD field_155 disabledDataPacks Ljava/util/Set;
 	FIELD field_156 customBossEvents Lnet/minecraft/class_2487;
+	FIELD field_157 difficultyLocked Z
+	FIELD field_158 version I
+	FIELD field_159 hardcore Z
+	FIELD field_160 borderSizeLerpTarget D
+	FIELD field_161 borderWarningTime I
 	FIELD field_162 versionName Ljava/lang/String;
+	FIELD field_163 generatorType Lnet/minecraft/class_1942;
+	FIELD field_164 borderCenterX D
+	FIELD field_165 lastPlayed J
 	FIELD field_166 generatorOptions Lnet/minecraft/class_2487;
+	FIELD field_167 spawnY I
+	FIELD field_168 thundering Z
+	FIELD field_169 levelName Ljava/lang/String;
+	FIELD field_170 playerData Lnet/minecraft/class_2487;
 	FIELD field_171 enabledDataPacks Ljava/util/Set;
 	FIELD field_172 playerDataLoaded Z
+	FIELD field_173 thunderTime I
+	FIELD field_174 difficulty Lnet/minecraft/class_1267;
+	FIELD field_175 DEFAULT_DIFFICULTY Lnet/minecraft/class_1267;
+	FIELD field_176 clearWeatherTime I
+	FIELD field_177 commandsAllowed Z
 	FIELD field_17736 wanderingTraderSpawnDelay I
 	FIELD field_17737 wanderingTraderSpawnChance I
 	FIELD field_17738 wanderingTraderId Ljava/util/UUID;
+	FIELD field_178 borderSafeZone D
 	FIELD field_179 gameMode Lnet/minecraft/class_1934;
+	FIELD field_180 borderCenterZ D
+	FIELD field_181 sizeOnDisk J
+	FIELD field_182 spawnZ I
 	FIELD field_183 versionId I
 	FIELD field_184 dataFixer Lcom/mojang/datafixers/DataFixer;
+	FIELD field_185 initialized Z
+	FIELD field_187 borderDamagePerBlock D
+	FIELD field_188 borderSize D
+	FIELD field_189 time J
+	FIELD field_190 raining Z
 	FIELD field_191 scheduledEvents Lnet/minecraft/class_236;
+	FIELD field_192 rainTime I
 	FIELD field_193 worldData Ljava/util/Map;
 	FIELD field_194 versionSnapshot Z
+	FIELD field_195 structures Z
 	FIELD field_196 dataVersion I
+	FIELD field_197 borderWarningBlocks I
+	FIELD field_198 timeOfDay J
+	FIELD field_199 borderSizeLerpTime J
 	FIELD field_21837 serverBrands Ljava/util/Set;
 	FIELD field_21838 modded Z
 	FIELD field_24193 worldBorder Lnet/minecraft/class_2784$class_5200;
@@ -29,40 +63,6 @@ CLASS net/minecraft/class_31 net/minecraft/world/level/LevelProperties
 	FIELD field_31843 WORLD_GEN_SETTINGS_KEY Ljava/lang/String;
 	FIELD field_36349 PLAYER_KEY Ljava/lang/String;
 	FIELD field_40372 specialProperty Lnet/minecraft/class_31$class_7729;
-	FIELD field_151 spawnX I
-	FIELD field_153 randomSeed J
-	FIELD field_154 gameRules Lnet/minecraft/class_1928;
-	FIELD field_157 difficultyLocked Z
-	FIELD field_158 version I
-	FIELD field_159 hardcore Z
-	FIELD field_160 borderSizeLerpTarget D
-	FIELD field_161 borderWarningTime I
-	FIELD field_163 generatorType Lnet/minecraft/class_1942;
-	FIELD field_164 borderCenterX D
-	FIELD field_165 lastPlayed J
-	FIELD field_167 spawnY I
-	FIELD field_168 thundering Z
-	FIELD field_169 levelName Ljava/lang/String;
-	FIELD field_170 playerData Lnet/minecraft/class_2487;
-	FIELD field_173 thunderTime I
-	FIELD field_174 difficulty Lnet/minecraft/class_1267;
-	FIELD field_175 DEFAULT_DIFFICULTY Lnet/minecraft/class_1267;
-	FIELD field_176 clearWeatherTime I
-	FIELD field_177 commandsAllowed Z
-	FIELD field_178 borderSafeZone D
-	FIELD field_180 borderCenterZ D
-	FIELD field_181 sizeOnDisk J
-	FIELD field_182 spawnZ I
-	FIELD field_185 initialized Z
-	FIELD field_187 borderDamagePerBlock D
-	FIELD field_188 borderSize D
-	FIELD field_189 time J
-	FIELD field_190 raining Z
-	FIELD field_192 rainTime I
-	FIELD field_195 structures Z
-	FIELD field_197 borderWarningBlocks I
-	FIELD field_198 timeOfDay J
-	FIELD field_199 borderSizeLerpTime J
 	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/class_2487;ZIIIFJJIIIZIZZZLnet/minecraft/class_2784$class_5200;IILjava/util/UUID;Ljava/util/Set;Lnet/minecraft/class_236;Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;Lnet/minecraft/class_1940;Lnet/minecraft/class_5285;Lnet/minecraft/class_31$class_7729;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 dataFixer
 		ARG 2 dataVersion
@@ -97,24 +97,79 @@ CLASS net/minecraft/class_31 net/minecraft/world/level/LevelProperties
 	METHOD <init> (Lnet/minecraft/class_1940;Lnet/minecraft/class_5285;Lnet/minecraft/class_31$class_7729;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 levelInfo
 		ARG 2 generatorOptions
+	METHOD method_139 getBorderCenterZ ()D
+	METHOD method_140 loadLevelInfo (Lnet/minecraft/class_1940;)V
+		ARG 1 levelInfo
+	METHOD method_142 setVersion (I)V
+		ARG 1 version
+	METHOD method_153 getGeneratorType ()Lnet/minecraft/class_1942;
+	METHOD method_154 setSpawnZ (I)V
+		ARG 1 spawnZ
+	METHOD method_158 updateProperties (Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;)V
+		ARG 1 levelTag
+		ARG 2 playerTag
 	METHOD method_158 updateProperties (Lnet/minecraft/class_5318;Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;)V
 	METHOD method_158 updateProperties (Lnet/minecraft/class_5455;Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;)V
 		ARG 1 registryManager
 		ARG 2 levelNbt
 		ARG 3 playerNbt
+	METHOD method_159 getBorderSizeLerpTarget ()D
 	METHOD method_160 setWorldData (Lnet/minecraft/class_2874;Lnet/minecraft/class_2487;)V
 		ARG 1 type
+	METHOD method_161 getBorderWarningTime ()I
+	METHOD method_162 setBorderSize (D)V
+		ARG 1 borderSize
+	METHOD method_163 cloneWorldTag (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;
+		ARG 1 playerTag
 	METHOD method_169 getGeneratorOptions ()Lnet/minecraft/class_2487;
 	METHOD method_170 getWorldData (Lnet/minecraft/class_2874;)Lnet/minecraft/class_2487;
 	METHOD method_171 isVersionSnapshot ()Z
+	METHOD method_174 setBorderSizeLerpTarget (D)V
+		ARG 1 borderSizeLerpTarget
 	METHOD method_175 setGeneratorOptions (Lnet/minecraft/class_2487;)V
+	METHOD method_178 getBorderSafeZone ()D
 	METHOD method_179 getEnabledDataPacks ()Ljava/util/Set;
 	METHOD method_180 getVersionId ()I
+	METHOD method_182 setLevelName (Ljava/lang/String;)V
+		ARG 1 levelName
+	METHOD method_183 getBorderSizeLerpTime ()J
+	METHOD method_184 getSeed ()J
 	METHOD method_185 loadPlayerData ()V
+	METHOD method_189 borderCenterZ (D)V
+		ARG 1 borderCenterZ
+	METHOD method_191 getLastPlayed ()J
+	METHOD method_192 setBorderWarningTime (I)V
+		ARG 1 borderWarningTime
+	METHOD method_195 setBorderSizeLerpTime (J)V
+		ARG 1 borderSizeLerpTime
+	METHOD method_196 setStructures (Z)V
+		ARG 1 structures
+	METHOD method_198 setHardcore (Z)V
+		ARG 1 hardcore
+	METHOD method_200 setBorderCenterX (D)V
+		ARG 1 borderCenterX
+	METHOD method_201 setBorderWarningBlocks (I)V
+		ARG 1 borderWarningBlocks
+	METHOD method_202 getBorderDamagePerBlock ()D
+	METHOD method_204 getBorderCenterX ()D
+	METHOD method_206 getBorderSize ()D
 	METHOD method_209 getDisabledDataPacks ()Ljava/util/Set;
+	METHOD method_211 setCommandsAllowed (Z)V
+		ARG 1 commandsAllowed
+	METHOD method_212 setSpawnX (I)V
+		ARG 1 spawnX
+	METHOD method_213 setSpawnY (I)V
+		ARG 1 spawnY
+	METHOD method_216 setBorderSafeZone (D)V
+		ARG 1 borderSafeZone
 	METHOD method_219 getVersionName ()Ljava/lang/String;
+	METHOD method_220 hasStructures ()Z
 	METHOD method_22418 sha256Hash (J)J
 		ARG 0 seed
+	METHOD method_225 setGeneratorType (Lnet/minecraft/class_1942;)V
+	METHOD method_227 getBorderWarningBlocks ()I
+	METHOD method_229 setBorderDamagePerBlock (D)V
+		ARG 1 borderDamagePerBlock
 	METHOD method_29029 readProperties (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/class_2487;Lnet/minecraft/class_1940;Lnet/minecraft/class_5315;Lnet/minecraft/class_31$class_7729;Lnet/minecraft/class_5285;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/class_31;
 		ARG 0 dynamic
 		ARG 1 dataFixer
@@ -138,59 +193,4 @@ CLASS net/minecraft/class_31 net/minecraft/world/level/LevelProperties
 		ARG 0 result
 	METHOD method_45558 (Lnet/minecraft/class_2487;Lnet/minecraft/class_2520;)V
 		ARG 1 dataConfiguration
-	METHOD method_139 getBorderCenterZ ()D
-	METHOD method_140 loadLevelInfo (Lnet/minecraft/class_1940;)V
-		ARG 1 levelInfo
-	METHOD method_142 setVersion (I)V
-		ARG 1 version
-	METHOD method_153 getGeneratorType ()Lnet/minecraft/class_1942;
-	METHOD method_154 setSpawnZ (I)V
-		ARG 1 spawnZ
-	METHOD method_158 updateProperties (Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;)V
-		ARG 1 levelTag
-		ARG 2 playerTag
-	METHOD method_159 getBorderSizeLerpTarget ()D
-	METHOD method_161 getBorderWarningTime ()I
-	METHOD method_162 setBorderSize (D)V
-		ARG 1 borderSize
-	METHOD method_163 cloneWorldTag (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;
-		ARG 1 playerTag
-	METHOD method_174 setBorderSizeLerpTarget (D)V
-		ARG 1 borderSizeLerpTarget
-	METHOD method_178 getBorderSafeZone ()D
-	METHOD method_182 setLevelName (Ljava/lang/String;)V
-		ARG 1 levelName
-	METHOD method_183 getBorderSizeLerpTime ()J
-	METHOD method_184 getSeed ()J
-	METHOD method_189 borderCenterZ (D)V
-		ARG 1 borderCenterZ
-	METHOD method_191 getLastPlayed ()J
-	METHOD method_192 setBorderWarningTime (I)V
-		ARG 1 borderWarningTime
-	METHOD method_195 setBorderSizeLerpTime (J)V
-		ARG 1 borderSizeLerpTime
-	METHOD method_196 setStructures (Z)V
-		ARG 1 structures
-	METHOD method_198 setHardcore (Z)V
-		ARG 1 hardcore
-	METHOD method_200 setBorderCenterX (D)V
-		ARG 1 borderCenterX
-	METHOD method_201 setBorderWarningBlocks (I)V
-		ARG 1 borderWarningBlocks
-	METHOD method_202 getBorderDamagePerBlock ()D
-	METHOD method_204 getBorderCenterX ()D
-	METHOD method_206 getBorderSize ()D
-	METHOD method_211 setCommandsAllowed (Z)V
-		ARG 1 commandsAllowed
-	METHOD method_212 setSpawnX (I)V
-		ARG 1 spawnX
-	METHOD method_213 setSpawnY (I)V
-		ARG 1 spawnY
-	METHOD method_216 setBorderSafeZone (D)V
-		ARG 1 borderSafeZone
-	METHOD method_220 hasStructures ()Z
-	METHOD method_225 setGeneratorType (Lnet/minecraft/class_1942;)V
-	METHOD method_227 getBorderWarningBlocks ()I
-	METHOD method_229 setBorderDamagePerBlock (D)V
-		ARG 1 borderDamagePerBlock
 	CLASS class_7729 SpecialProperty

@@ -1,17 +1,30 @@
 CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 	FIELD field_1814 cloudRenderMode Lnet/minecraft/class_4063;
 	FIELD field_1814 cloudRenderMode Lnet/minecraft/class_7172;
+	FIELD field_1815 hideServerAddress Z
+	FIELD field_1816 smoothCameraKey Lnet/minecraft/class_304;
+		COMMENT A key binding for toggling smooth camera.
+		COMMENT Not bound to any keys by default.
 	FIELD field_1817 chatLinksPrompt Lnet/minecraft/class_7172;
+	FIELD field_1817 chatLinksPrompt Z
 	FIELD field_1818 showSubtitles Lnet/minecraft/class_7172;
 	FIELD field_1818 showSubtitles Z
 	FIELD field_1819 forceUnicodeFont Lnet/minecraft/class_7172;
 	FIELD field_1819 forceUnicodeFont Z
 	FIELD field_1820 chatOpacity D
 	FIELD field_1820 chatOpacity Lnet/minecraft/class_7172;
+	FIELD field_1822 inventoryKey Lnet/minecraft/class_304;
+		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ingame.InventoryScreen the inventory screen}.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_E the E key} by default.
+	FIELD field_1823 GSON Lcom/google/gson/Gson;
+	FIELD field_1824 togglePerspectiveKey Lnet/minecraft/class_304;
+		COMMENT A key binding for toggling perspective.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F5 the F5 key} by default.
 	FIELD field_1825 chatHeightUnfocused D
 	FIELD field_1825 chatHeightUnfocused Lnet/minecraft/class_7172;
 	FIELD field_1826 fov D
 	FIELD field_1826 fov Lnet/minecraft/class_7172;
+	FIELD field_1827 advancedItemTooltips Z
 	FIELD field_1828 fullscreenResolution Ljava/lang/String;
 	FIELD field_1829 mainArm Lnet/minecraft/class_1306;
 	FIELD field_1829 mainArm Lnet/minecraft/class_7172;
@@ -23,29 +36,88 @@ CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 		COMMENT
 		COMMENT <p>The selected slot is the slot the mouse is over when in a screen.
 		COMMENT Otherwise, it is the main hand.
+	FIELD field_1832 sneakKey Lnet/minecraft/class_304;
+		COMMENT A key binding for sneaking.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_LEFT_SHIFT the left shift key} by default.
+	FIELD field_1833 fancyGraphics Z
+	FIELD field_1834 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_1834 LOGGER Lorg/slf4j/Logger;
+	FIELD field_1835 screenshotKey Lnet/minecraft/class_304;
+		COMMENT A key binding for taking a screenshot.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F2 the F2 key} by default.
+	FIELD field_1836 fullscreenKey Lnet/minecraft/class_304;
+		COMMENT A key binding for toggling fullscreen.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F11 the F11 key} by default.
+	FIELD field_1837 pauseOnLostFocus Z
 	FIELD field_1838 chatHeightFocused D
 	FIELD field_1838 chatHeightFocused Lnet/minecraft/class_7172;
+	FIELD field_1839 allKeys [Lnet/minecraft/class_304;
+		COMMENT An array of all key bindings.
+		COMMENT
+		COMMENT <p>Key bindings in this array are shown and can be configured in
+		COMMENT {@linkplain net.minecraft.client.gui.screen.option.ControlsOptionsScreen
+		COMMENT the controls options screen}.
 	FIELD field_1840 gamma D
 	FIELD field_1840 gamma Lnet/minecraft/class_7172;
 	FIELD field_1841 ao Lnet/minecraft/class_4060;
 	FIELD field_1841 ao Lnet/minecraft/class_7172;
+	FIELD field_1842 hudHidden Z
 	FIELD field_1843 mouseSensitivity D
 	FIELD field_1843 mouseSensitivity Lnet/minecraft/class_7172;
 	FIELD field_1844 advancementsKey Lnet/minecraft/class_304;
 		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.advancement.AdvancementsScreen the advancements screen}.
 		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_L the L key} by default.
+	FIELD field_1845 commandKey Lnet/minecraft/class_304;
+		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ChatScreen
+		COMMENT the chat screen} with the {@code /} already typed.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_SLASH the slash key} by default.
+	FIELD field_1846 incompatibleResourcePacks Ljava/util/List;
+	FIELD field_1847 snooperEnabled Z
 	FIELD field_1848 autoJump Lnet/minecraft/class_7172;
 	FIELD field_1848 autoJump Z
+	FIELD field_1849 rightKey Lnet/minecraft/class_304;
+		COMMENT A key binding for moving right.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_D the D key} by default.
+	FIELD field_1850 perspective I
+	FIELD field_1851 difficulty Lnet/minecraft/class_1267;
+	FIELD field_1852 hotbarKeys [Lnet/minecraft/class_304;
+		COMMENT Key bindings for selecting hotbar slots.
+		COMMENT Bound to the corresponding number keys (from {@linkplain
+		COMMENT org.lwjgl.glfw.GLFW#GLFW_KEY_1 the 1 key} to {@linkplain
+		COMMENT org.lwjgl.glfw.GLFW#GLFW_KEY_9 the 9 key}) by default.
 	FIELD field_1853 COLON_SPLITTER Lcom/google/common/base/Splitter;
 	FIELD field_1854 touchscreen Lnet/minecraft/class_7172;
+	FIELD field_1854 touchscreen Z
+	FIELD field_1856 mipmapLevels I
 	FIELD field_1856 mipmapLevels Lnet/minecraft/class_7172;
 	FIELD field_1857 fullscreen Lnet/minecraft/class_7172;
+	FIELD field_1857 fullscreen Z
 	FIELD field_1859 STRING_LIST_TYPE Lcom/google/gson/reflect/TypeToken;
 	FIELD field_1859 STRING_LIST_TYPE Ljava/lang/reflect/Type;
+	FIELD field_1863 client Lnet/minecraft/class_310;
+	FIELD field_1864 lastServer Ljava/lang/String;
 	FIELD field_1865 invertYMouse Lnet/minecraft/class_7172;
+	FIELD field_1865 invertYMouse Z
+	FIELD field_1866 debugEnabled Z
+	FIELD field_1867 sprintKey Lnet/minecraft/class_304;
+		COMMENT A key binding for sprinting.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_LEFT_CONTROL the left control key} by default.
+	FIELD field_1868 guiScale I
 	FIELD field_1868 guiScale Lnet/minecraft/class_7172;
+	FIELD field_1869 dropKey Lnet/minecraft/class_304;
+		COMMENT A key binding for dropping the item in the selected slot.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_Q the Q key} by default.
+		COMMENT
+		COMMENT <p>The selected slot is the slot the mouse is over when in a screen.
+		COMMENT Otherwise, it is the main hand.
+	FIELD field_1870 viewDistance I
 	FIELD field_1870 viewDistance Lnet/minecraft/class_7172;
+	FIELD field_1871 pickItemKey Lnet/minecraft/class_304;
+		COMMENT A key binding for holding an item corresponding to the {@linkplain net.minecraft.entity.Entity#getPickBlockStack() entity}
+		COMMENT or {@linkplain net.minecraft.block.Block#getPickStack(net.minecraft.world.BlockView,
+		COMMENT net.minecraft.util.math.BlockPos, net.minecraft.block.BlockState) block} the player is looking at.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_MIDDLE the middle mouse button} by default.
+	FIELD field_1872 overrideWidth I
 	FIELD field_18725 backgroundForChatOnly Lnet/minecraft/class_7172;
 	FIELD field_18725 backgroundForChatOnly Z
 	FIELD field_18726 textBackgroundOpacity D
@@ -56,6 +128,7 @@ CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 		COMMENT A key binding for loading the hotbar items in {@linkplain net.minecraft.world.GameMode#CREATIVE creative mode}.
 		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_X the X key} by default.
 	FIELD field_1875 tutorialStep Lnet/minecraft/class_1157;
+	FIELD field_1876 useNativeTransport Z
 	FIELD field_1877 chatVisibility Lnet/minecraft/class_1659;
 	FIELD field_1877 chatVisibility Lnet/minecraft/class_7172;
 	FIELD field_1878 biomeBlendRadius I
@@ -63,27 +136,71 @@ CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 	FIELD field_1879 saveToolbarActivatorKey Lnet/minecraft/class_304;
 		COMMENT A key binding for saving the hotbar items in {@linkplain net.minecraft.world.GameMode#CREATIVE creative mode}.
 		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_C the C key} by default.
+	FIELD field_1880 debugProfilerEnabled Z
+	FIELD field_1881 backKey Lnet/minecraft/class_304;
+		COMMENT A key binding for moving backward.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_S the S key} by default.
 	FIELD field_1882 particles Lnet/minecraft/class_4066;
 	FIELD field_1882 particles Lnet/minecraft/class_7172;
+	FIELD field_1883 language Ljava/lang/String;
 	FIELD field_1884 enableVsync Lnet/minecraft/class_7172;
+	FIELD field_1884 enableVsync Z
+	FIELD field_1885 overrideHeight I
+	FIELD field_1886 attackKey Lnet/minecraft/class_304;
+		COMMENT A key binding for attacking an entity or breaking a block.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_LEFT the left mouse button} by default.
+	FIELD field_1887 resourcePacks Ljava/util/List;
 	FIELD field_1888 entityShadows Lnet/minecraft/class_7172;
+	FIELD field_1888 entityShadows Z
 	FIELD field_1889 mouseWheelSensitivity D
 	FIELD field_1889 mouseWheelSensitivity Lnet/minecraft/class_7172;
+	FIELD field_1890 chatKey Lnet/minecraft/class_304;
+		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ChatScreen the chat screen}.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_T the T key} by default.
 	FIELD field_1891 bobView Lnet/minecraft/class_7172;
+	FIELD field_1891 bobView Z
+	FIELD field_1892 enabledPlayerModelParts Ljava/util/Set;
+	FIELD field_1893 debugTpsEnabled Z
+	FIELD field_1894 forwardKey Lnet/minecraft/class_304;
+		COMMENT A key binding for moving forward.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_W the W key} by default.
 	FIELD field_1895 attackIndicator Lnet/minecraft/class_4061;
 	FIELD field_1895 attackIndicator Lnet/minecraft/class_7172;
 	FIELD field_1896 narrator Lnet/minecraft/class_4065;
 	FIELD field_1896 narrator Lnet/minecraft/class_7172;
+	FIELD field_1897 optionsFile Ljava/io/File;
 	FIELD field_1900 chatColors Lnet/minecraft/class_7172;
+	FIELD field_1900 chatColors Z
 	FIELD field_1901 glDebugVerbosity I
+	FIELD field_1903 jumpKey Lnet/minecraft/class_304;
+		COMMENT A key binding for jumping.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_SPACE the space key} by default.
+	FIELD field_1904 useKey Lnet/minecraft/class_304;
+		COMMENT A key binding for using an item, such as placing a block.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_RIGHT the right mouse button} by default.
+	FIELD field_1905 heldItemTooltips Z
+	FIELD field_1906 spectatorOutlinesKey Lnet/minecraft/class_304;
+		COMMENT A key binding for highlighting players in {@linkplain net.minecraft.world.GameMode#SPECTATOR spectator mode}.
+		COMMENT Not bound to any keys by default.
+	FIELD field_1907 playerListKey Lnet/minecraft/class_304;
+		COMMENT A key binding for displaying {@linkplain net.minecraft.client.gui.hud.PlayerListHud the player list}.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_TAB the tab key} by default.
 	FIELD field_1908 chatScale D
 	FIELD field_1908 chatScale Lnet/minecraft/class_7172;
+	FIELD field_1909 maxFps I
 	FIELD field_1909 maxFps Lnet/minecraft/class_7172;
 	FIELD field_1910 reducedDebugInfo Lnet/minecraft/class_7172;
+	FIELD field_1910 reducedDebugInfo Z
 	FIELD field_1911 chatLinks Lnet/minecraft/class_7172;
+	FIELD field_1911 chatLinks Z
+	FIELD field_1913 leftKey Lnet/minecraft/class_304;
+		COMMENT A key binding for moving left.
+		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_A the A key} by default.
+	FIELD field_1914 smoothCameraEnabled Z
 	FIELD field_1915 chatWidth D
 	FIELD field_1915 chatWidth Lnet/minecraft/class_7172;
 	FIELD field_1916 soundVolumeLevels Lit/unimi/dsi/fastutil/objects/Object2FloatMap;
+	FIELD field_1916 soundVolumeLevels Ljava/util/Map;
 	FIELD field_19244 discreteMouseScroll Lnet/minecraft/class_7172;
 	FIELD field_19244 discreteMouseScroll Z
 	FIELD field_20308 rawMouseInput Lnet/minecraft/class_7172;
@@ -174,137 +291,41 @@ CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 	FIELD field_43043 HIGH_CONTRAST_TOOLTIP Lnet/minecraft/class_2561;
 	FIELD field_43044 highContrast Lnet/minecraft/class_7172;
 	FIELD field_43110 MAX_SERIALIZABLE_GUI_SCALE I
-	FIELD field_1815 hideServerAddress Z
-	FIELD field_1816 smoothCameraKey Lnet/minecraft/class_304;
-		COMMENT A key binding for toggling smooth camera.
-		COMMENT Not bound to any keys by default.
-	FIELD field_1817 chatLinksPrompt Z
-	FIELD field_1822 inventoryKey Lnet/minecraft/class_304;
-		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ingame.InventoryScreen the inventory screen}.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_E the E key} by default.
-	FIELD field_1823 GSON Lcom/google/gson/Gson;
-	FIELD field_1824 togglePerspectiveKey Lnet/minecraft/class_304;
-		COMMENT A key binding for toggling perspective.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F5 the F5 key} by default.
-	FIELD field_1827 advancedItemTooltips Z
-	FIELD field_1832 sneakKey Lnet/minecraft/class_304;
-		COMMENT A key binding for sneaking.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_LEFT_SHIFT the left shift key} by default.
-	FIELD field_1833 fancyGraphics Z
-	FIELD field_1834 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_1835 screenshotKey Lnet/minecraft/class_304;
-		COMMENT A key binding for taking a screenshot.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F2 the F2 key} by default.
-	FIELD field_1836 fullscreenKey Lnet/minecraft/class_304;
-		COMMENT A key binding for toggling fullscreen.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F11 the F11 key} by default.
-	FIELD field_1837 pauseOnLostFocus Z
-	FIELD field_1839 allKeys [Lnet/minecraft/class_304;
-		COMMENT An array of all key bindings.
-		COMMENT
-		COMMENT <p>Key bindings in this array are shown and can be configured in
-		COMMENT {@linkplain net.minecraft.client.gui.screen.option.ControlsOptionsScreen
-		COMMENT the controls options screen}.
-	FIELD field_1842 hudHidden Z
-	FIELD field_1845 commandKey Lnet/minecraft/class_304;
-		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ChatScreen
-		COMMENT the chat screen} with the {@code /} already typed.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_SLASH the slash key} by default.
-	FIELD field_1846 incompatibleResourcePacks Ljava/util/List;
-	FIELD field_1847 snooperEnabled Z
-	FIELD field_1849 rightKey Lnet/minecraft/class_304;
-		COMMENT A key binding for moving right.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_D the D key} by default.
-	FIELD field_1850 perspective I
-	FIELD field_1851 difficulty Lnet/minecraft/class_1267;
-	FIELD field_1852 hotbarKeys [Lnet/minecraft/class_304;
-		COMMENT Key bindings for selecting hotbar slots.
-		COMMENT Bound to the corresponding number keys (from {@linkplain
-		COMMENT org.lwjgl.glfw.GLFW#GLFW_KEY_1 the 1 key} to {@linkplain
-		COMMENT org.lwjgl.glfw.GLFW#GLFW_KEY_9 the 9 key}) by default.
-	FIELD field_1854 touchscreen Z
-	FIELD field_1856 mipmapLevels I
-	FIELD field_1857 fullscreen Z
-	FIELD field_1863 client Lnet/minecraft/class_310;
-	FIELD field_1864 lastServer Ljava/lang/String;
-	FIELD field_1865 invertYMouse Z
-	FIELD field_1866 debugEnabled Z
-	FIELD field_1867 sprintKey Lnet/minecraft/class_304;
-		COMMENT A key binding for sprinting.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_LEFT_CONTROL the left control key} by default.
-	FIELD field_1868 guiScale I
-	FIELD field_1869 dropKey Lnet/minecraft/class_304;
-		COMMENT A key binding for dropping the item in the selected slot.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_Q the Q key} by default.
-		COMMENT
-		COMMENT <p>The selected slot is the slot the mouse is over when in a screen.
-		COMMENT Otherwise, it is the main hand.
-	FIELD field_1870 viewDistance I
-	FIELD field_1871 pickItemKey Lnet/minecraft/class_304;
-		COMMENT A key binding for holding an item corresponding to the {@linkplain net.minecraft.entity.Entity#getPickBlockStack() entity}
-		COMMENT or {@linkplain net.minecraft.block.Block#getPickStack(net.minecraft.world.BlockView,
-		COMMENT net.minecraft.util.math.BlockPos, net.minecraft.block.BlockState) block} the player is looking at.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_MIDDLE the middle mouse button} by default.
-	FIELD field_1872 overrideWidth I
-	FIELD field_1876 useNativeTransport Z
-	FIELD field_1880 debugProfilerEnabled Z
-	FIELD field_1881 backKey Lnet/minecraft/class_304;
-		COMMENT A key binding for moving backward.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_S the S key} by default.
-	FIELD field_1883 language Ljava/lang/String;
-	FIELD field_1884 enableVsync Z
-	FIELD field_1885 overrideHeight I
-	FIELD field_1886 attackKey Lnet/minecraft/class_304;
-		COMMENT A key binding for attacking an entity or breaking a block.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_LEFT the left mouse button} by default.
-	FIELD field_1887 resourcePacks Ljava/util/List;
-	FIELD field_1888 entityShadows Z
-	FIELD field_1890 chatKey Lnet/minecraft/class_304;
-		COMMENT A key binding for opening {@linkplain net.minecraft.client.gui.screen.ChatScreen the chat screen}.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_T the T key} by default.
-	FIELD field_1891 bobView Z
-	FIELD field_1892 enabledPlayerModelParts Ljava/util/Set;
-	FIELD field_1893 debugTpsEnabled Z
-	FIELD field_1894 forwardKey Lnet/minecraft/class_304;
-		COMMENT A key binding for moving forward.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_W the W key} by default.
-	FIELD field_1897 optionsFile Ljava/io/File;
-	FIELD field_1900 chatColors Z
-	FIELD field_1903 jumpKey Lnet/minecraft/class_304;
-		COMMENT A key binding for jumping.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_SPACE the space key} by default.
-	FIELD field_1904 useKey Lnet/minecraft/class_304;
-		COMMENT A key binding for using an item, such as placing a block.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_MOUSE_BUTTON_RIGHT the right mouse button} by default.
-	FIELD field_1905 heldItemTooltips Z
-	FIELD field_1906 spectatorOutlinesKey Lnet/minecraft/class_304;
-		COMMENT A key binding for highlighting players in {@linkplain net.minecraft.world.GameMode#SPECTATOR spectator mode}.
-		COMMENT Not bound to any keys by default.
-	FIELD field_1907 playerListKey Lnet/minecraft/class_304;
-		COMMENT A key binding for displaying {@linkplain net.minecraft.client.gui.hud.PlayerListHud the player list}.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_TAB the tab key} by default.
-	FIELD field_1909 maxFps I
-	FIELD field_1910 reducedDebugInfo Z
-	FIELD field_1911 chatLinks Z
-	FIELD field_1913 leftKey Lnet/minecraft/class_304;
-		COMMENT A key binding for moving left.
-		COMMENT Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_A the A key} by default.
-	FIELD field_1914 smoothCameraEnabled Z
-	FIELD field_1916 soundVolumeLevels Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/class_310;Ljava/io/File;)V
 		ARG 1 client
 		ARG 2 optionsFile
+	METHOD method_1624 setSoundVolume (Lnet/minecraft/class_3419;F)V
+		ARG 1 category
+		ARG 2 volume
 	METHOD method_1626 update (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;
 		ARG 1 nbt
 	METHOD method_1627 addResourcePackProfilesToManager (Lnet/minecraft/class_3283;)V
 		ARG 1 manager
+	METHOD method_1630 getSoundVolume (Lnet/minecraft/class_3419;)F
+		ARG 1 category
+	METHOD method_1631 togglePlayerModelPart (Lnet/minecraft/class_1664;)V
+		ARG 1 part
 	METHOD method_1631 togglePlayerModelPart (Lnet/minecraft/class_1664;Z)V
 		ARG 1 part
 		ARG 2 enabled
 	METHOD method_1632 getCloudRenderModeValue ()Lnet/minecraft/class_4063;
+	METHOD method_1633 getEnabledPlayerModelParts ()Ljava/util/Set;
+	METHOD method_1634 parseFloat (Ljava/lang/String;)F
+	METHOD method_1635 setPlayerModelPart (Lnet/minecraft/class_1664;Z)V
+		ARG 1 part
+		ARG 2 enabled
+	METHOD method_1636 load ()V
+	METHOD method_1639 shouldUseNativeTransport ()Z
+	METHOD method_1640 write ()V
 	METHOD method_1641 setKeyCode (Lnet/minecraft/class_304;Lnet/minecraft/class_3675$class_306;)V
 		ARG 1 key
 		ARG 2 code
+	METHOD method_1643 sendClientSettings ()V
+		COMMENT Sends the current client settings to the server if the client is
+		COMMENT connected to a server.
+		COMMENT
+		COMMENT <p>Called when a player joins the game or when client settings are
+		COMMENT changed.
 	METHOD method_19343 getTextBackgroundOpacity (F)F
 		ARG 1 fallback
 	METHOD method_19344 getTextBackgroundColor (I)I
@@ -707,27 +728,6 @@ CLASS net/minecraft/class_315 net/minecraft/client/option/GameOptions
 	METHOD method_49599 (Ljava/lang/Boolean;)V
 		ARG 1 value
 	METHOD method_49600 getHighContrast ()Lnet/minecraft/class_7172;
-	METHOD method_1624 setSoundVolume (Lnet/minecraft/class_3419;F)V
-		ARG 1 category
-		ARG 2 volume
-	METHOD method_1630 getSoundVolume (Lnet/minecraft/class_3419;)F
-		ARG 1 category
-	METHOD method_1631 togglePlayerModelPart (Lnet/minecraft/class_1664;)V
-		ARG 1 part
-	METHOD method_1633 getEnabledPlayerModelParts ()Ljava/util/Set;
-	METHOD method_1634 parseFloat (Ljava/lang/String;)F
-	METHOD method_1635 setPlayerModelPart (Lnet/minecraft/class_1664;Z)V
-		ARG 1 part
-		ARG 2 enabled
-	METHOD method_1636 load ()V
-	METHOD method_1639 shouldUseNativeTransport ()Z
-	METHOD method_1640 write ()V
-	METHOD method_1643 sendClientSettings ()V
-		COMMENT Sends the current client settings to the server if the client is
-		COMMENT connected to a server.
-		COMMENT
-		COMMENT <p>Called when a player joins the game or when client settings are
-		COMMENT changed.
 	CLASS 2
 		METHOD method_33676 find (Ljava/lang/String;)Ljava/lang/String;
 			ARG 1 key

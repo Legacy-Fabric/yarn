@@ -23,28 +23,28 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	FIELD field_38861 threadSafeRandom Lnet/minecraft/class_5819;
 	FIELD field_42475 registryManager Lnet/minecraft/class_5455;
 	FIELD field_42476 damageSources Lnet/minecraft/class_8109;
-	FIELD field_9224 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_9229 random Lnet/minecraft/class_5819;
-	FIELD field_9231 blockEntities Ljava/util/List;
-	FIELD field_9232 properties Lnet/minecraft/class_5269;
-	FIELD field_9233 DIRECTIONS [Lnet/minecraft/class_2350;
-	FIELD field_9241 pendingBlockEntities Ljava/util/List;
-	FIELD field_9246 tickingBlockEntities Ljava/util/List;
-	FIELD field_9247 dimension Lnet/minecraft/class_2874;
-	FIELD field_9247 dimension Lnet/minecraft/class_5321;
-	FIELD field_9248 chunkManager Lnet/minecraft/class_2802;
-	FIELD field_9249 iteratingTickingBlockEntities Z
 	FIELD field_9223 border Lnet/minecraft/class_2784;
+	FIELD field_9224 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_9226 ambientDarkness I
 	FIELD field_9229 random Ljava/util/Random;
+	FIELD field_9229 random Lnet/minecraft/class_5819;
+	FIELD field_9231 blockEntities Ljava/util/List;
 	FIELD field_9232 properties Lnet/minecraft/class_31;
+	FIELD field_9232 properties Lnet/minecraft/class_5269;
+	FIELD field_9233 DIRECTIONS [Lnet/minecraft/class_2350;
 	FIELD field_9234 thunderGradient F
 	FIELD field_9235 rainGradient F
 	FIELD field_9236 isClient Z
 	FIELD field_9238 lcgBlockSeedIncrement I
+	FIELD field_9241 pendingBlockEntities Ljava/util/List;
 	FIELD field_9242 ticksSinceLightning I
 	FIELD field_9245 unusedWhite J
+	FIELD field_9246 tickingBlockEntities Ljava/util/List;
 	FIELD field_9247 dimension Lnet/minecraft/class_2869;
+	FIELD field_9247 dimension Lnet/minecraft/class_2874;
+	FIELD field_9247 dimension Lnet/minecraft/class_5321;
+	FIELD field_9248 chunkManager Lnet/minecraft/class_2802;
+	FIELD field_9249 iteratingTickingBlockEntities Z
 	FIELD field_9251 thunderGradientPrev F
 	FIELD field_9253 rainGradientPrev F
 	FIELD field_9256 lcgBlockSeed I
@@ -283,8 +283,35 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 2 oldState
 		ARG 3 newState
 		ARG 4 flags
+	METHOD method_8419 isRaining ()Z
+		COMMENT {@return whether it is raining}
+		COMMENT
+		COMMENT @see #hasRain
+	METHOD method_8421 sendEntityStatus (Lnet/minecraft/class_1297;B)V
+		COMMENT Sends the entity status to nearby players.
+		COMMENT
+		COMMENT @see net.minecraft.entity.EntityStatuses
+		ARG 1 entity
+		ARG 2 status
+	METHOD method_8422 containsBlockWithMaterial (Lnet/minecraft/class_238;Lnet/minecraft/class_3614;)Z
+		ARG 1 area
+		ARG 2 material
+	METHOD method_8423 getCloudColor (F)Lnet/minecraft/class_243;
+	METHOD method_8424 setMobSpawnOptions (ZZ)V
+		COMMENT Sets whether monsters or animals can spawn.
+		ARG 1 spawnMonsters
+		ARG 2 spawnAnimals
+	METHOD method_8425 doesAreaContainFireSource (Lnet/minecraft/class_238;)Z
 	METHOD method_8426 getPendingBlockEntity (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2586;
 		ARG 1 pos
+	METHOD method_8427 addSyncedBlockEvent (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;II)V
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 type
+		ARG 4 data
+	METHOD method_8428 getScoreboard ()Lnet/minecraft/class_269;
+	METHOD method_8430 getRainGradient (F)F
+		ARG 1 delta
 	METHOD method_8433 getRecipeManager ()Lnet/minecraft/class_1863;
 	METHOD method_8437 createExplosion (Lnet/minecraft/class_1297;DDDFLnet/minecraft/class_1927$class_4179;)Lnet/minecraft/class_1927;
 		COMMENT Creates an explosion without creating fire.
@@ -308,6 +335,12 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 9 explosionSourceType
 	METHOD method_8438 addBlockEntity (Lnet/minecraft/class_2586;)V
 		ARG 1 blockEntity
+	METHOD method_8438 addBlockEntity (Lnet/minecraft/class_2586;)Z
+		ARG 1 blockEntity
+	METHOD method_8442 getSkyAngleRadians (F)F
+		ARG 1 tickDelta
+	METHOD method_8447 addBlockEntities (Ljava/util/Collection;)V
+		ARG 1 blockEntities
 	METHOD method_8449 playSoundFromEntity (Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_3414;Lnet/minecraft/class_3419;FF)V
 		ARG 1 except
 			COMMENT the player that should not receive the sound, or {@code null}
@@ -334,6 +367,15 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 5 volume
 		ARG 6 pitch
 		ARG 7 seed
+	METHOD method_8450 getGameRules ()Lnet/minecraft/class_1928;
+	METHOD method_8452 updateNeighborsAlways (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
+		COMMENT Emits a neighbor update to all 6 neighboring blocks of {@code pos}.
+		COMMENT
+		COMMENT @see #updateNeighborsExcept(BlockPos, Block, Direction)
+		ARG 1 pos
+		ARG 2 sourceBlock
+	METHOD method_8453 getAmbientLight (F)F
+		ARG 1 delta
 	METHOD method_8454 createExplosion (Lnet/minecraft/class_1297;Lnet/minecraft/class_1282;DDDFZLnet/minecraft/class_1927$class_4179;)Lnet/minecraft/class_1927;
 		ARG 1 entity
 		ARG 3 x
@@ -374,7 +416,16 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 11 createFire
 			COMMENT whether the explosion should create fire
 		ARG 12 explosionSourceType
+	METHOD method_8455 updateComparators (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD method_8456 getEffectiveHeight ()I
+	METHOD method_8457 getDebugString ()Ljava/lang/String;
 	METHOD method_8458 isSavingDisabled ()Z
+	METHOD method_8459 isEmittingRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
+		ARG 1 pos
+		ARG 2 direction
+	METHOD method_8464 getFogColor (F)Lnet/minecraft/class_243;
 	METHOD method_8465 playSound (Lnet/minecraft/class_1657;DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FF)V
 		ARG 1 except
 			COMMENT the player that should not receive the sound, or {@code null}
@@ -416,12 +467,35 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 9 velocityX
 		ARG 11 velocityY
 		ARG 13 velocityZ
+	METHOD method_8469 getEntityById (I)Lnet/minecraft/class_1297;
+		COMMENT {@return the entity using the entity ID, or {@code null} if none was found}
+		COMMENT
+		COMMENT <p>Entity ID is ephemeral and changes after server restart. Use the UUID
+		COMMENT for persistent storage instead.
+		COMMENT
+		COMMENT @see net.minecraft.server.world.ServerWorld#getEntity
+		ARG 1 id
+	METHOD method_8474 syncGlobalEvent (ILnet/minecraft/class_2338;I)V
+		ARG 1 eventId
+		ARG 2 pos
+		ARG 3 data
 	METHOD method_8475 getBlockState (Lnet/minecraft/class_238;Lnet/minecraft/class_2248;)Lnet/minecraft/class_2680;
 		ARG 1 area
 		ARG 2 block
 	METHOD method_8476 isOutOfBuildLimitVertically (I)Z
 		ARG 0 y
 	METHOD method_8477 canSetBlock (Lnet/minecraft/class_2338;)Z
+		ARG 1 pos
+	METHOD method_8478 getThunderGradient (F)F
+		ARG 1 delta
+	METHOD method_8479 isReceivingRedstonePower (Lnet/minecraft/class_2338;)Z
+		ARG 1 pos
+	METHOD method_8480 hasHighHumidity (Lnet/minecraft/class_2338;)Z
+		COMMENT {@return whether the biome at {@code pos} has high humidity}
+		COMMENT
+		COMMENT <p>Humidity affects the chance of fire spreading.
+		ARG 1 pos
+	METHOD method_8482 getReceivedRedstonePower (Lnet/minecraft/class_2338;)I
 		ARG 1 pos
 	METHOD method_8486 playSound (DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FFZ)V
 		ARG 1 x
@@ -432,6 +506,8 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 9 volume
 		ARG 10 pitch
 		ARG 11 useDistance
+	METHOD method_8488 getReceivedStrongRedstonePower (Lnet/minecraft/class_2338;)I
+		ARG 1 pos
 	METHOD method_8492 updateNeighbor (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V
 		COMMENT Triggers a neighbor update originating from {@code sourcePos} at
 		COMMENT {@code pos}.
@@ -449,126 +525,6 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 10 velocityY
 		ARG 12 velocityZ
 	METHOD method_8495 getTopNonAirState (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
-	METHOD method_8501 setBlockState (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)Z
-		ARG 1 pos
-		ARG 2 state
-	METHOD method_8514 getTagManager ()Lnet/minecraft/class_3505;
-	METHOD method_8514 getTagManager ()Lnet/minecraft/class_5415;
-	METHOD method_8515 isTopSolid (Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
-		ARG 1 pos
-		ARG 2 entity
-	METHOD method_8518 isOutOfBuildLimitVertically (Lnet/minecraft/class_2338;)Z
-		ARG 0 pos
-	METHOD method_8522 sendPacket (Lnet/minecraft/class_2596;)V
-		ARG 1 packet
-	METHOD method_8524 markDirty (Lnet/minecraft/class_2338;)V
-		ARG 1 pos
-	METHOD method_8527 getGeneratorType ()Lnet/minecraft/class_1942;
-	METHOD method_8533 calculateAmbientDarkness ()V
-	METHOD method_8536 getRandomPosInChunk (IIII)Lnet/minecraft/class_2338;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-	METHOD method_8537 createExplosion (Lnet/minecraft/class_1297;DDDFZLnet/minecraft/class_1927$class_4179;)Lnet/minecraft/class_1927;
-		COMMENT Creates an explosion.
-		COMMENT
-		COMMENT @see #createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, Explosion.DestructionType)
-		ARG 1 entity
-		ARG 2 x
-		ARG 4 y
-		ARG 6 z
-		ARG 8 power
-		ARG 9 createFire
-		ARG 10 destructionType
-	METHOD method_8537 createExplosion (Lnet/minecraft/class_1297;DDDFZLnet/minecraft/class_1937$class_7867;)Lnet/minecraft/class_1927;
-		COMMENT Creates an explosion.
-		COMMENT
-		COMMENT @see #createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType)
-		ARG 1 entity
-		ARG 2 x
-		ARG 4 y
-		ARG 6 z
-		ARG 8 power
-		ARG 9 createFire
-		ARG 10 explosionSourceType
-	METHOD method_8548 getSkyColor (Lnet/minecraft/class_2338;F)Lnet/minecraft/class_243;
-	METHOD method_8560 tickTime ()V
-	METHOD method_8419 isRaining ()Z
-		COMMENT {@return whether it is raining}
-		COMMENT
-		COMMENT @see #hasRain
-	METHOD method_8421 sendEntityStatus (Lnet/minecraft/class_1297;B)V
-		COMMENT Sends the entity status to nearby players.
-		COMMENT
-		COMMENT @see net.minecraft.entity.EntityStatuses
-		ARG 1 entity
-		ARG 2 status
-	METHOD method_8422 containsBlockWithMaterial (Lnet/minecraft/class_238;Lnet/minecraft/class_3614;)Z
-		ARG 1 area
-		ARG 2 material
-	METHOD method_8423 getCloudColor (F)Lnet/minecraft/class_243;
-	METHOD method_8424 setMobSpawnOptions (ZZ)V
-		COMMENT Sets whether monsters or animals can spawn.
-		ARG 1 spawnMonsters
-		ARG 2 spawnAnimals
-	METHOD method_8425 doesAreaContainFireSource (Lnet/minecraft/class_238;)Z
-	METHOD method_8427 addSyncedBlockEvent (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;II)V
-		ARG 1 pos
-		ARG 2 block
-		ARG 3 type
-		ARG 4 data
-	METHOD method_8428 getScoreboard ()Lnet/minecraft/class_269;
-	METHOD method_8430 getRainGradient (F)F
-		ARG 1 delta
-	METHOD method_8438 addBlockEntity (Lnet/minecraft/class_2586;)Z
-		ARG 1 blockEntity
-	METHOD method_8442 getSkyAngleRadians (F)F
-		ARG 1 tickDelta
-	METHOD method_8447 addBlockEntities (Ljava/util/Collection;)V
-		ARG 1 blockEntities
-	METHOD method_8450 getGameRules ()Lnet/minecraft/class_1928;
-	METHOD method_8452 updateNeighborsAlways (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
-		COMMENT Emits a neighbor update to all 6 neighboring blocks of {@code pos}.
-		COMMENT
-		COMMENT @see #updateNeighborsExcept(BlockPos, Block, Direction)
-		ARG 1 pos
-		ARG 2 sourceBlock
-	METHOD method_8453 getAmbientLight (F)F
-		ARG 1 delta
-	METHOD method_8455 updateComparators (Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V
-		ARG 1 pos
-		ARG 2 block
-	METHOD method_8456 getEffectiveHeight ()I
-	METHOD method_8457 getDebugString ()Ljava/lang/String;
-	METHOD method_8459 isEmittingRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
-		ARG 1 pos
-		ARG 2 direction
-	METHOD method_8464 getFogColor (F)Lnet/minecraft/class_243;
-	METHOD method_8469 getEntityById (I)Lnet/minecraft/class_1297;
-		COMMENT {@return the entity using the entity ID, or {@code null} if none was found}
-		COMMENT
-		COMMENT <p>Entity ID is ephemeral and changes after server restart. Use the UUID
-		COMMENT for persistent storage instead.
-		COMMENT
-		COMMENT @see net.minecraft.server.world.ServerWorld#getEntity
-		ARG 1 id
-	METHOD method_8474 syncGlobalEvent (ILnet/minecraft/class_2338;I)V
-		ARG 1 eventId
-		ARG 2 pos
-		ARG 3 data
-	METHOD method_8478 getThunderGradient (F)F
-		ARG 1 delta
-	METHOD method_8479 isReceivingRedstonePower (Lnet/minecraft/class_2338;)Z
-		ARG 1 pos
-	METHOD method_8480 hasHighHumidity (Lnet/minecraft/class_2338;)Z
-		COMMENT {@return whether the biome at {@code pos} has high humidity}
-		COMMENT
-		COMMENT <p>Humidity affects the chance of fire spreading.
-		ARG 1 pos
-	METHOD method_8482 getReceivedRedstonePower (Lnet/minecraft/class_2338;)I
-		ARG 1 pos
-	METHOD method_8488 getReceivedStrongRedstonePower (Lnet/minecraft/class_2338;)I
-		ARG 1 pos
 	METHOD method_8496 setThunderGradient (F)V
 		ARG 1 thunderGradient
 	METHOD method_8499 getEmittedRedstonePower (Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)I
@@ -577,6 +533,9 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8500 getWorldChunk (Lnet/minecraft/class_2338;)Lnet/minecraft/class_2818;
 		COMMENT {@return the chunk that contains {@code pos}}
 		ARG 1 pos
+	METHOD method_8501 setBlockState (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)Z
+		ARG 1 pos
+		ARG 2 state
 	METHOD method_8505 canPlayerModifyAt (Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;)Z
 		COMMENT {@return whether {@code player} can modify blocks at {@code pos}}
 		COMMENT
@@ -604,12 +563,19 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		COMMENT
 		COMMENT @see WorldProperties#getTime
 	METHOD method_8513 setDefaultSpawnClient ()V
+	METHOD method_8514 getTagManager ()Lnet/minecraft/class_3505;
+	METHOD method_8514 getTagManager ()Lnet/minecraft/class_5415;
+	METHOD method_8515 isTopSolid (Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)Z
+		ARG 1 pos
+		ARG 2 entity
 	METHOD method_8516 setTime (J)V
 		ARG 1 time
 	METHOD method_8517 setBlockBreakingInfo (ILnet/minecraft/class_2338;I)V
 		ARG 1 entityId
 		ARG 2 pos
 		ARG 3 progress
+	METHOD method_8518 isOutOfBuildLimitVertically (Lnet/minecraft/class_2338;)Z
+		ARG 0 pos
 	METHOD method_8519 setRainGradient (F)V
 		ARG 1 rainGradient
 	METHOD method_8520 hasRain (Lnet/minecraft/class_2338;)Z
@@ -620,6 +586,10 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		COMMENT
 		COMMENT @see #isRaining
 		ARG 1 pos
+	METHOD method_8522 sendPacket (Lnet/minecraft/class_2596;)V
+		ARG 1 packet
+	METHOD method_8524 markDirty (Lnet/minecraft/class_2338;)V
+		ARG 1 pos
 	METHOD method_8524 markDirty (Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)V
 		ARG 1 pos
 		ARG 2 blockEntity
@@ -627,6 +597,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	METHOD method_8526 setBlockEntity (Lnet/minecraft/class_2338;Lnet/minecraft/class_2586;)V
 		ARG 1 pos
 		ARG 2 blockEntity
+	METHOD method_8527 getGeneratorType ()Lnet/minecraft/class_1942;
 	METHOD method_8529 getTicksSinceLightning ()I
 	METHOD method_8530 isDay ()Z
 	METHOD method_8532 getTimeOfDay ()J
@@ -640,8 +611,35 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		COMMENT
 		COMMENT @see WorldProperties#getTimeOfDay
 		COMMENT @see net.minecraft.server.world.ServerWorld#setTimeOfDay
+	METHOD method_8533 calculateAmbientDarkness ()V
 	METHOD method_8534 isAreaNotEmpty (Lnet/minecraft/class_238;)Z
 	METHOD method_8535 spawnParticles (ILnet/minecraft/class_2338;I)V
+	METHOD method_8536 getRandomPosInChunk (IIII)Lnet/minecraft/class_2338;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD method_8537 createExplosion (Lnet/minecraft/class_1297;DDDFZLnet/minecraft/class_1927$class_4179;)Lnet/minecraft/class_1927;
+		COMMENT Creates an explosion.
+		COMMENT
+		COMMENT @see #createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, Explosion.DestructionType)
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 power
+		ARG 9 createFire
+		ARG 10 destructionType
+	METHOD method_8537 createExplosion (Lnet/minecraft/class_1297;DDDFZLnet/minecraft/class_1937$class_7867;)Lnet/minecraft/class_1927;
+		COMMENT Creates an explosion.
+		COMMENT
+		COMMENT @see #createExplosion(Entity, DamageSource, ExplosionBehavior, double, double, double, float, boolean, World.ExplosionSourceType)
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 power
+		ARG 9 createFire
+		ARG 10 explosionSourceType
 	METHOD method_8538 addDetailsToCrashReport (Lnet/minecraft/class_128;)Lnet/minecraft/class_129;
 		ARG 1 report
 	METHOD method_8540 getHorizonHeight ()D
@@ -657,7 +655,9 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 9 velocityY
 		ARG 11 velocityZ
 		ARG 13 nbt
+	METHOD method_8548 getSkyColor (Lnet/minecraft/class_2338;F)Lnet/minecraft/class_243;
 	METHOD method_8550 getStarsBrightness (F)F
 	METHOD method_8558 isValidHorizontally (Lnet/minecraft/class_2338;)Z
 		ARG 0 pos
+	METHOD method_8560 tickTime ()V
 	CLASS class_7867 ExplosionSourceType

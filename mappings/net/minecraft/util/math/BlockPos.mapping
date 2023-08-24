@@ -6,19 +6,19 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 	COMMENT <p>A block position may be mutable; hence, when using block positions
 	COMMENT obtained from other places as map keys, etc., you should call {@link
 	COMMENT #toImmutable()} to obtain an immutable block position.
+	FIELD field_10973 BITS_Z J
 	FIELD field_10974 BITS_Y J
+	FIELD field_10975 SIZE_BITS_Y I
 	FIELD field_10976 BITS_X J
+	FIELD field_10977 SIZE_BITS_Z I
+	FIELD field_10978 SIZE_BITS_X I
+	FIELD field_10980 ORIGIN Lnet/minecraft/class_2338;
+		COMMENT The block position which x, y, and z values are all zero.
 	FIELD field_10981 BIT_SHIFT_X I
 	FIELD field_10983 BIT_SHIFT_Z I
 	FIELD field_18789 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_18789 LOGGER Lorg/slf4j/Logger;
 	FIELD field_25064 CODEC Lcom/mojang/serialization/Codec;
-	FIELD field_10973 BITS_Z J
-	FIELD field_10975 SIZE_BITS_Y I
-	FIELD field_10977 SIZE_BITS_Z I
-	FIELD field_10978 SIZE_BITS_X I
-	FIELD field_10980 ORIGIN Lnet/minecraft/class_2338;
-		COMMENT The block position which x, y, and z values are all zero.
 	METHOD <init> (Lnet/minecraft/class_2382;)V
 		ARG 1 pos
 	METHOD method_10060 offset (JLnet/minecraft/class_2350;)J
@@ -37,12 +37,28 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD method_10067 west ()Lnet/minecraft/class_2338;
 	METHOD method_10070 rotate (Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;
 		ARG 1 rotation
 	METHOD method_10071 unpackLongY (J)I
 		ARG 0 packedPos
+	METHOD method_10072 south ()Lnet/minecraft/class_2338;
+	METHOD method_10075 crossProduct (Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338;
+		ARG 1 pos
+	METHOD method_10076 north (I)Lnet/minecraft/class_2338;
+		ARG 1 distance
+	METHOD method_10077 south (I)Lnet/minecraft/class_2338;
+		ARG 1 distance
+	METHOD method_10078 east ()Lnet/minecraft/class_2338;
 	METHOD method_10083 unpackLongZ (J)I
 		ARG 0 packedPos
+	METHOD method_10084 up ()Lnet/minecraft/class_2338;
+	METHOD method_10086 up (I)Lnet/minecraft/class_2338;
+		ARG 1 distance
+	METHOD method_10088 west (I)Lnet/minecraft/class_2338;
+		ARG 1 distance
+	METHOD method_10089 east (I)Lnet/minecraft/class_2338;
+		ARG 1 distance
 	METHOD method_10091 removeChunkSectionLocalY (J)J
 		ARG 0 y
 	METHOD method_10092 fromLong (J)Lnet/minecraft/class_2338;
@@ -54,11 +70,15 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 		ARG 3 endX
 		ARG 4 endY
 		ARG 5 endZ
+	METHOD method_10095 north ()Lnet/minecraft/class_2338;
 	METHOD method_10096 add (JIII)J
 		ARG 0 value
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD method_10097 iterate (Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;)Ljava/lang/Iterable;
+		ARG 0 start
+		ARG 1 end
 	METHOD method_17962 stream (IIIIII)Ljava/util/stream/Stream;
 		ARG 0 startX
 		ARG 1 startY
@@ -211,26 +231,6 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 		ARG 4 z
 	METHOD method_49638 ofFloored (Lnet/minecraft/class_2374;)Lnet/minecraft/class_2338;
 		ARG 0 pos
-	METHOD method_10067 west ()Lnet/minecraft/class_2338;
-	METHOD method_10072 south ()Lnet/minecraft/class_2338;
-	METHOD method_10075 crossProduct (Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338;
-		ARG 1 pos
-	METHOD method_10076 north (I)Lnet/minecraft/class_2338;
-		ARG 1 distance
-	METHOD method_10077 south (I)Lnet/minecraft/class_2338;
-		ARG 1 distance
-	METHOD method_10078 east ()Lnet/minecraft/class_2338;
-	METHOD method_10084 up ()Lnet/minecraft/class_2338;
-	METHOD method_10086 up (I)Lnet/minecraft/class_2338;
-		ARG 1 distance
-	METHOD method_10088 west (I)Lnet/minecraft/class_2338;
-		ARG 1 distance
-	METHOD method_10089 east (I)Lnet/minecraft/class_2338;
-		ARG 1 distance
-	METHOD method_10095 north ()Lnet/minecraft/class_2338;
-	METHOD method_10097 iterate (Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;)Ljava/lang/Iterable;
-		ARG 0 start
-		ARG 1 end
 	CLASS 1
 		FIELD field_17676 connector Lnet/minecraft/class_3980;
 		FIELD field_18231 position Lnet/minecraft/class_2338$class_2339;
@@ -297,6 +297,11 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 			ARG 1 x
 			ARG 3 y
 			ARG 5 z
+		METHOD method_10103 set (III)Lnet/minecraft/class_2338$class_2339;
+			COMMENT Sets the x, y, and z of this mutable block position.
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
 		METHOD method_10104 move (Lnet/minecraft/class_2350;I)Lnet/minecraft/class_2338$class_2339;
 			COMMENT Moves this mutable block position by the given distance in the given
 			COMMENT direction.
@@ -334,11 +339,6 @@ CLASS net/minecraft/class_2338 net/minecraft/util/math/BlockPos
 			COMMENT Sets this mutable block position to the sum of the given vectors.
 			ARG 1 vec1
 			ARG 2 vec2
-		METHOD method_10103 set (III)Lnet/minecraft/class_2338$class_2339;
-			COMMENT Sets the x, y, and z of this mutable block position.
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
 	CLASS class_2340 PooledMutable
 		FIELD field_11004 free Z
 		FIELD field_11005 POOL Ljava/util/List;

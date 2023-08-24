@@ -5,8 +5,8 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 	COMMENT {@code MinecraftClient.getInstance().textRenderer}.
 	COMMENT
 	COMMENT @see net.minecraft.client.MinecraftClient#textRenderer
-	FIELD field_1997 fontStorage Lnet/minecraft/class_377;
 	FIELD field_1997 fontStorageAccessor Ljava/util/function/Function;
+	FIELD field_1997 fontStorage Lnet/minecraft/class_377;
 	FIELD field_1998 textureManager Lnet/minecraft/class_1060;
 	FIELD field_1999 rightToLeft Z
 	FIELD field_2000 fontHeight I
@@ -41,6 +41,18 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 11 blue
 		ARG 12 alpha
 		ARG 13 light
+	METHOD method_1710 drawGlyph (Lnet/minecraft/class_382;ZZFFFLnet/minecraft/class_287;FFFF)V
+		ARG 1 glyphRenderer
+		ARG 2 bold
+		ARG 3 strikethrough
+		ARG 4 boldOffset
+		ARG 5 x
+		ARG 6 y
+		ARG 7 buffer
+		ARG 8 red
+		ARG 9 green
+		ARG 10 blue
+		ARG 11 alpha
 	METHOD method_1710 drawGlyph (Lnet/minecraft/class_382;ZZFFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V
 		ARG 1 glyphRenderer
 		ARG 2 bold
@@ -130,6 +142,12 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 	METHOD method_1722 wrapStringToWidth (Ljava/lang/String;I)Ljava/lang/String;
 		ARG 1 text
 		ARG 2 width
+	METHOD method_1723 draw (Ljava/lang/String;FFIZ)I
+		ARG 1 str
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 withShadow
 	METHOD method_1723 drawInternal (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)I
 		ARG 1 text
 		ARG 2 x
@@ -185,6 +203,12 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		ARG 8 seeThrough
 		ARG 9 backgroundColor
 		ARG 10 light
+	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZ)F
+		ARG 1 str
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 isShadow
 	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZLnet/minecraft/class_1159;Lnet/minecraft/class_4597;ZII)F
 		ARG 1 text
 		ARG 2 x
@@ -226,13 +250,13 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		COMMENT Gets the width of some text when rendered.
 		ARG 1 text
 			COMMENT the text
+	METHOD method_1728 wrapStringToWidthAsList (Ljava/lang/String;I)Ljava/util/List;
+		ARG 1 text
+		ARG 2 width
 	METHOD method_1728 wrapLines (Lnet/minecraft/class_5348;I)Ljava/util/List;
 		COMMENT Wraps text when the rendered width of text exceeds the {@code width}.
 		COMMENT
 		COMMENT @return a list of ordered text which has been wrapped
-		ARG 1 text
-		ARG 2 width
-	METHOD method_1728 wrapStringToWidthAsList (Ljava/lang/String;I)Ljava/util/List;
 		ARG 1 text
 		ARG 2 width
 	METHOD method_1729 draw (Ljava/lang/String;FFI)I
@@ -649,30 +673,6 @@ CLASS net/minecraft/class_327 net/minecraft/client/font/TextRenderer
 		COMMENT @see #getWrappedLinesHeight(String, int)
 		ARG 1 text
 		ARG 2 maxWidth
-	METHOD method_1710 drawGlyph (Lnet/minecraft/class_382;ZZFFFLnet/minecraft/class_287;FFFF)V
-		ARG 1 glyphRenderer
-		ARG 2 bold
-		ARG 3 strikethrough
-		ARG 4 boldOffset
-		ARG 5 x
-		ARG 6 y
-		ARG 7 buffer
-		ARG 8 red
-		ARG 9 green
-		ARG 10 blue
-		ARG 11 alpha
-	METHOD method_1723 draw (Ljava/lang/String;FFIZ)I
-		ARG 1 str
-		ARG 2 x
-		ARG 3 y
-		ARG 4 color
-		ARG 5 withShadow
-	METHOD method_1724 drawLayer (Ljava/lang/String;FFIZ)F
-		ARG 1 str
-		ARG 2 x
-		ARG 3 y
-		ARG 4 color
-		ARG 5 isShadow
 	CLASS class_328 Rectangle
 		METHOD method_1730 draw (Lnet/minecraft/class_287;)V
 			ARG 1 bufferBuilder

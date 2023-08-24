@@ -1,21 +1,30 @@
 CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHandler
+	FIELD field_14116 messageCooldown I
 	FIELD field_14117 movePacketsCount I
+	FIELD field_14118 ticks I
 	FIELD field_14119 requestedTeleportPos Lnet/minecraft/class_243;
 	FIELD field_14120 updatedRiddenZ D
+	FIELD field_14121 LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD field_14121 LOGGER Lorg/slf4j/Logger;
 	FIELD field_14122 updatedRiddenX D
 	FIELD field_14123 requestedTeleportId I
 	FIELD field_14124 lastTickRiddenY D
 	FIELD field_14125 waitingForKeepAlive Z
 	FIELD field_14126 updatedY D
+	FIELD field_14127 connection Lnet/minecraft/class_2535;
 	FIELD field_14128 lastTickZ D
 	FIELD field_14129 vehicleFloating Z
 	FIELD field_14130 lastTickX D
 	FIELD field_14131 floating Z
 	FIELD field_14132 transactions Lit/unimi/dsi/fastutil/ints/Int2ShortMap;
+	FIELD field_14133 creativeItemDropThreshold I
+	FIELD field_14134 keepAliveId J
 	FIELD field_14135 lastTickMovePacketsCount I
+	FIELD field_14136 lastKeepAliveTime J
 	FIELD field_14137 vehicleFloatingTicks I
 	FIELD field_14138 floatingTicks I
+	FIELD field_14139 teleportRequestTick I
+	FIELD field_14140 player Lnet/minecraft/class_3222;
 	FIELD field_14141 updatedRiddenY D
 	FIELD field_14142 lastTickRiddenZ D
 	FIELD field_14143 lastTickRiddenX D
@@ -23,6 +32,7 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 	FIELD field_14145 updatedX D
 	FIELD field_14146 lastTickY D
 	FIELD field_14147 topmostRiddenEntity Lnet/minecraft/class_1297;
+	FIELD field_14148 server Lnet/minecraft/server/MinecraftServer;
 	FIELD field_29778 KEEP_ALIVE_INTERVAL I
 	FIELD field_37280 MAX_BREAK_SQUARED_DISTANCE D
 	FIELD field_37281 DEFAULT_SEQUENCE I
@@ -38,20 +48,24 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 	FIELD field_39989 MAX_PENDING_ACKNOWLEDGMENTS I
 	FIELD field_39990 CHAT_VALIDATION_FAILED_TEXT Lnet/minecraft/class_2561;
 	FIELD field_40720 session Lnet/minecraft/class_7822;
-	FIELD field_14116 messageCooldown I
-	FIELD field_14118 ticks I
-	FIELD field_14121 LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD field_14127 connection Lnet/minecraft/class_2535;
-	FIELD field_14133 creativeItemDropThreshold I
-	FIELD field_14134 keepAliveId J
-	FIELD field_14136 lastKeepAliveTime J
-	FIELD field_14139 teleportRequestTick I
-	FIELD field_14140 player Lnet/minecraft/class_3222;
-	FIELD field_14148 server Lnet/minecraft/server/MinecraftServer;
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;)V
 		ARG 1 server
 		ARG 2 connection
 		ARG 3 player
+	METHOD method_14360 requestTeleport (DDDFFLjava/util/Set;)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+	METHOD method_14362 validatePlayerMove (Lnet/minecraft/class_2828;)Z
+		ARG 0 packet
+	METHOD method_14363 requestTeleport (DDDFF)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
 	METHOD method_14365 (Lnet/minecraft/class_2805;Lcom/mojang/brigadier/suggestion/Suggestions;)V
 		ARG 2 suggestions
 	METHOD method_14367 disconnect (Lnet/minecraft/class_2561;)V
@@ -62,6 +76,8 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 	METHOD method_14369 sendPacket (Lnet/minecraft/class_2596;Lnet/minecraft/class_7648;)V
 		ARG 1 packet
 		ARG 2 callbacks
+	METHOD method_14370 executeCommand (Ljava/lang/String;)V
+		ARG 1 input
 	METHOD method_14371 isMovementInvalid (DDDFF)Z
 		COMMENT {@return whether this movement is invalid}
 		COMMENT
@@ -221,6 +237,15 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 		COMMENT the message is still accepted in this case.
 		ARG 1 message
 		ARG 2 timestamp
+	METHOD method_44337 validateMessage (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/class_7635$class_7636;)Ljava/util/Optional;
+		COMMENT {@return the validated acknowledgment if the message is valid, or an empty optional
+		COMMENT if it is not}
+		COMMENT
+		COMMENT <p>This disconnects the player if the message arrives in {@linkplain
+		COMMENT #isInProperOrder improper order} or if chat is disabled.
+		ARG 1 message
+		ARG 2 timestamp
+		ARG 3 acknowledgment
 	METHOD method_44337 canAcceptMessage (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/class_7635$class_7636;)Z
 		COMMENT {@return whether {@code message}, sent at {@code timestamp}, should be accepted}
 		COMMENT
@@ -230,15 +255,6 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 		COMMENT Note that the signatures are verified in {@link #canAcceptMessage(SignedMessage)}.
 		COMMENT
 		COMMENT @see #canAcceptMessage(SignedMessage)
-		ARG 1 message
-		ARG 2 timestamp
-		ARG 3 acknowledgment
-	METHOD method_44337 validateMessage (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/class_7635$class_7636;)Ljava/util/Optional;
-		COMMENT {@return the validated acknowledgment if the message is valid, or an empty optional
-		COMMENT if it is not}
-		COMMENT
-		COMMENT <p>This disconnects the player if the message arrives in {@linkplain
-		COMMENT #isInProperOrder improper order} or if chat is disabled.
 		ARG 1 message
 		ARG 2 timestamp
 		ARG 3 acknowledgment
@@ -322,22 +338,6 @@ CLASS net/minecraft/class_3244 net/minecraft/server/network/ServerPlayNetworkHan
 	METHOD method_46366 (Lnet/minecraft/class_7822;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 2 executor
 	METHOD method_48107 getConnectionAddress ()Ljava/net/SocketAddress;
-	METHOD method_14360 requestTeleport (DDDFFLjava/util/Set;)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-	METHOD method_14362 validatePlayerMove (Lnet/minecraft/class_2828;)Z
-		ARG 0 packet
-	METHOD method_14363 requestTeleport (DDDFF)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-	METHOD method_14370 executeCommand (Ljava/lang/String;)V
-		ARG 1 input
 	CLASS 1
 		METHOD method_33897 processInteract (Lnet/minecraft/class_1268;Lnet/minecraft/class_3244$class_5860;)V
 			ARG 1 hand

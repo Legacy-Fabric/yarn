@@ -6,13 +6,13 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 	COMMENT implementations and can be used as a map key.
 	COMMENT
 	COMMENT @see BlockBox
-	FIELD field_31879 EPSILON D
 	FIELD field_1320 maxX D
 	FIELD field_1321 minZ D
 	FIELD field_1322 minY D
 	FIELD field_1323 minX D
 	FIELD field_1324 maxZ D
 	FIELD field_1325 maxY D
+	FIELD field_31879 EPSILON D
 	METHOD <init> (DDDDDD)V
 		COMMENT Creates a box of the given positions as corners.
 		ARG 1 x1
@@ -51,6 +51,9 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		ARG 11 maxZ
 	METHOD method_1005 getCenter ()Lnet/minecraft/class_243;
 		COMMENT Returns the center position of this box.
+	METHOD method_1006 contains (Lnet/minecraft/class_243;)Z
+		COMMENT Checks if the given position is in this box.
+		ARG 1 pos
 	METHOD method_1007 traceCollisionSide (Lnet/minecraft/class_238;Lnet/minecraft/class_243;[DLnet/minecraft/class_2350;DDD)Lnet/minecraft/class_2350;
 		ARG 0 box
 		ARG 1 intersectingVector
@@ -64,6 +67,11 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD method_1009 expand (DDD)Lnet/minecraft/class_238;
+		COMMENT @see #contract(double, double, double)
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_1010 raycast (Ljava/lang/Iterable;Lnet/minecraft/class_243;Lnet/minecraft/class_243;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3965;
 		ARG 0 boxes
 		ARG 1 from
@@ -72,6 +80,13 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 	METHOD method_1011 contract (D)Lnet/minecraft/class_238;
 		COMMENT @see #expand(double)
 		ARG 1 value
+	METHOD method_1012 stretch (DDD)Lnet/minecraft/class_238;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD method_1013 isValid ()Z
+		COMMENT Checks if any of the coordinates of this box is {@linkplain
+		COMMENT Double#isNaN(double) not a number}.
 	METHOD method_1014 expand (D)Lnet/minecraft/class_238;
 		COMMENT @see #contract(double)
 		ARG 1 value
@@ -120,9 +135,18 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		ARG 5 z
 	METHOD method_49271 squaredMagnitude (Lnet/minecraft/class_243;)D
 		ARG 1 pos
+	METHOD method_989 offset (DDD)Lnet/minecraft/class_238;
+		COMMENT Creates a box that is translated by {@code x}, {@code y}, {@code z} on
+		COMMENT each axis from this box.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_990 getMax (Lnet/minecraft/class_2350$class_2351;)D
 		COMMENT {@return the maximum coordinate for the given {@code axis} of this box}
 		ARG 1 axis
+	METHOD method_991 union (Lnet/minecraft/class_238;)Lnet/minecraft/class_238;
+		COMMENT Creates the minimum box that contains this box and the given box.
+		ARG 1 box
 	METHOD method_992 raycast (Lnet/minecraft/class_243;Lnet/minecraft/class_243;)Ljava/util/Optional;
 		ARG 1 min
 		ARG 2 max
@@ -131,6 +155,10 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 		COMMENT corners.
 		ARG 1 pos1
 		ARG 2 pos2
+	METHOD method_994 intersects (Lnet/minecraft/class_238;)Z
+		COMMENT Checks if this box intersects the given box.
+		ARG 1 box
+	METHOD method_995 getAverageSideLength ()D
 	METHOD method_996 offset (Lnet/minecraft/class_2338;)Lnet/minecraft/class_238;
 		COMMENT Creates a box that is translated by {@code blockPos.getX()}, {@code
 		COMMENT blockPos.getY()}, {@code blockPos.getZ()} on each axis from this box.
@@ -161,31 +189,3 @@ CLASS net/minecraft/class_238 net/minecraft/util/math/Box
 	METHOD method_999 intersection (Lnet/minecraft/class_238;)Lnet/minecraft/class_238;
 		COMMENT Creates the maximum box that this box and the given box contain.
 		ARG 1 box
-	METHOD method_1006 contains (Lnet/minecraft/class_243;)Z
-		COMMENT Checks if the given position is in this box.
-		ARG 1 pos
-	METHOD method_1009 expand (DDD)Lnet/minecraft/class_238;
-		COMMENT @see #contract(double, double, double)
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-	METHOD method_1012 stretch (DDD)Lnet/minecraft/class_238;
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-	METHOD method_1013 isValid ()Z
-		COMMENT Checks if any of the coordinates of this box is {@linkplain
-		COMMENT Double#isNaN(double) not a number}.
-	METHOD method_989 offset (DDD)Lnet/minecraft/class_238;
-		COMMENT Creates a box that is translated by {@code x}, {@code y}, {@code z} on
-		COMMENT each axis from this box.
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-	METHOD method_991 union (Lnet/minecraft/class_238;)Lnet/minecraft/class_238;
-		COMMENT Creates the minimum box that contains this box and the given box.
-		ARG 1 box
-	METHOD method_994 intersects (Lnet/minecraft/class_238;)Z
-		COMMENT Checks if this box intersects the given box.
-		ARG 1 box
-	METHOD method_995 getAverageSideLength ()D

@@ -34,19 +34,19 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	FIELD field_8000 DAMAGE_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8001 ATTACK_SPEED_MODIFIER_ID Ljava/util/UUID;
 	FIELD field_8002 CUSTOM_DATA_PROPERTY_GETTER Lnet/minecraft/class_1800;
-	FIELD field_8007 COOLDOWN_PROPERTY_GETTER Lnet/minecraft/class_1800;
-	FIELD field_8009 rarity Lnet/minecraft/class_1814;
-	FIELD field_8010 DAMAGED_PROPERTY_GETTER Lnet/minecraft/class_1800;
-	FIELD field_8011 LEFTHANDED_PROPERTY_GETTER Lnet/minecraft/class_1800;
-	FIELD field_8015 propertyGetters Ljava/util/Map;
 	FIELD field_8003 BLOCK_ITEMS Ljava/util/Map;
 	FIELD field_8004 group Lnet/minecraft/class_1761;
 	FIELD field_8005 RANDOM Ljava/util/Random;
 	FIELD field_8006 ATTACK_DAMAGE_MODIFIER_ID Ljava/util/UUID;
+	FIELD field_8007 COOLDOWN_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8008 recipeRemainder Lnet/minecraft/class_1792;
+	FIELD field_8009 rarity Lnet/minecraft/class_1814;
+	FIELD field_8010 DAMAGED_PROPERTY_GETTER Lnet/minecraft/class_1800;
+	FIELD field_8011 LEFTHANDED_PROPERTY_GETTER Lnet/minecraft/class_1800;
 	FIELD field_8012 maxDamage I
 	FIELD field_8013 maxCount I
 	FIELD field_8014 translationKey Ljava/lang/String;
+	FIELD field_8015 propertyGetters Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/class_1792$class_1793;)V
 		ARG 1 settings
 	METHOD method_16698 isNetworkSynced ()Z
@@ -167,6 +167,12 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 			COMMENT the player who used the item
 		ARG 3 hand
 			COMMENT the hand used
+	METHOD method_7837 getEnchantability ()I
+		COMMENT Gets the enchantability of an item.
+		COMMENT This specifies the ability of an item to receive enchantments when enchanted using an enchanting table.
+		COMMENT As the value increases, the amount and level of enchantments applied increase.
+		COMMENT
+		COMMENT <p>If the value of this method is 0, the item cannot be enchanted using an enchanting table.
 	METHOD method_7838 isUsedOnRelease (Lnet/minecraft/class_1799;)Z
 		ARG 1 stack
 	METHOD method_7839 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
@@ -188,12 +194,21 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 world
 		ARG 3 user
 		ARG 4 remainingUseTicks
+	METHOD method_7841 getMaxDamage ()I
+		COMMENT {@return the maximum durability of this item} Can be configured through {@link Item.Settings#maxDamage(int) settings.maxDamage()}.
+	METHOD method_7843 onCraft (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;)V
+		COMMENT Called when a player acquires the item by crafting, smelting, smithing, etc.
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 player
 	METHOD method_7844 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
 		COMMENT {@return the attribute modifiers the item provides}
 		COMMENT
 		COMMENT <p>Tools and armor should override this to specify the attack damage or armor points.
 		ARG 1 slot
 	METHOD method_7845 hasPropertyGetters ()Z
+	METHOD method_7846 isDamageable ()Z
+		COMMENT {@return whether this item can lose durability}
 	METHOD method_7847 useOnEntity (Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_1309;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
 		COMMENT Called on both the client and the server when a player uses the item on an entity.
 		COMMENT
@@ -249,6 +264,9 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 3 stack
 		ARG 4 remainingUseTicks
 			COMMENT how long it's left until the entity finishes using the item, in ticks
+	METHOD method_7853 getUseAction (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1839;
+		COMMENT {@return the use action the item should perform}
+		ARG 1 stack
 	METHOD method_7854 getDefaultStack ()Lnet/minecraft/class_1799;
 		COMMENT {@return the default stack for this item}
 		COMMENT
@@ -265,10 +283,17 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		COMMENT Other items, such as shears on string, may use their own logic
 		COMMENT and calls to this method might not return a value consistent to this rule for those items.
 		ARG 1 state
+	METHOD method_7857 hasRecipeRemainder ()Z
+		COMMENT Checks if this item has a remainder item that is left behind when used as a crafting ingredient.
+	METHOD method_7858 getRecipeRemainder ()Lnet/minecraft/class_1792;
+		COMMENT Gets the remainder item that should be left behind when this item is used as a crafting ingredient.
+	METHOD method_7859 getGroup ()Lnet/minecraft/class_1761;
 	METHOD method_7860 postProcessNbt (Lnet/minecraft/class_2487;)V
 		COMMENT Processes the NBT applied to an item stack of this item.
 		COMMENT
 		COMMENT <p>This is only used in vanilla to process player head NBT data.
+		ARG 1 nbt
+	METHOD method_7860 postProcessNbt (Lnet/minecraft/class_2487;)Z
 		ARG 1 nbt
 	METHOD method_7861 finishUsing (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1799;
 		COMMENT Called when an entity finishes using the item, such as eating food or drinking a potion.
@@ -285,6 +310,15 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 user
+	METHOD method_7862 getRarity (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;
+		COMMENT {@return this item's rarity, which changes the color of its name}
+		COMMENT
+		COMMENT <p>By default, if an item has an enchantment, its rarity is modified:
+		COMMENT <ul>
+		COMMENT \t<li>Common and Uncommon -> Rare
+		COMMENT \t<li>Rare -> Epic
+		COMMENT </ul>
+		ARG 1 stack
 	METHOD method_7863 addPropertyGetter (Lnet/minecraft/class_2960;Lnet/minecraft/class_1800;)V
 		ARG 1 id
 		ARG 2 property
@@ -301,9 +335,20 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		COMMENT @see MiningToolItem
 		ARG 1 stack
 		ARG 2 state
+	METHOD method_7866 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
+		COMMENT Gets the translation key of this item using the provided item stack for context.
+		ARG 1 stack
+	METHOD method_7867 fromBlock (Lnet/minecraft/class_2248;)Lnet/minecraft/class_1792;
+		COMMENT @deprecated Please use {@link Block#asItem}
+		ARG 0 block
 	METHOD method_7868 getPropertyGetter (Lnet/minecraft/class_2960;)Lnet/minecraft/class_1800;
 		ARG 1 id
 	METHOD method_7869 getOrCreateTranslationKey ()Ljava/lang/String;
+	METHOD method_7870 isEnchantable (Lnet/minecraft/class_1799;)Z
+		COMMENT {@return whether the given {@link ItemStack} is enchantable}
+		COMMENT
+		COMMENT <p>By default, ItemStacks are enchantable if their max stack count is 1 and they can be damaged.
+		ARG 1 stack
 	METHOD method_7871 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
 		ARG 0 stack
 		ARG 1 world
@@ -316,15 +361,37 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 0 world
 		ARG 1 player
 		ARG 2 fluidHandling
+	METHOD method_7873 postHit (Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
+		COMMENT Called on the server when the item is used to hit an entity.
+		COMMENT
+		COMMENT <p>Tools and melee weapons should override this to damage the stack.
+		COMMENT
+		COMMENT @return whether the item's use stat should be incremented
+		COMMENT @see ItemStack#damage(int, LivingEntity, java.util.function.Consumer)
+		ARG 1 stack
+		ARG 2 target
+		ARG 3 attacker
 	METHOD method_7874 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
 		ARG 0 stack
 		ARG 1 world
 		ARG 2 entity
+	METHOD method_7875 byRawId (I)Lnet/minecraft/class_1792;
+		COMMENT {@return the item from its raw ID}
+		ARG 0 id
+	METHOD method_7876 getTranslationKey ()Ljava/lang/String;
+		COMMENT Gets the translation key of this item.
 	METHOD method_7877 isIn (Lnet/minecraft/class_1761;)Z
 		COMMENT Checks whether this item should appear in a specified item group.
 		COMMENT
 		COMMENT @return true if the item is in the specified item group or the item group is {@link net.minecraft.item.ItemGroup#SEARCH}.
 		ARG 1 group
+	METHOD method_7878 canRepair (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
+		COMMENT {@return whether {@code stack} can be repaired using {@code ingredient}}
+		COMMENT
+		COMMENT <p>This only handles repairing using the ingredient such as diamonds, and does
+		COMMENT not handle combining tools or armor.
+		ARG 1 stack
+		ARG 2 ingredient
 	METHOD method_7879 postMine (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_2680;Lnet/minecraft/class_2338;Lnet/minecraft/class_1309;)Z
 		COMMENT Called on the server when the item is used to break a block.
 		COMMENT
@@ -339,6 +406,15 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 3 state
 		ARG 4 pos
 		ARG 5 miner
+	METHOD method_7880 getRawId (Lnet/minecraft/class_1792;)I
+		COMMENT {@return the raw ID of {@code item}, or 0 if passed {@code null}}
+		ARG 0 item
+	METHOD method_7881 getMaxUseTime (Lnet/minecraft/class_1799;)I
+		COMMENT {@return the maximum use (right-click) time of this item, in ticks}
+		COMMENT Once a player has used an item for said number of ticks, they stop using it, and {@link Item#finishUsing} is called.
+		ARG 1 stack
+	METHOD method_7882 getMaxCount ()I
+		COMMENT {@return the maximum stack count of any ItemStack with this item} Can be configured through {@link Item.Settings#maxCount(int) settings.maxCount()}.
 	METHOD method_7883 (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)F
 		ARG 0 stack
 		ARG 1 world
@@ -363,82 +439,6 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 2 world
 		ARG 3 pos
 		ARG 4 miner
-	METHOD method_7837 getEnchantability ()I
-		COMMENT Gets the enchantability of an item.
-		COMMENT This specifies the ability of an item to receive enchantments when enchanted using an enchanting table.
-		COMMENT As the value increases, the amount and level of enchantments applied increase.
-		COMMENT
-		COMMENT <p>If the value of this method is 0, the item cannot be enchanted using an enchanting table.
-	METHOD method_7841 getMaxDamage ()I
-		COMMENT {@return the maximum durability of this item} Can be configured through {@link Item.Settings#maxDamage(int) settings.maxDamage()}.
-	METHOD method_7843 onCraft (Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;)V
-		COMMENT Called when a player acquires the item by crafting, smelting, smithing, etc.
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 player
-	METHOD method_7846 isDamageable ()Z
-		COMMENT {@return whether this item can lose durability}
-	METHOD method_7853 getUseAction (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1839;
-		COMMENT {@return the use action the item should perform}
-		ARG 1 stack
-	METHOD method_7857 hasRecipeRemainder ()Z
-		COMMENT Checks if this item has a remainder item that is left behind when used as a crafting ingredient.
-	METHOD method_7858 getRecipeRemainder ()Lnet/minecraft/class_1792;
-		COMMENT Gets the remainder item that should be left behind when this item is used as a crafting ingredient.
-	METHOD method_7859 getGroup ()Lnet/minecraft/class_1761;
-	METHOD method_7860 postProcessNbt (Lnet/minecraft/class_2487;)Z
-		ARG 1 nbt
-	METHOD method_7862 getRarity (Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;
-		COMMENT {@return this item's rarity, which changes the color of its name}
-		COMMENT
-		COMMENT <p>By default, if an item has an enchantment, its rarity is modified:
-		COMMENT <ul>
-		COMMENT \t<li>Common and Uncommon -> Rare
-		COMMENT \t<li>Rare -> Epic
-		COMMENT </ul>
-		ARG 1 stack
-	METHOD method_7866 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
-		COMMENT Gets the translation key of this item using the provided item stack for context.
-		ARG 1 stack
-	METHOD method_7867 fromBlock (Lnet/minecraft/class_2248;)Lnet/minecraft/class_1792;
-		COMMENT @deprecated Please use {@link Block#asItem}
-		ARG 0 block
-	METHOD method_7870 isEnchantable (Lnet/minecraft/class_1799;)Z
-		COMMENT {@return whether the given {@link ItemStack} is enchantable}
-		COMMENT
-		COMMENT <p>By default, ItemStacks are enchantable if their max stack count is 1 and they can be damaged.
-		ARG 1 stack
-	METHOD method_7873 postHit (Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;)Z
-		COMMENT Called on the server when the item is used to hit an entity.
-		COMMENT
-		COMMENT <p>Tools and melee weapons should override this to damage the stack.
-		COMMENT
-		COMMENT @return whether the item's use stat should be incremented
-		COMMENT @see ItemStack#damage(int, LivingEntity, java.util.function.Consumer)
-		ARG 1 stack
-		ARG 2 target
-		ARG 3 attacker
-	METHOD method_7875 byRawId (I)Lnet/minecraft/class_1792;
-		COMMENT {@return the item from its raw ID}
-		ARG 0 id
-	METHOD method_7876 getTranslationKey ()Ljava/lang/String;
-		COMMENT Gets the translation key of this item.
-	METHOD method_7878 canRepair (Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z
-		COMMENT {@return whether {@code stack} can be repaired using {@code ingredient}}
-		COMMENT
-		COMMENT <p>This only handles repairing using the ingredient such as diamonds, and does
-		COMMENT not handle combining tools or armor.
-		ARG 1 stack
-		ARG 2 ingredient
-	METHOD method_7880 getRawId (Lnet/minecraft/class_1792;)I
-		COMMENT {@return the raw ID of {@code item}, or 0 if passed {@code null}}
-		ARG 0 item
-	METHOD method_7881 getMaxUseTime (Lnet/minecraft/class_1799;)I
-		COMMENT {@return the maximum use (right-click) time of this item, in ticks}
-		COMMENT Once a player has used an item for said number of ticks, they stop using it, and {@link Item#finishUsing} is called.
-		ARG 1 stack
-	METHOD method_7882 getMaxCount ()I
-		COMMENT {@return the maximum stack count of any ItemStack with this item} Can be configured through {@link Item.Settings#maxCount(int) settings.maxCount()}.
 	METHOD method_7886 hasGlint (Lnet/minecraft/class_1799;)Z
 		COMMENT Checks if the glint effect should be applied when the item is rendered.
 		COMMENT

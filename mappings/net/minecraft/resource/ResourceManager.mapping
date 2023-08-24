@@ -1,5 +1,7 @@
 CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 	COMMENT Provides resource loading capabilities to Minecraft.
+	METHOD method_14487 getAllNamespaces ()Ljava/util/Set;
+		COMMENT Gets a set of all namespaces offered by the resource packs loaded by this manager.
 	METHOD method_14488 findResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
 		COMMENT Returns a sorted list of identifiers matching a path predicate.
 		COMMENT
@@ -28,6 +30,15 @@ CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 			COMMENT the starting path to begin scanning from
 		ARG 2 allowedPathPredicate
 			COMMENT a predicate to determine whether a path should be included or not
+	METHOD method_14489 getAllResources (Lnet/minecraft/class_2960;)Ljava/util/List;
+		COMMENT Gets all of the available resources to the corresponding resource identifier.
+		COMMENT
+		COMMENT <p>Resources are returned in load order, or ascending order of priority, so the last element in the returned
+		COMMENT list is what would be returned normally by {@link #getResource}
+		COMMENT
+		COMMENT <p>Each resource in this returned list must be closed to avoid resource leaks.
+		ARG 1 id
+			COMMENT the resource identifier to search for
 	METHOD method_18234 containsResource (Lnet/minecraft/class_2960;)Z
 		COMMENT Checks whether any of the currently-loaded resource packs contain an entry for the given id.
 		COMMENT
@@ -42,15 +53,4 @@ CLASS net/minecraft/class_3300 net/minecraft/resource/ResourceManager
 	METHOD method_41265 findAllResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Map;
 		ARG 1 startingPath
 		ARG 2 allowedPathPredicate
-	METHOD method_14487 getAllNamespaces ()Ljava/util/Set;
-		COMMENT Gets a set of all namespaces offered by the resource packs loaded by this manager.
-	METHOD method_14489 getAllResources (Lnet/minecraft/class_2960;)Ljava/util/List;
-		COMMENT Gets all of the available resources to the corresponding resource identifier.
-		COMMENT
-		COMMENT <p>Resources are returned in load order, or ascending order of priority, so the last element in the returned
-		COMMENT list is what would be returned normally by {@link #getResource}
-		COMMENT
-		COMMENT <p>Each resource in this returned list must be closed to avoid resource leaks.
-		ARG 1 id
-			COMMENT the resource identifier to search for
 	CLASS class_5353 Empty

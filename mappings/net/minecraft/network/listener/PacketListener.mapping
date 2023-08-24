@@ -4,6 +4,11 @@ CLASS net/minecraft/class_2547 net/minecraft/network/listener/PacketListener
 	COMMENT
 	COMMENT <p>Its listener methods will be called on the netty event loop than the
 	COMMENT client or server game engine threads.
+	METHOD method_10839 onDisconnected (Lnet/minecraft/class_2561;)V
+		COMMENT Called when the connection this listener listens to has disconnected.
+		COMMENT Can be used to display the disconnection reason.
+		ARG 1 reason
+			COMMENT the reason of disconnection; may be a generic message
 	METHOD method_2872 getConnection ()Lnet/minecraft/class_2535;
 		COMMENT Returns the connection this packet listener intends to listen to.
 		COMMENT
@@ -24,8 +29,3 @@ CLASS net/minecraft/class_2547 net/minecraft/network/listener/PacketListener
 		COMMENT
 		COMMENT @see ServerPacketListener
 	METHOD method_48106 isConnectionOpen ()Z
-	METHOD method_10839 onDisconnected (Lnet/minecraft/class_2561;)V
-		COMMENT Called when the connection this listener listens to has disconnected.
-		COMMENT Can be used to display the disconnection reason.
-		ARG 1 reason
-			COMMENT the reason of disconnection; may be a generic message

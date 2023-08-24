@@ -4,8 +4,8 @@ CLASS net/minecraft/class_1966 net/minecraft/world/biome/source/BiomeSource
 	FIELD field_20643 biomes Ljava/util/function/Supplier;
 	FIELD field_24713 CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_9390 topMaterials Ljava/util/Set;
-	FIELD field_9392 structureFeatures Ljava/util/Map;
 	FIELD field_9391 SPAWN_BIOMES Ljava/util/List;
+	FIELD field_9392 structureFeatures Ljava/util/Map;
 	METHOD method_16359 getBiome (II)Lnet/minecraft/class_1959;
 		ARG 1 x
 		ARG 2 z
@@ -74,6 +74,9 @@ CLASS net/minecraft/class_1966 net/minecraft/world/biome/source/BiomeSource
 		ARG 3 width
 		ARG 4 height
 	METHOD method_8757 getNoiseRange (II)F
+	METHOD method_8758 getBiome (Lnet/minecraft/class_2338;)Lnet/minecraft/class_1959;
+		ARG 1 pos
+	METHOD method_8759 getSpawnBiomes ()Ljava/util/List;
 	METHOD method_8760 sampleBiomes (IIIIZ)[Lnet/minecraft/class_1959;
 		ARG 1 x
 		ARG 2 z
@@ -110,6 +113,12 @@ CLASS net/minecraft/class_1966 net/minecraft/world/biome/source/BiomeSource
 		ARG 5 predicate
 		ARG 6 random
 		ARG 7 noiseSampler
+	METHOD method_8762 locateBiome (IIILjava/util/List;Ljava/util/Random;)Lnet/minecraft/class_2338;
+		ARG 1 x
+		ARG 2 z
+		ARG 3 radius
+		ARG 4 biomes
+		ARG 5 random
 	METHOD method_8763 getBiomesInArea (III)Ljava/util/Set;
 		ARG 1 x
 		ARG 2 z
@@ -125,12 +134,3 @@ CLASS net/minecraft/class_1966 net/minecraft/world/biome/source/BiomeSource
 		ARG 3 z
 		ARG 4 radius
 		ARG 5 sampler
-	METHOD method_8758 getBiome (Lnet/minecraft/class_2338;)Lnet/minecraft/class_1959;
-		ARG 1 pos
-	METHOD method_8759 getSpawnBiomes ()Ljava/util/List;
-	METHOD method_8762 locateBiome (IIILjava/util/List;Ljava/util/Random;)Lnet/minecraft/class_2338;
-		ARG 1 x
-		ARG 2 z
-		ARG 3 radius
-		ARG 4 biomes
-		ARG 5 random

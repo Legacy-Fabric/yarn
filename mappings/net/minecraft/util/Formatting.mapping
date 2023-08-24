@@ -5,16 +5,16 @@ CLASS net/minecraft/class_124 net/minecraft/util/Formatting
 	COMMENT are associated with a specific color, while modifier formattings modify the
 	COMMENT style, such as by bolding the text. {@link #RESET} is a special formatting
 	COMMENT and is not classified as either of these two.
-	FIELD field_1053 colorValue Ljava/lang/Integer;
-	FIELD field_33292 FORMATTING_CODE_PREFIX C
-	FIELD field_39218 CODEC Lcom/mojang/serialization/Codec;
 	FIELD field_1052 BY_NAME Ljava/util/Map;
+	FIELD field_1053 colorValue Ljava/lang/Integer;
 	FIELD field_1057 name Ljava/lang/String;
 	FIELD field_1059 code C
 	FIELD field_1066 FORMATTING_CODE_PATTERN Ljava/util/regex/Pattern;
 	FIELD field_1069 stringValue Ljava/lang/String;
 	FIELD field_1071 colorIndex I
 	FIELD field_1081 modifier Z
+	FIELD field_33292 FORMATTING_CODE_PREFIX C
+	FIELD field_39218 CODEC Lcom/mojang/serialization/Codec;
 	METHOD <init> (Ljava/lang/String;ILjava/lang/String;CILjava/lang/Integer;)V
 		ARG 3 name
 		ARG 4 code
@@ -37,14 +37,6 @@ CLASS net/minecraft/class_124 net/minecraft/util/Formatting
 	METHOD method_532 getColorValue ()Ljava/lang/Integer;
 		COMMENT {@return the color of the formatted text, or {@code null} if the formatting
 		COMMENT has no associated color}
-	METHOD method_538 getFormatAtEnd (Ljava/lang/String;)Ljava/lang/String;
-		ARG 0 string
-	METHOD method_541 (Lnet/minecraft/class_124;)Lnet/minecraft/class_124;
-		ARG 0 f
-	METHOD method_544 byCode (C)Lnet/minecraft/class_124;
-		COMMENT {@return the formatting with the code {@code code}, or {@code null} if there is none}
-		ARG 0 code
-	METHOD method_545 affectsGlyphWidth ()Z
 	METHOD method_533 byName (Ljava/lang/String;)Lnet/minecraft/class_124;
 		COMMENT {@return the formatting with the name {@code name}, or {@code null} if there is none}
 		ARG 0 name
@@ -60,6 +52,8 @@ CLASS net/minecraft/class_124 net/minecraft/util/Formatting
 		COMMENT @apiNote This is also used to calculate scoreboard team display slot IDs.
 	METHOD method_537 getName ()Ljava/lang/String;
 		COMMENT {@return the name of the formatting}
+	METHOD method_538 getFormatAtEnd (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 string
 	METHOD method_539 strip (Ljava/lang/String;)Ljava/lang/String;
 		COMMENT {@return the {@code text} with all formatting codes removed}
 		COMMENT
@@ -71,7 +65,13 @@ CLASS net/minecraft/class_124 net/minecraft/util/Formatting
 			COMMENT whether or not to include color formattings
 		ARG 1 modifiers
 			COMMENT whether or not to include modifier formattings
+	METHOD method_541 (Lnet/minecraft/class_124;)Lnet/minecraft/class_124;
+		ARG 0 f
 	METHOD method_542 isModifier ()Z
 		COMMENT {@return true if the formatting is a modifier, false otherwise}
 	METHOD method_543 isColor ()Z
 		COMMENT {@return true if the formatting is associated with a color, false otherwise}
+	METHOD method_544 byCode (C)Lnet/minecraft/class_124;
+		COMMENT {@return the formatting with the code {@code code}, or {@code null} if there is none}
+		ARG 0 code
+	METHOD method_545 affectsGlyphWidth ()Z
