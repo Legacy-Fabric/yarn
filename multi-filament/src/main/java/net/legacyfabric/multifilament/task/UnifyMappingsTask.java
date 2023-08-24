@@ -1,25 +1,5 @@
 package net.legacyfabric.multifilament.task;
 
-import net.fabricmc.mappingio.MappingReader;
-import net.fabricmc.mappingio.MappingUtil;
-import net.fabricmc.mappingio.MappingWriter;
-import net.fabricmc.mappingio.format.MappingFormat;
-import net.fabricmc.mappingio.tree.MappingTree;
-import net.fabricmc.mappingio.tree.MemoryMappingTree;
-
-import net.fabricmc.mappingio.tree.VisitOrder;
-
-import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
-
-import org.gradle.api.file.DirectoryProperty;
-import org.gradle.api.file.RegularFileProperty;
-import org.gradle.api.provider.Property;
-import org.gradle.api.tasks.Input;
-import org.gradle.api.tasks.InputDirectory;
-import org.gradle.api.tasks.InputFile;
-
-import javax.inject.Inject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -27,6 +7,19 @@ import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+
+import javax.inject.Inject;
+
+import org.gradle.api.file.DirectoryProperty;
+import org.gradle.api.provider.Property;
+import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.InputDirectory;
+
+import net.fabricmc.mappingio.MappingReader;
+import net.fabricmc.mappingio.MappingWriter;
+import net.fabricmc.mappingio.format.MappingFormat;
+import net.fabricmc.mappingio.tree.MemoryMappingTree;
+import net.fabricmc.mappingio.tree.VisitOrder;
 
 public abstract class UnifyMappingsTask extends MappingOutputTask {
 	@Inject

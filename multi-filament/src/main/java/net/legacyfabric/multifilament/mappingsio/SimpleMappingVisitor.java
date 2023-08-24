@@ -1,15 +1,16 @@
 package net.legacyfabric.multifilament.mappingsio;
 
-import net.fabricmc.mappingio.MappedElementKind;
-import net.fabricmc.mappingio.MappingFlag;
-import net.fabricmc.mappingio.MappingVisitor;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import net.fabricmc.mappingio.MappedElementKind;
+import net.fabricmc.mappingio.MappingFlag;
+import net.fabricmc.mappingio.MappingVisitor;
+
 public class SimpleMappingVisitor implements MappingVisitor {
 	private final MappingVisitor parent;
+
 	public SimpleMappingVisitor(MappingVisitor parent) {
 		this.parent = parent;
 	}

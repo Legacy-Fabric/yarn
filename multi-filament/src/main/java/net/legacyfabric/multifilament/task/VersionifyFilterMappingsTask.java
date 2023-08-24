@@ -1,22 +1,20 @@
 package net.legacyfabric.multifilament.task;
 
-import net.fabricmc.mappingio.MappingReader;
-import net.fabricmc.mappingio.MappingWriter;
+import java.io.IOException;
 
-import net.fabricmc.mappingio.format.MappingFormat;
-
-import net.fabricmc.mappingio.tree.MemoryMappingTree;
-
-import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
+import javax.inject.Inject;
 
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.RegularFileProperty;
 import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.InputFile;
 
-import javax.inject.Inject;
+import net.fabricmc.mappingio.MappingReader;
+import net.fabricmc.mappingio.MappingWriter;
+import net.fabricmc.mappingio.format.MappingFormat;
+import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
-import java.io.IOException;
+import net.legacyfabric.multifilament.mappingsio.FilteringMappingVisitor;
 
 public abstract class VersionifyFilterMappingsTask extends MappingOutputTask {
 	@Inject

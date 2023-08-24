@@ -1,14 +1,14 @@
 package net.legacyfabric.multifilament.mappingsio;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+
 import net.fabricmc.mappingio.MappedElementKind;
 import net.fabricmc.mappingio.MappingFlag;
 import net.fabricmc.mappingio.MappingVisitor;
 import net.fabricmc.mappingio.tree.MappingTree;
 import net.fabricmc.mappingio.tree.MemoryMappingTree;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
 
 public class ExcludingMappingVisitor implements MappingVisitor {
 	private final MappingVisitor parent;
@@ -17,6 +17,7 @@ public class ExcludingMappingVisitor implements MappingVisitor {
 	private MappingTree.ClassMapping currentClass;
 	private MappingTree.FieldMapping currentField;
 	private MappingTree.MethodMapping currentMethod;
+
 	public ExcludingMappingVisitor(MappingVisitor parent, MemoryMappingTree mappingTree) {
 		this.parent = parent;
 		this.mappingTree = mappingTree;

@@ -1,24 +1,5 @@
 package net.legacyfabric.multifilament.task;
 
-import daomephsta.unpick.constantmappers.datadriven.parser.FieldKey;
-import daomephsta.unpick.constantmappers.datadriven.parser.MethodKey;
-import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Reader;
-import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Remapper;
-import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Writer;
-
-import net.fabricmc.filament.task.RemapUnpickDefinitionsTask;
-import net.fabricmc.filament.util.FileUtil;
-import net.fabricmc.filament.util.UnpickUtil;
-import net.fabricmc.mappingio.MappingReader;
-import net.fabricmc.mappingio.tree.MappingTree;
-import net.fabricmc.mappingio.tree.MemoryMappingTree;
-
-import org.gradle.api.tasks.TaskAction;
-import org.gradle.workers.WorkAction;
-import org.gradle.workers.WorkQueue;
-
-import javax.inject.Inject;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,6 +7,24 @@ import java.io.UncheckedIOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.inject.Inject;
+
+import daomephsta.unpick.constantmappers.datadriven.parser.FieldKey;
+import daomephsta.unpick.constantmappers.datadriven.parser.MethodKey;
+import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Reader;
+import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Remapper;
+import daomephsta.unpick.constantmappers.datadriven.parser.v2.UnpickV2Writer;
+import org.gradle.api.tasks.TaskAction;
+import org.gradle.workers.WorkAction;
+import org.gradle.workers.WorkQueue;
+
+import net.fabricmc.filament.task.RemapUnpickDefinitionsTask;
+import net.fabricmc.filament.util.FileUtil;
+import net.fabricmc.filament.util.UnpickUtil;
+import net.fabricmc.mappingio.MappingReader;
+import net.fabricmc.mappingio.tree.MappingTree;
+import net.fabricmc.mappingio.tree.MemoryMappingTree;
 
 public abstract class FixedRemapUnpickDefinitionsTask extends RemapUnpickDefinitionsTask {
 	public FixedRemapUnpickDefinitionsTask() {
@@ -62,8 +61,8 @@ public abstract class FixedRemapUnpickDefinitionsTask extends RemapUnpickDefinit
 				int toM = mappingTree.getNamespaceId(this.getParameters().getTargetNamespace().get());
 				Iterator var8 = mappingTree.getClasses().iterator();
 
-				while(var8.hasNext()) {
-					MappingTree.ClassMapping classDef = (MappingTree.ClassMapping)var8.next();
+				while (var8.hasNext()) {
+					MappingTree.ClassMapping classDef = (MappingTree.ClassMapping) var8.next();
 
 					String classFrom = classDef.getName(fromM);
 					String classTo = classDef.getName(toM);
@@ -76,15 +75,15 @@ public abstract class FixedRemapUnpickDefinitionsTask extends RemapUnpickDefinit
 					classMappings.put(classFrom, classTo);
 					Iterator var10 = classDef.getMethods().iterator();
 
-					while(var10.hasNext()) {
-						MappingTree.MethodMapping methodDef = (MappingTree.MethodMapping)var10.next();
+					while (var10.hasNext()) {
+						MappingTree.MethodMapping methodDef = (MappingTree.MethodMapping) var10.next();
 						methodMappings.put(new MethodKey(classFrom, methodDef.getName(fromM), methodDef.getDesc(fromM)), methodDef.getName(toM));
 					}
 
 					var10 = classDef.getFields().iterator();
 
-					while(var10.hasNext()) {
-						MappingTree.FieldMapping fieldDef = (MappingTree.FieldMapping)var10.next();
+					while (var10.hasNext()) {
+						MappingTree.FieldMapping fieldDef = (MappingTree.FieldMapping) var10.next();
 						fieldMappings.put(new FieldKey(classFrom, fieldDef.getName(fromM)), fieldDef.getName(toM));
 					}
 				}

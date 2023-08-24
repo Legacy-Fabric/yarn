@@ -1,27 +1,22 @@
 package net.legacyfabric.multifilament.task;
 
-import net.fabricmc.mappingio.MappingReader;
-import net.fabricmc.mappingio.MappingWriter;
-import net.fabricmc.mappingio.format.MappingFormat;
-import net.fabricmc.mappingio.tree.MemoryMappingTree;
-
-import net.legacyfabric.multifilament.mappingsio.ExcludingMappingVisitor;
-
-import net.legacyfabric.multifilament.mappingsio.SimpleMappingVisitor;
-
-import org.gradle.api.file.DirectoryProperty;
-import org.gradle.api.file.RegularFileProperty;
-import org.gradle.api.tasks.InputDirectory;
-import org.gradle.api.tasks.InputFile;
-
-import javax.inject.Inject;
-
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+
+import javax.inject.Inject;
+
+import org.gradle.api.file.DirectoryProperty;
+import org.gradle.api.tasks.InputDirectory;
+
+import net.fabricmc.mappingio.MappingReader;
+import net.fabricmc.mappingio.MappingWriter;
+import net.fabricmc.mappingio.format.MappingFormat;
+
+import net.legacyfabric.multifilament.mappingsio.SimpleMappingVisitor;
 
 public abstract class DeduplicateMappingsTask extends MappingOutputTask {
 	@Inject
