@@ -663,12 +663,12 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 0 world
 		ARG 1 pos
 	METHOD method_8490 getLuminance (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)I
-		ARG 1 type
+		ARG 1 lightType
 		ARG 2 pos
 	METHOD method_8491 (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;I)V
-		ARG 1 type
+		ARG 1 lightType
 		ARG 2 pos
-		ARG 3 level
+		ARG 3 lightLevel
 	METHOD method_8492 scheduleTick (Lnet/minecraft/class_197;Lnet/minecraft/class_2552;Ljava/util/Random;)V
 		ARG 1 block
 		ARG 2 pos
@@ -774,7 +774,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 pos
 		ARG 3 data
 	METHOD method_8529 getLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)I
-		ARG 1 type
+		ARG 1 lightType
 		ARG 2 pos
 	METHOD method_8530 isRegionLoaded (Lnet/minecraft/class_1251;Z)Z
 		ARG 1 box
@@ -799,8 +799,8 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 dropAsItem
 	METHOD method_8538 setAmbientDarkness (I)V
 		ARG 1 ambientDarkness
-	METHOD method_8539 (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)Z
-		ARG 1 type
+	METHOD method_8539 calculateLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)Z
+		ARG 1 lightType
 		ARG 2 pos
 	METHOD method_8540 getBlockAt (Lnet/minecraft/class_2552;)Lnet/minecraft/class_197;
 		ARG 1 pos
@@ -814,6 +814,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 2 dir
 	METHOD method_8543 getLightLevel (Lnet/minecraft/class_2552;Z)I
 		ARG 1 pos
+		ARG 2 checkNeighbours
 	METHOD method_8544 unloadEntities (Ljava/util/Collection;)V
 		ARG 1 entities
 	METHOD method_8545 setLightningTicksLeft (I)V
@@ -849,7 +850,7 @@ CLASS net/minecraft/class_1150 net/minecraft/world/World
 		ARG 1 pos
 	METHOD method_8557 getLightLevel (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
-	METHOD method_8558 getLightLevelWithCheck (Lnet/minecraft/class_2552;)I
+	METHOD method_8558 getLightLevelWithNeighbours (Lnet/minecraft/class_2552;)I
 		ARG 1 pos
 	METHOD method_8559 getHighestBlock (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;
 		ARG 1 pos
