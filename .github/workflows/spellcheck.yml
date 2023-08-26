@@ -1,0 +1,15 @@
+name: "Check spelling"
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: streetsidesoftware/cspell-action@v3
+        with:
+          config: "cspell.json"
+          files: "mappings/**/*.mapping"
