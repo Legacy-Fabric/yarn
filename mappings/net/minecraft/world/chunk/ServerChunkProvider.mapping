@@ -6,7 +6,7 @@ CLASS net/minecraft/class_794 net/minecraft/world/chunk/ServerChunkProvider
 	FIELD field_2803 empty Lnet/minecraft/class_1196;
 	FIELD field_2804 chunkGenerator Lnet/minecraft/class_1193;
 	FIELD field_2805 chunkWriter Lnet/minecraft/class_1199;
-	FIELD field_2806 chunkMap Lnet/minecraft/class_835;
+	FIELD field_2806 chunkStorage Lnet/minecraft/class_835;
 	FIELD field_2807 chunks Ljava/util/List;
 	FIELD field_2808 world Lnet/minecraft/class_795;
 	FIELD field_8891 LOGGER Lorg/apache/logging/log4j/Logger;
@@ -23,9 +23,9 @@ CLASS net/minecraft/class_794 net/minecraft/world/chunk/ServerChunkProvider
 		ARG 3 pos
 	METHOD method_12774 unload (Lnet/minecraft/class_1196;)V
 		ARG 1 chunk
-	METHOD method_12776 (Z)Z
+	METHOD method_12776 saveAllChunks (Z)Z
 		ARG 1 saveEntities
-	METHOD method_12777 (II)Lnet/minecraft/class_1196;
+	METHOD method_12777 getOrLoadChunk (II)Lnet/minecraft/class_1196;
 		ARG 1 x
 		ARG 2 z
 	METHOD method_14961 (Lnet/minecraft/class_1150;Ljava/lang/String;Lnet/minecraft/class_2552;)Z
@@ -38,6 +38,7 @@ CLASS net/minecraft/class_794 net/minecraft/world/chunk/ServerChunkProvider
 	METHOD method_3864 (II)Z
 		ARG 1 x
 		ARG 2 z
+	METHOD method_3870 canSaveChunks ()Z
 	METHOD method_3871 getOrGenerateChunk (II)Lnet/minecraft/class_1196;
 		ARG 1 x
 		ARG 2 z
