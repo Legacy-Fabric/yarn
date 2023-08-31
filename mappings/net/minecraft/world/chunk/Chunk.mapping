@@ -1,6 +1,9 @@
 CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 	FIELD field_12911 EMPTY Lnet/minecraft/class_1197;
+	FIELD field_12912 unloaded Z
 	FIELD field_4725 surfaceCache [I
+	FIELD field_4726 columnSkyLightOutdated [Z
+		COMMENT A list of columns which need their skylight to be checked
 	FIELD field_4727 loaded Z
 	FIELD field_4728 world Lnet/minecraft/class_1150;
 	FIELD field_4729 heightmap [I
@@ -14,6 +17,7 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 	FIELD field_4737 lastSaveTime J
 	FIELD field_4740 chunkSections [Lnet/minecraft/class_1197;
 	FIELD field_4741 biomeArray [B
+	FIELD field_4742 isSkyLightOutdated Z
 	FIELD field_5479 minimumHeightmap I
 	FIELD field_6229 inhabitedTime J
 	FIELD field_7502 lightPopulated Z
@@ -23,13 +27,13 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 	FIELD field_9946 blocks Ljava/util/concurrent/ConcurrentLinkedQueue;
 	METHOD <init> (Lnet/minecraft/class_1150;II)V
 		ARG 1 world
-		ARG 2 chunkX
-		ARG 3 chunkZ
+		ARG 2 x
+		ARG 3 y
 	METHOD <init> (Lnet/minecraft/class_1150;Lnet/minecraft/class_2252;II)V
 		ARG 1 world
 		ARG 2 storage
-		ARG 3 chunkX
-		ARG 4 chunkZ
+		ARG 3 x
+		ARG 4 y
 	METHOD <init> (Lnet/minecraft/class_1150;[BII)V
 		ARG 1 world
 		ARG 2 blocks
@@ -88,9 +92,9 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 3 outList
 		ARG 4 predicate
 	METHOD method_3891 setLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;I)V
-		ARG 1 type
+		ARG 1 lightType
 		ARG 2 pos
-		ARG 3 light
+		ARG 3 lightLevel
 	METHOD method_3892 decorateChunk (Lnet/minecraft/class_1193;Lnet/minecraft/class_1193;II)V
 		ARG 1 provider1
 		ARG 2 provider2
@@ -129,11 +133,13 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD method_3909 (IIII)V
+	METHOD method_3909 calculateSkyLightForRegion (IIII)V
 		ARG 1 x
 		ARG 2 z
+		ARG 3 beginY
+		ARG 4 endY
 	METHOD method_3910 setModified ()V
-	METHOD method_3911 (II)V
+	METHOD method_3911 setColumnLightOutdated (II)V
 		ARG 1 x
 		ARG 2 z
 	METHOD method_3912 getBlockEntity (III)Lnet/minecraft/class_226;
@@ -145,12 +151,14 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 y
 		ARG 3 z
 	METHOD method_3914 isEmpty ()Z
-	METHOD method_3915 (III)V
+	METHOD method_3915 calculateSkyLightForColumn (III)V
 		ARG 1 x
 		ARG 2 z
+		ARG 3 y
 	METHOD method_3916 getHighestNonEmptySectionYOffset ()I
-	METHOD method_3917 (III)V
+	METHOD method_3917 lightBlock (III)V
 		ARG 1 x
+		ARG 2 y
 		ARG 3 z
 	METHOD method_3918 getBlockStorage ()[Lnet/minecraft/class_1197;
 	METHOD method_3919 tick ()V
@@ -162,8 +170,8 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 3 z
 	METHOD method_6533 populateBlockEntities (Z)V
 		ARG 1 runningBehind
-	METHOD method_6534 (Z)V
-		ARG 1 isClient
+	METHOD method_6534 recheckSkyLightGaps (Z)V
+		ARG 1 onlyOneColumn
 	METHOD method_6535 updateLight (II)Z
 		ARG 1 x
 		ARG 2 z
@@ -174,7 +182,7 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 y
 		ARG 3 z
 	METHOD method_9132 getLightAtPos (Lnet/minecraft/class_1161;Lnet/minecraft/class_2552;)I
-		ARG 1 type
+		ARG 1 lightType
 		ARG 2 pos
 	METHOD method_9133 getBlockAtPos (Lnet/minecraft/class_2552;)Lnet/minecraft/class_197;
 		ARG 1 pos
@@ -183,7 +191,7 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 2 darkness
 	METHOD method_9135 getBiomeAt (Lnet/minecraft/class_2552;Lnet/minecraft/class_1175;)Lnet/minecraft/class_1170;
 		ARG 1 pos
-		ARG 2 biomeSurce
+		ARG 2 biomeSource
 	METHOD method_9136 (Lnet/minecraft/class_2552;Lnet/minecraft/class_226;)V
 		ARG 1 pos
 		ARG 2 be
@@ -229,6 +237,8 @@ CLASS net/minecraft/class_1196 net/minecraft/world/chunk/Chunk
 		ARG 1 pos
 	METHOD method_9153 setModified (Z)V
 		ARG 1 modified
+	METHOD method_9154 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
+		ARG 1 pos
 	METHOD method_9155 setHasEntities (Z)V
 		ARG 1 containsEntities
 	METHOD method_9156 (Lnet/minecraft/class_2552;)Lnet/minecraft/class_2552;

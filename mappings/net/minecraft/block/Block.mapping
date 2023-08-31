@@ -258,8 +258,8 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Specifies whether the current block is a full block
 	FIELD field_7270 opacity I
 		COMMENT Stores the light opacity of the block
-	FIELD field_7271 transluscent Z
-		COMMENT Specifies whether the current block is transluscent
+	FIELD field_7271 translucent Z
+		COMMENT Specifies whether the current block is translucent
 	FIELD field_7272 lightLevel I
 		COMMENT Stores the block's luminescence
 	FIELD field_7273 useNeighbourLight Z
@@ -275,7 +275,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	FIELD field_9283 REGISTRY Lnet/minecraft/class_1940;
 		COMMENT The Registry object to which all blocks get registered to
 	FIELD field_9284 BLOCK_STATES Lnet/minecraft/class_1942;
-		COMMENT A List of all blockstates, used by Debug worlds
+		COMMENT A List of all BlockStates, used by Debug worlds
 	FIELD field_9285 SLIME Lnet/minecraft/class_197$class_200;
 		COMMENT Slime sound type
 	METHOD <init> (ILnet/minecraft/class_63;)V
@@ -677,7 +677,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_421 onUse (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2232;Lnet/minecraft/class_988;Lnet/minecraft/class_1354;FFF)Z
 		COMMENT Runs when the block is <i>used</i>, i.e. right clicked in most cases.
 		COMMENT It is similar to the same method in Item, but this method is called only when the player uses it when the block is placed, not when the player is holding the BlockItem.
-		COMMENT @return Whether the action is succesful
+		COMMENT @return Whether the action is successful
 		ARG 1 world
 			COMMENT the world that the block is placed in
 		ARG 2 pos
@@ -911,7 +911,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 lightLevel
 			COMMENT the block's luminescence
 	METHOD method_6442 getBlockFromItem (Lnet/minecraft/class_1069;)Lnet/minecraft/class_197;
-		COMMENT Returns a block by converting a blockitem to a block
+		COMMENT Returns a block by converting a item to a block
 		COMMENT @return The block
 		ARG 0 item
 			COMMENT the item that must be converted to a block
@@ -951,9 +951,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_6452 getOpacity ()I
 		COMMENT Returns the current block's opacity
 		COMMENT @return opacity
-	METHOD method_6453 isTransluscent ()Z
-		COMMENT Checks whether the current block is transluscent
-		COMMENT @return transluscent
+	METHOD method_6453 isTranslucent ()Z
+		COMMENT Checks whether the current block is translucent
+		COMMENT @return translucent
 	METHOD method_6454 getLightLevel ()I
 		COMMENT Returns the block's luminescence
 		COMMENT @return lightLevel
@@ -984,10 +984,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Used by grass and flowers.
 		COMMENT @return The block's offset type
 	METHOD method_8635 stateFromData (I)Lnet/minecraft/class_2232;
-		COMMENT Returns a blockstate of the current block from it's id
+		COMMENT Returns a BlockState of the current block from it's id
 		COMMENT @return The Default state
 		ARG 1 data
-			COMMENT the Blockstate's associated data value
+			COMMENT the BlockState's associated data value
 	METHOD method_8636 register (ILjava/lang/String;Lnet/minecraft/class_197;)V
 		COMMENT Registers a block to the registry
 		ARG 0 id
@@ -1202,10 +1202,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 state
 			COMMENT the BlockState
 	METHOD method_8656 getBlockState (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_2232;
-		COMMENT Returns the current block's blockstate at a certain position
+		COMMENT Returns the current block's BlockState at a certain position
 		COMMENT @return state
 		ARG 1 state
-			COMMENT the original blockstate
+			COMMENT the original BlockState
 		ARG 2 view
 			COMMENT blockView instance
 		ARG 3 pos
@@ -1257,7 +1257,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT the block's BlockState
 		ARG 4 rand
 			COMMENT random object
-	METHOD method_8661 sheduledTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
+	METHOD method_8661 scheduledTick (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Ljava/util/Random;)V
 		ARG 1 state
 		ARG 2 world
 		ARG 3 pos
@@ -1339,14 +1339,14 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 1 blockView
 		ARG 2 pos
 	METHOD method_8671 getData (Lnet/minecraft/class_2232;)I
-		COMMENT Returns the data value for a blockstate
-		COMMENT Throws an {@code IllegalArmumentException} as this method does not work
+		COMMENT Returns the data value for a BlockState
+		COMMENT Throws an {@code IllegalArgumentException} as this method does not work
 		COMMENT @return Zero
 		ARG 1 state
-			COMMENT the Blockstate
+			COMMENT the BlockState
 	METHOD method_8672 getStateFromRawId (I)Lnet/minecraft/class_2232;
 		COMMENT Returns a BlockState from it's id
-		COMMENT @return The Blockstate
+		COMMENT @return The BlockState
 		ARG 0 id
 			COMMENT the BlockState's id
 	METHOD method_8673 canBePlacedAtPos (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;)Z
@@ -1369,7 +1369,7 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns a new state manager with a property array.
 		COMMENT @return New state manager
 	METHOD method_8677 getByBlockState (Lnet/minecraft/class_2232;)I
-		COMMENT Returns a certain Block's id from a blockstate
+		COMMENT Returns a certain Block's id from a BlockState
 		COMMENT @return Block id
 		ARG 0 state
 			COMMENT the BlockState for which the id is returned
@@ -1386,10 +1386,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 			COMMENT the block's position
 	METHOD method_8680 getMaterialColor (Lnet/minecraft/class_2232;)Lnet/minecraft/class_65;
 		COMMENT Returns the block's material color from it's state
-		COMMENT Blockstates can have different material colors
+		COMMENT BlockStates can have different material colors
 		COMMENT @return materialColor
 		ARG 1 state
-			COMMENT the Blockstate for which the material color is returned
+			COMMENT the BlockState for which the material color is returned
 	METHOD method_8680 getMaterialColor (Lnet/minecraft/class_2232;Lnet/minecraft/class_1158;Lnet/minecraft/class_2552;)Lnet/minecraft/class_65;
 		ARG 1 state
 		ARG 2 view

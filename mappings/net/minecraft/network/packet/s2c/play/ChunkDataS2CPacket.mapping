@@ -1,11 +1,14 @@
 CLASS net/minecraft/class_2020 net/minecraft/network/packet/s2c/play/ChunkDataS2CPacket
 	FIELD field_11610 extraData Lnet/minecraft/class_2020$class_673;
+	FIELD field_13772 data [B
+	FIELD field_13773 blockEntities Ljava/util/List;
 	FIELD field_8633 chunkX I
 	FIELD field_8634 chunkZ I
 	FIELD field_8635 sections I
-	FIELD field_8639 load Z
+	FIELD field_8639 isFullChunk Z
 	METHOD <init> (Lnet/minecraft/class_1196;I)V
 		ARG 1 chunk
+		ARG 2 includedSectionsMask
 	METHOD <init> (Lnet/minecraft/class_1196;ZI)V
 		ARG 1 chunk
 		ARG 2 load
@@ -13,12 +16,21 @@ CLASS net/minecraft/class_2020 net/minecraft/network/packet/s2c/play/ChunkDataS2
 		ARG 0 chunk
 		ARG 1 load
 		ARG 2 notNether
+	METHOD method_12655 getReadBuffer ()Lnet/minecraft/class_1967;
+	METHOD method_12656 getDataSize (Lnet/minecraft/class_1196;ZI)I
+		ARG 1 chunk
+		ARG 3 includedSectionsMark
+	METHOD method_12657 writeData (Lnet/minecraft/class_1967;Lnet/minecraft/class_1196;ZI)I
+		ARG 1 buffer
+		ARG 2 chunk
+		ARG 4 includedSectionsMask
+	METHOD method_12658 getBlockEntityTagList ()Ljava/util/List;
+	METHOD method_12659 getWriteBuffer ()Lio/netty/buffer/ByteBuf;
 	METHOD method_7754 (Lnet/minecraft/class_1196;ZI)Lnet/minecraft/class_673;
 		ARG 0 chunk
 		ARG 1 load
 	METHOD method_7758 getChunkX ()I
 	METHOD method_7759 getChunkZ ()I
-	METHOD method_7760 getDataSize ()I
 	METHOD method_7762 shouldLoad ()Z
 	CLASS class_673 ExtraData
 		FIELD field_2488 bytes [B
