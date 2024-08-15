@@ -39,15 +39,16 @@ def main():
         version = args[1]
         command = " ".join(args[2:])
 
-    os.environ["MC_VERSION"] = version
-
-    exit_code = os.system(GRADLE_PREFIX + " " + command + " unifyMappings")
+    exit_code = run_command_with_mcversion(version, GRADLE_PREFIX + " " + command + " unifyMappings")
 
     if exit_code == 0:
         exit(0)
     else:
         exit(1)
 
+def run_command_with_mcversion(version: str, command: str) -> int:
+    os.environ["MC_VERSION"] = version
+    return os.system(command)
 
 if __name__ == '__main__':
     main()
