@@ -75,7 +75,7 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./ci.py "$MC_VERSION" publishToLocalAndTest
+      - run: python -u ./ci.py "$MC_VERSION" publishToLocalAndTest
   upstream_build:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -108,7 +108,7 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
-      - run: python ./ci.py "$MC_VERSION" publishToLocalAndTest
+      - run: python -u ./ci.py "$MC_VERSION" publishToLocalAndTest
   publish:
    needs: [legacy_build]
    runs-on: ubuntu-latest
@@ -134,6 +134,6 @@ jobs:
        with:
          distribution: 'temurin' # See 'Supported distributions' for available options
          java-version: '17'
-     - run: python ./ci.py $MC_VERSION publish
+     - run: python -u ./ci.py $MC_VERSION publish
        env:
          MAVEN_PUBLISH_CREDENTIALS: ${{ secrets.MAVEN_PUBLISH_CREDENTIALS }}
