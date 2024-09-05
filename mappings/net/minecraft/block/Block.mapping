@@ -35,6 +35,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_10643 soundGroup Lnet/minecraft/class_2498;
 	FIELD field_10644 FACINGS [Lnet/minecraft/class_2350;
 	FIELD field_10645 dynamicBounds Z
+	FIELD field_10646 defaultState Lnet/minecraft/class_0_378;
 	FIELD field_10646 defaultState Lnet/minecraft/class_2680;
 	FIELD field_10647 stateManager Lnet/minecraft/class_2689;
 	FIELD field_10648 resistance F
@@ -376,6 +377,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9563 getTickRate (Lnet/minecraft/class_1941;)I
 		ARG 1 world
 	METHOD method_9563 getTickRate (Lnet/minecraft/class_4538;)I
+	METHOD method_9564 getDefaultState ()Lnet/minecraft/class_0_378;
 	METHOD method_9564 getDefaultState ()Lnet/minecraft/class_2680;
 	METHOD method_9566 dropStacks (Lnet/minecraft/class_2680;Lnet/minecraft/class_47$class_48;)V
 		ARG 0 state
@@ -527,6 +529,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 random
 	METHOD method_9589 hasBlockEntityBreakingRender (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
+	METHOD method_9590 setDefaultState (Lnet/minecraft/class_0_378;)V
+		COMMENT Sets the default state of the block. This should be called inside
+		COMMENT the block's constructor to override the default state chosen by the
+		COMMENT state manager.
+		ARG 1 state
 	METHOD method_9590 setDefaultState (Lnet/minecraft/class_2680;)V
 		COMMENT Sets the default state of the block. This should be called inside
 		COMMENT the block's constructor to override the default state chosen by the
@@ -549,11 +556,13 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 entity
 	METHOD method_9593 getLuminance (Lnet/minecraft/class_2680;)I
 		ARG 1 state
+	METHOD method_9594 calcBlockBreakingDelta (Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)F
 	METHOD method_9595 getStateManager ()Lnet/minecraft/class_2689;
 	METHOD method_9596 (Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 2 stack
 	METHOD method_9596 (Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1799;)V
 		ARG 2 stack
+	METHOD method_9597 getMaterial ()Lnet/minecraft/class_3614;
 	METHOD method_9597 getMaterial (Lnet/minecraft/class_2680;)Lnet/minecraft/class_3614;
 		ARG 1 state
 	METHOD method_9601 isOpaque (Lnet/minecraft/class_2680;)Z

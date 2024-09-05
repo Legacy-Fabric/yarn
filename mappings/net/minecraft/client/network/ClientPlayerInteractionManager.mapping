@@ -12,11 +12,13 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 	FIELD field_3717 breakingBlock Z
 	FIELD field_3718 selectedStack Lnet/minecraft/class_1799;
 	FIELD field_3719 gameMode Lnet/minecraft/class_1934;
+	FIELD field_3719 gameMode Lnet/minecraft/class_1940$class_1934;
 	FIELD field_3720 networkHandler Lnet/minecraft/class_634;
 	FIELD field_3721 lastSelectedSlot I
 	METHOD <init> (Lnet/minecraft/class_310;Lnet/minecraft/class_634;)V
 		ARG 1 client
 		ARG 2 networkHandler
+	METHOD method_0_3114 isSpectator ()Z
 	METHOD method_21705 processPlayerActionResponse (Lnet/minecraft/class_638;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2846$class_2847;Z)V
 		ARG 1 world
 		ARG 2 pos
@@ -38,6 +40,8 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 2 world
 		ARG 3 hand
 		ARG 4 hitResult
+	METHOD method_2896 (Lnet/minecraft/class_746;Lnet/minecraft/class_638;Lnet/minecraft/class_1799;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;Lnet/minecraft/class_243;)Z
+		ARG 1 player
 	METHOD method_2897 stopUsingItem (Lnet/minecraft/class_1657;)V
 		ARG 1 player
 	METHOD method_2899 breakBlock (Lnet/minecraft/class_2338;)Z
@@ -45,6 +49,9 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_2900 clickButton (II)V
 		ARG 1 syncId
 		ARG 2 buttonId
+	METHOD method_2901 createPlayer (Lnet/minecraft/class_1937;Lnet/minecraft/class_3469;)Lnet/minecraft/class_746;
+		ARG 1 world
+		ARG 2 statHandler
 	METHOD method_2901 createPlayer (Lnet/minecraft/class_638;Lnet/minecraft/class_3469;Lnet/minecraft/class_299;)Lnet/minecraft/class_746;
 		ARG 1 world
 		ARG 2 stateHandler
@@ -61,10 +68,18 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 	METHOD method_2903 copyAbilities (Lnet/minecraft/class_1657;)V
 		ARG 1 player
 	METHOD method_2904 getReachDistance ()F
+	METHOD method_2905 interactEntity (Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;)Z
+		ARG 1 player
+		ARG 2 target
 	METHOD method_2905 interactEntity (Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
 		ARG 1 player
 		ARG 2 entity
 		ARG 3 hand
+	METHOD method_2906 clickSlot (IIIILnet/minecraft/class_1657;)Lnet/minecraft/class_1799;
+		ARG 1 syncId
+		ARG 2 slotId
+		ARG 3 button
+		ARG 5 player
 	METHOD method_2906 clickSlot (IIILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;
 		COMMENT @see net.minecraft.screen.ScreenHandler#onSlotClick(int, int, net.minecraft.screen.slot.SlotActionType, net.minecraft.entity.player.PlayerEntity)
 		ARG 1 syncId
@@ -80,6 +95,8 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 4 actionType
 		ARG 5 player
 	METHOD method_2907 setGameMode (Lnet/minecraft/class_1934;)V
+		ARG 1 gameMode
+	METHOD method_2907 setGameMode (Lnet/minecraft/class_1940$class_1934;)V
 		ARG 1 gameMode
 	METHOD method_2908 hasStatusBars ()Z
 	METHOD method_2909 clickCreativeStack (Lnet/minecraft/class_1799;I)V
@@ -99,6 +116,10 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 1 stack
 	METHOD method_2916 pickFromInventory (I)V
 		ARG 1 slot
+	METHOD method_2917 interactEntityAtLocation (Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_239;)Z
+		ARG 1 player
+		ARG 2 entity
+		ARG 3 hitResult
 	METHOD method_2917 interactEntityAtLocation (Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_3966;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;
 		ARG 1 player
 		ARG 2 entity
@@ -115,6 +136,7 @@ CLASS net/minecraft/class_636 net/minecraft/client/network/ClientPlayerInteracti
 		ARG 2 world
 		ARG 3 hand
 	METHOD method_2920 getCurrentGameMode ()Lnet/minecraft/class_1934;
+	METHOD method_2920 getCurrentGameMode ()Lnet/minecraft/class_1940$class_1934;
 	METHOD method_2921 breakBlockOrFire (Lnet/minecraft/class_310;Lnet/minecraft/class_636;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)V
 		ARG 0 client
 		ARG 1 interactionManager
