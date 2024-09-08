@@ -49,6 +49,8 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	FIELD field_8015 propertyGetters Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/class_1792$class_1793;)V
 		ARG 1 settings
+	METHOD method_0_8266 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
+		ARG 1 stack
 	METHOD method_16698 isNetworkSynced ()Z
 		COMMENT {@return whether the item needs to sync additional data to clients}
 		COMMENT
@@ -201,6 +203,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
+	METHOD method_7844 getAttributeModifiers ()Lcom/google/common/collect/Multimap;
 	METHOD method_7844 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
 		COMMENT {@return the attribute modifiers the item provides}
 		COMMENT
@@ -322,6 +325,8 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 	METHOD method_7863 addPropertyGetter (Lnet/minecraft/class_2960;Lnet/minecraft/class_1800;)V
 		ARG 1 id
 		ARG 2 property
+	METHOD method_7864 getName (Lnet/minecraft/class_1799;)Ljava/lang/String;
+		ARG 1 stack
 	METHOD method_7864 getName (Lnet/minecraft/class_1799;)Lnet/minecraft/class_2561;
 		ARG 1 stack
 	METHOD method_7865 getMiningSpeedMultiplier (Lnet/minecraft/class_1799;Lnet/minecraft/class_2680;)F
@@ -335,7 +340,7 @@ CLASS net/minecraft/class_1792 net/minecraft/item/Item
 		COMMENT @see MiningToolItem
 		ARG 1 stack
 		ARG 2 state
-	METHOD method_7866 getTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
+	METHOD method_7866 getOrCreateTranslationKey (Lnet/minecraft/class_1799;)Ljava/lang/String;
 		COMMENT Gets the translation key of this item using the provided item stack for context.
 		ARG 1 stack
 	METHOD method_7867 fromBlock (Lnet/minecraft/class_2248;)Lnet/minecraft/class_1792;

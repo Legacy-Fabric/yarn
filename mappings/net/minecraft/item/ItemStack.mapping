@@ -80,6 +80,7 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	COMMENT </tr>
 	COMMENT </table>
 	COMMENT </div>
+	FIELD field_0_8640 damage I
 	FIELD field_24092 LORE_STYLE Lnet/minecraft/class_2583;
 	FIELD field_24093 holder Lnet/minecraft/class_1297;
 	FIELD field_24671 CODEC Lcom/mojang/serialization/Codec;
@@ -131,6 +132,9 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT
 		COMMENT @see <a href="nbt-operations">Item Stack NBT Operations</a>
 	FIELD field_8041 frame Lnet/minecraft/class_1533;
+	METHOD <init> (Lnet/minecraft/class_1792;II)V
+		ARG 1 item
+		ARG 2 count
 	METHOD <init> (Lnet/minecraft/class_1935;)V
 		ARG 1 item
 	METHOD <init> (Lnet/minecraft/class_1935;I)V
@@ -147,6 +151,16 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 	METHOD <init> (Lnet/minecraft/class_6880;I)V
 		ARG 1 itemEntry
 		ARG 2 count
+	METHOD method_0_8322 fromNbt (Lnet/minecraft/class_2487;)Lnet/minecraft/class_1799;
+		ARG 0 nbt
+	METHOD method_0_8329 getTooltip (Lnet/minecraft/class_1657;Z)Ljava/util/List;
+		ARG 1 player
+	METHOD method_0_8333 getItem ()Lnet/minecraft/class_1792;
+	METHOD method_0_8334 setDamage (I)V
+		ARG 1 damage
+	METHOD method_0_8344 readNbt (Lnet/minecraft/class_2487;)V
+		ARG 1 nbt
+	METHOD method_0_8355 getDamage ()I
 	METHOD method_17869 (Ljava/util/List;Lnet/minecraft/class_2487;Lnet/minecraft/class_1887;)V
 		ARG 2 e
 	METHOD method_17870 appendEnchantments (Ljava/util/List;Lnet/minecraft/class_2499;)V
@@ -263,6 +277,16 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT
 		COMMENT @see <a href="#nbt-operations">Item Stack NBT Operations</a>
 		ARG 1 key
+	METHOD method_7911 getOrCreateSubNbt (Ljava/lang/String;Z)Lnet/minecraft/class_2487;
+		COMMENT {@return the compound NBT at the specified key in this item stack's NBT, or a
+		COMMENT new compound added to the stack if absent}
+		COMMENT
+		COMMENT <p>This should not be used when reading the NBT, as this can modify the item stack.
+		COMMENT Use {@link #getSubNbt} with a check for {@code null} instead.
+		COMMENT
+		COMMENT @see <a href="#nbt-operations">Item Stack NBT Operations</a>
+		ARG 1 key
+		ARG 2 createSubNbt
 	METHOD method_7912 setBobbingAnimationTime (I)V
 		ARG 1 bobbingAnimationTime
 	METHOD method_7913 use (Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1271;
@@ -335,6 +359,15 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT
 		COMMENT @see #setCustomName
 		COMMENT @see #hasCustomName
+	METHOD method_7926 getAttributeModifiers ()Lcom/google/common/collect/Multimap;
+		COMMENT {@return a multimap of attribute modifiers for {@code slot}}
+		COMMENT
+		COMMENT <p>If a custom attribute modifier exists under the {@code AttributeModifiers} key,
+		COMMENT this returns those modifiers only; otherwise, this returns the item's default
+		COMMENT attribute modifier.
+		COMMENT
+		COMMENT @see Item#getAttributeModifiers
+		COMMENT @see #addAttributeModifier
 	METHOD method_7926 getAttributeModifiers (Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;
 		COMMENT {@return a multimap of attribute modifiers for {@code slot}}
 		COMMENT
@@ -384,6 +417,8 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT Sets the count of items in this item stack.
 		ARG 1 count
 			COMMENT the count of items
+	METHOD method_7940 canDestroy (Lnet/minecraft/class_2248;)Z
+		ARG 1 block
 	METHOD method_7940 canDestroy (Lnet/minecraft/class_2378;Lnet/minecraft/class_2694;)Z
 		ARG 1 blockRegistry
 		ARG 2 pos
@@ -407,6 +442,8 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT @see #getEnchantments
 	METHOD method_7943 setFrame (Lnet/minecraft/class_1533;)V
 		ARG 1 frame
+	METHOD method_7944 canPlaceOn (Lnet/minecraft/class_2248;)Z
+		ARG 1 block
 	METHOD method_7944 canPlaceOn (Lnet/minecraft/class_2378;Lnet/minecraft/class_2694;)Z
 		ARG 1 blockRegistry
 		ARG 2 pos
@@ -524,6 +561,7 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		COMMENT @see Item#getMaxDamage
 		COMMENT @see #isDamaged
 		COMMENT @see #getDamage
+	METHOD method_7964 getName ()Ljava/lang/String;
 	METHOD method_7964 getName ()Lnet/minecraft/class_2561;
 		COMMENT {@return the custom name of the stack if it exists, or the item's name}
 	METHOD method_7965 getBobbingAnimationTime ()I
@@ -605,6 +643,8 @@ CLASS net/minecraft/class_1799 net/minecraft/item/ItemStack
 		ARG 0 left
 		ARG 1 right
 	METHOD method_7976 getUseAction ()Lnet/minecraft/class_1839;
+	METHOD method_7977 setCustomName (Ljava/lang/String;)Lnet/minecraft/class_1799;
+		ARG 1 name
 	METHOD method_7977 setCustomName (Lnet/minecraft/class_2561;)Lnet/minecraft/class_1799;
 		COMMENT Sets the custom name of this item stack to {@code name}. If {@code null} is
 		COMMENT passed, this will remove the custom name (but does not remove other NBT compounds
