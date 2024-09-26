@@ -47,6 +47,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 	FIELD field_9249 iteratingTickingBlockEntities Z
 	FIELD field_9251 thunderGradientPrev F
 	FIELD field_9253 rainGradientPrev F
+	FIELD field_9255 profiler Lnet/minecraft/class_3533;
 	FIELD field_9256 lcgBlockSeed I
 	METHOD <init> (Lnet/minecraft/class_5269;Lnet/minecraft/class_5321;Lnet/minecraft/class_5455;Lnet/minecraft/class_6880;Ljava/util/function/Supplier;ZZJI)V
 		ARG 1 properties
@@ -58,9 +59,13 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 7 debugWorld
 		ARG 8 biomeAccess
 		ARG 10 maxChainedNeighborUpdates
+	METHOD method_0_312 isRegionLoaded (Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;)Z
 	METHOD method_0_316 addParticle (Lnet/minecraft/class_2396;DDDDDD[I)V
+	METHOD method_0_334 isSpaceEmpty (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;)Ljava/util/List;
+	METHOD method_0_336 playSound (Lnet/minecraft/class_1297;Ljava/lang/String;FF)V
 	METHOD method_0_377 getSkyAngle (F)F
 		ARG 1 tickDelta
+	METHOD method_0_392 containsFluid (Lnet/minecraft/class_238;)Z
 	METHOD method_0_436 getMoonPhase ()I
 	METHOD method_16107 getProfiler ()Lnet/minecraft/class_3695;
 	METHOD method_16109 scheduleBlockRerenderIfNeeded (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;)V
@@ -282,6 +287,7 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 1 entity
 		ARG 2 damageSource
 	METHOD method_48963 getDamageSources ()Lnet/minecraft/class_8109;
+	METHOD method_8333 getOtherEntities (Lnet/minecraft/class_1297;Lnet/minecraft/class_238;Lcom/google/common/base/Predicate;)Ljava/util/List;
 	METHOD method_8413 updateListeners (Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2680;I)V
 		ARG 1 pos
 		ARG 2 oldState
@@ -663,9 +669,11 @@ CLASS net/minecraft/class_1937 net/minecraft/world/World
 		ARG 13 nbt
 	METHOD method_8548 getSkyColor (Lnet/minecraft/class_1297;F)Lnet/minecraft/class_243;
 	METHOD method_8548 getSkyColor (Lnet/minecraft/class_2338;F)Lnet/minecraft/class_243;
+	METHOD method_8549 raycast (Lnet/minecraft/class_243;Lnet/minecraft/class_243;)Lnet/minecraft/class_239;
 	METHOD method_8550 getStarsBrightness (F)F
 	METHOD method_8558 isValidHorizontally (Lnet/minecraft/class_2338;)Z
 		ARG 0 pos
 	METHOD method_8560 tickTime ()V
 	METHOD method_8621 getWorldBorder ()Lnet/minecraft/class_2784;
+	METHOD method_8649 spawnEntity (Lnet/minecraft/class_1297;)Z
 	CLASS class_7867 ExplosionSourceType

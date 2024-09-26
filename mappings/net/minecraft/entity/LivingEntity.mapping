@@ -98,6 +98,11 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	FIELD field_6284 serverYaw D
 	FIELD field_6285 effectsChanged Z
 	FIELD field_6287 movementSpeed F
+	METHOD method_0_7093 swimUpwardWater ()V
+	METHOD method_0_7094 swimUpwardLava ()V
+	METHOD method_0_7145 hasStatusEffect (I)Z
+		ARG 1 id
+	METHOD method_0_7155 getEquippedStack (I)Lnet/minecraft/class_1799;
 	METHOD method_16077 dropLoot (Lnet/minecraft/class_1282;Z)V
 		ARG 1 source
 		ARG 2 causedByPlayer
@@ -391,6 +396,7 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 1 hand
 	METHOD method_5999 isUndead ()Z
 	METHOD method_6000 enterCombat ()V
+	METHOD method_6002 getDeathSound ()Ljava/lang/String;
 	METHOD method_6002 getDeathSound ()Lnet/minecraft/class_3414;
 	METHOD method_6003 getRoll ()I
 	METHOD method_6005 takeKnockback (DDD)V
@@ -419,14 +425,17 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 1 fluid
 	METHOD method_6010 swimUpward (Lnet/minecraft/class_6862;)V
 		ARG 1 fluid
+	METHOD method_6011 getHurtSound ()Ljava/lang/String;
 	METHOD method_6011 getHurtSound (Lnet/minecraft/class_1282;)Lnet/minecraft/class_3414;
 		ARG 1 source
+	METHOD method_6012 clearStatusEffects ()V
 	METHOD method_6012 clearStatusEffects ()Z
 	METHOD method_6013 playHurtSound (Lnet/minecraft/class_1282;)V
 		ARG 1 source
 	METHOD method_6014 getItemUseTimeLeft ()I
 	METHOD method_6015 setAttacker (Lnet/minecraft/class_1309;)V
 		ARG 1 attacker
+	METHOD method_6016 removeStatusEffect (I)V
 	METHOD method_6016 removeStatusEffect (Lnet/minecraft/class_1291;)Z
 		COMMENT Removes a status effect from this entity.
 		COMMENT
@@ -469,6 +478,7 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6032 getHealth ()F
 	METHOD method_6033 setHealth (F)V
 		ARG 1 health
+	METHOD method_6034 canMoveVoluntarily ()Z
 	METHOD method_6035 tickRiptide (Lnet/minecraft/class_238;Lnet/minecraft/class_238;)V
 		ARG 1 a
 		ARG 2 b
@@ -490,6 +500,8 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		ARG 1 vehicle
 	METHOD method_6039 isBlocking ()Z
 	METHOD method_6040 consumeItem ()V
+	METHOD method_6041 getFallSound (I)Ljava/lang/String;
+		ARG 1 distance
 	METHOD method_6041 getFallSound (I)Lnet/minecraft/class_3414;
 		ARG 1 distance
 	METHOD method_6043 jump ()V
@@ -588,6 +600,7 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		COMMENT flying entities}.
 		ARG 1 movementInput
 			COMMENT represents the sidewaysSpeed, upwardSpeed, and forwardSpeed of the entity in that order
+	METHOD method_6092 addStatusEffect (Lnet/minecraft/class_1293;)V
 	METHOD method_6092 addStatusEffect (Lnet/minecraft/class_1293;)Z
 		COMMENT Adds a status effect to this entity without specifying a source entity.
 		COMMENT
@@ -619,6 +632,7 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 	METHOD method_6103 sendPickup (Lnet/minecraft/class_1297;I)V
 		ARG 1 item
 		ARG 2 count
+	METHOD method_6104 swingHand ()V
 	METHOD method_6104 swingHand (Lnet/minecraft/class_1268;)V
 		ARG 1 hand
 	METHOD method_6105 damageArmor (F)V
@@ -649,6 +663,11 @@ CLASS net/minecraft/class_1309 net/minecraft/entity/LivingEntity
 		COMMENT @see #shouldDropXp()
 		ARG 1 player
 			COMMENT the attacking player
+	METHOD method_6111 removeStatusEffectInternal (I)V
+		COMMENT Removes a status effect from this entity without calling any listener.
+		COMMENT
+		COMMENT <p>This method does not perform any cleanup or synchronization operation.
+		COMMENT Under most circumstances, calling {@link #removeStatusEffect(int)} is highly preferable.
 	METHOD method_6111 removeStatusEffectInternal (Lnet/minecraft/class_1291;)Lnet/minecraft/class_1293;
 		COMMENT Removes a status effect from this entity without calling any listener.
 		COMMENT
