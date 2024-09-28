@@ -18,7 +18,8 @@ def main():
     if mainCommand == "publishToLocalAndTest":
         commandList = [
             [GRADLE_PREFIX + " publishToMavenLocal unifyMappings", True], 
-            ["cd test-mod && " + GRADLE_PREFIX + " build genSources", False]
+            ["cd test-mod && " + GRADLE_PREFIX + " build", False],
+            ["cd test-mod && " + GRADLE_PREFIX + " genSources", False]
             ]
     elif mainCommand == "publish":
         commandList = [
@@ -28,7 +29,8 @@ def main():
         commandList = [
             [GRADLE_PREFIX + " build javadocJar checkMappings mapNamedJar unifyMappings", True], 
             [GRADLE_PREFIX + " publishToMavenLocal unifyMappings", True], 
-            ["cd test-mod && " + GRADLE_PREFIX + " build genSources", False]
+            ["cd test-mod && " + GRADLE_PREFIX + " build", False],
+            ["cd test-mod && " + GRADLE_PREFIX + " genSources", False]
             ]
 
     failedVersions = []
@@ -37,6 +39,8 @@ def main():
         testedVersion = [version for version in versions if version not in failedVersions]
         print("Running command '" + command[0] + "' for versions " + ", ".join(testedVersion))
 
+        shouldStop = False
+
         for version in testedVersion:
             print("Running command for version " + version)
             exitCode = yarn.run_command_with_mcversion(version, command[0])
@@ -44,7 +48,11 @@ def main():
             if exitCode != 0:
                 failedVersions.append(version)
                 if command[1]:
+                    shouldStop = True
                     break
+
+        if shouldStop:
+            break
     
     if len(failedVersions) < 1:
         exit(0)
