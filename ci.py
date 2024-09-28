@@ -18,8 +18,7 @@ def main():
     if mainCommand == "publishToLocalAndTest":
         commandList = [
             [GRADLE_PREFIX + " publishToMavenLocal unifyMappings", True], 
-            ["cd test-mod && " + GRADLE_PREFIX + " build", False],
-            ["cd test-mod && " + GRADLE_PREFIX + " genSources", False]
+            ["cd test-mod && " + GRADLE_PREFIX + " build genSources", False]
             ]
     elif mainCommand == "publish":
         commandList = [
@@ -29,8 +28,7 @@ def main():
         commandList = [
             [GRADLE_PREFIX + " build javadocJar checkMappings mapNamedJar unifyMappings", True], 
             [GRADLE_PREFIX + " publishToMavenLocal unifyMappings", True], 
-            ["cd test-mod && " + GRADLE_PREFIX + " build", False],
-            ["cd test-mod && " + GRADLE_PREFIX + " genSources", False]
+            ["cd test-mod && " + GRADLE_PREFIX + " build genSources", False]
             ]
 
     failedVersions = []
