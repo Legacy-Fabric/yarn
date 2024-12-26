@@ -1,11 +1,15 @@
 CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
+	FIELD field_0_2497 KEYS Ljava/util/List;
 	FIELD field_1652 KEY_CATEGORIES Ljava/util/Set;
 	FIELD field_1653 pressed Z
+	FIELD field_1654 defaultKey I
 	FIELD field_1654 defaultKey Lnet/minecraft/class_3675$class_306;
+	FIELD field_1655 boundKey I
 	FIELD field_1655 boundKey Lnet/minecraft/class_3675$class_306;
 	FIELD field_1656 CATEGORY_ORDER_MAP Ljava/util/Map;
 	FIELD field_1657 KEYS_BY_ID Ljava/util/Map;
 	FIELD field_1658 KEY_TO_BINDINGS Ljava/util/Map;
+	FIELD field_1658 KEY_TO_BINDINGS Lnet/minecraft/class_3525;
 	FIELD field_1659 category Ljava/lang/String;
 	FIELD field_1660 translationKey Ljava/lang/String;
 	FIELD field_1661 timesPressed I
@@ -25,9 +29,13 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		ARG 2 type
 		ARG 3 code
 		ARG 4 category
-	METHOD compareTo (Ljava/lang/Object;)I
+	METHOD compareTo compareTo (Ljava/lang/Object;)I
 		ARG 1 other
+	METHOD method_0_2199 getKeyCategories ()Ljava/util/Set;
 	METHOD method_1415 isUnbound ()Z
+	METHOD method_1416 setKeyPressed (IZ)V
+		ARG 0 key
+		ARG 1 pressed
 	METHOD method_1416 setKeyPressed (Lnet/minecraft/class_3675$class_306;Z)V
 		ARG 0 key
 		ARG 1 pressed
@@ -38,8 +46,13 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 		ARG 0 map
 	METHOD method_1419 getLocalizedName (Ljava/lang/String;)Ljava/util/function/Supplier;
 		ARG 0 id
+	METHOD method_1420 onKeyPressed (I)V
+		ARG 0 key
 	METHOD method_1420 onKeyPressed (Lnet/minecraft/class_3675$class_306;)V
 		ARG 0 key
+	METHOD method_1421 getBoundKey ()I
+	METHOD method_1422 setBoundKey (I)V
+		ARG 1 keyCode
 	METHOD method_1422 setBoundKey (Lnet/minecraft/class_3675$class_306;)V
 		ARG 1 boundKey
 	METHOD method_1423 getCategory ()Ljava/lang/String;
@@ -48,6 +61,7 @@ CLASS net/minecraft/class_304 net/minecraft/client/option/KeyBinding
 	METHOD method_1426 updateKeysByCode ()V
 	METHOD method_1427 isDefault ()Z
 	METHOD method_1428 getBoundKeyTranslationKey ()Ljava/lang/String;
+	METHOD method_1429 getDefaultKey ()I
 	METHOD method_1429 getDefaultKey ()Lnet/minecraft/class_3675$class_306;
 	METHOD method_1431 getTranslationKey ()Ljava/lang/String;
 	METHOD method_1433 matchesMouse (I)Z

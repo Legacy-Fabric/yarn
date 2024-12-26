@@ -291,6 +291,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #writeIntArray(int[])
 		COMMENT @see #readIntList()
 		COMMENT @return the read byte array
+	METHOD method_10788 writeString (Ljava/lang/String;)Lnet/minecraft/class_2540;
 	METHOD method_10788 writeString (Ljava/lang/String;I)Lnet/minecraft/class_2540;
 		COMMENT Writes a string to this buf. A string is represented by a byte array of
 		COMMENT its UTF-8 data. That byte array can have a maximum length of
@@ -347,6 +348,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #readItemStack()
 		ARG 1 stack
 			COMMENT the stack to write
+	METHOD method_10793 writeItemStack (Lnet/minecraft/class_1799;)V
 	METHOD method_10794 writeNbt (Lnet/minecraft/class_2487;)Lnet/minecraft/class_2540;
 		COMMENT Writes an NBT compound to this buf. The binary representation of NBT is
 		COMMENT handled by {@link net.minecraft.nbt.NbtIo}. If {@code compound} is {@code
@@ -360,6 +362,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #readNbt(NbtTagSizeTracker)
 		ARG 1 compound
 			COMMENT the compound to write
+	METHOD method_10794 writeNbt (Lnet/minecraft/class_2487;)V
 	METHOD method_10795 readByteArray ()[B
 		COMMENT Reads an array of primitive bytes from this buf. The array first has a
 		COMMENT var int indicating its length, followed by the actual bytes. The array
@@ -469,6 +472,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #getVarIntLength(int)
 		ARG 1 value
 			COMMENT the value to write
+	METHOD method_10804 writeVarInt (I)V
 	METHOD method_10805 writeText (Lnet/minecraft/class_2561;)Lnet/minecraft/class_2540;
 		COMMENT Writes a text to this buf. A text is represented by a JSON string with
 		COMMENT max length {@value #MAX_TEXT_LENGTH}.
@@ -480,6 +484,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #MAX_TEXT_LENGTH
 		ARG 1 text
 			COMMENT the text to write
+	METHOD method_10805 writeText (Lnet/minecraft/class_2561;)V
 	METHOD method_10806 writeIntArray ([I)Lnet/minecraft/class_2540;
 		COMMENT Writes an array of primitive ints to this buf. The array first has a
 		COMMENT var int indicating its length, followed by the var int entries.
@@ -500,6 +505,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		COMMENT @see #readBlockPos()
 		ARG 1 pos
 			COMMENT the pos to write
+	METHOD method_10807 writeBlockPos (Lnet/minecraft/class_2338;)V
 	METHOD method_10808 readText ()Lnet/minecraft/class_2561;
 		COMMENT Reads a text from this buf. A text is represented by a JSON string with
 		COMMENT max length {@value #MAX_TEXT_LENGTH}.
@@ -1241,6 +1247,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 2 length
 	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
 		ARG 1 byteOrder
+	METHOD readBoolean readBoolean ()Z
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
@@ -1273,10 +1280,12 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 	METHOD readCharSequence (ILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
 		ARG 1 length
 		ARG 2 charset
+	METHOD readInt readInt ()I
 	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
+	METHOD readUnsignedByte readUnsignedByte ()S
 	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 	METHOD release (I)Z
@@ -1384,9 +1393,9 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 charset
 	METHOD touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;
 		ARG 1 object
-	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
+	METHOD writeBoolean writeBoolean (Z)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
-	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeByte writeByte (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
 		ARG 1 buf
@@ -1424,7 +1433,7 @@ CLASS net/minecraft/class_2540 net/minecraft/network/PacketByteBuf
 		ARG 1 value
 	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
-	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeInt writeInt (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value

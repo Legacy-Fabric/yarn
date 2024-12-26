@@ -12,6 +12,7 @@ CLASS net/minecraft/class_1940 net/minecraft/world/level/LevelInfo
 	FIELD field_9262 hardcore Z
 	FIELD field_9263 seed J
 	FIELD field_9264 generatorOptions Lcom/google/gson/JsonElement;
+	FIELD field_9264 name Ljava/lang/String;
 	METHOD <init> (Ljava/lang/String;Lnet/minecraft/class_1934;ZLnet/minecraft/class_1267;ZLnet/minecraft/class_1928;Lnet/minecraft/class_7712;)V
 		ARG 1 name
 		ARG 2 gameMode
@@ -50,11 +51,24 @@ CLASS net/minecraft/class_1940 net/minecraft/world/level/LevelInfo
 	METHOD method_8578 enableCommands ()Lnet/minecraft/class_1940;
 	METHOD method_8579 setGeneratorOptions (Lcom/google/gson/JsonElement;)Lnet/minecraft/class_1940;
 		ARG 1 generatorOptions
+	METHOD method_8579 setName (Ljava/lang/String;)Lnet/minecraft/class_1940;
 	METHOD method_8581 hasBonusChest ()Z
 	METHOD method_8582 areCommandsAllowed ()Z
 	METHOD method_8583 isHardcore ()Z
 	METHOD method_8584 getGeneratorOptions ()Lcom/google/gson/JsonElement;
 	CLASS class_1934 GameMode
+		FIELD field_9217 id I
+		FIELD field_9221 name Ljava/lang/String;
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 id
+			ARG 4 name
+		METHOD method_8379 getId ()I
+		METHOD method_8381 getName ()Ljava/lang/String;
 		METHOD method_8382 setAbilities (Lnet/minecraft/class_1656;)V
+			ARG 1 abilities
+		METHOD method_8384 getFromId (I)Lnet/minecraft/class_1940$class_1934;
+			ARG 0 id
+		METHOD method_8385 getFromName (Ljava/lang/String;)Lnet/minecraft/class_1940$class_1934;
+			ARG 0 name
 		METHOD method_8386 isCreative ()Z
 		METHOD method_8388 isSurvivalLike ()Z

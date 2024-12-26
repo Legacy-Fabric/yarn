@@ -1,4 +1,5 @@
 CLASS net/minecraft/class_2672 net/minecraft/network/packet/s2c/play/ChunkDataS2CPacket
+	FIELD field_0_6163 chunkData Lnet/minecraft/class_2672$class_0_1498;
 	FIELD field_12233 isFullChunk Z
 	FIELD field_12234 verticalStripBitmask I
 	FIELD field_12234 verticalStripBitmask Ljava/util/BitSet;
@@ -20,7 +21,12 @@ CLASS net/minecraft/class_2672 net/minecraft/network/packet/s2c/play/ChunkDataS2
 		ARG 3 skyBits
 		ARG 4 blockBits
 		ARG 5 nonEdge
+	METHOD <init> (Lnet/minecraft/class_2818;ZI)V
+		ARG 1 chunk
+		ARG 2 fullChunk
+	METHOD method_0_5456 getChunkData (Lnet/minecraft/class_2818;ZZI)Lnet/minecraft/class_2672$class_0_1498;
 	METHOD method_11521 getReadBuffer ()Lnet/minecraft/class_2540;
+	METHOD method_11521 getChunkBytes ()[B
 	METHOD method_11522 getDataSize (Lnet/minecraft/class_2818;)I
 		ARG 1 chunk
 	METHOD method_11522 getDataSize (Lnet/minecraft/class_2818;I)I
@@ -44,3 +50,6 @@ CLASS net/minecraft/class_2672 net/minecraft/network/packet/s2c/play/ChunkDataS2
 	METHOD method_22422 getBiomeArray ()[I
 	METHOD method_38598 getChunkData ()Lnet/minecraft/class_6603;
 	METHOD method_38599 getLightData ()Lnet/minecraft/class_6606;
+	CLASS class_0_1498 ChunkData
+		FIELD field_0_6165 data [B
+		FIELD field_0_6166 size I
