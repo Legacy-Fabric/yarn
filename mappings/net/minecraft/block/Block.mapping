@@ -22,6 +22,11 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	COMMENT
 	COMMENT @see AbstractBlock
 	COMMENT @see BlockState
+	FIELD field_0_590 AIR_IDENTIFIER Lnet/minecraft/class_2960;
+	FIELD field_0_591 group Lnet/minecraft/class_1761;
+	FIELD field_0_592 REGISTRY Lnet/minecraft/class_2348;
+	FIELD field_0_607 opaqueFullCube Z
+	FIELD field_0_609 translucent Z
 	FIELD field_10634 lightLevel I
 	FIELD field_10635 material Lnet/minecraft/class_3614;
 	FIELD field_10636 dropTableId Lnet/minecraft/class_2960;
@@ -42,6 +47,7 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_10649 FACE_CULL_MAP Ljava/lang/ThreadLocal;
 	FIELD field_10650 hardness F
 	FIELD field_10651 STATE_IDS Lnet/minecraft/class_2361;
+	FIELD field_10651 STATE_IDS Lnet/minecraft/class_3513;
 	FIELD field_17562 cachedItem Lnet/minecraft/class_1792;
 	FIELD field_18966 SOLID_MEDIUM_SQUARE_SHAPE Lnet/minecraft/class_265;
 	FIELD field_19061 SOLID_SMALL_SQUARE_SHAPE Lnet/minecraft/class_265;
@@ -68,6 +74,9 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	FIELD field_31036 NOTIFY_ALL I
 		COMMENT The default setBlockState behavior. Same as {@code NOTIFY_NEIGHBORS | NOTIFY_LISTENERS}.
 	FIELD field_36404 registryEntry Lnet/minecraft/class_6880$class_6883;
+	METHOD method_0_731 isOpaqueFullCube ()Z
+	METHOD method_0_733 isTranslucent ()Z
+	METHOD method_0_734 getLightLevel ()I
 	METHOD method_16361 hasTopRim (Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z
 		ARG 0 world
 		ARG 1 pos
@@ -216,6 +225,8 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 		ARG 4 precipitation
 			COMMENT the precipitation (snow or rain), including snow
 			COMMENT observable on high altitude
+	METHOD method_9507 getRawIdFromState (Lnet/minecraft/class_0_378;)I
+		ARG 0 state
 	METHOD method_9507 getRawIdFromState (Lnet/minecraft/class_2680;)I
 		ARG 0 state
 	METHOD method_9510 postProcessState (Lnet/minecraft/class_2680;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Lnet/minecraft/class_2680;
@@ -570,11 +581,15 @@ CLASS net/minecraft/class_2248 net/minecraft/block/Block
 	METHOD method_9600 shouldSuffocate ()Z
 	METHOD method_9601 isOpaque (Lnet/minecraft/class_2680;)Z
 		ARG 1 state
+	METHOD method_9602 getMapColor (Lnet/minecraft/class_0_378;)Lnet/minecraft/class_3620;
+		ARG 1 state
 	METHOD method_9602 getMapColor (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3620;
 		ARG 1 state
 		ARG 2 view
 		ARG 3 pos
 	METHOD method_9604 getRenderType ()I
+	METHOD method_9605 (I)Lnet/minecraft/class_0_378;
+		ARG 1 metadata
 	METHOD method_9605 getPlacementState (Lnet/minecraft/class_1750;)Lnet/minecraft/class_2680;
 		ARG 1 ctx
 	METHOD method_9607 shouldDrawSide (Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z
