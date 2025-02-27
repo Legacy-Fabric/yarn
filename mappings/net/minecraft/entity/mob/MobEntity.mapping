@@ -1,10 +1,16 @@
 CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 	FIELD field_3291 ambientSoundChance I
+	FIELD field_3294 health I
+	FIELD field_3297 hurtTime I
+	FIELD field_3300 deathTime I
+	FIELD field_3301 attackTime I
 	FIELD field_3305 experiencePoints I
 	FIELD field_3322 texture Ljava/lang/String;
 	FIELD field_3323 visibilityCache Lnet/minecraft/class_935;
+	FIELD field_3335 effects Ljava/util/HashMap;
 	FIELD field_3336 goals Lnet/minecraft/class_897;
 	FIELD field_3337 attackGoals Lnet/minecraft/class_897;
+	FIELD field_3346 mobTicks I
 	FIELD field_3354 navigation Lnet/minecraft/class_934;
 	FIELD field_3360 lookControl Lnet/minecraft/class_883;
 	FIELD field_3361 entityMotionHelper Lnet/minecraft/class_884;
@@ -18,39 +24,30 @@ CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 	FIELD field_6803 leashed Z
 	FIELD field_6804 leashOwner Lnet/minecraft/class_864;
 	FIELD field_6805 leash Lnet/minecraft/class_322;
-	METHOD method_10983 initEquipment (Lnet/minecraft/class_2607;)V
-		ARG 1 difficulty
-	METHOD method_10984 loot (Lnet/minecraft/class_964;)V
-		ARG 1 item
-	METHOD method_10985 canPickupItem (Lnet/minecraft/class_1071;)Z
-		ARG 1 stack
-	METHOD method_10986 createNavigation (Lnet/minecraft/class_1150;)Lnet/minecraft/class_934;
-		ARG 1 world
-	METHOD method_10987 updateEnchantments (Lnet/minecraft/class_2607;)V
-		ARG 1 difficulty
-	METHOD method_13074 getLootTableId ()Lnet/minecraft/class_1653;
-	METHOD method_13079 interactMob (Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Z
-		ARG 1 playerEntity
-		ARG 2 hand
-	METHOD method_13087 initGoals ()V
-	METHOD method_13950 registerDataFixes (Lnet/minecraft/class_2934;Ljava/lang/Class;)V
-		ARG 0 dataFixer
-		ARG 1 entityClass
 	METHOD method_2469 hasNoSpawnCollisions ()Z
+	METHOD method_2577 setPosition (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD method_2579 canAttackEntity (Ljava/lang/Class;)Z
 		ARG 1 clazz
 	METHOD method_2580 dropInventory (Lnet/minecraft/class_856;)V
 		ARG 1 source
+	METHOD method_2581 hasStatusEffect (Lnet/minecraft/class_860;)Z
+		ARG 1 effect
 	METHOD method_2583 lookAtEntity (Lnet/minecraft/class_864;FF)V
 		ARG 1 targetEntity
 		ARG 2 maxYawChange
 		ARG 3 maxPitchChange
+	METHOD method_2586 (Lnet/minecraft/class_1071;)V
+		ARG 1 stack
 	METHOD method_2588 onEatingGrass ()V
 	METHOD method_2594 getMinAmbientSoundDelay ()I
 	METHOD method_2595 playAmbientSound ()V
 	METHOD method_2598 playSpawnEffects ()V
 	METHOD method_2603 getAmbientSound ()Ljava/lang/String;
 	METHOD method_2603 ambientSound ()Lnet/minecraft/class_2926;
+	METHOD method_2609 isRemote ()Z
 	METHOD method_2613 getLookControl ()Lnet/minecraft/class_883;
 	METHOD method_2614 getMotionHelper ()Lnet/minecraft/class_884;
 	METHOD method_2615 getJumpControl ()Lnet/minecraft/class_882;
@@ -61,14 +58,27 @@ CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 		ARG 1 oldAngle
 		ARG 2 newAngle
 		ARG 3 maxChangeInAngle
+	METHOD method_2627 getStatusEffect (Lnet/minecraft/class_860;)Lnet/minecraft/class_861;
+		ARG 1 effect
 	METHOD method_2631 canImmediatelyDespawn ()Z
 	METHOD method_2632 checkDespawn ()V
 	METHOD method_2633 mobTick ()V
+	METHOD method_2634 mobTickk ()V
 	METHOD method_2636 getLookPitchSpeed ()I
 	METHOD method_2637 canSpawn ()Z
 	METHOD method_2639 getLimitPerChunk ()I
+	METHOD method_2644 getEffects ()Ljava/util/Collection;
+	METHOD method_2645 isUndeadGroup ()Z
+	METHOD method_2646 getSpeed ()F
+	METHOD method_2647 getEntityGroup ()Lnet/minecraft/class_873;
+	METHOD method_2658 shouldApplyEffect (Lnet/minecraft/class_861;)Z
+		COMMENT This will return {@code false} if the entity's group is {@link EntityGroup#UNDEAD}
+		COMMENT and the effect is a {@link StatusEffect#REGENERATION} or {@link StatusEffect#POISON} effect.
+		ARG 1 effect
 	METHOD method_2659 setForwardSpeed (F)V
 		ARG 1 forwardSpeed
+	METHOD method_2674 removeEffect (I)V
+		ARG 1 index
 	METHOD method_4470 getArmorItem (II)Lnet/minecraft/class_1069;
 		ARG 0 part
 		ARG 1 material
@@ -101,6 +111,24 @@ CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 	METHOD method_8374 getEquipableSlot (Lnet/minecraft/class_1071;)I
 		ARG 0 stack
 	METHOD method_8375 getDefaultDrop ()Lnet/minecraft/class_1069;
+	METHOD method_10983 initEquipment (Lnet/minecraft/class_2607;)V
+		ARG 1 difficulty
+	METHOD method_10984 loot (Lnet/minecraft/class_964;)V
+		ARG 1 item
+	METHOD method_10985 canPickupItem (Lnet/minecraft/class_1071;)Z
+		ARG 1 stack
+	METHOD method_10986 createNavigation (Lnet/minecraft/class_1150;)Lnet/minecraft/class_934;
+		ARG 1 world
+	METHOD method_10987 updateEnchantments (Lnet/minecraft/class_2607;)V
+		ARG 1 difficulty
+	METHOD method_13074 getLootTableId ()Lnet/minecraft/class_1653;
+	METHOD method_13079 interactMob (Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Z
+		ARG 1 playerEntity
+		ARG 2 hand
+	METHOD method_13087 initGoals ()V
+	METHOD method_13950 registerDataFixes (Lnet/minecraft/class_2934;Ljava/lang/Class;)V
+		ARG 0 dataFixer
+		ARG 1 entityClass
 	CLASS class_2612 Location
 		FIELD field_11915 ON_GROUND Lnet/minecraft/class_871$class_2612;
 		FIELD field_11916 IN_AIR Lnet/minecraft/class_871$class_2612;
