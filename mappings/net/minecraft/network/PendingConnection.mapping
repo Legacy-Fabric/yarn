@@ -10,6 +10,11 @@ CLASS net/minecraft/class_801 net/minecraft/network/PendingConnection
 		ARG 1 server
 		ARG 2 socket
 		ARG 3 username
+	METHOD method_1877 (Lnet/minecraft/class_669;)V
+		COMMENT Handles a {@link EmptyS2CPacket} by kicking the player with subsection-delimited info,
+		COMMENT 1st is the MOTD, 2nd is the player count, and 3rd is the maximum player count.
 	METHOD method_2190 disconnect (Ljava/lang/String;)V
 		ARG 1 reason
 	METHOD method_2192 tick ()V
+	METHOD method_2196 getUsernameAndAddress ()Ljava/lang/String;
+		COMMENT Returns a string in the format of {@code {@link PendingConnection#username} [{@link OutboundConnection#getAddress}]}

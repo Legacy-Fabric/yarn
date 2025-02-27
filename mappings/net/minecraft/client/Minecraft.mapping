@@ -1,22 +1,4 @@
 CLASS net/minecraft/client/Minecraft
-	FIELD field_10295 wireFrame Z
-	FIELD field_10296 chunkPath Z
-	FIELD field_10297 chunkVisibility Z
-	FIELD field_10298 chunkCullingEnabled Z
-	FIELD field_10299 twitchPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
-	FIELD field_10300 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
-	FIELD field_10301 glErrors Z
-	FIELD field_10302 connectedToRealms Z
-	FIELD field_10303 frameTime J
-	FIELD field_10304 modelManager Lnet/minecraft/class_2532;
-	FIELD field_10305 blockRenderManager Lnet/minecraft/class_2430;
-	FIELD field_10306 entityRenderDispatcher Lnet/minecraft/class_550;
-	FIELD field_10307 itemRenderer Lnet/minecraft/class_560;
-	FIELD field_10308 heldItemRenderer Lnet/minecraft/class_529;
-	FIELD field_10309 cameraEntity Lnet/minecraft/class_864;
-	FIELD field_10310 player Lnet/minecraft/class_518;
-	FIELD field_10311 metricsData Lnet/minecraft/class_2601;
-	FIELD field_10312 nanoTime J
 	FIELD field_3759 soundSystem Lnet/minecraft/class_622;
 	FIELD field_3760 mouse Lnet/minecraft/class_345;
 	FIELD field_3761 texturePackManager Lnet/minecraft/class_615;
@@ -37,6 +19,7 @@ CLASS net/minecraft/client/Minecraft
 	FIELD field_3777 crashReport Lnet/minecraft/class_1;
 	FIELD field_3778 ticker Lnet/minecraft/class_354;
 	FIELD field_3779 snooper Lnet/minecraft/class_853;
+	FIELD field_3780 resourceDownloadThread Lnet/minecraft/class_320;
 	FIELD field_3781 attackCooldown I
 	FIELD field_3782 tempWidth I
 	FIELD field_3783 tempHeight I
@@ -107,14 +90,30 @@ CLASS net/minecraft/client/Minecraft
 	FIELD field_7628 mojang Lnet/minecraft/class_1653;
 	FIELD field_7629 sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
 	FIELD field_7630 targetedEntity Lnet/minecraft/class_864;
+	FIELD field_10295 wireFrame Z
+	FIELD field_10296 chunkPath Z
+	FIELD field_10297 chunkVisibility Z
+	FIELD field_10298 chunkCullingEnabled Z
+	FIELD field_10299 twitchPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
+	FIELD field_10300 sessionPropertyMap Lcom/mojang/authlib/properties/PropertyMap;
+	FIELD field_10301 glErrors Z
+	FIELD field_10302 connectedToRealms Z
+	FIELD field_10303 frameTime J
+	FIELD field_10304 modelManager Lnet/minecraft/class_2532;
+	FIELD field_10305 blockRenderManager Lnet/minecraft/class_2430;
+	FIELD field_10306 entityRenderDispatcher Lnet/minecraft/class_550;
+	FIELD field_10307 itemRenderer Lnet/minecraft/class_560;
+	FIELD field_10308 heldItemRenderer Lnet/minecraft/class_529;
+	FIELD field_10309 cameraEntity Lnet/minecraft/class_864;
+	FIELD field_10310 player Lnet/minecraft/class_518;
+	FIELD field_10311 metricsData Lnet/minecraft/class_2601;
+	FIELD field_10312 nanoTime J
 	METHOD <init> (Ljava/awt/Canvas;Lnet/minecraft/client/MinecraftApplet;IIZ)V
 		ARG 1 canvas
 		ARG 2 applet
 		ARG 3 width
 		ARG 4 height
 		ARG 5 focusWindow
-	METHOD <init> (Lnet/minecraft/class_2332;)V
-		ARG 1 args
 	METHOD <init> (Lnet/minecraft/class_355;IIZZLjava/io/File;Ljava/io/File;Ljava/io/File;Ljava/net/Proxy;Ljava/lang/String;)V
 		ARG 1 session
 		ARG 2 width
@@ -126,6 +125,8 @@ CLASS net/minecraft/client/Minecraft
 		ARG 8 resourcePackDir
 		ARG 9 networkProxy
 		ARG 10 gameVersion
+	METHOD <init> (Lnet/minecraft/class_2332;)V
+		ARG 1 args
 	METHOD main ([Ljava/lang/String;)V
 		ARG 0 argv
 	METHOD method_2907 isIntegratedServerRunning ()Z
@@ -140,6 +141,8 @@ CLASS net/minecraft/client/Minecraft
 	METHOD method_2919 doPick ()V
 	METHOD method_2920 getMaxTextureSize ()I
 	METHOD method_2921 initializeGame ()V
+	METHOD method_2922 (I)V
+		ARG 1 dimension
 	METHOD method_2927 crash (Lnet/minecraft/class_1;)V
 		ARG 1 crashReport
 	METHOD method_2928 openScreen (Lnet/minecraft/class_388;)V
@@ -184,6 +187,7 @@ CLASS net/minecraft/client/Minecraft
 	METHOD method_2955 getChunkDebugString ()Ljava/lang/String;
 	METHOD method_2956 getEntitiesDebugString ()Ljava/lang/String;
 	METHOD method_2957 getWorldDebugString ()Ljava/lang/String;
+	METHOD method_2958 getParticleDebugString ()Ljava/lang/String;
 	METHOD method_2959 isDemo ()Z
 	METHOD method_2960 getNetworkHandler ()Lnet/minecraft/class_1845;
 	METHOD method_2961 isHudEnabled ()Z
