@@ -3,6 +3,16 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	COMMENT  All items extend the Item class.
 	COMMENT  The Item class also registers all items.
 	COMMENT @see net.minecraft.item.Items
+	FIELD field_12183 BLOCK_ITEMS Ljava/util/Map;
+		COMMENT A map containing all BlockItems, with their corresponding Block and Item variants
+	FIELD field_12299 GETTER_DAMAGED Lnet/minecraft/class_2688;
+	FIELD field_12300 GETTER_DAMAGE Lnet/minecraft/class_2688;
+	FIELD field_12301 GETTER_HAND Lnet/minecraft/class_2688;
+	FIELD field_12302 GETTER_COOLDOWN Lnet/minecraft/class_2688;
+	FIELD field_12304 ATTACK_SPEED_MODIFIER Ljava/util/UUID;
+	FIELD field_17190 PROPERTIES Ljava/util/Map;
+	FIELD field_17191 itemGroup Lnet/minecraft/class_1041;
+	FIELD field_17192 itemCategory Lnet/minecraft/class_1081;
 	FIELD field_4209 DIAMOND_SHOVEL Lnet/minecraft/class_1069;
 	FIELD field_4210 DIAMOND_PICKAXE Lnet/minecraft/class_1069;
 	FIELD field_4211 DIAMOND_AXE Lnet/minecraft/class_1069;
@@ -217,22 +227,87 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	FIELD field_6947 ATTACK_DAMAGE_MODIFIER_UUID Ljava/util/UUID;
 	FIELD field_6973 REGISTRY Lnet/minecraft/class_1943;
 		COMMENT The Registry where all items get registered to.
-	FIELD field_12183 BLOCK_ITEMS Ljava/util/Map;
-		COMMENT A map containing all BlockItems, with their corresponding Block and Item variants
-	FIELD field_12299 GETTER_DAMAGED Lnet/minecraft/class_2688;
-	FIELD field_12300 GETTER_DAMAGE Lnet/minecraft/class_2688;
-	FIELD field_12301 GETTER_HAND Lnet/minecraft/class_2688;
-	FIELD field_12302 GETTER_COOLDOWN Lnet/minecraft/class_2688;
-	FIELD field_12304 ATTACK_SPEED_MODIFIER Ljava/util/UUID;
-	FIELD field_17190 PROPERTIES Ljava/util/Map;
-	FIELD field_17191 itemGroup Lnet/minecraft/class_1041;
-	FIELD field_17192 itemCategory Lnet/minecraft/class_1081;
 	METHOD <init> ()V
 		COMMENT Sets the max stack size of an Item to 64
 	METHOD <init> (I)V
 		ARG 1 id
 	METHOD <init> (Lnet/minecraft/class_1069$class_3555;)V
 		ARG 1 settings
+	METHOD method_11284 register (ILjava/lang/String;Lnet/minecraft/class_1069;)V
+		COMMENT Overloaded method that registers an Item to the registry
+		ARG 0 id
+			COMMENT the Item Id
+		ARG 1 name
+			COMMENT the Item's name
+		ARG 2 item
+			COMMENT the item to be registered
+	METHOD method_11284 register (Ljava/lang/String;Lnet/minecraft/class_1069;)V
+	METHOD method_11285 register (ILnet/minecraft/class_1653;Lnet/minecraft/class_1069;)V
+		COMMENT Registers an item to the registry
+		ARG 0 id
+			COMMENT the Item Id
+		ARG 1 name
+			COMMENT the Item's identifier
+		ARG 2 item
+			COMMENT the Item to be registered
+	METHOD method_11286 registerBlockItem (Lnet/minecraft/class_197;Lnet/minecraft/class_1069;)V
+		COMMENT Registers a BlockItem to the registry
+		ARG 0 block
+			COMMENT the Block
+		ARG 1 blockItem
+			COMMENT the BlockItem
+	METHOD method_11287 postProcessNbt (Lnet/minecraft/class_322;)Z
+		ARG 1 nbt
+	METHOD method_11288 registerBlockItem (Lnet/minecraft/class_197;)V
+		COMMENT Overloaded method that registers a BlockItem to the registry
+		ARG 0 block
+			COMMENT the block
+	METHOD method_11374 getProperty (Lnet/minecraft/class_1653;)Lnet/minecraft/class_2688;
+		ARG 1 identifier
+	METHOD method_11375 addProperty (Lnet/minecraft/class_1653;Lnet/minecraft/class_2688;)V
+		ARG 1 identifier
+		ARG 2 itemPropertyGetter
+	METHOD method_11376 hasProperties ()Z
+	METHOD method_13649 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Lnet/minecraft/class_2963;
+		ARG 1 world
+		ARG 2 player
+		ARG 3 hand
+	METHOD method_13650 getDefaultStack ()Lnet/minecraft/class_1071;
+	METHOD method_14232 canAddTo (Lnet/minecraft/class_1041;)Z
+		ARG 1 group
+	METHOD method_14233 appendToItemGroup (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
+		ARG 1 group
+		ARG 2 stacks
+	METHOD method_14234 appendTooltips (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Ljava/util/List;Lnet/minecraft/class_3191;)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 tooltip
+	METHOD method_16070 register (Lnet/minecraft/class_1096;)V
+	METHOD method_16071 useOnBlock (Lnet/minecraft/class_3565;)Lnet/minecraft/class_2962;
+		ARG 1 itemUsageContext
+	METHOD method_16072 register (Lnet/minecraft/class_197;Lnet/minecraft/class_1041;)V
+	METHOD method_16073 beforeBlockBreak (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)Z
+		ARG 1 state
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 player
+	METHOD method_16076 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16077 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16078 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16079 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
+		ARG 0 itemStack
+		ARG 1 world
+		ARG 2 livingEntity
+	METHOD method_16081 computeTranslationKey ()Ljava/lang/String;
 	METHOD method_3342 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the translation key of the current Item
 		COMMENT @return Translation key
@@ -282,15 +357,6 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 entity1
 		ARG 3 entity2
-	METHOD method_3355 use (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Lnet/minecraft/class_2962;
-		ARG 1 player
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 hand
-		ARG 5 direction
-		ARG 6 x
-		ARG 7 y
-		ARG 8 z
 	METHOD method_3355 use (Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;FFF)Z
 		ARG 1 itemStack
 		ARG 2 player
@@ -300,6 +366,15 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 6 facingX
 		ARG 7 facingY
 		ARG 8 facingZ
+	METHOD method_3355 use (Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_2961;Lnet/minecraft/class_1354;FFF)Lnet/minecraft/class_2962;
+		ARG 1 player
+		ARG 2 world
+		ARG 3 pos
+		ARG 4 hand
+		ARG 5 direction
+		ARG 6 x
+		ARG 7 y
+		ARG 8 z
 	METHOD method_3356 onBlockBroken (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_197;Lnet/minecraft/class_2552;Lnet/minecraft/class_1699;)Z
 		ARG 1 stack
 		ARG 2 world
@@ -322,15 +397,15 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
+	METHOD method_3359 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;I)V
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 entity
 	METHOD method_3359 onUseStopped (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_988;I)V
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 player
 		ARG 4 remainingTicks
-	METHOD method_3359 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;I)V
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 entity
 	METHOD method_3360 onHit (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Z)Lnet/minecraft/class_234;
 		COMMENT Returns the HitResult for an item when the player's arm is swung while holding the item.
 		COMMENT @return HitResult
@@ -361,14 +436,14 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		COMMENT @see net.minecraft.item.PotionItem
 		ARG 1 stack
 			COMMENT the ItemStack that was used
-	METHOD method_3367 onFinishUse (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_988;)Lnet/minecraft/class_1071;
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 player
 	METHOD method_3367 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)Lnet/minecraft/class_1071;
 		ARG 1 stack
 		ARG 2 world
 		ARG 3 entity
+	METHOD method_3367 onFinishUse (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_988;)Lnet/minecraft/class_1071;
+		ARG 1 stack
+		ARG 2 world
+		ARG 3 player
 	METHOD method_3370 setStatusEffectString (Ljava/lang/String;)Lnet/minecraft/class_1069;
 		COMMENT Sets the status effect string for the current item.
 		COMMENT Used by glowstone, spider eye, sugar, etc.
@@ -497,82 +572,31 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		COMMENT Returns whether the current item has a status effect string
 		COMMENT @return Whether the current item has a status effect string
 		ARG 1 stack
-	METHOD method_11284 register (ILjava/lang/String;Lnet/minecraft/class_1069;)V
-		COMMENT Overloaded method that registers an Item to the registry
-		ARG 0 id
-			COMMENT the Item Id
-		ARG 1 name
-			COMMENT the Item's name
-		ARG 2 item
-			COMMENT the item to be registered
-	METHOD method_11284 register (Ljava/lang/String;Lnet/minecraft/class_1069;)V
-	METHOD method_11285 register (ILnet/minecraft/class_1653;Lnet/minecraft/class_1069;)V
-		COMMENT Registers an item to the registry
-		ARG 0 id
-			COMMENT the Item Id
-		ARG 1 name
-			COMMENT the Item's identifier
-		ARG 2 item
-			COMMENT the Item to be registered
-	METHOD method_11286 registerBlockItem (Lnet/minecraft/class_197;Lnet/minecraft/class_1069;)V
-		COMMENT Registers a BlockItem to the registry
-		ARG 0 block
-			COMMENT the Block
-		ARG 1 blockItem
-			COMMENT the BlockItem
-	METHOD method_11287 postProcessNbt (Lnet/minecraft/class_322;)Z
-		ARG 1 nbt
-	METHOD method_11288 registerBlockItem (Lnet/minecraft/class_197;)V
-		COMMENT Overloaded method that registers a BlockItem to the registry
-		ARG 0 block
-			COMMENT the block
-	METHOD method_11374 getProperty (Lnet/minecraft/class_1653;)Lnet/minecraft/class_2688;
-		ARG 1 identifier
-	METHOD method_11375 addProperty (Lnet/minecraft/class_1653;Lnet/minecraft/class_2688;)V
-		ARG 1 identifier
-		ARG 2 itemPropertyGetter
-	METHOD method_11376 hasProperties ()Z
-	METHOD method_13649 (Lnet/minecraft/class_1150;Lnet/minecraft/class_988;Lnet/minecraft/class_2961;)Lnet/minecraft/class_2963;
-		ARG 1 world
-		ARG 2 player
-		ARG 3 hand
-	METHOD method_13650 getDefaultStack ()Lnet/minecraft/class_1071;
-	METHOD method_14232 canAddTo (Lnet/minecraft/class_1041;)Z
-		ARG 1 group
-	METHOD method_14233 appendToItemGroup (Lnet/minecraft/class_1041;Lnet/minecraft/class_3114;)V
-		ARG 1 group
-		ARG 2 stacks
-	METHOD method_14234 appendTooltips (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Ljava/util/List;Lnet/minecraft/class_3191;)V
-		ARG 1 stack
-		ARG 2 world
-		ARG 3 tooltip
-	METHOD method_16070 register (Lnet/minecraft/class_1096;)V
-	METHOD method_16071 useOnBlock (Lnet/minecraft/class_3565;)Lnet/minecraft/class_2962;
-		ARG 1 itemUsageContext
-	METHOD method_16072 register (Lnet/minecraft/class_197;Lnet/minecraft/class_1041;)V
-	METHOD method_16073 beforeBlockBreak (Lnet/minecraft/class_2232;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)Z
-		ARG 1 state
-		ARG 2 world
-		ARG 3 pos
-		ARG 4 player
-	METHOD method_16076 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
-		ARG 0 itemStack
-		ARG 1 world
-		ARG 2 livingEntity
-	METHOD method_16077 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
-		ARG 0 itemStack
-		ARG 1 world
-		ARG 2 livingEntity
-	METHOD method_16078 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
-		ARG 0 itemStack
-		ARG 1 world
-		ARG 2 livingEntity
-	METHOD method_16079 (Lnet/minecraft/class_1071;Lnet/minecraft/class_1150;Lnet/minecraft/class_1699;)F
-		ARG 0 itemStack
-		ARG 1 world
-		ARG 2 livingEntity
-	METHOD method_16081 computeTranslationKey ()Ljava/lang/String;
 	CLASS 1
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 10
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 11
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 12
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 13
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 14
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 15
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 16
+		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stack
+	CLASS 17
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 stack
 	CLASS 2
@@ -599,30 +623,6 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	CLASS 9
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 item
-	CLASS 10
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 11
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 12
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 13
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 14
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 15
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 16
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
-	CLASS 17
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-			ARG 1 stack
 	CLASS class_1070 ToolMaterialType
 		COMMENT the ToolMaterialType enum is the basis for all tool materials. It stores useful information about the tool such as it's enchantability, maximum durability and mining level.
 		COMMENT All ToolItem constructors require one argument as a ToolMaterialType.

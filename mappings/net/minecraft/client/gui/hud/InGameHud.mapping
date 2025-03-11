@@ -1,20 +1,4 @@
 CLASS net/minecraft/class_371 net/minecraft/client/gui/hud/InGameHud
-	FIELD field_1163 vignetteDarkness F
-	FIELD field_1164 itemRenderer Lnet/minecraft/class_560;
-	FIELD field_1165 random Ljava/util/Random;
-	FIELD field_1166 client Lnet/minecraft/class_1600;
-	FIELD field_1166 mc Lnet/minecraft/client/Minecraft;
-	FIELD field_1167 chatHud Lnet/minecraft/class_357;
-	FIELD field_1168 ticks I
-	FIELD field_1169 overlayMessage Ljava/lang/String;
-	FIELD field_1170 overlayRemaining I
-	FIELD field_1171 overlayTinted Z
-	FIELD field_5074 heldItemTooltipFade I
-	FIELD field_5075 heldItem Lnet/minecraft/class_1071;
-	FIELD field_6287 VIGNETTE Lnet/minecraft/class_1653;
-	FIELD field_6288 WIDGETS Lnet/minecraft/class_1653;
-	FIELD field_6289 PUMPKIN_BLUR Lnet/minecraft/class_1653;
-	FIELD field_7706 streamIndicatorHud Lnet/minecraft/class_1807;
 	FIELD field_10338 titleRemainTicks I
 	FIELD field_10339 titleFadeOutTicks I
 	FIELD field_10340 renderHealthValue I
@@ -28,40 +12,25 @@ CLASS net/minecraft/class_371 net/minecraft/client/gui/hud/InGameHud
 	FIELD field_10348 subtitle Ljava/lang/String;
 	FIELD field_10349 title Ljava/lang/String;
 	FIELD field_10350 titleFadeInTicks I
+	FIELD field_1163 vignetteDarkness F
+	FIELD field_1164 itemRenderer Lnet/minecraft/class_560;
+	FIELD field_1165 random Ljava/util/Random;
+	FIELD field_1166 client Lnet/minecraft/class_1600;
+	FIELD field_1166 mc Lnet/minecraft/client/Minecraft;
+	FIELD field_1167 chatHud Lnet/minecraft/class_357;
+	FIELD field_1168 ticks I
+	FIELD field_1169 overlayMessage Ljava/lang/String;
+	FIELD field_1170 overlayRemaining I
+	FIELD field_1171 overlayTinted Z
 	FIELD field_13303 bossbar Lnet/minecraft/class_2839;
+	FIELD field_5074 heldItemTooltipFade I
+	FIELD field_5075 heldItem Lnet/minecraft/class_1071;
+	FIELD field_6287 VIGNETTE Lnet/minecraft/class_1653;
+	FIELD field_6288 WIDGETS Lnet/minecraft/class_1653;
+	FIELD field_6289 PUMPKIN_BLUR Lnet/minecraft/class_1653;
+	FIELD field_7706 streamIndicatorHud Lnet/minecraft/class_1807;
 	METHOD <init> (Lnet/minecraft/class_1600;)V
 		ARG 1 client
-	METHOD method_977 tick ()V
-	METHOD method_978 renderVignette (FII)V
-		ARG 1 brightness
-		ARG 2 x
-		ARG 3 y
-	METHOD method_979 render (FZII)V
-		COMMENT Renders the in-game HUD (vignette, health, status bars, etc.),
-		COMMENT called in {@see net.minecraft.client.render.GameRenderer.renderGui}.
-		ARG 1 partialTicks
-		ARG 2 inScreen
-			COMMENT true if {@link net.minecraft.client.Minecraft.currentScreen} is null
-		ARG 3 mouseX
-			COMMENT the X position, relative to the window
-		ARG 4 mouseY
-			COMMENT the Y position, relative to the window
-	METHOD method_980 renderPumpkinBlur (II)V
-		ARG 1 width
-		ARG 2 height
-	METHOD method_981 renderActionBar (IIIF)V
-		COMMENT Renders the "action bar" (actually, the hot bar).
-		ARG 1 itemIndex
-			COMMENT the index of the item selected in the hotbar (in range 0-9)
-		ARG 2 x
-		ARG 3 y
-		ARG 4 partialTicks
-	METHOD method_982 setRecordPlayingOverlay (Ljava/lang/String;)V
-		ARG 1 name
-	METHOD method_983 getChatHud ()Lnet/minecraft/class_357;
-	METHOD method_984 renderNausea (FII)V
-	METHOD method_985 getTicks ()I
-	METHOD method_986 renderBossBar ()V
 	METHOD method_5588 setOverlayMessage (Ljava/lang/String;Z)V
 		ARG 1 message
 		ARG 2 tinted
@@ -116,6 +85,37 @@ CLASS net/minecraft/class_371 net/minecraft/client/gui/hud/InGameHud
 	METHOD method_9437 getSpectatorHud ()Lnet/minecraft/class_2310;
 	METHOD method_9438 getPlayerListWidget ()Lnet/minecraft/class_2308;
 	METHOD method_9439 resetDebugHudChunk ()V
+	METHOD method_977 tick ()V
+	METHOD method_978 renderVignette (FII)V
+		ARG 1 brightness
+		ARG 2 x
+		ARG 3 y
+	METHOD method_979 render (FZII)V
+		COMMENT Renders the in-game HUD (vignette, health, status bars, etc.),
+		COMMENT called in {@link net.minecraft.client.render.GameRenderer#renderGui}.
+		ARG 1 partialTicks
+		ARG 2 inScreen
+			COMMENT false if {@link net.minecraft.client.Minecraft#currentScreen} is null
+		ARG 3 mouseX
+			COMMENT the X position, relative to the window
+		ARG 4 mouseY
+			COMMENT the Y position, relative to the window
+	METHOD method_980 renderPumpkinBlur (II)V
+		ARG 1 width
+		ARG 2 height
+	METHOD method_981 renderActionBar (IIIF)V
+		COMMENT Renders the "action bar" (actually, the hot bar).
+		ARG 1 itemIndex
+			COMMENT the index of the item selected in the hotbar (in range 0-9)
+		ARG 2 x
+		ARG 3 y
+		ARG 4 partialTicks
+	METHOD method_982 setRecordPlayingOverlay (Ljava/lang/String;)V
+		ARG 1 name
+	METHOD method_983 getChatHud ()Lnet/minecraft/class_357;
+	METHOD method_984 renderNausea (FII)V
+	METHOD method_985 getTicks ()I
+	METHOD method_986 renderBossBar ()V
 	CLASS 1
 		METHOD apply apply (Ljava/lang/Object;)Z
 			ARG 1 playerScore
