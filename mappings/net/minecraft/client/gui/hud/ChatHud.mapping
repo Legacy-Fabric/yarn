@@ -1,5 +1,6 @@
 CLASS net/minecraft/class_357 net/minecraft/client/gui/hud/ChatHud
 	FIELD field_1057 client Lnet/minecraft/class_1600;
+	FIELD field_1057 mc Lnet/minecraft/client/Minecraft;
 	FIELD field_1058 messageHistory Ljava/util/List;
 	FIELD field_1059 messages Ljava/util/List;
 	FIELD field_1060 scrolledLines I
@@ -8,6 +9,8 @@ CLASS net/minecraft/class_357 net/minecraft/client/gui/hud/ChatHud
 	FIELD field_7714 LOGGER Lorg/apache/logging/log4j/Logger;
 	METHOD <init> (Lnet/minecraft/class_1600;)V
 		ARG 1 client
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 mc
 	METHOD method_13837 clear (Z)V
 		ARG 1 clearHistory
 	METHOD method_4932 getWidth (F)I
@@ -35,6 +38,20 @@ CLASS net/minecraft/class_357 net/minecraft/client/gui/hud/ChatHud
 	METHOD method_897 getTextAt (II)Lnet/minecraft/class_1982;
 		ARG 1 x
 		ARG 2 y
+	METHOD method_898 addMessage (Ljava/lang/String;)V
+		COMMENT Simply adds a message using {@link ChatHud#addMessage(String, int)}
+		ARG 1 message
+	METHOD method_899 addMessage (Ljava/lang/String;I)V
+		COMMENT Adds and/or replaces a message.
+		COMMENT It will replace a message if {@param messageIndex} isn't {@code 0}.
+		COMMENT @see net.minecraft.client.gui.screen.ChatScreen#showSuggestion (uses addOrReplaceString for showing multiple suggestions)
+		ARG 1 message
+			COMMENT the message to add to {@link ChatHud#messages}
+		ARG 2 messageIndex
+			COMMENT if this is {@code 0}, the message at this index will be removed
+	METHOD method_900 (Ljava/lang/String;[Ljava/lang/Object;)V
+		ARG 1 key
+		ARG 2 args
 	METHOD method_901 getMessageHistory ()Ljava/util/List;
 	METHOD method_902 scroll (I)V
 		ARG 1 lines

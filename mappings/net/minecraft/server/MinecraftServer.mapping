@@ -1,4 +1,9 @@
 CLASS net/minecraft/server/MinecraftServer
+	FIELD field_11841 resourcePackHash Ljava/lang/String;
+	FIELD field_11842 serverThread Ljava/lang/Thread;
+	FIELD field_11843 timeReference J
+	FIELD field_11844 queue Ljava/util/Queue;
+	FIELD field_13904 dataFixer Lnet/minecraft/class_2934;
 	FIELD field_3828 pvpEnabled Z
 	FIELD field_3829 flightEnabled Z
 	FIELD field_3830 motd Ljava/lang/String;
@@ -48,11 +53,6 @@ CLASS net/minecraft/server/MinecraftServer
 	FIELD field_8921 networkIo Lnet/minecraft/class_2103;
 	FIELD field_8922 serverMetadata Lnet/minecraft/class_2081;
 	FIELD field_8923 random Ljava/util/Random;
-	FIELD field_11841 resourcePackHash Ljava/lang/String;
-	FIELD field_11842 serverThread Ljava/lang/Thread;
-	FIELD field_11843 timeReference J
-	FIELD field_11844 queue Ljava/util/Queue;
-	FIELD field_13904 dataFixer Lnet/minecraft/class_2934;
 	METHOD <init> (Ljava/io/File;Ljava/net/Proxy;Ljava/io/File;)V
 		ARG 1 gameDir
 		ARG 2 proxy
@@ -64,6 +64,31 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 2 file
 	METHOD main ([Ljava/lang/String;)V
 		ARG 0 args
+	METHOD method_10811 hasGameDir ()Z
+	METHOD method_10812 isSpawnProtected (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)Z
+		ARG 1 world
+		ARG 2 pos
+		ARG 3 player
+	METHOD method_10813 loadResourcePack (Ljava/lang/String;Lnet/minecraft/class_101;)V
+		ARG 1 levelName
+		ARG 2 saveHandler
+	METHOD method_10814 getEntity (Ljava/util/UUID;)Lnet/minecraft/class_864;
+	METHOD method_10816 getCompletions (Lnet/minecraft/class_1061;Ljava/lang/String;Lnet/minecraft/class_2552;)Ljava/util/List;
+		ARG 1 source
+		ARG 2 partialCommand
+		ARG 3 lookingAt
+	METHOD method_10817 getMaxWorldBorderRadius ()I
+	METHOD method_10818 getNetworkCompressionThreshold ()I
+	METHOD method_10819 getServerStartTime ()J
+	METHOD method_10820 getThread ()Ljava/lang/Thread;
+	METHOD method_10821 setResourcePack (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 1 url
+		ARG 2 hash
+	METHOD method_10822 getResourcePackHash ()Ljava/lang/String;
+	METHOD method_10823 isUsingNativeTransport ()Z
+	METHOD method_10824 createCommandManager ()Lnet/minecraft/class_765;
+	METHOD method_10825 shouldBroadcastConsoleToIps ()Z
+	METHOD method_10826 setInstance ()V
 	METHOD method_2027 isDebuggingEnabled ()Z
 	METHOD method_2028 getLevelName ()Ljava/lang/String;
 	METHOD method_2034 info (Ljava/lang/String;)V
@@ -215,31 +240,6 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD method_8162 getServerMetadata ()Lnet/minecraft/class_2081;
 	METHOD method_8163 forcePlayerSampleUpdate ()V
 	METHOD method_8164 shouldBroadcastRconToOps ()Z
-	METHOD method_10811 hasGameDir ()Z
-	METHOD method_10812 isSpawnProtected (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_988;)Z
-		ARG 1 world
-		ARG 2 pos
-		ARG 3 player
-	METHOD method_10813 loadResourcePack (Ljava/lang/String;Lnet/minecraft/class_101;)V
-		ARG 1 levelName
-		ARG 2 saveHandler
-	METHOD method_10814 getEntity (Ljava/util/UUID;)Lnet/minecraft/class_864;
-	METHOD method_10816 getCompletions (Lnet/minecraft/class_1061;Ljava/lang/String;Lnet/minecraft/class_2552;)Ljava/util/List;
-		ARG 1 source
-		ARG 2 partialCommand
-		ARG 3 lookingAt
-	METHOD method_10817 getMaxWorldBorderRadius ()I
-	METHOD method_10818 getNetworkCompressionThreshold ()I
-	METHOD method_10819 getServerStartTime ()J
-	METHOD method_10820 getThread ()Ljava/lang/Thread;
-	METHOD method_10821 setResourcePack (Ljava/lang/String;Ljava/lang/String;)V
-		ARG 1 url
-		ARG 2 hash
-	METHOD method_10822 getResourcePackHash ()Ljava/lang/String;
-	METHOD method_10823 isUsingNativeTransport ()Z
-	METHOD method_10824 createCommandManager ()Lnet/minecraft/class_765;
-	METHOD method_10825 shouldBroadcastConsoleToIps ()Z
-	METHOD method_10826 setInstance ()V
 	METHOD run run ()V
 	CLASS 1
 		FIELD field_2701 lastProgressUpdate J
