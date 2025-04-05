@@ -1,7 +1,26 @@
 CLASS net/minecraft/class_352 net/minecraft/client/util/ScreenshotUtils
 	FIELD field_1033 DATE_FORMAT Ljava/text/DateFormat;
 	FIELD field_1034 intBuffer Ljava/nio/IntBuffer;
+	FIELD field_1035 screenshotBuffer [I
 	FIELD field_7697 LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD method_885 getScreenshotFile (Ljava/io/File;)Ljava/io/File;
+		ARG 0 screenshotsDirectory
+	METHOD method_886 saveScreenshot (Ljava/io/File;II)Ljava/lang/String;
+		ARG 0 dataDir
+		ARG 1 width
+		ARG 2 height
+	METHOD method_887 saveScreenshot (Ljava/io/File;Ljava/lang/String;II)Ljava/lang/String;
+		ARG 0 dataDir
+		ARG 1 customName
+		ARG 2 width
+		ARG 3 height
+	METHOD method_888 correctOrientation ([III)V
+		COMMENT rotates the src image / matrix,
+		COMMENT used because {@link org.lwjgl.opengl.GL11#glReadPixels} might
+		COMMENT return pixel data in a different orientation than expected.
+		ARG 0 src
+		ARG 1 width
+		ARG 2 height
 	METHOD method_6665 saveScreenshot (Ljava/io/File;IILnet/minecraft/class_1862;)Lnet/minecraft/class_1982;
 		ARG 0 parent
 		ARG 1 textureWidth
@@ -13,5 +32,3 @@ CLASS net/minecraft/class_352 net/minecraft/client/util/ScreenshotUtils
 		ARG 2 textureWidth
 		ARG 3 textureHeight
 		ARG 4 buffer
-	METHOD method_885 getScreenshotFile (Ljava/io/File;)Ljava/io/File;
-		ARG 0 screenshotsDirectory
