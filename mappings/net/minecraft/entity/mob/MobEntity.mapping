@@ -63,6 +63,8 @@ CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 	METHOD method_2594 getMinAmbientSoundDelay ()I
 	METHOD method_2595 playAmbientSound ()V
 	METHOD method_2598 playSpawnEffects ()V
+	METHOD method_2599 getMaxHealth ()I
+	METHOD method_2600 getHealth ()I
 	METHOD method_2603 getAmbientSound ()Ljava/lang/String;
 	METHOD method_2603 ambientSound ()Lnet/minecraft/class_2926;
 	METHOD method_2604 getHurtSound ()Ljava/lang/String;
@@ -92,12 +94,19 @@ CLASS net/minecraft/class_871 net/minecraft/entity/mob/MobEntity
 	METHOD method_2645 isUndeadGroup ()Z
 	METHOD method_2646 getSpeed ()F
 	METHOD method_2647 getEntityGroup ()Lnet/minecraft/class_873;
+	METHOD method_2653 damageInternal (Lnet/minecraft/class_856;I)V
+		ARG 1 source
+			COMMENT the source of the damage (unused in base implementation)
+		ARG 2 damage
+			COMMENT the amount of damage to be taken
 	METHOD method_2658 shouldApplyEffect (Lnet/minecraft/class_861;)Z
 		COMMENT This will return {@code false} if the entity's group is {@link EntityGroup#UNDEAD}
 		COMMENT and the effect is a {@link StatusEffect#REGENERATION} or {@link StatusEffect#POISON} effect.
 		ARG 1 effect
 	METHOD method_2659 setForwardSpeed (F)V
 		ARG 1 forwardSpeed
+	METHOD method_2668 setHealth (I)V
+		ARG 1 health
 	METHOD method_2672 dropRandomItem (I)V
 	METHOD method_2674 removeEffect (I)V
 		ARG 1 index

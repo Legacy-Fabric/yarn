@@ -35,6 +35,8 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	FIELD field_3200 colliding Z
 	FIELD field_3201 velocityModified Z
 	FIELD field_3202 inLava Z
+	FIELD field_3203 freeze Z
+		COMMENT seems to set velocity X, Y, and Z to `0` when set
 	FIELD field_3204 removed Z
 	FIELD field_3205 heightOffset F
 	FIELD field_3206 width F
@@ -62,6 +64,7 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 	FIELD field_3229 chunkZ I
 	FIELD field_3230 ignoreCameraFrustum Z
 	FIELD field_3231 velocityDirty Z
+	FIELD field_3232 entityBoundary Lnet/minecraft/class_866;
 	FIELD field_3234 fireTicks I
 	FIELD field_3235 skinUrl Ljava/lang/String;
 	FIELD field_3237 trackedX I
@@ -316,6 +319,20 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
+	METHOD method_2488 setPositionAndRotation (DDDFFI)V
+		COMMENT Sets the position and rotation of an entity.
+		ARG 1 x
+			COMMENT the X position
+		ARG 3 y
+			COMMENT the Y position
+		ARG 5 z
+			COMMENT the Z position
+		ARG 7 yaw
+			COMMENT the yaw angle
+		ARG 8 pitch
+			COMMENT the pitch angle
+		ARG 9 a3
+			COMMENT seems to always be 3 (in 1.3.2)
 	METHOD method_2488 updateTrackedPositionAndAngles (DDDFFIZ)V
 		ARG 1 x
 		ARG 3 y
@@ -400,6 +417,7 @@ CLASS net/minecraft/class_864 net/minecraft/entity/Entity
 		ARG 8 pitch
 	METHOD method_2524 getLightmapCoordinates (F)I
 	METHOD method_2525 setRotation (FF)V
+		COMMENT Sets the {@code yaw} and {@code pitch}, (both) modulo'd by {@code 360} degrees.
 		ARG 1 yaw
 		ARG 2 pitch
 	METHOD method_2526 dropItem (Lnet/minecraft/class_1069;I)Lnet/minecraft/class_964;
