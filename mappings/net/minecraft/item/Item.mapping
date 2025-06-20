@@ -218,7 +218,9 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	FIELD field_6198 NETHER_QUARTZ Lnet/minecraft/class_1069;
 	FIELD field_6199 MINECART_TNT Lnet/minecraft/class_1069;
 	FIELD field_6200 MINECART_HOPPER Lnet/minecraft/class_1069;
+	FIELD field_6201 texture Lnet/minecraft/class_1557;
 	FIELD field_6202 BOW Lnet/minecraft/class_1033;
+	FIELD field_6941 id Ljava/lang/String;
 	FIELD field_6942 IRON_HORSE_ARMOR Lnet/minecraft/class_1069;
 	FIELD field_6943 GOLD_HORSE_ARMOR Lnet/minecraft/class_1069;
 	FIELD field_6944 DIAMOND_HORSE_ARMOR Lnet/minecraft/class_1069;
@@ -311,6 +313,7 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 	METHOD method_3342 getTranslationKey ()Ljava/lang/String;
 		COMMENT Returns the translation key of the current Item
 		COMMENT @return Translation key
+	METHOD method_3343 getTexture (I)Lnet/minecraft/class_1557;
 	METHOD method_3344 getDisplayColor (Lnet/minecraft/class_1071;I)I
 		ARG 1 stack
 		ARG 2 color
@@ -357,6 +360,13 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 entity1
 		ARG 3 entity2
+	METHOD method_3355 (Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Lnet/minecraft/class_1150;IIIIFFF)Z
+		ARG 1 stack
+		ARG 2 player
+		ARG 3 world
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
 	METHOD method_3355 use (Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_1354;FFF)Z
 		ARG 1 itemStack
 		ARG 2 player
@@ -493,6 +503,8 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		COMMENT @see net.minecraft.util.CommonI18n
 		ARG 1 stack
 			COMMENT the ItemStack
+	METHOD method_3380 (Lnet/minecraft/class_1071;)Z
+		ARG 1 stack
 	METHOD method_3381 getName (Lnet/minecraft/class_1071;)Ljava/lang/String;
 		ARG 1 itemStack
 	METHOD method_3382 getMaxCount ()I
@@ -537,6 +549,9 @@ CLASS net/minecraft/class_1069 net/minecraft/item/Item
 		ARG 1 stack
 		ARG 2 ingredient
 	METHOD method_4616 hasSubTypes ()Z
+	METHOD method_5462 registerTextures (Lnet/minecraft/class_1558;)V
+		ARG 1 registry
+	METHOD method_6324 getTextureName ()Ljava/lang/String;
 	METHOD method_6325 getFromId (Ljava/lang/String;)Lnet/minecraft/class_1069;
 		COMMENT Returns an Item from its name or its numeric Id as a String
 		COMMENT @return Item

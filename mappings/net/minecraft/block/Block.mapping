@@ -601,11 +601,14 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 block
-	METHOD method_413 (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
+	METHOD method_413 appendCollisionBoxes (Lnet/minecraft/class_1150;IIILnet/minecraft/class_231;Ljava/util/List;Lnet/minecraft/class_864;)V
 		ARG 1 world
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+		ARG 5 entityBox
+		ARG 6 boxes
+		ARG 7 entity
 	METHOD method_414 rayTrace (Lnet/minecraft/class_1150;Lnet/minecraft/class_2552;Lnet/minecraft/class_236;Lnet/minecraft/class_236;)Lnet/minecraft/class_234;
 		ARG 1 world
 		ARG 2 pos
@@ -865,6 +868,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 		ARG 5 blockData
+	METHOD method_452 (Lnet/minecraft/class_1158;IIII)Z
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_453 getPistonInteractionType ()I
 		COMMENT Returns the block's piston interaction type, as provided by it's material.
 		COMMENT @return Current block's piston interaction type
@@ -874,6 +881,9 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		ARG 3 y
 		ARG 4 z
 	METHOD method_455 getLight (Lnet/minecraft/class_1158;III)I
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_456 setBlockItemBounds ()V
 		COMMENT Sets the bounds for the BlockItem
 	METHOD method_460 breakNaturally (Lnet/minecraft/class_1150;III)V
@@ -891,8 +901,11 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 		COMMENT Returns whether a block has collision, i.e. stops entities
 		COMMENT @return Whether a block has collision
 	METHOD method_470 getColor ()I
-	METHOD method_471 (Lnet/minecraft/class_1150;III)F
+	METHOD method_471 getHardness (Lnet/minecraft/class_1150;III)F
 		ARG 1 world
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_474 setUnbreakable ()Lnet/minecraft/class_197;
 		COMMENT Sets the current block as unbreakable. Used in registering blocks.
 		COMMENT Setting the strength as -1 makes the block unbreakable. Used by barriers and command blocks.
@@ -921,6 +934,10 @@ CLASS net/minecraft/class_197 net/minecraft/block/Block
 	METHOD method_4792 isEqual (II)Z
 		ARG 0 id1
 		ARG 1 id2
+	METHOD method_4794 (Lnet/minecraft/class_1158;IIII)Lnet/minecraft/class_1557;
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD method_4795 is (I)Z
 		ARG 1 id
 	METHOD method_4796 getSideTexture (I)Lnet/minecraft/class_1557;
