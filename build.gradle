@@ -335,11 +335,8 @@ tasks.register('decompileVineflower', JavaExec) {
 	dependsOn mapNamedJar
 	mainClass = "org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler"
 	classpath.from configurations.decompileClasspath
-	// TODO: Fix this!
-	/*minecraftLibraries.files().forEach { file ->
-		args "--add-external=${jar.absolutePath}"
-	}*/
-	args "--folder", mapNamedJar.outputFile.getAbsolutePath(), decompileOutput.absolutePath
+	classpath.from minecraftLibraries
+	args "--include-classpath=true", "--log-level=warn", "--folder", mapNamedJar.outputFile.getAbsolutePath(), decompileOutput.absolutePath
 }
 
 javadoc {
