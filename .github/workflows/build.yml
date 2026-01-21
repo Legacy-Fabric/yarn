@@ -31,5 +31,5 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
-      - run: python -u ./ci.py $MC_VERSION buildPublishToLocalAndTest
+          java-version: '21'
+      - run: python yarn.py clean build mapMinecraftToNamed ${{ matrix.mc_version }}

@@ -1,357 +1,61 @@
-buildscript {
-	repositories {
-		maven {
-			name "Fabric Repository"
-			url 'https://maven.fabricmc.net'
-		}
-		mavenCentral()
-		mavenLocal()
-	}
-	dependencies {
-		classpath "cuchaz:enigma-cli:${project.enigma_version}"
-		classpath "net.fabricmc:name-proposal:${project.name_proposal_version}"
-	}
-}
+import net.ornithemc.keratin.api.TaskSelection
+import net.ornithemc.keratin.api.task.mapping.graph.ExtendGraphTask
+
+import net.fabricmc.filament.task.MappingPoetTask
 
 plugins {
-	id 'java' // for constants, packages, javadoc
+	id 'java'
 	id 'maven-publish'
-	id "com.diffplug.spotless" version "6.21.0"
-	id 'net.fabricmc.filament' version "0.7.1"
-	id 'net.legacyfabric.multifilament' version "0.4.1" apply false
+	id 'lf-keratin' version '41.2'
 }
-
-def taskName = project.gradle.startParameter.taskNames[0]
 
 def ENV = System.getenv()
 
-def minecraft_version = "1.8.9"
-
-if (!ENV.MC_VERSION) {
-	System.err.println("No Minecraft version selected! Please use yarn.py to start gradle.")
-	System.err.println("Defaulting Minecraft version to ${minecraft_version}")
-} else {
-	minecraft_version = ENV.MC_VERSION
-}
-
-filament {
-	minecraftVersion = minecraft_version
-}
-
-apply plugin:"net.legacyfabric.multifilament"
-
-def mapJarGroup = "jar mapping"
-
-// Fetch build number from Github Actions
-def build_number = ENV.GITHUB_RUN_NUMBER && taskName != "publishToMavenLocal" ? ENV.GITHUB_RUN_NUMBER : "local"
-
-if (build_number != "local") {
-	def build_num = Integer.valueOf(build_number);
-	def latest_num = getLastBuildNumber();
-
-	if (latest_num > build_num) {
-		build_number = String.valueOf(latest_num);
-	}
-}
-
-def yarnVersion = "${minecraft_version}+build.$build_number"
-version = yarnVersion
-
-multiFilament {
-	intermediaryRevision = intermediary_version.toInteger()
-	activeMappingsDir = file("mappings-active")
-	multiMappingsDir = file("mappings")
-	tempMappingsDir = file("mappings-temp")
-	it.yarnGroup = "yarn"
-	it.buildMappingGroup = "mapping build"
-	it.mapJarGroupGroup = mapJarGroup
-	it.version = yarnVersion
-	it.unpickDefinitionsDir = file("unpick-definitions")
-	it.unpickMetaFile = file("unpick-definitions/unpick.json")
-	it.unpickVersion = project.unpick_version
-}
-
-System.out.println("Preparing yarn ${yarnVersion}")
-
 repositories {
-	mavenCentral()
 	maven {
-		name "Fabric Repository"
-		url 'https://maven.fabricmc.net'
+		name = "Ornithe"
+		url = "https://maven.ornithemc.net/releases"
 	}
-	maven {
-		name "Mojang"
-		url 'https://libraries.minecraft.net/'
-		metadataSources {
-			artifact()
-			ignoreGradleMetadataRedirection()
-		}
+	mavenLocal()
+}
+
+keratin {
+	mavenSourcedNamedMappingsArtifacts {
+		it.groupId = 'net.legacyfabric'
+		it.artifactId = 'yarn'
+//		if (ENV.MAVEN_URL) {
+		it.repositoryUrl = 'https://maven.legacyfabric.net/'
+//		}
 	}
-}
 
-dependencies {
-	enigmaRuntime "cuchaz:enigma-swing:${project.enigma_version}"
-	enigmaRuntime "net.fabricmc:name-proposal:${project.name_proposal_version}"
-	enigmaRuntime "net.fabricmc:cfr:${project.cfr_version}"
-	enigmaRuntime "org.vineflower:vineflower:${project.vineflower_version}"
-	javadocClasspath "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
-	javadocClasspath "org.jetbrains:annotations:${project.jetbrains_annotations_version}"
-	javadocClasspath "com.google.code.findbugs:jsr305:3.0.2" // for some other jsr annotations
-	decompileClasspath "net.fabricmc:cfr:${project.cfr_version}"
-	decompileClasspath "org.vineflower:vineflower:${project.vineflower_version}"
-	mappingPoetJar "net.fabricmc:mappingpoet:${project.mappingpoet_version}"
-	asm "org.ow2.asm:asm:${project.asm_version}"
-	asm "org.ow2.asm:asm-tree:${project.asm_version}"
-	asm "org.ow2.asm:asm-commons:${project.asm_version}"
-	asm "org.ow2.asm:asm-util:${project.asm_version}"
-}
-
-def minecraftLibraries = configurations.minecraftLibraries
-
-
-import com.diffplug.spotless.LineEnding
-import cuchaz.enigma.command.CheckMappingsCommand
-import net.fabricmc.filament.task.MapJarTask
-import net.fabricmc.filament.task.UnpickJarTask
-import net.fabricmc.filament.task.mappingio.MergeMappingsTask
-import net.fabricmc.mappingio.format.MappingFormat
-import net.fabricmc.nameproposal.MappingNameCompleter
-import org.gradle.work.DisableCachingByDefault
-import net.legacyfabric.multifilament.task.FileInputOutput
-
-def getIntermediaryGroup() {
-	switch(multiFilament.intermediaryRevision.get()) {
-		case "2":
-			return ".v2"
-		default:
-			return ""
+	publications {
+		it.groupId = 'net.legacyfabric'
+		it.artifactId = 'yarn'
 	}
-}
 
-tasks.register('yarn', EnigmaTask) {
-	dependsOn mapIntermediaryJar, versionifyMappingsExclude
-	group = multiFilament.yarnGroup.get()
-	jar = mapIntermediaryJar.output
-	mappings = multiFilament.activeMappingsDir.asFile
-}
-
-tasks.register('yarnCommon', EnigmaTask) {
-	dependsOn versionifyMappingsExclude
-	group = multiFilament.yarnGroup.get()
-	jar = mapServerIntermediaryJar.output
-	mappings = multiFilament.activeMappingsDir.asFile
-}
-
-tasks.register('checkMappings') {
-	dependsOn versionifyMappingsExclude
-	group = multiFilament.buildMappingGroup.get()
-	inputs.dir multiFilament.activeMappingsDir.asFile
-	inputs.file mapIntermediaryJar.output
-
-	def intermediaryJarPath = mapIntermediaryJar.outputFile.absolutePath
-	def activeMappingsDir = multiFilament.activeMappingsDir.asFile.get().getAbsolutePath()
-
-	doLast {
-		String[] args = [
-			intermediaryJarPath,
-			activeMappingsDir
-		]
-
-		try {
-			new CheckMappingsCommand().run(args)
-		} catch (IllegalStateException ignored) {
-			// just print, don't fail the task
-		}
+	if (ENV.MC_VERSION) {
+		minecraftVersion ENV.MC_VERSION
+	} else if (ENV.MC_VERSIONS) {
+		minecraftVersions ENV.MC_VERSIONS.split('[,]')
 	}
+	intermediaryGen = 2
+
+	tasks TaskSelection.MAPPINGS
 }
 
-// Disable the default jar task
-jar {
-	enabled = false
-}
-
-clean.doFirst {
-	delete multiFilament.tempDirectory, multiFilament.minecraftCacheDirectory
-}
-
-sourceSets {
-	constants
-	packageDocs // package info files
-}
-
-tasks.register('constantsJar', Jar) {
-	from sourceSets.constants.output
-	archiveClassifier = "constants"
-}
-
-tasks.build.dependsOn "compressTiny","tinyJar","v2UnmergedYarnJar", "v2MergedYarnJar", "javadocJar"
-
-// Setup the build for the unpicked constants
-
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.encoding = "UTF-8"
-	it.options.release = 17
-}
-
-tasks.withType(AbstractArchiveTask).configureEach {
-	it.preserveFileTimestamps = false
-	it.reproducibleFileOrder = true
-}
-
-spotless {
-	lineEndings = LineEnding.UNIX
-
-	java {
-		licenseHeaderFile(rootProject.file("HEADER"))
+tasks.withType(ExtendGraphTask, {
+	if (ENV.FROM_MC_VERSIONS) {
+		fromMinecraftVersions ENV.FROM_MC_VERSIONS.split('[,]')
 	}
-}
+})
 
-tasks.register('sourcesJar', Jar) {
-	dependsOn classes
-	archiveClassifier = "sources"
-	from sourceSets.constants.allSource
-}
-
-// Only build jars for package infos if we need to actually expose stuff like annotation in the future.
-
-build.dependsOn constantsJar
-
-tasks.register('insertAutoGeneratedEnumMappings', FileInputOutput) {
-	dependsOn mapIntermediaryJar, downloadIntermediary
-	group = multiFilament.buildMappingGroup.get()
-	input = completeMappings.output
-	output = multiFilament.tempDirectory.file("unmerged-named-v2-with-enum.tiny")
-
-	inputs.file mapIntermediaryJar.output
-	inputs.file downloadIntermediary.output
-
-	def intermediaryJarPath = mapIntermediaryJar.outputPath
-	def intermediaryMappingsPath = downloadIntermediary.outputPath
-
-	doLast {
-		MappingNameCompleter.completeNames(
-			intermediaryJarPath,
-			inputPath,
-			intermediaryMappingsPath,
-			outputPath
-		)
-	}
-}
-
-fixedRemapUnpickDefinitionsIntermediary {
-	group = 'unpick'
-	output = multiFilament.tempDirectory.file('intermediary-definitions.unpick')
-	mappings = insertAutoGeneratedEnumMappings.output
-}
-
-tasks.register('unpickIntermediaryJar', UnpickJarTask) {
-	group = 'unpick'
-	input = mapIntermediaryJar.output
-	output = multiFilament.getCacheFile("${minecraft_version}-intermediary-unpicked.jar")
-	unpickDefinition = fixedRemapUnpickDefinitionsIntermediary.output
-	constantsJarFile = constantsJar.archiveFile
-	classpath.from minecraftLibraries
-}
-
-tasks.register('yarnUnpicked', EnigmaTask) {
-	dependsOn "unpickIntermediaryJar", versionifyMappingsExclude
-	group = multiFilament.yarnGroup.get()
-	jar = unpickIntermediaryJar.output
-	mappings = multiFilament.activeMappingsDir.asFile
-}
-
-tasks.register('mergeV2', MergeMappingsTask) {
-	group = multiFilament.buildMappingGroup.get()
-	output = multiFilament.tempDirectory.file("merged-v2.tiny")
-	mappingInputs.from downloadIntermediary.output
-	mappingInputs.from insertAutoGeneratedEnumMappings.output
-	outputFormat = MappingFormat.TINY_2_FILE
-}
-
-tasks.register('mapNamedJar', MapJarTask) {
-	dependsOn mergeV2, unpickIntermediaryJar
-	group = mapJarGroup
-	output = multiFilament.getCacheFile("${minecraft_version}-named.jar")
-	input = unpickIntermediaryJar.output
-	mappings = mergeV2.output
-	classpath.from minecraftLibraries
-	from = 'intermediary'
-	to = 'named'
-	classMappings = [
-		"javax/annotation/Nullable"            : "org/jetbrains/annotations/Nullable",
-		"javax/annotation/Nonnull"             : "org/jetbrains/annotations/NotNull",
-		"javax/annotation/concurrent/Immutable": "org/jetbrains/annotations/Unmodifiable"
-	]
-}
-
-def mcLibsDir = file('build/tmp/mclibs')
-
-// Task to copy all the mc libs into a single directory.
-tasks.register('syncDependencies', Sync) {
-	from minecraftLibraries
-	into mcLibsDir
-}
-
-def fakeSourceDir = file(".gradle/temp/fakeSource")
-tasks.register('genFakeSource', JavaExec) {
-	dependsOn mergeV2, mapNamedJar, syncDependencies
-	group = "javadoc generation"
-
-	inputs.file mergeV2.output
-	inputs.file mapNamedJar.output
-	inputs.dir mcLibsDir
-
-	outputs.dir fakeSourceDir
-
-	mainClass = "net.fabricmc.mappingpoet.Main"
-	classpath configurations.mappingPoet
-	// use merged v2 so we have all namespaces in jd
-	args mergeV2.outputFile.getAbsolutePath(), mapNamedJar.outputFile.getAbsolutePath(), fakeSourceDir.getAbsolutePath(), mcLibsDir.getAbsolutePath()
-}
-
-def decompileOutput = multiFilament.getIntermediaryRevisionDirectory().get().dir("namedSrc").getAsFile()
-
-tasks.register("deleteDecompilerOutput", Delete) {
-	println "Decompile output: " + decompileOutput
-	decompileOutput.deleteDir()
-}
-
-tasks.register('decompileCFR', JavaExec) {
-	dependsOn deleteDecompilerOutput
-	dependsOn mapNamedJar
-	mainClass = "org.benf.cfr.reader.Main"
-	classpath.from configurations.decompileClasspath
-	classpath.from minecraftLibraries
-	args mapNamedJar.outputFile.getAbsolutePath(), "--outputdir", decompileOutput.absolutePath
-}
-
-tasks.register('decompileVineflower', JavaExec) {
-	dependsOn deleteDecompilerOutput
-	dependsOn mapNamedJar
-	mainClass = "org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler"
-	classpath.from configurations.decompileClasspath
-	classpath.from minecraftLibraries
-	args "--include-classpath=true", "--log-level=warn", "--folder", mapNamedJar.outputFile.getAbsolutePath(), decompileOutput.absolutePath
-}
-
-javadoc {
-	dependsOn genFakeSource
-	group = "javadoc generation"
-
-	def mappingPoetJar = project.provider { zipTree configurations.mappingPoetJar.singleFile }
-
-	failOnError = false
-	maxMemory = '2G'
+tasks.withType(Javadoc, {
+	it.outputs.upToDateWhen { false }
 
 	// verbose = true // enable to debug
-	options {
+	it.options {
 		// verbose() // enable to debug
-		source = "17"
+		source = "8"
 		encoding = 'UTF-8'
 		charSet = 'UTF-8'
 		memberLevel = JavadocMemberLevel.PRIVATE
@@ -361,35 +65,29 @@ javadoc {
 				'implSpec:a:Implementation Requirements:',
 				'implNote:a:Implementation Note:'
 		)
-		taglets "net.fabricmc.mappingpoet.jd.MappingTaglet"
+		taglets "net.fabricmc.filament.mappingpoet.jd.MappingTaglet"
 		// taglet path, header, extra stylesheet settings deferred
 		it.use()
 
 		addBooleanOption "-allow-script-in-comments", true
 		addBooleanOption "-ignore-source-errors", true
 		links(
-				'https://guava.dev/releases/31.1-jre/api/docs/',
-				'https://www.javadoc.io/doc/com.google.code.gson/gson/2.10/',
+				'https://guava.dev/releases/21.0/api/docs/',
+				'https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0/',
 				'https://logging.apache.org/log4j/2.x/javadoc/log4j-api/',
-				'https://www.slf4j.org/apidocs/',
-				"https://javadoc.io/doc/org.jetbrains/annotations/${project.jetbrains_annotations_version}/",
+				// jsr305 need to come before jdk or the anno links are broken
+				'https://www.javadoc.io/doc/com.google.code.findbugs/jsr305/3.0.2/',
 				'https://javadoc.lwjgl.org/',
 				'https://fastutil.di.unimi.it/docs/',
-				'https://javadoc.scijava.org/JOML/',
 				'https://netty.io/4.1/api/',
-				'https://www.oshi.ooo/oshi-core-java11/apidocs/',
-				'https://java-native-access.github.io/jna/5.12.1/javadoc/',
-				'https://unicode-org.github.io/icu-docs/apidoc/released/icu4j/',
-				'https://jopt-simple.github.io/jopt-simple/apidocs/',
-				'https://solutions.weblite.ca/java-objective-c-bridge/docs/',
-				'https://commons.apache.org/proper/commons-logging/apidocs/',
-				'https://commons.apache.org/proper/commons-lang/javadocs/api-release/',
-				'https://commons.apache.org/proper/commons-io/apidocs/',
-				'https://commons.apache.org/proper/commons-codec/archives/1.15/apidocs/',
-				'https://commons.apache.org/proper/commons-compress/apidocs/',
-				'https://hc.apache.org/httpcomponents-client-4.5.x/current/httpclient/apidocs/',
-				"https://maven.fabricmc.net/docs/fabric-loader-${project.fabric_loader_version}/",
-				"https://docs.oracle.com/en/java/javase/17/docs/api/"
+				'https://commons.apache.org/proper/commons-logging/javadocs/api-1.1.3/',
+				'https://commons.apache.org/proper/commons-lang/javadocs/api-3.5',
+				'https://commons.apache.org/proper/commons-io/javadocs/api-2.5',
+				'https://commons.apache.org/proper/commons-codec/archives/1.10/apidocs',
+				'https://javadoc.io/doc/org.apache.commons/commons-compress/1.8.1',
+				"https://maven.fabricmc.net/docs/fabric-loader-0.15.11/",
+				"https://docs.oracle.com/en/java/javase/11/docs/api/"
+				// Need to add loader jd publication for env annotations!
 		)
 		// https://docs.oracle.com/en/java/javase/17/docs/specs/man/javadoc.html#additional-options-provided-by-the-standard-doclet
 		addBooleanOption 'Xdoclint:html', true
@@ -397,154 +95,28 @@ javadoc {
 		addBooleanOption 'Xdoclint:reference', true
 		addBooleanOption 'Xdoclint:accessibility', true
 	}
-	source fileTree(fakeSourceDir) + sourceSets.constants.allJava + sourceSets.packageDocs.allJava
-	classpath = configurations.javadocClasspath.plus minecraftLibraries
-
-	def fs = project.services.get(FileSystemOperations.class)
-	def outputDir = javadoc.destinationDir
-
-	doLast {
-		fs.copy {
-			from mappingPoetJar
-			include "copy_on_click.js"
-			into outputDir
-		}
-	}
-
-	def tagletClasspath = configurations.mappingPoet.files.toList()
-
-	doFirst {
-		// lazy setting
-		options {
-			tagletPath tagletClasspath
-			header mappingPoetJar.get().filter { it.name == 'javadoc_header.txt' }.singleFile.text.trim() // cannot include line breaks
-			addFileOption "-add-stylesheet", mappingPoetJar.get().filter { it.name == 'forms.css' }.singleFile
-		}
-	}
-}
-
-tasks.register('javadocJar', Jar) {
-	dependsOn javadoc
-	group = "javadoc generation"
-
-	from javadoc.destinationDir
-
-	archiveVersion.set yarnVersion
-	archiveClassifier = 'javadoc'
-}
-
-generatePackageInfoMappings {
-	dependsOn versionifyMappingsExclude
-	inputJar = mapIntermediaryJar.output
-	packageName = "net/minecraft/unused/packageinfo/"
-	outputDir = multiFilament.activeMappingsDir.dir("net/minecraft/unused/packageinfo")
-}
-
-javadocLint {
-	dependsOn versionifyMappingsExclude
-	group = "javadoc generation"
-	mappingDirectory = multiFilament.activeMappingsDir
-}
-
-check.dependsOn javadocLint
-
-afterEvaluate {
-	publishing {
-		publications {
-			register("maven", MavenPublication) {
-				groupId "net.legacyfabric" + getIntermediaryGroup()
-				artifactId "yarn"
-				version yarnVersion
-
-				artifact(compressTiny.output) {
-					classifier "tiny"
-					builtBy compressTiny
-				}
-				artifact(tinyJar)
-				artifact(v2UnmergedYarnJar) {
-					classifier "v2"
-				}
-				artifact(v2MergedYarnJar) {
-					classifier "mergedv2"
-				}
-				artifact(constantsJar) {
-					classifier "constants"
-				}
-				artifact sourcesJar
-				artifact javadocJar
-			}
-
-		}
-		repositories {
-			if (ENV.MAVEN_PUBLISH_CREDENTIALS) {
-				maven {
-					url "https://repo.legacyfabric.net/legacyfabric/"
-					credentials {
-						username ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[0]
-						password ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[1]
-					}
-					authentication {
-						basic(BasicAuthentication)
-					}
-				}
-			}
-		}
-	}
-}
-
-// A task to ensure that the version being released has not already been released.
-tasks.register('checkVersion') {
-	doFirst {
-		def xml = new URL("https://maven.legacyfabric.net/net/legacyfabric${getIntermediaryMaven()}/yarn/maven-metadata.xml").text
-		def metadata = new XmlSlurper().parseText(xml)
-		def versions = metadata.versioning.versions.version*.text();
-		if (versions.contains(version)) {
-			throw new RuntimeException("${version} has already been released!")
-		}
-	}
-}
-
-publish.mustRunAfter checkVersion
-
-import groovy.json.JsonSlurper;
-
-int getLastBuildNumber() {
-	def xml = new URL("https://meta.legacyfabric.net/v2/versions/yarn/1.8.9").text
-	def metadata = new JsonSlurper().parseText(xml);
 	
-	return metadata[0].build;
-}
+	def filamentCodeSource = MappingPoetTask.class.getProtectionDomain().getCodeSource()
+	def filamentJarFile = new File(filamentCodeSource.getLocation().getFile())
 
-@DisableCachingByDefault
-abstract class EnigmaTask extends JavaExec {
-	@InputFile
-	abstract RegularFileProperty getJar()
-
-	@Input
-	abstract Property<File> getMappings()
-
-	EnigmaTask() {
-		classpath = project.configurations.enigmaRuntime
-		mainClass.set('cuchaz.enigma.gui.Main')
-		jvmArgs "-Xmx2048m"
+	options {
+		tagletPath = [filamentJarFile]
 	}
+})
 
-	@TaskAction
-	void exec() {
-		args '-jar'
-		args jar.get().asFile.absolutePath
-		args '-mappings'
-		args mappings.get().absolutePath
-		args '-profile'
-		args 'enigma_profile.json'
-		super.exec()
-	}
-}
-
-unifyMappings.configure {
-	tasks.each {task ->
-		if (task != it) {
-			it.mustRunAfter(task)
+publishing {
+	repositories {
+		if (ENV.MAVEN_PUBLISH_CREDENTIALS) {
+			maven {
+				url "https://repo.legacyfabric.net/legacyfabric/"
+				credentials {
+					username ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[0]
+					password ENV.MAVEN_PUBLISH_CREDENTIALS.split(":")[1]
+				}
+				authentication {
+					basic(BasicAuthentication)
+				}
+			}
 		}
 	}
 }
