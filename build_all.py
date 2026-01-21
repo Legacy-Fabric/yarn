@@ -119,7 +119,7 @@ class GradleProcess:
         self._gradle_command: str = "gradlew" if os.name == "nt" else "./gradlew"
         self._process: Optional[subprocess.Popen] = None
         self._times_run: int = 0
-        self._TO_COPY: list[str] = ["gradle", "src", "mappings", "unpick-definitions", "build.gradle", "gradle.properties", "gradlew", "gradlew.bat", "nests-builds.json", "signatures-builds.json", "exceptions-builds.json", "settings.gradle"]
+        self._TO_COPY: list[str] = ["gradle", "mappings", "unpick-definitions", "build.gradle", "gradle.properties", "gradlew", "gradlew.bat", "nests-builds.json", "signatures-builds.json", "exceptions-builds.json", "settings.gradle"]
 
     def start(self) -> None:
         while self._should_retry():
