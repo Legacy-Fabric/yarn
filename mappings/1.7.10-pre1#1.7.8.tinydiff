@@ -1,12 +1,12 @@
 tiny	2	0
 c	net/minecraft/class_102
-	m	()Ljava/lang/String;	method_6605	method_6605	
-	m	(Ljava/lang/String;)Z	method_6607	method_6607	
-		p	1		p_1	
-	m	(Ljava/lang/String;)Z	method_6606	method_6606	
-		p	1		p_1	
+	m	()Ljava/lang/String;	method_6605	getFormat	
+	m	(Ljava/lang/String;)Z	method_6607	isLevelNameValid	
+		p	1		name	
+	m	(Ljava/lang/String;)Z	method_6606	isConvertible	
+		p	1		worldName	
 c	net/minecraft/class_103
-	m	()J	method_6608	method_6608	
+	m	()J	method_6608	getSizeOnDisk	
 c	net/minecraft/class_356
 	f	Lnet/minecraft/class_1653;	WIDGETS_LOCATION	WIDGETS_LOCATION	
 	f	I	width	width	
@@ -1696,7 +1696,7 @@ c	net/minecraft/class_624
 	f	Z	field_22544		field_22544
 	f	Z	field_22545		field_22545
 	f	Lnet/minecraft/class_356;	field_22541		field_22541
-	m	()V	method_6003	method_6003	
+	m	()V	method_6003	switchToRealms	
 	m	()V	tick	tick	
 	m	()Z	isPauseScreen	isPauseScreen	
 	m	(CI)V	keyPressed	keyPressed	
@@ -1738,15 +1738,15 @@ c	net/minecraft/class_624
 		p	0			p_0
 	m	()Lorg/apache/logging/log4j/Logger;	method_21950		method_21950
 c	net/minecraft/class_770
-	f	Lnet/minecraft/class_2095;	field_8871	field_8871	
+	f	Lnet/minecraft/class_2095;	field_8871	eulaReader	
 c	net/minecraft/class_798
-	m	()J	method_8139	method_8139	
+	m	()J	method_8139	getLastActionTime	
 c	net/minecraft/class_837
-	m	(D)I	method_8346	method_8346	
-		p	0		p_0	
-	m	(II)I	method_8343	method_8343	
-		p	0		p_0	
-		p	1		p_1	
+	m	(D)I	method_8346	absFloor	
+		p	0		d	
+	m	(II)I	method_8343	roundUp	
+		p	0		value	
+		p	1		stepSize	
 c	net/minecraft/class_94
 	m	()Ljava/lang/String;	method_6605	method_6605	
 	m	(Ljava/lang/String;)Z	method_6606	method_6606	
@@ -2312,18 +2312,18 @@ c	net/minecraft/class_1938
 		p	3			p_3
 c	net/minecraft/class_1957
 	m	()Z	method_22353		method_22353
-c	net/minecraft/class_2095	net/minecraft/class_2095	
-	f	Lorg/apache/logging/log4j/Logger;	field_8863	field_8863	
-	f	Ljava/io/File;	field_8864	field_8864	
-	f	Z	field_8865	field_8865	
+c	net/minecraft/class_2095	net/minecraft/server/dedicated/EulaReader	
+	f	Lorg/apache/logging/log4j/Logger;	field_8863	LOGGER	
+	f	Ljava/io/File;	field_8864	eulaFile	
+	f	Z	field_8865	eulaAgreedTo	
 	m	(Ljava/io/File;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Ljava/io/File;)Z	method_8104	method_8104	
-		p	1		p_1	
-	m	()Z	method_8103	method_8103	
-	m	()V	method_8105	method_8105	
+	m	(Ljava/io/File;)Z	method_8104	checkEulaAgreement	
+		p	1		eulaFile	
+	m	()Z	method_8103	isEulaAgreedTo	
+	m	()V	method_8105	createEulaFile	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2123	net/minecraft/class_2123	
+c	net/minecraft/class_2123	net/minecraft/util/class_2123	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Z	method_8219	method_8219	
 		p	1		p_1	
@@ -2373,9 +2373,9 @@ c	net/minecraft/realms/Realms	net/minecraft/realms/Realms
 	m	()Ljava/lang/String;	getSessionId	getSessionId	
 	m	()Ljava/lang/String;	getName	getName	
 	m	(Ljava/lang/String;)Ljava/lang/String;	uuidToName	uuidToName	
-		p	0		p_0	
+		p	0		uuid	
 	m	(Lnet/minecraft/realms/RealmsScreen;)V	setScreen	setScreen	
-		p	0		p_0	
+		p	0		realmsScreen	
 	m	()Ljava/lang/String;	getGameDirectoryPath	getGameDirectoryPath	
 	m	()I	survivalId	survivalId	
 	m	()I	creativeId	creativeId	
@@ -2386,21 +2386,21 @@ c	net/minecraft/realms/RealmsAnvilLevelStorageSource	net/minecraft/realms/Realms
 		p	1		p_1	
 	m	()Ljava/lang/String;	getName	getName	
 	m	(Ljava/lang/String;)Z	levelExists	levelExists	
-		p	1		p_1	
+		p	1		name	
 	m	(Ljava/lang/String;Lnet/minecraft/class_841;)Z	convertLevel	convertLevel	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		worldName	
+		p	2		progressListener	
 	m	(Ljava/lang/String;)Z	requiresConversion	requiresConversion	
-		p	1		p_1	
+		p	1		worldName	
 	m	(Ljava/lang/String;)Z	isNewLevelIdAcceptable	isNewLevelIdAcceptable	
-		p	1		p_1	
+		p	1		name	
 	m	(Ljava/lang/String;)Z	deleteLevel	deleteLevel	
-		p	1		p_1	
+		p	1		name	
 	m	(Ljava/lang/String;)Z	isConvertible	isConvertible	
-		p	1		p_1	
+		p	1		worldName	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	renameLevel	renameLevel	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		oldName	
+		p	2		newName	
 	m	()V	clearAll	clearAll	
 	m	()Ljava/util/List;	getLevelList	getLevelList	
 c	net/minecraft/realms/RealmsBridge	net/minecraft/realms/RealmsBridge	
@@ -2408,7 +2408,7 @@ c	net/minecraft/realms/RealmsBridge	net/minecraft/realms/RealmsBridge
 	f	Lnet/minecraft/class_388;	previousScreen	previousScreen	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_388;)V	switchToRealms	switchToRealms	
-		p	1		p_1	
+		p	1		parent	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_1600;II)V	init	init	
 		p	1		p_1	
@@ -2431,9 +2431,9 @@ c	net/minecraft/realms/RealmsButton	net/minecraft/realms/RealmsButton
 		p	6		p_6	
 	m	()Z	active	active	
 	m	(Z)V	active	active	
-		p	1		p_1	
+		p	1		active	
 	m	(Ljava/lang/String;)V	msg	msg	
-		p	1		p_1	
+		p	1		message	
 	m	()I	getWidth	getWidth	
 	m	()I	method_6720	method_6720	
 	m	()I	method_6722	method_6722	
@@ -2492,7 +2492,7 @@ c	net/minecraft/realms/RealmsEditBox	net/minecraft/realms/RealmsEditBox
 		p	5		p_5	
 	m	()V	tick	tick	
 	m	(Ljava/lang/String;)V	setValue	setValue	
-		p	1		p_1	
+		p	1		text	
 	m	()Ljava/lang/String;	getValue	getValue	
 	m	()Ljava/lang/String;	getHighlighted	getHighlighted	
 	m	(Ljava/lang/String;)V	insertText	insertText	
@@ -2520,9 +2520,9 @@ c	net/minecraft/realms/RealmsEditBox	net/minecraft/realms/RealmsEditBox
 		p	1		p_1	
 		p	2		p_2	
 	m	(III)V	mouseClicked	mouseClicked	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		mouseX	
+		p	2		mouseY	
+		p	3		button	
 	m	()V	render	render	
 	m	(IIII)V	renderHighlight	renderHighlight	
 		p	1		p_1	
@@ -2530,7 +2530,7 @@ c	net/minecraft/realms/RealmsEditBox	net/minecraft/realms/RealmsEditBox
 		p	3		p_3	
 		p	4		p_4	
 	m	(I)V	setMaxLength	setMaxLength	
-		p	1		p_1	
+		p	1		maximumLength	
 	m	()I	getMaxLength	getMaxLength	
 	m	()I	getCursorPosition	getCursorPosition	
 	m	()Z	isBordered	isBordered	
@@ -2543,11 +2543,11 @@ c	net/minecraft/realms/RealmsEditBox	net/minecraft/realms/RealmsEditBox
 	m	(I)V	setTextColorUneditable	setTextColorUneditable	
 		p	1		p_1	
 	m	(Z)V	setFocus	setFocus	
-		p	1		p_1	
+		p	1		focused	
 	m	()Z	isFocused	isFocused	
 	m	()Z	isIsEditable	isIsEditable	
 	m	(Z)V	setIsEditable	setIsEditable	
-		p	1		p_1	
+		p	1		editable	
 	m	()I	getHighlightPos	getHighlightPos	
 	m	()I	getInnerWidth	getInnerWidth	
 	m	(I)V	setHighlightPos	setHighlightPos	
@@ -2570,7 +2570,7 @@ c	net/minecraft/realms/RealmsLevelSummary	net/minecraft/realms/RealmsLevelSummar
 	m	()Ljava/lang/String;	getLevelName	getLevelName	
 	m	()J	getLastPlayed	getLastPlayed	
 	m	(Lnet/minecraft/class_103;)I	compareTo	compareTo	
-		p	1		p_1	
+		p	1		levelSummary	
 	m	()J	getSizeOnDisk	getSizeOnDisk	
 	m	(Lnet/minecraft/realms/RealmsLevelSummary;)I	compareTo	compareTo	
 		p	1		p_1	
@@ -2681,15 +2681,15 @@ c	net/minecraft/realms/RealmsScreen	net/minecraft/realms/RealmsScreen
 	m	()V	<init>	<init>	
 	m	()V	init	init	
 	m	(Ljava/lang/String;III)V	drawCenteredString	drawCenteredString	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
 	m	(Ljava/lang/String;III)V	drawString	drawString	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
 	m	(IIIIII)V	blit	blit	
 		p	1		p_1	
 		p	2		p_2	
@@ -2698,25 +2698,25 @@ c	net/minecraft/realms/RealmsScreen	net/minecraft/realms/RealmsScreen
 		p	5		p_5	
 		p	6		p_6	
 	m	(IIFFIIIIFF)V	blit	blit	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		x	
+		p	1		y	
+		p	2		u	
+		p	3		v	
 		p	4		p_4	
 		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	6		width	
+		p	7		height	
+		p	8		textureWidth	
+		p	9		textureHeight	
 	m	(IIFFIIFF)V	blit	blit	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	0		x	
+		p	1		y	
+		p	2		u	
+		p	3		v	
+		p	4		width	
+		p	5		height	
+		p	6		textureWidth	
+		p	7		textureHeight	
 	m	(IIIIII)V	fillGradient	fillGradient	
 		p	1		p_1	
 		p	2		p_2	
@@ -2747,41 +2747,41 @@ c	net/minecraft/realms/RealmsScreen	net/minecraft/realms/RealmsScreen
 	m	(Ljava/lang/String;)V	bindFace	bindFace	
 		p	0		p_0	
 	m	(Ljava/lang/String;)V	bind	bind	
-		p	0		p_0	
+		p	0		id	
 	m	()V	tick	tick	
 	m	()I	width	width	
 	m	()I	height	height	
 	m	()I	fontLineHeight	fontLineHeight	
 	m	(Ljava/lang/String;)I	fontWidth	fontWidth	
-		p	1		p_1	
+		p	1		text	
 	m	(Ljava/lang/String;III)V	fontDrawShadow	fontDrawShadow	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
 	m	(Ljava/lang/String;I)Ljava/util/List;	fontSplit	fontSplit	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		text	
+		p	2		i	
 	m	(Lnet/minecraft/realms/RealmsButton;)V	buttonClicked	buttonClicked	
-		p	1		p_1	
+		p	1		realmsButton	
 	m	(IIILjava/lang/String;)Lnet/minecraft/realms/RealmsButton;	newButton	newButton	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		id	
+		p	1		x	
+		p	2		y	
+		p	3		label	
 	m	(IIIIILjava/lang/String;)Lnet/minecraft/realms/RealmsButton;	newButton	newButton	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	0		id	
+		p	1		x	
+		p	2		y	
+		p	3		width	
+		p	4		height	
+		p	5		message	
 	m	()V	buttonsClear	buttonsClear	
 	m	(Lnet/minecraft/realms/RealmsButton;)V	buttonsAdd	buttonsAdd	
-		p	1		p_1	
+		p	1		button	
 	m	()Ljava/util/List;	buttons	buttons	
 	m	(Lnet/minecraft/realms/RealmsButton;)V	buttonsRemove	buttonsRemove	
-		p	1		p_1	
+		p	1		button	
 	m	(IIII)Lnet/minecraft/realms/RealmsEditBox;	newEditBox	newEditBox	
 		p	1		p_1	
 		p	2		p_2	
@@ -2809,10 +2809,10 @@ c	net/minecraft/realms/RealmsScreen	net/minecraft/realms/RealmsScreen
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/String;)Ljava/lang/String;	getLocalizedString	getLocalizedString	
-		p	0		p_0	
+		p	0		key	
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	getLocalizedString	getLocalizedString	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		key	
+		p	1		args	
 	m	()Lnet/minecraft/realms/RealmsAnvilLevelStorageSource;	getLevelStorageSource	getLevelStorageSource	
 	m	(Lnet/minecraft/class_356;)V	buttonClicked	buttonClicked	
 		p	1		p_1	
@@ -2855,7 +2855,7 @@ c	net/minecraft/realms/RealmsServerAddress	net/minecraft/realms/RealmsServerAddr
 	m	()Ljava/lang/String;	getHost	getHost	
 	m	()I	getPort	getPort	
 	m	(Ljava/lang/String;)Lnet/minecraft/realms/RealmsServerAddress;	parseString	parseString	
-		p	0		p_0	
+		p	0		address	
 	m	(Ljava/lang/String;)[Ljava/lang/String;	lookupSrv	lookupSrv	
 		p	0		p_0	
 	m	(Ljava/lang/String;I)I	parseInt	parseInt	
@@ -2935,7 +2935,7 @@ c	net/minecraft/realms/ServerPing	net/minecraft/realms/ServerPing
 	f	J	lastPingSnapshot	lastPingSnapshot	
 	m	()V	<init>	<init>	
 c	net/minecraft/realms/Tezzelator	net/minecraft/realms/Tezzelator	
-	f	Lnet/minecraft/class_533;	field_8913	field_8913	
+	f	Lnet/minecraft/class_533;	field_8913	tessellator	
 	f	Lnet/minecraft/realms/Tezzelator;	instance	instance	
 	m	()V	<init>	<init>	
 	m	()I	end	end	
@@ -2944,10 +2944,10 @@ c	net/minecraft/realms/Tezzelator	net/minecraft/realms/Tezzelator
 		p	3		p_3	
 		p	5		p_5	
 	m	(FFFF)V	color	color	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		red	
+		p	2		green	
+		p	3		blue	
+		p	4		alpha	
 	m	(III)V	color	color	
 		p	1		p_1	
 		p	2		p_2	
@@ -2955,9 +2955,9 @@ c	net/minecraft/realms/Tezzelator	net/minecraft/realms/Tezzelator
 	m	(I)V	tex2	tex2	
 		p	1		p_1	
 	m	(FFF)V	normal	normal	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()V	noColor	noColor	
 	m	(I)V	color	color	
 		p	1		p_1	
@@ -2984,9 +2984,9 @@ c	net/minecraft/realms/Tezzelator	net/minecraft/realms/Tezzelator
 		p	1		p_1	
 		p	2		p_2	
 	m	(DDD)V	offset	offset	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+		p	1		x	
+		p	3		y	
+		p	5		z	
 	m	(IIII)V	color	color	
 		p	1		p_1	
 		p	2		p_2	
@@ -3004,7 +3004,7 @@ c	net/minecraft/realms/Tezzelator	net/minecraft/realms/Tezzelator
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_5000		net/minecraft/class_5000
+c	net/minecraft/class_5000		net/minecraft/client/class_5000
 	f	Lnet/minecraft/class_624;	field_22546		field_22546
 	m	(Lnet/minecraft/class_624;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
@@ -3038,7 +3038,7 @@ c	net/minecraft/class_5001		net/minecraft/class_5001
 		p	1			p_1
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_21956		method_21956
 		p	1			p_1
-c	net/minecraft/class_5002		net/minecraft/class_5002
+c	net/minecraft/class_5002		net/minecraft/client/class_5002
 	f	Lorg/apache/logging/log4j/Logger;	field_22552		field_22552
 	f	Lnet/minecraft/class_1653;	field_22553		field_22553
 	f	Lnet/minecraft/class_5009;	field_22554		field_22554
@@ -3123,12 +3123,12 @@ c	net/minecraft/class_5002		net/minecraft/class_5002
 		p	0			p_0
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5003		net/minecraft/class_5003
+c	net/minecraft/class_5003		net/minecraft/client/class_5003
 	f	Lnet/minecraft/class_5002;	field_22563		field_22563
 	m	(Lnet/minecraft/class_5002;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5004		net/minecraft/class_5004
+c	net/minecraft/class_5004		net/minecraft/client/class_5004
 	f	Lnet/minecraft/class_5002;	field_22564		field_22564
 	m	(Lnet/minecraft/class_5002;)V	<init>		<init>
 		p	1			p_1
@@ -3164,7 +3164,7 @@ c	net/minecraft/class_5004		net/minecraft/class_5004
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_5005		net/minecraft/class_5005
+c	net/minecraft/class_5005		net/minecraft/client/class_5005
 	f	Lnet/minecraft/class_5065;	field_22566		field_22566
 	f	Lnet/minecraft/class_5002;	field_22565		field_22565
 	m	(Lnet/minecraft/class_5002;Lnet/minecraft/class_5065;)V	<init>		<init>
@@ -3175,7 +3175,7 @@ c	net/minecraft/class_5005		net/minecraft/class_5005
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_5006		net/minecraft/class_5006
+c	net/minecraft/class_5006		net/minecraft/client/class_5006
 	f	Lorg/apache/logging/log4j/Logger;	field_22567		field_22567
 	f	Lnet/minecraft/class_388;	field_22568		field_22568
 	f	I	field_22569		field_22569
@@ -3207,14 +3207,14 @@ c	net/minecraft/class_5006		net/minecraft/class_5006
 		p	1			p_1
 	m	()Lorg/apache/logging/log4j/Logger;	method_21990		method_21990
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5007		net/minecraft/class_5007
+c	net/minecraft/class_5007		net/minecraft/client/class_5007
 	f	Lnet/minecraft/class_5058;	field_22572		field_22572
 	f	Lnet/minecraft/class_5006;	field_22573		field_22573
 	m	(Lnet/minecraft/class_5006;Lnet/minecraft/class_5058;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	run		run
-c	net/minecraft/class_5008		net/minecraft/class_5008
+c	net/minecraft/class_5008		net/minecraft/client/class_5008
 	f	Lnet/minecraft/class_388;	field_22574		field_22574
 	m	(Lnet/minecraft/class_388;)V	<init>		<init>
 		p	1			p_1
@@ -3228,7 +3228,7 @@ c	net/minecraft/class_5008		net/minecraft/class_5008
 	m	(CI)V	method_21924		method_21924
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5009		net/minecraft/class_5009
+c	net/minecraft/class_5009		net/minecraft/client/class_5009
 	f	Lorg/apache/logging/log4j/Logger;	field_22582		field_22582
 	f	Lnet/minecraft/class_1653;	field_22583		field_22583
 	f	Lnet/minecraft/class_1653;	field_22584		field_22584
@@ -3391,7 +3391,7 @@ c	net/minecraft/class_5010		net/minecraft/class_5010
 	m	(Lnet/minecraft/class_5009;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5011		net/minecraft/class_5011
+c	net/minecraft/class_5011		net/minecraft/client/class_5011
 	f	Lnet/minecraft/class_5009;	field_22597		field_22597
 	m	(Lnet/minecraft/class_5009;)V	<init>		<init>
 		p	1			p_1
@@ -3421,7 +3421,7 @@ c	net/minecraft/class_5011		net/minecraft/class_5011
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/class_5012		net/minecraft/class_5012
+c	net/minecraft/class_5012		net/minecraft/client/class_5012
 	f	Lorg/apache/logging/log4j/Logger;	field_22598		field_22598
 	f	J	field_22599		field_22599
 	f	Lnet/minecraft/class_388;	field_22600		field_22600
@@ -3466,7 +3466,7 @@ c	net/minecraft/class_5012		net/minecraft/class_5012
 		p	0			p_0
 	m	()Lorg/apache/logging/log4j/Logger;	method_22037		method_22037
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5013		net/minecraft/class_5013
+c	net/minecraft/class_5013		net/minecraft/client/class_5013
 	f	Ljava/lang/String;	field_22610		field_22610
 	f	Lnet/minecraft/class_5081;	field_22611		field_22611
 	f	J	field_22612		field_22612
@@ -3477,7 +3477,7 @@ c	net/minecraft/class_5013		net/minecraft/class_5013
 		p	4			p_4
 		p	5			p_5
 	m	()V	run		run
-c	net/minecraft/class_5014		net/minecraft/class_5014
+c	net/minecraft/class_5014		net/minecraft/client/class_5014
 	f	Ljava/lang/String;	field_22613		field_22613
 	f	Lnet/minecraft/class_1982;	field_22614		field_22614
 	f	Ljava/util/List;	field_22615		field_22615
@@ -3496,7 +3496,7 @@ c	net/minecraft/class_5014		net/minecraft/class_5014
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_5015		net/minecraft/class_5015
+c	net/minecraft/class_5015		net/minecraft/client/class_5015
 	f	Lorg/apache/logging/log4j/Logger;	field_22617		field_22617
 	f	Lnet/minecraft/class_388;	field_22618		field_22618
 	f	Lnet/minecraft/class_388;	field_22619		field_22619
@@ -3530,7 +3530,7 @@ c	net/minecraft/class_5015		net/minecraft/class_5015
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5016		net/minecraft/class_5016
+c	net/minecraft/class_5016		net/minecraft/client/class_5016
 	f	Lorg/apache/logging/log4j/Logger;	field_22628		field_22628
 	f	Lnet/minecraft/class_367;	field_22629		field_22629
 	f	Lnet/minecraft/class_5067;	field_22630		field_22630
@@ -3564,7 +3564,7 @@ c	net/minecraft/class_5016		net/minecraft/class_5016
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5017		net/minecraft/class_5017
+c	net/minecraft/class_5017		net/minecraft/client/class_5017
 	f	Lnet/minecraft/class_5018;	field_22642		field_22642
 	f	Ljava/lang/String;	field_22643		field_22643
 	f	Ljava/lang/String;	field_22644		field_22644
@@ -3588,7 +3588,7 @@ c	net/minecraft/class_5017		net/minecraft/class_5017
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_5018		net/minecraft/class_5018
+c	net/minecraft/class_5018		net/minecraft/client/class_5018
 	f	Lnet/minecraft/class_5018;	field_22645		field_22645
 	f	Lnet/minecraft/class_5018;	field_22646		field_22646
 	f	I	field_22647		field_22647
@@ -3603,7 +3603,7 @@ c	net/minecraft/class_5018		net/minecraft/class_5018
 		p	3			p_3
 		p	4			p_4
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5019		net/minecraft/class_5019
+c	net/minecraft/class_5019		net/minecraft/client/class_5019
 	f	I	field_22651		field_22651
 	f	I	field_22652		field_22652
 	f	Lnet/minecraft/class_388;	field_22653		field_22653
@@ -3640,7 +3640,7 @@ c	net/minecraft/class_5019		net/minecraft/class_5019
 		p	1			p_1
 	m	()Z	method_22046		method_22046
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5020		net/minecraft/class_5020
+c	net/minecraft/class_5020		net/minecraft/client/class_5020
 	f	Lnet/minecraft/class_5019;	field_22662		field_22662
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/class_5019;)V	method_22050		method_22050
@@ -3655,7 +3655,7 @@ c	net/minecraft/class_5020		net/minecraft/class_5020
 	m	(Lnet/minecraft/class_356;)V	method_22049		method_22049
 		p	1			p_1
 	m	()V	method_22055		method_22055
-c	net/minecraft/class_5021		net/minecraft/class_5021
+c	net/minecraft/class_5021		net/minecraft/client/class_5021
 	f	Lnet/minecraft/class_1600;	field_22663		field_22663
 	f	I	field_22669		field_22669
 	f	I	field_22670		field_22670
@@ -3731,7 +3731,7 @@ c	net/minecraft/class_5021		net/minecraft/class_5021
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_5022		net/minecraft/class_5022
+c	net/minecraft/class_5022		net/minecraft/client/class_5022
 	f	Lorg/apache/logging/log4j/Logger;	field_22683		field_22683
 	f	Lnet/minecraft/class_5053;	field_22684		field_22684
 	f	Lnet/minecraft/class_5081;	field_22685		field_22685
@@ -3794,7 +3794,7 @@ c	net/minecraft/class_5023		net/minecraft/class_5023
 		p	1			p_1
 		p	2			p_2
 	m	()V	run		run
-c	net/minecraft/class_5024		net/minecraft/class_5024
+c	net/minecraft/class_5024		net/minecraft/client/class_5024
 	f	Lnet/minecraft/class_5022;	field_22693		field_22693
 	m	(Lnet/minecraft/class_5022;)V	<init>		<init>
 		p	1			p_1
@@ -3867,7 +3867,7 @@ c	net/minecraft/class_5026		net/minecraft/class_5026
 	m	(Lnet/minecraft/class_5025;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5027		net/minecraft/class_5027
+c	net/minecraft/class_5027		net/minecraft/client/class_5027
 	f	Lnet/minecraft/class_1600;	field_22701		field_22701
 	f	I	field_22708		field_22708
 	f	I	field_22709		field_22709
@@ -3926,7 +3926,7 @@ c	net/minecraft/class_5027		net/minecraft/class_5027
 		p	2			p_2
 		p	3			p_3
 	m	()I	method_22107		method_22107
-c	net/minecraft/class_5028		net/minecraft/class_5028
+c	net/minecraft/class_5028		net/minecraft/client/class_5028
 	f	Lorg/apache/logging/log4j/Logger;	field_22717		field_22717
 	f	Lnet/minecraft/class_1957;	field_22718		field_22718
 	f	Lnet/minecraft/class_5067;	field_22719		field_22719
@@ -3950,7 +3950,7 @@ c	net/minecraft/class_5028		net/minecraft/class_5028
 		p	0			p_0
 	m	()Lorg/apache/logging/log4j/Logger;	method_22114		method_22114
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5029		net/minecraft/class_5029
+c	net/minecraft/class_5029		net/minecraft/client/class_5029
 	f	Lorg/apache/logging/log4j/Logger;	field_22726		field_22726
 	f	Lnet/minecraft/class_1653;	field_22727		field_22727
 	f	Lnet/minecraft/class_1653;	field_22728		field_22728
@@ -4153,12 +4153,12 @@ c	net/minecraft/class_5029		net/minecraft/class_5029
 	m	(Lnet/minecraft/class_5029;)Lnet/minecraft/class_1600;	method_22116		method_22116
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5030		net/minecraft/class_5030
+c	net/minecraft/class_5030		net/minecraft/client/class_5030
 	f	Lnet/minecraft/class_5029;	field_22740		field_22740
 	m	(Lnet/minecraft/class_5029;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5031		net/minecraft/class_5031
+c	net/minecraft/class_5031		net/minecraft/client/class_5031
 	f	Lnet/minecraft/class_5029;	field_22741		field_22741
 	m	(Lnet/minecraft/class_5029;)V	<init>		<init>
 		p	1			p_1
@@ -4186,14 +4186,14 @@ c	net/minecraft/class_5031		net/minecraft/class_5031
 		p	3			p_3
 	m	(Lnet/minecraft/class_5067;)Z	method_22180		method_22180
 		p	1			p_1
-c	net/minecraft/class_5032		net/minecraft/class_5032
+c	net/minecraft/class_5032		net/minecraft/client/class_5032
 	f	Lnet/minecraft/class_5067;	field_22742		field_22742
 	f	Lnet/minecraft/class_5031;	field_22743		field_22743
 	m	(Lnet/minecraft/class_5031;Lnet/minecraft/class_5067;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	run		run
-c	net/minecraft/class_5033		net/minecraft/class_5033
+c	net/minecraft/class_5033		net/minecraft/client/class_5033
 	f	I	field_22750		field_22750
 	f	I	field_22751		field_22751
 	f	I	field_22752		field_22752
@@ -4220,7 +4220,7 @@ c	net/minecraft/class_5033		net/minecraft/class_5033
 	m	(Lnet/minecraft/class_388;Lnet/minecraft/class_370;)V	method_22183		method_22183
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5034		net/minecraft/class_5034
+c	net/minecraft/class_5034		net/minecraft/client/class_5034
 	f	Lorg/apache/logging/log4j/Logger;	field_22754		field_22754
 	f	Lnet/minecraft/class_388;	field_22755		field_22755
 	f	Lnet/minecraft/class_5038;	field_22756		field_22756
@@ -4269,22 +4269,22 @@ c	net/minecraft/class_5034		net/minecraft/class_5034
 	m	(Lnet/minecraft/class_5034;)Lnet/minecraft/class_370;	method_22200		method_22200
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5035		net/minecraft/class_5035
+c	net/minecraft/class_5035		net/minecraft/client/class_5035
 	f	Lnet/minecraft/class_5034;	field_22759		field_22759
 	m	(Lnet/minecraft/class_5034;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5036		net/minecraft/class_5036
+c	net/minecraft/class_5036		net/minecraft/client/class_5036
 	f	Lnet/minecraft/class_5034;	field_22760		field_22760
 	m	(Lnet/minecraft/class_5034;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5037		net/minecraft/class_5037
+c	net/minecraft/class_5037		net/minecraft/client/class_5037
 	f	Lnet/minecraft/class_5034;	field_22761		field_22761
 	m	(Lnet/minecraft/class_5034;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/class_5038		net/minecraft/class_5038
+c	net/minecraft/class_5038		net/minecraft/client/class_5038
 	f	Lnet/minecraft/class_5034;	field_22762		field_22762
 	m	(Lnet/minecraft/class_5034;)V	<init>		<init>
 		p	1			p_1
@@ -4308,7 +4308,7 @@ c	net/minecraft/class_5038		net/minecraft/class_5038
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/class_5039		net/minecraft/class_5039
+c	net/minecraft/class_5039		net/minecraft/client/class_5039
 	f	Lorg/apache/logging/log4j/Logger;	field_22763		field_22763
 	f	Ljava/util/concurrent/ScheduledExecutorService;	field_22764		field_22764
 	f	Z	field_22765		field_22765
@@ -4352,7 +4352,7 @@ c	net/minecraft/class_5039		net/minecraft/class_5039
 		p	0			p_0
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5040		net/minecraft/class_5040
+c	net/minecraft/class_5040		net/minecraft/client/class_5040
 c	net/minecraft/class_5041		net/minecraft/class_5041
 	f	Lnet/minecraft/class_5039;	field_22774		field_22774
 	m	(Lnet/minecraft/class_5039;)V	<init>		<init>
@@ -4362,7 +4362,7 @@ c	net/minecraft/class_5041		net/minecraft/class_5041
 	m	(Lnet/minecraft/class_5039;Lnet/minecraft/class_5040;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5042		net/minecraft/class_5042
+c	net/minecraft/class_5042		net/minecraft/client/class_5042
 	f	Lnet/minecraft/class_5039;	field_22775		field_22775
 	m	(Lnet/minecraft/class_5039;)V	<init>		<init>
 		p	1			p_1
@@ -4400,7 +4400,7 @@ c	net/minecraft/class_5044		net/minecraft/class_5044
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_5045		net/minecraft/class_5045
+c	net/minecraft/class_5045		net/minecraft/client/class_5045
 	f	Lorg/apache/logging/log4j/Logger;	field_22783		field_22783
 	f	Ljava/util/List;	field_22784		field_22784
 	m	()V	<init>		<init>
@@ -4409,7 +4409,7 @@ c	net/minecraft/class_5045		net/minecraft/class_5045
 	m	()V	method_22226		method_22226
 	m	()Lorg/apache/logging/log4j/Logger;	method_22227		method_22227
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5046		net/minecraft/class_5046
+c	net/minecraft/class_5046		net/minecraft/client/class_5046
 	f	Lorg/apache/logging/log4j/Logger;	field_22785		field_22785
 	f	Lnet/minecraft/class_388;	field_22786		field_22786
 	f	Lnet/minecraft/class_5067;	field_22787		field_22787
@@ -4464,7 +4464,7 @@ c	net/minecraft/class_5050		net/minecraft/class_5050
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	uncaughtException		uncaughtException
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5051		net/minecraft/class_5051
+c	net/minecraft/class_5051		net/minecraft/client/class_5051
 	f	Lorg/apache/logging/log4j/Logger;	field_22796		field_22796
 	f	Lnet/minecraft/class_388;	field_22797		field_22797
 	f	Lnet/minecraft/class_5067;	field_22798		field_22798
@@ -4509,7 +4509,7 @@ c	net/minecraft/class_5051		net/minecraft/class_5051
 		p	0			p_0
 	m	()Lorg/apache/logging/log4j/Logger;	method_22235		method_22235
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5052		net/minecraft/class_5052
+c	net/minecraft/class_5052		net/minecraft/client/class_5052
 	f	J	field_22806		field_22806
 	f	Ljava/lang/String;	field_22807		field_22807
 	f	Lnet/minecraft/class_5081;	field_22808		field_22808
@@ -4520,7 +4520,7 @@ c	net/minecraft/class_5052		net/minecraft/class_5052
 		p	4			p_4
 		p	5			p_5
 	m	()V	run		run
-c	net/minecraft/class_5053		net/minecraft/class_5053
+c	net/minecraft/class_5053		net/minecraft/client/class_5053
 	m	()V	<init>		<init>
 	m	(Ljava/lang/Object;)V	method_22237		method_22237
 		p	1			p_1
@@ -4576,7 +4576,7 @@ c	net/minecraft/class_5055		net/minecraft/class_5055
 		p	2			p_2
 		p	4			p_4
 	m	()V	run		run
-c	net/minecraft/class_5056		net/minecraft/class_5056
+c	net/minecraft/class_5056		net/minecraft/client/class_5056
 	f	Lorg/apache/logging/log4j/Logger;	field_22820		field_22820
 	f	Lnet/minecraft/class_388;	field_22821		field_22821
 	f	Lnet/minecraft/class_5067;	field_22822		field_22822
@@ -4631,7 +4631,7 @@ c	net/minecraft/class_5057		net/minecraft/class_5057
 		p	1			p_1
 		p	2			p_2
 	m	()Ljava/lang/String;	method_22254		method_22254
-c	net/minecraft/class_5058		net/minecraft/class_5058
+c	net/minecraft/class_5058		net/minecraft/client/class_5058
 	f	Lorg/apache/logging/log4j/Logger;	field_22831		field_22831
 	f	Ljava/lang/String;	field_22832		field_22832
 	f	Ljava/lang/String;	field_22833		field_22833
@@ -4717,12 +4717,12 @@ c	net/minecraft/class_5058		net/minecraft/class_5058
 	m	(Lnet/minecraft/class_5060;)Ljava/lang/String;	method_22261		method_22261
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5059		net/minecraft/class_5059
+c	net/minecraft/class_5059		net/minecraft/client/class_5059
 	f	Ljava/net/Proxy;	field_22836		field_22836
 	m	()Ljava/net/Proxy;	method_22290		method_22290
 	m	(Ljava/net/Proxy;)V	method_22291		method_22291
 		p	0			p_0
-c	net/minecraft/class_5060		net/minecraft/class_5060
+c	net/minecraft/class_5060		net/minecraft/client/class_5060
 	f	Ljava/net/HttpURLConnection;	field_22837		field_22837
 	f	Z	field_22839		field_22839
 	f	Ljava/lang/String;	field_22838		field_22838
@@ -4764,21 +4764,21 @@ c	net/minecraft/class_5060		net/minecraft/class_5060
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_22301		method_22301
 		p	1			p_1
 	m	()Ljava/lang/String;	method_22307		method_22307
-c	net/minecraft/class_5061		net/minecraft/class_5061
+c	net/minecraft/class_5061		net/minecraft/client/class_5061
 	m	(Ljava/lang/String;II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	()Lnet/minecraft/class_5061;	method_22309		method_22309
 	m	()Lnet/minecraft/class_5060;	method_22305		method_22305
-c	net/minecraft/class_5062		net/minecraft/class_5062
+c	net/minecraft/class_5062		net/minecraft/client/class_5062
 	m	(Ljava/lang/String;II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	()Lnet/minecraft/class_5062;	method_22310		method_22310
 	m	()Lnet/minecraft/class_5060;	method_22305		method_22305
-c	net/minecraft/class_5063		net/minecraft/class_5063
+c	net/minecraft/class_5063		net/minecraft/client/class_5063
 	f	[B	field_22840		field_22840
 	m	(Ljava/lang/String;[BII)V	<init>		<init>
 		p	1			p_1
@@ -4787,7 +4787,7 @@ c	net/minecraft/class_5063		net/minecraft/class_5063
 		p	4			p_4
 	m	()Lnet/minecraft/class_5063;	method_22311		method_22311
 	m	()Lnet/minecraft/class_5060;	method_22305		method_22305
-c	net/minecraft/class_5064		net/minecraft/class_5064
+c	net/minecraft/class_5064		net/minecraft/client/class_5064
 	f	[B	field_22841		field_22841
 	m	(Ljava/lang/String;[BII)V	<init>		<init>
 		p	1			p_1
@@ -4796,7 +4796,7 @@ c	net/minecraft/class_5064		net/minecraft/class_5064
 		p	4			p_4
 	m	()Lnet/minecraft/class_5064;	method_22312		method_22312
 	m	()Lnet/minecraft/class_5060;	method_22305		method_22305
-c	net/minecraft/class_5065		net/minecraft/class_5065
+c	net/minecraft/class_5065		net/minecraft/client/class_5065
 	f	Lorg/apache/logging/log4j/Logger;	field_22847		field_22847
 	f	Ljava/lang/String;	field_22842		field_22842
 	f	Ljava/util/Date;	field_22843		field_22843
@@ -4809,14 +4809,14 @@ c	net/minecraft/class_5065		net/minecraft/class_5065
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_22314		method_22314
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5066		net/minecraft/class_5066
+c	net/minecraft/class_5066		net/minecraft/client/class_5066
 	f	Lorg/apache/logging/log4j/Logger;	field_22849		field_22849
 	f	Ljava/util/List;	field_22848		field_22848
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/class_5066;	method_22315		method_22315
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5067		net/minecraft/class_5067
+c	net/minecraft/class_5067		net/minecraft/client/class_5067
 	f	Lorg/apache/logging/log4j/Logger;	field_22867		field_22867
 	f	J	field_22850		field_22850
 	f	Ljava/lang/String;	field_22851		field_22851
@@ -4868,7 +4868,7 @@ c	net/minecraft/class_5068		net/minecraft/class_5068
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5069		net/minecraft/class_5069
+c	net/minecraft/class_5069		net/minecraft/client/class_5069
 	f	Ljava/lang/String;	field_22868		field_22868
 	m	(Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
@@ -4878,7 +4878,7 @@ c	net/minecraft/class_5069		net/minecraft/class_5069
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5070		net/minecraft/class_5070
+c	net/minecraft/class_5070		net/minecraft/client/class_5070
 	f	Lnet/minecraft/class_5070;	field_22869		field_22869
 	f	Lnet/minecraft/class_5070;	field_22870		field_22870
 	f	Lnet/minecraft/class_5070;	field_22871		field_22871
@@ -4891,14 +4891,14 @@ c	net/minecraft/class_5070		net/minecraft/class_5070
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5071		net/minecraft/class_5071
+c	net/minecraft/class_5071		net/minecraft/client/class_5071
 	f	Lorg/apache/logging/log4j/Logger;	field_22875		field_22875
 	f	Ljava/lang/String;	field_22874		field_22874
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/class_5071;	method_22329		method_22329
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5072		net/minecraft/class_5072
+c	net/minecraft/class_5072		net/minecraft/client/class_5072
 	f	Lorg/apache/logging/log4j/Logger;	field_22877		field_22877
 	f	Ljava/util/List;	field_22876		field_22876
 	m	()V	<init>		<init>
@@ -4910,7 +4910,7 @@ c	net/minecraft/class_5073		net/minecraft/class_5073
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/class_5073;	method_22331		method_22331
 		p	0			p_0
-c	net/minecraft/class_5074		net/minecraft/class_5074
+c	net/minecraft/class_5074		net/minecraft/client/class_5074
 	f	Lorg/apache/logging/log4j/Logger;	field_22882		field_22882
 	f	Ljava/lang/String;	field_22879		field_22879
 	f	Ljava/lang/String;	field_22880		field_22880
@@ -4919,7 +4919,7 @@ c	net/minecraft/class_5074		net/minecraft/class_5074
 	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_5074;	method_22332		method_22332
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5075		net/minecraft/class_5075
+c	net/minecraft/class_5075		net/minecraft/client/class_5075
 	f	Lorg/apache/logging/log4j/Logger;	field_22884		field_22884
 	f	Ljava/util/List;	field_22883		field_22883
 	m	()V	<init>		<init>
@@ -4949,7 +4949,7 @@ c	net/minecraft/class_5077		net/minecraft/class_5077
 	m	()Ljava/lang/String;	method_22339		method_22339
 	m	()Ljava/lang/String;	method_22341		method_22341
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5078		net/minecraft/class_5078
+c	net/minecraft/class_5078		net/minecraft/client/class_5078
 	f	Lorg/apache/logging/log4j/Logger;	field_22894		field_22894
 	f	J	field_22891		field_22891
 	f	I	field_22892		field_22892
@@ -4971,12 +4971,12 @@ c	net/minecraft/class_5079		net/minecraft/class_5079
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5080		net/minecraft/class_5080
+c	net/minecraft/class_5080		net/minecraft/client/class_5080
 	m	()V	<init>		<init>
 	m	()Ljava/lang/String;	toString		toString
 	m	(Ljava/lang/reflect/Field;)Z	method_22344		method_22344
 		p	0			p_0
-c	net/minecraft/class_5081		net/minecraft/class_5081
+c	net/minecraft/class_5081		net/minecraft/client/class_5081
 	f	Lorg/apache/logging/log4j/Logger;	field_22902		field_22902
 	f	Ljava/lang/String;	field_22898		field_22898
 	f	Ljava/lang/String;	field_22899		field_22899
@@ -4986,18 +4986,18 @@ c	net/minecraft/class_5081		net/minecraft/class_5081
 	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_5081;	method_22345		method_22345
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5082		net/minecraft/class_5082
+c	net/minecraft/class_5082		net/minecraft/client/class_5082
 	f	Lorg/apache/logging/log4j/Logger;	field_22904		field_22904
 	f	Ljava/util/List;	field_22903		field_22903
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/class_5082;	method_22346		method_22346
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_5083		net/minecraft/class_5083
+c	net/minecraft/class_5083		net/minecraft/client/class_5083
 	m	(Ljava/lang/String;Ljava/lang/Exception;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_5084		net/minecraft/class_5084
+c	net/minecraft/class_5084		net/minecraft/client/class_5084
 	f	I	field_22905		field_22905
 	f	Ljava/lang/String;	field_22906		field_22906
 	f	I	field_22907		field_22907
@@ -5008,7 +5008,7 @@ c	net/minecraft/class_5084		net/minecraft/class_5084
 		p	3			p_3
 		p	4			p_4
 	m	()Ljava/lang/String;	toString		toString
-c	net/minecraft/class_5085		net/minecraft/class_5085
+c	net/minecraft/class_5085		net/minecraft/client/class_5085
 	f	I	field_22909		field_22909
 	m	(I)V	<init>		<init>
 		p	1			p_1

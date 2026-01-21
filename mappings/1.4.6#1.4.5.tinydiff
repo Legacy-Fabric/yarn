@@ -1,8 +1,8 @@
 tiny	2	0
 c	net/minecraft/class_1041
-	m	(Ljava/util/List;[Lnet/minecraft/class_1128;)V	method_4604	method_4604	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/util/List;[Lnet/minecraft/class_1128;)V	method_4604	showBooks	
+		p	1		stacks	
+		p	2		targets	
 c	net/minecraft/class_1049
 	m	(Ljava/util/List;)V	method_3317	method_3317	
 		p	1		p_1	
@@ -13,18 +13,18 @@ c	net/minecraft/class_1053
 	m	(Ljava/util/List;)V	method_3317	method_3317	
 		p	1		p_1	
 c	net/minecraft/class_1069
-	f	Lnet/minecraft/class_1069;	field_5442	field_5442	
-	f	Lnet/minecraft/class_1069;	field_5443	field_5443	
-	f	Lnet/minecraft/class_1428;	field_5444	field_5444	
+	f	Lnet/minecraft/class_1069;	field_5442	FIREWORKS	
+	f	Lnet/minecraft/class_1069;	field_5443	FIREWORKS_CHARGE	
+	f	Lnet/minecraft/class_1428;	field_5444	ENCHANTED_BOOK	
 c	net/minecraft/class_1112
-	m	(Lnet/minecraft/class_1071;[Ljava/lang/Object;)Lnet/minecraft/class_1115;	method_3495	method_3495	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1071;[Ljava/lang/Object;)Lnet/minecraft/class_1115;	method_3495	registerShapedRecipe	
+		p	1		stack	
+		p	2		args	
 	m	(Lnet/minecraft/class_1071;[Ljava/lang/Object;)V	method_3495		method_3495
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1115
-	f	Z	field_5456	field_5456	
+	f	Z	field_5456	copyIngredientsNbt	
 	m	()Lnet/minecraft/class_1115;	method_4641	method_4641	
 c	net/minecraft/class_1124
 	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
@@ -32,18 +32,18 @@ c	net/minecraft/class_1124
 c	net/minecraft/class_1125
 	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_1071;ILjava/util/Random;)Z	method_4643	method_4643	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1071;ILjava/util/Random;)Z	method_4643	shouldPreventDamage	
+		p	0		item	
+		p	1		level	
+		p	2		random	
 c	net/minecraft/class_1126
 	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
 		p	1		p_1	
 c	net/minecraft/class_1127
 	f	[Lnet/minecraft/class_1127;	field_5457	field_5457	
-	f	Lnet/minecraft/class_1127;	field_5458	field_5458	
-	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
-		p	1		p_1	
+	f	Lnet/minecraft/class_1127;	field_5458	THORNS	
+	m	(Lnet/minecraft/class_1071;)Z	method_4644	isAcceptableItem	
+		p	1		stack	
 c	net/minecraft/class_1129
 	m	(Lnet/minecraft/class_871;)I	method_4657	method_4657	
 		p	0		p_0	
@@ -58,32 +58,32 @@ c	net/minecraft/class_1134
 		p	2		p_2	
 c	net/minecraft/class_1140
 	m	(Lnet/minecraft/class_864;I)I	method_4659	method_4659	
-		p	0		p_0	
+		p	0		entity	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_864;D)D	method_4658	method_4658	
-		p	0		p_0	
+		p	0		entity	
 		p	1		p_1	
 c	net/minecraft/class_1141
 	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
 		p	1		p_1	
 c	net/minecraft/class_1150
 	f	I	field_23088		field_23088
-	m	(DDDLjava/lang/String;FFZ)V	method_3648	method_3648	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-		p	10		p_10	
-	m	(DDDDDDLnet/minecraft/class_322;)V	method_4681	method_4681	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	9		p_9	
-		p	11		p_11	
-		p	13		p_13	
+	m	(DDDLjava/lang/String;FFZ)V	method_3648	playSound	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		sound	
+		p	8		volume	
+		p	9		pitch	
+		p	10		useDistance	
+	m	(DDDDDDLnet/minecraft/class_322;)V	method_4681	addFireworkParticle	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		velocityX	
+		p	9		velocityY	
+		p	11		velocityZ	
+		p	13		nbt	
 	m	(DDDLjava/lang/String;FF)V	method_3648		method_3648
 		p	1			p_1
 		p	3			p_3
@@ -120,17 +120,17 @@ c	net/minecraft/class_222
 c	net/minecraft/class_344
 	m	()V	method_2921	method_2921	
 c	net/minecraft/class_347
-	f	I	field_5048	field_5048	
-	f	I	field_5049	field_5049	
-	f	Z	field_5050	field_5050	
+	f	I	field_5048	overrideWidth	
+	f	I	field_5049	overrideHeight	
+	f	Z	field_5050	heldItemTooltips	
 c	net/minecraft/class_371
-	f	I	field_5074	field_5074	
-	f	Lnet/minecraft/class_1071;	field_5075	field_5075	
+	f	I	field_5074	heldItemTooltipFade	
+	f	Lnet/minecraft/class_1071;	field_5075	heldItem	
 c	net/minecraft/class_388
-	f	I	field_5092	field_5092	
+	f	I	field_5092	touchHeld	
 c	net/minecraft/class_409
-	f	Lnet/minecraft/class_1026;	field_5104	field_5104	
-	f	J	field_5105	field_5105	
+	f	Lnet/minecraft/class_1026;	field_5104	touchHoveredSlot	
+	f	J	field_5105	touchDropTimer	
 	m	(Lnet/minecraft/class_1026;)Z	method_4263	method_4263	
 		p	1		p_1	
 c	net/minecraft/class_469
@@ -139,10 +139,10 @@ c	net/minecraft/class_469
 	m	(Lnet/minecraft/class_5114;)V	method_22510		method_22510
 		p	1			p_1
 c	net/minecraft/class_471
-	f	Ljava/lang/String;	field_5145	field_5145	
-	f	Z	field_5146	field_5146	
-	m	()V	method_1206	method_1206	
-	m	()V	method_4277	method_4277	
+	f	Ljava/lang/String;	field_5145	link	
+	f	Z	field_5146	drawWarning	
+	m	()V	method_1206	copyToClipboard	
+	m	()V	method_4277	disableWarning	
 	m	()V	method_22508		method_22508
 c	net/minecraft/class_478
 	m	(DDDLjava/lang/String;FFZ)V	method_3648	method_3648	
@@ -206,7 +206,7 @@ c	net/minecraft/class_560
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_591
-	f	Z	field_5223	field_5223	
+	f	Z	field_5223	christmas	
 c	net/minecraft/class_622
 	f	Ljava/util/List;	field_5239	field_5239	
 	m	()V	method_4377	method_4377	
@@ -219,20 +219,20 @@ c	net/minecraft/class_622
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/class_624
-	f	Ljava/lang/String;	field_5247	field_5247	
-	f	I	field_5248	field_5248	
-	f	I	field_5249	field_5249	
-	f	I	field_5250	field_5250	
-	f	I	field_5251	field_5251	
-	f	I	field_5252	field_5252	
-	f	I	field_5253	field_5253	
+	f	Ljava/lang/String;	field_5247	oldGl1	
+	f	I	field_5248	oldGl2Width	
+	f	I	field_5249	oldGl1Width	
+	f	I	field_5250	oldGlLeft	
+	f	I	field_5251	oldGlTop	
+	f	I	field_5252	oldGlRight	
+	f	I	field_5253	oldGlBottom	
 	m	(III)V	method_1026	method_1026	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_638
-	f	I	field_5263	field_5263	
-	f	I	field_5264	field_5264	
+	f	I	field_5263	pitch	
+	f	I	field_5264	yaw	
 c	net/minecraft/class_687
 	f	Z	field_5275	field_5275	
 c	net/minecraft/class_701
@@ -244,7 +244,7 @@ c	net/minecraft/class_743
 c	net/minecraft/class_801
 	f	Z	field_5304	field_5304	
 c	net/minecraft/class_847
-	f	Lnet/minecraft/class_1071;	field_5307	field_5307	
+	f	Lnet/minecraft/class_1071;	field_5307	content	
 	f	I	field_23085		field_23085
 	f	I	field_23086		field_23086
 	m	(Lnet/minecraft/class_1071;III)V	<init>	<init>	
@@ -252,15 +252,15 @@ c	net/minecraft/class_847
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	([Lnet/minecraft/class_847;[Lnet/minecraft/class_847;)[Lnet/minecraft/class_847;	method_4421	method_4421	
+	m	([Lnet/minecraft/class_847;[Lnet/minecraft/class_847;)[Lnet/minecraft/class_847;	method_4421	union	
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_856
-	m	(Lnet/minecraft/class_864;)Lnet/minecraft/class_856;	method_4433	method_4433	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_864;)Lnet/minecraft/class_856;	method_4433	thorns	
+		p	0		attacker	
 c	net/minecraft/class_878
-	f	Z	field_5348	field_5348	
-	m	()Z	method_4489	method_4489	
+	f	Z	field_5348	empty	
+	m	()Z	method_4489	isEmpty	
 c	net/minecraft/class_926
 	m	()V	method_2745	method_2745	
 c	net/minecraft/class_963
@@ -274,22 +274,22 @@ c	net/minecraft/class_964
 		p	4		p_4	
 		p	6		p_6	
 	m	()Lnet/minecraft/class_1071;	method_4548	method_4548	
-	m	(Lnet/minecraft/class_1071;)V	method_4547	method_4547	
+	m	(Lnet/minecraft/class_1071;)V	method_4547	setItemStack	
 		p	1		p_1	
 c	net/minecraft/class_972
-	f	I	field_5389	field_5389	
+	f	I	field_5389	fireballStrength	
 	m	(Lnet/minecraft/class_322;)V	method_2528	method_2528	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_322;)V	method_2498	method_2498	
 		p	1		p_1	
 c	net/minecraft/class_988
-	m	(Z)Lnet/minecraft/class_964;	method_4580	method_4580	
-		p	1		p_1	
+	m	(Z)Lnet/minecraft/class_964;	method_4580	dropSelectedItem	
+		p	1		dropAll	
 	m	()Lnet/minecraft/class_964;	method_4580		method_4580
-c	net/minecraft/class_1310	net/minecraft/class_1310	
-	f	Lnet/minecraft/class_322;	field_5031	field_5031	
-	f	Ljava/lang/String;	field_5032	field_5032	
-	f	Lnet/minecraft/class_222;	field_5033	field_5033	
+c	net/minecraft/class_1310	net/minecraft/util/collection/class_1310	
+	f	Lnet/minecraft/class_322;	field_5031	nbtCompound	
+	f	Ljava/lang/String;	field_5032	type	
+	f	Lnet/minecraft/class_222;	field_5033	mobSpawner	
 	m	(Lnet/minecraft/class_222;Lnet/minecraft/class_322;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -297,8 +297,8 @@ c	net/minecraft/class_1310	net/minecraft/class_1310
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lnet/minecraft/class_322;	method_4209	method_4209	
-c	net/minecraft/class_1339	net/minecraft/class_1339	
+	m	()Lnet/minecraft/class_322;	method_4209	toTag	
+c	net/minecraft/class_1339	net/minecraft/client/class_1339	
 	m	(Lnet/minecraft/class_1150;DDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -312,7 +312,7 @@ c	net/minecraft/class_1339	net/minecraft/class_1339
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_1340	net/minecraft/class_1340	
+c	net/minecraft/class_1340	net/minecraft/client/class_1340	
 	f	I	field_5155	field_5155	
 	f	Z	field_5156	field_5156	
 	f	Z	field_5157	field_5157	
@@ -353,7 +353,7 @@ c	net/minecraft/class_1340	net/minecraft/class_1340
 		p	1		p_1	
 	m	(F)F	method_2533	method_2533	
 		p	1		p_1	
-c	net/minecraft/class_1341	net/minecraft/class_1341	
+c	net/minecraft/class_1341	net/minecraft/client/class_1341	
 	f	I	field_5160	field_5160	
 	f	Lnet/minecraft/class_503;	field_5161	field_5161	
 	f	Lnet/minecraft/class_474;	field_5162	field_5162	
@@ -410,7 +410,7 @@ c	net/minecraft/class_1341	net/minecraft/class_1341
 		p	3		p_3	
 		p	4		p_4	
 	m	()I	method_1284	method_1284	
-c	net/minecraft/class_1362	net/minecraft/class_1362	
+c	net/minecraft/class_1362	net/minecraft/client/class_1362	
 	f	Ljava/lang/String;	field_5240	field_5240	
 	f	F	field_5241	field_5241	
 	f	F	field_5242	field_5242	
@@ -429,7 +429,7 @@ c	net/minecraft/class_1362	net/minecraft/class_1362
 c	net/minecraft/class_1380
 	m	(Lnet/minecraft/class_1332;)V	method_4282		method_4282
 		p	1			p_1
-c	net/minecraft/class_1381	net/minecraft/class_1381	
+c	net/minecraft/class_1381	net/minecraft/block/dispenser/FireworksDispenserBehavior	
 	f	Lnet/minecraft/server/MinecraftServer;	field_5293	field_5293	
 	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>	
 		p	1		p_1	
@@ -438,9 +438,9 @@ c	net/minecraft/class_1381	net/minecraft/class_1381
 		p	2		p_2	
 	m	(Lnet/minecraft/class_1332;)V	method_4282	method_4282	
 		p	1		p_1	
-c	net/minecraft/class_1415	net/minecraft/class_1415	
-	f	I	field_5401	field_5401	
-	f	I	field_5402	field_5402	
+c	net/minecraft/class_1415	net/minecraft/entity/FireworkRocketEntity	
+	f	I	field_5401	life	
+	f	I	field_5402	lifeTime	
 	m	(Lnet/minecraft/class_1150;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_2484	method_2484	
@@ -470,18 +470,18 @@ c	net/minecraft/class_1415	net/minecraft/class_1415
 		p	1		p_1	
 	m	()Z	method_2521	method_2521	
 c	net/minecraft/class_1416
-	f	I	field_5403	field_5403	
+	f	I	field_5403	explosionPower	
 	m	(Lnet/minecraft/class_322;)V	method_2528	method_2528	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_322;)V	method_2498	method_2498	
 		p	1		p_1	
-c	net/minecraft/class_1425	net/minecraft/class_1425	
+c	net/minecraft/class_1425	net/minecraft/item/BookItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1071;)Z	method_3385	method_3385	
 		p	1		p_1	
 	m	()I	method_3362	method_3362	
-c	net/minecraft/class_1428	net/minecraft/class_1428	
+c	net/minecraft/class_1428	net/minecraft/item/EnchantedBookItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1071;)Z	method_3374	method_3374	
@@ -490,31 +490,31 @@ c	net/minecraft/class_1428	net/minecraft/class_1428
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1071;)Lnet/minecraft/class_1081;	method_3377	method_3377	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_1071;)Lnet/minecraft/class_474;	method_4611	method_4611	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1071;)Lnet/minecraft/class_474;	method_4611	getEnchantmentNbt	
+		p	1		itemStack	
 	m	(Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Ljava/util/List;Z)V	method_3352	method_3352	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_1071;Lnet/minecraft/class_1134;)V	method_4607	method_4607	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1134;)Lnet/minecraft/class_1071;	method_4609	method_4609	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1127;Ljava/util/List;)V	method_4608	method_4608	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1071;Lnet/minecraft/class_1134;)V	method_4607	addEnchantment	
+		p	1		itemStack	
+		p	2		info	
+	m	(Lnet/minecraft/class_1134;)Lnet/minecraft/class_1071;	method_4609	getAsItemStack	
+		p	1		info	
+	m	(Lnet/minecraft/class_1127;Ljava/util/List;)V	method_4608	getEnchantments	
+		p	1		enchantment	
+		p	2		list	
 	m	(Ljava/util/Random;)Lnet/minecraft/class_1071;	method_4605	method_4605	
 		p	1		p_1	
-	m	(Ljava/util/Random;)Lnet/minecraft/class_847;	method_4610	method_4610	
-		p	1		p_1	
+	m	(Ljava/util/Random;)Lnet/minecraft/class_847;	method_4610	getLootTable	
+		p	1		random	
 	m	(Ljava/util/Random;III)Lnet/minecraft/class_847;	method_4606	method_4606	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_1429	net/minecraft/class_1429	
+c	net/minecraft/class_1429	net/minecraft/item/FireworkChargeItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(II)I	method_3369	method_3369	
@@ -524,18 +524,18 @@ c	net/minecraft/class_1429	net/minecraft/class_1429
 		p	1		p_1	
 		p	2		p_2	
 	m	()Z	method_3397	method_3397	
-	m	(Lnet/minecraft/class_1071;Ljava/lang/String;)Lnet/minecraft/class_605;	method_4613	method_4613	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1071;Ljava/lang/String;)Lnet/minecraft/class_605;	method_4613	getExplosionNbt	
+		p	0		stack	
+		p	1		name	
 	m	(Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Ljava/util/List;Z)V	method_3352	method_3352	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_322;Ljava/util/List;)V	method_4612	method_4612	
-		p	0		p_0	
-		p	1		p_1	
-c	net/minecraft/class_1430	net/minecraft/class_1430	
+	m	(Lnet/minecraft/class_322;Ljava/util/List;)V	method_4612	addExplosionInfo	
+		p	0		nbt	
+		p	1		list	
+c	net/minecraft/class_1430	net/minecraft/item/FireworkItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1071;Lnet/minecraft/class_988;Lnet/minecraft/class_1150;IIIIFFF)Z	method_3355	method_3355	
@@ -554,8 +554,8 @@ c	net/minecraft/class_1430	net/minecraft/class_1430
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_1435	net/minecraft/class_1435	
-	f	Lnet/minecraft/class_1071;	field_5455	field_5455	
+c	net/minecraft/class_1435	net/minecraft/recipe/FireworkRecipeType	
+	f	Lnet/minecraft/class_1071;	field_5455	ingredient	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1011;Lnet/minecraft/class_1150;)Z	method_3500	method_3500	
 		p	1		p_1	
@@ -564,7 +564,7 @@ c	net/minecraft/class_1435	net/minecraft/class_1435
 		p	1		p_1	
 	m	()I	method_3499	method_3499	
 	m	()Lnet/minecraft/class_1071;	method_3501	method_3501	
-c	net/minecraft/class_1438	net/minecraft/class_1438	
+c	net/minecraft/class_1438	net/minecraft/enchantment/ThornsEnchantment	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -575,12 +575,12 @@ c	net/minecraft/class_1438	net/minecraft/class_1438
 	m	()I	method_3512	method_3512	
 	m	(Lnet/minecraft/class_1071;)Z	method_4644	method_4644	
 		p	1		p_1	
-	m	(ILjava/util/Random;)Z	method_4660	method_4660	
-		p	0		p_0	
-		p	1		p_1	
-	m	(ILjava/util/Random;)I	method_4662	method_4662	
-		p	0		p_0	
-		p	1		p_1	
+	m	(ILjava/util/Random;)Z	method_4660	shouldDamageAttacker	
+		p	0		level	
+		p	1		random	
+	m	(ILjava/util/Random;)I	method_4662	getDamageAmount	
+		p	0		level	
+		p	1		random	
 	m	(Lnet/minecraft/class_864;Lnet/minecraft/class_871;Ljava/util/Random;)V	method_4661	method_4661	
 		p	0		p_0	
 		p	1		p_1	

@@ -2,18 +2,18 @@ tiny	2	0
 c	net/minecraft/class_10
 	m	()V	<init>	<init>	
 c	net/minecraft/class_11
-	m	()V	method_5512	method_5512	
+	m	()V	method_5512	registerPieces	
 c	net/minecraft/class_1171
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/class_1251
 	m	([I)V	<init>	<init>	
 		p	1		p_1	
-	m	(Ljava/lang/String;)Lnet/minecraft/class_428;	method_5507	method_5507	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_428;	method_5507	toNbt	
+		p	1		name	
 c	net/minecraft/class_1252
 	m	()Ljava/lang/String;	method_5513	method_5513	
 c	net/minecraft/class_1253
-	m	()V	method_5508	method_5508	
+	m	()V	method_5508	registerPieces	
 c	net/minecraft/class_1254
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_322;)V	method_5528	method_5528	
@@ -45,7 +45,7 @@ c	net/minecraft/class_1259
 c	net/minecraft/class_1260
 	m	()V	<init>	<init>	
 c	net/minecraft/class_1261
-	m	()V	method_5509	method_5509	
+	m	()V	method_5509	registerPieces	
 c	net/minecraft/class_1262
 	m	()V	<init>	<init>	
 c	net/minecraft/class_1263
@@ -186,45 +186,45 @@ c	net/minecraft/class_31
 		p	1		p_1	
 c	net/minecraft/class_33
 	f	Lnet/minecraft/class_1590;	field_6237	field_6237	
-	m	()Ljava/lang/String;	method_5513	method_5513	
+	m	()Ljava/lang/String;	method_5513	getName	
 	m	(III)Lnet/minecraft/class_36;	method_5516	method_5516	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/class_1150;)V	method_5515	method_5515	
-		p	1		p_1	
+		p	1		world	
 	m	(IILnet/minecraft/class_36;)V	method_5514	method_5514	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_34
 	m	()V	<init>	<init>	
-	m	()Lnet/minecraft/class_322;	method_5529	method_5529	
-	m	(Lnet/minecraft/class_322;)V	method_5528	method_5528	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1150;Lnet/minecraft/class_322;)V	method_5527	method_5527	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_322;)V	method_5530	method_5530	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_322;	method_5529	toNbt	
+	m	(Lnet/minecraft/class_322;)V	method_5528	serialize	
+		p	1		structureNbt	
+	m	(Lnet/minecraft/class_1150;Lnet/minecraft/class_322;)V	method_5527	fromNbt	
+		p	1		world	
+		p	2		nbt	
+	m	(Lnet/minecraft/class_322;)V	method_5530	deserialize	
+		p	1		structureNbt	
 c	net/minecraft/class_36
-	f	I	field_6243	field_6243	
-	f	I	field_6244	field_6244	
+	f	I	field_6243	chunkX	
+	f	I	field_6244	chunkZ	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)Lnet/minecraft/class_322;	method_5531	method_5531	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_322;)V	method_5533	method_5533	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1150;Lnet/minecraft/class_322;)V	method_5532	method_5532	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_322;)V	method_5534	method_5534	
-		p	1		p_1	
-	m	()I	method_5535	method_5535	
-	m	()I	method_5536	method_5536	
+	m	(II)Lnet/minecraft/class_322;	method_5531	toNbt	
+		p	1		chunkX	
+		p	2		chunkZ	
+	m	(Lnet/minecraft/class_322;)V	method_5533	serialize	
+		p	1		nbt	
+	m	(Lnet/minecraft/class_1150;Lnet/minecraft/class_322;)V	method_5532	fromNbt	
+		p	1		random	
+		p	2		nbt	
+	m	(Lnet/minecraft/class_322;)V	method_5534	deserialize	
+		p	1		nbt	
+	m	()I	method_5535	getChunkX	
+	m	()I	method_5536	getChunkZ	
 c	net/minecraft/class_37
 	m	()Ljava/lang/String;	method_5513	method_5513	
 c	net/minecraft/class_38
@@ -232,7 +232,7 @@ c	net/minecraft/class_38
 	m	(Lnet/minecraft/class_322;)V	method_5533	method_5533	
 		p	1		p_1	
 c	net/minecraft/class_39
-	m	()V	method_5537	method_5537	
+	m	()V	method_5537	registerPieces	
 c	net/minecraft/class_40
 	f	I	field_23056		field_23056
 	m	()V	<init>	<init>	
@@ -322,8 +322,8 @@ c	net/minecraft/class_770
 	m	(I)V	method_6084	method_6084	
 		p	1		p_1	
 c	net/minecraft/class_798
-	f	J	field_6733	field_6733	
-	m	()V	method_6067	method_6067	
+	f	J	field_6733	lastActionTime	
+	m	()V	method_6067	updateLastActionTime	
 c	net/minecraft/class_8
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_322;)V	method_5528	method_5528	
@@ -333,57 +333,57 @@ c	net/minecraft/class_8
 c	net/minecraft/class_9
 	m	()Ljava/lang/String;	method_5513	method_5513	
 c	net/minecraft/server/MinecraftServer
-	f	I	field_6740	field_6740	
-	m	()I	method_6083	method_6083	
-	m	(I)V	method_6084	method_6084	
-		p	1		p_1	
+	f	I	field_6740	playerIdleTimeout	
+	m	()I	method_6083	getPlayerIdleTimeout	
+	m	(I)V	method_6084	setPlayerIdleTimeout	
+		p	1		playerIdleTimeout	
 c	net/minecraft/class_1284
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_322;)V	method_5528	method_5528	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_322;)V	method_5530	method_5530	
 		p	1		p_1	
-c	net/minecraft/class_1588	net/minecraft/class_1588	
-	m	()V	method_5511	method_5511	
-c	net/minecraft/class_1589	net/minecraft/class_1589	
-	f	Ljava/util/Map;	field_6238	field_6238	
-	f	Ljava/util/Map;	field_6239	field_6239	
-	f	Ljava/util/Map;	field_6240	field_6240	
-	f	Ljava/util/Map;	field_6241	field_6241	
-	m	(Ljava/lang/Class;Ljava/lang/String;)V	method_5523	method_5523	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/Class;Ljava/lang/String;)V	method_5521	method_5521	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_36;)Ljava/lang/String;	method_5519	method_5519	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_34;)Ljava/lang/String;	method_5518	method_5518	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_322;Lnet/minecraft/class_1150;)Lnet/minecraft/class_36;	method_5520	method_5520	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_322;Lnet/minecraft/class_1150;)Lnet/minecraft/class_34;	method_5522	method_5522	
-		p	0		p_0	
-		p	1		p_1	
+c	net/minecraft/class_1588	net/minecraft/structure/TemplePieces	
+	m	()V	method_5511	registerPieces	
+c	net/minecraft/class_1589	net/minecraft/structure/StructurePieceManager	
+	f	Ljava/util/Map;	field_6238	configIdMap	
+	f	Ljava/util/Map;	field_6239	configClassMap	
+	f	Ljava/util/Map;	field_6240	pieceIdMap	
+	f	Ljava/util/Map;	field_6241	pieceClassMap	
+	m	(Ljava/lang/Class;Ljava/lang/String;)V	method_5523	register	
+		p	0		structureConfigClass	
+		p	1		name	
+	m	(Ljava/lang/Class;Ljava/lang/String;)V	method_5521	registerPiece	
+		p	0		structurePieceClass	
+		p	1		name	
+	m	(Lnet/minecraft/class_36;)Ljava/lang/String;	method_5519	getId	
+		p	0		config	
+	m	(Lnet/minecraft/class_34;)Ljava/lang/String;	method_5518	getId	
+		p	0		piece	
+	m	(Lnet/minecraft/class_322;Lnet/minecraft/class_1150;)Lnet/minecraft/class_36;	method_5520	getGeneratorConfigFromNbt	
+		p	0		nbt	
+		p	1		world	
+	m	(Lnet/minecraft/class_322;Lnet/minecraft/class_1150;)Lnet/minecraft/class_34;	method_5522	getStructurePieceFromNbt	
+		p	0		nbt	
+		p	1		world	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1590	net/minecraft/class_1590	
-	f	Lnet/minecraft/class_322;	field_6242	field_6242	
+c	net/minecraft/class_1590	net/minecraft/world/gen/feature/FeatureState	
+	f	Lnet/minecraft/class_322;	field_6242	features	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_322;)V	method_188	method_188	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_322;)V	method_191	method_191	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_322;II)V	method_5525	method_5525	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_322;II)V	method_5525	putFeature	
+		p	1		nbt	
+		p	2		x	
+		p	3		z	
+	m	(II)Ljava/lang/String;	method_5526	format	
+		p	1		z	
 		p	2		p_2	
-		p	3		p_3	
-	m	(II)Ljava/lang/String;	method_5526	method_5526	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Lnet/minecraft/class_322;	method_5524	method_5524	
-c	net/minecraft/class_1594	net/minecraft/class_1594	
+	m	()Lnet/minecraft/class_322;	method_5524	getFeatures	
+c	net/minecraft/class_1594	net/minecraft/server/dedicated/command/SetIdleTimeoutCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_3277	method_3277	
 	m	()I	method_4634	method_4634	

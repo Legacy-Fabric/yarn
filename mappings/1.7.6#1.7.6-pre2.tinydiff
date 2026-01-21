@@ -20,23 +20,23 @@ c	net/minecraft/class_322
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)B	method_7342	method_7342	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)Ljava/lang/String;	method_7344	method_7344	
-		p	0		p_0	
-		p	1		p_1	
-	m	(BLjava/lang/String;Ljava/io/DataInput;ILnet/minecraft/class_1944;)Lnet/minecraft/class_605;	method_7341	method_7341	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)B	method_7342	readByte	
+		p	0		input	
+		p	1		tracker	
+	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)Ljava/lang/String;	method_7344	readString	
+		p	0		input	
+		p	1		tracker	
+	m	(BLjava/lang/String;Ljava/io/DataInput;ILnet/minecraft/class_1944;)Lnet/minecraft/class_605;	method_7341	readNbt	
+		p	0		type	
+		p	1		name	
+		p	2		input	
+		p	3		depth	
+		p	4		tracker	
 	m	(Ljava/io/DataInput;I)V	method_1649		method_1649
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/io/DataInput;)B	method_7342		method_7342
-		p	0			p_0
+		p	0			input
 	m	(Ljava/io/DataInput;)Ljava/lang/String;	method_7344		method_7344
 		p	0			p_0
 	m	(BLjava/lang/String;Ljava/io/DataInput;I)Lnet/minecraft/class_605;	method_7341		method_7341
@@ -101,23 +101,23 @@ c	net/minecraft/class_501
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_528
-	m	([BLnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7366	method_7366	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/io/File;)Lnet/minecraft/class_322;	method_7364	method_7364	
-		p	0		p_0	
-	m	(Ljava/io/File;Lnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7365	method_7365	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/io/DataInputStream;)Lnet/minecraft/class_322;	method_7363	method_7363	
-		p	0		p_0	
-	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7362	method_7362	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/io/DataInput;ILnet/minecraft/class_1944;)Lnet/minecraft/class_605;	method_7361	method_7361	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	([BLnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7366	readCompressed	
+		p	0		bytes	
+		p	1		tracker	
+	m	(Ljava/io/File;)Lnet/minecraft/class_322;	method_7364	read	
+		p	0		file	
+	m	(Ljava/io/File;Lnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7365	read	
+		p	0		file	
+		p	1		tracker	
+	m	(Ljava/io/DataInputStream;)Lnet/minecraft/class_322;	method_7363	read	
+		p	0		stream	
+	m	(Ljava/io/DataInput;Lnet/minecraft/class_1944;)Lnet/minecraft/class_322;	method_7362	read	
+		p	0		input	
+		p	1		tracker	
+	m	(Ljava/io/DataInput;ILnet/minecraft/class_1944;)Lnet/minecraft/class_605;	method_7361	read	
+		p	0		input	
+		p	1		depth	
+		p	2		tracker	
 	m	([B)Lnet/minecraft/class_322;	method_7366		method_7366
 		p	0			p_0
 	m	(Ljava/io/File;)Lnet/minecraft/class_322;	method_7365		method_7365
@@ -144,30 +144,30 @@ c	net/minecraft/class_579
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_605
-	m	(Ljava/io/DataInput;ILnet/minecraft/class_1944;)V	method_1649	method_1649	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/io/DataInput;I)V	method_1649		method_1649
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/class_1944	net/minecraft/class_1944	
-	f	Lnet/minecraft/class_1944;	field_8405	field_8405	
-	f	J	field_8406	field_8406	
-	f	J	field_8407	field_8407	
+	m	(Ljava/io/DataInput;ILnet/minecraft/class_1944;)V	method_1649	read	
+		p	1		input	
+		p	2		depth	
+		p	3		tracker	
+	m	(Ljava/io/DataInput;I)V	method_1649		read
+		p	1			input
+		p	2			depth
+c	net/minecraft/class_1944	net/minecraft/nbt/PositionTracker	
+	f	Lnet/minecraft/class_1944;	field_8405	DEFAULT	
+	f	J	field_8406	max	
+	f	J	field_8407	pos	
 	m	(J)V	<init>	<init>	
 		p	1		p_1	
-	m	(J)V	method_7358	method_7358	
-		p	1		p_1	
+	m	(J)V	method_7358	add	
+		p	1		bits	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1945	net/minecraft/class_1945	
+c	net/minecraft/class_1945	net/minecraft/nbt/class_1945	
 	m	(J)V	<init>	<init>	
 		p	1		p_1	
 	m	(J)V	method_7358	method_7358	
 		p	1		p_1	
 c	net/minecraft/class_2116
-	m	(Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;	method_8187	method_8187	
-		p	1		p_1	
+	m	(Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;	method_8187	getByUuid	
+		p	1		uuid	
 c	net/minecraft/class_5058
 	f	Lorg/apache/logging/log4j/Logger;	field_22831	field_22831	
 c	net/minecraft/class_5060

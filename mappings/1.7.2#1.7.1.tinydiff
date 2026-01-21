@@ -1,9 +1,9 @@
 tiny	2	0
 c	net/minecraft/class_322
-	f	Lorg/apache/logging/log4j/Logger;	field_8404	field_8404	
+	f	Lorg/apache/logging/log4j/Logger;	field_8404	LOGGER	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_382
-	m	()V	method_6676	method_6676	
+	m	()V	method_6676	clearStateTextures	
 c	net/minecraft/class_535
 	f	Z	field_7956	field_7956	
 	m	(Z)V	method_6870	method_6870	
@@ -19,11 +19,11 @@ c	net/minecraft/class_622
 c	net/minecraft/class_770
 	m	()Z	method_8158	method_8158	
 c	net/minecraft/server/MinecraftServer
-	m	()Z	method_8158	method_8158	
+	m	()Z	method_8158	shouldAnnouncePlayerAchievements	
 c	net/minecraft/class_1800
 	m	(Lnet/minecraft/class_1800;)Lnet/minecraft/class_1653;	method_6686	method_6686	
 		p	0		p_0	
-c	net/minecraft/class_1859	net/minecraft/class_1859	
+c	net/minecraft/class_1859	net/minecraft/client/class_1859	
 	m	(Lnet/minecraft/class_532;Lnet/minecraft/class_532;)I	method_6877	method_6877	
 		p	1		p_1	
 		p	2		p_2	
@@ -32,14 +32,14 @@ c	net/minecraft/class_1859	net/minecraft/class_1859
 		p	2		p_2	
 	m	()V	<init>	<init>	
 c	net/minecraft/class_1957
-	f	Ljava/util/Queue;	field_8429	field_8429	
-	m	(Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V	method_7401	method_7401	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	method_7407	method_7407	
-c	net/minecraft/class_1961	net/minecraft/class_1961	
-	f	Lnet/minecraft/class_700;	field_8443	field_8443	
-	f	[Lio/netty/util/concurrent/GenericFutureListener;	field_8444	field_8444	
+	f	Ljava/util/Queue;	field_8429	packetQueue	
+	m	(Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V	method_7401	sendImmediately	
+		p	1		packet	
+		p	2		listeners	
+	m	()V	method_7407	sendQueuedPackets	
+c	net/minecraft/class_1961	net/minecraft/network/QueuedPacket	
+	f	Lnet/minecraft/class_700;	field_8443	packet	
+	f	[Lio/netty/util/concurrent/GenericFutureListener;	field_8444	listeners	
 	m	(Lnet/minecraft/class_700;[Lio/netty/util/concurrent/GenericFutureListener;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
