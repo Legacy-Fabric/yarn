@@ -70,8 +70,6 @@ jobs:
 
           "1.14.3-pre4,1.14.4-pre1,1.14.4-pre2,1.14.4-pre3,1.14.4-pre4,1.14.4-pre5,1.14.4-pre6,1.14.4-pre7",
         ]
-    env: 
-        MC_VERSION: ${{ matrix.mc_version }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -79,8 +77,9 @@ jobs:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-      - run: python -u ./ci.py $MC_VERSION publish
+          distribution: 'temurin'
+          java-version: '21'
+      - run: python3 publish.py
         env:
+          MC_VERSIONS: ${{ matrix.mc_version }}
           MAVEN_PUBLISH_CREDENTIALS: ${{ secrets.MAVEN_PUBLISH_CREDENTIALS }}

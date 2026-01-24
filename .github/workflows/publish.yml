@@ -76,8 +76,10 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-      - run: python -u ./ci.py "$MC_VERSION" publishToLocalAndTest
+          java-version: '21'
+      - run: python3 build_all.py
+        env:
+          MC_VERSIONS: ${{ matrix.mc_version }}
   upstream_build:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -110,8 +112,10 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-      - run: python -u ./ci.py "$MC_VERSION" publishToLocalAndTest
+          java-version: '21'
+      - run: python3 build_all.py
+        env:
+          MC_VERSIONS: ${{ matrix.mc_version }}
   publish:
    needs: [legacy_build, upstream_build]
    runs-on: ubuntu-latest
@@ -136,8 +140,9 @@ jobs:
          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
      - uses: actions/setup-java@v4
        with:
-         distribution: 'temurin' # See 'Supported distributions' for available options
-         java-version: '17'
-     - run: python -u ./ci.py $MC_VERSION publish
+         distribution: 'temurin' # Se
+         java-version: '21'
+     - run: python3 publish.py
        env:
+         MC_VERSIONS: ${{ matrix.mc_version }}
          MAVEN_PUBLISH_CREDENTIALS: ${{ secrets.MAVEN_PUBLISH_CREDENTIALS }}
