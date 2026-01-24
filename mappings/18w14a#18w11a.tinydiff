@@ -2,41 +2,41 @@ tiny	2	0
 c	net/minecraft/class_1294
 	f	Lnet/minecraft/class_1291;	field_5906	field_5906	
 c	net/minecraft/class_1309
-	f	I	field_6261	field_6261	
-	m	(Lnet/minecraft/class_238;Lnet/minecraft/class_238;)V	method_6035	method_6035	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1309;)V	method_5997	method_5997	
-		p	1		p_1	
-	m	(I)V	method_6018	method_6018	
-		p	1		p_1	
-	m	()Z	method_6123	method_6123	
-	m	(IZ)V	method_6085	method_6085	
-		p	1		p_1	
-		p	2		p_2	
+	f	I	field_6261	riptideTicks	
+	m	(Lnet/minecraft/class_238;Lnet/minecraft/class_238;)V	method_6035	tickRiptide	
+		p	1		a	
+		p	2		b	
+	m	(Lnet/minecraft/class_1309;)V	method_5997	attackLivingEntity	
+		p	1		target	
+	m	(I)V	method_6018	setRiptideTicks	
+		p	1		riptideTicks	
+	m	()Z	method_6123	isUsingRiptide	
+	m	(IZ)V	method_6085	setLivingFlag	
+		p	1		mask	
+		p	2		value	
 c	net/minecraft/class_1536
-	m	(Lnet/minecraft/class_1799;)I	method_6957	method_6957	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;)I	method_6957	use	
+		p	1		usedItem	
 	m	()I	method_6957		method_6957
 c	net/minecraft/class_1538
-	f	Lnet/minecraft/class_3222;	field_7182	field_7182	
-	m	(Lnet/minecraft/class_3222;)V	method_6961	method_6961	
-		p	1		p_1	
+	f	Lnet/minecraft/class_3222;	field_7182	channeler	
+	m	(Lnet/minecraft/class_3222;)V	method_6961	setChanneler	
+		p	1		channeler	
 c	net/minecraft/class_1657
 	m	(Lnet/minecraft/class_1309;)V	method_5997	method_5997	
 		p	1		p_1	
 c	net/minecraft/class_174
-	f	Lnet/minecraft/class_2054;	field_1208	field_1208	
-	f	Lnet/minecraft/class_2058;	field_1203	field_1203	
-	f	Lnet/minecraft/class_2002;	field_1202	field_1202	
+	f	Lnet/minecraft/class_2054;	field_1208	FILLED_BUCKET	
+	f	Lnet/minecraft/class_2058;	field_1203	FISHING_ROD_HOOKED	
+	f	Lnet/minecraft/class_2002;	field_1202	CHANNELED_LIGHTNING	
 c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_8614	field_8614	
 c	net/minecraft/class_1847
 	f	Lnet/minecraft/class_1842;	field_8974	field_8974	
 	f	Lnet/minecraft/class_1842;	field_8964	field_8964	
-c	net/minecraft/class_2002	net/minecraft/class_2002	
-	f	Lnet/minecraft/class_2960;	field_9499	field_9499	
-	f	Ljava/util/Map;	field_9500	field_9500	
+c	net/minecraft/class_2002	net/minecraft/advancement/criterion/ChanneledLightningCriterion	
+	f	Lnet/minecraft/class_2960;	field_9499	ID	
+	f	Ljava/util/Map;	field_9500	handlers	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
@@ -50,46 +50,46 @@ c	net/minecraft/class_2002	net/minecraft/class_2002
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2002$class_2004;	method_8801	method_8801	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)V	method_8803	method_8803	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)V	method_8803	trigger	
+		p	1		player	
+		p	2		victims	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_2960;	method_8802	method_8802	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2002$class_2003	class_2003	
-	f	Lnet/minecraft/class_2985;	field_9502	field_9502	
-	f	Ljava/util/Set;	field_9501	field_9501	
+c	net/minecraft/class_2002$class_2003	Handler	
+	f	Lnet/minecraft/class_2985;	field_9502	manager	
+	f	Ljava/util/Set;	field_9501	conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_8805	method_8805	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8804	method_8804	
+	m	()Z	method_8805	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8804	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8807	method_8807	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8807	removeCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)V	method_8806	method_8806	
+	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)V	method_8806	handle	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_2002$class_2004	class_2004	
-	f	[Lnet/minecraft/class_2048;	field_9503	field_9503	
+c	net/minecraft/class_2002$class_2004	Conditions	
+	f	[Lnet/minecraft/class_2048;	field_9503	victims	
 	m	([Lnet/minecraft/class_2048;)V	<init>	<init>	
 		p	1		p_1	
-	m	([Lnet/minecraft/class_2048;)Lnet/minecraft/class_2002$class_2004;	method_8809	method_8809	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)Z	method_8808	method_8808	
-		p	1		p_1	
-		p	2		p_2	
+	m	([Lnet/minecraft/class_2048;)Lnet/minecraft/class_2002$class_2004;	method_8809	create	
+		p	0		victims	
+	m	(Lnet/minecraft/class_3222;Ljava/util/Collection;)Z	method_8808	matches	
+		p	1		player	
+		p	2		victims	
 	m	()Lcom/google/gson/JsonElement;	method_807	method_807	
 c	net/minecraft/class_2048
-	f	[Lnet/minecraft/class_2048;	field_9598	field_9598	
-	m	(Lcom/google/gson/JsonElement;)[Lnet/minecraft/class_2048;	method_8910	method_8910	
-		p	0		p_0	
-	m	([Lnet/minecraft/class_2048;)Lcom/google/gson/JsonElement;	method_8911	method_8911	
-		p	0		p_0	
-c	net/minecraft/class_2054	net/minecraft/class_2054	
-	f	Lnet/minecraft/class_2960;	field_9612	field_9612	
-	f	Ljava/util/Map;	field_9613	field_9613	
+	f	[Lnet/minecraft/class_2048;	field_9598	EMPTY	
+	m	(Lcom/google/gson/JsonElement;)[Lnet/minecraft/class_2048;	method_8910	fromJsonArray	
+		p	0		element	
+	m	([Lnet/minecraft/class_2048;)Lcom/google/gson/JsonElement;	method_8911	serializeAll	
+		p	0		predicates	
+c	net/minecraft/class_2054	net/minecraft/advancement/criterion/FilledBucketCriterion	
+	f	Lnet/minecraft/class_2960;	field_9612	ID	
+	f	Ljava/util/Map;	field_9613	handlers	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
@@ -103,38 +103,38 @@ c	net/minecraft/class_2054	net/minecraft/class_2054
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2054$class_2056;	method_8931	method_8931	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;)V	method_8932	method_8932	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;)V	method_8932	trigger	
+		p	1		player	
+		p	2		stack	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_2960;	method_8930	method_8930	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2054$class_2055	class_2055	
-	f	Lnet/minecraft/class_2985;	field_9615	field_9615	
-	f	Ljava/util/Set;	field_9614	field_9614	
+c	net/minecraft/class_2054$class_2055	Handler	
+	f	Lnet/minecraft/class_2985;	field_9615	manager	
+	f	Ljava/util/Set;	field_9614	conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_8934	method_8934	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8933	method_8933	
+	m	()Z	method_8934	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8933	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8936	method_8936	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8936	removeCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_1799;)V	method_8935	method_8935	
-		p	1		p_1	
-c	net/minecraft/class_2054$class_2056	class_2056	
-	f	Lnet/minecraft/class_2073;	field_9616	field_9616	
+	m	(Lnet/minecraft/class_1799;)V	method_8935	handle	
+		p	1		stack	
+c	net/minecraft/class_2054$class_2056	Conditions	
+	f	Lnet/minecraft/class_2073;	field_9616	item	
 	m	(Lnet/minecraft/class_2073;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2073;)Lnet/minecraft/class_2054$class_2056;	method_8937	method_8937	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_1799;)Z	method_8938	method_8938	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2073;)Lnet/minecraft/class_2054$class_2056;	method_8937	create	
+		p	0		item	
+	m	(Lnet/minecraft/class_1799;)Z	method_8938	matches	
+		p	1		stack	
 	m	()Lcom/google/gson/JsonElement;	method_807	method_807	
-c	net/minecraft/class_2058	net/minecraft/class_2058	
-	f	Lnet/minecraft/class_2960;	field_9617	field_9617	
-	f	Ljava/util/Map;	field_9618	field_9618	
+c	net/minecraft/class_2058	net/minecraft/advancement/criterion/FishingRodHookedCriterion	
+	f	Lnet/minecraft/class_2960;	field_9617	ID	
+	f	Ljava/util/Map;	field_9618	handlers	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
@@ -148,48 +148,48 @@ c	net/minecraft/class_2058	net/minecraft/class_2058
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2058$class_2060;	method_8941	method_8941	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)V	method_8939	method_8939	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)V	method_8939	trigger	
+		p	1		player	
+		p	2		rod	
+		p	3		bobber	
+		p	4		fishingLoots	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_2960;	method_8940	method_8940	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2058$class_2059	class_2059	
-	f	Lnet/minecraft/class_2985;	field_9620	field_9620	
-	f	Ljava/util/Set;	field_9619	field_9619	
+c	net/minecraft/class_2058$class_2059	Handler	
+	f	Lnet/minecraft/class_2985;	field_9620	manager	
+	f	Ljava/util/Set;	field_9619	conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_8944	method_8944	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8943	method_8943	
+	m	()Z	method_8944	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8943	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8945	method_8945	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8945	removeCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)V	method_8942	method_8942	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)V	method_8942	handle	
+		p	1		player	
+		p	2		rodStack	
+		p	3		entity	
 		p	4		p_4	
-c	net/minecraft/class_2058$class_2060	class_2060	
-	f	Lnet/minecraft/class_2073;	field_9621	field_9621	
-	f	Lnet/minecraft/class_2048;	field_9622	field_9622	
-	f	Lnet/minecraft/class_2073;	field_9623	field_9623	
+c	net/minecraft/class_2058$class_2060	Conditions	
+	f	Lnet/minecraft/class_2073;	field_9621	rod	
+	f	Lnet/minecraft/class_2048;	field_9622	hookedEntity	
+	f	Lnet/minecraft/class_2073;	field_9623	caughtItem	
 	m	(Lnet/minecraft/class_2073;Lnet/minecraft/class_2048;Lnet/minecraft/class_2073;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_2073;Lnet/minecraft/class_2048;Lnet/minecraft/class_2073;)Lnet/minecraft/class_2058$class_2060;	method_8947	method_8947	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)Z	method_8946	method_8946	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_2073;Lnet/minecraft/class_2048;Lnet/minecraft/class_2073;)Lnet/minecraft/class_2058$class_2060;	method_8947	create	
+		p	0		rod	
+		p	1		bobber	
+		p	2		item	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;Lnet/minecraft/class_1536;Ljava/util/Collection;)Z	method_8946	matches	
+		p	1		player	
+		p	2		rodStack	
+		p	3		bobber	
+		p	4		fishingLoots	
 	m	()Lcom/google/gson/JsonElement;	method_807	method_807	
 c	net/minecraft/class_2404
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)I	method_9546		method_9546
@@ -197,12 +197,12 @@ c	net/minecraft/class_2404
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2414
-	f	[Lnet/minecraft/class_1792;	field_11295	field_11295	
-	f	[Lnet/minecraft/class_1792;	field_11297	field_11297	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10340	method_10340	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10339	method_10339	
-		p	1		p_1	
+	f	[Lnet/minecraft/class_1792;	field_11295	FISH_ITEMS	
+	f	[Lnet/minecraft/class_1792;	field_11297	FISH_BUCKET_ITEMS	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10340	requireListedFishBucketsFilled	
+		p	1		builder	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10339	requireListedFishCaught	
+		p	1		builder	
 c	net/minecraft/class_3081
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_3281;)Z	method_13460	method_13460	
 		p	1		p_1	
@@ -217,24 +217,24 @@ c	net/minecraft/class_3081
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_309
-	f	J	field_1681	field_1681	
-	f	J	field_1680	field_1680	
-	m	(Ljava/lang/String;[Ljava/lang/Object;)V	method_1456	method_1456	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	method_1474	method_1474	
+	f	J	field_1681	debugCrashLastLogTime	
+	f	J	field_1680	debugCrashElapsedTime	
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	method_1456	debugError	
+		p	1		key	
+		p	2		args	
+	m	()V	method_1474	pollDebugCrash	
 c	net/minecraft/class_3614
-	f	Lnet/minecraft/class_3614;	field_15926	field_15926	
+	f	Lnet/minecraft/class_3614;	field_15926	REPLACEABLE_UNDERWATER_PLANT	
 c	net/minecraft/class_761
 	f	I	field_4080	field_4080	
 c	net/minecraft/class_775
 	m	(Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)I	method_3343	method_3343	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_998	net/minecraft/class_998	
-	f	Lnet/minecraft/class_2960;	field_4898	field_4898	
+c	net/minecraft/class_998	net/minecraft/client/render/entity/feature/TridentRiptideFeatureRenderer	
+	f	Lnet/minecraft/class_2960;	field_4898	TEXTURE	
 	f	Lnet/minecraft/class_1007;	field_4899	field_4899	
-	f	Lnet/minecraft/class_998$class_999;	field_4897	field_4897	
+	f	Lnet/minecraft/class_998$class_999;	field_4897	model	
 	m	(Lnet/minecraft/class_1007;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_742;FFFFFFF)V	method_4203	method_4203	
@@ -257,8 +257,8 @@ c	net/minecraft/class_998	net/minecraft/class_998
 		p	7		p_7	
 		p	8		p_8	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_998$class_999	class_999	
-	f	Lnet/minecraft/class_630;	field_4900	field_4900	
+c	net/minecraft/class_998$class_999	TridentRiptideModel	
+	f	Lnet/minecraft/class_630;	field_4900	model	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1297;FFFFFF)V	method_2819	method_2819	
 		p	1		p_1	

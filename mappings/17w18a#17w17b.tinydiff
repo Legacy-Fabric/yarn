@@ -1,7 +1,7 @@
 tiny	2	0
 c	net/minecraft/class_1102
-	f	Lnet/minecraft/class_1146;	field_5443	field_5443	
-	f	Lnet/minecraft/class_2960;	field_5448	field_5448	
+	f	Lnet/minecraft/class_1146;	field_5443	soundSet	
+	f	Lnet/minecraft/class_2960;	field_5448	id	
 	f	Lnet/minecraft/class_3414;	field_5448		field_5448
 	m	(Lnet/minecraft/class_2960;Lnet/minecraft/class_3419;)V	<init>	<init>	
 		p	1		p_1	
@@ -25,8 +25,8 @@ c	net/minecraft/class_1144$2
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1321
-	m	(Lnet/minecraft/class_1657;)V	method_6170	method_6170	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1657;)V	method_6170	setOwner	
+		p	1		player	
 c	net/minecraft/class_14
 	m	(Lnet/minecraft/class_0_105;IIILnet/minecraft/class_7;)Lnet/minecraft/class_7;	method_59	method_59	
 		p	1		p_1	
@@ -38,8 +38,8 @@ c	net/minecraft/class_1407
 	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_11;	method_6348		method_6348
 		p	1			p_1
 c	net/minecraft/class_1453
-	m	(Ljava/util/Random;)Lnet/minecraft/class_3414;	method_6583	method_6583	
-		p	0		p_0	
+	m	(Ljava/util/Random;)Lnet/minecraft/class_3414;	method_6583	getRandomSound	
+		p	0		random	
 	m	(I)Lnet/minecraft/class_3414;	method_6586	method_6586	
 		p	0		p_0	
 	m	(Ljava/util/Random;Lnet/minecraft/class_2960;)Lnet/minecraft/class_3414;	method_6583		method_6583
@@ -49,8 +49,8 @@ c	net/minecraft/class_1453
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_161
-	f	Lnet/minecraft/class_2561;	field_1141	field_1141	
-	m	()Lnet/minecraft/class_2561;	method_684	method_684	
+	f	Lnet/minecraft/class_2561;	field_1141	text	
+	m	()Lnet/minecraft/class_2561;	method_684	toHoverableText	
 c	net/minecraft/class_1661
 	m	(Lnet/minecraft/class_1856;I)I	method_0_10914	method_0_10914	
 		p	1		p_1	
@@ -59,17 +59,17 @@ c	net/minecraft/class_1661
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1703
-	m	(Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_1263;)V	method_7607	method_7607	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_1263;)V	method_7607	dropInventory	
+		p	1		player	
+		p	2		world	
+		p	3		inventory	
 c	net/minecraft/class_174
-	f	Lnet/minecraft/class_2135;	field_1187	field_1187	
-	f	Lnet/minecraft/class_2131;	field_1201	field_1201	
+	f	Lnet/minecraft/class_2135;	field_1187	TICK	
+	f	Lnet/minecraft/class_2131;	field_1201	TAME_ANIMAL	
 c	net/minecraft/class_1767
 	f	I	field_7956	field_7956	
-	f	Lnet/minecraft/class_3620;	field_7956		field_7956
-	m	()I	method_7788	method_7788	
+	f	Lnet/minecraft/class_3620;	field_7956		mapColor
+	m	()I	method_7788	getColorSwapped	
 	m	(Ljava/lang/String;IIILjava/lang/String;Ljava/lang/String;ILnet/minecraft/class_124;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -118,7 +118,7 @@ c	net/minecraft/class_1845
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1845$class_1846
-	f	Lnet/minecraft/class_1856;	field_8960	field_8960	
+	f	Lnet/minecraft/class_1856;	field_8960	ingredient	
 	f	Lcom/google/common/base/Predicate;	field_8960		field_8960
 	m	(Ljava/lang/Object;Lnet/minecraft/class_1856;Ljava/lang/Object;)V	<init>	<init>	
 		p	1		p_1	
@@ -143,19 +143,19 @@ c	net/minecraft/class_1845$class_0_2070		class_0_2070
 c	net/minecraft/class_1849
 	m	()I	method_0_62	method_0_62	
 c	net/minecraft/class_185
-	f	Z	field_1239	field_1239	
-	f	Z	field_1238	field_1238	
-	f	F	field_1245	field_1245	
-	f	F	field_1244	field_1244	
+	f	Z	field_1239	showToast	
+	f	Z	field_1238	announceToChat	
+	f	F	field_1245	x	
+	f	F	field_1244	y	
 	f	I	field_1245		field_1245
 	f	I	field_1244		field_1244
-	m	(FF)V	method_816	method_816	
-		p	1		p_1	
-		p	2		p_2	
-	m	()F	method_818	method_818	
-	m	()F	method_819	method_819	
-	m	()Z	method_823	method_823	
-	m	()Z	method_808	method_808	
+	m	(FF)V	method_816	setPos	
+		p	1		x	
+		p	2		y	
+	m	()F	method_818	getX	
+	m	()F	method_819	getY	
+	m	()Z	method_823	shouldShowToast	
+	m	()Z	method_808	shouldAnnounceToChat	
 	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_2561;Lnet/minecraft/class_2561;Lnet/minecraft/class_2960;Lnet/minecraft/class_189;ZZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -181,14 +181,14 @@ c	net/minecraft/class_1851
 	m	()I	method_0_62	method_0_62	
 c	net/minecraft/class_1855
 	m	()I	method_0_62	method_0_62	
-c	net/minecraft/class_1856	net/minecraft/class_1856	
-	f	Lnet/minecraft/class_1856;	field_9017	field_9017	
-	f	[Lnet/minecraft/class_1799;	field_9018	field_9018	
-	m	()[Lnet/minecraft/class_1799;	method_8105	method_8105	
+c	net/minecraft/class_1856	net/minecraft/recipe/Ingredient	
+	f	Lnet/minecraft/class_1856;	field_9017	EMPTY	
+	f	[Lnet/minecraft/class_1799;	field_9018	matchingStacks	
+	m	()[Lnet/minecraft/class_1799;	method_8105	getMatchingStacks	
 	m	(Lnet/minecraft/class_1799;)Z	method_8093	method_8093	
 		p	1		p_1	
-	m	([Lnet/minecraft/class_1799;)Lnet/minecraft/class_1856;	method_8101	method_8101	
-		p	0		p_0	
+	m	([Lnet/minecraft/class_1799;)Lnet/minecraft/class_1856;	method_8101	ofStacks	
+		p	0		stacks	
 	m	()V	<clinit>	<clinit>	
 	m	(Ljava/lang/Object;)Z	apply	apply	
 		p	1		p_1	
@@ -241,7 +241,7 @@ c	net/minecraft/class_1863
 c	net/minecraft/class_1864
 	m	()I	method_0_62	method_0_62	
 c	net/minecraft/class_1867
-	f	Lnet/minecraft/class_2371;	field_9047	field_9047	
+	f	Lnet/minecraft/class_2371;	field_9047	input	
 	f	Ljava/util/List;	field_9047		field_9047
 	m	(Ljava/lang/String;Lnet/minecraft/class_1799;Lnet/minecraft/class_2371;)V	<init>	<init>	
 		p	1		p_1	
@@ -262,14 +262,15 @@ c	net/minecraft/class_1867
 	m	(Lcom/google/gson/JsonArray;)Ljava/util/List;	method_0_10988		method_0_10988
 		p	0			p_0
 c	net/minecraft/class_1869
-	f	Lnet/minecraft/class_2371;	field_9052	field_9052	
+	f	Lnet/minecraft/class_2371;	field_9052	input	
 	f	[Lnet/minecraft/class_1799;	field_9052		field_9052
 	f	Z	field_0_100		field_0_100
-	m	([Ljava/lang/String;Ljava/util/Map;II)Lnet/minecraft/class_2371;	method_8148	method_8148	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	([Ljava/lang/String;Ljava/util/Map;II)Lnet/minecraft/class_2371;	method_8148	createPatternMatrix	
+		c	Compiles a pattern and series of symbols into a list of ingredients (the matrix) suitable for matching\nagainst a crafting grid.	
+		p	0		pattern	
+		p	1		symbols	
+		p	2		width	
+		p	3		height	
 	m	(Lcom/google/gson/JsonElement;)Lnet/minecraft/class_1856;	method_0_11683	method_0_11683	
 		p	0		p_0	
 	m	(Ljava/lang/String;IILnet/minecraft/class_2371;Lnet/minecraft/class_1799;)V	<init>	<init>	
@@ -301,37 +302,37 @@ c	net/minecraft/class_1869
 c	net/minecraft/class_1876
 	m	()I	method_0_62	method_0_62	
 c	net/minecraft/class_189
-	f	Lnet/minecraft/class_124;	field_1255	field_1255	
+	f	Lnet/minecraft/class_124;	field_1255	titleFormat	
 	m	(Ljava/lang/String;ILjava/lang/String;ILnet/minecraft/class_124;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	()Lnet/minecraft/class_124;	method_830	method_830	
+	m	()Lnet/minecraft/class_124;	method_830	getTitleFormat	
 	m	(Ljava/lang/String;ILjava/lang/String;I)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_194
-	f	F	field_1269	field_1269	
-	f	F	field_1268	field_1268	
+	f	F	field_1269	row	
+	f	F	field_1268	relativeRowInSiblings	
 	f	F	field_1266	field_1266	
 	f	F	field_1265	field_1265	
 	f	I	field_1269		field_1269
 	f	I	field_1268		field_1268
 	f	I	field_1266		field_1266
 	f	I	field_1265		field_1265
-	m	(FIF)F	method_842	method_842	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(F)V	method_843	method_843	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_194;F)V	method_848	method_848	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FIF)F	method_842	findMinRowRecursively	
+		p	1		deltaRow	
+		p	2		depth	
+		p	3		minRow	
+	m	(F)V	method_843	increaseRowRecursively	
+		p	1		deltaRow	
+	m	(Lnet/minecraft/class_194;F)V	method_848	pushDown	
+		p	1		positioner	
+		p	2		extraRowDistance	
 	m	(III)I	method_842		method_842
 		p	1			p_1
 		p	2			p_2
@@ -341,22 +342,22 @@ c	net/minecraft/class_194
 	m	(Lnet/minecraft/class_194;I)V	method_848		method_848
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_2025	net/minecraft/class_2025	
-	f	Lnet/minecraft/class_2025;	field_9553	field_9553	
+c	net/minecraft/class_2025	net/minecraft/predicate/entity/DistancePredicate	
+	f	Lnet/minecraft/class_2025;	field_9553	ANY	
 	f	Lnet/minecraft/class_2096;	field_9554	field_9554	
 	f	Lnet/minecraft/class_2096;	field_9555	field_9555	
 	f	Lnet/minecraft/class_2096;	field_9552	field_9552	
 	f	Lnet/minecraft/class_2096;	field_9557	field_9557	
 	f	Lnet/minecraft/class_2096;	field_9556	field_9556	
-	m	(DDDDDD)Z	method_8859	method_8859	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	9		p_9	
-		p	11		p_11	
-	m	(Lcom/google/gson/JsonElement;)Lnet/minecraft/class_2025;	method_8857	method_8857	
-		p	0		p_0	
+	m	(DDDDDD)Z	method_8859	test	
+		p	1		x0	
+		p	3		y0	
+		p	5		z0	
+		p	7		x1	
+		p	9		y1	
+		p	11		z1	
+	m	(Lcom/google/gson/JsonElement;)Lnet/minecraft/class_2025;	method_8857	fromJson	
+		p	0		json	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_2096;Lnet/minecraft/class_2096;Lnet/minecraft/class_2096;Lnet/minecraft/class_2096;Lnet/minecraft/class_2096;)V	<init>	<init>	
 		p	1		p_1	
@@ -365,7 +366,7 @@ c	net/minecraft/class_2025	net/minecraft/class_2025
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/class_2048
-	f	Lnet/minecraft/class_2025;	field_9601	field_9601	
+	f	Lnet/minecraft/class_2025;	field_9601	distance	
 	f	Lnet/minecraft/class_2096;	field_9601		field_9601
 	m	(Lnet/minecraft/class_2960;Lnet/minecraft/class_2025;)V	<init>	<init>	
 		p	1		p_1	
@@ -374,30 +375,30 @@ c	net/minecraft/class_2048
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2085
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)V	method_9008	method_9008	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)V	method_9008	trigger	
+		p	1		player	
+		p	2		startPos	
+		p	3		duration	
 	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_2338;I)V	method_9008		method_9008
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2085$class_2086
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)V	method_9011	method_9011	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)V	method_9011	handle	
+		p	1		coord	
+		p	2		distance	
+		p	3		duration	
 	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_2338;I)V	method_9011		method_9011
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2085$class_2087
-	f	Lnet/minecraft/class_2025;	field_9675	field_9675	
+	f	Lnet/minecraft/class_2025;	field_9675	distance	
 	f	Lnet/minecraft/class_2096;	field_9675		field_9675
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)Z	method_9014	method_9014	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_243;I)Z	method_9014	matches	
+		p	1		player	
+		p	2		startPos	
+		p	3		duration	
 	m	(Lnet/minecraft/class_2025;Lnet/minecraft/class_2096;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -409,31 +410,31 @@ c	net/minecraft/class_2085$class_2087
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2119
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1860;)V	method_9107	method_9107	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1860;)V	method_9107	trigger	
+		p	1		player	
+		p	2		recipe	
 	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_2960;)V	method_9107		method_9107
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2119$class_2120
-	m	(Lnet/minecraft/class_1860;)V	method_9108	method_9108	
+	m	(Lnet/minecraft/class_1860;)V	method_9108	handle	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2960;)V	method_9108		method_9108
 		p	1			p_1
 c	net/minecraft/class_2119$class_2121
 	f	Lnet/minecraft/class_1860;	field_9742	field_9742	
-	f	Lnet/minecraft/class_2960;	field_9742		field_9742
-	m	(Lnet/minecraft/class_1860;)Z	method_9112	method_9112	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2960;	field_9742		recipe
+	m	(Lnet/minecraft/class_1860;)Z	method_9112	matches	
+		p	1		recipe	
 	m	(Lnet/minecraft/class_1860;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2960;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_2960;)Z	method_9112		method_9112
 		p	1			p_1
-c	net/minecraft/class_2131	net/minecraft/class_2131	
-	f	Lnet/minecraft/class_2960;	field_9753	field_9753	
-	f	Ljava/util/Map;	field_9754	field_9754	
+c	net/minecraft/class_2131	net/minecraft/advancement/criterion/TameAnimalCriterion	
+	f	Lnet/minecraft/class_2960;	field_9753	ID	
+	f	Ljava/util/Map;	field_9754	handlers	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
@@ -447,37 +448,37 @@ c	net/minecraft/class_2131	net/minecraft/class_2131
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2131$class_2133;	method_9133	method_9133	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)V	method_9132	method_9132	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)V	method_9132	trigger	
+		p	1		player	
+		p	2		entity	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_2960;	method_9131	method_9131	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2131$class_2132	class_2132	
-	f	Lnet/minecraft/class_2985;	field_9756	field_9756	
-	f	Ljava/util/Set;	field_9755	field_9755	
+c	net/minecraft/class_2131$class_2132	Handler	
+	f	Lnet/minecraft/class_2985;	field_9756	manager	
+	f	Ljava/util/Set;	field_9755	Conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_9135	method_9135	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_9134	method_9134	
+	m	()Z	method_9135	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_9134	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_9137	method_9137	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_9137	removeCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)V	method_9136	method_9136	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)V	method_9136	handle	
+		p	1		entity	
 		p	2		p_2	
-c	net/minecraft/class_2131$class_2133	class_2133	
-	f	Lnet/minecraft/class_2048;	field_9757	field_9757	
+c	net/minecraft/class_2131$class_2133	Conditions	
+	f	Lnet/minecraft/class_2048;	field_9757	entity	
 	m	(Lnet/minecraft/class_2048;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)Z	method_9139	method_9139	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/class_2135	net/minecraft/class_2135	
-	f	Lnet/minecraft/class_2960;	field_9758	field_9758	
-	f	Ljava/util/Map;	field_9759	field_9759	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1429;)Z	method_9139	matches	
+		p	1		player	
+		p	2		entity	
+c	net/minecraft/class_2135	net/minecraft/advancement/criterion/TickCriterion	
+	f	Lnet/minecraft/class_2960;	field_9758	id	
+	f	Ljava/util/Map;	field_9759	handlers	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
 		p	1		p_1	
@@ -490,31 +491,31 @@ c	net/minecraft/class_2135	net/minecraft/class_2135
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2135$class_2137;	method_9140	method_9140	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;)V	method_9141	method_9141	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3222;)V	method_9141	trigger	
+		p	1		player	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_0_11764	method_0_11764	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2135$class_2136	class_2136	
-	f	Lnet/minecraft/class_2985;	field_9761	field_9761	
-	f	Ljava/util/Set;	field_9760	field_9760	
+c	net/minecraft/class_2135$class_2136	Handler	
+	f	Lnet/minecraft/class_2985;	field_9761	manager	
+	f	Ljava/util/Set;	field_9760	conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_9143	method_9143	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_9142	method_9142	
+	m	()Z	method_9143	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_9142	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_9144	method_9144	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_9144	removeCondition	
 		p	1		p_1	
-	m	()V	method_9145	method_9145	
-c	net/minecraft/class_2135$class_2137	class_2137	
+	m	()V	method_9145	handle	
+c	net/minecraft/class_2135$class_2137	Conditions	
 	m	()V	<init>	<init>	
 c	net/minecraft/class_2371
-	m	(Ljava/lang/Object;[Ljava/lang/Object;)Lnet/minecraft/class_2371;	method_10212	method_10212	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Ljava/lang/Object;[Ljava/lang/Object;)Lnet/minecraft/class_2371;	method_10212	copyOf	
+		p	0		defaultValue	
+		p	1		values	
 c	net/minecraft/class_2399
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z	method_0_691	method_0_691	
 		p	1		p_1	
@@ -527,15 +528,16 @@ c	net/minecraft/class_2399
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Z	method_9558		method_9558
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_2501	net/minecraft/class_2501	
-	f	[J	field_11552	field_11552	
+c	net/minecraft/class_2501	net/minecraft/nbt/NbtLongArray	
+	c	Represents an NBT 64-bit integer array. This object is mutable and backed by\n{@code long[]}. Its type is {@value NbtElement#LONG_ARRAY_TYPE}. Like Java arrays,\naccessing indices that are out of bounds will throw {@link ArrayIndexOutOfBoundsException}.\nThe backing array can be obtained via {@link #getLongArray()}.	
+	f	[J	field_11552	value	
 	m	()V	<init>	<init>	
 	m	([J)V	<init>	<init>	
 		p	1		p_1	
 	m	(Ljava/util/List;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Ljava/util/List;)[J	method_10617	method_10617	
-		p	0		p_0	
+	m	(Ljava/util/List;)[J	method_10617	toArray	
+		p	0		list	
 	m	(Ljava/io/DataOutput;)V	method_10713	method_10713	
 		p	1		p_1	
 	m	(Ljava/io/DataInput;ILnet/minecraft/class_2505;)V	method_10709	method_10709	
@@ -550,7 +552,7 @@ c	net/minecraft/class_2501	net/minecraft/class_2501
 	m	()I	hashCode	hashCode	
 	m	()Lnet/minecraft/class_2520;	method_10707	method_10707	
 c	net/minecraft/class_2512
-	f	Lorg/apache/logging/log4j/Logger;	field_11582	field_11582	
+	f	Lorg/apache/logging/log4j/Logger;	field_11582	LOGGER	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_2769;Ljava/lang/String;Lnet/minecraft/class_2487;Lnet/minecraft/class_2487;)Lnet/minecraft/class_0_378;	method_10682	method_10682	
 		p	0		p_0	
@@ -563,8 +565,9 @@ c	net/minecraft/class_2512
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2519
-	m	(Ljava/lang/String;)Ljava/lang/String;	method_10706	method_10706	
-		p	0		p_0	
+	m	(Ljava/lang/String;)Ljava/lang/String;	method_10706	escape	
+		c	{@return the string quoted with quotes and backslashes escaped}\n\n@implNote If {@code value} contains one of the singlequote or the double quote,\nit tries to use the other quotes to quote the string. If both appear, then the quote\nthat appeared later will be used to quote the string. If neither of them appears, this\nuses a double quote. For example, the string {@code It's a "Tiny Potato"!} will be\nescaped as {@code "It's a \\"Tiny Potato\\"!"}, while the string\n{@code It is a "Tiny Potato"!} will be escaped as {@code 'It is a "Tiny Potato"!'}.	
+		p	0		value	
 c	net/minecraft/class_2541
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z	method_10821	method_10821	
 		p	1		p_1	
@@ -572,7 +575,7 @@ c	net/minecraft/class_2541
 		p	3		p_3	
 	m	(Lnet/minecraft/class_0_378;)Z	method_10821		method_10821
 		p	1			p_1
-c	net/minecraft/class_3097	net/minecraft/class_3097	
+c	net/minecraft/class_3097	net/minecraft/server/command/ReloadCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_0_5966	method_0_5966	
 	m	()I	method_0_5757	method_0_5757	
@@ -585,10 +588,10 @@ c	net/minecraft/class_3097	net/minecraft/class_3097
 c	net/minecraft/class_3176
 	m	()Z	method_0_6419		method_0_6419
 c	net/minecraft/class_3222
-	f	Lnet/minecraft/class_243;	field_13992	field_13992	
-	f	Z	field_13964	field_13964	
+	f	Lnet/minecraft/class_243;	field_13992	levitationStartPos	
+	f	Z	field_13964	disconnected	
 	f	Lnet/minecraft/class_2338;	field_13992		field_13992
-	m	()Z	method_14239	method_14239	
+	m	()Z	method_14239	isDisconnected	
 c	net/minecraft/class_3417
 	f	Lnet/minecraft/class_3414;	field_15199	field_15199	
 	f	Lnet/minecraft/class_3414;	field_14547	field_14547	
@@ -625,28 +628,28 @@ c	net/minecraft/class_3441
 	m	(Lnet/minecraft/class_1860;)Z	method_14876		method_14876
 		p	1			p_1
 c	net/minecraft/class_3518
-	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/reflect/Type;Z)Ljava/lang/Object;	method_15273	method_15273	
+	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/reflect/Type;Z)Ljava/lang/Object;	method_15273	deserialize	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lcom/google/gson/Gson;Ljava/lang/String;Ljava/lang/reflect/Type;Z)Ljava/lang/Object;	method_15262	method_15262	
+		p	3		lenient	
+	m	(Lcom/google/gson/Gson;Ljava/lang/String;Ljava/lang/reflect/Type;Z)Ljava/lang/Object;	method_15262	deserialize	
+		p	0		p_0	
+		p	1		content	
+		p	2		p_2	
+		p	3		lenient	
+	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/reflect/Type;)Ljava/lang/Object;	method_15297	deserialize	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/reflect/Type;)Ljava/lang/Object;	method_15297	method_15297	
+	m	(Lcom/google/gson/Gson;Ljava/lang/String;Ljava/lang/reflect/Type;)Ljava/lang/Object;	method_15290	deserialize	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		content	
 		p	2		p_2	
-	m	(Lcom/google/gson/Gson;Ljava/lang/String;Ljava/lang/reflect/Type;)Ljava/lang/Object;	method_15290	method_15290	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/Class;)Ljava/lang/Object;	method_15276	method_15276	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/google/gson/Gson;Ljava/io/Reader;Ljava/lang/Class;)Ljava/lang/Object;	method_15276	deserialize	
+		p	0		gson	
+		p	1		reader	
+		p	2		type	
 c	net/minecraft/class_3620
 	f	[Lnet/minecraft/class_3620;	field_0_12927	field_0_12927	
 	m	(Lnet/minecraft/class_1767;)Lnet/minecraft/class_3620;	method_0_11770	method_0_11770	
@@ -655,8 +658,8 @@ c	net/minecraft/class_490
 	f	I	field_0_12262		field_0_12262
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_508
-	m	(Z)V	method_2613	method_2613	
-		p	1		p_1	
+	m	(Z)V	method_2613	setVisible	
+		p	1		visible	
 	m	(III)V	method_0_11069		method_0_11069
 		p	1			p_1
 		p	2			p_2
@@ -695,7 +698,7 @@ c	net/minecraft/class_6
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/server/MinecraftServer
-	m	()V	method_3848	method_3848	
+	m	()V	method_3848	reload	
 	m	()Z	method_0_6419		method_0_6419
 	m	()Lnet/minecraft/class_0_2204;	method_0_9082		method_0_9082
 c	net/minecraft/class_0_2222

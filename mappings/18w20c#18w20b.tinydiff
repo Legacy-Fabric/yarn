@@ -13,30 +13,30 @@ c	net/minecraft/class_1254
 c	net/minecraft/class_1433
 c	net/minecraft/class_1433$class_1436
 	f	I	field_0_17329		field_0_17329
-c	net/minecraft/class_2152	net/minecraft/class_2152	
-	f	Lnet/minecraft/class_2152;	field_9780	field_9780	
-	f	Ljava/lang/Float;	field_9778	field_9778	
-	f	Ljava/lang/Float;	field_9779	field_9779	
+c	net/minecraft/class_2152	net/minecraft/command/FloatRangeArgument	
+	f	Lnet/minecraft/class_2152;	field_9780	ANY	
+	f	Ljava/lang/Float;	field_9778	min	
+	f	Ljava/lang/Float;	field_9779	max	
 	f	Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;	field_0_17722	field_0_17722	
 	f	Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;	field_0_17723	field_0_17723	
 	m	(Ljava/lang/Float;Ljava/lang/Float;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Ljava/lang/Float;	method_9175	method_9175	
-	m	()Ljava/lang/Float;	method_9177	method_9177	
-	m	(Lcom/mojang/brigadier/StringReader;ZLjava/util/function/Function;)Lnet/minecraft/class_2152;	method_9172	method_9172	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/brigadier/StringReader;Z)Ljava/lang/Float;	method_9176	method_9176	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lcom/mojang/brigadier/StringReader;Z)Z	method_9173	method_9173	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/Float;Ljava/util/function/Function;)Ljava/lang/Float;	method_9174	method_9174	
-		p	0		p_0	
-		p	1		p_1	
+	m	()Ljava/lang/Float;	method_9175	getMin	
+	m	()Ljava/lang/Float;	method_9177	getMax	
+	m	(Lcom/mojang/brigadier/StringReader;ZLjava/util/function/Function;)Lnet/minecraft/class_2152;	method_9172	parse	
+		p	0		reader	
+		p	1		allowFloats	
+		p	2		transform	
+	m	(Lcom/mojang/brigadier/StringReader;Z)Ljava/lang/Float;	method_9176	parseFloat	
+		p	0		reader	
+		p	1		allowFloats	
+	m	(Lcom/mojang/brigadier/StringReader;Z)Z	method_9173	peekDigit	
+		p	0		reader	
+		p	1		allowFloats	
+	m	(Ljava/lang/Float;Ljava/util/function/Function;)Ljava/lang/Float;	method_9174	mapFloat	
+		p	0		value	
+		p	1		function	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2213
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z	method_9579	method_9579	
@@ -44,19 +44,19 @@ c	net/minecraft/class_2213
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_2303
-	f	Lnet/minecraft/class_2152;	field_10877	field_10877	
-	f	Lnet/minecraft/class_2152;	field_10859	field_10859	
+	f	Lnet/minecraft/class_2152;	field_10877	pitchRange	
+	f	Lnet/minecraft/class_2152;	field_10859	yawRange	
 	f	Lnet/minecraft/class_2096;	field_10877		field_10877
 	f	Lnet/minecraft/class_2096;	field_10859		field_10859
-	m	(Lnet/minecraft/class_2152;Ljava/util/function/ToDoubleFunction;)Ljava/util/function/Predicate;	method_9859	method_9859	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Lnet/minecraft/class_2152;	method_9883	method_9883	
-	m	(Lnet/minecraft/class_2152;)V	method_9898	method_9898	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2152;	method_9853	method_9853	
-	m	(Lnet/minecraft/class_2152;)V	method_9855	method_9855	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2152;Ljava/util/function/ToDoubleFunction;)Ljava/util/function/Predicate;	method_9859	rotationPredicate	
+		p	1		angleRange	
+		p	2		entityToAngle	
+	m	()Lnet/minecraft/class_2152;	method_9883	getPitchRange	
+	m	(Lnet/minecraft/class_2152;)V	method_9898	setPitchRange	
+		p	1		pitchRange	
+	m	()Lnet/minecraft/class_2152;	method_9853	getYawRange	
+	m	(Lnet/minecraft/class_2152;)V	method_9855	setYawRange	
+		p	1		yawRange	
 	m	(Lnet/minecraft/class_2096;Ljava/util/function/ToDoubleFunction;)Ljava/util/function/Predicate;	method_9859		method_9859
 		p	1			p_1
 		p	2			p_2
@@ -67,11 +67,11 @@ c	net/minecraft/class_2303
 	m	(Lnet/minecraft/class_2096;)V	method_9855		method_9855
 		p	1			p_1
 c	net/minecraft/class_2791
-	m	()Lnet/minecraft/class_2826;	method_12040	method_12040	
-	m	()I	method_12031	method_12031	
+	m	()Lnet/minecraft/class_2826;	method_12040	getHighestNonEmptySection	
+	m	()I	method_12031	getHighestNonEmptySectionYOffset	
 c	net/minecraft/class_2818
 	m	()Lnet/minecraft/class_2826;	method_0_9311		method_0_9311
-	m	()I	method_0_1392		method_0_1392
+	m	()I	method_0_1392		getHighestNonEmptySectionYOffset
 c	net/minecraft/class_2839
 	m	(Lnet/minecraft/class_2902$class_2903;)Lnet/minecraft/class_2902;	method_12301	method_12301	
 		p	1		p_1	
@@ -116,8 +116,8 @@ c	net/minecraft/class_3499
 		p	5			p_5
 c	net/minecraft/class_3551
 	f	Lnet/minecraft/class_0_3705;	field_0_17728	field_0_17728	
-c	net/minecraft/class_3590	net/minecraft/class_3590	
-	f	Lcom/google/common/collect/ImmutableMap;	field_15889	field_15889	
+c	net/minecraft/class_3590	net/minecraft/datafixer/fix/ChunkStructuresTemplateRenameFix	
+	f	Lcom/google/common/collect/ImmutableMap;	field_15889	STRUCTURES	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>	<init>	
 		p	1		p_1	

@@ -1,18 +1,18 @@
 tiny	2	0
 c	net/minecraft/class_1308
-	m	(F)V	method_5938	method_5938	
-		p	1		p_1	
+	m	(F)V	method_5938	setSidewaysSpeed	
+		p	1		sidewaysSpeed	
 c	net/minecraft/class_1335
-	f	F	field_6368	field_6368	
-	f	F	field_6373	field_6373	
-	f	Lnet/minecraft/class_1335$class_1336;	field_6374	field_6374	
+	f	F	field_6368	forwardMovement	
+	f	F	field_6373	sidewaysMovement	
+	f	Lnet/minecraft/class_1335$class_1336;	field_6374	state	
 	f	Z	field_6374		field_6374
-	m	(FF)V	method_6243	method_6243	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FF)V	method_6243	strafeTo	
+		p	1		forward	
+		p	2		sideways	
 	m	(Lnet/minecraft/class_1335;)V	method_0_9436	method_0_9436	
 		p	1		p_1	
-c	net/minecraft/class_1335$class_1336	class_1336	
+c	net/minecraft/class_1335$class_1336	State	
 	f	Lnet/minecraft/class_1335$class_1336;	field_6377	field_6377	
 	f	Lnet/minecraft/class_1335$class_1336;	field_6378	field_6378	
 	f	Lnet/minecraft/class_1335$class_1336;	field_6376	field_6376	
@@ -36,9 +36,9 @@ c	net/minecraft/class_1355
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1380
-	f	Z	field_6573	field_6573	
-	f	Z	field_6571	field_6571	
-	f	I	field_6568	field_6568	
+	f	Z	field_6573	movingToLeft	
+	f	Z	field_6571	backward	
+	f	I	field_6568	combatTicks	
 c	net/minecraft/class_1496
 	f	Lnet/minecraft/class_1505;	field_0_10247	field_0_10247	
 	f	Z	field_0_10248	field_0_10248	
@@ -108,19 +108,19 @@ c	net/minecraft/class_1497	net/minecraft/class_1497
 	m	(Lnet/minecraft/class_1792;)Z	method_6782	method_6782	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1505	net/minecraft/class_1505	
+c	net/minecraft/class_1505	net/minecraft/entity/ai/goal/SkeletonHorseTrapTriggerGoal	
 	f	Lnet/minecraft/class_1496;	field_7002	field_7002	
 	m	()Z	method_6264	method_6264	
 	m	()V	method_6268	method_6268	
-	m	(Lnet/minecraft/class_1266;)Lnet/minecraft/class_1496;	method_6810	method_6810	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1266;)Lnet/minecraft/class_1496;	method_6810	getHorse	
+		p	1		localDifficulty	
 	m	(Lnet/minecraft/class_1496;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1266;Lnet/minecraft/class_1496;)Lnet/minecraft/class_1547;	method_6811	method_6811	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1538
-	f	Z	field_7184	field_7184	
+	f	Z	field_7184	cosmetic	
 	m	(Lnet/minecraft/class_1937;DDDZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -167,7 +167,7 @@ c	net/minecraft/class_2199
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2231
-	f	Lnet/minecraft/class_238;	field_9941	field_9941	
+	f	Lnet/minecraft/class_238;	field_9941	BOX	
 	f	Lnet/minecraft/class_238;	field_9942	field_9942	
 	f	Lnet/minecraft/class_238;	field_9943	field_9943	
 	m	()V	<clinit>	<clinit>	
@@ -352,8 +352,8 @@ c	net/minecraft/class_2309
 		p	2			p_2
 c	net/minecraft/class_2310
 	f	[Lnet/minecraft/class_238;	field_0_10184	field_0_10184	
-	m	(Lnet/minecraft/class_2350;)I	method_9985	method_9985	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_2350;)I	method_9985	getDirectionMask	
+		p	0		dir	
 	m	(Lnet/minecraft/class_0_378;)I	method_9987	method_9987	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)Lnet/minecraft/class_238;	method_9529	method_9529	
@@ -938,8 +938,8 @@ c	net/minecraft/class_2667
 		p	5			p_5
 c	net/minecraft/class_2669
 	f	Ljava/util/List;	field_0_1488		field_0_1488
-	m	(F)F	method_11504	method_11504	
-		p	1		p_1	
+	m	(F)F	method_11504	getAmountExtended	
+		p	1		progress	
 	m	()V	method_11503	method_11503	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_238;	method_0_9430	method_0_9430	
 		p	1		p_1	
@@ -986,9 +986,9 @@ c	net/minecraft/class_2689$class_0_380
 c	net/minecraft/class_3468
 	f	Lnet/minecraft/class_3445;	field_15381	field_15381	
 c	net/minecraft/class_770
-	f	Lnet/minecraft/class_2960;	field_4153	field_4153	
+	f	Lnet/minecraft/class_2960;	field_4153	DEFAULT_BANNER	
 c	net/minecraft/class_770$class_771
-	m	()Z	method_3332	method_3332	
+	m	()Z	method_3332	removeOldEntries	
 c	net/minecraft/class_776
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)Lnet/minecraft/class_1087;	method_0_3583		method_0_3583
 		p	1			p_1

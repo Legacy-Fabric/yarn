@@ -1,17 +1,17 @@
 tiny	2	0
 c	net/minecraft/class_1282
-	f	Lnet/minecraft/class_1282;	field_5843	field_5843	
+	f	Lnet/minecraft/class_1282;	field_5843	FLY_INTO_WALL	
 c	net/minecraft/class_1303
-	m	(I)I	method_5922	method_5922	
-		p	1		p_1	
-	m	(I)I	method_5917	method_5917	
-		p	1		p_1	
+	m	(I)I	method_5922	getMendingRepairCost	
+		p	1		repairAmount	
+	m	(I)I	method_5917	getMendingRepairAmount	
+		p	1		experienceAmount	
 c	net/minecraft/class_1309
-	f	Lnet/minecraft/class_2338;	field_6268	field_6268	
-	m	(Lnet/minecraft/class_2338;)V	method_6126	method_6126	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2338;	field_6268	lastBlockPos	
+	m	(Lnet/minecraft/class_2338;)V	method_6126	applyMovementEffects	
+		p	1		pos	
 c	net/minecraft/class_1657
-	m	()V	method_7318	method_7318	
+	m	()V	method_7318	updatePose	
 c	net/minecraft/class_1690
 	f	[Lnet/minecraft/class_1690$class_0_2288;	field_0_10417	field_0_10417	
 	f	[F	field_0_10382		field_0_10382
@@ -57,7 +57,7 @@ c	net/minecraft/class_1690$class_0_2288	class_0_2288
 		p	1		p_1	
 c	net/minecraft/class_1708
 	f	I	field_7785	field_7785	
-c	net/minecraft/class_1708$class_1709	class_1709	
+c	net/minecraft/class_1708$class_1709	FuelSlot	
 	m	(Lnet/minecraft/class_1263;III)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -67,22 +67,29 @@ c	net/minecraft/class_1708$class_1709	class_1709
 		p	1		p_1	
 	m	()I	method_7675	method_7675	
 c	net/minecraft/class_1887
-	m	()Z	method_8193	method_8193	
+	m	()Z	method_8193	isTreasure	
 c	net/minecraft/class_1890
-	m	(Ljava/util/Random;Lnet/minecraft/class_1799;IZ)Lnet/minecraft/class_1799;	method_8233	method_8233	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/util/Random;Lnet/minecraft/class_1799;IZ)Ljava/util/List;	method_8230	method_8230	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(ILnet/minecraft/class_1799;Z)Ljava/util/List;	method_8229	method_8229	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/util/Random;Lnet/minecraft/class_1799;IZ)Lnet/minecraft/class_1799;	method_8233	enchant	
+		c	Enchants the {@code target} item stack and returns it.	
+		p	0		random	
+			c	the seed	
+		p	1		target	
+			c	the item stack to enchant	
+		p	2		level	
+			c	the experience level	
+		p	3		treasureAllowed	
+			c	whether treasure enchantments may appear	
+	m	(Ljava/util/Random;Lnet/minecraft/class_1799;IZ)Ljava/util/List;	method_8230	generateEnchantments	
+		c	Generate the enchantments for enchanting the {@code stack}.	
+		p	0		random	
+		p	1		stack	
+		p	2		level	
+		p	3		treasureAllowed	
+	m	(ILnet/minecraft/class_1799;Z)Ljava/util/List;	method_8229	getPossibleEntries	
+		c	Gets all the possible entries for enchanting the {@code stack} at the\ngiven {@code power}.	
+		p	0		power	
+		p	1		stack	
+		p	2		treasureAllowed	
 	m	(Ljava/util/Random;Lnet/minecraft/class_1799;I)Lnet/minecraft/class_1799;	method_8233		method_8233
 		p	0			p_0
 		p	1			p_1
@@ -97,7 +104,7 @@ c	net/minecraft/class_1890
 c	net/minecraft/class_1893
 	f	Lnet/minecraft/class_1887;	field_9122	field_9122	
 	f	Lnet/minecraft/class_1887;	field_9101	field_9101	
-c	net/minecraft/class_1894	net/minecraft/class_1894	
+c	net/minecraft/class_1894	net/minecraft/enchantment/FrostWalkerEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -107,14 +114,14 @@ c	net/minecraft/class_1894	net/minecraft/class_1894
 		p	1		p_1	
 	m	()Z	method_8193	method_8193	
 	m	()I	method_8183	method_8183	
-	m	(Lnet/minecraft/class_1309;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V	method_8236	method_8236	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1309;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V	method_8236	freezeWater	
+		p	0		entity	
+		p	1		world	
+		p	2		blockPos	
+		p	3		level	
 	m	(Lnet/minecraft/class_1887;)Z	method_8180	method_8180	
 		p	1		p_1	
-c	net/minecraft/class_1899	net/minecraft/class_1899	
+c	net/minecraft/class_1899	net/minecraft/enchantment/MendingEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -129,8 +136,8 @@ c	net/minecraft/class_1913
 		p	1		p_1	
 c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_10397	field_0_10397	
-c	net/minecraft/class_2360	net/minecraft/class_2360	
-	f	Lnet/minecraft/class_2758;	field_11097	field_11097	
+c	net/minecraft/class_2360	net/minecraft/block/FrostedIceBlock	
+	f	Lnet/minecraft/class_2758;	field_11097	AGE	
 	m	()V	<clinit>	<clinit>	
 	m	()Lnet/minecraft/class_2689;	method_9515	method_9515	
 	m	()V	<init>	<init>	
@@ -160,10 +167,10 @@ c	net/minecraft/class_2386
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2589
-	f	[I	field_11880	field_11880	
-	f	I	field_11885	field_11885	
+	f	[I	field_11880	SIDE_SLOTS	
+	f	I	field_11885	fuel	
 c	net/minecraft/class_2672
-	f	[B	field_12237	field_12237	
+	f	[B	field_12237	data	
 	f	Lnet/minecraft/class_2540;	field_0_9909		field_0_9909
 	m	(Lnet/minecraft/class_2818;ZZI)I	method_11522	method_11522	
 		p	0		p_0	
@@ -179,7 +186,7 @@ c	net/minecraft/class_2672
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2708
-	f	I	field_12394	field_12394	
+	f	I	field_12394	teleportId	
 	m	(DDDFFLjava/util/Set;I)V	<init>	<init>	
 		p	1		p_1	
 		p	3		p_3	
@@ -188,7 +195,7 @@ c	net/minecraft/class_2708
 		p	8		p_8	
 		p	9		p_9	
 		p	10		p_10	
-	m	()I	method_11737	method_11737	
+	m	()I	method_11737	getTeleportId	
 	m	(DDDFFLjava/util/Set;)V	<init>		<init>
 		p	1			p_1
 		p	3			p_3
@@ -197,10 +204,10 @@ c	net/minecraft/class_2708
 		p	8			p_8
 		p	9			p_9
 c	net/minecraft/class_2792
-	m	(Lnet/minecraft/class_2793;)V	method_12050	method_12050	
-		p	1		p_1	
-c	net/minecraft/class_2793	net/minecraft/class_2793	
-	f	I	field_12758	field_12758	
+	m	(Lnet/minecraft/class_2793;)V	method_12050	onTeleportConfirm	
+		p	1		packet	
+c	net/minecraft/class_2793	net/minecraft/network/packet/c2s/play/TeleportConfirmC2SPacket	
+	f	I	field_12758	teleportId	
 	m	()V	<init>	<init>	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -210,7 +217,7 @@ c	net/minecraft/class_2793	net/minecraft/class_2793
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2792;)V	method_12085	method_12085	
 		p	1		p_1	
-	m	()I	method_12086	method_12086	
+	m	()I	method_12086	getTeleportId	
 	m	(Lnet/minecraft/class_2547;)V	method_11054	method_11054	
 		p	1		p_1	
 c	net/minecraft/class_2814
@@ -222,27 +229,28 @@ c	net/minecraft/class_2828
 c	net/minecraft/class_2834
 	m	()I	method_12290	method_12290	
 c	net/minecraft/class_2837
-	m	()I	method_12290	method_12290	
+	m	()I	method_12290	getPacketSize	
+		c	{@return the serialized size of this palette in a byte buf, in bytes}	
 c	net/minecraft/class_2841
 	m	()I	method_12327	method_12327	
 c	net/minecraft/class_3222
 	m	(Lnet/minecraft/class_2338;)V	method_6126	method_6126	
 		p	1		p_1	
 c	net/minecraft/class_3244
-	f	I	field_14123	field_14123	
+	f	I	field_14123	requestedTeleportId	
 	m	(Lnet/minecraft/class_2793;)V	method_12050	method_12050	
 		p	1		p_1	
 c	net/minecraft/class_742
-	f	F	field_3900	field_3900	
-	f	F	field_3899	field_3899	
-	f	F	field_3898	field_3898	
+	f	F	field_3900	elytraPitch	
+	f	F	field_3899	elytraYaw	
+	f	F	field_3898	elytraRoll	
 c	net/minecraft/class_746
 	f	[Z	field_0_10321		field_0_10321
 c	net/minecraft/class_842
-	f	D	field_4419	field_4419	
+	f	D	field_4419	squaredCameraDistance	
 	m	(Lnet/minecraft/class_842;)I	method_3601	method_3601	
 		p	1		p_1	
-	m	()D	method_3602	method_3602	
+	m	()D	method_3602	getSquaredCameraDistance	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_851;Lnet/minecraft/class_842$class_844;D)V	<init>	<init>	
@@ -253,13 +261,13 @@ c	net/minecraft/class_842
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_846
-	f	Ljava/util/concurrent/PriorityBlockingQueue;	field_4435	field_4435	
+	f	Ljava/util/concurrent/PriorityBlockingQueue;	field_4435	pendingChunks	
 	f	Ljava/util/concurrent/BlockingQueue;	field_4435		field_4435
-	m	(Lnet/minecraft/class_1921;Lnet/minecraft/class_287;Lnet/minecraft/class_851;Lnet/minecraft/class_849;D)Lcom/google/common/util/concurrent/ListenableFuture;	method_3635	method_3635	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_1921;Lnet/minecraft/class_287;Lnet/minecraft/class_851;Lnet/minecraft/class_849;D)Lcom/google/common/util/concurrent/ListenableFuture;	method_3635	upload	
+		p	1		layer	
+		p	2		bufferBuilder	
+		p	3		chunkRenderer	
+		p	4		chunkRenderData	
 		p	5		p_5	
 	m	(Lnet/minecraft/class_846;)Ljava/util/concurrent/PriorityBlockingQueue;	method_0_3776	method_0_3776	
 		p	0		p_0	
@@ -270,9 +278,9 @@ c	net/minecraft/class_846
 		p	4			p_4
 	m	(Lnet/minecraft/class_846;)Ljava/util/concurrent/BlockingQueue;	method_0_3776		method_0_3776
 		p	0			p_0
-c	net/minecraft/class_846$class_847	class_847	
-	f	Lcom/google/common/util/concurrent/ListenableFutureTask;	field_4446	field_4446	
-	f	D	field_4447	field_4447	
+c	net/minecraft/class_846$class_847	ChunkUploadTask	
+	f	Lcom/google/common/util/concurrent/ListenableFutureTask;	field_4446	task	
+	f	D	field_4447	priority	
 	f	Lnet/minecraft/class_846;	field_4448	field_4448	
 	m	(Lnet/minecraft/class_846;Lcom/google/common/util/concurrent/ListenableFutureTask;D)V	<init>	<init>	
 		p	1		p_1	
@@ -300,7 +308,7 @@ c	net/minecraft/class_846$3
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_851
-	m	()D	method_3668	method_3668	
+	m	()D	method_3668	getSquaredCameraDistance	
 c	net/minecraft/class_0_2285	net/minecraft/class_0_2285	
 	f	[B	field_0_10401	field_0_10401	
 	f	Ljava/nio/ByteBuffer;	field_0_10402	field_0_10402	

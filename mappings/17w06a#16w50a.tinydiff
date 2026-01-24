@@ -1,13 +1,13 @@
 tiny	2	0
 c	net/minecraft/class_1472
-	m	(Lnet/minecraft/class_1767;)[F	method_6630	method_6630	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_1767;)[F	method_6630	getDyedColor	
+		p	0		color	
 c	net/minecraft/class_1545
 c	net/minecraft/class_1545$class_1546
-	m	()D	method_6995	method_6995	
+	m	()D	method_6995	getFollowRange	
 c	net/minecraft/class_1588
-	m	(Lnet/minecraft/class_1657;)Z	method_7076	method_7076	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1657;)Z	method_7076	isAngryAt	
+		p	1		player	
 c	net/minecraft/class_1590
 	m	(Lnet/minecraft/class_1657;)Z	method_7076	method_7076	
 		p	1		p_1	
@@ -24,19 +24,21 @@ c	net/minecraft/class_1657$class_1660	class_1660
 	m	(Ljava/lang/Object;)Z	apply	apply	
 		p	1		p_1	
 c	net/minecraft/class_1761
-	f	Lnet/minecraft/class_1761;	field_7929	field_7929	
-	f	Lnet/minecraft/class_1761;	field_7925	field_7925	
+	f	Lnet/minecraft/class_1761;	field_7929	MATERIALS	
+	f	Lnet/minecraft/class_1761;	field_7925	HOTBAR	
 	f	Lnet/minecraft/class_1761;	field_0_8546		field_0_8546
-	m	()Z	method_7752	method_7752	
+	m	()Z	method_7752	isSpecial	
 c	net/minecraft/class_1761$3
 	m	(Lnet/minecraft/class_2371;)V	method_7738	method_7738	
 		p	1		p_1	
 	m	()Z	method_7752	method_7752	
 c	net/minecraft/class_1767
-	m	()Ljava/lang/String;	method_7792	method_7792	
+	m	()Ljava/lang/String;	method_7792	getName	
+		c	{@return the name of the dye color}	
 c	net/minecraft/class_1887
-	m	(Lnet/minecraft/class_1887;)Z	method_8188	method_8188	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1887;)Z	method_8188	canCombine	
+		c	{@return whether this enchantment can exist on an item stack with the\n{@code other} enchantment and the {@code other} enchantment can exist\nwith this enchantment}	
+		p	1		other	
 c	net/minecraft/class_1903
 	m	(Lnet/minecraft/class_1887;)Z	method_8180		method_8180
 		p	1			p_1
@@ -59,7 +61,7 @@ c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_12112	field_0_12112	
 	f	Lnet/minecraft/class_2248;	field_0_12113	field_0_12113	
 	f	Lnet/minecraft/class_2248;	field_0_12114	field_0_12114	
-c	net/minecraft/class_2366	net/minecraft/class_2366	
+c	net/minecraft/class_2366	net/minecraft/block/GlazedTerracottaBlock	
 	m	()Lnet/minecraft/class_2689;	method_9515	method_9515	
 	m	(Lnet/minecraft/class_1767;)V	<init>	<init>	
 		p	1		p_1	
@@ -82,7 +84,7 @@ c	net/minecraft/class_2366	net/minecraft/class_2366
 		p	1		p_1	
 	m	(I)Lnet/minecraft/class_0_378;	method_9605	method_9605	
 		p	1		p_1	
-c	net/minecraft/class_2506	net/minecraft/class_2506	
+c	net/minecraft/class_2506	net/minecraft/block/StainedGlassBlock	
 	f	Lnet/minecraft/class_2754;	field_0_12115	field_0_12115	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)Z	method_0_10889	method_0_10889	
@@ -123,33 +125,33 @@ c	net/minecraft/class_2544
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/class_2669
-	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_2350;D)V	method_11514	method_11514	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_2350;D)V	method_11514	push	
+		p	1		entity	
+		p	2		direction	
+		p	3		amount	
 	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_2350;)V	method_11514		method_11514
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_302	net/minecraft/class_302	
-	f	Lorg/apache/logging/log4j/Logger;	field_1647	field_1647	
-	f	Ljava/io/File;	field_1646	field_1646	
-	f	[Lnet/minecraft/class_748;	field_1644	field_1644	
+c	net/minecraft/class_302	net/minecraft/client/option/HotbarStorage	
+	f	Lorg/apache/logging/log4j/Logger;	field_1647	LOGGER	
+	f	Ljava/io/File;	field_1646	file	
+	f	[Lnet/minecraft/class_748;	field_1644	entries	
 	f	Lnet/minecraft/class_310;	field_0_12116	field_0_12116	
-	m	()V	method_1409	method_1409	
-	m	(I)Lnet/minecraft/class_748;	method_1410	method_1410	
-		p	1		p_1	
+	m	()V	method_1409	save	
+	m	(I)Lnet/minecraft/class_748;	method_1410	getSavedHotbar	
+		p	1		i	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_310;Ljava/io/File;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()V	method_1411	method_1411	
+	m	()V	method_1411	load	
 c	net/minecraft/class_310
-	f	Lnet/minecraft/class_302;	field_1732	field_1732	
+	f	Lnet/minecraft/class_302;	field_1732	creativeHotbarStorage	
 c	net/minecraft/class_481
 	m	(Lnet/minecraft/class_310;I)V	method_2462	method_2462	
 		p	0		p_0	
 		p	1		p_1	
-c	net/minecraft/class_481$class_482	class_482	
+c	net/minecraft/class_481$class_482	LockableSlot	
 	m	(Lnet/minecraft/class_1263;III)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -157,16 +159,16 @@ c	net/minecraft/class_481$class_482	class_482
 		p	4		p_4	
 	m	(Lnet/minecraft/class_1657;)Z	method_7674	method_7674	
 		p	1		p_1	
-c	net/minecraft/class_748	net/minecraft/class_748	
+c	net/minecraft/class_748	net/minecraft/client/option/HotbarStorageEntry	
 	f	I	field_0_12121	field_0_12121	
 	m	()V	<init>	<init>	
-	m	()Lnet/minecraft/class_2499;	method_3153	method_3153	
-	m	(Lnet/minecraft/class_2499;)V	method_3152	method_3152	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_2499;	method_3153	toNbtList	
+	m	(Lnet/minecraft/class_2499;)V	method_3152	readNbtList	
+		p	1		list	
 	m	()Z	isEmpty	isEmpty	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_863
-	f	Lnet/minecraft/class_863$class_864;	field_4535	field_4535	
+	f	Lnet/minecraft/class_863$class_864;	field_4535	neighborUpdateDebugRenderer	
 	f	Z	field_4519	field_4519	
 	m	(Ljava/lang/String;IIIFI)V	method_3711	method_3711	
 		p	0		p_0	
@@ -175,14 +177,14 @@ c	net/minecraft/class_863
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/class_869	net/minecraft/class_869	
-	f	Lnet/minecraft/class_310;	field_4622	field_4622	
-	f	Ljava/util/Map;	field_4623	field_4623	
+c	net/minecraft/class_869	net/minecraft/client/render/debug/NeighborUpdateDebugRenderer	
+	f	Lnet/minecraft/class_310;	field_4622	client	
+	f	Ljava/util/Map;	field_4623	neighborUpdates	
 	m	(Lnet/minecraft/class_310;)V	<init>	<init>	
 		p	1		p_1	
-	m	(JLnet/minecraft/class_2338;)V	method_3870	method_3870	
-		p	1		p_1	
-		p	3		p_3	
+	m	(JLnet/minecraft/class_2338;)V	method_3870	addNeighborUpdate	
+		p	1		time	
+		p	3		pos	
 	m	(FJ)V	method_3715	method_3715	
 		p	1		p_1	
 		p	2		p_2	

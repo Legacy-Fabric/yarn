@@ -14,19 +14,20 @@ c	net/minecraft/class_12
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_129
-	m	(Ljava/lang/String;Ljava/util/concurrent/Callable;)V	method_577	method_577	
+	m	(Ljava/lang/String;Ljava/util/concurrent/Callable;)V	method_577	add	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/String;Lnet/minecraft/class_133;)V	method_577		method_577
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1297
-	f	Ljava/lang/String;	field_5981		field_5981
-	m	(Lnet/minecraft/class_2487;)V	method_5647	method_5647	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_5647		method_5647
-		p	1			p_1
-	m	()Ljava/lang/String;	method_5845		method_5845
+	f	Ljava/lang/String;	field_5981		uuidString
+	m	(Lnet/minecraft/class_2487;)V	method_5647	writeNbt	
+		p	1		nbt	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_5647		writeNbt
+		p	1			nbt
+	m	()Ljava/lang/String;	method_5845		getUuidAsString
+		c		{@return the entity's UUID as string}\n\n<p>This is a shortcut of {@code getUuid().toString()}.\n\n@see #getUuid
 c	net/minecraft/class_14
 	m	(Lnet/minecraft/class_0_105;III)Lnet/minecraft/class_7;	method_58
 		p	0		p_0	
@@ -37,7 +38,7 @@ c	net/minecraft/class_14
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_1408
-	m	()Lnet/minecraft/class_8;	method_6342		method_6342
+	m	()Lnet/minecraft/class_8;	method_6342		getNodeMaker
 c	net/minecraft/class_1411
 	f	Ljava/lang/Object;	field_0_11436	field_0_11436	
 	f	Ljava/util/WeakHashMap;	field_0_11437	field_0_11437	
@@ -53,25 +54,25 @@ c	net/minecraft/class_1418
 c	net/minecraft/class_18
 	m	(Lnet/minecraft/class_2487;)V	method_75	method_75	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75		method_75
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75		writeNbt
+		p	1			nbt
 c	net/minecraft/class_1917
 	m	(Lnet/minecraft/class_2487;)V	method_8272	method_8272	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8272		method_8272
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8272		writeNbt
+		p	1			nbt
 c	net/minecraft/class_1918
 	m	(Lnet/minecraft/class_2487;)V	method_8297	method_8297	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8297		method_8297
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8297		writeNbt
+		p	1			nbt
 c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Ljava/util/Random;)V	method_0_285	method_0_285	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	()Lnet/minecraft/class_1411;	method_0_10145	method_0_10145	
-	m	(Lnet/minecraft/class_2338;)Z	method_8518		method_8518
+	m	(Lnet/minecraft/class_2338;)Z	method_8518		isOutOfBuildLimitVertically
 		p	1			p_1
 	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_2586;	method_0_10153		method_0_10153
 		p	1			p_1
@@ -371,19 +372,21 @@ c	net/minecraft/class_2338$class_2339
 	m	(Lnet/minecraft/class_2338$class_2339;I)I	method_0_4876	method_0_4876	
 		p	0		p_0	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_2338$class_2339;	method_10105		method_10105
-		p	1			p_1
-	m	(DDD)Lnet/minecraft/class_2338$class_2339;	method_10102		method_10102
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-	m	(Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338$class_2339;	method_10101		method_10101
-		p	1			p_1
-	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2338$class_2339;	method_10098		method_10098
-		p	1			p_1
-	m	(Lnet/minecraft/class_2350;I)Lnet/minecraft/class_2338$class_2339;	method_10104		method_10104
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_2338$class_2339;	method_10105		set
+		p	1			entity
+	m	(DDD)Lnet/minecraft/class_2338$class_2339;	method_10102		set
+		p	1			x
+		p	3			y
+		p	5			z
+	m	(Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338$class_2339;	method_10101		set
+		p	1			pos
+	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2338$class_2339;	method_10098		move
+		c		Moves this mutable block position by 1 block in the given direction.
+		p	1			direction
+	m	(Lnet/minecraft/class_2350;I)Lnet/minecraft/class_2338$class_2339;	method_10104		move
+		c		Moves this mutable block position by the given distance in the given\ndirection.
+		p	1			direction
+		p	2			distance
 c	net/minecraft/class_2338$class_2340
 	f	I	field_0_9962	field_0_9962	
 	f	I	field_0_9963	field_0_9963	
@@ -795,17 +798,18 @@ c	net/minecraft/class_2580
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_11007		method_11007
 		p	1			p_1
 c	net/minecraft/class_2586
-	m	(Lnet/minecraft/class_2487;)V	method_11007	method_11007	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)V	method_11007	writeNbt	
+		c	Writes data to {@code nbt}. Subclasses should override this if they\nstore a persistent data.\n\n<p>NBT is a storage format; therefore, a data from NBT is loaded to a\nblock entity instance's fields, which are used for other operations instead\nof the NBT. The data is written back to NBT when saving the block entity.\n\n@see #readNbt	
+		p	1		nbt	
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005	method_11005	
 		p	0		p_0	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_2596;	method_0_1107	method_0_1107	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_11007		method_11007
-		p	1			p_1
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_10999		method_10999
-		p	1			p_1
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005		method_11005
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_11007		writeNbt
+		p	1			nbt
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_10999		writeIdentifyingData
+		p	1			nbt
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005		createFromTag
 		p	0			p_0
 	m	()Lnet/minecraft/class_2622;	method_0_1107		method_0_1107
 	m	()Lnet/minecraft/class_2487;	method_0_10165		method_0_10165
@@ -950,7 +954,7 @@ c	net/minecraft/class_2671
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2672
-	f	Ljava/util/List;	field_12238		field_12238
+	f	Ljava/util/List;	field_12238		blockEntities
 	m	(Lnet/minecraft/class_2818;ZI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -978,7 +982,7 @@ c	net/minecraft/class_2672
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	()Ljava/util/List;	method_11525		method_11525
+	m	()Ljava/util/List;	method_11525		getBlockEntityTagList
 c	net/minecraft/class_2689
 c	net/minecraft/class_2689$class_0_380
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;II)Z	method_0_10167		method_0_10167
@@ -1011,8 +1015,8 @@ c	net/minecraft/class_3218
 c	net/minecraft/class_3499
 	m	(Lnet/minecraft/class_2487;)V	method_15175	method_15175	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_15175		method_15175
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_15175		writeNbt
+		p	1			nbt
 c	net/minecraft/class_631
 	f	Lnet/minecraft/class_0_1702;	field_3678	field_3678	
 	f	Ljava/util/List;	field_0_3977	field_0_3977	
@@ -1030,12 +1034,12 @@ c	net/minecraft/class_634
 c	net/minecraft/class_761
 c	net/minecraft/class_761$class_762
 	f	Ljava/util/Set;	field_0_4460	field_0_4460	
-	f	B	field_4126		field_4126
-	m	(BLnet/minecraft/class_2350;)V	method_3299		method_3299
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/class_2350;)Z	method_3298		method_3298
-		p	1			p_1
+	f	B	field_4126		cullingState
+	m	(BLnet/minecraft/class_2350;)V	method_3299		updateCullingState
+		p	1			parentCullingState
+		p	2			from
+	m	(Lnet/minecraft/class_2350;)Z	method_3298		canCull
+		p	1			from
 c	net/minecraft/class_764
 	m	(IIII)V	method_0_3543	method_0_3543	
 		p	1		p_1	
@@ -1081,8 +1085,8 @@ c	net/minecraft/class_850
 c	net/minecraft/class_851
 	f	Lnet/minecraft/class_2338;	field_0_4756	field_0_4756	
 	f	Ljava/util/EnumMap;	field_0_4766	field_0_4766	
-	f	Lnet/minecraft/class_2338$class_2339;	field_4467		field_4467
-	f	[Lnet/minecraft/class_2338$class_2339;	field_4472		field_4472
+	f	Lnet/minecraft/class_2338$class_2339;	field_4467		origin
+	f	[Lnet/minecraft/class_2338$class_2339;	field_4472		neighborPositions
 	f	Lnet/minecraft/class_0_105;	field_0_11445		field_0_11445
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_761;Lnet/minecraft/class_2338;I)V	<init>	<init>	
 		p	1		p_1	
@@ -1095,10 +1099,10 @@ c	net/minecraft/class_851
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(III)V	method_3653		method_3653
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(III)V	method_3653		setOrigin
+		p	1			x
+		p	2			y
+		p	3			z
 	m	()V	method_0_10157		method_0_10157
 c	net/minecraft/class_0_153
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;II)Z	method_9592	method_9592	
@@ -1280,8 +1284,8 @@ c	net/minecraft/class_0_2401		net/minecraft/class_0_2401
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_133		net/minecraft/class_133
-c	net/minecraft/class_3136		net/minecraft/class_3136
+c	net/minecraft/class_133		net/minecraft/util/crash/CrashCallable
+c	net/minecraft/class_3136		net/minecraft/server/command/StopSoundCommand
 	m	()V	<init>		<init>
 	m	()Ljava/lang/String;	method_0_5966		method_0_5966
 	m	()I	method_0_5757		method_0_5757

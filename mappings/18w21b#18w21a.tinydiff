@@ -1,34 +1,34 @@
 tiny	2	0
 c	net/minecraft/class_1799
-	m	()Ljava/text/DecimalFormat;	method_7931	method_7931	
+	m	()Ljava/text/DecimalFormat;	method_7931	createModifierFormat	
 c	net/minecraft/class_2393
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_1941;)Z	method_0_17828	method_0_17828	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2405
-	f	Lcom/google/common/hash/HashFunction;	field_11280	field_11280	
-	m	(Lnet/minecraft/class_2408;)V	method_10319	method_10319	
-		p	1		p_1	
+	f	Lcom/google/common/hash/HashFunction;	field_11280	SHA1	
+	m	(Lnet/minecraft/class_2408;)V	method_10319	run	
+		p	1		cache	
 	m	()V	<clinit>	<clinit>	
 	m	()V	method_10319		method_10319
-c	net/minecraft/class_2408	net/minecraft/class_2408	
-	f	Lorg/apache/logging/log4j/Logger;	field_11287	field_11287	
-	f	Ljava/nio/file/Path;	field_11285	field_11285	
-	f	Ljava/nio/file/Path;	field_11286	field_11286	
-	f	I	field_11284	field_11284	
-	f	Ljava/util/Map;	field_11282	field_11282	
-	f	Ljava/util/Map;	field_11283	field_11283	
+c	net/minecraft/class_2408	net/minecraft/data/DataCache	
+	f	Lorg/apache/logging/log4j/Logger;	field_11287	LOGGER	
+	f	Ljava/nio/file/Path;	field_11285	root	
+	f	Ljava/nio/file/Path;	field_11286	recordFile	
+	f	I	field_11284	unchanged	
+	f	Ljava/util/Map;	field_11282	oldSha1	
+	f	Ljava/util/Map;	field_11283	newSha1	
 	m	(Ljava/nio/file/Path;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()V	method_10326	method_10326	
-	m	(Ljava/nio/file/Path;)Ljava/lang/String;	method_10323	method_10323	
-		p	1		p_1	
-	m	(Ljava/nio/file/Path;Ljava/lang/String;)V	method_10325	method_10325	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/nio/file/Path;)Z	method_10330	method_10330	
-		p	1		p_1	
+	m	()V	method_10326	write	
+	m	(Ljava/nio/file/Path;)Ljava/lang/String;	method_10323	getOldSha1	
+		p	1		path	
+	m	(Ljava/nio/file/Path;Ljava/lang/String;)V	method_10325	updateSha1	
+		p	1		path	
+		p	2		sha1	
+	m	(Ljava/nio/file/Path;)Z	method_10330	contains	
+		p	1		path	
 	m	(Ljava/nio/file/Path;)V	method_10332	method_10332	
 		p	1		p_1	
 	m	(Ljava/util/Map$Entry;)Ljava/lang/String;	method_10329	method_10329	
@@ -76,18 +76,18 @@ c	net/minecraft/class_2427
 c	net/minecraft/class_2446
 	m	(Lnet/minecraft/class_2408;)V	method_10319	method_10319	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2408;Lcom/google/gson/JsonObject;Ljava/nio/file/Path;)V	method_10425	method_10425	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2408;Lcom/google/gson/JsonObject;Ljava/nio/file/Path;)V	method_10425	saveRecipe	
+		p	1		json	
+		p	2		path	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_2408;Lcom/google/gson/JsonObject;Ljava/nio/file/Path;)V	method_10427	method_10427	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2408;Lcom/google/gson/JsonObject;Ljava/nio/file/Path;)V	method_10427	saveRecipeAdvancement	
+		p	1		json	
+		p	2		path	
 		p	3		p_3	
 	m	(Ljava/util/Set;Lnet/minecraft/class_2408;Ljava/nio/file/Path;Lnet/minecraft/class_2444;)V	method_10421	method_10421	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		provider	
 		p	4		p_4	
 	m	()V	method_10319		method_10319
 	m	(Lcom/google/gson/JsonObject;Ljava/nio/file/Path;)V	method_10425		method_10425
@@ -134,10 +134,11 @@ c	net/minecraft/class_2839
 	m	(Ljava/lang/String;)Lit/unimi/dsi/fastutil/longs/LongSet;	method_12298	method_12298	
 		p	0		p_0	
 c	net/minecraft/class_2960
-	m	(Ljava/lang/String;)Lnet/minecraft/class_2960;	method_12829	method_12829	
-		p	0		p_0	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_2960;	method_12829	tryParse	
+		c	{@return {@code id} parsed as an identifier, or {@code null} if it cannot be parsed}\n\n@see #of	
+		p	0		id	
 c	net/minecraft/class_3233
-	f	Lorg/apache/logging/log4j/Logger;	field_14092	field_14092	
+	f	Lorg/apache/logging/log4j/Logger;	field_14092	LOGGER	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_883
 	m	(Lnet/minecraft/class_1496;DDDFF)V	method_0_12863		method_0_12863

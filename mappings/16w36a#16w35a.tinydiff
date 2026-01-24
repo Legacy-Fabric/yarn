@@ -4,7 +4,7 @@ c	net/minecraft/class_1066
 	m	()Lnet/minecraft/class_2960;	method_0_10559	method_0_10559	
 c	net/minecraft/class_1088
 	m	()V	method_0_10560	method_0_10560	
-c	net/minecraft/class_1179	net/minecraft/class_1179	
+c	net/minecraft/class_1179	net/minecraft/datafixer/fix/ItemBannerColorFix	
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_0_8951	method_0_8951	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -65,8 +65,9 @@ c	net/minecraft/class_1761$5
 c	net/minecraft/class_1761$6
 	m	()I	method_0_8180	method_0_8180	
 c	net/minecraft/class_1799
-	m	(Ljava/lang/String;)V	method_7983	method_7983	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	method_7983	removeSubNbt	
+		c	Removes the sub NBT element at the specified key in this item stack's custom NBT.\n\n@see <a href="#nbt-operations">Item Stack NBT Operations</a>	
+		p	1		key	
 c	net/minecraft/class_2190
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_1799;	method_0_9906	method_0_9906	
 		p	1		p_1	
@@ -81,12 +82,13 @@ c	net/minecraft/class_2248
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_238
-	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_238;	method_997	method_997	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_238;	method_997	offset	
+		c	Creates a box that is translated by {@code vec.x}, {@code vec.y}, {@code\nvec.z} on each axis from this box.\n\n@see #offset(double, double, double)	
+		p	1		vec	
 c	net/minecraft/class_2573
-	f	Lnet/minecraft/class_1767;	field_11774	field_11774	
+	f	Lnet/minecraft/class_1767;	field_11774	baseColor	
 	f	I	field_11774		field_11774
-	m	()Lnet/minecraft/class_1799;	method_10907	method_10907	
+	m	()Lnet/minecraft/class_1799;	method_10907	getPickStack	
 	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1767;	method_10908	method_10908	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_2487;ILnet/minecraft/class_2499;)V	method_0_1060		method_0_1060
@@ -173,7 +175,7 @@ c	net/minecraft/class_2573$class_2582		class_2582
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2573$class_2582;	method_10946		method_10946
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_2582	net/minecraft/class_2582	
+c	net/minecraft/class_2582	net/minecraft/block/entity/BannerPattern	
 	f	Lnet/minecraft/class_2582;	field_11834	field_11834	
 	f	Lnet/minecraft/class_2582;	field_11839	field_11839	
 	f	Lnet/minecraft/class_2582;	field_11806	field_11806	
@@ -213,10 +215,10 @@ c	net/minecraft/class_2582	net/minecraft/class_2582
 	f	Lnet/minecraft/class_2582;	field_11845	field_11845	
 	f	Lnet/minecraft/class_2582;	field_11812	field_11812	
 	f	Lnet/minecraft/class_2582;	field_11825	field_11825	
-	f	Ljava/lang/String;	field_11808	field_11808	
-	f	Ljava/lang/String;	field_11824	field_11824	
-	f	[Ljava/lang/String;	field_11841	field_11841	
-	f	Lnet/minecraft/class_1799;	field_11832	field_11832	
+	f	Ljava/lang/String;	field_11808	name	
+	f	Ljava/lang/String;	field_11824	id	
+	f	[Ljava/lang/String;	field_11841	recipePattern	
+	f	Lnet/minecraft/class_1799;	field_11832	baseStack	
 	f	[Lnet/minecraft/class_2582;	field_11833	field_11833	
 	m	()[Lnet/minecraft/class_2582;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2582;	valueOf	valueOf	
@@ -240,35 +242,35 @@ c	net/minecraft/class_2582	net/minecraft/class_2582
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-	m	()Ljava/lang/String;	method_10947	method_10947	
-	m	()Ljava/lang/String;	method_10945	method_10945	
-	m	(Ljava/lang/String;)Lnet/minecraft/class_2582;	method_10946	method_10946	
-		p	0		p_0	
+	m	()Ljava/lang/String;	method_10947	getName	
+	m	()Ljava/lang/String;	method_10945	getId	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_2582;	method_10946	byId	
+		p	0		id	
 	m	()V	<clinit>	<clinit>	
 	m	()[Ljava/lang/String;	method_0_1074	method_0_1074	
 	m	()Z	method_0_1075	method_0_1075	
 	m	()Z	method_0_1076	method_0_1076	
 	m	()Lnet/minecraft/class_1799;	method_0_1077	method_0_1077	
 c	net/minecraft/class_2614
-	f	J	field_12022	field_12022	
-	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1263;Lnet/minecraft/class_1799;Lnet/minecraft/class_2350;)Lnet/minecraft/class_1799;	method_11260	method_11260	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1263;Lnet/minecraft/class_1799;ILnet/minecraft/class_2350;)Lnet/minecraft/class_1799;	method_11253	method_11253	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	f	J	field_12022	lastTickTime	
+	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1263;Lnet/minecraft/class_1799;Lnet/minecraft/class_2350;)Lnet/minecraft/class_1799;	method_11260	transfer	
+		p	0		from	
+		p	1		to	
+		p	2		stack	
+		p	3		side	
+	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1263;Lnet/minecraft/class_1799;ILnet/minecraft/class_2350;)Lnet/minecraft/class_1799;	method_11253	transfer	
+		p	0		from	
+		p	1		to	
+		p	2		stack	
+		p	3		slot	
+		p	4		side	
 	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1263;Lnet/minecraft/class_1542;)Z	method_11247	method_11247	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1542;)Z	method_11247		method_11247
-		p	0			p_0
-		p	1			p_1
+	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1542;)Z	method_11247		extract
+		p	0			inventory
+		p	1			itemEntity
 	m	(Lnet/minecraft/class_1263;Lnet/minecraft/class_1799;Lnet/minecraft/class_2350;)Lnet/minecraft/class_1799;	method_11260		method_11260
 		p	0			p_0
 		p	1			p_1
@@ -300,9 +302,9 @@ c	net/minecraft/class_325$8		8
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3532
-	m	(DD)D	method_15367	method_15367	
-		p	0		p_0	
-		p	2		p_2	
+	m	(DD)D	method_15367	floorMod	
+		p	0		dividend	
+		p	2		divisor	
 c	net/minecraft/class_0_2261
 	m	(Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)Lnet/minecraft/class_243;	method_0_10557	method_0_10557	
 		p	1		p_1	

@@ -1,8 +1,8 @@
 tiny	2	0
-c	net/minecraft/class_1001	net/minecraft/class_1001	
+c	net/minecraft/class_1001	net/minecraft/client/render/entity/feature/TropicalFishColorFeatureRenderer	
 	f	Lnet/minecraft/class_959;	field_4905	field_4905	
 	f	Lnet/minecraft/class_612;	field_4904	field_4904	
-	f	Lnet/minecraft/class_615;	field_4903	field_4903	
+	f	Lnet/minecraft/class_615;	field_4903	largeModel	
 	m	(Lnet/minecraft/class_959;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1474;FFFFFFF)V	method_4205	method_4205	
@@ -27,14 +27,14 @@ c	net/minecraft/class_1001	net/minecraft/class_1001
 c	net/minecraft/class_1102
 	f	Z	field_5445	field_5445	
 	m	()Z	method_4787	method_4787	
-c	net/minecraft/class_1104	net/minecraft/class_1104	
-	m	()V	method_4756	method_4756	
-c	net/minecraft/class_111	net/minecraft/class_111	
-	f	Lorg/apache/logging/log4j/Logger;	field_1038	field_1038	
-	f	Ljava/lang/String;	field_1035	field_1035	
-	f	Lnet/minecraft/class_20$class_21;	field_1036	field_1036	
-	f	B	field_1037	field_1037	
-	f	I	field_1032	field_1032	
+c	net/minecraft/class_1104	net/minecraft/client/util/ClientPlayerTickable	
+	m	()V	method_4756	tick	
+c	net/minecraft/class_111	net/minecraft/loot/function/ExplorationMapLootFunction	
+	f	Lorg/apache/logging/log4j/Logger;	field_1038	LOGGER	
+	f	Ljava/lang/String;	field_1035	destination	
+	f	Lnet/minecraft/class_20$class_21;	field_1036	decoration	
+	f	B	field_1037	zoom	
+	f	I	field_1032	searchRadius	
 	f	Z	field_0_16678	field_0_16678	
 	m	(Lnet/minecraft/class_111;)Ljava/lang/String;	method_497	method_497	
 		p	0		p_0	
@@ -53,7 +53,7 @@ c	net/minecraft/class_111	net/minecraft/class_111
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-c	net/minecraft/class_111$class_113	class_113	
+c	net/minecraft/class_111$class_113	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_111;Lcom/google/gson/JsonSerializationContext;)V	method_0_15955	method_0_15955	
 		p	1		p_1	
@@ -72,8 +72,8 @@ c	net/minecraft/class_111$class_113	class_113
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_1111
-	f	Z	field_5465	field_5465	
-	m	()Z	method_4764	method_4764	
+	f	Z	field_5465	preload	
+	m	()Z	method_4764	isPreloaded	
 	m	(Ljava/lang/String;FFILnet/minecraft/class_1111$class_1112;ZZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -90,32 +90,32 @@ c	net/minecraft/class_1111
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_1113
-	m	()Z	method_4787	method_4787	
-c	net/minecraft/class_1116	net/minecraft/class_1116	
-	f	Lnet/minecraft/class_746;	field_5481	field_5481	
-	f	Lnet/minecraft/class_1144;	field_5479	field_5479	
-	f	I	field_5480	field_5480	
+	m	()Z	method_4787	isRelative	
+c	net/minecraft/class_1116	net/minecraft/client/sound/AmbientSoundPlayer	
+	f	Lnet/minecraft/class_746;	field_5481	player	
+	f	Lnet/minecraft/class_1144;	field_5479	soundManager	
+	f	I	field_5480	ticksUntilPlay	
 	m	(Lnet/minecraft/class_746;Lnet/minecraft/class_1144;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_4756	method_4756	
-c	net/minecraft/class_1118	net/minecraft/class_1118	
-c	net/minecraft/class_1118$class_1119	class_1119	
-	f	Lnet/minecraft/class_746;	field_5482	field_5482	
+c	net/minecraft/class_1118	net/minecraft/client/sound/AmbientSoundLoops	
+c	net/minecraft/class_1118$class_1119	MusicLoop	
+	f	Lnet/minecraft/class_746;	field_5482	player	
 	m	(Lnet/minecraft/class_746;Lnet/minecraft/class_3414;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_12953	method_12953	
-c	net/minecraft/class_1118$class_1120	class_1120	
-	f	Lnet/minecraft/class_746;	field_5483	field_5483	
-	f	I	field_5484	field_5484	
+c	net/minecraft/class_1118$class_1120	Underwater	
+	f	Lnet/minecraft/class_746;	field_5483	player	
+	f	I	field_5484	transitionTimer	
 	m	(Lnet/minecraft/class_746;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_12953	method_12953	
 c	net/minecraft/class_1140
-	f	Ljava/util/List;	field_5551	field_5551	
-	m	(Lnet/minecraft/class_1111;)V	method_4851	method_4851	
-		p	1		p_1	
+	f	Ljava/util/List;	field_5551	preloadedSounds	
+	m	(Lnet/minecraft/class_1111;)V	method_4851	addPreloadedSound	
+		p	1		sound	
 	m	(Lnet/minecraft/class_1111;)V	method_4836	method_4836	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1140;)Ljava/util/List;	method_0_15972	method_0_15972	
@@ -124,7 +124,7 @@ c	net/minecraft/class_1140
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_1163
-	f	Lnet/minecraft/class_1163$class_1164;	field_5666	field_5666	
+	f	Lnet/minecraft/class_1163$class_1164;	field_5666	WATER_COLOR	
 	m	(Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)I	method_0_15936	method_0_15936	
 		p	0		p_0	
 		p	1		p_1	
@@ -134,12 +134,12 @@ c	net/minecraft/class_1163$4	4
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1297
-	m	()Lnet/minecraft/class_3414;	method_5672	method_5672	
+	m	()Lnet/minecraft/class_3414;	method_5672	getHighSpeedSplashSound	
 c	net/minecraft/class_1299
 	f	Lnet/minecraft/class_1299;	field_6111	field_6111	
 c	net/minecraft/class_1308
-	m	(I)Z	method_5969	method_5969	
-		p	1		p_1	
+	m	(I)Z	method_5969	spawnsTooManyForEachTry	
+		p	1		count	
 	m	(Lnet/minecraft/class_1266;Lnet/minecraft/class_1315;Lnet/minecraft/class_1799;)Lnet/minecraft/class_1315;	method_0_15915	method_0_15915	
 		p	1		p_1	
 		p	2		p_2	
@@ -149,13 +149,13 @@ c	net/minecraft/class_1422
 	m	()I	method_5945	method_5945	
 	m	(Lnet/minecraft/class_1799;)V	method_6455	method_6455	
 		p	1		p_1	
-c	net/minecraft/class_1474	net/minecraft/class_1474	
-	f	Lnet/minecraft/class_2940;	field_6874	field_6874	
-	f	[Lnet/minecraft/class_2960;	field_6875	field_6875	
-	f	[Lnet/minecraft/class_2960;	field_6878	field_6878	
-	f	[Lnet/minecraft/class_2960;	field_6876	field_6876	
-	f	[I	field_6879	field_6879	
-	f	Z	field_6877	field_6877	
+c	net/minecraft/class_1474	net/minecraft/entity/passive/TropicalFishEntity	
+	f	Lnet/minecraft/class_2940;	field_6874	VARIANT	
+	f	[Lnet/minecraft/class_2960;	field_6875	SHAPE_IDS	
+	f	[Lnet/minecraft/class_2960;	field_6878	SMALL_FISH_VARIETY_IDS	
+	f	[Lnet/minecraft/class_2960;	field_6876	LARGE_FISH_VARIETY_IDS	
+	f	[I	field_6879	COMMON_VARIANTS	
+	f	Z	field_6877	commonSpawn	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_5693	method_5693	
@@ -163,21 +163,21 @@ c	net/minecraft/class_1474	net/minecraft/class_1474
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_5749	method_5749	
 		p	1		p_1	
-	m	(I)V	method_6659	method_6659	
-		p	1		p_1	
+	m	(I)V	method_6659	setVariant	
+		p	1		variant	
 	m	(I)Z	method_5969	method_5969	
 		p	1		p_1	
-	m	()I	method_6644	method_6644	
+	m	()I	method_6644	getVariant	
 	m	(Lnet/minecraft/class_1799;)V	method_6455	method_6455	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_1799;	method_6452	method_6452	
 	m	()Lnet/minecraft/class_2960;	method_5991	method_5991	
 	m	()Lnet/minecraft/class_3414;	method_6457	method_6457	
-	m	()[F	method_6658	method_6658	
-	m	()[F	method_6655	method_6655	
-	m	()I	method_6654	method_6654	
-	m	()Lnet/minecraft/class_2960;	method_6646	method_6646	
-	m	()Lnet/minecraft/class_2960;	method_6650	method_6650	
+	m	()[F	method_6658	getBaseColorComponents	
+	m	()[F	method_6655	getPatternColorComponents	
+	m	()I	method_6654	getShape	
+	m	()Lnet/minecraft/class_2960;	method_6646	getVarietyId	
+	m	()Lnet/minecraft/class_2960;	method_6650	getShapeId	
 	m	()V	<clinit>	<clinit>	
 	m	()V	method_5959	method_5959	
 	m	(IIII)I	method_6647	method_6647	
@@ -193,11 +193,11 @@ c	net/minecraft/class_1474	net/minecraft/class_1474
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_1474$1	1	
-c	net/minecraft/class_1474$class_1476	class_1476	
-	f	I	field_6899	field_6899	
-	f	I	field_6898	field_6898	
-	f	I	field_6897	field_6897	
-	f	I	field_6896	field_6896	
+c	net/minecraft/class_1474$class_1476	TropicalFishData	
+	f	I	field_6899	shape	
+	f	I	field_6898	pattern	
+	f	I	field_6897	baseColor	
+	f	I	field_6896	patternColor	
 	m	(Lnet/minecraft/class_1474$class_1476;)I	method_6665	method_6665	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_1474$class_1476;)I	method_6664	method_6664	
@@ -222,27 +222,28 @@ c	net/minecraft/class_1593
 	m	(Lnet/minecraft/class_1593;)Ljava/util/Random;	method_0_15660		method_0_15660
 		p	0			p_0
 c	net/minecraft/class_1657
-	f	Z	field_7490	field_7490	
-	m	()Z	method_7295	method_7295	
+	f	Z	field_7490	isSubmergedInWater	
+	m	()Z	method_7295	updateWaterSubmersionState	
 	m	()Lnet/minecraft/class_3414;	method_5672	method_5672	
-c	net/minecraft/class_17	net/minecraft/class_17	
-	f	Lnet/minecraft/class_2338;	field_69	field_69	
-	f	Lnet/minecraft/class_1767;	field_68	field_68	
-	f	Lnet/minecraft/class_2561;	field_67	field_67	
+c	net/minecraft/class_17	net/minecraft/item/map/MapBannerMarker	
+	c	Represents a banner marker in world.\n<p>\nUsed to track banners in a map state.	
+	f	Lnet/minecraft/class_2338;	field_69	pos	
+	f	Lnet/minecraft/class_1767;	field_68	color	
+	f	Lnet/minecraft/class_2561;	field_67	name	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_1767;Lnet/minecraft/class_2561;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_17;	method_67	method_67	
-		p	0		p_0	
-	m	()Lnet/minecraft/class_2338;	method_70	method_70	
-	m	()Lnet/minecraft/class_20$class_21;	method_72	method_72	
-	m	()Lnet/minecraft/class_2561;	method_68	method_68	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_17;	method_67	fromNbt	
+		p	0		nbt	
+	m	()Lnet/minecraft/class_2338;	method_70	getPos	
+	m	()Lnet/minecraft/class_20$class_21;	method_72	getIconType	
+	m	()Lnet/minecraft/class_2561;	method_68	getName	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()I	hashCode	hashCode	
-	m	()Lnet/minecraft/class_2487;	method_74	method_74	
-	m	()Ljava/lang/String;	method_71	method_71	
+	m	()Lnet/minecraft/class_2487;	method_74	getNbt	
+	m	()Ljava/lang/String;	method_71	getKey	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Lnet/minecraft/class_17;	method_73	method_73	
 		p	0		p_0	
 		p	1		p_1	
@@ -269,17 +270,17 @@ c	net/minecraft/class_1937
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1959
-	f	I	field_9342	field_9342	
-	m	()I	method_8687	method_8687	
+	f	I	field_9342	waterColor	
+	m	()I	method_8687	getWaterColor	
 c	net/minecraft/class_20
-	f	Lnet/minecraft/class_2561;	field_78	field_78	
+	f	Lnet/minecraft/class_2561;	field_78	text	
 	m	(Lnet/minecraft/class_20$class_21;BBBLnet/minecraft/class_2561;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	()Lnet/minecraft/class_2561;	method_88	method_88	
+	m	()Lnet/minecraft/class_2561;	method_88	getText	
 	m	(Lnet/minecraft/class_20$class_21;BBB)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -304,7 +305,8 @@ c	net/minecraft/class_20$class_21
 	f	Lnet/minecraft/class_20$class_21;	field_103	field_103	
 	f	Lnet/minecraft/class_20$class_21;	field_110	field_110	
 c	net/minecraft/class_22
-	f	Ljava/util/Map;	field_123	field_123	
+	f	Ljava/util/Map;	field_123	banners	
+		c	The banner markers to track in world.\n<p>\nEmpty for the client.	
 	m	(Lnet/minecraft/class_20$class_21;Lnet/minecraft/class_1937;Ljava/lang/String;DDDLnet/minecraft/class_2561;)V	method_107	method_107	
 		p	1		p_1	
 		p	2		p_2	
@@ -333,7 +335,7 @@ c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_16641	field_0_16641	
 	f	Lnet/minecraft/class_2248;	field_0_16642	field_0_16642	
 	f	Lnet/minecraft/class_2248;	field_0_16643	field_0_16643	
-c	net/minecraft/class_2301	net/minecraft/class_2301	
+c	net/minecraft/class_2301	net/minecraft/block/CoralBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z	method_9695	method_9695	
@@ -345,7 +347,7 @@ c	net/minecraft/class_2301	net/minecraft/class_2301
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_2409
-	f	Ljava/util/List;	field_11289	field_11289	
+	f	Ljava/util/List;	field_11289	tabGenerators	
 	m	(Ljava/util/function/Consumer;)V	method_0_15900		method_0_15900
 		p	1			p_1
 	m	(Ljava/util/function/Consumer;)V	method_0_15901		method_0_15901
@@ -356,50 +358,50 @@ c	net/minecraft/class_2409
 		p	1			p_1
 	m	(Ljava/util/function/Consumer;)V	method_0_15904		method_0_15904
 		p	1			p_1
-c	net/minecraft/class_2412	net/minecraft/class_2412	
-	f	[Lnet/minecraft/class_1959;	field_11293	field_11293	
-	f	[Lnet/minecraft/class_1299;	field_11294	field_11294	
+c	net/minecraft/class_2412	net/minecraft/data/server/advancement/vanilla/VanillaAdventureTabAdvancementGenerator	
+	f	[Lnet/minecraft/class_1959;	field_11293	BIOMES	
+	f	[Lnet/minecraft/class_1299;	field_11294	MONSTERS	
 	m	()V	<init>	<init>	
 	m	(Ljava/util/function/Consumer;)V	method_10335	method_10335	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10336	method_10336	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10337	method_10337	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10336	requireListedMobsKilled	
+		p	1		builder	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10337	requireListedBiomesVisited	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
+		p	1		exporter	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2414	net/minecraft/class_2414	
-	f	[Lnet/minecraft/class_1299;	field_11296	field_11296	
-	f	[Lnet/minecraft/class_1792;	field_11298	field_11298	
+c	net/minecraft/class_2414	net/minecraft/data/server/advancement/vanilla/VanillaHusbandryTabAdvancementGenerator	
+	f	[Lnet/minecraft/class_1299;	field_11296	BREEDABLE_ANIMALS	
+	f	[Lnet/minecraft/class_1792;	field_11298	FOOD_ITEMS	
 	m	()V	<init>	<init>	
 	m	(Ljava/util/function/Consumer;)V	method_10338	method_10338	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10341	method_10341	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10342	method_10342	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10341	requireFoodItemsEaten	
+		p	1		builder	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_10342	requireListedAnimalsBred	
+		p	1		builder	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
+		p	1		exporter	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2416	net/minecraft/class_2416	
+c	net/minecraft/class_2416	net/minecraft/data/server/advancement/vanilla/VanillaNetherTabAdvancementGenerator	
 	m	()V	<init>	<init>	
 	m	(Ljava/util/function/Consumer;)V	method_10346	method_10346	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
-c	net/minecraft/class_2417	net/minecraft/class_2417	
+		p	1		exporter	
+c	net/minecraft/class_2417	net/minecraft/data/server/advancement/vanilla/VanillaStoryTabAdvancementGenerator	
 	m	()V	<init>	<init>	
 	m	(Ljava/util/function/Consumer;)V	method_10347	method_10347	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
-c	net/minecraft/class_2419	net/minecraft/class_2419	
+		p	1		exporter	
+c	net/minecraft/class_2419	net/minecraft/data/server/advancement/vanilla/VanillaEndTabAdvancementGenerator	
 	m	()V	<init>	<init>	
 	m	(Ljava/util/function/Consumer;)V	method_10348	method_10348	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
+		p	1		exporter	
 c	net/minecraft/class_2794
 	m	(Lnet/minecraft/class_1937;Ljava/lang/String;Lnet/minecraft/class_2338;ZI)Lnet/minecraft/class_2338;	method_12103	method_12103	
 		p	1		p_1	
@@ -424,7 +426,7 @@ c	net/minecraft/class_2796
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_2956	net/minecraft/class_2956	
+c	net/minecraft/class_2956	net/minecraft/world/gen/structure/BuriedTreasureStructure	
 	m	(Lnet/minecraft/class_2796;Ljava/util/Random;II)Z	method_14026	method_14026	
 		p	1		p_1	
 		p	2		p_2	
@@ -441,7 +443,7 @@ c	net/minecraft/class_2956	net/minecraft/class_2956
 	m	()Ljava/lang/String;	method_14019	method_14019	
 	m	()I	method_14021	method_14021	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_2956$class_2957	class_2957	
+c	net/minecraft/class_2956$class_2957	Start	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Lnet/minecraft/class_2919;IILnet/minecraft/class_1959;)V	<init>	<init>	
 		p	1		p_1	
@@ -451,8 +453,8 @@ c	net/minecraft/class_2956$class_2957	class_2957
 		p	5		p_5	
 		p	6		p_6	
 	m	()Lnet/minecraft/class_2338;	method_14962	method_14962	
-c	net/minecraft/class_2959	net/minecraft/class_2959	
-	f	F	field_13352	field_13352	
+c	net/minecraft/class_2959	net/minecraft/world/gen/feature/BuriedTreasureFeatureConfig	
+	f	F	field_13352	probability	
 	m	(F)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/class_3031
@@ -519,15 +521,15 @@ c	net/minecraft/class_3417
 	f	Lnet/minecraft/class_3414;	field_15068	field_15068	
 	f	Lnet/minecraft/class_3414;	field_14876	field_14876	
 c	net/minecraft/class_3449
-	m	()Lnet/minecraft/class_2338;	method_14962	method_14962	
+	m	()Lnet/minecraft/class_2338;	method_14962	getBlockPos	
 c	net/minecraft/class_3481
 	f	Lnet/minecraft/class_3494;	field_15488	field_15488	
 c	net/minecraft/class_3489
 	f	Lnet/minecraft/class_3494;	field_0_16720	field_0_16720	
 c	net/minecraft/class_3518
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/String;)B	method_15293	method_15293	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/String;)B	method_15293	asByte	
+		p	0		element	
+		p	1		name	
 	m	(Lcom/google/gson/JsonObject;Ljava/lang/String;)B	method_0_15984	method_0_15984	
 		p	0		p_0	
 		p	1		p_1	
@@ -557,9 +559,9 @@ c	net/minecraft/class_47$class_48
 	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_47$class_48;	method_0_15951	method_0_15951	
 		p	1		p_1	
 c	net/minecraft/class_588
-	f	Lnet/minecraft/class_630;	field_3473	field_3473	
-c	net/minecraft/class_612	net/minecraft/class_612	
-	f	Lnet/minecraft/class_630;	field_3589	field_3589	
+	f	Lnet/minecraft/class_630;	field_3473	tailTip	
+c	net/minecraft/class_612	net/minecraft/client/render/entity/model/SmallTropicalFishEntityModel	
+	f	Lnet/minecraft/class_630;	field_3589	body	
 	f	Lnet/minecraft/class_630;	field_3591	field_3591	
 	f	Lnet/minecraft/class_630;	field_3590	field_3590	
 	f	Lnet/minecraft/class_630;	field_3588	field_3588	
@@ -583,9 +585,9 @@ c	net/minecraft/class_612	net/minecraft/class_612
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_615	net/minecraft/class_615	
-	f	Lnet/minecraft/class_630;	field_3597	field_3597	
-	f	Lnet/minecraft/class_630;	field_3599	field_3599	
+c	net/minecraft/class_615	net/minecraft/client/render/entity/model/LargeTropicalFishEntityModel	
+	f	Lnet/minecraft/class_630;	field_3597	body	
+	f	Lnet/minecraft/class_630;	field_3599	tail	
 	f	Lnet/minecraft/class_630;	field_3598	field_3598	
 	f	Lnet/minecraft/class_630;	field_3596	field_3596	
 	f	Lnet/minecraft/class_630;	field_3595	field_3595	
@@ -610,24 +612,24 @@ c	net/minecraft/class_615	net/minecraft/class_615
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/class_746
-	f	Ljava/util/List;	field_3933	field_3933	
+	f	Ljava/util/List;	field_3933	tickables	
 	m	()Z	method_5869	method_5869	
 	m	()Z	method_7295	method_7295	
 c	net/minecraft/class_918
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1087;	method_4019	method_4019	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1087;	method_4007	method_4007	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1087;Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1087;	method_4020	method_4020	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-c	net/minecraft/class_959	net/minecraft/class_959	
-	f	Lnet/minecraft/class_612;	field_4800	field_4800	
-	f	Lnet/minecraft/class_615;	field_4799	field_4799	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1087;	method_4019	getHeldItemModel	
+		p	1		stack	
+		p	2		world	
+		p	3		entity	
+	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1087;	method_4007	getModel	
+		p	1		stack	
+	m	(Lnet/minecraft/class_1087;Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;)Lnet/minecraft/class_1087;	method_4020	getOverriddenModel	
+		p	1		model	
+		p	2		stack	
+		p	3		world	
+		p	4		entity	
+c	net/minecraft/class_959	net/minecraft/client/render/entity/TropicalFishEntityRenderer	
+	f	Lnet/minecraft/class_612;	field_4800	smallModel	
+	f	Lnet/minecraft/class_615;	field_4799	largeModel	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1474;)Lnet/minecraft/class_2960;	method_4141	method_4141	
@@ -672,8 +674,8 @@ c	net/minecraft/class_959	net/minecraft/class_959
 		p	6		p_6	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_993	net/minecraft/class_993	
-	f	Lnet/minecraft/class_2960;	field_4890	field_4890	
+c	net/minecraft/class_993	net/minecraft/client/render/entity/feature/PhantomEyesFeatureRenderer	
+	f	Lnet/minecraft/class_2960;	field_4890	SKIN	
 	f	Lnet/minecraft/class_933;	field_4889	field_4889	
 	m	(Lnet/minecraft/class_933;)V	<init>	<init>	
 		p	1		p_1	

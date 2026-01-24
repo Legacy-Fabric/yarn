@@ -1,5 +1,5 @@
 tiny	2	0
-c	net/minecraft/class_1165	net/minecraft/class_1165	
+c	net/minecraft/class_1165	net/minecraft/datafixer/fix/EntityRedundantChanceTagsFix	
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_0_8951	method_0_8951	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -15,14 +15,14 @@ c	net/minecraft/class_12
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(III)Lnet/minecraft/class_9;	method_51	method_51	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(III)Lnet/minecraft/class_7;	method_50	method_50	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(III)Lnet/minecraft/class_9;	method_51	getPathNodeInWater	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(III)Lnet/minecraft/class_7;	method_50	getNodeType	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_9;	method_21		method_21
 		p	1			p_1
 	m	(Lnet/minecraft/class_1297;DDD)Lnet/minecraft/class_9;	method_16		method_16
@@ -59,13 +59,13 @@ c	net/minecraft/class_13
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_1309
-	f	I	field_6273	field_6273	
+	f	I	field_6273	lastAttackedTicks	
 	m	()F	method_0_9208	method_0_9208	
 	m	(F)F	method_0_9210	method_0_9210	
 		p	1		p_1	
 	m	()V	method_0_9209	method_0_9209	
 c	net/minecraft/class_1355
-	f	Ljava/util/Set;	field_6461	field_6461	
+	f	Ljava/util/Set;	field_6461	goals	
 	f	Ljava/util/Set;	field_6460	field_6460	
 	f	Ljava/util/List;	field_6461		field_6461
 	f	Ljava/util/List;	field_6460		field_6460
@@ -74,8 +74,8 @@ c	net/minecraft/class_1355$class_1356
 	m	(Ljava/lang/Object;)Z	equals	equals	
 		p	1		p_1	
 	m	()I	hashCode	hashCode	
-c	net/minecraft/class_1396	net/minecraft/class_1396	
-	f	Lnet/minecraft/class_1642;	field_6628	field_6628	
+c	net/minecraft/class_1396	net/minecraft/entity/ai/goal/ZombieAttackGoal	
+	f	Lnet/minecraft/class_1642;	field_6628	zombie	
 	m	()V	method_6269	method_6269	
 	m	()V	method_6270	method_6270	
 	m	(Lnet/minecraft/class_1642;Ljava/lang/Class;DZ)V	<init>	<init>	
@@ -153,20 +153,20 @@ c	net/minecraft/class_14
 		p	9			p_9
 		p	10			p_10
 c	net/minecraft/class_155
-	f	Lio/netty/util/ResourceLeakDetector$Level;	field_1124	field_1124	
+	f	Lio/netty/util/ResourceLeakDetector$Level;	field_1124	RESOURCE_LEAK_DETECTOR_DISABLED	
 c	net/minecraft/class_1642
 	f	Lnet/minecraft/class_2940;	field_7431	field_7431	
 	m	()Z	method_7204	method_7204	
 	m	(Z)V	method_0_9211	method_0_9211	
 		p	1		p_1	
 c	net/minecraft/class_1657
-	m	(Lnet/minecraft/class_2593;)V	method_7323	method_7323	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2593;)V	method_7323	openCommandBlockScreen	
+		p	1		commandBlock	
 c	net/minecraft/class_1806
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;I)V	method_7996	method_7996	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;I)V	method_7996	scale	
+		p	0		map	
+		p	1		world	
+		p	2		amount	
 	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;)V	method_0_9185	method_0_9185	
 		p	0		p_0	
 		p	1		p_1	
@@ -182,12 +182,12 @@ c	net/minecraft/class_1937
 	m	()V	method_0_242		method_0_242
 	m	()I	method_0_427		method_0_427
 c	net/minecraft/class_22
-	f	Z	field_114	field_114	
+	f	Z	field_114	showIcons	
 c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_9819	field_0_9819	
 	f	Lnet/minecraft/class_2248;	field_0_9820	field_0_9820	
 c	net/minecraft/class_2288
-	f	Lnet/minecraft/class_2753;	field_10791	field_10791	
+	f	Lnet/minecraft/class_2753;	field_10791	FACING	
 	f	Lnet/minecraft/class_2746;	field_10791		field_10791
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_9779	method_9779	
 		p	1		p_1	
@@ -216,13 +216,13 @@ c	net/minecraft/class_2573
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_2593
-	f	Z	field_11919	field_11919	
-	m	(Z)V	method_11038	method_11038	
-		p	1		p_1	
-	m	()Z	method_11043	method_11043	
-	m	()Lnet/minecraft/class_2593$class_2594;	method_11039	method_11039	
+	f	Z	field_11919	powered	
+	m	(Z)V	method_11038	setPowered	
+		p	1		powered	
+	m	()Z	method_11043	isPowered	
+	m	()Lnet/minecraft/class_2593$class_2594;	method_11039	getCommandBlockType	
 	m	()V	method_10996	method_10996	
-c	net/minecraft/class_2593$class_2594	class_2594	
+c	net/minecraft/class_2593$class_2594	Type	
 	f	Lnet/minecraft/class_2593$class_2594;	field_11922	field_11922	
 	f	Lnet/minecraft/class_2593$class_2594;	field_11923	field_11923	
 	f	Lnet/minecraft/class_2593$class_2594;	field_11924	field_11924	
@@ -235,7 +235,7 @@ c	net/minecraft/class_2593$class_2594	class_2594
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2683
-	f	Z	field_12302	field_12302	
+	f	Z	field_12302	showIcons	
 	m	(IBZLjava/util/Collection;[BIIII)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -287,10 +287,10 @@ c	net/minecraft/class_3468
 c	net/minecraft/class_463
 	f	Lorg/apache/logging/log4j/Logger;	field_0_3442		field_0_3442
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_477	net/minecraft/class_477	
-	f	Lnet/minecraft/class_2593;	field_2865	field_2865	
+c	net/minecraft/class_477	net/minecraft/client/gui/screen/ingame/CommandBlockScreen	
+	f	Lnet/minecraft/class_2593;	field_2865	blockEntity	
 	f	Lnet/minecraft/class_339;	field_2869	field_2869	
-	f	Lnet/minecraft/class_2593$class_2594;	field_2870	field_2870	
+	f	Lnet/minecraft/class_2593$class_2594;	field_2870	mode	
 	f	Lnet/minecraft/class_342;	field_0_9839	field_0_9839	
 	f	Lnet/minecraft/class_342;	field_0_9840	field_0_9840	
 	f	Lnet/minecraft/class_339;	field_0_9842	field_0_9842	
@@ -300,8 +300,8 @@ c	net/minecraft/class_477	net/minecraft/class_477
 	m	(Lnet/minecraft/class_2593;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_2224	method_2224	
-	m	()V	method_2451	method_2451	
-	m	()V	method_2450	method_2450	
+	m	()V	method_2451	updateMode	
+	m	()V	method_2450	cycleType	
 	m	()V	method_2225	method_2225	
 	m	()V	method_2234	method_2234	
 	m	(Lnet/minecraft/class_339;)V	method_0_2778	method_0_2778	
@@ -330,7 +330,7 @@ c	net/minecraft/class_638
 		p	2		p_2	
 		p	3		p_3	
 	m	()I	method_0_427		method_0_427
-c	net/minecraft/class_7	net/minecraft/class_7	
+c	net/minecraft/class_7	net/minecraft/entity/ai/pathing/PathNodeType	
 	f	Lnet/minecraft/class_7;	field_22	field_22	
 	f	Lnet/minecraft/class_7;	field_7	field_7	
 	f	Lnet/minecraft/class_7;	field_12	field_12	
@@ -351,7 +351,7 @@ c	net/minecraft/class_746
 		p	1		p_1	
 c	net/minecraft/class_8
 	f	Lnet/minecraft/class_1297;	field_33	field_33	
-	m	()Lnet/minecraft/class_9;	method_21	method_21	
+	m	()Lnet/minecraft/class_9;	method_21	getStart	
 	m	(DDD)Lnet/minecraft/class_9;	method_16	method_16	
 		p	1		p_1	
 		p	3		p_3	

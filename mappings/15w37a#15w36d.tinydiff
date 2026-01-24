@@ -1,18 +1,18 @@
 tiny	2	0
 c	net/minecraft/class_1259
-	f	Z	field_5775	field_5775	
+	f	Z	field_5775	dragonMusic	
 	m	(Ljava/util/UUID;Lnet/minecraft/class_2561;Lnet/minecraft/class_1259$class_1260;Lnet/minecraft/class_1259$class_1261;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Z)Lnet/minecraft/class_1259;	method_5406	method_5406	
-		p	1		p_1	
-	m	()Z	method_5418	method_5418	
-	m	(Z)Lnet/minecraft/class_1259;	method_5410	method_5410	
-		p	1		p_1	
-	m	(Z)Lnet/minecraft/class_1259;	method_5411	method_5411	
-		p	1		p_1	
+	m	(Z)Lnet/minecraft/class_1259;	method_5406	setDarkenSky	
+		p	1		darkenSky	
+	m	()Z	method_5418	hasDragonMusic	
+	m	(Z)Lnet/minecraft/class_1259;	method_5410	setDragonMusic	
+		p	1		dragonMusic	
+	m	(Z)Lnet/minecraft/class_1259;	method_5411	setThickenFog	
+		p	1		thickenFog	
 	m	(Ljava/util/UUID;Lnet/minecraft/class_2561;Lnet/minecraft/class_1259$class_1260;Lnet/minecraft/class_1259$class_1261;ZZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -25,24 +25,26 @@ c	net/minecraft/class_1259
 	m	(Z)V	method_5411		method_5411
 		p	1			p_1
 c	net/minecraft/class_129
-	m	(III)Ljava/lang/String;	method_581	method_581	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(III)Ljava/lang/String;	method_581	createPositionString	
+		p	0		x	
+		p	1		y	
+		p	2		z	
 c	net/minecraft/class_1297
-	m	(Lnet/minecraft/class_2470;)F	method_5832	method_5832	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2415;)F	method_5763	method_5763	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2470;)F	method_5832	applyRotation	
+		c	Applies {@code rotation} to the entity's yaw.	
+		p	1		rotation	
+	m	(Lnet/minecraft/class_2415;)F	method_5763	applyMirror	
+		c	Applies {@code mirror} to the entity's yaw.	
+		p	1		mirror	
 	m	(Lnet/minecraft/class_2248$class_2470;)F	method_5832		method_5832
 		p	1			p_1
 	m	(Lnet/minecraft/class_2248$class_2415;)F	method_5763		method_5763
 		p	1			p_1
 c	net/minecraft/class_1408
 	f	Lnet/minecraft/class_243;	field_6680	field_6680	
-	f	J	field_6670	field_6670	
-	f	J	field_6669	field_6669	
-	f	D	field_6682	field_6682	
+	f	J	field_6670	currentNodeMs	
+	f	J	field_6669	lastActiveTickMs	
+	f	D	field_6682	currentNodeTimeout	
 c	net/minecraft/class_1530
 	m	(Lnet/minecraft/class_2470;)F	method_5832	method_5832	
 		p	1		p_1	
@@ -72,8 +74,8 @@ c	net/minecraft/class_1657
 	m	(Lnet/minecraft/class_2248;)F	method_7351		method_7351
 		p	1			p_1
 c	net/minecraft/class_1661
-	m	(Lnet/minecraft/class_1799;)V	method_7378	method_7378	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;)V	method_7378	removeOne	
+		p	1		stack	
 	m	(Lnet/minecraft/class_0_378;)F	method_7370	method_7370	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2248;)F	method_7370		method_7370
@@ -223,7 +225,7 @@ c	net/minecraft/class_1959
 c	net/minecraft/class_2151
 	f	Lnet/minecraft/class_0_378;	field_0_10002	field_0_10002	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2175	net/minecraft/class_2175	
+c	net/minecraft/class_2175	net/minecraft/world/biome/VoidBiome	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/class_2189
@@ -533,7 +535,7 @@ c	net/minecraft/class_2248
 	m	()Z	method_0_733		method_0_733
 	m	()I	method_0_734		method_0_734
 	m	()Z	method_0_735		method_0_735
-	m	()Lnet/minecraft/class_3614;	method_9597		method_9597
+	m	()Lnet/minecraft/class_3614;	method_9597		getMaterial
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_2248$class_2470;)Lnet/minecraft/class_0_378;	method_9598		method_9598
 		p	1			p_1
 		p	2			p_2
@@ -543,7 +545,7 @@ c	net/minecraft/class_2248
 	m	()Z	method_9555		method_9555
 	m	()Z	method_9521		method_9521
 	m	()Z	method_9526		method_9526
-	m	()I	method_9604		method_9604
+	m	()I	method_9604		getRenderType
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)F	method_9537		method_9537
 		p	1			p_1
 		p	2			p_2
@@ -581,7 +583,7 @@ c	net/minecraft/class_2248
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)F	method_9594		method_9594
+	m	(Lnet/minecraft/class_1657;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)F	method_9594		calcBlockBreakingDelta
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1797,17 +1799,19 @@ c	net/minecraft/class_2377
 		p	2			p_2
 c	net/minecraft/class_238
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()I	hashCode	hashCode	
-	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_238;	method_996	method_996	
-		p	1		p_1	
-	m	(DDDDDD)Z	method_1003	method_1003	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	9		p_9	
-		p	11		p_11	
+	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_238;	method_996	offset	
+		c	Creates a box that is translated by {@code blockPos.getX()}, {@code\nblockPos.getY()}, {@code blockPos.getZ()} on each axis from this box.\n\n@see #offset(double, double, double)	
+		p	1		blockPos	
+	m	(DDDDDD)Z	method_1003	intersects	
+		c	Checks if this box intersects the box of the given coordinates.	
+		p	1		minX	
+		p	3		minY	
+		p	5		minZ	
+		p	7		maxX	
+		p	9		maxY	
+		p	11		maxZ	
 	m	(Lnet/minecraft/class_243;Lnet/minecraft/class_243;Lnet/minecraft/class_243;)Z	method_0_9385	method_0_9385	
 		p	1		p_1	
 		p	2		p_2	
@@ -2011,7 +2015,7 @@ c	net/minecraft/class_2410
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_2248$class_2470;)Lnet/minecraft/class_0_378;	method_9598		method_9598
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_2415	net/minecraft/class_2415	
+c	net/minecraft/class_2415	net/minecraft/util/BlockMirror	
 	f	Lnet/minecraft/class_2415;	field_11302	field_11302	
 	f	Lnet/minecraft/class_2415;	field_11300	field_11300	
 	f	Lnet/minecraft/class_2415;	field_11301	field_11301	
@@ -2021,13 +2025,13 @@ c	net/minecraft/class_2415	net/minecraft/class_2415
 	m	()[Lnet/minecraft/class_2415;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2415;	valueOf	valueOf	
 		p	0		p_0	
-	m	(II)I	method_10344	method_10344	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2470;	method_10345	method_10345	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_10343	method_10343	
-		p	1		p_1	
+	m	(II)I	method_10344	mirror	
+		p	1		rotation	
+		p	2		fullTurn	
+	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2470;	method_10345	getRotation	
+		p	1		direction	
+	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_10343	apply	
+		p	1		direction	
 	m	()V	<clinit>	<clinit>	
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
@@ -2090,7 +2094,7 @@ c	net/minecraft/class_2428
 	m	()I	method_9604		method_9604
 c	net/minecraft/class_243
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()I	hashCode	hashCode	
 c	net/minecraft/class_2436
 	m	(Lnet/minecraft/class_0_378;)Z	method_9506	method_9506	
@@ -2264,7 +2268,7 @@ c	net/minecraft/class_2462
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_2464	net/minecraft/class_2464	
+c	net/minecraft/class_2464	net/minecraft/block/BlockRenderType	
 	f	Lnet/minecraft/class_2464;	field_11455	field_11455	
 	f	Lnet/minecraft/class_2464;	field_11456	field_11456	
 	f	Lnet/minecraft/class_2464;	field_11458	field_11458	
@@ -2284,7 +2288,7 @@ c	net/minecraft/class_2465
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_2248$class_2470;)Lnet/minecraft/class_0_378;	method_9598		method_9598
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_2470	net/minecraft/class_2470	
+c	net/minecraft/class_2470	net/minecraft/util/BlockRotation	
 	f	Lnet/minecraft/class_2470;	field_11467	field_11467	
 	f	Lnet/minecraft/class_2470;	field_11463	field_11463	
 	f	Lnet/minecraft/class_2470;	field_11464	field_11464	
@@ -2295,13 +2299,13 @@ c	net/minecraft/class_2470	net/minecraft/class_2470
 	m	()[Lnet/minecraft/class_2470;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2470;	valueOf	valueOf	
 		p	0		p_0	
-	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_2470;	method_10501	method_10501	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_10503	method_10503	
-		p	1		p_1	
-	m	(II)I	method_10502	method_10502	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_2470;	method_10501	rotate	
+		p	1		rotation	
+	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_10503	rotate	
+		p	1		direction	
+	m	(II)I	method_10502	rotate	
+		p	1		rotation	
+		p	2		fullTurn	
 	m	()V	<clinit>	<clinit>	
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
@@ -2825,17 +2829,17 @@ c	net/minecraft/class_2577
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2629
-	f	Z	field_12068	field_12068	
-	m	()Z	method_11332	method_11332	
+	f	Z	field_12068	thickenFog	
+	m	()Z	method_11332	shouldThickenFog	
 c	net/minecraft/class_2633
-	f	Lnet/minecraft/class_2415;	field_12093	field_12093	
-	f	Lnet/minecraft/class_2470;	field_12105	field_12105	
+	f	Lnet/minecraft/class_2415;	field_12093	mirror	
+	f	Lnet/minecraft/class_2470;	field_12105	rotation	
 	f	Lnet/minecraft/class_2248$class_2415;	field_12093		field_12093
 	f	Lnet/minecraft/class_2248$class_2470;	field_12105		field_12105
-	m	(Lnet/minecraft/class_2415;)V	method_11356	method_11356	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2470;)V	method_11385	method_11385	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2415;)V	method_11356	setMirror	
+		p	1		mirror	
+	m	(Lnet/minecraft/class_2470;)V	method_11385	setRotation	
+		p	1		rotation	
 	m	(Lnet/minecraft/class_2248$class_2415;)V	method_11356		method_11356
 		p	1			p_1
 	m	(Lnet/minecraft/class_2248$class_2470;)V	method_11385		method_11385
@@ -3088,24 +3092,24 @@ c	net/minecraft/class_2818
 		p	2		p_2	
 	m	(Lnet/minecraft/class_2796;)V	method_0_9381	method_0_9381	
 		p	1		p_1	
-	m	(III)Lnet/minecraft/class_2248;	method_0_1389		method_0_1389
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(III)Lnet/minecraft/class_2248;	method_0_1389		getBlock
+		p	1			x
+		p	2			y
+		p	3			z
 	m	(III)Lnet/minecraft/class_2248;	method_0_1343		method_0_1343
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_2248;	method_0_1350		method_0_1350
-		p	1			p_1
-	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_0_378;	method_0_1394		method_0_1394
-		p	1			p_1
-	m	(III)I	method_0_1393		method_0_1393
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/class_2338;)I	method_0_1376		method_0_1376
-		p	1			p_1
+	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_2248;	method_0_1350		getBlock
+		p	1			pos
+	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_0_378;	method_0_1394		getBlockState
+		p	1			pos
+	m	(III)I	method_0_1393		getFluidState
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(Lnet/minecraft/class_2338;)I	method_0_1376		getFluidState
+		p	1			pos
 	m	(Lnet/minecraft/class_0_397;Lnet/minecraft/class_0_397;II)V	method_0_1349		method_0_1349
 		p	1			p_1
 		p	2			p_2
@@ -3128,11 +3132,11 @@ c	net/minecraft/class_2818$3		3
 	m	()Ljava/lang/String;	method_0_1418		method_0_1418
 	m	()Ljava/lang/Object;	call		call
 c	net/minecraft/class_2826
-	m	(III)Lnet/minecraft/class_2248;	method_0_1426		method_0_1426
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(III)I	method_0_1429		method_0_1429
+	m	(III)Lnet/minecraft/class_2248;	method_0_1426		getBlock
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(III)I	method_0_1429		getFluidState
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -3375,7 +3379,7 @@ c	net/minecraft/class_295
 c	net/minecraft/class_30
 	m	()Ljava/lang/String;	method_0_2015		method_0_2015
 c	net/minecraft/class_304
-	m	()V	method_1424	method_1424	
+	m	()V	method_1424	updatePressedStates	
 c	net/minecraft/class_3213
 	m	(Lnet/minecraft/class_2561;Lnet/minecraft/class_1259$class_1260;Lnet/minecraft/class_1259$class_1261;)V	<init>	<init>	
 		p	1		p_1	
@@ -3415,8 +3419,8 @@ c	net/minecraft/class_3310
 	m	(Lnet/minecraft/class_1959;)V	method_14505		method_14505
 		p	1			p_1
 c	net/minecraft/class_3324
-	m	(Lnet/minecraft/class_3222;)V	method_14576	method_14576	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3222;)V	method_14576	sendCommandTree	
+		p	1		player	
 c	net/minecraft/class_3342
 	m	(Lnet/minecraft/class_3342$class_3343;Lnet/minecraft/class_2338;Ljava/lang/String;Lnet/minecraft/class_2470;Z)Lnet/minecraft/class_3342$class_3343;	method_14684	method_14684	
 		p	0		p_0	
@@ -3453,7 +3457,7 @@ c	net/minecraft/class_3342
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_3342$class_3343
-	f	Lnet/minecraft/class_2470;	field_14393	field_14393	
+	f	Lnet/minecraft/class_2470;	field_14393	rotation	
 	f	Lnet/minecraft/class_2248$class_2470;	field_14393		field_14393
 	m	(Ljava/lang/String;Lnet/minecraft/class_2338;Lnet/minecraft/class_2470;Z)V	<init>	<init>	
 		p	1		p_1	
@@ -3466,23 +3470,23 @@ c	net/minecraft/class_3342$class_3343
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_337
-	m	()Z	method_1800	method_1800	
+	m	()Z	method_1800	shouldThickenFog	
 c	net/minecraft/class_3443
-	f	Lnet/minecraft/class_2415;	field_15310	field_15310	
-	f	Lnet/minecraft/class_2470;	field_15313	field_15313	
+	f	Lnet/minecraft/class_2415;	field_15310	mirror	
+	f	Lnet/minecraft/class_2470;	field_15313	rotation	
 	f	Lnet/minecraft/class_2248$class_2415;	field_15310		field_15310
 	f	Lnet/minecraft/class_2248$class_2470;	field_15313		field_15313
 c	net/minecraft/class_3492
-	f	Lnet/minecraft/class_2415;	field_15564	field_15564	
-	f	Lnet/minecraft/class_2470;	field_15569	field_15569	
+	f	Lnet/minecraft/class_2415;	field_15564	mirror	
+	f	Lnet/minecraft/class_2470;	field_15569	rotation	
 	f	Lnet/minecraft/class_2248$class_2415;	field_15564		field_15564
 	f	Lnet/minecraft/class_2248$class_2470;	field_15569		field_15569
-	m	(Lnet/minecraft/class_2415;)Lnet/minecraft/class_3492;	method_15125	method_15125	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_3492;	method_15123	method_15123	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2415;	method_15114	method_15114	
-	m	()Lnet/minecraft/class_2470;	method_15113	method_15113	
+	m	(Lnet/minecraft/class_2415;)Lnet/minecraft/class_3492;	method_15125	setMirror	
+		p	1		mirror	
+	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_3492;	method_15123	setRotation	
+		p	1		rotation	
+	m	()Lnet/minecraft/class_2415;	method_15114	getMirror	
+	m	()Lnet/minecraft/class_2470;	method_15113	getRotation	
 	m	(Lnet/minecraft/class_2415;Lnet/minecraft/class_2470;ZLnet/minecraft/class_2248;Lnet/minecraft/class_3341;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3502,7 +3506,7 @@ c	net/minecraft/class_3492
 	m	()Lnet/minecraft/class_2248$class_2415;	method_15114		method_15114
 	m	()Lnet/minecraft/class_2248$class_2470;	method_15113		method_15113
 c	net/minecraft/class_3499
-	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;	method_15166	method_15166	
+	m	(Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;	method_15166	getRotatedSize	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_2415;Lnet/minecraft/class_2470;)Lnet/minecraft/class_2338;	method_15168	method_15168	
 		p	0		p_0	
@@ -3537,11 +3541,11 @@ c	net/minecraft/class_3499
 c	net/minecraft/class_36
 	m	()Ljava/lang/String;	method_0_2015		method_0_2015
 c	net/minecraft/class_3614
-	f	Lnet/minecraft/class_3619;	field_15960	field_15960	
+	f	Lnet/minecraft/class_3619;	field_15960	pistonBehavior	
 	f	I	field_15960		field_15960
-	m	()Lnet/minecraft/class_3619;	method_15798	method_15798	
+	m	()Lnet/minecraft/class_3619;	method_15798	getPistonBehavior	
 	m	()I	method_15798		method_15798
-c	net/minecraft/class_3619	net/minecraft/class_3619	
+c	net/minecraft/class_3619	net/minecraft/block/piston/PistonBehavior	
 	f	Lnet/minecraft/class_3619;	field_15974	field_15974	
 	f	Lnet/minecraft/class_3619;	field_15971	field_15971	
 	f	Lnet/minecraft/class_3619;	field_15972	field_15972	
@@ -3591,8 +3595,8 @@ c	net/minecraft/class_631
 	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_2818;	method_0_1324		method_0_1324
 		p	1			p_1
 c	net/minecraft/class_636
-	m	(Lnet/minecraft/class_2338;)Z	method_2899	method_2899	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2338;)Z	method_2899	breakBlock	
+		p	1		pos	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Z	method_2899		method_2899
 		p	1			p_1
 		p	2			p_2
@@ -3604,7 +3608,7 @@ c	net/minecraft/class_638
 	m	()Lnet/minecraft/class_631;	method_2935	method_2935	
 	m	()Lnet/minecraft/class_0_397;	method_8398	method_8398	
 c	net/minecraft/class_770
-	f	Lnet/minecraft/class_2960;	field_4152	field_4152	
+	f	Lnet/minecraft/class_2960;	field_4152	DEFAULT_SHIELD	
 c	net/minecraft/class_776
 	m	(Lnet/minecraft/class_2248;)Z	method_0_3581	method_0_3581	
 		p	1		p_1	
@@ -3685,7 +3689,7 @@ c	net/minecraft/class_845
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_851
-	m	()Lnet/minecraft/class_1937;	method_3678	method_3678	
+	m	()Lnet/minecraft/class_1937;	method_3678	getWorld	
 c	net/minecraft/class_897
 	m	(Lnet/minecraft/class_0_378;DDDLnet/minecraft/class_2338;FFDDD)V	method_3928	method_3928	
 		p	1		p_1	

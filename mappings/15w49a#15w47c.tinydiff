@@ -49,8 +49,10 @@ c	net/minecraft/class_1097
 c	net/minecraft/class_1295
 	m	()Lnet/minecraft/class_3619;	method_5657	method_5657	
 c	net/minecraft/class_1297
-	m	()Z	method_5822	method_5822	
-	m	()Lnet/minecraft/class_3619;	method_5657	method_5657	
+	m	()Z	method_5822	canUsePortals	
+		c	{@return whether the entity can use nether portals and end portals}\n\n<p>{@link net.minecraft.entity.boss.dragon.EnderDragonEntity},\n{@link net.minecraft.entity.boss.WitherEntity}, and {@link\nnet.minecraft.entity.projectile.FishingBobberEntity} cannot use portals.	
+	m	()Lnet/minecraft/class_3619;	method_5657	getPistonBehavior	
+		c	{@return the behavior of the piston for this entity}\n\n<p>This is {@link PistonBehavior#NORMAL} by default. {@link AreaEffectCloudEntity},\n{@link MarkerEntity}, and marker {@link net.minecraft.entity.decoration.ArmorStandEntity}\nreturn {@link PistonBehavior#IGNORE}, causing the piston to not affect the entity's\nposition. Other piston behaviors are inapplicable to entities, and treated like\n{@link PistonBehavior#NORMAL}.	
 c	net/minecraft/class_1301
 	f	Lcom/google/common/base/Predicate;	field_6156	field_6156	
 c	net/minecraft/class_1301$5
@@ -102,8 +104,8 @@ c	net/minecraft/class_1301$7	7
 	m	(Lnet/minecraft/class_1297;)Z	method_0_7162	method_0_7162	
 		p	1		p_1	
 c	net/minecraft/class_1309
-	m	(Lnet/minecraft/class_1799;)V	method_6116	method_6116	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;)V	method_6116	onEquipStack	
+		p	1		stack	
 	m	(DDD)Z	method_6082	method_6082	
 		p	1		p_1	
 		p	3		p_3	
@@ -111,7 +113,7 @@ c	net/minecraft/class_1309
 c	net/minecraft/class_1365
 	f	Z	field_0_11085		field_0_11085
 c	net/minecraft/class_1366
-	f	I	field_6504	field_6504	
+	f	I	field_6504	attackIntervalTicks	
 	f	Ljava/lang/Class;	field_0_7668		field_0_7668
 	m	(Lnet/minecraft/class_1314;Ljava/lang/Class;DZ)V	<init>		<init>
 		p	1			p_1
@@ -119,7 +121,7 @@ c	net/minecraft/class_1366
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_1396
-	f	I	field_6627	field_6627	
+	f	I	field_6627	ticks	
 	m	(Lnet/minecraft/class_1642;DZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -135,7 +137,7 @@ c	net/minecraft/class_14
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1408
-	m	()V	method_6356	method_6356	
+	m	()V	method_6356	recalculatePath	
 c	net/minecraft/class_1411
 	m	(Lnet/minecraft/class_3414;DDDFF)V	method_0_450		method_0_450
 		p	1			p_1
@@ -145,11 +147,11 @@ c	net/minecraft/class_1411
 		p	8			p_8
 		p	9			p_9
 c	net/minecraft/class_1473
-	f	Lnet/minecraft/class_2940;	field_6873	field_6873	
+	f	Lnet/minecraft/class_2940;	field_6873	SNOW_GOLEM_FLAGS	
 	m	()V	method_5693	method_5693	
-	m	()Z	method_6643	method_6643	
-	m	(Z)V	method_6642	method_6642	
-		p	1		p_1	
+	m	()Z	method_6643	hasPumpkin	
+	m	(Z)V	method_6642	setHasPumpkin	
+		p	1		hasPumpkin	
 	m	()Lnet/minecraft/class_3414;	method_5994	method_5994	
 	m	()Lnet/minecraft/class_3414;	method_6002	method_6002	
 	m	()V	<clinit>	<clinit>	
@@ -166,12 +168,12 @@ c	net/minecraft/class_1510
 		p	1		p_1	
 c	net/minecraft/class_1511
 	m	()V	method_5768	method_5768	
-	m	(Lnet/minecraft/class_1282;)V	method_6835	method_6835	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1282;)V	method_6835	crystalDestroyed	
+		p	1		source	
 c	net/minecraft/class_1528
 	m	()Z	method_5822	method_5822	
 c	net/minecraft/class_1530
-	m	()V	method_6894	method_6894	
+	m	()V	method_6894	onPlace	
 	m	(Lnet/minecraft/class_1538;)V	method_5800	method_5800	
 		p	1		p_1	
 c	net/minecraft/class_1531
@@ -184,10 +186,10 @@ c	net/minecraft/class_1533
 c	net/minecraft/class_1534
 	m	()V	method_6894	method_6894	
 c	net/minecraft/class_1540
-	f	Lnet/minecraft/class_2940;	field_7195	field_7195	
-	m	(Lnet/minecraft/class_2338;)V	method_6963	method_6963	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2338;	method_6964	method_6964	
+	f	Lnet/minecraft/class_2940;	field_7195	BLOCK_POS	
+	m	(Lnet/minecraft/class_2338;)V	method_6963	setFallingBlockPos	
+		p	1		pos	
+	m	()Lnet/minecraft/class_2338;	method_6964	getFallingBlockPos	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_1547
 c	net/minecraft/class_1547$1
@@ -203,10 +205,10 @@ c	net/minecraft/class_1547$1
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_1560
-	m	(DDD)Z	method_7024	method_7024	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(DDD)Z	method_7024	teleportTo	
+		p	1		x	
+		p	3		y	
+		p	5		z	
 	m	(Lnet/minecraft/class_1309;DDD)Z	method_0_7820		method_0_7820
 		p	0			p_0
 		p	1			p_1
@@ -222,7 +224,8 @@ c	net/minecraft/class_1628$class_1629
 c	net/minecraft/class_1657
 	m	(Lnet/minecraft/class_1542;)Lnet/minecraft/class_1799;	method_7314	method_7314	
 		p	1		p_1	
-	m	()Z	method_7337	method_7337	
+	m	()Z	method_7337	isCreative	
+		c	Returns whether this player is in creative mode.	
 	m	(Lnet/minecraft/class_1542;)V	method_7314		method_7314
 		p	1			p_1
 c	net/minecraft/class_1665
@@ -504,7 +507,7 @@ c	net/minecraft/class_2689$class_0_380
 	m	(Lnet/minecraft/class_2769;)Z	method_0_9894		method_0_9894
 		p	1			p_1
 c	net/minecraft/class_2881
-	m	()V	method_12524	method_12524	
+	m	()V	method_12524	resetEndCrystals	
 c	net/minecraft/class_2914
 	f	Z	field_0_11104	field_0_11104	
 	m	(Lnet/minecraft/class_1937;ZJ)V	<init>	<init>	
@@ -520,7 +523,7 @@ c	net/minecraft/class_2999
 	m	(Ljava/lang/String;)V	method_12949	method_12949	
 		p	1		p_1	
 c	net/minecraft/class_3176
-	m	()Ljava/lang/String;	method_13950	method_13950	
+	m	()Ljava/lang/String;	method_13950	createResourcePackHash	
 c	net/minecraft/class_3221
 	m	(Lnet/minecraft/class_3414;DDDFF)V	method_0_450		method_0_450
 		p	1			p_1
@@ -637,8 +640,8 @@ c	net/minecraft/class_761
 		p	6			p_6
 		p	8			p_8
 		p	9			p_9
-c	net/minecraft/class_862	net/minecraft/class_862	
-	f	Lnet/minecraft/class_310;	field_4516	field_4516	
+c	net/minecraft/class_862	net/minecraft/client/render/debug/ChunkBorderDebugRenderer	
+	f	Lnet/minecraft/class_310;	field_4516	client	
 	m	(Lnet/minecraft/class_310;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/class_863

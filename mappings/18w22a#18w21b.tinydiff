@@ -1,7 +1,7 @@
 tiny	2	0
-c	net/minecraft/class_1191	net/minecraft/class_1191	
-	f	Lit/unimi/dsi/fastutil/objects/Object2IntMap;	field_5688	field_5688	
-	f	Ljava/util/Set;	field_5686	field_5686	
+c	net/minecraft/class_1191	net/minecraft/datafixer/fix/LeavesFix	
+	f	Lit/unimi/dsi/fastutil/objects/Object2IntMap;	field_5688	LEAVES_MAP	
+	f	Ljava/util/Set;	field_5686	LOGS_MAP	
 	f	[Lnet/minecraft/class_2350;	field_5687	field_5687	
 	f	I	field_0_17855	field_0_17855	
 	f	I	field_0_17856	field_0_17856	
@@ -24,7 +24,7 @@ c	net/minecraft/class_1191	net/minecraft/class_1191
 	m	(Lnet/minecraft/class_1191$class_1192;)Lnet/minecraft/class_1191$class_1192;	method_5049	method_5049	
 		p	0		p_0	
 	m	(Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;)V	method_5055	method_5055	
-		p	0		p_0	
+		p	0		map	
 	m	()Lit/unimi/dsi/fastutil/objects/Object2IntMap;	method_5060	method_5060	
 	m	()Ljava/util/Set;	method_5053	method_5053	
 	m	()V	<clinit>	<clinit>	
@@ -63,23 +63,23 @@ c	net/minecraft/class_1191	net/minecraft/class_1191
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1191$class_1192	class_1192	
-	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5689	field_5689	
-	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5691	field_5691	
-	f	Lit/unimi/dsi/fastutil/ints/Int2IntMap;	field_5690	field_5690	
+c	net/minecraft/class_1191$class_1192	LeavesLogFixer	
+	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5689	leafIndices	
+	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5691	logIndices	
+	f	Lit/unimi/dsi/fastutil/ints/Int2IntMap;	field_5690	leafStates	
 	f	Ljava/util/List;	field_0_17868	field_0_17868	
 	f	Lnet/minecraft/class_3508;	field_0_17869	field_0_17869	
 	f	I	field_0_17873	field_0_17873	
 	f	Lnet/minecraft/class_1191;	field_0_17866	field_0_17866	
 	f	Lnet/minecraft/class_0_3735;	field_0_17865	field_0_17865	
 	f	Lnet/minecraft/class_0_3823;	field_0_17867	field_0_17867	
-	m	(I)Z	method_5068	method_5068	
+	m	(I)Z	method_5068	isLog	
 		p	1		p_1	
-	m	(I)Z	method_5071	method_5071	
+	m	(I)Z	method_5071	isLeaf	
 		p	1		p_1	
-	m	(I)I	method_5065	method_5065	
+	m	(I)I	method_5065	getDistanceToLog	
 		p	1		p_1	
-	m	(III)V	method_5070	method_5070	
+	m	(III)V	method_5070	computeLeafStates	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -116,12 +116,12 @@ c	net/minecraft/class_1191$class_1192	class_1192
 c	net/minecraft/class_1308
 	m	()Lnet/minecraft/class_2902$class_2903;	method_0_17881	method_0_17881	
 c	net/minecraft/class_1408
-	m	()Lnet/minecraft/class_2338;	method_6355	method_6355	
+	m	()Lnet/minecraft/class_2338;	method_6355	getTargetPos	
 c	net/minecraft/class_1433
 	m	(B)V	method_5711	method_5711	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2394;)V	method_6492	method_6492	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2394;)V	method_6492	spawnParticlesAround	
+		p	1		parameters	
 c	net/minecraft/class_1451
 	m	()Lnet/minecraft/class_2902$class_2903;	method_0_17881	method_0_17881	
 	m	(Lnet/minecraft/class_0_378;)Z	method_0_16976	method_0_16976	
@@ -136,10 +136,10 @@ c	net/minecraft/class_1551
 	m	()V	method_5790	method_5790	
 	m	()V	method_3070		method_3070
 c	net/minecraft/class_2241
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Z	method_9479	method_9479	
-		p	0		p_0	
-		p	1		p_1	
-	m	()Z	method_9478	method_9478	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Z	method_9479	isRail	
+		p	0		world	
+		p	1		pos	
+	m	()Z	method_9478	cannotMakeCurves	
 	m	(Lnet/minecraft/class_0_378;)Z	method_9476	method_9476	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)V	method_9615	method_9615	
@@ -181,22 +181,22 @@ c	net/minecraft/class_2289
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_2355
-	f	I	field_11067	field_11067	
-	f	I	field_11084	field_11084	
-	f	I	field_11083	field_11083	
-	f	I	field_11082	field_11082	
-	f	I	field_11081	field_11081	
-	f	I	field_11080	field_11080	
-	f	I	field_11079	field_11079	
-	f	I	field_11077	field_11077	
+	f	I	field_11067	NORTHWEST_BIT	
+	f	I	field_11084	WEST_BIT	
+	f	I	field_11083	SOUTHWEST_BIT	
+	f	I	field_11082	SOUTH_BIT	
+	f	I	field_11081	SOUTHEAST_BIT	
+	f	I	field_11080	EAST_BIT	
+	f	I	field_11079	NORTHEAST_BIT	
+	f	I	field_11077	NORTH_BIT	
 	m	(ZZZZ)I	method_0_17903	method_0_17903	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_2397
-	f	Lnet/minecraft/class_2758;	field_11199	field_11199	
-	f	Lnet/minecraft/class_2746;	field_11200	field_11200	
+	f	Lnet/minecraft/class_2758;	field_11199	DISTANCE	
+	f	Lnet/minecraft/class_2746;	field_11200	PERSISTENT	
 	f	Lnet/minecraft/class_2746;	field_0_1010		field_0_1010
 	f	Lnet/minecraft/class_2746;	field_0_1011		field_0_1011
 	f	[I	field_0_1007		field_0_1007
@@ -251,15 +251,15 @@ c	net/minecraft/class_2442
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2452
-	f	Lnet/minecraft/class_1937;	field_11409	field_11409	
-	f	Z	field_11408	field_11408	
+	f	Lnet/minecraft/class_1937;	field_11409	world	
+	f	Z	field_11408	forbidCurves	
 	f	Lnet/minecraft/class_1922;	field_11409		field_11409
-	m	(Lnet/minecraft/class_2768;)V	method_10466	method_10466	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2452;)V	method_10461	method_10461	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2338;)Z	method_10465	method_10465	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2768;)V	method_10466	computeNeighbors	
+		p	1		shape	
+	m	(Lnet/minecraft/class_2452;)V	method_10461	computeRailShape	
+		p	1		placementHelper	
+	m	(Lnet/minecraft/class_2338;)Z	method_10465	canConnect	
+		p	1		pos	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -313,7 +313,7 @@ c	net/minecraft/class_2472
 		p	8			p_8
 		p	9			p_9
 c	net/minecraft/class_2513
-	m	()Lnet/minecraft/class_2511;	method_10694	method_10694	
+	m	()Lnet/minecraft/class_2511;	method_10694	getGourdBlock	
 c	net/minecraft/class_2541
 	m	(Lnet/minecraft/class_0_378;)I	method_10822	method_10822	
 		p	1		p_1	
@@ -337,15 +337,17 @@ c	net/minecraft/class_2542
 		p	8			p_8
 		p	9			p_9
 c	net/minecraft/class_2633
-	f	Lnet/minecraft/class_2960;	field_12102	field_12102	
+	f	Lnet/minecraft/class_2960;	field_12102	templateName	
 	f	Ljava/lang/String;	field_12102		field_12102
-	m	()Z	method_11384	method_11384	
+	m	()Z	method_11384	hasStructureName	
 c	net/minecraft/class_2679
-	f	Lcom/google/common/collect/Table;	field_12288	field_12288	
+	f	Lcom/google/common/collect/Table;	field_12288	withTable	
 	f	Lcom/google/common/collect/ImmutableTable;	field_12288		field_12288
 c	net/minecraft/class_2741
-	f	Lnet/minecraft/class_2746;	field_12514	field_12514	
-	f	Lnet/minecraft/class_2758;	field_12541	field_12541	
+	f	Lnet/minecraft/class_2746;	field_12514	PERSISTENT	
+		c	A property that specifies if a block is persistent.\n\n<p>In vanilla, this is used to specify whether leaves should disappear when the logs are removed.	
+	f	Lnet/minecraft/class_2758;	field_12541	DISTANCE_1_7	
+		c	A property that specifies the overhang distance of a block on a scale of 1-7.	
 	f	Lnet/minecraft/class_2746;	field_0_17799		field_0_17799
 	f	Lnet/minecraft/class_2746;	field_0_17801		field_0_17801
 c	net/minecraft/class_2818
@@ -467,9 +469,9 @@ c	net/minecraft/class_2948
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(II)F	method_12807	method_12807	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)F	method_12807	getBaseBranchSize	
+		p	1		treeHeight	
+		p	2		branchCount	
 	m	(Ljava/util/Set;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Z)I	method_12808	method_12808	
 		p	1		p_1	
 		p	2		p_2	
@@ -481,9 +483,9 @@ c	net/minecraft/class_2948
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(II)Z	method_12801	method_12801	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)Z	method_12801	isHighEnough	
+		p	1		treeHeight	
+		p	2		height	
 	m	(Ljava/util/Set;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;I)V	method_12806	method_12806	
 		p	1		p_1	
 		p	2		p_2	
@@ -576,10 +578,10 @@ c	net/minecraft/class_3056
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_3064
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_3222;Lnet/minecraft/class_1934;)V	method_13390	method_13390	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_3222;Lnet/minecraft/class_1934;)V	method_13390	sendFeedback	
+		p	0		source	
+		p	1		player	
+		p	2		gameMode	
 c	net/minecraft/class_3084
 	f	I	field_0_15715		field_0_15715
 	m	(Ljava/util/Random;)I	method_14062	method_14062	
@@ -742,8 +744,8 @@ c	net/minecraft/class_3207
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Ljava/util/Random;)I	method_14062	method_14062	
-		p	1		p_1	
+	m	(Ljava/util/Random;)I	method_14062	getTreeHeight	
+		p	1		random	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_3281;)Z	method_0_15301		method_0_15301
 		p	1			p_1
 		p	2			p_2
@@ -757,7 +759,7 @@ c	net/minecraft/class_3207
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_3508
-	m	()I	method_15213	method_15213	
+	m	()I	method_15213	getElementBits	
 c	net/minecraft/class_3551
 	f	Lnet/minecraft/class_0_3705;	field_0_17895	field_0_17895	
 c	net/minecraft/class_3582

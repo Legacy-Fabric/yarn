@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/class_1657
-	f	Lnet/minecraft/class_1796;	field_7484	field_7484	
-	m	()Lnet/minecraft/class_1796;	method_7265	method_7265	
-	m	()V	method_7263	method_7263	
-	m	()Lnet/minecraft/class_1796;	method_7357	method_7357	
+	f	Lnet/minecraft/class_1796;	field_7484	itemCooldownManager	
+	m	()Lnet/minecraft/class_1796;	method_7265	createCooldownManager	
+	m	()V	method_7263	spawnSweepAttackParticles	
+	m	()Lnet/minecraft/class_1796;	method_7357	getItemCooldownManager	
 c	net/minecraft/class_1792
-	f	Lnet/minecraft/class_1800;	field_8007	field_8007	
+	f	Lnet/minecraft/class_1800;	field_8007	COOLDOWN_PROPERTY_GETTER	
 	m	(Lnet/minecraft/class_1792;)I	method_0_9230	method_0_9230	
 		p	0		p_0	
 c	net/minecraft/class_1792$2
@@ -120,33 +120,33 @@ c	net/minecraft/class_1792$9
 	m	(Lnet/minecraft/class_1799;)Ljava/lang/String;	method_0_8299		method_0_8299
 		p	1			p_1
 c	net/minecraft/class_1794
-	f	F	field_8022	field_8022	
+	f	F	field_8022	attackSpeed	
 	m	(Lnet/minecraft/class_1304;)Lcom/google/common/collect/Multimap;	method_7844	method_7844	
 		p	1		p_1	
-c	net/minecraft/class_1796	net/minecraft/class_1796	
-	f	Ljava/util/Map;	field_8024	field_8024	
-	f	I	field_8025	field_8025	
+c	net/minecraft/class_1796	net/minecraft/entity/player/ItemCooldownManager	
+	f	Ljava/util/Map;	field_8024	entries	
+	f	I	field_8025	tick	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/class_1792;)Z	method_7904	method_7904	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1792;F)F	method_7905	method_7905	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	method_7903	method_7903	
-	m	(Lnet/minecraft/class_1792;I)V	method_7906	method_7906	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1792;)V	method_7900	method_7900	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1792;I)V	method_7902	method_7902	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1792;)V	method_7901	method_7901	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1792;)Z	method_7904	isCoolingDown	
+		p	1		item	
+	m	(Lnet/minecraft/class_1792;F)F	method_7905	getCooldownProgress	
+		p	1		item	
+		p	2		tickDelta	
+	m	()V	method_7903	update	
+	m	(Lnet/minecraft/class_1792;I)V	method_7906	set	
+		p	1		item	
+		p	2		duration	
+	m	(Lnet/minecraft/class_1792;)V	method_7900	remove	
+		p	1		item	
+	m	(Lnet/minecraft/class_1792;I)V	method_7902	onCooldownUpdate	
+		p	1		item	
+		p	2		duration	
+	m	(Lnet/minecraft/class_1792;)V	method_7901	onCooldownUpdate	
+		p	1		item	
 c	net/minecraft/class_1796$1	1	
-c	net/minecraft/class_1796$class_1797	class_1797	
-	f	I	field_8028	field_8028	
-	f	I	field_8027	field_8027	
+c	net/minecraft/class_1796$class_1797	Entry	
+	f	I	field_8028	startTick	
+	f	I	field_8027	endTick	
 	f	Lnet/minecraft/class_1796;	field_8026	field_8026	
 	m	(Lnet/minecraft/class_1796;II)V	<init>	<init>	
 		p	1		p_1	
@@ -157,8 +157,8 @@ c	net/minecraft/class_1796$class_1797	class_1797
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_1817	net/minecraft/class_1817	
-	f	Lnet/minecraft/class_3222;	field_8910	field_8910	
+c	net/minecraft/class_1817	net/minecraft/server/network/ServerItemCooldownManager	
+	f	Lnet/minecraft/class_3222;	field_8910	player	
 	m	(Lnet/minecraft/class_3222;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1792;I)V	method_7902	method_7902	
@@ -169,19 +169,21 @@ c	net/minecraft/class_1817	net/minecraft/class_1817
 c	net/minecraft/class_2396
 	f	Lnet/minecraft/class_2396;	field_0_9905	field_0_9905	
 c	net/minecraft/class_2540
-	m	([J)[J	method_10801	method_10801	
-		p	1		p_1	
+	m	([J)[J	method_10801	readLongArray	
+		c	Reads an array of primitive longs from this buf. The array first has a\nvar int indicating its length, followed by the regular long (not var\nlong) values. The array does not have a length limit.\n\n<p>Only when {@code toArray} is not {@code null} and {@code\ntoArray.length} equals to the length var int read will the {@code\ntoArray} be reused and returned; otherwise, a new array\nof proper size is created.\n\n@see #writeLongArray(long[])\n@see #readLongArray()\n@see #readLongArray(long[], int)\n@return the read long array	
+		p	1		toArray	
+			c	the array to reuse	
 	m	([J)V	method_10789	method_10789	
 		p	1		p_1	
 	m	([I)V	method_0_9253	method_0_9253	
 		p	1		p_1	
 	m	()[I	method_0_9255	method_0_9255	
 c	net/minecraft/class_2602
-	m	(Lnet/minecraft/class_2656;)V	method_11087	method_11087	
-		p	1		p_1	
-c	net/minecraft/class_2656	net/minecraft/class_2656	
-	f	Lnet/minecraft/class_1792;	field_12154	field_12154	
-	f	I	field_12155	field_12155	
+	m	(Lnet/minecraft/class_2656;)V	method_11087	onCooldownUpdate	
+		p	1		packet	
+c	net/minecraft/class_2656	net/minecraft/network/packet/s2c/play/CooldownUpdateS2CPacket	
+	f	Lnet/minecraft/class_1792;	field_12154	item	
+	f	I	field_12155	cooldown	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1792;I)V	<init>	<init>	
 		p	1		p_1	
@@ -192,15 +194,15 @@ c	net/minecraft/class_2656	net/minecraft/class_2656
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2602;)V	method_11455	method_11455	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_1792;	method_11453	method_11453	
-	m	()I	method_11454	method_11454	
+	m	()Lnet/minecraft/class_1792;	method_11453	getItem	
+	m	()I	method_11454	getCooldown	
 	m	(Lnet/minecraft/class_2547;)V	method_11054	method_11054	
 		p	1		p_1	
 c	net/minecraft/class_2672
-	f	I	field_12234	field_12234	
+	f	I	field_12234	verticalStripBitmask	
 	f	Lnet/minecraft/class_2540;	field_0_9909	field_0_9909	
 	f	Lnet/minecraft/class_2672$class_0_1498;	field_0_6163		field_0_6163
-	m	()Lnet/minecraft/class_2540;	method_11521	method_11521	
+	m	()Lnet/minecraft/class_2540;	method_11521	getReadBuffer	
 	m	(Lnet/minecraft/class_2540;Lnet/minecraft/class_2818;ZZI)I	method_11529	method_11529	
 		p	0		p_0	
 		p	1		p_1	
@@ -221,12 +223,13 @@ c	net/minecraft/class_2672$class_0_1498		class_0_1498
 	f	[B	field_0_6165		field_0_6165
 	f	I	field_0_6166		field_0_6166
 	m	()V	<init>		<init>
-c	net/minecraft/class_2814	net/minecraft/class_2814	
+c	net/minecraft/class_2814	net/minecraft/world/chunk/BiMapPalette	
+	c	A palette backed by a bidirectional hash table.	
 	f	[Ljava/lang/Integer;	field_0_9894	field_0_9894	
 	f	I	field_0_9896	field_0_9896	
 	f	Ljava/util/List;	field_0_9897	field_0_9897	
 	f	Lnet/minecraft/class_2814$class_2835;	field_12825	field_12825	
-	f	Lnet/minecraft/class_3513;	field_12824	field_12824	
+	f	Lnet/minecraft/class_3513;	field_12824	map	
 	m	(Lnet/minecraft/class_2540;)V	method_12289	method_12289	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2540;)V	method_12287	method_12287	
@@ -242,7 +245,7 @@ c	net/minecraft/class_2814$class_2835	class_2835
 	m	(I)Lnet/minecraft/class_2841;	method_0_9251	method_0_9251	
 		p	1		p_1	
 c	net/minecraft/class_2818
-	f	Lnet/minecraft/class_2826;	field_12852	field_12852	
+	f	Lnet/minecraft/class_2826;	field_12852	EMPTY_SECTION	
 	m	(Lnet/minecraft/class_2540;IZ)V	method_12224	method_12224	
 		p	1		p_1	
 		p	2		p_2	
@@ -252,21 +255,24 @@ c	net/minecraft/class_2818
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2826
-	f	Lnet/minecraft/class_2841;	field_12878	field_12878	
+	f	Lnet/minecraft/class_2841;	field_12878	blockStateContainer	
 	f	[C	field_12878		field_12878
-	m	()Lnet/minecraft/class_2841;	method_12265	method_12265	
+	m	()Lnet/minecraft/class_2841;	method_12265	getBlockStateContainer	
 	m	()[C	method_12265		method_12265
 	m	([C)V	method_0_1424		method_0_1424
 		p	1			p_1
-c	net/minecraft/class_2841	net/minecraft/class_2841	
-	f	Lnet/minecraft/class_3508;	field_12941	field_12941	
+c	net/minecraft/class_2841	net/minecraft/world/chunk/PalettedContainer	
+	c	A paletted container stores objects in 3D voxels as small integer indices,\ngoverned by "palettes" that map between these objects and indices.\n\n@see Palette	
+	f	Lnet/minecraft/class_3508;	field_12941	data	
 	f	Lnet/minecraft/class_2814;	field_12936	field_12936	
-	m	(III)I	method_12323	method_12323	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2540;)V	method_12326	method_12326	
-		p	1		p_1	
+	m	(III)I	method_12323	toIndex	
+		p	0		x	
+		p	1		y	
+		p	2		z	
+	m	(Lnet/minecraft/class_2540;)V	method_12326	readPacket	
+		c	Reads data from the packet byte buffer into this container. Previous data\nin this container is discarded.	
+		p	1		buf	
+			c	the packet byte buffer	
 	m	(Lnet/minecraft/class_2540;)V	method_12325	method_12325	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -294,16 +300,16 @@ c	net/minecraft/class_2841	net/minecraft/class_2841
 	m	(I)Lnet/minecraft/class_2841;	method_0_9251	method_0_9251	
 		p	1		p_1	
 c	net/minecraft/class_310
-	m	()F	method_1488	method_1488	
+	m	()F	method_1488	getTickDelta	
 c	net/minecraft/class_3222
 	m	()Lnet/minecraft/class_1796;	method_7265	method_7265	
 	m	(Lnet/minecraft/class_1268;)V	method_6104	method_6104	
 		p	1		p_1	
-c	net/minecraft/class_3508	net/minecraft/class_3508	
-	f	[J	field_15631	field_15631	
-	f	I	field_15633	field_15633	
-	f	J	field_15634	field_15634	
-	f	I	field_15632	field_15632	
+c	net/minecraft/class_3508	net/minecraft/util/collection/PackedIntegerArray	
+	f	[J	field_15631	data	
+	f	I	field_15633	elementBits	
+	f	J	field_15634	maxValue	
+	f	I	field_15632	size	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -318,7 +324,7 @@ c	net/minecraft/class_3508	net/minecraft/class_3508
 c	net/minecraft/class_634
 	m	(Lnet/minecraft/class_2656;)V	method_11087	method_11087	
 		p	1		p_1	
-c	net/minecraft/class_645	net/minecraft/class_645	
+c	net/minecraft/class_645	net/minecraft/client/particle/SweepAttackParticle	
 	f	Lnet/minecraft/class_2960;	field_3782	field_3782	
 	f	Lnet/minecraft/class_293;	field_3783	field_3783	
 	f	I	field_3787	field_3787	
@@ -348,7 +354,7 @@ c	net/minecraft/class_645	net/minecraft/class_645
 	m	()V	method_3070	method_3070	
 	m	()I	method_3079	method_3079	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_645$class_646	class_646	
+c	net/minecraft/class_645$class_646	Factory	
 	m	()V	<init>	<init>	
 	m	(ILnet/minecraft/class_1937;DDDDDD[I)Lnet/minecraft/class_703;	method_3090	method_3090	
 		p	1		p_1	

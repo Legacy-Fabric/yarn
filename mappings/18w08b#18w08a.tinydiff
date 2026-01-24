@@ -4,7 +4,7 @@ c	net/minecraft/class_1299
 	f	Lnet/minecraft/class_1299;	field_6062	field_6062	
 	f	Lnet/minecraft/class_1299;	field_6073	field_6073	
 c	net/minecraft/class_1338
-	f	Ljava/util/function/Predicate;	field_6388	field_6388	
+	f	Ljava/util/function/Predicate;	field_6388	inclusionSelector	
 	m	(Lnet/minecraft/class_1314;Ljava/lang/Class;Ljava/util/function/Predicate;FDDLjava/util/function/Predicate;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -31,8 +31,8 @@ c	net/minecraft/class_1338
 		p	4			p_4
 		p	5			p_5
 		p	7			p_7
-c	net/minecraft/class_1349	net/minecraft/class_1349	
-	f	I	field_6440	field_6440	
+c	net/minecraft/class_1349	net/minecraft/entity/ai/goal/FollowGroupLeaderGoal	
+	f	I	field_6440	moveDelay	
 	f	Lnet/minecraft/class_1422;	field_6441	field_6441	
 	f	Lnet/minecraft/class_1422;	field_6439	field_6439	
 	m	()Z	method_6264	method_6264	
@@ -42,8 +42,8 @@ c	net/minecraft/class_1349	net/minecraft/class_1349
 	m	()V	method_6268	method_6268	
 	m	(Lnet/minecraft/class_1422;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/class_1422	net/minecraft/class_1422	
-	f	Lnet/minecraft/class_2940;	field_6730	field_6730	
+c	net/minecraft/class_1422	net/minecraft/entity/passive/FishEntity	
+	f	Lnet/minecraft/class_2940;	field_6730	FROM_BUCKET	
 	f	Z	field_0_16412	field_0_16412	
 	f	I	field_0_16409	field_0_16409	
 	f	Z	field_0_16411	field_0_16411	
@@ -71,7 +71,7 @@ c	net/minecraft/class_1422	net/minecraft/class_1422
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_1799;	method_6452	method_6452	
-	m	()Lnet/minecraft/class_3414;	method_6457	method_6457	
+	m	()Lnet/minecraft/class_3414;	method_6457	getFlopSound	
 	m	()Lnet/minecraft/class_3414;	method_5737	method_5737	
 	m	()V	<clinit>	<clinit>	
 	m	()Z	method_0_15797	method_0_15797	
@@ -90,19 +90,19 @@ c	net/minecraft/class_1422	net/minecraft/class_1422
 	m	()Z	method_5675	method_5675	
 	m	(Lnet/minecraft/class_1657;)Z	method_5931	method_5931	
 		p	1		p_1	
-c	net/minecraft/class_1422$class_1423	class_1423	
-	f	Lnet/minecraft/class_1422;	field_6731	field_6731	
+c	net/minecraft/class_1422$class_1423	FishMoveControl	
+	f	Lnet/minecraft/class_1422;	field_6731	fish	
 	m	(Lnet/minecraft/class_1422;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_6240	method_6240	
-c	net/minecraft/class_1422$class_1424	class_1424	
-	f	Lnet/minecraft/class_1422;	field_6732	field_6732	
+c	net/minecraft/class_1422$class_1424	SwimToRandomPlaceGoal	
+	f	Lnet/minecraft/class_1422;	field_6732	fish	
 	m	(Lnet/minecraft/class_1422;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
 	m	()Lnet/minecraft/class_243;	method_6302	method_6302	
 	m	()Z	method_6266	method_6266	
-c	net/minecraft/class_1431	net/minecraft/class_1431	
+c	net/minecraft/class_1431	net/minecraft/entity/passive/CodEntity	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_1799;	method_6452	method_6452	
@@ -113,16 +113,16 @@ c	net/minecraft/class_1431	net/minecraft/class_1431
 		p	1		p_1	
 	m	()Lnet/minecraft/class_3414;	method_6457	method_6457	
 	m	()V	method_5959	method_5959	
-c	net/minecraft/class_1454	net/minecraft/class_1454	
-	f	Lnet/minecraft/class_2940;	field_6835	field_6835	
-	f	I	field_6833	field_6833	
-	f	I	field_6832	field_6832	
+c	net/minecraft/class_1454	net/minecraft/entity/passive/PufferfishEntity	
+	f	Lnet/minecraft/class_2940;	field_6835	PUFF_STATE	
+	f	I	field_6833	inflateTicks	
+	f	I	field_6832	deflateTicks	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_5693	method_5693	
-	m	()I	method_6594	method_6594	
-	m	(I)V	method_6596	method_6596	
-		p	1		p_1	
+	m	()I	method_6594	getPuffState	
+	m	(I)V	method_6596	setPuffState	
+		p	1		puffState	
 	m	(Lnet/minecraft/class_2487;)V	method_5652	method_5652	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_5749	method_5749	
@@ -145,15 +145,15 @@ c	net/minecraft/class_1454	net/minecraft/class_1454
 		p	0		p_0	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1454$class_1455	class_1455	
-	f	Lnet/minecraft/class_1454;	field_6836	field_6836	
+c	net/minecraft/class_1454$class_1455	InflateGoal	
+	f	Lnet/minecraft/class_1454;	field_6836	pufferfish	
 	m	(Lnet/minecraft/class_1454;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
 	m	()V	method_6269	method_6269	
 	m	()V	method_6270	method_6270	
 	m	()Z	method_6266	method_6266	
-c	net/minecraft/class_1462	net/minecraft/class_1462	
+c	net/minecraft/class_1462	net/minecraft/entity/passive/SalmonEntity	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_2960;	method_5991	method_5991	
@@ -173,10 +173,10 @@ c	net/minecraft/class_1720
 c	net/minecraft/class_1723
 	m	()I	method_7658	method_7658	
 c	net/minecraft/class_1729
-	m	()I	method_7658	method_7658	
+	m	()I	method_7658	getCraftingSlotCount	
 c	net/minecraft/class_1755
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7732	method_7732	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7732	getEmptiedStack	
+		p	1		player	
 		p	2		p_2	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1799;Lnet/minecraft/class_2338;)Z	method_7728	method_7728	
 		p	1		p_1	
@@ -186,8 +186,8 @@ c	net/minecraft/class_1755
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_1785	net/minecraft/class_1785	
-	f	Lnet/minecraft/class_1299;	field_7991	field_7991	
+c	net/minecraft/class_1785	net/minecraft/item/EntityBucketItem	
+	f	Lnet/minecraft/class_1299;	field_7991	entityType	
 	m	(Lnet/minecraft/class_1299;Lnet/minecraft/class_2248;Lnet/minecraft/class_1792$class_1793;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -284,14 +284,15 @@ c	net/minecraft/class_39
 	f	Lnet/minecraft/class_2960;	field_657	field_657	
 	f	Lnet/minecraft/class_2960;	field_256	field_256	
 	f	Lnet/minecraft/class_2960;	field_327	field_327	
-c	net/minecraft/class_561	net/minecraft/class_561	
-	f	Lnet/minecraft/class_630;	field_3353	field_3353	
-	f	Lnet/minecraft/class_630;	field_3355	field_3355	
-	f	Lnet/minecraft/class_630;	field_3354	field_3354	
-	f	Lnet/minecraft/class_630;	field_3352	field_3352	
-	f	Lnet/minecraft/class_630;	field_3351	field_3351	
-	f	Lnet/minecraft/class_630;	field_3356	field_3356	
-	f	Lnet/minecraft/class_630;	field_3350	field_3350	
+c	net/minecraft/class_561	net/minecraft/client/render/entity/model/CodEntityModel	
+	c	Represents the model of a cod-like entity.\n\n<div class="fabric">\n<table border=1>\n<caption>Model parts of this model</caption>\n<tr>\n  <th>Part Name</th><th>Parent</th><th>Corresponding Field</th>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#BODY}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#HEAD}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#NOSE}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#RIGHT_FIN}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#LEFT_FIN}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#TAIL_FIN}</td><td>{@linkplain #root Root part}</td><td>{@link #tailFin}</td>\n</tr>\n<tr>\n  <td>{@value EntityModelPartNames#TOP_FIN}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n</table>\n</div>	
+	f	Lnet/minecraft/class_630;	field_3353	body	
+	f	Lnet/minecraft/class_630;	field_3355	topFin	
+	f	Lnet/minecraft/class_630;	field_3354	head	
+	f	Lnet/minecraft/class_630;	field_3352	face	
+	f	Lnet/minecraft/class_630;	field_3351	rightFin	
+	f	Lnet/minecraft/class_630;	field_3356	leftFin	
+	f	Lnet/minecraft/class_630;	field_3350	tailFin	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1297;FFFFFF)V	method_2819	method_2819	
 		p	1		p_1	
@@ -310,7 +311,7 @@ c	net/minecraft/class_561	net/minecraft/class_561
 		p	6		p_6	
 		p	7		p_7	
 	m	()I	method_0_15810	method_0_15810	
-c	net/minecraft/class_592	net/minecraft/class_592	
+c	net/minecraft/class_592	net/minecraft/client/render/entity/model/LargePufferfishEntityModel	
 	f	Lnet/minecraft/class_630;	field_3493	field_3493	
 	f	Lnet/minecraft/class_630;	field_3499	field_3499	
 	f	Lnet/minecraft/class_630;	field_3494	field_3494	
@@ -341,7 +342,7 @@ c	net/minecraft/class_592	net/minecraft/class_592
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_594	net/minecraft/class_594	
+c	net/minecraft/class_594	net/minecraft/client/render/entity/model/SmallPufferfishEntityModel	
 	f	Lnet/minecraft/class_630;	field_3505	field_3505	
 	f	Lnet/minecraft/class_630;	field_3507	field_3507	
 	f	Lnet/minecraft/class_630;	field_3506	field_3506	
@@ -365,7 +366,7 @@ c	net/minecraft/class_594	net/minecraft/class_594
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_595	net/minecraft/class_595	
+c	net/minecraft/class_595	net/minecraft/client/render/entity/model/MediumPufferfishEntityModel	
 	f	Lnet/minecraft/class_630;	field_3516	field_3516	
 	f	Lnet/minecraft/class_630;	field_3518	field_3518	
 	f	Lnet/minecraft/class_630;	field_3517	field_3517	
@@ -394,15 +395,15 @@ c	net/minecraft/class_595	net/minecraft/class_595
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_599	net/minecraft/class_599	
-	f	Lnet/minecraft/class_630;	field_3546	field_3546	
-	f	Lnet/minecraft/class_630;	field_3548	field_3548	
-	f	Lnet/minecraft/class_630;	field_3547	field_3547	
-	f	Lnet/minecraft/class_630;	field_3545	field_3545	
-	f	Lnet/minecraft/class_630;	field_3543	field_3543	
-	f	Lnet/minecraft/class_630;	field_3549	field_3549	
-	f	Lnet/minecraft/class_630;	field_3542	field_3542	
-	f	Lnet/minecraft/class_630;	field_3544	field_3544	
+c	net/minecraft/class_599	net/minecraft/client/render/entity/model/SalmonEntityModel	
+	f	Lnet/minecraft/class_630;	field_3546	torso	
+	f	Lnet/minecraft/class_630;	field_3548	tail	
+	f	Lnet/minecraft/class_630;	field_3547	head	
+	f	Lnet/minecraft/class_630;	field_3545	topFin	
+	f	Lnet/minecraft/class_630;	field_3543	tailPartB	
+	f	Lnet/minecraft/class_630;	field_3549	tailPartA	
+	f	Lnet/minecraft/class_630;	field_3542	rightFin	
+	f	Lnet/minecraft/class_630;	field_3544	leftFin	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1297;FFFFFF)V	method_2819	method_2819	
 		p	1		p_1	
@@ -422,10 +423,11 @@ c	net/minecraft/class_599	net/minecraft/class_599
 		p	7		p_7	
 	m	()I	method_0_15811	method_0_15811	
 c	net/minecraft/class_746
-	f	I	field_3917	field_3917	
-	m	()F	method_3140	method_3140	
-c	net/minecraft/class_885	net/minecraft/class_885	
-	f	Lnet/minecraft/class_2960;	field_4652	field_4652	
+	f	I	field_3917	underwaterVisibilityTicks	
+	m	()F	method_3140	getUnderwaterVisibility	
+		c	{@return the color multiplier of vision in water} Visibility in\nwater is reduced when the player just entered water.	
+c	net/minecraft/class_885	net/minecraft/client/render/entity/CodEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4652	TEXTURE	
 	f	I	field_0_16484	field_0_16484	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
@@ -472,12 +474,12 @@ c	net/minecraft/class_885	net/minecraft/class_885
 		p	6		p_6	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_936	net/minecraft/class_936	
-	f	Lnet/minecraft/class_2960;	field_4762	field_4762	
-	f	I	field_4765	field_4765	
-	f	Lnet/minecraft/class_594;	field_4761	field_4761	
-	f	Lnet/minecraft/class_595;	field_4764	field_4764	
-	f	Lnet/minecraft/class_592;	field_4763	field_4763	
+c	net/minecraft/class_936	net/minecraft/client/render/entity/PufferfishEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4762	TEXTURE	
+	f	I	field_4765	modelSize	
+	f	Lnet/minecraft/class_594;	field_4761	smallModel	
+	f	Lnet/minecraft/class_595;	field_4764	mediumModel	
+	f	Lnet/minecraft/class_592;	field_4763	largeModel	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1454;)Lnet/minecraft/class_2960;	method_4096	method_4096	
@@ -523,8 +525,8 @@ c	net/minecraft/class_936	net/minecraft/class_936
 		p	8		p_8	
 		p	9		p_9	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_938	net/minecraft/class_938	
-	f	Lnet/minecraft/class_2960;	field_4767	field_4767	
+c	net/minecraft/class_938	net/minecraft/client/render/entity/SalmonEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4767	TEXTURE	
 	f	I	field_0_16491	field_0_16491	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	

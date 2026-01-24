@@ -21,10 +21,10 @@ c	net/minecraft/class_1166
 		p	3		p_3	
 	m	(Lnet/minecraft/class_0_3806;)Lnet/minecraft/class_0_3806;	method_4977		method_4977
 		p	0			p_0
-c	net/minecraft/class_1187	net/minecraft/class_1187	
-	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_5681	field_5681	
+c	net/minecraft/class_1187	net/minecraft/datafixer/fix/ItemStackEnchantmentFix	
+	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_5681	ID_TO_ENCHANTMENTS_MAP	
 	m	(Lit/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap;)V	method_5033	method_5033	
-		p	0		p_0	
+		p	0		map	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>	<init>	
 		p	1		p_1	
@@ -67,9 +67,9 @@ c	net/minecraft/class_1279
 		p	1			p_1
 	m	()Z	method_3721		method_3721
 c	net/minecraft/class_1297
-	m	(FI)V	method_5683	method_5683	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FI)V	method_5683	updateTrackedHeadRotation	
+		p	1		yaw	
+		p	2		interpolationSteps	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)V	method_5712	method_5712	
 		p	1		p_1	
 		p	2		p_2	
@@ -92,21 +92,21 @@ c	net/minecraft/class_1299
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;ZLnet/minecraft/class_238;)D	method_5884	method_5884	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;ZLnet/minecraft/class_238;)D	method_5884	getOriginY	
+		p	0		world	
+		p	1		pos	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_2487;)V	method_5881	method_5881	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	3		boundingBox	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1297;Lnet/minecraft/class_2487;)V	method_5881	loadFromEntityNbt	
+		p	0		world	
+		p	1		player	
+		p	2		entity	
+		p	3		itemNbt	
 c	net/minecraft/class_1308
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_1304;)Z	method_5955	method_5955	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;Lnet/minecraft/class_1304;)Z	method_5955	isBetterItemFor	
+		p	1		current	
+		p	2		previous	
+		p	3		slot	
 	m	(Lnet/minecraft/class_1266;Lnet/minecraft/class_1315;Lnet/minecraft/class_2487;)Lnet/minecraft/class_1315;	method_5943	method_5943	
 		p	1		p_1	
 		p	2		p_2	
@@ -116,8 +116,8 @@ c	net/minecraft/class_1308
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1309
-	f	D	field_6242	field_6242	
-	f	I	field_6265	field_6265	
+	f	D	field_6242	serverHeadYaw	
+	f	I	field_6265	headTrackingIncrements	
 	m	(FI)V	method_5683	method_5683	
 		p	1		p_1	
 		p	2		p_2	
@@ -147,15 +147,15 @@ c	net/minecraft/class_1430
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1433
-	f	Lnet/minecraft/class_2940;	field_6747	field_6747	
-	f	Lnet/minecraft/class_2940;	field_6750	field_6750	
-	f	Lnet/minecraft/class_2940;	field_6749	field_6749	
-	m	(Lnet/minecraft/class_2338;)V	method_6493	method_6493	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2338;	method_6494	method_6494	
-	m	()Z	method_6487	method_6487	
-	m	(Z)V	method_6486	method_6486	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2940;	field_6747	TREASURE_POS	
+	f	Lnet/minecraft/class_2940;	field_6750	HAS_FISH	
+	f	Lnet/minecraft/class_2940;	field_6749	MOISTNESS	
+	m	(Lnet/minecraft/class_2338;)V	method_6493	setTreasurePos	
+		p	1		treasurePos	
+	m	()Lnet/minecraft/class_2338;	method_6494	getTreasurePos	
+	m	()Z	method_6487	hasFish	
+	m	(Z)V	method_6486	setHasFish	
+		p	1		hasFish	
 	m	()V	method_5693	method_5693	
 	m	(Lnet/minecraft/class_2487;)V	method_5652	method_5652	
 		p	1		p_1	
@@ -163,7 +163,7 @@ c	net/minecraft/class_1433
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1542;)V	method_5949	method_5949	
 		p	1		p_1	
-	m	()Z	method_6484	method_6484	
+	m	()Z	method_6484	isNearTarget	
 	m	(Lnet/minecraft/class_1266;Lnet/minecraft/class_1315;Lnet/minecraft/class_2487;)Lnet/minecraft/class_1315;	method_5943	method_5943	
 		p	1		p_1	
 		p	2		p_2	
@@ -185,9 +185,9 @@ c	net/minecraft/class_1433
 		p	2			p_2
 		p	3			p_3
 	m	()Z	method_5936		method_5936
-c	net/minecraft/class_1433$class_1435	class_1435	
-	f	Lnet/minecraft/class_1433;	field_6752	field_6752	
-	f	Z	field_6753	field_6753	
+c	net/minecraft/class_1433$class_1435	LeadToNearbyTreasureGoal	
+	f	Lnet/minecraft/class_1433;	field_6752	dolphin	
+	f	Z	field_6753	noPathToStructure	
 	m	(Lnet/minecraft/class_1433;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6267	method_6267	
@@ -529,9 +529,9 @@ c	net/minecraft/class_1646
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_1657
-	m	()Lnet/minecraft/class_2561;	method_7306	method_7306	
-	m	(Lnet/minecraft/class_2561;)Lnet/minecraft/class_2561;	method_7299	method_7299	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_2561;	method_7306	getNameAndUuid	
+	m	(Lnet/minecraft/class_2561;)Lnet/minecraft/class_2561;	method_7299	addTellClickEvent	
+		p	1		component	
 c	net/minecraft/class_1772
 	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;	method_7862		method_7862
 		p	1			p_1
@@ -542,11 +542,13 @@ c	net/minecraft/class_1791
 	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;	method_7862		method_7862
 		p	1			p_1
 c	net/minecraft/class_1792
-	f	Lnet/minecraft/class_1814;	field_8009	field_8009	
+	f	Lnet/minecraft/class_1814;	field_8009	rarity	
 c	net/minecraft/class_1792$class_1793
-	f	Lnet/minecraft/class_1814;	field_8016	field_8016	
-	m	(Lnet/minecraft/class_1814;)Lnet/minecraft/class_1792$class_1793;	method_7894	method_7894	
-		p	1		p_1	
+	f	Lnet/minecraft/class_1814;	field_8016	rarity	
+	m	(Lnet/minecraft/class_1814;)Lnet/minecraft/class_1792$class_1793;	method_7894	rarity	
+		c	Sets the {@link Rarity} of any item configured with this Settings instance, which changes the color of its name.\n\n<p>An item's rarity defaults to {@link Rarity#COMMON}.\n\n@return this instance	
+		p	1		rarity	
+			c	rarity to apply to items using this Settings instance	
 	m	(Lnet/minecraft/class_1792$class_1793;)Lnet/minecraft/class_1814;	method_7899	method_7899	
 		p	0		p_0	
 c	net/minecraft/class_1792$5	5	
@@ -556,11 +558,11 @@ c	net/minecraft/class_1813
 	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1814;	method_7862		method_7862
 		p	1			p_1
 c	net/minecraft/class_1826
-	m	(Lnet/minecraft/class_2487;Lnet/minecraft/class_1299;)Z	method_8018	method_8018	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_1299;	method_8015	method_8015	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;Lnet/minecraft/class_1299;)Z	method_8018	isOfSameEntityType	
+		p	1		nbt	
+		p	2		type	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_1299;	method_8015	getEntityType	
+		p	1		nbt	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;ZZ)Lnet/minecraft/class_1297;	method_0_25		method_0_25
 		p	1			p_1
 		p	2			p_2
@@ -614,9 +616,9 @@ c	net/minecraft/class_2241$class_2768		class_2768
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2244
-	m	(Lnet/minecraft/class_2742;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_9488	method_9488	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2742;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_9488	getDirectionTowardsOtherPart	
+		p	0		part	
+		p	1		direction	
 	m	(Lnet/minecraft/class_2244$class_2742;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2350;	method_9488		method_9488
 		p	0			p_0
 		p	1			p_1
@@ -636,15 +638,15 @@ c	net/minecraft/class_2244$class_2742		class_2742
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2248
-	m	(Lnet/minecraft/class_265;Lnet/minecraft/class_2350;)Z	method_9501	method_9501	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_265;)Z	method_9614	method_9614	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_265;Lnet/minecraft/class_2350;)Z	method_9501	isFaceFullSquare	
+		p	0		shape	
+		p	1		side	
+	m	(Lnet/minecraft/class_265;)Z	method_9614	isShapeFullCube	
+		p	0		shape	
 c	net/minecraft/class_2258
-	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Z	method_9658	method_9658	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)Z	method_9658	isStillWater	
+		p	0		world	
+		p	1		pos	
 c	net/minecraft/class_2281
 c	net/minecraft/class_2281$class_2745		class_2745
 	f	Lnet/minecraft/class_2281$class_2745;	field_12569		field_12569
@@ -682,12 +684,12 @@ c	net/minecraft/class_2286$class_2747		class_2747
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2310
-	m	(FFFFF)[Lnet/minecraft/class_265;	method_9984	method_9984	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(FFFFF)[Lnet/minecraft/class_265;	method_9984	createShapes	
+		p	1		radius1	
+		p	2		radius2	
+		p	3		height1	
+		p	4		offset2	
+		p	5		height2	
 	m	(FFFF)[Lnet/minecraft/class_265;	method_9984		method_9984
 		p	1			p_1
 		p	2			p_2
@@ -724,8 +726,8 @@ c	net/minecraft/class_2320$class_0_197		class_0_197
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2323
-	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_2750;	method_10035	method_10035	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_2750;	method_10035	getHinge	
+		p	1		ctx	
 	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_2323$class_2750;	method_10035		method_10035
 		p	1			p_1
 c	net/minecraft/class_2323$class_0_194		class_0_194
@@ -771,10 +773,10 @@ c	net/minecraft/class_2341$class_2738		class_2738
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2349
-	f	Lnet/minecraft/class_265;	field_11018	field_11018	
-	f	Lnet/minecraft/class_265;	field_11023	field_11023	
-	f	Lnet/minecraft/class_265;	field_11020	field_11020	
-	f	Lnet/minecraft/class_265;	field_11027	field_11027	
+	f	Lnet/minecraft/class_265;	field_11018	Z_AXIS_CULL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_11023	X_AXIS_CULL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_11020	IN_WALL_Z_AXIS_CULL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_11027	IN_WALL_X_AXIS_CULL_SHAPE	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Lnet/minecraft/class_265;	method_9571	method_9571	
 		p	1		p_1	
 		p	2		p_2	
@@ -851,12 +853,12 @@ c	net/minecraft/class_2428$class_2766		class_2766
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2442
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;ZILnet/minecraft/class_2768;)Z	method_10414	method_10414	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;ZILnet/minecraft/class_2768;)Z	method_10414	isPoweredByOtherRails	
+		p	1		world	
+		p	2		pos	
 		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	4		distance	
+		p	5		shape	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;ZILnet/minecraft/class_2241$class_2768;)Z	method_10414		method_10414
 		p	1			p_1
 		p	2			p_2
@@ -928,10 +930,10 @@ c	net/minecraft/class_2452
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_2457
-	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2773;	method_10477	method_10477	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2773;	method_10477	getRenderConnectionType	
+		p	1		world	
+		p	2		pos	
+		p	3		direction	
 	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2350;)Lnet/minecraft/class_2457$class_2773;	method_10477		method_10477
 		p	1			p_1
 		p	2			p_2
@@ -953,7 +955,7 @@ c	net/minecraft/class_2457$class_2773		class_2773
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2475
-	f	Lnet/minecraft/class_2754;	field_11484	field_11484	
+	f	Lnet/minecraft/class_2754;	field_11484	HALF	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2482
 c	net/minecraft/class_2482$class_2771		class_2771
@@ -1015,7 +1017,7 @@ c	net/minecraft/class_2510$class_2778		class_2778
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_2525
-	f	Lnet/minecraft/class_2754;	field_11616	field_11616	
+	f	Lnet/minecraft/class_2754;	field_11616	HALF	
 c	net/minecraft/class_2533
 c	net/minecraft/class_2533$class_0_331		class_0_331
 	f	Lnet/minecraft/class_2533$class_0_331;	field_0_1282		field_0_1282
@@ -1041,11 +1043,11 @@ c	net/minecraft/class_26
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2633
-	f	Lnet/minecraft/class_2776;	field_12094	field_12094	
+	f	Lnet/minecraft/class_2776;	field_12094	mode	
 	f	Lnet/minecraft/class_2633$class_2776;	field_12094		field_12094
-	m	()Lnet/minecraft/class_2776;	method_11374	method_11374	
-	m	(Lnet/minecraft/class_2776;)V	method_11381	method_11381	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_2776;	method_11374	getMode	
+	m	(Lnet/minecraft/class_2776;)V	method_11381	setMode	
+		p	1		mode	
 	m	()Lnet/minecraft/class_2633$class_2776;	method_11374		method_11374
 	m	(Lnet/minecraft/class_2633$class_2776;)V	method_11381		method_11381
 		p	1			p_1
@@ -1081,11 +1083,11 @@ c	net/minecraft/class_2671$class_2764		class_2764
 	m	()Ljava/lang/String;	toString		toString
 	m	()Ljava/lang/String;	method_15434		method_15434
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_2738	net/minecraft/class_2738	
+c	net/minecraft/class_2738	net/minecraft/block/enums/WallMountLocation	
 	f	Lnet/minecraft/class_2738;	field_12475	field_12475	
 	f	Lnet/minecraft/class_2738;	field_12471	field_12471	
 	f	Lnet/minecraft/class_2738;	field_12473	field_12473	
-	f	Ljava/lang/String;	field_12472	field_12472	
+	f	Ljava/lang/String;	field_12472	name	
 	f	[Lnet/minecraft/class_2738;	field_12474	field_12474	
 	m	()[Lnet/minecraft/class_2738;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2738;	valueOf	valueOf	
@@ -1096,83 +1098,155 @@ c	net/minecraft/class_2738	net/minecraft/class_2738
 		p	3		p_3	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2741	net/minecraft/class_2741	
-	f	Lnet/minecraft/class_2746;	field_12493	field_12493	
-	f	Lnet/minecraft/class_2746;	field_12486	field_12486	
-	f	Lnet/minecraft/class_2746;	field_12553	field_12553	
-	f	Lnet/minecraft/class_2746;	field_12526	field_12526	
-	f	Lnet/minecraft/class_2746;	field_12515	field_12515	
-	f	Lnet/minecraft/class_2746;	field_12552	field_12552	
-	f	Lnet/minecraft/class_2746;	field_12488	field_12488	
-	f	Lnet/minecraft/class_2746;	field_12480	field_12480	
-	f	Lnet/minecraft/class_2746;	field_12554	field_12554	
-	f	Lnet/minecraft/class_2746;	field_12500	field_12500	
-	f	Lnet/minecraft/class_2746;	field_12531	field_12531	
-	f	Lnet/minecraft/class_2746;	field_12544	field_12544	
-	f	Lnet/minecraft/class_2746;	field_12501	field_12501	
-	f	Lnet/minecraft/class_2746;	field_12491	field_12491	
-	f	Lnet/minecraft/class_2746;	field_12548	field_12548	
-	f	Lnet/minecraft/class_2746;	field_12502	field_12502	
-	f	Lnet/minecraft/class_2746;	field_12528	field_12528	
-	f	Lnet/minecraft/class_2746;	field_12537	field_12537	
-	f	Lnet/minecraft/class_2746;	field_12484	field_12484	
-	f	Lnet/minecraft/class_2746;	field_12535	field_12535	
-	f	Lnet/minecraft/class_2746;	field_12512	field_12512	
-	f	Lnet/minecraft/class_2746;	field_12522	field_12522	
-	f	Lnet/minecraft/class_2746;	field_12508	field_12508	
-	f	Lnet/minecraft/class_2754;	field_12529	field_12529	
-	f	Lnet/minecraft/class_2754;	field_12496	field_12496	
-	f	Lnet/minecraft/class_2746;	field_12519	field_12519	
-	f	Lnet/minecraft/class_2746;	field_12546	field_12546	
-	f	Lnet/minecraft/class_2746;	field_12489	field_12489	
-	f	Lnet/minecraft/class_2746;	field_12487	field_12487	
-	f	Lnet/minecraft/class_2746;	field_12540	field_12540	
-	f	Lnet/minecraft/class_2746;	field_12527	field_12527	
-	f	Lnet/minecraft/class_2753;	field_12525	field_12525	
-	f	Lnet/minecraft/class_2753;	field_12545	field_12545	
-	f	Lnet/minecraft/class_2753;	field_12481	field_12481	
-	f	Lnet/minecraft/class_2754;	field_12555	field_12555	
-	f	Lnet/minecraft/class_2754;	field_12523	field_12523	
-	f	Lnet/minecraft/class_2754;	field_12495	field_12495	
-	f	Lnet/minecraft/class_2754;	field_12551	field_12551	
-	f	Lnet/minecraft/class_2754;	field_12504	field_12504	
-	f	Lnet/minecraft/class_2754;	field_12533	field_12533	
-	f	Lnet/minecraft/class_2754;	field_12518	field_12518	
-	f	Lnet/minecraft/class_2754;	field_12507	field_12507	
-	f	Lnet/minecraft/class_2754;	field_12542	field_12542	
-	f	Lnet/minecraft/class_2758;	field_12556	field_12556	
-	f	Lnet/minecraft/class_2758;	field_12497	field_12497	
-	f	Lnet/minecraft/class_2758;	field_12482	field_12482	
-	f	Lnet/minecraft/class_2758;	field_12550	field_12550	
-	f	Lnet/minecraft/class_2758;	field_12498	field_12498	
-	f	Lnet/minecraft/class_2758;	field_12517	field_12517	
-	f	Lnet/minecraft/class_2758;	field_12505	field_12505	
-	f	Lnet/minecraft/class_2758;	field_12494	field_12494	
-	f	Lnet/minecraft/class_2758;	field_12509	field_12509	
-	f	Lnet/minecraft/class_2758;	field_12530	field_12530	
-	f	Lnet/minecraft/class_2758;	field_12536	field_12536	
-	f	Lnet/minecraft/class_2758;	field_12513	field_12513	
-	f	Lnet/minecraft/class_2758;	field_12490	field_12490	
-	f	Lnet/minecraft/class_2758;	field_12538	field_12538	
-	f	Lnet/minecraft/class_2758;	field_12510	field_12510	
-	f	Lnet/minecraft/class_2758;	field_12524	field_12524	
-	f	Lnet/minecraft/class_2758;	field_12543	field_12543	
-	f	Lnet/minecraft/class_2758;	field_12511	field_12511	
-	f	Lnet/minecraft/class_2758;	field_12549	field_12549	
-	f	Lnet/minecraft/class_2758;	field_12532	field_12532	
-	f	Lnet/minecraft/class_2754;	field_12483	field_12483	
-	f	Lnet/minecraft/class_2754;	field_12506	field_12506	
-	f	Lnet/minecraft/class_2754;	field_12534	field_12534	
-	f	Lnet/minecraft/class_2754;	field_12520	field_12520	
-	f	Lnet/minecraft/class_2754;	field_12499	field_12499	
-	f	Lnet/minecraft/class_2754;	field_12492	field_12492	
-	f	Lnet/minecraft/class_2754;	field_12485	field_12485	
-	f	Lnet/minecraft/class_2754;	field_12503	field_12503	
-	f	Lnet/minecraft/class_2754;	field_12547	field_12547	
+c	net/minecraft/class_2741	net/minecraft/state/property/Properties	
+	c	Contains all block and fluid state properties that Minecraft uses.	
+	f	Lnet/minecraft/class_2746;	field_12493	ATTACHED	
+		c	A property that specifies if a tripwire is attached to a tripwire hook.	
+	f	Lnet/minecraft/class_2746;	field_12486	CONDITIONAL	
+		c	A property that specifies if a command block is conditional.	
+	f	Lnet/minecraft/class_2746;	field_12553	DISARMED	
+		c	A property that specifies if a tripwire has been disarmed.	
+	f	Lnet/minecraft/class_2746;	field_12526	DRAG	
+		c	A property that specifies if a bubble column should drag entities downwards.	
+	f	Lnet/minecraft/class_2746;	field_12515	ENABLED	
+		c	A property that specifies whether a hopper is enabled.	
+	f	Lnet/minecraft/class_2746;	field_12552	EXTENDED	
+		c	A property that specifies if a piston is extended.	
+	f	Lnet/minecraft/class_2746;	field_12488	EYE	
+		c	A property that specifies if an end portal frame contains an eye of ender.	
+	f	Lnet/minecraft/class_2746;	field_12480	FALLING	
+		c	A property that specifies if a fluid is falling.	
+	f	Lnet/minecraft/class_2746;	field_12554	HAS_BOTTLE_0	
+		c	A property that specifies if a brewing stand has a bottle in slot 0.	
+	f	Lnet/minecraft/class_2746;	field_12500	HAS_BOTTLE_1	
+		c	A property that specifies if a brewing stand has a bottle in slot 1.	
+	f	Lnet/minecraft/class_2746;	field_12531	HAS_BOTTLE_2	
+		c	A property that specifies if a brewing stand has a bottle in slot 2.	
+	f	Lnet/minecraft/class_2746;	field_12544	HAS_RECORD	
+		c	A property that specifies if a jukebox has a record.	
+	f	Lnet/minecraft/class_2746;	field_12501	INVERTED	
+		c	A property that specifies if a daylight sensor's output is inverted.	
+	f	Lnet/minecraft/class_2746;	field_12491	IN_WALL	
+		c	A property that specifies if a fence gate is attached to a wall.\n\n<p>This lowers the fence gate by 3 pixels to attach more cleanly to a wall.	
+	f	Lnet/minecraft/class_2746;	field_12548	LIT	
+		c	A property that specifies if a block is lit.	
+	f	Lnet/minecraft/class_2746;	field_12502	LOCKED	
+		c	A property that specifies if a repeater is locked.	
+	f	Lnet/minecraft/class_2746;	field_12528	OCCUPIED	
+		c	A property that specifies if a bed is occupied.	
+	f	Lnet/minecraft/class_2746;	field_12537	OPEN	
+		c	A property that specifies if a block is open.\n\n<p>This property is normally used for doors, trapdoors and fence gates but is also used by barrels.	
+	f	Lnet/minecraft/class_2746;	field_12484	POWERED	
+		c	A property that specifies if a block is being powered to produce or emit redstone signal.	
+	f	Lnet/minecraft/class_2746;	field_12535	SHORT	
+		c	A property that specifies if a piston head is shorter than normal.	
+	f	Lnet/minecraft/class_2746;	field_12512	SNOWY	
+		c	A property that specifies if a block is covered in snow.	
+	f	Lnet/minecraft/class_2746;	field_12522	TRIGGERED	
+		c	A property that specifies if a dispenser is activated.	
+	f	Lnet/minecraft/class_2746;	field_12508	WATERLOGGED	
+		c	A property that specifies if a block is waterlogged.	
+	f	Lnet/minecraft/class_2754;	field_12529	HORIZONTAL_AXIS	
+		c	 A property that specifies the axis a block is oriented to.\n\n<p>This property only allows a block to be oriented to the X and Z axes.	
+	f	Lnet/minecraft/class_2754;	field_12496	AXIS	
+		c	A property that specifies the axis a block is oriented to.	
+	f	Lnet/minecraft/class_2746;	field_12519	UP	
+		c	A property that specifies if this block is connected to another block from the top.	
+	f	Lnet/minecraft/class_2746;	field_12546	DOWN	
+		c	A property that specifies if this block is connected to another block from the below.	
+	f	Lnet/minecraft/class_2746;	field_12489	NORTH	
+		c	A property that specifies if this block is connected to another block from the north.	
+	f	Lnet/minecraft/class_2746;	field_12487	EAST	
+		c	A property that specifies if this block is connected to another block from the east.	
+	f	Lnet/minecraft/class_2746;	field_12540	SOUTH	
+		c	A property that specifies if this block is connected to another block from the south.	
+	f	Lnet/minecraft/class_2746;	field_12527	WEST	
+		c	A property that specifies if this block is connected to another block from the west.	
+	f	Lnet/minecraft/class_2753;	field_12525	FACING	
+		c	A property that specifies the direction a block is facing.	
+	f	Lnet/minecraft/class_2753;	field_12545	HOPPER_FACING	
+		c	A property that specifies the direction a hopper's output faces.\n\n<p>This property does not allow the hopper's output to face upwards.	
+	f	Lnet/minecraft/class_2753;	field_12481	HORIZONTAL_FACING	
+		c	A property that specifies the direction a block is facing.\n\n<p>This property only allows a block to face in one of the cardinal directions (north, south, east and west).	
+	f	Lnet/minecraft/class_2754;	field_12555	WALL_MOUNT_LOCATION	
+		c	A property that specifies the type of wall a block is attached to.	
+	f	Lnet/minecraft/class_2754;	field_12523	EAST_WIRE_CONNECTION	
+		c	A property that specifies how redstone wire attaches to the east.	
+	f	Lnet/minecraft/class_2754;	field_12495	NORTH_WIRE_CONNECTION	
+		c	A property that specifies how redstone wire attaches to the north.	
+	f	Lnet/minecraft/class_2754;	field_12551	SOUTH_WIRE_CONNECTION	
+		c	A property that specifies how redstone wire attaches to the south.	
+	f	Lnet/minecraft/class_2754;	field_12504	WEST_WIRE_CONNECTION	
+		c	A property that specifies how redstone wire attaches to the west.	
+	f	Lnet/minecraft/class_2754;	field_12533	DOUBLE_BLOCK_HALF	
+		c	A property that specifies whether a double height block is the upper or lower half.	
+	f	Lnet/minecraft/class_2754;	field_12518	BLOCK_HALF	
+		c	A property that specifies if a block is the upper or lower half.	
+	f	Lnet/minecraft/class_2754;	field_12507	RAIL_SHAPE	
+		c	A property that specifies the two directions a rail connects to.	
+	f	Lnet/minecraft/class_2754;	field_12542	STRAIGHT_RAIL_SHAPE	
+		c	A property that specifies the two directions a rail connects to.\n\n<p>This property does not allow for a rail to turn.	
+	f	Lnet/minecraft/class_2758;	field_12556	AGE_2	
+		c	A property that specifies the age of a block on a scale of 0 to 2.	
+	f	Lnet/minecraft/class_2758;	field_12497	AGE_3	
+		c	A property that specifies the age of a block on a scale of 0 to 3.	
+	f	Lnet/minecraft/class_2758;	field_12482	AGE_5	
+		c	A property that specifies the age of a block on a scale of 0 to 5.	
+	f	Lnet/minecraft/class_2758;	field_12550	AGE_7	
+		c	A property that specifies the age of a block on a scale of 0 to 7.	
+	f	Lnet/minecraft/class_2758;	field_12498	AGE_15	
+		c	A property that specifies the age of a block on a scale of 0 to 15.	
+	f	Lnet/minecraft/class_2758;	field_12517	AGE_25	
+		c	A property that specifies the age of a block on a scale of 0 to 25.	
+	f	Lnet/minecraft/class_2758;	field_12505	BITES	
+		c	A property that specifies the bites taken out of a cake.	
+	f	Lnet/minecraft/class_2758;	field_12494	DELAY	
+		c	A property that specifies the delay a repeater will apply.	
+	f	Lnet/minecraft/class_2758;	field_12509	EGGS	
+		c	A property that specifies the amount of eggs in a turtle egg block.	
+	f	Lnet/minecraft/class_2758;	field_12530	HATCH	
+		c	A property that specifies how close an egg is hatching.	
+	f	Lnet/minecraft/class_2758;	field_12536	LAYERS	
+		c	A property that specifies how many layers of snow are in a snow block.	
+	f	Lnet/minecraft/class_2758;	field_12513	LEVEL_3	
+		c	A property that specifies how many levels of water there are in a cauldron.	
+	f	Lnet/minecraft/class_2758;	field_12490	LEVEL_1_8	
+		c	A property that specifies the height of a fluid on a scale of 1 to 8.	
+	f	Lnet/minecraft/class_2758;	field_12538	LEVEL_15	
+	f	Lnet/minecraft/class_2758;	field_12510	MOISTURE	
+		c	A property that specifies the moisture of farmland.	
+	f	Lnet/minecraft/class_2758;	field_12524	NOTE	
+		c	A property that specifies the pitch of a note block.	
+	f	Lnet/minecraft/class_2758;	field_12543	PICKLES	
+		c	A property that specifies how many pickles are in a sea pickle.	
+	f	Lnet/minecraft/class_2758;	field_12511	POWER	
+		c	A property that specifies the redstone power of a block.	
+	f	Lnet/minecraft/class_2758;	field_12549	STAGE	
+		c	A property that specifies a growth stage on a scale of 0 to 1.	
+	f	Lnet/minecraft/class_2758;	field_12532	ROTATION	
+		c	A property that specifies the rotation of a block on a 0 to 15 scale.\n\n<p>Each rotation is 22.5 degrees.	
+	f	Lnet/minecraft/class_2754;	field_12483	BED_PART	
+		c	A property that specifies what part of a bed a block is.	
+	f	Lnet/minecraft/class_2754;	field_12506	CHEST_TYPE	
+		c	A property that specifies what type of chest a block is.	
+	f	Lnet/minecraft/class_2754;	field_12534	COMPARATOR_MODE	
+		c	A property that specifies the mode a comparator is set to.	
+	f	Lnet/minecraft/class_2754;	field_12520	DOOR_HINGE	
+		c	A property that specifies whether a door's hinge is to the right or left.	
+	f	Lnet/minecraft/class_2754;	field_12499	INSTRUMENT	
+		c	A property that specifies what instrument a note block will play.	
+	f	Lnet/minecraft/class_2754;	field_12492	PISTON_TYPE	
+		c	A property that specifies the type of a piston.	
+	f	Lnet/minecraft/class_2754;	field_12485	SLAB_TYPE	
+		c	A property that specifies the type of slab.	
+	f	Lnet/minecraft/class_2754;	field_12503	STAIR_SHAPE	
+		c	A property that specifies the shape of a stair block.	
+	f	Lnet/minecraft/class_2754;	field_12547	STRUCTURE_BLOCK_MODE	
+		c	A property that specifies the mode of a structure block.	
 	f	Lnet/minecraft/class_2746;	field_0_17799	field_0_17799	
 	f	Lnet/minecraft/class_2746;	field_0_17801	field_0_17801	
 	m	(Lnet/minecraft/class_2350;)Z	method_11814	method_11814	
-		p	0		p_0	
+		p	0		facing	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2741$1	1	
 	m	()V	<init>	<init>	
@@ -1180,10 +1254,10 @@ c	net/minecraft/class_2741$1	1
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	test	test	
 		p	1		p_1	
-c	net/minecraft/class_2742	net/minecraft/class_2742	
+c	net/minecraft/class_2742	net/minecraft/block/enums/BedPart	
 	f	Lnet/minecraft/class_2742;	field_12560	field_12560	
 	f	Lnet/minecraft/class_2742;	field_12557	field_12557	
-	f	Ljava/lang/String;	field_12559	field_12559	
+	f	Ljava/lang/String;	field_12559	name	
 	f	[Lnet/minecraft/class_2742;	field_12558	field_12558	
 	m	()[Lnet/minecraft/class_2742;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2742;	valueOf	valueOf	
@@ -1195,13 +1269,13 @@ c	net/minecraft/class_2742	net/minecraft/class_2742
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2745	net/minecraft/class_2745	
+c	net/minecraft/class_2745	net/minecraft/block/enums/ChestType	
 	f	Lnet/minecraft/class_2745;	field_12569	field_12569	
 	f	Lnet/minecraft/class_2745;	field_12574	field_12574	
 	f	Lnet/minecraft/class_2745;	field_12571	field_12571	
-	f	[Lnet/minecraft/class_2745;	field_12570	field_12570	
-	f	Ljava/lang/String;	field_12572	field_12572	
-	f	I	field_12568	field_12568	
+	f	[Lnet/minecraft/class_2745;	field_12570	VALUES	
+	f	Ljava/lang/String;	field_12572	name	
+	f	I	field_12568	opposite	
 	f	[Lnet/minecraft/class_2745;	field_12573	field_12573	
 	m	()[Lnet/minecraft/class_2745;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2745;	valueOf	valueOf	
@@ -1212,12 +1286,12 @@ c	net/minecraft/class_2745	net/minecraft/class_2745
 		p	3		p_3	
 		p	4		p_4	
 	m	()Ljava/lang/String;	method_15434	method_15434	
-	m	()Lnet/minecraft/class_2745;	method_11824	method_11824	
+	m	()Lnet/minecraft/class_2745;	method_11824	getOpposite	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2747	net/minecraft/class_2747	
+c	net/minecraft/class_2747	net/minecraft/block/enums/ComparatorMode	
 	f	Lnet/minecraft/class_2747;	field_12576	field_12576	
 	f	Lnet/minecraft/class_2747;	field_12578	field_12578	
-	f	Ljava/lang/String;	field_12577	field_12577	
+	f	Ljava/lang/String;	field_12577	name	
 	f	[Lnet/minecraft/class_2747;	field_12579	field_12579	
 	m	()[Lnet/minecraft/class_2747;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2747;	valueOf	valueOf	
@@ -1229,7 +1303,7 @@ c	net/minecraft/class_2747	net/minecraft/class_2747
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2750	net/minecraft/class_2750	
+c	net/minecraft/class_2750	net/minecraft/block/enums/DoorHinge	
 	f	Lnet/minecraft/class_2750;	field_12588	field_12588	
 	f	Lnet/minecraft/class_2750;	field_12586	field_12586	
 	f	[Lnet/minecraft/class_2750;	field_12587	field_12587	
@@ -1242,7 +1316,7 @@ c	net/minecraft/class_2750	net/minecraft/class_2750
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2756	net/minecraft/class_2756	
+c	net/minecraft/class_2756	net/minecraft/block/enums/DoubleBlockHalf	
 	f	Lnet/minecraft/class_2756;	field_12609	field_12609	
 	f	Lnet/minecraft/class_2756;	field_12607	field_12607	
 	f	[Lnet/minecraft/class_2756;	field_12608	field_12608	
@@ -1255,10 +1329,10 @@ c	net/minecraft/class_2756	net/minecraft/class_2756
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2760	net/minecraft/class_2760	
+c	net/minecraft/class_2760	net/minecraft/block/enums/BlockHalf	
 	f	Lnet/minecraft/class_2760;	field_12619	field_12619	
 	f	Lnet/minecraft/class_2760;	field_12617	field_12617	
-	f	Ljava/lang/String;	field_12616	field_12616	
+	f	Ljava/lang/String;	field_12616	name	
 	f	[Lnet/minecraft/class_2760;	field_12618	field_12618	
 	m	()[Lnet/minecraft/class_2760;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2760;	valueOf	valueOf	
@@ -1270,10 +1344,10 @@ c	net/minecraft/class_2760	net/minecraft/class_2760
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2764	net/minecraft/class_2764	
+c	net/minecraft/class_2764	net/minecraft/block/enums/PistonType	
 	f	Lnet/minecraft/class_2764;	field_12637	field_12637	
 	f	Lnet/minecraft/class_2764;	field_12634	field_12634	
-	f	Ljava/lang/String;	field_12635	field_12635	
+	f	Ljava/lang/String;	field_12635	name	
 	f	[Lnet/minecraft/class_2764;	field_12636	field_12636	
 	m	()[Lnet/minecraft/class_2764;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2764;	valueOf	valueOf	
@@ -1285,7 +1359,7 @@ c	net/minecraft/class_2764	net/minecraft/class_2764
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2766	net/minecraft/class_2766	
+c	net/minecraft/class_2766	net/minecraft/block/enums/Instrument	
 	f	Lnet/minecraft/class_2766;	field_12648	field_12648	
 	f	Lnet/minecraft/class_2766;	field_12653	field_12653	
 	f	Lnet/minecraft/class_2766;	field_12643	field_12643	
@@ -1296,8 +1370,8 @@ c	net/minecraft/class_2766	net/minecraft/class_2766
 	f	Lnet/minecraft/class_2766;	field_12654	field_12654	
 	f	Lnet/minecraft/class_2766;	field_12647	field_12647	
 	f	Lnet/minecraft/class_2766;	field_12655	field_12655	
-	f	Ljava/lang/String;	field_12646	field_12646	
-	f	Lnet/minecraft/class_3414;	field_12649	field_12649	
+	f	Ljava/lang/String;	field_12646	name	
+	f	Lnet/minecraft/class_3414;	field_12649	sound	
 	f	[Lnet/minecraft/class_2766;	field_12652	field_12652	
 	m	()[Lnet/minecraft/class_2766;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2766;	valueOf	valueOf	
@@ -1308,11 +1382,11 @@ c	net/minecraft/class_2766	net/minecraft/class_2766
 		p	3		p_3	
 		p	4		p_4	
 	m	()Ljava/lang/String;	method_15434	method_15434	
-	m	()Lnet/minecraft/class_3414;	method_11886	method_11886	
+	m	()Lnet/minecraft/class_3414;	method_11886	getSound	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_0_378;)Lnet/minecraft/class_2766;	method_11887	method_11887	
 		p	0		p_0	
-c	net/minecraft/class_2768	net/minecraft/class_2768	
+c	net/minecraft/class_2768	net/minecraft/block/enums/RailShape	
 	f	Lnet/minecraft/class_2768;	field_12665	field_12665	
 	f	Lnet/minecraft/class_2768;	field_12674	field_12674	
 	f	Lnet/minecraft/class_2768;	field_12667	field_12667	
@@ -1323,8 +1397,8 @@ c	net/minecraft/class_2768	net/minecraft/class_2768
 	f	Lnet/minecraft/class_2768;	field_12671	field_12671	
 	f	Lnet/minecraft/class_2768;	field_12672	field_12672	
 	f	Lnet/minecraft/class_2768;	field_12663	field_12663	
-	f	I	field_12675	field_12675	
-	f	Ljava/lang/String;	field_12669	field_12669	
+	f	I	field_12675	id	
+	f	Ljava/lang/String;	field_12669	name	
 	f	[Lnet/minecraft/class_2768;	field_12673	field_12673	
 	m	()[Lnet/minecraft/class_2768;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2768;	valueOf	valueOf	
@@ -1334,16 +1408,16 @@ c	net/minecraft/class_2768	net/minecraft/class_2768
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	()I	method_11896	method_11896	
+	m	()I	method_11896	getId	
 	m	()Ljava/lang/String;	toString	toString	
-	m	()Z	method_11897	method_11897	
+	m	()Z	method_11897	isAscending	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2771	net/minecraft/class_2771	
+c	net/minecraft/class_2771	net/minecraft/block/enums/SlabType	
 	f	Lnet/minecraft/class_2771;	field_12679	field_12679	
 	f	Lnet/minecraft/class_2771;	field_12681	field_12681	
 	f	Lnet/minecraft/class_2771;	field_12682	field_12682	
-	f	Ljava/lang/String;	field_12678	field_12678	
+	f	Ljava/lang/String;	field_12678	name	
 	f	[Lnet/minecraft/class_2771;	field_12680	field_12680	
 	m	()[Lnet/minecraft/class_2771;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2771;	valueOf	valueOf	
@@ -1355,11 +1429,11 @@ c	net/minecraft/class_2771	net/minecraft/class_2771
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2773	net/minecraft/class_2773	
+c	net/minecraft/class_2773	net/minecraft/block/enums/WireConnection	
 	f	Lnet/minecraft/class_2773;	field_12686	field_12686	
 	f	Lnet/minecraft/class_2773;	field_12689	field_12689	
 	f	Lnet/minecraft/class_2773;	field_12687	field_12687	
-	f	Ljava/lang/String;	field_12685	field_12685	
+	f	Ljava/lang/String;	field_12685	name	
 	f	[Lnet/minecraft/class_2773;	field_12688	field_12688	
 	m	()[Lnet/minecraft/class_2773;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2773;	valueOf	valueOf	
@@ -1371,12 +1445,12 @@ c	net/minecraft/class_2773	net/minecraft/class_2773
 	m	()Ljava/lang/String;	toString	toString	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2776	net/minecraft/class_2776	
+c	net/minecraft/class_2776	net/minecraft/block/enums/StructureBlockMode	
 	f	Lnet/minecraft/class_2776;	field_12695	field_12695	
 	f	Lnet/minecraft/class_2776;	field_12697	field_12697	
 	f	Lnet/minecraft/class_2776;	field_12699	field_12699	
 	f	Lnet/minecraft/class_2776;	field_12696	field_12696	
-	f	Ljava/lang/String;	field_12698	field_12698	
+	f	Ljava/lang/String;	field_12698	name	
 	f	[Lnet/minecraft/class_2776;	field_12700	field_12700	
 	m	()[Lnet/minecraft/class_2776;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2776;	valueOf	valueOf	
@@ -1387,13 +1461,13 @@ c	net/minecraft/class_2776	net/minecraft/class_2776
 		p	3		p_3	
 	m	()Ljava/lang/String;	method_15434	method_15434	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2778	net/minecraft/class_2778	
+c	net/minecraft/class_2778	net/minecraft/block/enums/StairShape	
 	f	Lnet/minecraft/class_2778;	field_12710	field_12710	
 	f	Lnet/minecraft/class_2778;	field_12712	field_12712	
 	f	Lnet/minecraft/class_2778;	field_12713	field_12713	
 	f	Lnet/minecraft/class_2778;	field_12708	field_12708	
 	f	Lnet/minecraft/class_2778;	field_12709	field_12709	
-	f	Ljava/lang/String;	field_12714	field_12714	
+	f	Ljava/lang/String;	field_12714	name	
 	f	[Lnet/minecraft/class_2778;	field_12711	field_12711	
 	m	()[Lnet/minecraft/class_2778;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_2778;	valueOf	valueOf	
@@ -1432,26 +1506,26 @@ c	net/minecraft/class_3071
 c	net/minecraft/class_3076
 	m	()Ljava/lang/String;	method_0_15295		method_0_15295
 c	net/minecraft/class_3078
-	m	(Lnet/minecraft/class_2168;)I	method_13437	method_13437	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_2168;)I	method_13436	method_13436	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_2168;Ljava/util/function/Function;)I	method_13434	method_13434	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2168;)I	method_13437	executeNames	
+		p	0		source	
+	m	(Lnet/minecraft/class_2168;)I	method_13436	executeUuids	
+		p	0		source	
+	m	(Lnet/minecraft/class_2168;Ljava/util/function/Function;)I	method_13434	execute	
+		p	0		source	
+		p	1		nameProvider	
 	m	(Lcom/mojang/brigadier/context/CommandContext;)I	method_13438	method_13438	
-		p	0		p_0	
+		p	0		context	
 	m	(Lnet/minecraft/class_2168;)I	method_13434		method_13434
 		p	0			p_0
 c	net/minecraft/class_310
 	m	(Lnet/minecraft/class_1276;)V	method_0_6739		method_0_6739
 		p	1			p_1
 c	net/minecraft/class_315
-	f	D	field_1889	field_1889	
+	f	D	field_1889	mouseWheelSensitivity	
 c	net/minecraft/class_315$class_316
 	f	Lnet/minecraft/class_315$class_316;	field_1948	field_1948	
 c	net/minecraft/class_3195
-	f	Lorg/apache/logging/log4j/Logger;	field_13879	field_13879	
+	f	Lorg/apache/logging/log4j/Logger;	field_13879	LOGGER	
 	f	Ljava/util/concurrent/atomic/AtomicBoolean;	field_0_15740		field_0_15740
 	f	Lnet/minecraft/class_0_3348;	field_0_15737		field_0_15737
 	f	Lnet/minecraft/class_0_561;	field_0_2099		field_0_2099
@@ -1465,30 +1539,30 @@ c	net/minecraft/class_3197
 	m	()Ljava/lang/String;	method_0_15295		method_0_15295
 c	net/minecraft/class_3233
 	m	()Lnet/minecraft/class_26;	method_0_259	method_0_259	
-c	net/minecraft/class_3360	net/minecraft/class_3360	
+c	net/minecraft/class_3360	net/minecraft/world/FeatureUpdater	
 	f	Lorg/apache/logging/log4j/Logger;	field_14437	field_14437	
-	f	Ljava/util/Map;	field_14435	field_14435	
-	f	Ljava/util/Map;	field_14436	field_14436	
-	f	Z	field_14434	field_14434	
-	f	Ljava/util/Map;	field_14432	field_14432	
-	f	Ljava/util/Map;	field_14433	field_14433	
-	m	(J)V	method_14744	method_14744	
+	f	Ljava/util/Map;	field_14435	OLD_TO_NEW	
+	f	Ljava/util/Map;	field_14436	ANCIENT_TO_OLD	
+	f	Z	field_14434	needsUpdate	
+	f	Ljava/util/Map;	field_14432	featureIdToChunkNbt	
+	f	Ljava/util/Map;	field_14433	updateStates	
+	m	(J)V	method_14744	markResolved	
 		p	1		p_1	
 	m	()[Ljava/lang/String;	method_14740	method_14740	
 	m	()[Ljava/lang/String;	method_14743	method_14743	
-	m	(IILjava/lang/String;)Z	method_14738	method_14738	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(II)Z	method_14737	method_14737	
-		p	1		p_1	
-		p	2		p_2	
+	m	(IILjava/lang/String;)Z	method_14738	needsUpdate	
+		p	1		chunkX	
+		p	2		chunkZ	
+		p	3		id	
+	m	(II)Z	method_14737	needsUpdate	
+		p	1		chunkX	
+		p	2		chunkZ	
 	m	(Ljava/lang/String;)Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	method_14736	method_14736	
 		p	0		p_0	
 	m	(Ljava/util/HashMap;)V	method_14742	method_14742	
-		p	0		p_0	
+		p	0		map	
 	m	(Ljava/util/HashMap;)V	method_14739	method_14739	
-		p	0		p_0	
+		p	0		map	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_1936;)V	<init>	<init>	
 		p	1		p_1	
@@ -1528,24 +1602,24 @@ c	net/minecraft/class_3360$class_3363	class_3363
 c	net/minecraft/class_3360$1	1	
 	f	[I	field_0_17835	field_0_17835	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3440	net/minecraft/class_3440	
-	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_15301	field_15301	
-	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_15302	field_15302	
+c	net/minecraft/class_3440	net/minecraft/world/ChunkUpdateState	
+	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_15301	all	
+	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_15302	remaining	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_77	method_77	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75	method_75	
 		p	1		p_1	
-	m	(J)V	method_14896	method_14896	
-		p	1		p_1	
-	m	(J)Z	method_14897	method_14897	
-		p	1		p_1	
-	m	(J)Z	method_14894	method_14894	
-		p	1		p_1	
-	m	(J)V	method_14895	method_14895	
-		p	1		p_1	
-	m	()Lit/unimi/dsi/fastutil/longs/LongSet;	method_14898	method_14898	
+	m	(J)V	method_14896	add	
+		p	1		pos	
+	m	(J)Z	method_14897	contains	
+		p	1		pos	
+	m	(J)Z	method_14894	isRemaining	
+		p	1		pos	
+	m	(J)V	method_14895	markResolved	
+		p	1		pos	
+	m	()Lit/unimi/dsi/fastutil/longs/LongSet;	method_14898	getAll	
 c	net/minecraft/class_3521
 	m	(Ljava/util/Map;)Ljava/lang/String;	method_0_6549		method_0_6549
 		p	0			p_0
@@ -1563,13 +1637,13 @@ c	net/minecraft/class_3551
 	f	Lnet/minecraft/class_0_3705;	field_0_17844	field_0_17844	
 c	net/minecraft/class_481
 	f	Z	field_0_14985		field_0_14985
-	m	(Lnet/minecraft/class_1735;)Z	method_2470	method_2470	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1735;)Z	method_2470	isCreativeInventorySlot	
+		p	1		slot	
 c	net/minecraft/class_497
-	f	Lnet/minecraft/class_2776;	field_3004	field_3004	
+	f	Lnet/minecraft/class_2776;	field_3004	mode	
 	f	Lnet/minecraft/class_2633$class_2776;	field_3004		field_3004
 c	net/minecraft/class_702
-	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_3835	field_3835	
+	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_3835	factories	
 	f	Ljava/util/Map;	field_3835		field_3835
 c	net/minecraft/class_745
 	f	I	field_0_4168		field_0_4168

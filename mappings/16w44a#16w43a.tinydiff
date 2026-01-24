@@ -1,5 +1,5 @@
 tiny	2	0
-c	net/minecraft/class_1203	net/minecraft/class_1203	
+c	net/minecraft/class_1203	net/minecraft/datafixer/fix/OptionsLowerCaseLanguageFix	
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_0_8951	method_0_8951	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -10,10 +10,10 @@ c	net/minecraft/class_1297
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
-	m	(DDD)V	method_5784		method_5784
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
+	m	(DDD)V	method_5784		move
+		p	1			x
+		p	3			y
+		p	5			z
 c	net/minecraft/class_1301
 	f	Lcom/google/common/base/Predicate;	field_0_11361		field_0_11361
 	m	(Lnet/minecraft/class_1297;)Lcom/google/common/base/Predicate;	method_5913	method_5913	
@@ -71,7 +71,7 @@ c	net/minecraft/class_1301$8
 		p	1			p_1
 c	net/minecraft/class_1309
 	f	Lorg/apache/logging/log4j/Logger;	field_6216	field_6216	
-c	net/minecraft/class_1313	net/minecraft/class_1313	
+c	net/minecraft/class_1313	net/minecraft/entity/MovementType	
 	f	Lnet/minecraft/class_1313;	field_6308	field_6308	
 	f	Lnet/minecraft/class_1313;	field_6305	field_6305	
 	f	Lnet/minecraft/class_1313;	field_6310	field_6310	
@@ -106,8 +106,8 @@ c	net/minecraft/class_1531
 	m	(F)V	method_0_10569		method_0_10569
 		p	1			p_1
 c	net/minecraft/class_1536
-	f	I	field_7167	field_7167	
-	f	Lnet/minecraft/class_1657;	field_7177	field_7177	
+	f	I	field_7167	removalTimer	
+	f	Lnet/minecraft/class_1657;	field_7177	owner	
 	f	Lnet/minecraft/class_2338;	field_0_11657		field_0_11657
 	f	Lnet/minecraft/class_2248;	field_0_8071		field_0_8071
 	f	Lnet/minecraft/class_1657;	field_0_12038		field_0_12038
@@ -119,7 +119,7 @@ c	net/minecraft/class_1536
 		p	7		p_7	
 	m	(Lnet/minecraft/class_1657;)V	method_6950	method_6950	
 		p	1		p_1	
-	m	()Z	method_6959	method_6959	
+	m	()Z	method_6959	removeIfInvalid	
 c	net/minecraft/class_1606
 	m	(Lnet/minecraft/class_1313;DDD)V	method_5784	method_5784	
 		p	1		p_1	
@@ -159,15 +159,15 @@ c	net/minecraft/class_1681
 		p	1		p_1	
 c	net/minecraft/class_1686
 	f	Lcom/google/common/base/Predicate;	field_7653	field_7653	
-	m	()V	method_7500	method_7500	
+	m	()V	method_7500	applyWater	
 	m	(Lnet/minecraft/class_239;Ljava/util/List;)V	method_7498	method_7498	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1842;)V	method_7497	method_7497	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1842;)V	method_7497	applyLingeringPotion	
+		p	1		stack	
+		p	2		potion	
 	m	(Lnet/minecraft/class_1309;)Z	method_7496
-		p	0		p_0	
+		p	0		entityHit	
 		p	1			p_1
 	m	(Lnet/minecraft/class_1309;)Z	method_0_10845	method_0_10845	
 		p	0		p_0	
@@ -284,9 +284,10 @@ c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V	method_8408		method_8408
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V	method_8452		method_8452
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;)V	method_8452		updateNeighborsAlways
+		c		Emits a neighbor update to all 6 neighboring blocks of {@code pos}.\n\n@see #updateNeighborsExcept(BlockPos, Block, Direction)
+		p	1			pos
+		p	2			sourceBlock
 c	net/minecraft/class_1937$3
 	f	Lnet/minecraft/class_2248;	field_0_12047	field_0_12047	
 	f	Lnet/minecraft/class_1937;	field_0_12048	field_0_12048	
@@ -319,7 +320,7 @@ c	net/minecraft/class_1992
 c	net/minecraft/class_2248
 	m	(Lnet/minecraft/class_0_378;)Z	method_9600	method_9600	
 		p	1		p_1	
-	m	()Z	method_9600		method_9600
+	m	()Z	method_9600		shouldSuffocate
 c	net/minecraft/class_2397
 	m	(Lnet/minecraft/class_0_378;)Z	method_9600	method_9600	
 		p	1		p_1	
@@ -382,7 +383,7 @@ c	net/minecraft/class_746
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_757
-	m	()V	method_3203	method_3203	
+	m	()V	method_3203	reset	
 c	net/minecraft/class_0_460
 c	net/minecraft/class_0_460$1	1	
 c	net/minecraft/class_0_460$class_0_2564	class_0_2564	

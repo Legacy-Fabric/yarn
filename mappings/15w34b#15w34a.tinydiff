@@ -5,18 +5,18 @@ c	net/minecraft/class_1309
 		p	1			p_1
 	m	()V	method_0_9209		method_0_9209
 c	net/minecraft/class_1612
-	f	Lnet/minecraft/class_1320;	field_7356	field_7356	
+	f	Lnet/minecraft/class_1320;	field_7356	ATTACK_SPEED	
 c	net/minecraft/class_1657
-	f	Lnet/minecraft/class_1799;	field_7525	field_7525	
-	m	()F	method_7279	method_7279	
-	m	(F)F	method_7261	method_7261	
-		p	1		p_1	
-	m	()V	method_7350	method_7350	
+	f	Lnet/minecraft/class_1799;	field_7525	selectedItem	
+	m	()F	method_7279	getAttackCooldownProgressPerTick	
+	m	(F)F	method_7261	getAttackCooldownProgress	
+		p	1		baseTime	
+	m	()V	method_7350	resetLastAttackedTicks	
 	m	()I	method_6096		method_6096
 c	net/minecraft/class_1661
 	m	()I	method_0_7949		method_0_7949
 c	net/minecraft/class_1766
-	f	F	field_7938	field_7938	
+	f	F	field_7938	attackSpeed	
 	m	(FFLnet/minecraft/class_1792$class_1834;Ljava/util/Set;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -27,17 +27,17 @@ c	net/minecraft/class_1766
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1792
-	f	Ljava/util/UUID;	field_8001	field_8001	
+	f	Ljava/util/UUID;	field_8001	ATTACK_SPEED_MODIFIER_ID	
 c	net/minecraft/class_1918
-	m	(I)V	method_8298	method_8298	
-		p	1		p_1	
+	m	(I)V	method_8298	setSuccessCount	
+		p	1		successCount	
 c	net/minecraft/class_2396
 	f	Lnet/minecraft/class_2396;	field_0_9878	field_0_9878	
 c	net/minecraft/class_2593
-	f	Z	field_11916	field_11916	
-	m	()Z	method_11042	method_11042	
-	m	(Z)V	method_11037	method_11037	
-		p	1		p_1	
+	f	Z	field_11916	needsUpdatePacket	
+	m	()Z	method_11042	isAuto	
+	m	(Z)V	method_11037	setNeedsUpdatePacket	
+		p	1		needsUpdatePacket	
 c	net/minecraft/class_408
 	f	Lnet/minecraft/class_0_2237;	field_0_9863	field_0_9863	
 	f	Z	field_0_3037		field_0_3037
@@ -69,9 +69,9 @@ c	net/minecraft/class_463$1	1
 	m	()Lnet/minecraft/class_2338;	method_0_9220	method_0_9220	
 c	net/minecraft/class_477
 	f	Lnet/minecraft/class_339;	field_2871	field_2871	
-	f	Z	field_2868	field_2868	
+	f	Z	field_2868	conditional	
 	f	Lnet/minecraft/class_0_2237;	field_0_9872	field_0_9872	
-	m	()V	method_2452	method_2452	
+	m	()V	method_2452	updateConditionalMode	
 	m	([Ljava/lang/String;)V	method_0_2698	method_0_2698	
 		p	1		p_1	
 c	net/minecraft/class_477$1
@@ -89,7 +89,7 @@ c	net/minecraft/class_477$2	2
 	f	[I	field_2875	field_2875	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_657
-c	net/minecraft/class_657$class_658	class_658	
+c	net/minecraft/class_657$class_658	DefaultFactory	
 	m	()V	<init>	<init>	
 	m	(ILnet/minecraft/class_1937;DDDDDD[I)Lnet/minecraft/class_703;	method_3090	method_3090	
 		p	1		p_1	
@@ -102,8 +102,10 @@ c	net/minecraft/class_657$class_658	class_658
 		p	13		p_13	
 		p	15		p_15	
 c	net/minecraft/class_703
-	m	(I)V	method_3077	method_3077	
-		p	1		p_1	
+	m	(I)V	method_3077	setMaxAge	
+		c	Sets the maximum age, in ticks, that this particle can exist for.	
+		p	1		maxAge	
+			c	the new maximum age of this particle, in ticks	
 c	net/minecraft/server/MinecraftServer
 	m	(Lnet/minecraft/class_2165;Ljava/lang/String;Lnet/minecraft/class_2338;Z)Ljava/util/List;	method_0_6415	method_0_6415	
 		p	1		p_1	

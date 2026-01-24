@@ -28,21 +28,21 @@ c	net/minecraft/class_1453
 	m	(ILnet/minecraft/class_2960;)Lnet/minecraft/class_3414;	method_6586	method_6586	
 		p	0		p_0	
 		p	1		p_1	
-	m	(Ljava/util/Random;)Lnet/minecraft/class_3414;	method_6583		method_6583
-		p	0			p_0
+	m	(Ljava/util/Random;)Lnet/minecraft/class_3414;	method_6583		getRandomSound
+		p	0			random
 	m	(I)Lnet/minecraft/class_3414;	method_6586		method_6586
 		p	0			p_0
 c	net/minecraft/class_167
-	m	()Ljava/util/Date;	method_741	method_741	
+	m	()Ljava/util/Date;	method_741	getEarliestProgressObtainDate	
 	m	(Lnet/minecraft/class_167;)I	method_738	method_738	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		p_1	
+		p	1		other	
 c	net/minecraft/class_178
-	m	()Ljava/util/Date;	method_786	method_786	
+	m	()Ljava/util/Date;	method_786	getObtainedDate	
 c	net/minecraft/class_185
-	f	Lnet/minecraft/class_2561;	field_1242	field_1242	
-	m	()Lnet/minecraft/class_2561;	method_817	method_817	
+	f	Lnet/minecraft/class_2561;	field_1242	description	
+	m	()Lnet/minecraft/class_2561;	method_817	getDescription	
 	m	(Lnet/minecraft/class_1792;Lnet/minecraft/class_2561;Lnet/minecraft/class_2561;Lnet/minecraft/class_2960;Lnet/minecraft/class_189;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -347,13 +347,13 @@ c	net/minecraft/class_2577
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_2587	net/minecraft/class_2587	
-	f	Lnet/minecraft/class_1767;	field_11869	field_11869	
+c	net/minecraft/class_2587	net/minecraft/block/entity/BedBlockEntity	
+	f	Lnet/minecraft/class_1767;	field_11869	color	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2622;	method_0_1107	method_0_1107	
-	m	()Lnet/minecraft/class_1767;	method_11018	method_11018	
-	m	(Lnet/minecraft/class_1767;)V	method_11019	method_11019	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_1767;	method_11018	getColor	
+	m	(Lnet/minecraft/class_1767;)V	method_11019	setColor	
+		p	1		color	
 	m	(Lnet/minecraft/class_1799;)V	method_0_11517	method_0_11517	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_11014	method_11014	
@@ -400,14 +400,14 @@ c	net/minecraft/class_2689$class_0_380
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_287
-	m	(II)V	method_1329	method_1329	
-		p	1		p_1	
-		p	2		p_2	
-	m	(IIII)V	method_1340	method_1340	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(II)V	method_1329	setColor	
+		p	1		color	
+		p	2		index	
+	m	(IIII)V	method_1340	setColor	
+		p	1		colorIndex	
+		p	2		red	
+		p	3		blue	
+		p	4		index	
 	m	(IIF)V	method_1329		method_1329
 		p	1			p_1
 		p	2			p_2
@@ -422,17 +422,17 @@ c	net/minecraft/class_287
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2985
-	m	()V	method_12886	method_12886	
-	m	(Lnet/minecraft/class_161;)V	method_12874	method_12874	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_161;)V	method_12880	method_12880	
-		p	1		p_1	
+	m	()V	method_12886	reload	
+	m	(Lnet/minecraft/class_161;)V	method_12874	beginTracking	
+		p	1		advancement	
+	m	(Lnet/minecraft/class_161;)V	method_12880	endTrackingCompleted	
+		p	1		advancement	
 c	net/minecraft/class_2989
 	f	Z	field_13401	field_13401	
 	m	()Z	method_0_11561	method_0_11561	
 c	net/minecraft/class_310
-	f	Lnet/minecraft/class_374;	field_1702	field_1702	
-	m	()Lnet/minecraft/class_374;	method_1566	method_1566	
+	f	Lnet/minecraft/class_374;	field_1702	toastManager	
+	m	()Lnet/minecraft/class_374;	method_1566	getToastManager	
 c	net/minecraft/class_315
 	f	[Ljava/lang/String;	field_1898	field_1898	
 	f	I	field_1896	field_1896	
@@ -443,9 +443,9 @@ c	net/minecraft/class_329
 	f	Lnet/minecraft/class_374;	field_0_12571		field_0_12571
 	m	()Lnet/minecraft/class_374;	method_0_11435		method_0_11435
 c	net/minecraft/class_3324
-	m	()V	method_14572	method_14572	
+	m	()V	method_14572	onDataPacksReloaded	
 c	net/minecraft/class_333
-	f	Lnet/minecraft/class_333;	field_2054	field_2054	
+	f	Lnet/minecraft/class_333;	field_2054	INSTANCE	
 	m	(I)V	method_1792	method_1792	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
@@ -524,8 +524,8 @@ c	net/minecraft/class_374$class_371	class_371
 c	net/minecraft/class_39
 	m	()Z	method_0_11522	method_0_11522	
 c	net/minecraft/class_447
-	m	()V	method_2270	method_2270	
-	m	()V	method_2267	method_2267	
+	m	()V	method_2270	createLists	
+	m	()V	method_2267	createButtons	
 	m	()V	method_2300	method_2300	
 	m	(Lnet/minecraft/class_447;)Lnet/minecraft/class_0_681;	method_2265	method_2265	
 		p	0		p_0	
@@ -574,14 +574,14 @@ c	net/minecraft/class_447$class_0_777
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_452
-	m	()V	method_2300	method_2300	
+	m	()V	method_2300	onStatsReady	
 c	net/minecraft/class_455
 	f	Lnet/minecraft/class_455;	field_0_12244		field_0_12244
 c	net/minecraft/class_456
-	f	Ljava/util/List;	field_2705	field_2705	
-	m	(Ljava/lang/String;I)Ljava/util/List;	method_2330	method_2330	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/util/List;	field_2705	description	
+	m	(Ljava/lang/String;I)Ljava/util/List;	method_2330	wrapDescription	
+		p	1		description	
+		p	2		width	
 	m	(IIIIIIIII)V	method_2324	method_2324	
 		p	1		p_1	
 		p	2		p_2	
@@ -638,9 +638,9 @@ c	net/minecraft/class_495
 		p	3		p_3	
 c	net/minecraft/class_505
 c	net/minecraft/class_505$class_506
-	m	()I	method_2574	method_2574	
-	m	()I	method_2575	method_2575	
-	m	()Lnet/minecraft/class_1799;	method_2573	method_2573	
+	m	()I	method_2574	getX	
+	m	()I	method_2575	getY	
+	m	()Lnet/minecraft/class_1799;	method_2573	getCurrentItemStack	
 c	net/minecraft/class_508
 	f	Lnet/minecraft/class_508$class_509;	field_3104	field_3104	
 c	net/minecraft/class_516
@@ -652,14 +652,14 @@ c	net/minecraft/class_516
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_552	net/minecraft/class_552	
-	f	Lnet/minecraft/class_630;	field_3316	field_3316	
-	f	Lnet/minecraft/class_630;	field_3318	field_3318	
-	f	[Lnet/minecraft/class_630;	field_3317	field_3317	
+c	net/minecraft/class_552	net/minecraft/client/render/entity/model/BedEntityModel	
+	f	Lnet/minecraft/class_630;	field_3316	head	
+	f	Lnet/minecraft/class_630;	field_3318	legs	
+	f	[Lnet/minecraft/class_630;	field_3317	foot	
 	m	()V	<init>	<init>	
-	m	()V	method_2794	method_2794	
-	m	(Z)V	method_2795	method_2795	
-		p	1		p_1	
+	m	()V	method_2794	render	
+	m	(Z)V	method_2795	setVisible	
+		p	1		isHead	
 	m	()I	method_0_11549	method_0_11549	
 c	net/minecraft/class_6
 	f	F	field_0_12194		field_0_12194
@@ -674,15 +674,15 @@ c	net/minecraft/class_6
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_756
-	f	Lnet/minecraft/class_2587;	field_3982	field_3982	
+	f	Lnet/minecraft/class_2587;	field_3982	renderBed	
 c	net/minecraft/class_761
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Z)V	method_3247	method_3247	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-c	net/minecraft/class_825	net/minecraft/class_825	
-	f	[Lnet/minecraft/class_2960;	field_4356	field_4356	
-	f	Lnet/minecraft/class_552;	field_4355	field_4355	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Z)V	method_3247	updateEntitiesForSong	
+		p	1		world	
+		p	2		pos	
+		p	3		playing	
+c	net/minecraft/class_825	net/minecraft/client/render/block/entity/BedBlockEntityRenderer	
+	f	[Lnet/minecraft/class_2960;	field_4356	TEXTURES	
+	f	Lnet/minecraft/class_552;	field_4355	model	
 	f	I	field_0_12667	field_0_12667	
 	m	()V	<init>	<init>	
 	m	()V	<clinit>	<clinit>	
@@ -710,48 +710,48 @@ c	net/minecraft/class_825	net/minecraft/class_825
 		p	9		p_9	
 		p	10		p_10	
 c	net/minecraft/class_863
-	f	Lnet/minecraft/class_863$class_864;	field_4517	field_4517	
+	f	Lnet/minecraft/class_863$class_864;	field_4517	blockOutlineDebugRenderer	
 	f	Z	field_4518	field_4518	
-c	net/minecraft/class_871	net/minecraft/class_871	
-	f	Lnet/minecraft/class_310;	field_4628	field_4628	
+c	net/minecraft/class_871	net/minecraft/client/render/debug/BlockOutlineDebugRenderer	
+	f	Lnet/minecraft/class_310;	field_4628	client	
 	m	(Lnet/minecraft/class_310;)V	<init>	<init>	
 		p	1		p_1	
 	m	(FJ)V	method_3715	method_3715	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_918
-	m	(Lnet/minecraft/class_1087;Lnet/minecraft/class_1799;)V	method_4018	method_4018	
+	m	(Lnet/minecraft/class_1087;Lnet/minecraft/class_1799;)V	method_4018	renderItemModel	
+		p	1		p_1	
+		p	2		stack	
+	m	(Lnet/minecraft/class_1087;I)V	method_4013	renderModelWithTint	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1087;I)V	method_4013	method_4013	
+	m	(Lnet/minecraft/class_1087;ILnet/minecraft/class_1799;)V	method_4027	renderModel	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1087;ILnet/minecraft/class_1799;)V	method_4027	method_4027	
+		p	3		stack	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1087;)V	method_4006	renderItemAndGlow	
+		p	1		stack	
+		p	2		p_2	
+	m	(Lnet/minecraft/class_287;Lnet/minecraft/class_777;I)V	method_4002	renderQuad	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1087;)V	method_4006	method_4006	
+		p	3		color	
+	m	(Lnet/minecraft/class_287;Ljava/util/List;ILnet/minecraft/class_1799;)V	method_4031	renderQuads	
 		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_287;Lnet/minecraft/class_777;I)V	method_4002	method_4002	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_287;Ljava/util/List;ILnet/minecraft/class_1799;)V	method_4031	method_4031	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_1799;IILnet/minecraft/class_1087;)V	method_4021	method_4021	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;II)V	method_4026	method_4026	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	2		quads	
+		p	3		forcedColor	
+		p	4		stack	
+	m	(Lnet/minecraft/class_1799;IILnet/minecraft/class_1087;)V	method_4021	renderGuiItemModel	
+		p	1		stack	
+		p	2		x	
+		p	3		y	
+		p	4		model	
+	m	(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;II)V	method_4026	innerRenderInGui	
+		p	1		entity	
+		p	2		itemStack	
+		p	3		x	
+		p	4		y	
 	m	(Lnet/minecraft/class_1087;)V	method_4011	method_4011	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1087;Lnet/minecraft/class_1799;F)V	method_4018		method_4018

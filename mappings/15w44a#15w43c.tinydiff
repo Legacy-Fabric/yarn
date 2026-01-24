@@ -1,7 +1,7 @@
 tiny	2	0
-c	net/minecraft/class_109	net/minecraft/class_109	
-	f	Lorg/apache/logging/log4j/Logger;	field_1031	field_1031	
-	f	Ljava/util/List;	field_1030	field_1030	
+c	net/minecraft/class_109	net/minecraft/loot/function/EnchantRandomlyLootFunction	
+	f	Lorg/apache/logging/log4j/Logger;	field_1031	LOGGER	
+	f	Ljava/util/List;	field_1030	enchantments	
 	m	(Lnet/minecraft/class_109;)Ljava/util/List;	method_487	method_487	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
@@ -12,7 +12,7 @@ c	net/minecraft/class_109	net/minecraft/class_109
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_109$class_110	class_110	
+c	net/minecraft/class_109$class_110	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_109;Lcom/google/gson/JsonSerializationContext;)V	method_491	method_491	
 		p	1		p_1	
@@ -30,7 +30,7 @@ c	net/minecraft/class_109$class_110	class_110
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_1262	net/minecraft/class_1262	
+c	net/minecraft/class_1262	net/minecraft/inventory/Inventories	
 	m	([Lnet/minecraft/class_1799;II)Lnet/minecraft/class_1799;	method_5430	method_5430	
 		p	0		p_0	
 		p	1		p_1	
@@ -39,9 +39,10 @@ c	net/minecraft/class_1262	net/minecraft/class_1262
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_1304
-	m	(Ljava/lang/String;)Lnet/minecraft/class_1304;	method_5924	method_5924	
-		p	0		p_0	
-c	net/minecraft/class_137	net/minecraft/class_137	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_1304;	method_5924	byName	
+		c	{@return the slot where {@linkplain #getName the name} is equal to {@code name}}\nIf no slot matching the input name is found, this throws {@link IllegalArgumentException}.\n\n@throws IllegalArgumentException if no slot type could be found matching {@code name}	
+		p	0		name	
+c	net/minecraft/class_137	net/minecraft/loot/function/SetAttributesLootFunction	
 	f	Lorg/apache/logging/log4j/Logger;	field_0_11014	field_0_11014	
 	f	[Lnet/minecraft/class_137$class_138;	field_0_11015	field_0_11015	
 	m	([Lnet/minecraft/class_0_2323;[Lnet/minecraft/class_137$class_138;)V	<init>	<init>	
@@ -54,18 +55,18 @@ c	net/minecraft/class_137	net/minecraft/class_137
 	m	(Lnet/minecraft/class_137;)[Lnet/minecraft/class_137$class_138;	method_0_9827	method_0_9827	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_137$class_138	class_138	
-	f	Ljava/lang/String;	field_1107	field_1107	
-	f	Ljava/lang/String;	field_1110	field_1110	
-	f	Lnet/minecraft/class_61;	field_1108	field_1108	
-	f	Ljava/util/UUID;	field_1111	field_1111	
-	f	[Lnet/minecraft/class_1304;	field_1112	field_1112	
+c	net/minecraft/class_137$class_138	Attribute	
+	f	Ljava/lang/String;	field_1107	name	
+	f	Ljava/lang/String;	field_1110	attribute	
+	f	Lnet/minecraft/class_61;	field_1108	amountRange	
+	f	Ljava/util/UUID;	field_1111	id	
+	f	[Lnet/minecraft/class_1304;	field_1112	slots	
 	f	I	field_0_11018	field_0_11018	
-	m	(Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonObject;	method_615	method_615	
-		p	1		p_1	
-	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_137$class_138;	method_614	method_614	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonObject;	method_615	serialize	
+		p	1		context	
+	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_137$class_138;	method_614	deserialize	
+		p	0		json	
+		p	1		context	
 	m	(Lnet/minecraft/class_137$class_138;)Ljava/util/UUID;	method_613	method_613	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_137$class_138;)[Lnet/minecraft/class_1304;	method_608	method_608	
@@ -89,7 +90,7 @@ c	net/minecraft/class_137$class_138	class_138
 		p	0		p_0	
 	m	(Lnet/minecraft/class_137$class_138;)I	method_607	method_607	
 		p	0		p_0	
-c	net/minecraft/class_137$class_139	class_139	
+c	net/minecraft/class_137$class_139	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_137;Lcom/google/gson/JsonSerializationContext;)V	method_618	method_618	
 		p	1		p_1	
@@ -108,10 +109,10 @@ c	net/minecraft/class_137$class_139	class_139
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_1511
-	f	Lnet/minecraft/class_2940;	field_7035	field_7035	
-	m	(Z)V	method_6839	method_6839	
-		p	1		p_1	
-	m	()Z	method_6836	method_6836	
+	f	Lnet/minecraft/class_2940;	field_7035	SHOW_BOTTOM	
+	m	(Z)V	method_6839	setShowBottom	
+		p	1		showBottom	
+	m	()Z	method_6836	shouldShowBottom	
 c	net/minecraft/class_1530
 	m	(Lnet/minecraft/class_1799;F)Lnet/minecraft/class_1542;	method_5699	method_5699	
 		p	1		p_1	
@@ -125,28 +126,37 @@ c	net/minecraft/class_1657
 	m	(Lnet/minecraft/class_1297;)V	method_5697	method_5697	
 		p	1		p_1	
 c	net/minecraft/class_1703
-	m	(IILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7593	method_7593	
+	m	(IILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7593	onSlotClick	
+		c	Performs a slot click. This can behave in many different ways depending mainly on the action type.\n@return The stack that was clicked on before anything changed, used mostly for verifying that the client and server are in sync	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		actionType	
+			c	the type of slot click. Check the docs for each SlotActionType value for details	
 		p	4		p_4	
-	m	(IIILnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7593		method_7593
+	m	(IIILnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_7593		onSlotClick
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_1708
 c	net/minecraft/class_1708$class_1709
-	m	(Lnet/minecraft/class_1799;)Z	method_7630	method_7630	
-		p	0		p_0	
-c	net/minecraft/class_1713	net/minecraft/class_1713	
-	f	Lnet/minecraft/class_1713;	field_7790	field_7790	
-	f	Lnet/minecraft/class_1713;	field_7794	field_7794	
-	f	Lnet/minecraft/class_1713;	field_7791	field_7791	
-	f	Lnet/minecraft/class_1713;	field_7796	field_7796	
-	f	Lnet/minecraft/class_1713;	field_7795	field_7795	
-	f	Lnet/minecraft/class_1713;	field_7789	field_7789	
-	f	Lnet/minecraft/class_1713;	field_7793	field_7793	
+	m	(Lnet/minecraft/class_1799;)Z	method_7630	matches	
+		p	0		stack	
+c	net/minecraft/class_1713	net/minecraft/screen/slot/SlotActionType	
+	f	Lnet/minecraft/class_1713;	field_7790	PICKUP	
+		c	Performs a normal slot click. This can pickup or place items in the slot, possibly merging the cursor stack into the slot, or swapping the slot stack with the cursor stack if they can't be merged.	
+	f	Lnet/minecraft/class_1713;	field_7794	QUICK_MOVE	
+		c	Performs a shift-click. This usually quickly moves items between the player's inventory and the open screen handler.	
+	f	Lnet/minecraft/class_1713;	field_7791	SWAP	
+		c	Exchanges items between a slot and a hotbar slot. This is usually triggered by the player pressing a 1-9 number key while hovering over a slot.\n\n<p>When the action type is swap, the click data is the hotbar slot to swap with (0-8).	
+	f	Lnet/minecraft/class_1713;	field_7796	CLONE	
+		c	Clones the item in the slot. Usually triggered by middle clicking an item in creative mode.	
+	f	Lnet/minecraft/class_1713;	field_7795	THROW	
+		c	Throws the item out of the inventory. This is usually triggered by the player pressing Q while hovering over a slot, or clicking outside the window.\n\n<p>When the action type is throw, the click data determines whether to throw a whole stack (1) or a single item from that stack (0).	
+	f	Lnet/minecraft/class_1713;	field_7789	QUICK_CRAFT	
+		c	Drags items between multiple slots. This is usually triggered by the player clicking and dragging between slots.\n\n<p>This action happens in 3 stages. Stage 0 signals that the drag has begun, and stage 2 signals that the drag has ended. In between multiple stage 1s signal which slots were dragged on.\n\n<p>The stage is packed into the click data along with the mouse button that was clicked. See {@link net.minecraft.screen.ScreenHandler#packQuickCraftData(int, int) ScreenHandler.packQuickCraftData(int, int)} for details.	
+	f	Lnet/minecraft/class_1713;	field_7793	PICKUP_ALL	
+		c	Replenishes the cursor stack with items from the screen handler. This is usually triggered by the player double clicking.	
 	f	[Lnet/minecraft/class_1713;	field_7792	field_7792	
 	m	()[Lnet/minecraft/class_1713;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_1713;	valueOf	valueOf	
@@ -155,7 +165,7 @@ c	net/minecraft/class_1713	net/minecraft/class_1713
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1774	net/minecraft/class_1774	
+c	net/minecraft/class_1774	net/minecraft/item/EndCrystalItem	
 	m	(Lnet/minecraft/class_1799;)Z	method_7886	method_7886	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -170,10 +180,10 @@ c	net/minecraft/class_1774	net/minecraft/class_1774
 		p	8		p_8	
 		p	9		p_9	
 c	net/minecraft/class_1799
-	m	(Ljava/lang/String;Lnet/minecraft/class_1322;Lnet/minecraft/class_1304;)V	method_7916	method_7916	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Ljava/lang/String;Lnet/minecraft/class_1322;Lnet/minecraft/class_1304;)V	method_7916	addAttributeModifier	
+		p	1		name	
+		p	2		modifier	
+		p	3		slot	
 c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_8301	field_8301	
 c	net/minecraft/class_2337
@@ -186,9 +196,9 @@ c	net/minecraft/class_2338$class_2339
 	m	(I)V	method_10099	method_10099	
 		p	1		p_1	
 c	net/minecraft/class_2783
-	m	()Z	method_11942	method_11942	
+	m	()Z	method_11942	shouldShowIcon	
 c	net/minecraft/class_2813
-	f	Lnet/minecraft/class_1713;	field_12815	field_12815	
+	f	Lnet/minecraft/class_1713;	field_12815	actionType	
 	f	I	field_0_6388		field_0_6388
 	m	(IIILnet/minecraft/class_1713;Lnet/minecraft/class_1799;S)V	<init>	<init>	
 		p	1		p_1	
@@ -197,7 +207,7 @@ c	net/minecraft/class_2813
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-	m	()Lnet/minecraft/class_1713;	method_12195	method_12195	
+	m	()Lnet/minecraft/class_1713;	method_12195	getActionType	
 	m	(IIIILnet/minecraft/class_1799;S)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -207,17 +217,18 @@ c	net/minecraft/class_2813
 		p	6			p_6
 	m	()I	method_12195		method_12195
 c	net/minecraft/class_2881
-	f	Ljava/util/List;	field_13109	field_13109	
-	m	()V	method_12522	method_12522	
-	m	(Ljava/util/List;)V	method_12529	method_12529	
-		p	1		p_1	
+	f	Ljava/util/List;	field_13109	crystals	
+	m	()V	method_12522	respawnDragon	
+	m	(Ljava/util/List;)V	method_12529	respawnDragon	
+		p	1		crystals	
 	m	()V	method_12529		method_12529
 c	net/minecraft/class_465
-	m	(Lnet/minecraft/class_1735;IILnet/minecraft/class_1713;)V	method_2383	method_2383	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_1735;IILnet/minecraft/class_1713;)V	method_2383	onMouseClick	
+		c	@see net.minecraft.screen.ScreenHandler#onSlotClick(int, int, net.minecraft.screen.slot.SlotActionType, net.minecraft.entity.player.PlayerEntity)	
+		p	1		slot	
+		p	2		slotId	
+		p	3		button	
+		p	4		actionType	
 	m	(Lnet/minecraft/class_1735;III)V	method_2383		method_2383
 		p	1			p_1
 		p	2			p_2
@@ -235,13 +246,13 @@ c	net/minecraft/class_481
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_52
-	m	(Ljava/util/List;ILjava/util/Random;)V	method_333	method_333	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1263;Ljava/util/Random;)Ljava/util/List;	method_321	method_321	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/util/List;ILjava/util/Random;)V	method_333	shuffle	
+		p	1		drops	
+		p	2		freeSlots	
+		p	3		random	
+	m	(Lnet/minecraft/class_1263;Ljava/util/Random;)Ljava/util/List;	method_321	getFreeSlots	
+		p	1		inventory	
+		p	2		random	
 	m	(Ljava/util/Random;FLnet/minecraft/class_47;)Ljava/util/List;	method_0_9654	method_0_9654	
 		p	1		p_1	
 		p	2		p_2	
@@ -251,18 +262,19 @@ c	net/minecraft/class_52
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_636
-	m	(IIILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_2906	method_2906	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(IIIILnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_2906		method_2906
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(IIILnet/minecraft/class_1713;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_2906	clickSlot	
+		c	@see net.minecraft.screen.ScreenHandler#onSlotClick(int, int, net.minecraft.screen.slot.SlotActionType, net.minecraft.entity.player.PlayerEntity)	
+		p	1		syncId	
+		p	2		slotId	
+		p	3		clickData	
+		p	4		actionType	
+		p	5		player	
+	m	(IIIILnet/minecraft/class_1657;)Lnet/minecraft/class_1799;	method_2906		clickSlot
+		p	1			syncId
+		p	2			slotId
+		p	3			button
 		p	4			p_4
-		p	5			p_5
+		p	5			player
 c	net/minecraft/class_892
 	f	Lnet/minecraft/class_583;	field_4664	field_4664	
 c	net/minecraft/class_0_175

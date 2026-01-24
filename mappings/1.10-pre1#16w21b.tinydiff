@@ -1,9 +1,9 @@
 tiny	2	0
 c	net/minecraft/class_1066
-	f	Ljava/util/regex/Pattern;	field_5296	field_5296	
-	m	(Ljava/lang/String;Ljava/io/File;)Z	method_4641	method_4641	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/util/regex/Pattern;	field_5296	SHA1_PATTERN	
+	m	(Ljava/lang/String;Ljava/io/File;)Z	method_4641	verifyFile	
+		p	1		expectedSha1	
+		p	2		file	
 	m	(Lnet/minecraft/class_1066;Ljava/lang/String;Ljava/io/File;)Z	method_0_10383	method_0_10383	
 		p	0		p_0	
 		p	1		p_1	
@@ -25,7 +25,7 @@ c	net/minecraft/class_1066$3
 c	net/minecraft/class_11
 	m	(Lnet/minecraft/class_243;)Z	method_0_1864		method_0_1864
 		p	1			p_1
-c	net/minecraft/class_1202	net/minecraft/class_1202	
+c	net/minecraft/class_1202	net/minecraft/datafixer/fix/OptionsForceVBOFix	
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_0_8951	method_0_8951	
 		p	1		p_1	
 	m	()V	<init>	<init>	
@@ -48,9 +48,9 @@ c	net/minecraft/class_1308
 	m	(Lnet/minecraft/class_0_2204;)V	method_0_10395	method_0_10395	
 		p	0		p_0	
 c	net/minecraft/class_1309
-	f	Lnet/minecraft/class_1282;	field_6276	field_6276	
-	f	J	field_6226	field_6226	
-	m	()Lnet/minecraft/class_1282;	method_6081	method_6081	
+	f	Lnet/minecraft/class_1282;	field_6276	lastDamageSource	
+	f	J	field_6226	lastDamageTime	
+	m	()Lnet/minecraft/class_1282;	method_6081	getRecentDamageSource	
 c	net/minecraft/class_1420
 	m	(Lnet/minecraft/class_0_2204;)V	method_0_10397	method_0_10397	
 		p	0		p_0	
@@ -296,18 +296,18 @@ c	net/minecraft/class_2413
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2512
-	m	(Lnet/minecraft/class_2769;Ljava/lang/Comparable;)Ljava/lang/String;	method_10685	method_10685	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2769;Ljava/lang/Comparable;)Ljava/lang/String;	method_10685	nameValue	
+		p	0		property	
+		p	1		value	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_2769;Ljava/lang/String;)Lnet/minecraft/class_0_378;	method_10682	method_10682	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2586
-	m	(Lnet/minecraft/class_2470;)V	method_11013	method_11013	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2415;)V	method_11001	method_11001	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2470;)V	method_11013	applyRotation	
+		p	1		rotation	
+	m	(Lnet/minecraft/class_2415;)V	method_11001	applyMirror	
+		p	1		mirror	
 c	net/minecraft/class_2589
 	m	(Lnet/minecraft/class_0_2204;)V	method_0_10368	method_0_10368	
 		p	0		p_0	
@@ -423,7 +423,7 @@ c	net/minecraft/class_31$10	10
 		p	1		p_1	
 	m	()Ljava/lang/String;	method_0_2004	method_0_2004	
 	m	()Ljava/lang/Object;	call	call	
-c	net/minecraft/class_3143	net/minecraft/class_3143	
+c	net/minecraft/class_3143	net/minecraft/server/command/TeleportCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_0_5966	method_0_5966	
 	m	()I	method_0_5757	method_0_5757	
@@ -449,11 +449,11 @@ c	net/minecraft/class_3143	net/minecraft/class_3143
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_315
-	f	Lcom/google/common/base/Splitter;	field_1853	field_1853	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_1626	method_1626	
-		p	1		p_1	
+	f	Lcom/google/common/base/Splitter;	field_1853	COLON_SPLITTER	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_1626	update	
+		p	1		nbt	
 c	net/minecraft/class_3176
-	f	Ljava/util/regex/Pattern;	field_13810	field_13810	
+	f	Ljava/util/regex/Pattern;	field_13810	SHA1_PATTERN	
 c	net/minecraft/class_3417
 	f	Lnet/minecraft/class_3414;	field_14680	field_14680	
 	f	Lnet/minecraft/class_3414;	field_14892	field_14892	
@@ -511,8 +511,8 @@ c	net/minecraft/class_3551$7		7
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_634
-	m	(Ljava/lang/String;)Z	method_2888	method_2888	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Z	method_2888	validateResourcePackUrl	
+		p	1		url	
 	m	()Lcom/google/common/util/concurrent/FutureCallback;	method_0_10121	method_0_10121	
 	m	(Lnet/minecraft/class_634;)Lcom/google/common/util/concurrent/FutureCallback;	method_0_10119	method_0_10119	
 		p	0		p_0	

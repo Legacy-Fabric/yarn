@@ -1,32 +1,32 @@
 tiny	2	0
-c	net/minecraft/class_1103	net/minecraft/class_1103	
-	f	Lnet/minecraft/class_746;	field_5452	field_5452	
-	f	I	field_5453	field_5453	
+c	net/minecraft/class_1103	net/minecraft/client/sound/ElytraSoundInstance	
+	f	Lnet/minecraft/class_746;	field_5452	player	
+	f	I	field_5453	tickCount	
 	m	(Lnet/minecraft/class_746;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	method_12953	method_12953	
 c	net/minecraft/class_1280
-	m	(FFF)F	method_5496	method_5496	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FFF)F	method_5496	getDamageLeft	
+		p	0		damage	
+		p	1		armor	
+		p	2		armorToughness	
 	m	(FF)F	method_5496		method_5496
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_1380
-	m	(I)V	method_6305	method_6305	
-		p	1		p_1	
+	m	(I)V	method_6305	setAttackInterval	
+		p	1		attackInterval	
 c	net/minecraft/class_1411
 	f	Ljava/lang/Object;	field_0_11436	field_0_11436	
 	f	Ljava/util/WeakHashMap;	field_0_11437	field_0_11437	
 	f	Ljava/lang/Object;	field_0_10296		field_0_10296
 	f	Ljava/util/WeakHashMap;	field_0_10297		field_0_10297
 c	net/minecraft/class_1612
-	f	Lnet/minecraft/class_1320;	field_7364	field_7364	
+	f	Lnet/minecraft/class_1320;	field_7364	ARMOR_TOUGHNESS	
 c	net/minecraft/class_1693
 	m	()Ljava/lang/String;	method_5477		method_5477
 c	net/minecraft/class_1738
-	f	F	field_7877	field_7877	
+	f	F	field_7877	toughness	
 c	net/minecraft/class_1738$class_1740
 	f	F	field_7894	field_7894	
 	m	(Ljava/lang/String;ILjava/lang/String;I[IILnet/minecraft/class_3414;F)V	<init>	<init>	
@@ -62,21 +62,28 @@ c	net/minecraft/class_2281
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2540
-	m	(I)[B	method_10803	method_10803	
-		p	1		p_1	
-	m	(I)[I	method_10799	method_10799	
-		p	1		p_1	
-	m	([JI)[J	method_10809	method_10809	
-		p	1		p_1	
-		p	2		p_2	
+	m	(I)[B	method_10803	readByteArray	
+		c	Reads an array of primitive bytes from this buf. The array first has a\nvar int indicating its length, followed by the actual bytes. The array\nhas a length limit given by {@code maxSize}.\n\n@see #readByteArray()\n@see #writeByteArray(byte[])\n@return the read byte array\n@throws io.netty.handler.codec.DecoderException if the read array has a\nlength over {@code maxSize}	
+		p	1		maxSize	
+			c	the max length of the read array	
+	m	(I)[I	method_10799	readIntArray	
+		c	Reads an array of primitive ints from this buf. The array first has a\nvar int indicating its length, followed by the var int entries. The array\nhas a length limit given by {@code maxSize}.\n\n@implNote An int array has the same format as a list of ints.\n\n@see #readIntArray()\n@see #writeIntArray(int[])\n@return the read byte array\n@throws io.netty.handler.codec.DecoderException if the read array has a\nlength over {@code maxSize}	
+		p	1		maxSize	
+			c	the max length of the read array	
+	m	([JI)[J	method_10809	readLongArray	
+		c	Reads an array of primitive longs from this buf. The array first has a\nvar int indicating its length, followed by the regular long (not var\nlong) values. The array has a length limit of {@code maxSize}.\n\n<p>Only when {@code toArray} is not {@code null} and {@code\ntoArray.length} equals to the length var int read will the {@code\ntoArray} be reused and returned; otherwise, a new array\nof proper size is created.\n\n@see #writeLongArray(long[])\n@see #readLongArray()\n@see #readLongArray(long[])\n@return the read long array\n@throws io.netty.handler.codec.DecoderException if the read array has a\nlength over {@code maxSize}	
+		p	1		toArray	
+			c	the array to reuse	
+		p	2		maxSize	
+			c	the max length of the read array	
 c	net/minecraft/class_2595
 	m	(Lnet/minecraft/class_2960;J)V	method_0_9631		method_0_9631
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2621
-	m	(Lnet/minecraft/class_2960;J)V	method_11285	method_11285	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2960;J)V	method_11285	setLootTable	
+		p	1		id	
+		p	2		seed	
 c	net/minecraft/class_315
 	f	Z	field_1912	field_1912	
 c	net/minecraft/class_315$class_316

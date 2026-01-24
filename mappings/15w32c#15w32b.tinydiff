@@ -1,9 +1,11 @@
 tiny	2	0
 c	net/minecraft/class_1297
-	m	(Ljava/lang/String;)Z	method_5780	method_5780	
-		p	1		p_1	
-	m	(Ljava/lang/String;)Z	method_5738	method_5738	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Z	method_5780	addCommandTag	
+		c	Adds a command tag to this entity. An entity can have up to {@code 1024}\ncommand tags.\n\n<p>Command tags are set using the {@linkplain net.minecraft.server.command.TagCommand\n/tag command}, and is different from entity type tags defined in data packs.\n\n@return whether the command tag was successfully added	
+		p	1		tag	
+	m	(Ljava/lang/String;)Z	method_5738	removeScoreboardTag	
+		c	Removes a command tag from this entity.\n\n<p>Command tags are set using the {@linkplain net.minecraft.server.command.TagCommand\n/tag command}, and is different from entity type tags defined in data packs.\n\n@return whether the command tag was successfully removed	
+		p	1		tag	
 c	net/minecraft/class_1541
 	m	()V	<clinit>	<clinit>	
 	m	(S)V	method_6967	method_6967	
@@ -87,8 +89,8 @@ c	net/minecraft/class_694
 		p	1			p_1
 c	net/minecraft/class_702
 	f	[[Ljava/util/ArrayDeque;	field_3830	field_3830	
-	f	Ljava/util/Queue;	field_3837	field_3837	
-	f	Ljava/util/Queue;	field_3836	field_3836	
+	f	Ljava/util/Queue;	field_3837	newEmitterParticles	
+	f	Ljava/util/Queue;	field_3836	newParticles	
 	f	[[Ljava/util/List;	field_3830		field_3830
 	f	Ljava/util/List;	field_3837		field_3837
 	m	(Ljava/util/Queue;)V	method_3048	method_3048	
@@ -104,43 +106,55 @@ c	net/minecraft/class_702
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_703
-	f	Lnet/minecraft/class_238;	field_3860	field_3860	
-	f	Lnet/minecraft/class_1937;	field_3851	field_3851	
-	f	D	field_3858	field_3858	
-	f	D	field_3838	field_3838	
-	f	D	field_3856	field_3856	
-	f	D	field_3874	field_3874	
-	f	D	field_3854	field_3854	
-	f	D	field_3871	field_3871	
-	f	D	field_3852	field_3852	
-	f	D	field_3869	field_3869	
-	f	D	field_3850	field_3850	
-	f	Lnet/minecraft/class_238;	field_3872	field_3872	
-	f	Z	field_3845	field_3845	
-	f	Z	field_3843	field_3843	
-	f	F	field_3849	field_3849	
-	f	F	field_3867	field_3867	
-	f	Ljava/util/Random;	field_3840	field_3840	
+	f	Lnet/minecraft/class_238;	field_3860	EMPTY_BOUNDING_BOX	
+	f	Lnet/minecraft/class_1937;	field_3851	world	
+	f	D	field_3858	prevPosX	
+	f	D	field_3838	prevPosY	
+	f	D	field_3856	prevPosZ	
+	f	D	field_3874	x	
+	f	D	field_3854	y	
+	f	D	field_3871	z	
+	f	D	field_3852	velocityX	
+	f	D	field_3869	velocityY	
+	f	D	field_3850	velocityZ	
+	f	Lnet/minecraft/class_238;	field_3872	boundingBox	
+	f	Z	field_3845	onGround	
+	f	Z	field_3843	dead	
+	f	F	field_3849	spacingXZ	
+	f	F	field_3867	spacingY	
+	f	Ljava/util/Random;	field_3840	random	
 	m	()Z	method_3071	method_3071	
-	m	()V	method_3085	method_3085	
-	m	(FF)V	method_3080	method_3080	
-		p	1		p_1	
-		p	2		p_2	
-	m	(DDD)V	method_3063	method_3063	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(DDD)V	method_3069	method_3069	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	()V	method_3072	method_3072	
-	m	(F)I	method_3068	method_3068	
-		p	1		p_1	
-	m	()Z	method_3086	method_3086	
-	m	()Lnet/minecraft/class_238;	method_3064	method_3064	
-	m	(Lnet/minecraft/class_238;)V	method_3067	method_3067	
-		p	1		p_1	
+	m	()V	method_3085	markDead	
+		c	Marks this particle as ready to be removed from the containing {@link ClientWorld}.	
+	m	(FF)V	method_3080	setBoundingBoxSpacing	
+		p	1		spacingXZ	
+		p	2		spacingY	
+	m	(DDD)V	method_3063	setPos	
+		c	Updates the position and bounding box of this particle to the target {@code x}, {@code y}, {@code z} position.	
+		p	1		x	
+			c	the x position to move this particle to	
+		p	3		y	
+			c	the y position to move this particle to	
+		p	5		z	
+			c	the z position to move this particle to	
+	m	(DDD)V	method_3069	move	
+		c	Moves this particle by the specified delta amounts, re-positioning bounding boxes and adjusting movement for collision with the world.	
+		p	1		dx	
+			c	the delta x to move this particle by	
+		p	3		dy	
+			c	the delta y to move this particle by	
+		p	5		dz	
+			c	the delta z to move this particle by	
+	m	()V	method_3072	repositionFromBoundingBox	
+	m	(F)I	method_3068	getBrightness	
+		c	{@return the packed light level this particle should render at}\n\n@see net.minecraft.client.render.LightmapTextureManager	
+		p	1		tint	
+	m	()Z	method_3086	isAlive	
+		c	{@return {@code false} if this particle is finished and should be removed from the parent {@link ParticleManager}, otherwise {@code true} if the particle is still alive}	
+	m	()Lnet/minecraft/class_238;	method_3064	getBoundingBox	
+		c	{@return the bounding {@link Box} of this particle used for collision and movement logic}\n\n<p>\nBy default, this bounding box is automatically repositioned when a particle moves in {@link Particle#tick()}.\nTo adjust the size of the returned box, visit {@link Particle#setBoundingBoxSpacing(float, float)}.\nTo directly update the current bounding box, visit {@link Particle#setBoundingBox(Box)};	
+	m	(Lnet/minecraft/class_238;)V	method_3067	setBoundingBox	
+		p	1		boundingBox	
 	m	()V	<clinit>	<clinit>	
 	m	()F	method_0_3240		method_0_3240
 	m	()Z	method_5658		method_5658
@@ -150,6 +164,8 @@ c	net/minecraft/class_703
 	m	(Lnet/minecraft/class_2487;)V	method_5749		method_5749
 		p	1			p_1
 	m	()Z	method_5732		method_5732
+	m	()V	method_3070	tick	method_3070
+		c	Called each game tick (20 times per second), and should be used to do core particle logic, such as movement and collision.	
 c	net/minecraft/class_708
 	m	()Z	method_3071	method_3071	
 	m	(F)I	method_3068	method_3068	

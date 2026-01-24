@@ -5,7 +5,7 @@ c	net/minecraft/class_1295
 	m	()F	method_0_9873		method_0_9873
 	m	()I	method_0_9874		method_0_9874
 c	net/minecraft/class_1308
-	m	()V	method_5975	method_5975	
+	m	()V	method_5975	resetSoundDelay	
 	m	(Z)V	method_6013	method_6013	
 		p	1		p_1	
 c	net/minecraft/class_1309
@@ -35,11 +35,11 @@ c	net/minecraft/class_1606
 	m	()F	method_5871	method_5871	
 	m	()Lnet/minecraft/class_3414;	method_6011	method_6011	
 c	net/minecraft/class_1667
-	m	(I)V	method_7461	method_7461	
-		p	1		p_1	
+	m	(I)V	method_7461	spawnParticles	
+		p	1		amount	
 c	net/minecraft/class_1686
-	f	Lnet/minecraft/class_2940;	field_7652	field_7652	
-	f	Lorg/apache/logging/log4j/Logger;	field_7651	field_7651	
+	f	Lnet/minecraft/class_2940;	field_7652	ITEM_STACK	
+	f	Lorg/apache/logging/log4j/Logger;	field_7651	LOGGER	
 	f	Lnet/minecraft/class_1799;	field_0_8412		field_0_8412
 	f	Z	field_0_9787		field_0_9787
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;)V	<init>	<init>	
@@ -53,9 +53,9 @@ c	net/minecraft/class_1686
 		p	6		p_6	
 		p	8		p_8	
 	m	()V	method_5693	method_5693	
-	m	(Lnet/minecraft/class_1799;)V	method_7494	method_7494	
+	m	(Lnet/minecraft/class_1799;)V	method_7494	setItemStack	
 		p	1		p_1	
-	m	()Z	method_7501	method_7501	
+	m	()Z	method_7501	isLingering	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Z)V	<init>		<init>
 		p	1			p_1
@@ -73,18 +73,19 @@ c	net/minecraft/class_1690
 	m	(Lnet/minecraft/class_1297;)V	method_5697	method_5697	
 		p	1		p_1	
 c	net/minecraft/class_2279
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V	method_9745	method_9745	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_9747	method_9747	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)V	method_9745	grow	
+		p	1		world	
+		p	2		pos	
+		p	3		age	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_9747	die	
+		p	1		world	
+		p	2		pos	
 c	net/minecraft/class_2323
 	m	(Lnet/minecraft/class_0_378;)Lnet/minecraft/class_3620;	method_9602	method_9602	
 		p	1		p_1	
 c	net/minecraft/class_243
-	f	Lnet/minecraft/class_243;	field_1353	field_1353	
+	f	Lnet/minecraft/class_243;	field_1353	ZERO	
+		c	The zero vector (0, 0, 0).	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2449
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)Lnet/minecraft/class_1799;	method_9574	method_9574	
@@ -220,7 +221,7 @@ c	net/minecraft/class_2966$9
 	f	Z	field_0_6505	field_0_6505	
 	f	Z	field_0_6506		field_0_6506
 c	net/minecraft/class_315
-	f	Z	field_1830	field_1830	
+	f	Z	field_1830	realmsNotifications	
 c	net/minecraft/class_315$class_316
 	f	Lnet/minecraft/class_315$class_316;	field_1953	field_1953	
 c	net/minecraft/class_3417
@@ -249,17 +250,17 @@ c	net/minecraft/class_437
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_442
-	f	Z	field_2599	field_2599	
-	f	Lnet/minecraft/class_437;	field_2592	field_2592	
-	m	()Z	method_2253	method_2253	
+	f	Z	field_2599	realmsNotificationsInitialized	
+	f	Lnet/minecraft/class_437;	field_2592	realmsNotificationGui	
+	m	()Z	method_2253	isRealmsNotificationsGuiDisplayed	
 	m	()V	method_2234	method_2234	
 c	net/minecraft/class_640
-	f	Ljava/util/Map;	field_3742	field_3742	
+	f	Ljava/util/Map;	field_3742	textures	
 	f	[Lnet/minecraft/class_2960;	field_0_11036		field_0_11036
 	m	(Lnet/minecraft/class_640;)[Lnet/minecraft/class_2960;	method_0_9865		method_0_9865
 		p	0			p_0
 c	net/minecraft/class_796
-	m	(Lnet/minecraft/class_787;Lnet/minecraft/class_2350;Lnet/minecraft/class_1086;)Lnet/minecraft/class_787;	method_3454	method_3454	
+	m	(Lnet/minecraft/class_787;Lnet/minecraft/class_2350;Lnet/minecraft/class_1086;)Lnet/minecraft/class_787;	method_3454	uvLock	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -269,7 +270,7 @@ c	net/minecraft/class_796
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_9
-	f	F	field_46	field_46	
+	f	F	field_46	pathLength	
 c	net/minecraft/realms/Realms
 	m	()Z	getRealmsNotificationsEnabled	getRealmsNotificationsEnabled	
 	m	()Z	inTitleScreen	inTitleScreen	

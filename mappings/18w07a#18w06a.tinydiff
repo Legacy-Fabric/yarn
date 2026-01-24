@@ -9,25 +9,32 @@ c	net/minecraft/class_1009
 		p	0		p_0	
 	m	()Ljava/util/HashMap;	method_0_14405		method_0_14405
 c	net/minecraft/class_1266
-	m	()Lnet/minecraft/class_1267;	method_5454	method_5454	
+	m	()Lnet/minecraft/class_1267;	method_5454	getGlobalDifficulty	
 c	net/minecraft/class_1282
-	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_1297;)Lnet/minecraft/class_1282;	method_5520	method_5520	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_1297;)Lnet/minecraft/class_1282;	method_5520	trident	
+		p	0		trident	
+		p	1		attacker	
 c	net/minecraft/class_1297
-	f	F	field_6003	field_6003	
+	f	F	field_6003	nextStepSoundDistance	
 	f	I	field_6003		field_6003
-	m	()F	method_5867	method_5867	
-	m	(F)V	method_5734	method_5734	
-		p	1		p_1	
-	m	()Z	method_5637	method_5637	
-	m	()Z	method_5816	method_5816	
-	m	()Z	method_5709	method_5709	
-	m	()Z	method_5681	method_5681	
-	m	(Z)V	method_5700	method_5700	
-		p	1		p_1	
-	m	(Z)V	method_5764	method_5764	
-		p	1		p_1	
+	m	()F	method_5867	calculateNextStepSoundDistance	
+	m	(F)V	method_5734	playSwimSound	
+		p	1		volume	
+	m	()Z	method_5637	isWet	
+		c	{@return whether this entity is touching water, or is being rained on, or is\ninside a bubble column}\n\n@see net.minecraft.entity.Entity#isTouchingWater()\n@see net.minecraft.entity.Entity#isBeingRainedOn()\n@see net.minecraft.entity.Entity#isInsideBubbleColumn()\n@see net.minecraft.entity.Entity#isInsideWaterOrBubbleColumn()	
+	m	()Z	method_5816	isInsideWaterOrBubbleColumn	
+		c	{@return whether this entity is touching water or a bubble column}\n\n@see net.minecraft.entity.Entity#isTouchingWater()\n@see net.minecraft.entity.Entity#isBeingRainedOn()\n@see net.minecraft.entity.Entity#isInsideBubbleColumn()\n@see net.minecraft.entity.Entity#isWet()	
+	m	()Z	method_5709	isLiving	
+	m	()Z	method_5681	isSwimming	
+		c	{@return whether the entity is swimming}\n\n<p>An entity is swimming if it is touching water, not riding any entities, and is\nsprinting. Note that to start swimming, the entity must first be submerged in\nwater.\n\n@see #setSwimming	
+	m	(Z)V	method_5700	onBubbleColumnSurfaceCollision	
+		c	Called when the entity collides with a bubble column with an air above.\n\n<p>This applies the bubble column velocity by default. {@link\nnet.minecraft.entity.vehicle.BoatEntity} uses this to spawn splash particles.	
+		p	1		drag	
+			c	whether the entity should be dragged downwards	
+	m	(Z)V	method_5764	onBubbleColumnCollision	
+		c	Called when the entity collides with a bubble column without an air above.\n\n<p>This applies the bubble column velocity by default.	
+		p	1		drag	
+			c	whether the entity should be dragged downwards	
 c	net/minecraft/class_1299
 	f	Lnet/minecraft/class_1299;	field_6113	field_6113	
 	f	Lnet/minecraft/class_1299;	field_6078	field_6078	
@@ -36,26 +43,26 @@ c	net/minecraft/class_1308
 	m	(Lnet/minecraft/class_1297;)Z	method_6121	method_6121	
 		p	1		p_1	
 c	net/minecraft/class_1309
-	m	()V	method_6093	method_6093	
+	m	()V	method_6093	knockDownwards	
 c	net/minecraft/class_1310
-	f	Lnet/minecraft/class_1310;	field_6292	field_6292	
+	f	Lnet/minecraft/class_1310;	field_6292	AQUATIC	
 c	net/minecraft/class_1367
-	f	I	field_6510	field_6510	
-	f	I	field_6515	field_6515	
+	f	I	field_6510	range	
+	f	I	field_6515	lowestY	
 	m	(Lnet/minecraft/class_1314;DII)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/class_1314;)I	method_6293	method_6293	
-		p	1		p_1	
-	m	()D	method_6291	method_6291	
-	m	()Z	method_6294	method_6294	
+	m	(Lnet/minecraft/class_1314;)I	method_6293	getInterval	
+		p	1		mob	
+	m	()D	method_6291	getDesiredDistanceToTarget	
+	m	()Z	method_6294	shouldResetPath	
 	m	()I	method_0_15617	method_0_15617	
-c	net/minecraft/class_1382	net/minecraft/class_1382	
-	f	Lnet/minecraft/class_2248;	field_6587	field_6587	
-	f	Lnet/minecraft/class_1308;	field_6589	field_6589	
-	f	I	field_6588	field_6588	
+c	net/minecraft/class_1382	net/minecraft/entity/ai/goal/StepAndDestroyBlockGoal	
+	f	Lnet/minecraft/class_2248;	field_6587	targetBlock	
+	f	Lnet/minecraft/class_1308;	field_6589	stepAndDestroyMob	
+	f	I	field_6588	counter	
 	m	(Lnet/minecraft/class_2248;Lnet/minecraft/class_1314;DI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -67,9 +74,9 @@ c	net/minecraft/class_1382	net/minecraft/class_1382
 	m	()Z	method_6266	method_6266	
 	m	()V	method_6270	method_6270	
 	m	()V	method_6269	method_6269	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_6309	method_6309	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_6309	onDestroyBlock	
+		p	1		world	
+		p	2		pos	
 	m	()V	method_6268	method_6268	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_6307	method_6307	
 		p	1		p_1	
@@ -86,12 +93,12 @@ c	net/minecraft/class_1412
 	m	()V	method_6360	method_6360	
 c	net/minecraft/class_1414
 	f	Lnet/minecraft/class_243;	field_0_7830		field_0_7830
-	m	(Lnet/minecraft/class_1314;IILnet/minecraft/class_243;D)Lnet/minecraft/class_243;	method_6377	method_6377	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_1314;IILnet/minecraft/class_243;D)Lnet/minecraft/class_243;	method_6377	findTargetTowards	
+		p	0		mob	
+		p	1		maxHorizontalDistance	
+		p	2		maxVerticalDistance	
+		p	3		pos	
+		p	4		maxAngleDifference	
 	m	(Lnet/minecraft/class_1314;IILnet/minecraft/class_243;ZD)Lnet/minecraft/class_243;	method_6371	method_6371	
 		p	0		p_0	
 		p	1		p_1	
@@ -116,10 +123,10 @@ c	net/minecraft/class_1477
 	m	(Lnet/minecraft/class_1282;F)Z	method_5643	method_5643	
 		p	1		p_1	
 		p	2		p_2	
-	m	()V	method_6669	method_6669	
+	m	()V	method_6669	squirt	
 c	net/minecraft/class_1477$1	1	
-c	net/minecraft/class_1477$class_1478	class_1478	
-	f	I	field_6915	field_6915	
+c	net/minecraft/class_1477$class_1478	EscapeAttackerGoal	
+	f	I	field_6915	timer	
 	f	Lnet/minecraft/class_1477;	field_6914	field_6914	
 	m	(Lnet/minecraft/class_1477;)V	<init>	<init>	
 		p	1		p_1	
@@ -138,35 +145,35 @@ c	net/minecraft/class_1477$class_1479
 		p	1			p_1
 c	net/minecraft/class_1480
 	m	()Lnet/minecraft/class_1310;	method_6046	method_6046	
-c	net/minecraft/class_1481	net/minecraft/class_1481	
-	f	Lnet/minecraft/class_2940;	field_6920	field_6920	
-	f	Lnet/minecraft/class_2940;	field_6919	field_6919	
-	f	Lnet/minecraft/class_2940;	field_6923	field_6923	
-	f	Lnet/minecraft/class_2940;	field_6922	field_6922	
-	f	Lnet/minecraft/class_2940;	field_6924	field_6924	
-	f	Lnet/minecraft/class_2940;	field_6925	field_6925	
-	f	I	field_6918	field_6918	
+c	net/minecraft/class_1481	net/minecraft/entity/passive/TurtleEntity	
+	f	Lnet/minecraft/class_2940;	field_6920	HOME_POS	
+	f	Lnet/minecraft/class_2940;	field_6919	HAS_EGG	
+	f	Lnet/minecraft/class_2940;	field_6923	DIGGING_SAND	
+	f	Lnet/minecraft/class_2940;	field_6922	TRAVEL_POS	
+	f	Lnet/minecraft/class_2940;	field_6924	LAND_BOUND	
+	f	Lnet/minecraft/class_2940;	field_6925	ACTIVELY_TRAVELING	
+	f	I	field_6918	sandDiggingCounter	
 	f	Lcom/google/common/base/Predicate;	field_6921	field_6921	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2338;)V	method_6683	method_6683	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2338;	method_6693	method_6693	
-	m	(Lnet/minecraft/class_2338;)V	method_6699	method_6699	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_2338;	method_6687	method_6687	
-	m	()Z	method_6679	method_6679	
-	m	(Z)V	method_6680	method_6680	
-		p	1		p_1	
-	m	()Z	method_6695	method_6695	
-	m	(Z)V	method_6676	method_6676	
-		p	1		p_1	
-	m	()Z	method_6684	method_6684	
-	m	(Z)V	method_6697	method_6697	
-		p	1		p_1	
-	m	()Z	method_6691	method_6691	
-	m	(Z)V	method_6696	method_6696	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2338;)V	method_6683	setHomePos	
+		p	1		pos	
+	m	()Lnet/minecraft/class_2338;	method_6693	getHomePos	
+	m	(Lnet/minecraft/class_2338;)V	method_6699	setTravelPos	
+		p	1		pos	
+	m	()Lnet/minecraft/class_2338;	method_6687	getTravelPos	
+	m	()Z	method_6679	hasEgg	
+	m	(Z)V	method_6680	setHasEgg	
+		p	1		hasEgg	
+	m	()Z	method_6695	isDiggingSand	
+	m	(Z)V	method_6676	setDiggingSand	
+		p	1		diggingSand	
+	m	()Z	method_6684	isLandBound	
+	m	(Z)V	method_6697	setLandBound	
+		p	1		landBound	
+	m	()Z	method_6691	isActivelyTraveling	
+	m	(Z)V	method_6696	setActivelyTraveling	
+		p	1		traveling	
 	m	()V	method_5693	method_5693	
 	m	(Lnet/minecraft/class_2487;)V	method_5652	method_5652	
 		p	1		p_1	
@@ -254,18 +261,18 @@ c	net/minecraft/class_1481$1	1
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
 		p	1		p_1	
-c	net/minecraft/class_1481$class_1482	class_1482	
-	f	Lnet/minecraft/class_1481;	field_6926	field_6926	
+c	net/minecraft/class_1481$class_1482	MateGoal	
+	f	Lnet/minecraft/class_1481;	field_6926	turtle	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Z	method_6264	method_6264	
 	m	()V	method_6249	method_6249	
-c	net/minecraft/class_1481$class_1483	class_1483	
-	f	Lnet/minecraft/class_1481;	field_6930	field_6930	
-	f	D	field_6927	field_6927	
-	f	Z	field_6929	field_6929	
-	f	I	field_6928	field_6928	
+c	net/minecraft/class_1481$class_1483	GoHomeGoal	
+	f	Lnet/minecraft/class_1481;	field_6930	turtle	
+	f	D	field_6927	speed	
+	f	Z	field_6929	noPath	
+	f	I	field_6928	homeReachingTryTicks	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -274,8 +281,8 @@ c	net/minecraft/class_1481$class_1483	class_1483
 	m	()V	method_6270	method_6270	
 	m	()Z	method_6266	method_6266	
 	m	()V	method_6268	method_6268	
-c	net/minecraft/class_1481$class_1484	class_1484	
-	f	Lnet/minecraft/class_1481;	field_6931	field_6931	
+c	net/minecraft/class_1481$class_1484	WanderInWaterGoal	
+	f	Lnet/minecraft/class_1481;	field_6931	turtle	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -290,8 +297,8 @@ c	net/minecraft/class_1481$class_1484	class_1484
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Z	method_6296	method_6296	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1481$class_1485	class_1485	
-	f	Lnet/minecraft/class_1481;	field_6932	field_6932	
+c	net/minecraft/class_1481$class_1485	LayEggGoal	
+	f	Lnet/minecraft/class_1481;	field_6932	turtle	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -301,18 +308,18 @@ c	net/minecraft/class_1481$class_1485	class_1485
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Z	method_6296	method_6296	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1481$class_1486	class_1486	
-	f	Lnet/minecraft/class_1481;	field_6933	field_6933	
+c	net/minecraft/class_1481$class_1486	TurtleMoveControl	
+	f	Lnet/minecraft/class_1481;	field_6933	turtle	
 	m	(Lnet/minecraft/class_1481;)V	<init>	<init>	
 		p	1		p_1	
-	m	()V	method_6700	method_6700	
+	m	()V	method_6700	updateVelocity	
 	m	()V	method_6240	method_6240	
-c	net/minecraft/class_1481$class_1487	class_1487	
+c	net/minecraft/class_1481$class_1487	TurtleEscapeDangerGoal	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Z	method_6264	method_6264	
-c	net/minecraft/class_1481$class_1488	class_1488	
+c	net/minecraft/class_1481$class_1488	TurtleSwimNavigation	
 	m	(Lnet/minecraft/class_1481;Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -320,8 +327,8 @@ c	net/minecraft/class_1481$class_1488	class_1488
 	m	()Lnet/minecraft/class_13;	method_6336	method_6336	
 	m	(Lnet/minecraft/class_2338;)Z	method_6333	method_6333	
 		p	1		p_1	
-c	net/minecraft/class_1481$class_1489	class_1489	
-	f	Lnet/minecraft/class_1481;	field_6934	field_6934	
+c	net/minecraft/class_1481$class_1489	WanderOnLandGoal	
+	f	Lnet/minecraft/class_1481;	field_6934	turtle	
 	m	(Lnet/minecraft/class_1481;DI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -332,26 +339,26 @@ c	net/minecraft/class_1481$class_1489	class_1489
 		p	2		p_2	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/class_1481$class_1490	class_1490	
-	f	Lnet/minecraft/class_1481;	field_6938	field_6938	
-	f	D	field_6935	field_6935	
-	f	Lnet/minecraft/class_1657;	field_6939	field_6939	
-	f	I	field_6936	field_6936	
-	f	Ljava/util/Set;	field_6937	field_6937	
+c	net/minecraft/class_1481$class_1490	ApproachFoodHoldingPlayerGoal	
+	f	Lnet/minecraft/class_1481;	field_6938	turtle	
+	f	D	field_6935	speed	
+	f	Lnet/minecraft/class_1657;	field_6939	targetPlayer	
+	f	I	field_6936	cooldown	
+	f	Ljava/util/Set;	field_6937	attractiveItems	
 	m	(Lnet/minecraft/class_1481;DLnet/minecraft/class_1792;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 	m	()Z	method_6264	method_6264	
-	m	(Lnet/minecraft/class_1799;)Z	method_6701	method_6701	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;)Z	method_6701	isAttractive	
+		p	1		stack	
 	m	()Z	method_6266	method_6266	
 	m	()V	method_6270	method_6270	
 	m	()V	method_6268	method_6268	
-c	net/minecraft/class_1481$class_1491	class_1491	
-	f	Lnet/minecraft/class_1481;	field_6942	field_6942	
-	f	D	field_6940	field_6940	
-	f	Z	field_6941	field_6941	
+c	net/minecraft/class_1481$class_1491	TravelGoal	
+	f	Lnet/minecraft/class_1481;	field_6942	turtle	
+	f	D	field_6940	speed	
+	f	Z	field_6941	noPath	
 	m	(Lnet/minecraft/class_1481;D)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -360,9 +367,9 @@ c	net/minecraft/class_1481$class_1491	class_1491
 	m	()V	method_6268	method_6268	
 	m	()Z	method_6266	method_6266	
 	m	()V	method_6270	method_6270	
-c	net/minecraft/class_15	net/minecraft/class_15	
-	f	F	field_65	field_65	
-	f	F	field_64	field_64	
+c	net/minecraft/class_15	net/minecraft/entity/ai/pathing/AmphibiousPathNodeMaker	
+	f	F	field_65	oldWalkablePenalty	
+	f	F	field_64	oldWaterBorderPenalty	
 	m	()V	<init>	<init>	
 	m	()V	method_19	method_19	
 	m	()Lnet/minecraft/class_9;	method_21	method_21	
@@ -375,14 +382,14 @@ c	net/minecraft/class_15	net/minecraft/class_15
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_2338;)D	method_66	method_66	
-		p	1		p_1	
-	m	(IIIID)Lnet/minecraft/class_9;	method_65	method_65	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/class_2338;)D	method_66	getFeetY	
+		p	1		pos	
+	m	(IIIID)Lnet/minecraft/class_9;	method_65	getPathNode	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		maxYStep	
+		p	5		prevFeetY	
 	m	(Lnet/minecraft/class_0_105;Lnet/minecraft/class_1308;)V	method_12	method_12	
 		p	1		p_1	
 		p	2		p_2	
@@ -405,28 +412,28 @@ c	net/minecraft/class_15	net/minecraft/class_15
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_1542
-	m	()V	method_6974	method_6974	
+	m	()V	method_6974	applyWaterBuoyancy	
 c	net/minecraft/class_1577
 	m	()Z	method_6094	method_6094	
 	m	()Lnet/minecraft/class_1310;	method_6046	method_6046	
 c	net/minecraft/class_1588
 	m	(Lnet/minecraft/class_1297;)Z	method_6121		method_6121
 		p	1			p_1
-c	net/minecraft/class_1593	net/minecraft/class_1593	
-	f	Lnet/minecraft/class_2940;	field_7313	field_7313	
-	f	Lnet/minecraft/class_243;	field_7314	field_7314	
-	f	Lnet/minecraft/class_2338;	field_7312	field_7312	
-	f	Lnet/minecraft/class_1593$class_1594;	field_7315	field_7315	
+c	net/minecraft/class_1593	net/minecraft/entity/mob/PhantomEntity	
+	f	Lnet/minecraft/class_2940;	field_7313	SIZE	
+	f	Lnet/minecraft/class_243;	field_7314	targetPosition	
+	f	Lnet/minecraft/class_2338;	field_7312	circlingCenter	
+	f	Lnet/minecraft/class_1593$class_1594;	field_7315	movementType	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_1330;	method_5963	method_5963	
 	m	()V	method_5959	method_5959	
 	m	()V	method_6001	method_6001	
 	m	()V	method_5693	method_5693	
-	m	(I)V	method_7091	method_7091	
-		p	1		p_1	
-	m	()V	method_7097	method_7097	
-	m	()I	method_7084	method_7084	
+	m	(I)V	method_7091	setPhantomSize	
+		p	1		size	
+	m	()V	method_7097	onSizeChanged	
+	m	()I	method_7084	getPhantomSize	
 	m	(Lnet/minecraft/class_2940;)V	method_5674	method_5674	
 		p	1		p_1	
 	m	()V	method_3070	method_3070	
@@ -492,7 +499,7 @@ c	net/minecraft/class_1593	net/minecraft/class_1593
 	m	(Lnet/minecraft/class_1593;)Ljava/util/Random;	method_0_15660	method_0_15660	
 		p	0		p_0	
 c	net/minecraft/class_1593$1	1	
-c	net/minecraft/class_1593$class_1594	class_1594	
+c	net/minecraft/class_1593$class_1594	PhantomMovementType	
 	f	Lnet/minecraft/class_1593$class_1594;	field_7318	field_7318	
 	f	Lnet/minecraft/class_1593$class_1594;	field_7317	field_7317	
 	f	[Lnet/minecraft/class_1593$class_1594;	field_7316	field_7316	
@@ -503,8 +510,8 @@ c	net/minecraft/class_1593$class_1594	class_1594
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1593$class_1595	class_1595	
-	f	I	field_7320	field_7320	
+c	net/minecraft/class_1593$class_1595	FindTargetGoal	
+	f	I	field_7320	delay	
 	f	Lnet/minecraft/class_1593;	field_7319	field_7319	
 	m	(Lnet/minecraft/class_1593;)V	<init>	<init>	
 		p	1		p_1	
@@ -516,8 +523,8 @@ c	net/minecraft/class_1593$class_1595	class_1595
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1593$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1593$class_1596	class_1596	
-	f	I	field_7322	field_7322	
+c	net/minecraft/class_1593$class_1596	StartAttackGoal	
+	f	I	field_7322	cooldown	
 	f	Lnet/minecraft/class_1593;	field_7321	field_7321	
 	m	(Lnet/minecraft/class_1593;)V	<init>	<init>	
 		p	1		p_1	
@@ -525,50 +532,51 @@ c	net/minecraft/class_1593$class_1596	class_1596
 	m	()V	method_6269	method_6269	
 	m	()V	method_6270	method_6270	
 	m	()V	method_6268	method_6268	
-	m	()V	method_7102	method_7102	
+	m	()V	method_7102	startSwoop	
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1593$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1593$class_1597	class_1597	
+c	net/minecraft/class_1593$class_1597	PhantomBodyControl	
 	f	Lnet/minecraft/class_1593;	field_7323	field_7323	
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1309;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_6224	method_6224	
-c	net/minecraft/class_1593$class_1598	class_1598	
-	f	F	field_7328	field_7328	
-	f	F	field_7327	field_7327	
-	f	F	field_7326	field_7326	
-	f	F	field_7324	field_7324	
+c	net/minecraft/class_1593$class_1598	CircleMovementGoal	
+	f	F	field_7328	angle	
+	f	F	field_7327	radius	
+	f	F	field_7326	yOffset	
+	f	F	field_7324	circlingDirection	
 	f	Lnet/minecraft/class_1593;	field_7325	field_7325	
 	m	(Lnet/minecraft/class_1593;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
 	m	()V	method_6269	method_6269	
 	m	()V	method_6268	method_6268	
-	m	()V	method_7103	method_7103	
+	m	()V	method_7103	adjustDirection	
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1593$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1593$class_1599	class_1599	
+c	net/minecraft/class_1593$class_1599	PhantomLookControl	
 	f	Lnet/minecraft/class_1593;	field_7329	field_7329	
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1308;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_6231	method_6231	
-c	net/minecraft/class_1593$class_1600	class_1600	
-	f	F	field_7331	field_7331	
+c	net/minecraft/class_1593$class_1600	PhantomMoveControl	
+	f	F	field_7331	targetSpeed	
+		c	The movement speed that the phantom tends towards	
 	f	Lnet/minecraft/class_1593;	field_7330	field_7330	
 	m	(Lnet/minecraft/class_1593;Lnet/minecraft/class_1308;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_6240	method_6240	
-c	net/minecraft/class_1593$class_1601	class_1601	
+c	net/minecraft/class_1593$class_1601	MovementGoal	
 	f	Lnet/minecraft/class_1593;	field_7332	field_7332	
 	m	(Lnet/minecraft/class_1593;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_7104	method_7104	
-c	net/minecraft/class_1593$class_1602	class_1602	
+	m	()Z	method_7104	isNearTarget	
+c	net/minecraft/class_1593$class_1602	SwoopMovementGoal	
 	f	Lnet/minecraft/class_1593;	field_7333	field_7333	
 	m	(Lnet/minecraft/class_1593;)V	<init>	<init>	
 		p	1		p_1	
@@ -581,7 +589,7 @@ c	net/minecraft/class_1593$class_1602	class_1602
 c	net/minecraft/class_1642
 	m	(Lnet/minecraft/class_1642;)Ljava/util/Random;	method_7210	method_7210	
 		p	0		p_0	
-c	net/minecraft/class_1642$class_1643	class_1643	
+c	net/minecraft/class_1642$class_1643	DestroyEggGoal	
 	f	Lnet/minecraft/class_1642;	field_7437	field_7437	
 	m	(Lnet/minecraft/class_1642;Lnet/minecraft/class_2248;Lnet/minecraft/class_1314;DI)V	<init>	<init>	
 		p	1		p_1	
@@ -598,33 +606,33 @@ c	net/minecraft/class_1642$class_1643	class_1643
 		p	2		p_2	
 c	net/minecraft/class_1657
 	f	Z	field_7517	field_7517	
-	m	()V	method_7330	method_7330	
+	m	()V	method_7330	updateTurtleHelmet	
 	m	()V	method_7300	method_7300	
 c	net/minecraft/class_1662
 c	net/minecraft/class_1662$class_1663
 	m	(Lnet/minecraft/class_1856;)Z	method_0_11930		method_0_11930
 		p	0			p_0
 c	net/minecraft/class_1665
-	m	()V	method_7446	method_7446	
+	m	()V	method_7446	age	
 	m	(Lnet/minecraft/class_239;)V	method_7454	method_7454	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_3414;	method_7440	method_7440	
-	m	(Z)V	method_7439	method_7439	
-		p	1		p_1	
-	m	(IZ)V	method_7455	method_7455	
-		p	1		p_1	
-		p	2		p_2	
-	m	()F	method_7436	method_7436	
-	m	(Z)V	method_7433	method_7433	
-		p	1		p_1	
-	m	()Z	method_7441	method_7441	
+	m	()Lnet/minecraft/class_3414;	method_7440	getHitSound	
+	m	(Z)V	method_7439	setCritical	
+		p	1		critical	
+	m	(IZ)V	method_7455	setProjectileFlag	
+		p	1		index	
+		p	2		flag	
+	m	()F	method_7436	getDragInWater	
+	m	(Z)V	method_7433	setNoClip	
+		p	1		noClip	
+	m	()Z	method_7441	isNoClip	
 	m	(Z)V	method_7455		method_7455
 		p	1			p_1
-c	net/minecraft/class_1685	net/minecraft/class_1685	
-	f	Lnet/minecraft/class_2940;	field_7647	field_7647	
-	f	Lnet/minecraft/class_1799;	field_7650	field_7650	
-	f	Z	field_7648	field_7648	
-	f	I	field_7649	field_7649	
+c	net/minecraft/class_1685	net/minecraft/entity/projectile/TridentEntity	
+	f	Lnet/minecraft/class_2940;	field_7647	LOYALTY	
+	f	Lnet/minecraft/class_1799;	field_7650	tridentStack	
+	f	Z	field_7648	dealtDamage	
+	f	I	field_7649	returnTimer	
 	m	(Lnet/minecraft/class_1937;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;)V	<init>	<init>	
@@ -659,20 +667,20 @@ c	net/minecraft/class_1685	net/minecraft/class_1685
 		p	5		p_5	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_1690
-	f	Lnet/minecraft/class_2940;	field_7691	field_7691	
-	f	Z	field_7689	field_7689	
-	f	Z	field_7703	field_7703	
-	f	F	field_7712	field_7712	
-	f	F	field_7694	field_7694	
-	f	F	field_7711	field_7711	
+	f	Lnet/minecraft/class_2940;	field_7691	BUBBLE_WOBBLE_TICKS	
+	f	Z	field_7689	onBubbleColumnSurface	
+	f	Z	field_7703	bubbleColumnIsDrag	
+	f	F	field_7712	bubbleWobbleStrength	
+	f	F	field_7694	bubbleWobble	
+	f	F	field_7711	lastBubbleWobble	
 	m	(Z)V	method_5700	method_5700	
 		p	1		p_1	
-	m	()V	method_7550	method_7550	
-	m	(I)V	method_7531	method_7531	
-		p	1		p_1	
-	m	()I	method_7539	method_7539	
-	m	(F)F	method_7547	method_7547	
-		p	1		p_1	
+	m	()V	method_7550	handleBubbleColumn	
+	m	(I)V	method_7531	setBubbleWobbleTicks	
+		p	1		wobbleTicks	
+	m	()I	method_7539	getBubbleWobbleTicks	
+	m	(F)F	method_7547	interpolateBubbleWobble	
+		p	1		tickDelta	
 c	net/minecraft/class_1703
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_1263;Lnet/minecraft/class_1731;)V	method_7599	method_7599	
 		p	1		p_1	
@@ -688,7 +696,7 @@ c	net/minecraft/class_1740
 	f	Lnet/minecraft/class_1740;	field_7890	field_7890	
 	m	()Lnet/minecraft/class_1856;	method_7693	method_7693	
 c	net/minecraft/class_1743
-	f	Ljava/util/Map;	field_7898	field_7898	
+	f	Ljava/util/Map;	field_7898	STRIPPED_BLOCKS	
 	m	(Lnet/minecraft/class_1838;)Lnet/minecraft/class_1269;	method_7884	method_7884	
 		p	1		p_1	
 c	net/minecraft/class_1752
@@ -706,7 +714,7 @@ c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_8435	field_8435	
 	f	Lnet/minecraft/class_1792;	field_8547	field_8547	
 	f	Lnet/minecraft/class_1738;	field_8090	field_8090	
-c	net/minecraft/class_1835	net/minecraft/class_1835	
+c	net/minecraft/class_1835	net/minecraft/item/TridentItem	
 	m	(Lnet/minecraft/class_1792$class_1793;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1799;)Lnet/minecraft/class_1839;	method_7853	method_7853	
@@ -751,7 +759,7 @@ c	net/minecraft/class_1847
 	f	Lnet/minecraft/class_1842;	field_8988	field_8988	
 	f	Lnet/minecraft/class_1842;	field_8977	field_8977	
 c	net/minecraft/class_1856
-	m	()Z	method_8103	method_8103	
+	m	()Z	method_8103	isEmpty	
 c	net/minecraft/class_1886
 	f	Lnet/minecraft/class_1886;	field_9073	field_9073	
 c	net/minecraft/class_1886$13	13	
@@ -761,18 +769,18 @@ c	net/minecraft/class_1886$13	13
 	m	(Lnet/minecraft/class_1792;)Z	method_8177	method_8177	
 		p	1		p_1	
 c	net/minecraft/class_1890
-	m	(Lnet/minecraft/class_1799;)I	method_8206	method_8206	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_1799;)I	method_8202	method_8202	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_1799;)Z	method_8228	method_8228	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_1799;)I	method_8206	getLoyalty	
+		p	0		stack	
+	m	(Lnet/minecraft/class_1799;)I	method_8202	getRiptide	
+		p	0		stack	
+	m	(Lnet/minecraft/class_1799;)Z	method_8228	hasChanneling	
+		p	0		stack	
 c	net/minecraft/class_1893
 	f	Lnet/minecraft/class_1887;	field_9120	field_9120	
 	f	Lnet/minecraft/class_1887;	field_9106	field_9106	
 	f	Lnet/minecraft/class_1887;	field_9104	field_9104	
 	f	Lnet/minecraft/class_1887;	field_9117	field_9117	
-c	net/minecraft/class_1905	net/minecraft/class_1905	
+c	net/minecraft/class_1905	net/minecraft/enchantment/ChannelingEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -783,7 +791,7 @@ c	net/minecraft/class_1905	net/minecraft/class_1905
 	m	()I	method_8183	method_8183	
 	m	(Lnet/minecraft/class_1887;)Z	method_8180	method_8180	
 		p	1		p_1	
-c	net/minecraft/class_1907	net/minecraft/class_1907	
+c	net/minecraft/class_1907	net/minecraft/enchantment/LoyaltyEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -794,7 +802,7 @@ c	net/minecraft/class_1907	net/minecraft/class_1907
 	m	()I	method_8183	method_8183	
 	m	(Lnet/minecraft/class_1887;)Z	method_8180	method_8180	
 		p	1		p_1	
-c	net/minecraft/class_1908	net/minecraft/class_1908	
+c	net/minecraft/class_1908	net/minecraft/enchantment/ImpalingEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -806,7 +814,7 @@ c	net/minecraft/class_1908	net/minecraft/class_1908
 	m	(ILnet/minecraft/class_1310;)F	method_8196	method_8196	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_1910	net/minecraft/class_1910	
+c	net/minecraft/class_1910	net/minecraft/enchantment/RiptideEnchantment	
 	m	(Lnet/minecraft/class_1887$class_1888;[Lnet/minecraft/class_1304;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -843,8 +851,8 @@ c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_16258	field_0_16258	
 	f	Lnet/minecraft/class_2248;	field_0_16255	field_0_16255	
 	f	Lnet/minecraft/class_2258;	field_0_16240	field_0_16240	
-c	net/minecraft/class_2258	net/minecraft/class_2258	
-	f	Lnet/minecraft/class_2746;	field_10680	field_10680	
+c	net/minecraft/class_2258	net/minecraft/block/BubbleColumnBlock	
+	f	Lnet/minecraft/class_2746;	field_10680	DRAG	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_9530	method_9530	
@@ -916,7 +924,7 @@ c	net/minecraft/class_2258	net/minecraft/class_2258
 		p	4		p_4	
 	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_0_378;	method_9605	method_9605	
 		p	1		p_1	
-c	net/minecraft/class_2391	net/minecraft/class_2391	
+c	net/minecraft/class_2391	net/minecraft/block/KelpPlantBlock	
 	m	()Lnet/minecraft/class_1921;	method_9551	method_9551	
 	m	(Lnet/minecraft/class_0_378;)Z	method_9526	method_9526	
 		p	1		p_1	
@@ -951,8 +959,8 @@ c	net/minecraft/class_2391	net/minecraft/class_2391
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_2393	net/minecraft/class_2393	
-	f	Lnet/minecraft/class_2758;	field_11194	field_11194	
+c	net/minecraft/class_2393	net/minecraft/block/KelpBlock	
+	f	Lnet/minecraft/class_2758;	field_11194	AGE	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Lnet/minecraft/class_1921;	method_9551	method_9551	
@@ -1014,9 +1022,9 @@ c	net/minecraft/class_2413
 	m	(Lnet/minecraft/class_1936;)I	method_9563	method_9563	
 		p	1		p_1	
 c	net/minecraft/class_2450
-	m	(Lnet/minecraft/class_3494;)Lnet/minecraft/class_2450;	method_10446	method_10446	
-		p	1		p_1	
-c	net/minecraft/class_2476	net/minecraft/class_2476	
+	m	(Lnet/minecraft/class_3494;)Lnet/minecraft/class_2450;	method_10446	input	
+		p	1		tag	
+c	net/minecraft/class_2476	net/minecraft/block/SeagrassBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;Lnet/minecraft/class_2586;Lnet/minecraft/class_1799;)V	method_9556	method_9556	
@@ -1076,7 +1084,7 @@ c	net/minecraft/class_2492
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_0_15708	method_0_15708	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_2525	net/minecraft/class_2525	
+c	net/minecraft/class_2525	net/minecraft/block/TallSeagrassBlock	
 	m	(Lnet/minecraft/class_2248;Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1093,10 +1101,10 @@ c	net/minecraft/class_2525	net/minecraft/class_2525
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_2542	net/minecraft/class_2542	
-	f	Lnet/minecraft/class_265;	field_11712	field_11712	
-	f	Lnet/minecraft/class_2758;	field_11711	field_11711	
-	f	Lnet/minecraft/class_2758;	field_11710	field_11710	
+c	net/minecraft/class_2542	net/minecraft/block/TurtleEggBlock	
+	f	Lnet/minecraft/class_265;	field_11712	SMALL_SHAPE	
+	f	Lnet/minecraft/class_2758;	field_11711	HATCH	
+	f	Lnet/minecraft/class_2758;	field_11710	EGGS	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;)V	method_9591	method_9591	
@@ -1108,13 +1116,13 @@ c	net/minecraft/class_2542	net/minecraft/class_2542
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;I)V	method_10834	method_10834	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1297;I)V	method_10834	tryBreakEgg	
+		p	1		world	
 		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_1937;)Z	method_10832	method_10832	
-		p	1		p_1	
+		p	3		entity	
+		p	4		inverseChance	
+	m	(Lnet/minecraft/class_1937;)Z	method_10832	shouldHatchProgress	
+		p	1		world	
 	m	()Lnet/minecraft/class_1921;	method_9551	method_9551	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)V	method_10833	method_10833	
@@ -1165,10 +1173,10 @@ c	net/minecraft/class_2542	net/minecraft/class_2542
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_2609
-	m	(Ljava/util/Map;Lnet/minecraft/class_1935;I)V	method_11202	method_11202	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/util/Map;Lnet/minecraft/class_1935;I)V	method_11202	addFuel	
+		p	0		fuelTimes	
+		p	1		item	
+		p	2		fuelTime	
 c	net/minecraft/class_2794
 	f	Ljava/util/Map;	field_0_16264	field_0_16264	
 	f	Ljava/util/Map;	field_0_16265	field_0_16265	
@@ -1199,7 +1207,7 @@ c	net/minecraft/class_2891
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_2897
-	f	Lnet/minecraft/class_2910;	field_13184	field_13184	
+	f	Lnet/minecraft/class_2910;	field_13184	phantomSpawner	
 	m	(Lnet/minecraft/class_1937;ZZ)I	method_12099	method_12099	
 		p	1		p_1	
 		p	2		p_2	
@@ -1209,15 +1217,15 @@ c	net/minecraft/class_2908
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_2910	net/minecraft/class_2910	
-	f	I	field_13244	field_13244	
+c	net/minecraft/class_2910	net/minecraft/world/spawner/PhantomSpawner	
+	f	I	field_13244	cooldown	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1937;ZZ)I	method_12639	method_12639	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_2912
-	f	Lnet/minecraft/class_2910;	field_13245	field_13245	
+	f	Lnet/minecraft/class_2910;	field_13245	phantomSpawner	
 	m	(Lnet/minecraft/class_1937;ZZ)I	method_12099	method_12099	
 		p	1		p_1	
 		p	2		p_2	
@@ -1233,7 +1241,7 @@ c	net/minecraft/class_3031
 	f	Lnet/minecraft/class_3031;	field_0_16271	field_0_16271	
 	f	Lnet/minecraft/class_3031;	field_0_16272	field_0_16272	
 	f	Ljava/util/ArrayList;	field_0_15687		field_0_15687
-c	net/minecraft/class_3081	net/minecraft/class_3081	
+c	net/minecraft/class_3081	net/minecraft/world/gen/feature/KelpFeature	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_3263;)Z	method_13151	method_13151	
 		p	1		p_1	
@@ -1247,7 +1255,7 @@ c	net/minecraft/class_3081	net/minecraft/class_3081
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/class_3168	net/minecraft/class_3168	
+c	net/minecraft/class_3168	net/minecraft/world/gen/feature/SeagrassFeature	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_3464;)Z	method_13926	method_13926	
 		p	1		p_1	
@@ -1264,7 +1272,7 @@ c	net/minecraft/class_3168	net/minecraft/class_3168
 c	net/minecraft/class_3195
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	field_0_2100		field_0_2100
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	field_0_15738		field_0_15738
-c	net/minecraft/class_3318	net/minecraft/class_3318	
+c	net/minecraft/class_3318	net/minecraft/world/gen/decorator/TopSolidHeightmapDecorator	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2796;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_3280;Lnet/minecraft/class_3031;Lnet/minecraft/class_0_3263;)Z	method_14530	method_14530	
 		p	1		p_1	
@@ -1336,22 +1344,25 @@ c	net/minecraft/class_3489
 	f	Lnet/minecraft/class_3494;	field_15538	field_15538	
 	f	Lnet/minecraft/class_3494;	field_15549	field_15549	
 c	net/minecraft/class_3532
-	m	(FF)F	method_15381	method_15381	
-		p	0		p_0	
-		p	1		p_1	
-	m	(FF)F	method_15356	method_15356	
-		p	0		p_0	
-		p	1		p_1	
-	m	(FFF)F	method_15348	method_15348	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FFF)F	method_15388	method_15388	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FF)F	method_15381	subtractAngles	
+		p	0		start	
+		p	1		end	
+	m	(FF)F	method_15356	angleBetween	
+		p	0		first	
+		p	1		second	
+	m	(FFF)F	method_15348	stepTowards	
+		c	Steps from {@code from} towards {@code to}, changing the value by at most {@code step}.	
+		p	0		from	
+		p	1		to	
+		p	2		step	
+	m	(FFF)F	method_15388	stepUnwrappedAngleTowards	
+		c	Steps from {@code from} degrees towards {@code to} degrees, changing the value by at most {@code step} degrees.	
+		p	0		from	
+		p	1		to	
+		p	2		step	
 c	net/minecraft/class_3614
-	f	Lnet/minecraft/class_3614;	field_15947	field_15947	
+	f	Lnet/minecraft/class_3614;	field_15947	UNDERWATER_PLANT	
+		c	Material for underwater plants without the replaceable property.	
 	f	Lnet/minecraft/class_3614;	field_0_16277	field_0_16277	
 	f	Z	field_0_16275	field_0_16275	
 	m	(Lnet/minecraft/class_3620;ZZZZZZZZLnet/minecraft/class_3619;)V	<init>	<init>	
@@ -1387,14 +1398,14 @@ c	net/minecraft/class_572
 		p	1		p_1	
 c	net/minecraft/class_572$class_573
 	f	Lnet/minecraft/class_572$class_573;	field_3407	field_3407	
-c	net/minecraft/class_588	net/minecraft/class_588	
-	f	Lnet/minecraft/class_630;	field_3475	field_3475	
-	f	Lnet/minecraft/class_630;	field_3477	field_3477	
-	f	Lnet/minecraft/class_630;	field_3476	field_3476	
-	f	Lnet/minecraft/class_630;	field_3474	field_3474	
-	f	Lnet/minecraft/class_630;	field_3472	field_3472	
+c	net/minecraft/class_588	net/minecraft/client/render/entity/model/PhantomEntityModel	
+	f	Lnet/minecraft/class_630;	field_3475	body	
+	f	Lnet/minecraft/class_630;	field_3477	leftWingBase	
+	f	Lnet/minecraft/class_630;	field_3476	leftWingTip	
+	f	Lnet/minecraft/class_630;	field_3474	rightWingBase	
+	f	Lnet/minecraft/class_630;	field_3472	rightWingTip	
 	f	Lnet/minecraft/class_630;	field_3478	field_3478	
-	f	Lnet/minecraft/class_630;	field_3471	field_3471	
+	f	Lnet/minecraft/class_630;	field_3471	tailBase	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_1297;FFFFFF)V	method_2819	method_2819	
 		p	1		p_1	
@@ -1413,14 +1424,16 @@ c	net/minecraft/class_588	net/minecraft/class_588
 		p	6		p_6	
 		p	7		p_7	
 	m	()I	method_0_15729	method_0_15729	
-c	net/minecraft/class_613	net/minecraft/class_613	
-	f	Lnet/minecraft/class_2960;	field_3592	field_3592	
-	f	Lnet/minecraft/class_630;	field_3593	field_3593	
+c	net/minecraft/class_613	net/minecraft/client/render/entity/model/TridentEntityModel	
+	c	Represents the model of a thrown trident.\n\n<div class="fabric">\n<table border=1>\n<caption>Model parts of this model</caption>\n<tr>\n  <th>Part Name</th><th>Parent</th><th>Corresponding Field</th>\n</tr>\n<tr>\n  <td>{@code pole}</td><td>{@linkplain #root Root part}</td><td></td>\n</tr>\n<tr>\n  <td>{@code base}</td><td>{@code pole}</td><td></td>\n</tr>\n<tr>\n  <td>{@code left_spike}</td><td>{@code pole}</td><td></td>\n</tr>\n<tr>\n  <td>{@code middle_spike}</td><td>{@code pole}</td><td></td>\n</tr>\n<tr>\n  <td>{@code right_spike}</td><td>{@code pole}</td><td></td>\n</tr>\n</table>\n</div>	
+	f	Lnet/minecraft/class_2960;	field_3592	TEXTURE	
+	f	Lnet/minecraft/class_630;	field_3593	trident	
 	m	()V	<init>	<init>	
-	m	()V	method_2835	method_2835	
+	m	()V	method_2835	renderItem	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_614	net/minecraft/class_614	
-	f	Lnet/minecraft/class_630;	field_3594	field_3594	
+c	net/minecraft/class_614	net/minecraft/client/render/entity/model/TurtleEntityModel	
+	f	Lnet/minecraft/class_630;	field_3594	plastron	
+		c	The belly side of the turtle's shell.	
 	m	(F)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1297;FFFFFF)V	method_2819	method_2819	
@@ -1440,7 +1453,7 @@ c	net/minecraft/class_614	net/minecraft/class_614
 		p	6		p_6	
 		p	7		p_7	
 	m	()I	method_0_15731	method_0_15731	
-c	net/minecraft/class_655	net/minecraft/class_655	
+c	net/minecraft/class_655	net/minecraft/client/particle/WaterBubbleParticle	
 	m	(Lnet/minecraft/class_1937;DDDDDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1470,7 +1483,7 @@ c	net/minecraft/class_655$class_0_3471	class_0_3471
 		p	9		p_9	
 		p	11		p_11	
 		p	13		p_13	
-c	net/minecraft/class_661	net/minecraft/class_661	
+c	net/minecraft/class_661	net/minecraft/client/particle/BubblePopParticle	
 	m	(Lnet/minecraft/class_1937;DDDDDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1491,7 +1504,7 @@ c	net/minecraft/class_661	net/minecraft/class_661
 		p	8		p_8	
 	m	(I)V	method_3076	method_3076	
 		p	1		p_1	
-c	net/minecraft/class_661$class_662	class_662	
+c	net/minecraft/class_661$class_662	Factory	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_2394;Lnet/minecraft/class_1937;DDDDDD)Lnet/minecraft/class_703;	method_3090	method_3090	
 		p	1		p_1	
@@ -1504,7 +1517,7 @@ c	net/minecraft/class_661$class_662	class_662
 		p	13		p_13	
 c	net/minecraft/class_7
 	f	Lnet/minecraft/class_7;	field_4	field_4	
-c	net/minecraft/class_725	net/minecraft/class_725	
+c	net/minecraft/class_725	net/minecraft/client/particle/SquidInkParticle	
 	m	(Lnet/minecraft/class_1937;DDDDDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1514,7 +1527,7 @@ c	net/minecraft/class_725	net/minecraft/class_725
 		p	10		p_10	
 		p	12		p_12	
 	m	()V	method_3070	method_3070	
-c	net/minecraft/class_725$class_726	class_726	
+c	net/minecraft/class_725$class_726	Factory	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_2400;Lnet/minecraft/class_1937;DDDDDD)Lnet/minecraft/class_703;	method_3105	method_3105	
 		p	1		p_1	
@@ -1534,15 +1547,16 @@ c	net/minecraft/class_725$class_726	class_726
 		p	9		p_9	
 		p	11		p_11	
 		p	13		p_13	
-c	net/minecraft/class_736	net/minecraft/class_736	
-	f	F	field_3897	field_3897	
+c	net/minecraft/class_736	net/minecraft/client/particle/CurrentDownParticle	
+	f	F	field_3897	accelerationAngle	
+		c	The angle, in radians, of the horizontal acceleration of the particle.	
 	m	(Lnet/minecraft/class_1937;DDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
 	m	()V	method_3070	method_3070	
-c	net/minecraft/class_736$class_737	class_737	
+c	net/minecraft/class_736$class_737	Factory	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_2400;Lnet/minecraft/class_1937;DDDDDD)Lnet/minecraft/class_703;	method_3114	method_3114	
 		p	1		p_1	
@@ -1563,12 +1577,12 @@ c	net/minecraft/class_736$class_737	class_737
 		p	11		p_11	
 		p	13		p_13	
 c	net/minecraft/class_756
-	f	Lnet/minecraft/class_613;	field_3985	field_3985	
+	f	Lnet/minecraft/class_613;	field_3985	modelTrident	
 c	net/minecraft/class_757
-	f	F	field_4002	field_4002	
+	f	F	field_4002	skyDarkness	
 	f	F	field_4022	field_4022	
-c	net/minecraft/class_933	net/minecraft/class_933	
-	f	Lnet/minecraft/class_2960;	field_4756	field_4756	
+c	net/minecraft/class_933	net/minecraft/client/render/entity/PhantomEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4756	TEXTURE	
 	f	I	field_0_16299	field_0_16299	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
@@ -1621,9 +1635,9 @@ c	net/minecraft/class_933	net/minecraft/class_933
 		p	6		p_6	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_955	net/minecraft/class_955	
-	f	Lnet/minecraft/class_2960;	field_4796	field_4796	
-	f	Lnet/minecraft/class_613;	field_4797	field_4797	
+c	net/minecraft/class_955	net/minecraft/client/render/entity/TridentEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4796	TEXTURE	
+	f	Lnet/minecraft/class_613;	field_4797	model	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1685;DDDFF)V	method_4133	method_4133	
@@ -1656,8 +1670,8 @@ c	net/minecraft/class_955	net/minecraft/class_955
 		p	8		p_8	
 		p	9		p_9	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_958	net/minecraft/class_958	
-	f	Lnet/minecraft/class_2960;	field_4798	field_4798	
+c	net/minecraft/class_958	net/minecraft/client/render/entity/TurtleEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_4798	TEXTURE	
 	f	I	field_0_16304	field_0_16304	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	

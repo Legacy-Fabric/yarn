@@ -1,17 +1,17 @@
 tiny	2	0
 c	net/minecraft/class_1959
-	f	Ljava/util/Map;	field_9333	field_9333	
+	f	Ljava/util/Map;	field_9333	carvers	
 	f	Lnet/minecraft/class_2939;	field_0_16371	field_0_16371	
 	f	Lnet/minecraft/class_2939;	field_0_16372	field_0_16372	
 	f	Ljava/util/List;	field_0_15459		field_0_15459
 	m	()V	method_8701	method_8701	
-	m	(Lnet/minecraft/class_2893$class_2894;Lnet/minecraft/class_2922;)V	method_8691	method_8691	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2893$class_2894;)Ljava/util/List;	method_8717	method_8717	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2893$class_2895;)Ljava/util/List;	method_8721	method_8721	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2893$class_2894;Lnet/minecraft/class_2922;)V	method_8691	addCarver	
+		p	1		step	
+		p	2		configuredCarver	
+	m	(Lnet/minecraft/class_2893$class_2894;)Ljava/util/List;	method_8717	getCarversForStep	
+		p	1		carver	
+	m	(Lnet/minecraft/class_2893$class_2895;)Ljava/util/List;	method_8721	getFeaturesForStep	
+		p	1		feature	
 	m	(Lnet/minecraft/class_2893$class_2895;Lnet/minecraft/class_2796;Lnet/minecraft/class_1936;JLnet/minecraft/class_2919;Lnet/minecraft/class_2338;)V	method_8702	method_8702	
 		p	1		p_1	
 		p	2		p_2	
@@ -52,19 +52,19 @@ c	net/minecraft/class_1972
 	f	Lnet/minecraft/class_1959;	field_9439	field_9439	
 	f	Lnet/minecraft/class_1959;	field_9470	field_9470	
 	f	Lnet/minecraft/class_1959;	field_9418	field_9418	
-c	net/minecraft/class_1975	net/minecraft/class_1975	
+c	net/minecraft/class_1975	net/minecraft/world/biome/ColdOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_1979	net/minecraft/class_1979	
+c	net/minecraft/class_1979	net/minecraft/world/biome/DeepFrozenOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_1980	net/minecraft/class_1980	
+c	net/minecraft/class_1980	net/minecraft/world/biome/DeepColdOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_1982	net/minecraft/class_1982	
+c	net/minecraft/class_1982	net/minecraft/world/biome/DeepLukewarmOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_1984	net/minecraft/class_1984	
+c	net/minecraft/class_1984	net/minecraft/world/biome/DeepWarmOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_2042	net/minecraft/class_2042	
+c	net/minecraft/class_2042	net/minecraft/world/biome/LukewarmOceanBiome	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_2174	net/minecraft/class_2174	
+c	net/minecraft/class_2174	net/minecraft/world/biome/WarmOceanBiome	
 	m	()V	<init>	<init>	
 c	net/minecraft/class_2413
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z	method_9552	method_9552	
@@ -91,8 +91,8 @@ c	net/minecraft/class_2891
 		p	2		p_2	
 	m	(Lnet/minecraft/class_3233;)V	method_12108		method_12108
 		p	1			p_1
-c	net/minecraft/class_2893	net/minecraft/class_2893	
-c	net/minecraft/class_2893$class_2894	class_2894	
+c	net/minecraft/class_2893	net/minecraft/world/gen/GenerationStep	
+c	net/minecraft/class_2893$class_2894	Carver	
 	f	Lnet/minecraft/class_2893$class_2894;	field_13169	field_13169	
 	f	[Lnet/minecraft/class_2893$class_2894;	field_13170	field_13170	
 	f	Lnet/minecraft/class_2893$class_2894;	field_0_16382	field_0_16382	
@@ -103,7 +103,7 @@ c	net/minecraft/class_2893$class_2894	class_2894
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_2893$class_2895	class_2895	
+c	net/minecraft/class_2893$class_2895	Feature	
 	f	Lnet/minecraft/class_2893$class_2895;	field_13171	field_13171	
 	f	Lnet/minecraft/class_2893$class_2895;	field_13172	field_13172	
 	f	Lnet/minecraft/class_2893$class_2895;	field_13173	field_13173	
@@ -187,7 +187,7 @@ c	net/minecraft/class_2918
 		p	10			p_10
 		p	12			p_12
 		p	14			p_14
-c	net/minecraft/class_2922	net/minecraft/class_2922	
+c	net/minecraft/class_2922	net/minecraft/world/gen/carver/ConfiguredCarver	
 	f	Lnet/minecraft/class_0_3494;	field_0_16385	field_0_16385	
 	f	Lnet/minecraft/class_0_3263;	field_13278	field_13278	
 	m	(Lnet/minecraft/class_0_3494;Lnet/minecraft/class_0_3263;)V	<init>	<init>	
@@ -366,7 +366,7 @@ c	net/minecraft/class_2934
 		p	10			p_10
 		p	12			p_12
 		p	14			p_14
-c	net/minecraft/class_2936	net/minecraft/class_2936	
+c	net/minecraft/class_2936	net/minecraft/world/gen/carver/UnderwaterCaveCarver	
 	m	(Lnet/minecraft/class_1936;JIIDDDDDLjava/util/BitSet;)Z	method_12708	method_12708	
 		p	1		p_1	
 		p	2		p_2	
@@ -391,7 +391,7 @@ c	net/minecraft/class_2936	net/minecraft/class_2936
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/class_2938	net/minecraft/class_2938	
+c	net/minecraft/class_2938	net/minecraft/world/gen/carver/UnderwaterRavineCarver	
 	f	[F	field_13293	field_13293	
 	m	(Lnet/minecraft/class_1936;JIIDDDDDLjava/util/BitSet;)Z	method_12708	method_12708	
 		p	1		p_1	
@@ -454,10 +454,10 @@ c	net/minecraft/class_2939
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/class_2955
-	m	()I	method_12823	method_12823	
+	m	()I	method_12823	getFreeInventorySlots	
 c	net/minecraft/class_3048
 	m	(Lnet/minecraft/class_2168;)Z	method_13246	method_13246	
-		p	0		p_0	
+		p	0		source	
 c	net/minecraft/class_3417
 	f	Lnet/minecraft/class_3414;	field_15121	field_15121	
 c	net/minecraft/class_3481
@@ -472,7 +472,7 @@ c	net/minecraft/class_3489
 		p	0		p_0	
 c	net/minecraft/class_3636
 	f	I	field_0_15842		field_0_15842
-c	net/minecraft/class_3644	net/minecraft/class_3644	
+c	net/minecraft/class_3644	net/minecraft/world/biome/layer/OceanTemperatureLayer	
 	f	Lnet/minecraft/class_3644;	field_16105	field_16105	
 	f	[Lnet/minecraft/class_3644;	field_16106	field_16106	
 	m	()[Lnet/minecraft/class_3644;	values	values	
@@ -486,16 +486,16 @@ c	net/minecraft/class_3644	net/minecraft/class_3644
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_3645
-	f	I	field_16115	field_16115	
-	f	I	field_16114	field_16114	
-	f	I	field_16112	field_16112	
-	f	I	field_16110	field_16110	
-	f	I	field_16109	field_16109	
-	f	I	field_16107	field_16107	
-	f	I	field_16116	field_16116	
-	m	(I)Z	method_15846	method_15846	
-		p	0		p_0	
-c	net/minecraft/class_3647	net/minecraft/class_3647	
+	f	I	field_16115	WARM_OCEAN_ID	
+	f	I	field_16114	LUKEWARM_OCEAN_ID	
+	f	I	field_16112	COLD_OCEAN_ID	
+	f	I	field_16110	DEEP_WARM_OCEAN_ID	
+	f	I	field_16109	DEEP_LUKEWARM_OCEAN_ID	
+	f	I	field_16107	DEEP_COLD_OCEAN_ID	
+	f	I	field_16116	DEEP_FROZEN_OCEAN_ID	
+	m	(I)Z	method_15846	isShallowOcean	
+		p	0		id	
+c	net/minecraft/class_3647	net/minecraft/world/biome/layer/ApplyOceanTemperatureLayer	
 	f	Lnet/minecraft/class_3647;	field_16121	field_16121	
 	f	[Lnet/minecraft/class_3647;	field_16122	field_16122	
 	m	()[Lnet/minecraft/class_3647;	values	values	
@@ -537,15 +537,15 @@ c	net/minecraft/class_3656$1	1
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/class_824
-	m	(Lnet/minecraft/class_2586;)V	method_3552	method_3552	
+	m	(Lnet/minecraft/class_2586;)V	method_3552	renderEntity	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2586;DDDFIZ)V	method_3554	method_3554	
+	m	(Lnet/minecraft/class_2586;DDDFIZ)V	method_3554	renderEntity	
 		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-		p	8		p_8	
-		p	9		p_9	
+		p	2		xOffset	
+		p	4		yOffset	
+		p	6		zOffset	
+		p	8		tickDelta	
+		p	9		blockBreakStage	
 		p	10		p_10	
 	m	(Lnet/minecraft/class_2586;DDDFI)V	method_3554		method_3554
 		p	1			p_1

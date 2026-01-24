@@ -18,7 +18,7 @@ c	net/minecraft/class_1132
 		p	4			p_4
 	m	()V	method_0_6491		method_0_6491
 	m	()V	method_0_4534		method_0_4534
-c	net/minecraft/class_1280	net/minecraft/class_1280	
+c	net/minecraft/class_1280	net/minecraft/entity/DamageUtil	
 	m	(FI)F	method_5496	method_5496	
 		p	0		p_0	
 		p	1		p_1	
@@ -114,22 +114,22 @@ c	net/minecraft/class_1439$class_0_1872$1		1
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			p_1
 c	net/minecraft/class_1536
-	f	Lnet/minecraft/class_2940;	field_7170	field_7170	
+	f	Lnet/minecraft/class_2940;	field_7170	HOOK_ENTITY_ID	
 	f	I	field_7170		field_7170
 	m	(Lnet/minecraft/class_2940;)V	method_5674	method_5674	
 		p	1		p_1	
 	m	(B)V	method_5711	method_5711	
 		p	1		p_1	
-	m	()V	method_6954	method_6954	
+	m	()V	method_6954	pullHookedEntity	
 c	net/minecraft/class_1560
-	f	I	field_7253	field_7253	
-	f	I	field_7254	field_7254	
+	f	I	field_7253	lastAngrySoundAge	
+	f	I	field_7254	ageWhenTargetSet	
 	f	Lnet/minecraft/class_0_378;	field_0_9547		field_0_9547
 	f	Lnet/minecraft/class_2940;	field_7253		field_7253
 	f	Z	field_7254		field_7254
 	m	(Lnet/minecraft/class_1309;)V	method_5980	method_5980	
 		p	1		p_1	
-	m	()V	method_7030	method_7030	
+	m	()V	method_7030	playAngrySound	
 	m	(Lnet/minecraft/class_2940;)V	method_5674	method_5674	
 		p	1		p_1	
 	m	()Z	method_0_8900		method_0_8900
@@ -176,9 +176,9 @@ c	net/minecraft/class_2165
 c	net/minecraft/class_2338
 	f	Lorg/apache/logging/log4j/Logger;	field_10979	field_10979	
 	m	()Lorg/apache/logging/log4j/Logger;	method_0_9318	method_0_9318	
-c	net/minecraft/class_2338$class_2340	class_2340	
-	f	Z	field_11004	field_11004	
-	f	Ljava/util/List;	field_11005	field_11005	
+c	net/minecraft/class_2338$class_2340	PooledMutable	
+	f	Z	field_11004	free	
+	f	Ljava/util/List;	field_11005	POOL	
 	f	I	field_0_9962	field_0_9962	
 	f	I	field_0_9963	field_0_9963	
 	f	I	field_0_9964	field_0_9964	
@@ -186,15 +186,15 @@ c	net/minecraft/class_2338$class_2340	class_2340
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lnet/minecraft/class_2338$class_2340;	method_10109	method_10109	
-	m	(DDD)Lnet/minecraft/class_2338$class_2340;	method_10115	method_10115	
-		p	0		p_0	
-		p	2		p_2	
-		p	4		p_4	
-	m	(III)Lnet/minecraft/class_2338$class_2340;	method_10111	method_10111	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	()Lnet/minecraft/class_2338$class_2340;	method_10109	get	
+	m	(DDD)Lnet/minecraft/class_2338$class_2340;	method_10115	get	
+		p	0		x	
+		p	2		y	
+		p	4		z	
+	m	(III)Lnet/minecraft/class_2338$class_2340;	method_10111	get	
+		p	0		x	
+		p	1		y	
+		p	2		z	
 	m	(III)Lnet/minecraft/class_2338$class_2340;	method_10113	method_10113	
 		p	1		p_1	
 		p	2		p_2	
@@ -230,33 +230,33 @@ c	net/minecraft/class_2625$1
 c	net/minecraft/class_2625$2
 	m	()Lnet/minecraft/server/MinecraftServer;	method_5682	method_5682	
 c	net/minecraft/class_2631
-	f	Lnet/minecraft/class_3312;	field_12089	field_12089	
-	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	field_12088	field_12088	
-	m	(Lnet/minecraft/class_3312;)V	method_11337	method_11337	
-		p	0		p_0	
-	m	(Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V	method_11336	method_11336	
-		p	0		p_0	
+	f	Lnet/minecraft/class_3312;	field_12089	userCache	
+	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	field_12088	sessionService	
+	m	(Lnet/minecraft/class_3312;)V	method_11337	setUserCache	
+		p	0		value	
+	m	(Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V	method_11336	setSessionService	
+		p	0		value	
 c	net/minecraft/class_268
-	f	Lnet/minecraft/class_270$class_271;	field_1425	field_1425	
+	f	Lnet/minecraft/class_270$class_271;	field_1425	collisionRule	
 	m	()Lnet/minecraft/class_270$class_271;	method_1203	method_1203	
-	m	(Lnet/minecraft/class_270$class_271;)V	method_1145	method_1145	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_270$class_271;)V	method_1145	setCollisionRule	
+		p	1		collisionRule	
 c	net/minecraft/class_270
-	m	()Lnet/minecraft/class_270$class_271;	method_1203	method_1203	
-c	net/minecraft/class_270$class_271	class_271	
+	m	()Lnet/minecraft/class_270$class_271;	method_1203	getCollisionRule	
+c	net/minecraft/class_270$class_271	CollisionRule	
 	f	Lnet/minecraft/class_270$class_271;	field_1437	field_1437	
 	f	Lnet/minecraft/class_270$class_271;	field_1435	field_1435	
 	f	Lnet/minecraft/class_270$class_271;	field_1434	field_1434	
 	f	Lnet/minecraft/class_270$class_271;	field_1440	field_1440	
-	f	Ljava/util/Map;	field_1438	field_1438	
-	f	Ljava/lang/String;	field_1436	field_1436	
-	f	I	field_1433	field_1433	
+	f	Ljava/util/Map;	field_1438	COLLISION_RULES	
+	f	Ljava/lang/String;	field_1436	name	
+	f	I	field_1433	value	
 	f	[Lnet/minecraft/class_270$class_271;	field_1439	field_1439	
 	m	()[Lnet/minecraft/class_270$class_271;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_270$class_271;	valueOf	valueOf	
 		p	0		p_0	
-	m	(Ljava/lang/String;)Lnet/minecraft/class_270$class_271;	method_1210	method_1210	
-		p	0		p_0	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_270$class_271;	method_1210	getRule	
+		p	0		name	
 	m	(Ljava/lang/String;ILjava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -265,15 +265,15 @@ c	net/minecraft/class_270$class_271	class_271
 	m	()V	<clinit>	<clinit>	
 	m	()[Ljava/lang/String;	method_0_9314	method_0_9314	
 c	net/minecraft/class_2755
-	f	Ljava/lang/String;	field_12605	field_12605	
-	m	()Ljava/lang/String;	method_11861	method_11861	
+	f	Ljava/lang/String;	field_12605	collisionRule	
+	m	()Ljava/lang/String;	method_11861	getCollisionRule	
 c	net/minecraft/class_281
 	m	(Ljava/io/BufferedInputStream;)[B	method_0_4156		method_0_4156
 		p	0			p_0
 c	net/minecraft/class_2818
 	m	()Lnet/minecraft/class_2826;	method_0_9311	method_0_9311	
 c	net/minecraft/class_2943
-	f	Lnet/minecraft/class_2941;	field_13312	field_13312	
+	f	Lnet/minecraft/class_2941;	field_13312	BLOCK_STATE	
 c	net/minecraft/class_2943$10
 	m	(Lnet/minecraft/class_2540;Lcom/google/common/base/Optional;)V	method_12731	method_12731	
 		p	1		p_1	
@@ -413,7 +413,7 @@ c	net/minecraft/class_3050
 c	net/minecraft/class_3050$1
 	m	()Lnet/minecraft/server/MinecraftServer;	method_5682	method_5682	
 c	net/minecraft/class_3176
-	f	Lnet/minecraft/class_3350;	field_13811	field_13811	
+	f	Lnet/minecraft/class_3350;	field_13811	rconCommandOutput	
 	m	()Ljava/lang/String;	method_12929	method_12929	
 	m	()I	method_12918	method_12918	
 	m	()Ljava/lang/String;	method_12930	method_12930	
@@ -430,18 +430,18 @@ c	net/minecraft/class_3176
 c	net/minecraft/class_3306
 	m	()V	close	close	
 c	net/minecraft/class_3312
-	f	Z	field_14313	field_14313	
-	f	Lcom/mojang/authlib/GameProfileRepository;	field_14315	field_14315	
+	f	Z	field_14313	useRemote	
+	f	Lcom/mojang/authlib/GameProfileRepository;	field_14315	profileRepository	
 	f	Lnet/minecraft/server/MinecraftServer;	field_14315		field_14315
 	m	(Lcom/mojang/authlib/GameProfileRepository;Ljava/io/File;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	method_14509	method_14509	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Z)V	method_14510	method_14510	
-		p	0		p_0	
-	m	()Z	method_14514	method_14514	
+	m	(Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	method_14509	findProfileByName	
+		p	0		repository	
+		p	1		name	
+	m	(Z)V	method_14510	setUseRemote	
+		p	0		value	
+	m	()Z	method_14514	shouldUseRemote	
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/io/File;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -449,13 +449,13 @@ c	net/minecraft/class_3312
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_3321
-	m	(Lnet/minecraft/server/MinecraftServer;Ljava/lang/String;)Ljava/lang/String;	method_14546	method_14546	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/server/MinecraftServer;Ljava/lang/String;)Ljava/lang/String;	method_14546	getPlayerUuidByName	
+		p	0		minecraftServer	
+		p	1		name	
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_14546		method_14546
 		p	0			p_0
 c	net/minecraft/class_3350
-	f	Lnet/minecraft/server/MinecraftServer;	field_14405	field_14405	
+	f	Lnet/minecraft/server/MinecraftServer;	field_14405	server	
 	f	Lnet/minecraft/class_3350;	field_0_6832		field_0_6832
 	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>	
 		p	1		p_1	
@@ -473,12 +473,12 @@ c	net/minecraft/class_3485
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_2960;)Z	method_0_8603	method_0_8603	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_3499;	method_15088		method_15088
-		p	1			p_1
+	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_3499;	method_15088		loadStructureFromResource
+		p	1			id
 	m	(Lnet/minecraft/class_2960;)Z	method_0_8603		method_0_8603
 		p	1			p_1
-	m	(Lnet/minecraft/class_2960;)Z	method_15093		method_15093
-		p	1			p_1
+	m	(Lnet/minecraft/class_2960;)Z	method_15093		saveTemplate
+		p	1			id
 c	net/minecraft/class_3521
 	m	(Ljava/net/URL;Ljava/util/Map;ZLjava/net/Proxy;)Ljava/lang/String;	method_0_6548	method_0_6548	
 		p	0		p_0	
@@ -499,18 +499,18 @@ c	net/minecraft/class_3521
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3549
-	m	(Ljava/util/List;)I	method_15445	method_15445	
-		p	0		p_0	
-	m	(Ljava/util/Random;Ljava/util/List;I)Lnet/minecraft/class_3549$class_3550;	method_15444	method_15444	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/util/List;I)Lnet/minecraft/class_3549$class_3550;	method_15447	method_15447	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/util/Random;Ljava/util/List;)Lnet/minecraft/class_3549$class_3550;	method_15446	method_15446	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Ljava/util/List;)I	method_15445	getWeightSum	
+		p	0		list	
+	m	(Ljava/util/Random;Ljava/util/List;I)Lnet/minecraft/class_3549$class_3550;	method_15444	getRandom	
+		p	0		random	
+		p	1		list	
+		p	2		weightSum	
+	m	(Ljava/util/List;I)Lnet/minecraft/class_3549$class_3550;	method_15447	getAt	
+		p	0		list	
+		p	1		weightMark	
+	m	(Ljava/util/Random;Ljava/util/List;)Lnet/minecraft/class_3549$class_3550;	method_15446	getRandom	
+		p	0		random	
+		p	1		list	
 	m	(Ljava/util/Collection;)I	method_15445		method_15445
 		p	0			p_0
 	m	(Ljava/util/Random;Ljava/util/Collection;I)Lnet/minecraft/class_3549$class_3550;	method_15444		method_15444
@@ -529,8 +529,8 @@ c	net/minecraft/class_606
 		p	2		p_2	
 c	net/minecraft/class_746
 	m	()I	method_5691	method_5691	
-	m	(I)V	method_3147	method_3147	
-		p	1		p_1	
+	m	(I)V	method_3147	setClientPermissionLevel	
+		p	1		clientPermissionLevel	
 c	net/minecraft/server/MinecraftServer
 	f	Lnet/minecraft/server/MinecraftServer;	field_0_7052		field_0_7052
 	m	(Ljava/io/File;Ljava/net/Proxy;Lnet/minecraft/class_0_2204;Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/class_3312;)V	<init>	<init>	

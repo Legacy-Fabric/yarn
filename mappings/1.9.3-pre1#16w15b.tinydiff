@@ -1,19 +1,21 @@
 tiny	2	0
 c	net/minecraft/class_2338
 c	net/minecraft/class_2338$class_2339
-	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_2338$class_2339;	method_10105	method_10105	
-		p	1		p_1	
-	m	(DDD)Lnet/minecraft/class_2338$class_2339;	method_10102	method_10102	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338$class_2339;	method_10101	method_10101	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2338$class_2339;	method_10098	method_10098	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2350;I)Lnet/minecraft/class_2338$class_2339;	method_10104	method_10104	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_2338$class_2339;	method_10105	set	
+		p	1		entity	
+	m	(DDD)Lnet/minecraft/class_2338$class_2339;	method_10102	set	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+	m	(Lnet/minecraft/class_2382;)Lnet/minecraft/class_2338$class_2339;	method_10101	set	
+		p	1		pos	
+	m	(Lnet/minecraft/class_2350;)Lnet/minecraft/class_2338$class_2339;	method_10098	move	
+		c	Moves this mutable block position by 1 block in the given direction.	
+		p	1		direction	
+	m	(Lnet/minecraft/class_2350;I)Lnet/minecraft/class_2338$class_2339;	method_10104	move	
+		c	Moves this mutable block position by the given distance in the given\ndirection.	
+		p	1		direction	
+		p	2		distance	
 	m	(Lnet/minecraft/class_2350;)V	method_0_9198		method_0_9198
 		p	1			p_1
 	m	(Lnet/minecraft/class_2338$class_2339;I)I	method_0_4873		method_0_4873
@@ -69,13 +71,13 @@ c	net/minecraft/class_631$1	1
 		p	1		p_1	
 c	net/minecraft/class_761
 c	net/minecraft/class_761$class_762
-	f	B	field_4126	field_4126	
+	f	B	field_4126	cullingState	
 	f	Ljava/util/Set;	field_0_4460		field_0_4460
-	m	(BLnet/minecraft/class_2350;)V	method_3299	method_3299	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2350;)Z	method_3298	method_3298	
-		p	1		p_1	
+	m	(BLnet/minecraft/class_2350;)V	method_3299	updateCullingState	
+		p	1		parentCullingState	
+		p	2		from	
+	m	(Lnet/minecraft/class_2350;)Z	method_3298	canCull	
+		p	1		from	
 c	net/minecraft/class_764
 	m	(IIII)V	method_0_3543		method_0_3543
 		p	1			p_1
@@ -108,15 +110,15 @@ c	net/minecraft/class_850
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_851
-	f	Lnet/minecraft/class_2338$class_2339;	field_4467	field_4467	
-	f	[Lnet/minecraft/class_2338$class_2339;	field_4472	field_4472	
+	f	Lnet/minecraft/class_2338$class_2339;	field_4467	origin	
+	f	[Lnet/minecraft/class_2338$class_2339;	field_4472	neighborPositions	
 	f	Lnet/minecraft/class_0_105;	field_0_11445	field_0_11445	
 	f	Lnet/minecraft/class_2338;	field_0_4756		field_0_4756
 	f	Ljava/util/EnumMap;	field_0_4766		field_0_4766
-	m	(III)V	method_3653	method_3653	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(III)V	method_3653	setOrigin	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_761;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	

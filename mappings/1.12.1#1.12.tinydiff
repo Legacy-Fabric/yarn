@@ -7,16 +7,16 @@ c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2586;)Ljava/lang/String;	method_8467	method_8467	
 		p	0		p_0	
 c	net/minecraft/class_2602
-	m	(Lnet/minecraft/class_2695;)V	method_11090	method_11090	
-		p	1		p_1	
-c	net/minecraft/class_2695	net/minecraft/class_2695	
-	f	I	field_12333	field_12333	
+	m	(Lnet/minecraft/class_2695;)V	method_11090	onCraftFailedResponse	
+		p	1		packet	
+c	net/minecraft/class_2695	net/minecraft/network/packet/s2c/play/CraftFailedResponseS2CPacket	
+	f	I	field_12333	syncId	
 	f	Lnet/minecraft/class_1860;	field_12332	field_12332	
 	m	()V	<init>	<init>	
 	m	(ILnet/minecraft/class_1860;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()I	method_11685	method_11685	
+	m	()I	method_11685	getSyncId	
 	m	(Lnet/minecraft/class_2540;)V	method_11053	method_11053	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2540;)V	method_11052	method_11052	
@@ -27,7 +27,7 @@ c	net/minecraft/class_2695	net/minecraft/class_2695
 		p	1		p_1	
 	m	()Lnet/minecraft/class_1860;	method_11684	method_11684	
 c	net/minecraft/class_2840
-	f	Z	field_12932	field_12932	
+	f	Z	field_12932	craftAll	
 	f	Lnet/minecraft/class_1860;	field_12931	field_12931	
 	f	S	field_0_12397		field_0_12397
 	f	Ljava/util/List;	field_0_12398		field_0_12398
@@ -36,7 +36,7 @@ c	net/minecraft/class_2840
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Z	method_12319	method_12319	
+	m	()Z	method_12319	shouldCraftAll	
 	m	()Lnet/minecraft/class_1860;	method_12320	method_12320	
 	m	(ILjava/util/List;Ljava/util/List;S)V	<init>		<init>
 		p	1			p_1
@@ -69,9 +69,9 @@ c	net/minecraft/class_2889
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_2955	net/minecraft/class_2955	
-	f	Lorg/apache/logging/log4j/Logger;	field_13349	field_13349	
-	f	Lnet/minecraft/class_1662;	field_13347	field_13347	
+c	net/minecraft/class_2955	net/minecraft/recipe/InputSlotFiller	
+	f	Lorg/apache/logging/log4j/Logger;	field_13349	LOGGER	
+	f	Lnet/minecraft/class_1662;	field_13347	matcher	
 	f	Lnet/minecraft/class_3222;	field_0_13244	field_0_13244	
 	f	Lnet/minecraft/class_1860;	field_0_13245	field_0_13245	
 	f	Z	field_0_13246	field_0_13246	
@@ -79,14 +79,14 @@ c	net/minecraft/class_2955	net/minecraft/class_2955
 	f	Lnet/minecraft/class_1715;	field_0_13248	field_0_13248	
 	f	Ljava/util/List;	field_0_13249	field_0_13249	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1860;Z)V	method_12826	method_12826	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1735;Lnet/minecraft/class_1799;)V	method_12824	method_12824	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Z	method_12825	method_12825	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1860;Z)V	method_12826	fillInputSlots	
+		p	1		entity	
+		p	2		recipe	
+		p	3		craftAll	
+	m	(Lnet/minecraft/class_1735;Lnet/minecraft/class_1799;)V	method_12824	fillInputSlot	
+		p	1		slot	
+		p	2		stack	
+	m	()Z	method_12825	canReturnInputs	
 	m	()V	method_0_12123	method_0_12123	
 	m	()V	method_12821	method_12821	
 	m	(IZ)I	method_12819	method_12819	
@@ -150,7 +150,7 @@ c	net/minecraft/class_507
 		p	3			p_3
 	m	()Z	method_0_11991		method_0_11991
 c	net/minecraft/class_518
-	m	()Lnet/minecraft/class_507;	method_2659	method_2659	
+	m	()Lnet/minecraft/class_507;	method_2659	getRecipeBookWidget	
 c	net/minecraft/class_634
 	m	(Lnet/minecraft/class_2695;)V	method_11090	method_11090	
 		p	1		p_1	

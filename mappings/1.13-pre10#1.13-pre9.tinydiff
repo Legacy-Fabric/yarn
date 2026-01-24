@@ -25,7 +25,7 @@ c	net/minecraft/class_1256$1	1
 	f	[I	field_0_18514	field_0_18514	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_1297
-	m	()D	method_5861	method_5861	
+	m	()D	method_5861	getWaterHeight	
 c	net/minecraft/class_1693
 	m	(ILnet/minecraft/class_1799;)Z	method_5758	method_5758	
 		p	1		p_1	
@@ -39,12 +39,12 @@ c	net/minecraft/class_1959
 c	net/minecraft/class_2230
 	m	()Z	method_0_623	method_0_623	
 c	net/minecraft/class_2248
-c	net/minecraft/class_2248$class_2249	class_2249	
-	f	Lnet/minecraft/class_2350;	field_10653	field_10653	
+c	net/minecraft/class_2248$class_2249	NeighborGroup	
+	f	Lnet/minecraft/class_2350;	field_10653	facing	
 	f	Lnet/minecraft/class_0_378;	field_10652	field_10652	
 	f	Lnet/minecraft/class_0_378;	field_10654	field_10654	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()I	hashCode	hashCode	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_0_378;Lnet/minecraft/class_2350;)V	<init>	<init>	
 		p	1		p_1	
@@ -79,36 +79,36 @@ c	net/minecraft/class_2861
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_3050
-	m	(Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/builder/ArgumentBuilder;ZZ)Lcom/mojang/brigadier/builder/ArgumentBuilder;	method_13320	method_13320	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lcom/mojang/brigadier/context/CommandContext;Z)I	method_13306	method_13306	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lcom/mojang/brigadier/context/CommandContext;Z)I	method_13304	method_13304	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lcom/mojang/brigadier/context/CommandContext;Z)Ljava/util/OptionalInt;	method_13272	method_13272	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Z)Ljava/util/OptionalInt;	method_13261	method_13261	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/builder/ArgumentBuilder;ZZ)Lcom/mojang/brigadier/builder/ArgumentBuilder;	method_13320	addBlocksConditionLogic	
+		p	0		root	
+		p	1		builder	
+		p	2		positive	
+		p	3		masked	
+	m	(Lcom/mojang/brigadier/context/CommandContext;Z)I	method_13306	executePositiveBlockCondition	
+		p	0		context	
+		p	1		masked	
+	m	(Lcom/mojang/brigadier/context/CommandContext;Z)I	method_13304	executeNegativeBlockCondition	
+		p	0		context	
+		p	1		masked	
+	m	(Lcom/mojang/brigadier/context/CommandContext;Z)Ljava/util/OptionalInt;	method_13272	testBlocksCondition	
+		p	0		context	
+		p	1		masked	
+	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Z)Ljava/util/OptionalInt;	method_13261	testBlocksCondition	
+		p	0		world	
+		p	1		start	
+		p	2		end	
+		p	3		destination	
+		p	4		masked	
 	m	(ZLcom/mojang/brigadier/context/CommandContext;)I	method_13273	method_13273	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		context	
 	m	(ZLcom/mojang/brigadier/context/CommandContext;)I	method_13315	method_13315	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		context	
 	m	(ZZLcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;	method_13287	method_13287	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		context	
 	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Lnet/minecraft/class_2338;Z)Z	method_13261		method_13261
 		p	0			p_0
 		p	1			p_1
@@ -120,22 +120,22 @@ c	net/minecraft/class_3050
 	m	(Lcom/mojang/brigadier/context/CommandContext;)Z	method_0_18751		method_0_18751
 		p	0			p_0
 c	net/minecraft/class_312
-	f	I	field_1781	field_1781	
+	f	I	field_1781	controlLeftTicks	
 c	net/minecraft/class_3233
 	m	(Ljava/lang/String;Lnet/minecraft/class_18;)V	method_0_325		method_0_325
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3360
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_14735	method_14735	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;Lnet/minecraft/class_1923;)Lnet/minecraft/class_2487;	method_14741	method_14741	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_14735	getUpdatedReferences	
+		p	1		nbt	
+	m	(Lnet/minecraft/class_2487;Lnet/minecraft/class_1923;)Lnet/minecraft/class_2487;	method_14741	getUpdatedStarts	
+		p	1		nbt	
+		p	2		pos	
 	m	(Lnet/minecraft/class_26;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_26;)V	method_14734	method_14734	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2874;Lnet/minecraft/class_26;)Lnet/minecraft/class_3360;	method_14745	method_14745	
+	m	(Lnet/minecraft/class_26;)V	method_14734	init	
+		p	1		persistentStateManager	
+	m	(Lnet/minecraft/class_2874;Lnet/minecraft/class_26;)Lnet/minecraft/class_3360;	method_14745	create	
 		p	0		p_0	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1936;)V	<init>		<init>
@@ -168,7 +168,7 @@ c	net/minecraft/class_3360$class_3363
 		p	1			p_1
 c	net/minecraft/class_3366
 c	net/minecraft/class_3366$class_3384
-	f	Ljava/util/Set;	field_14472	field_14472	
+	f	Ljava/util/Set;	field_14472	ICE_BLOCKS	
 c	net/minecraft/class_3481
 	f	Lnet/minecraft/class_3494;	field_15491	field_15491	
 	f	Lnet/minecraft/class_3494;	field_15487	field_15487	
@@ -176,17 +176,17 @@ c	net/minecraft/class_3489
 	f	Lnet/minecraft/class_3494;	field_15550	field_15550	
 	f	Lnet/minecraft/class_3494;	field_15548	field_15548	
 c	net/minecraft/class_3609
-	m	(Lnet/minecraft/class_3610;)Z	method_15748	method_15748	
-		p	1		p_1	
-c	net/minecraft/class_405	net/minecraft/class_405	
-	f	Lnet/minecraft/class_437;	field_2360	field_2360	
+	m	(Lnet/minecraft/class_3610;)Z	method_15748	isEmptyOrThis	
+		p	1		state	
+c	net/minecraft/class_405	net/minecraft/client/gui/screen/BackupPromptScreen	
+	f	Lnet/minecraft/class_437;	field_2360	parent	
 	f	Lnet/minecraft/class_405$class_406;	field_2366	field_2366	
 	f	Ljava/lang/String;	field_2363	field_2363	
 	f	Ljava/lang/String;	field_2364	field_2364	
-	f	Ljava/util/List;	field_2365	field_2365	
-	f	Ljava/lang/String;	field_2361	field_2361	
-	f	Ljava/lang/String;	field_2359	field_2359	
-	f	Ljava/lang/String;	field_2362	field_2362	
+	f	Ljava/util/List;	field_2365	wrappedText	
+	f	Ljava/lang/String;	field_2361	confirmText	
+	f	Ljava/lang/String;	field_2359	skipText	
+	f	Ljava/lang/String;	field_2362	cancelText	
 	m	(Lnet/minecraft/class_437;Lnet/minecraft/class_405$class_406;Ljava/lang/String;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -239,7 +239,7 @@ c	net/minecraft/class_405$3	3
 	m	(DD)V	method_1826	method_1826	
 		p	1		p_1	
 		p	3		p_3	
-c	net/minecraft/class_405$class_406	class_406	
+c	net/minecraft/class_405$class_406	Callback	
 	m	(Z)V	proceed	proceed	
 		p	1		p_1	
 c	net/minecraft/class_524
@@ -286,7 +286,7 @@ c	net/minecraft/class_524$7	7
 	m	(DD)V	method_1826	method_1826	
 		p	1		p_1	
 		p	3		p_3	
-c	net/minecraft/class_527	net/minecraft/class_527	
+c	net/minecraft/class_527	net/minecraft/client/gui/screen/world/OptimizeWorldScreen	
 	f	Lorg/apache/logging/log4j/Logger;	field_0_18535	field_0_18535	
 	f	Lnet/minecraft/class_437;	field_3233	field_3233	
 	f	Lnet/minecraft/class_31;	field_0_18537	field_0_18537	

@@ -1,6 +1,6 @@
 tiny	2	0
 c	net/minecraft/class_1282
-	m	()F	method_5528	method_5528	
+	m	()F	method_5528	getExhaustion	
 c	net/minecraft/class_1365	net/minecraft/class_1365	
 	f	Lnet/minecraft/class_1314;	field_6498	field_6498	
 	f	Lnet/minecraft/class_1417;	field_6496	field_6496	
@@ -21,8 +21,9 @@ c	net/minecraft/class_1398
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_1404	net/minecraft/class_1404	
-	f	Lnet/minecraft/class_1321;	field_6656	field_6656	
+c	net/minecraft/class_1404	net/minecraft/entity/ai/goal/UntamedActiveTargetGoal	
+	c	An active target goal that only starts for untamed tameable animals.\nIn addition, the continue condition for maintaining the target uses the\ntarget predicate than that of the standard track target goal.	
+	f	Lnet/minecraft/class_1321;	field_6656	tameable	
 	m	()Z	method_6264	method_6264	
 	m	(Lnet/minecraft/class_1321;Ljava/lang/Class;ZLcom/google/common/base/Predicate;)V	<init>	<init>	
 		p	1		p_1	
@@ -73,7 +74,7 @@ c	net/minecraft/class_1452
 	m	()Z	method_6101		method_6101
 c	net/minecraft/class_1463
 c	net/minecraft/class_1463$class_1465
-	f	Lnet/minecraft/class_1463;	field_6853	field_6853	
+	f	Lnet/minecraft/class_1463;	field_6853	rabbit	
 	m	(Lnet/minecraft/class_1463;Ljava/lang/Class;FDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -93,12 +94,12 @@ c	net/minecraft/class_1493$1	1
 	m	(Ljava/lang/Object;)Z	apply	apply	
 		p	1		p_1	
 c	net/minecraft/class_1545
-	m	(Z)V	method_6993	method_6993	
-		p	1		p_1	
-c	net/minecraft/class_1545$class_1546	class_1546	
-	f	Lnet/minecraft/class_1545;	field_7219	field_7219	
-	f	I	field_7218	field_7218	
-	f	I	field_7217	field_7217	
+	m	(Z)V	method_6993	setFireActive	
+		p	1		fireActive	
+c	net/minecraft/class_1545$class_1546	ShootFireballGoal	
+	f	Lnet/minecraft/class_1545;	field_7219	blaze	
+	f	I	field_7218	fireballsFired	
+	f	I	field_7217	fireballCooldown	
 	m	(Lnet/minecraft/class_1545;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
@@ -111,12 +112,13 @@ c	net/minecraft/class_155
 	m	()V	<init>		<init>
 	m	()Ljava/lang/String;	method_0_8418		method_0_8418
 c	net/minecraft/class_1559
-	m	()Z	method_7023	method_7023	
+	m	()Z	method_7023	isPlayerSpawned	
+		c	Returns whether this endermite was spawned from an ender pearl thrown by a player.	
 c	net/minecraft/class_1560
-	m	(Lnet/minecraft/class_1657;)Z	method_7026	method_7026	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1297;)Z	method_7025	method_7025	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1657;)Z	method_7026	isPlayerStaring	
+		p	1		player	
+	m	(Lnet/minecraft/class_1297;)Z	method_7025	teleportTo	
+		p	1		entity	
 	m	(Lnet/minecraft/class_1560;Lnet/minecraft/class_1657;)Z	method_7031	method_7031	
 		p	0		p_0	
 		p	1		p_1	
@@ -124,11 +126,11 @@ c	net/minecraft/class_1560
 	m	(Lnet/minecraft/class_1560;Z)Z	method_0_7812	method_0_7812	
 		p	0		p_0	
 		p	1		p_1	
-c	net/minecraft/class_1560$class_1562	class_1562	
-	f	Lnet/minecraft/class_1560;	field_7260	field_7260	
-	f	Lnet/minecraft/class_1657;	field_7259	field_7259	
-	f	I	field_7262	field_7262	
-	f	I	field_7261	field_7261	
+c	net/minecraft/class_1560$class_1562	TeleportTowardsPlayerGoal	
+	f	Lnet/minecraft/class_1560;	field_7260	enderman	
+	f	Lnet/minecraft/class_1657;	field_7259	targetPlayer	
+	f	I	field_7262	lookAtPlayerWarmup	
+	f	I	field_7261	ticksSinceUnseenTeleport	
 	m	(Lnet/minecraft/class_1560;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
@@ -145,15 +147,15 @@ c	net/minecraft/class_1560$1	1
 	m	(Ljava/lang/Object;)Z	apply	apply	
 		p	1		p_1	
 c	net/minecraft/class_1571
-	m	(Z)V	method_7048	method_7048	
-		p	1		p_1	
-	m	()I	method_7049	method_7049	
+	m	(Z)V	method_7048	setShooting	
+		p	1		shooting	
+	m	()I	method_7049	getFireballStrength	
 	m	(Lnet/minecraft/class_1657;)Z	method_5992		method_5992
 		p	1			p_1
 	m	()D	method_5621		method_5621
-c	net/minecraft/class_1571$class_1574	class_1574	
-	f	Lnet/minecraft/class_1571;	field_7277	field_7277	
-	f	I	field_7278	field_7278	
+c	net/minecraft/class_1571$class_1574	ShootFireballGoal	
+	f	Lnet/minecraft/class_1571;	field_7277	ghast	
+	f	I	field_7278	cooldown	
 	m	(Lnet/minecraft/class_1571;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
@@ -161,8 +163,8 @@ c	net/minecraft/class_1571$class_1574	class_1574
 	m	()V	method_6270	method_6270	
 	m	()V	method_6268	method_6268	
 c	net/minecraft/class_1577
-c	net/minecraft/class_1577$class_1579	class_1579	
-	f	Lnet/minecraft/class_1577;	field_7294	field_7294	
+c	net/minecraft/class_1577$class_1579	GuardianTargetPredicate	
+	f	Lnet/minecraft/class_1577;	field_7294	owner	
 	m	(Lnet/minecraft/class_1577;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1309;)Z	method_7064	method_7064	
@@ -175,25 +177,25 @@ c	net/minecraft/class_1590
 	m	(Lnet/minecraft/class_1590;Lnet/minecraft/class_1297;)V	method_7078	method_7078	
 		p	0		p_0	
 		p	1		p_1	
-c	net/minecraft/class_1590$class_1591	class_1591	
+c	net/minecraft/class_1590$class_1591	FollowPlayerIfAngryGoal	
 	m	(Lnet/minecraft/class_1590;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
-c	net/minecraft/class_1590$class_1592	class_1592	
+c	net/minecraft/class_1590$class_1592	AvoidZombiesGoal	
 	m	(Lnet/minecraft/class_1590;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1314;Lnet/minecraft/class_1309;)V	method_6319	method_6319	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1628
-c	net/minecraft/class_1628$class_1631	class_1631	
+c	net/minecraft/class_1628$class_1631	TargetGoal	
 	m	(Lnet/minecraft/class_1628;Ljava/lang/Class;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Z	method_6264	method_6264	
 c	net/minecraft/class_1657
 	f	I	field_0_8901		field_0_8901
-	m	()Z	method_7317	method_7317	
+	m	()Z	method_7317	canFoodHeal	
 	m	()Z	method_0_7995	method_0_7995	
 	m	()V	method_5865		method_5865
 	m	(I)V	method_0_8429		method_0_8429
@@ -229,7 +231,7 @@ c	net/minecraft/class_1749
 	m	(Z)V	<init>		<init>
 		p	1			p_1
 	m	()Z	method_0_8431		method_0_8431
-c	net/minecraft/class_1758	net/minecraft/class_1758	
+c	net/minecraft/class_1758	net/minecraft/item/OnAStickItem	
 	m	()V	<init>	<init>	
 	m	()Z	method_0_8285	method_0_8285	
 	m	()Z	method_0_8263	method_0_8263	
@@ -241,7 +243,7 @@ c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_8184	field_8184	
 	f	Lnet/minecraft/class_1792;	field_0_8857		field_0_8857
 c	net/minecraft/class_1900
-	m	(Lnet/minecraft/class_1297;I)I	method_8238	method_8238	
+	m	(Lnet/minecraft/class_1297;I)I	method_8238	transformFireDuration	
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_2602
@@ -334,9 +336,9 @@ c	net/minecraft/class_357
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/class_421	net/minecraft/class_421	
+c	net/minecraft/class_421	net/minecraft/client/gui/screen/FatalErrorScreen	
 	f	Ljava/lang/String;	field_2466	field_2466	
-	f	Ljava/lang/String;	field_2467	field_2467	
+	f	Ljava/lang/String;	field_2467	message	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -366,7 +368,7 @@ c	net/minecraft/class_746
 	m	(I)V	method_0_8430		method_0_8430
 		p	1			p_1
 c	net/minecraft/class_757
-	m	()V	method_3184	method_3184	
+	m	()V	method_3184	togglePostProcessorEnabled	
 c	net/minecraft/class_759
 	m	(F)V	method_3236	method_3236	
 		p	1		p_1	

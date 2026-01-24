@@ -39,11 +39,11 @@ c	net/minecraft/class_1191$class_1192
 	m	(Lnet/minecraft/class_1191$class_1192;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_0_17862		method_0_17862
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/class_1191$class_1193	class_1193	
+c	net/minecraft/class_1191$class_1193	ListFixer	
 	f	Lcom/mojang/datafixers/types/Type;	field_5695	field_5695	
 	f	Lcom/mojang/datafixers/OpticFinder;	field_5693	field_5693	
-	f	Ljava/util/List;	field_5692	field_5692	
-	f	I	field_5694	field_5694	
+	f	Ljava/util/List;	field_5692	properties	
+	f	I	field_5694	y	
 	f	Lnet/minecraft/class_3508;	field_5696	field_5696	
 	m	(Lcom/mojang/datafixers/Typed;Lcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
@@ -52,23 +52,23 @@ c	net/minecraft/class_1191$class_1193	class_1193
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5083	method_5083	
 		p	1		p_1	
-	m	()Z	method_5079	method_5079	
-	m	(I)I	method_5075	method_5075	
+	m	()Z	method_5079	isFixed	
+	m	(I)I	method_5075	needsFix	
 		p	1		p_1	
-	m	(Ljava/lang/String;ZI)I	method_5082	method_5082	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;ZI)I	method_5082	computeFlags	
+		p	1		leafBlockName	
+		p	2		persistent	
 		p	3		p_3	
-	m	()I	method_5077	method_5077	
-	m	()Z	method_5076	method_5076	
+	m	()I	method_5077	getY	
+	m	()Z	method_5076	needsFix	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/util/Pair;	method_5078	method_5078	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5080	method_5080	
 		p	1		p_1	
 	m	(Ljava/util/List;)Ljava/util/List;	method_5081	method_5081	
 		p	0		p_0	
-c	net/minecraft/class_1215	net/minecraft/class_1215	
-	f	Lorg/apache/logging/log4j/Logger;	field_5740	field_5740	
+c	net/minecraft/class_1215	net/minecraft/datafixer/fix/AddTrappedChestFix	
+	f	Lorg/apache/logging/log4j/Logger;	field_5740	LOGGER	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -101,14 +101,14 @@ c	net/minecraft/class_1215	net/minecraft/class_1215
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_5179	method_5179	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_1215$class_1216	class_1216	
-	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5741	field_5741	
+c	net/minecraft/class_1215$class_1216	ListFixer	
+	f	Lit/unimi/dsi/fastutil/ints/IntSet;	field_5741	targets	
 	m	(Lcom/mojang/datafixers/Typed;Lcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Z	method_5076	method_5076	
-	m	(I)Z	method_5180	method_5180	
-		p	1		p_1	
+	m	(I)Z	method_5180	isTarget	
+		p	1		index	
 c	net/minecraft/class_1308
 	m	(Lnet/minecraft/class_1936;Z)Z	method_5979	method_5979	
 		p	1		p_1	
@@ -117,22 +117,22 @@ c	net/minecraft/class_1422
 	m	()Z	method_5947	method_5947	
 c	net/minecraft/class_1474
 	f	[[Ljava/lang/String;	field_0_18700	field_0_18700	
-	m	(I)Ljava/lang/String;	method_6649	method_6649	
-		p	0		p_0	
-	m	(I)Lnet/minecraft/class_1767;	method_6652	method_6652	
-		p	0		p_0	
-	m	(I)Lnet/minecraft/class_1767;	method_6651	method_6651	
-		p	0		p_0	
-	m	(I)Ljava/lang/String;	method_6657	method_6657	
-		p	0		p_0	
-	m	(I)I	method_6653	method_6653	
-		p	0		p_0	
-	m	(I)I	method_6648	method_6648	
-		p	0		p_0	
-	m	(I)I	method_6656	method_6656	
-		p	0		p_0	
-	m	(I)I	method_6645	method_6645	
-		p	0		p_0	
+	m	(I)Ljava/lang/String;	method_6649	getToolTipForVariant	
+		p	0		variant	
+	m	(I)Lnet/minecraft/class_1767;	method_6652	getBaseDyeColor	
+		p	0		variant	
+	m	(I)Lnet/minecraft/class_1767;	method_6651	getPatternDyeColor	
+		p	0		variant	
+	m	(I)Ljava/lang/String;	method_6657	getTranslationKey	
+		p	0		variant	
+	m	(I)I	method_6653	getBaseDyeColorIndex	
+		p	0		variant	
+	m	(I)I	method_6648	getPatternDyeColorIndex	
+		p	0		variant	
+	m	(I)I	method_6656	getShape	
+		p	0		variant	
+	m	(I)I	method_6645	getPattern	
+		p	0		variant	
 	m	()I	method_6653		method_6653
 	m	()I	method_6648		method_6648
 	m	()I	method_6645		method_6645
@@ -162,7 +162,7 @@ c	net/minecraft/class_2248$class_2249
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2404
-	f	Ljava/util/List;	field_11276	field_11276	
+	f	Ljava/util/List;	field_11276	statesByLevel	
 c	net/minecraft/class_3609
 	f	Ljava/lang/ThreadLocal;	field_15901	field_15901	
 	m	()Lit/unimi/dsi/fastutil/objects/Object2ByteLinkedOpenHashMap;	method_15735	method_15735	

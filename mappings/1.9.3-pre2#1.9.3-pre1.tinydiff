@@ -8,28 +8,28 @@ c	net/minecraft/class_1144
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_1297
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_5647	method_5647	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)V	method_5647		method_5647
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_5647	writeNbt	
+		p	1		nbt	
+	m	(Lnet/minecraft/class_2487;)V	method_5647		writeNbt
+		p	1			nbt
 c	net/minecraft/class_1418
 	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75	method_75	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_75		method_75
 		p	1			p_1
 c	net/minecraft/class_18
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75	method_75	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_75	writeNbt	
+		p	1		nbt	
 	m	(Lnet/minecraft/class_2487;)V	method_75		method_75
 		p	1			p_1
 c	net/minecraft/class_1917
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8272	method_8272	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8272	writeNbt	
+		p	1		nbt	
 	m	(Lnet/minecraft/class_2487;)V	method_8272		method_8272
 		p	1			p_1
 c	net/minecraft/class_1918
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8297	method_8297	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_8297	writeNbt	
+		p	1		nbt	
 	m	(Lnet/minecraft/class_2487;)V	method_8297		method_8297
 		p	1			p_1
 c	net/minecraft/class_2190
@@ -658,16 +658,17 @@ c	net/minecraft/class_2580
 	m	(Lnet/minecraft/class_2487;)V	method_11007		method_11007
 		p	1			p_1
 c	net/minecraft/class_2586
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_11007	method_11007	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_10999	method_10999	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_11007	writeNbt	
+		p	1		nbt	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_10999	writeIdentifyingData	
+		p	1		nbt	
 	m	()Lnet/minecraft/class_2622;	method_0_1107	method_0_1107	
 	m	()Lnet/minecraft/class_2487;	method_0_10165	method_0_10165	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005	method_11005	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005	createFromTag	
 		p	0		p_0	
-	m	(Lnet/minecraft/class_2487;)V	method_11007		method_11007
-		p	1			p_1
+	m	(Lnet/minecraft/class_2487;)V	method_11007		writeNbt
+		c		Writes data to {@code nbt}. Subclasses should override this if they\nstore a persistent data.\n\n<p>NBT is a storage format; therefore, a data from NBT is loaded to a\nblock entity instance's fields, which are used for other operations instead\nof the NBT. The data is written back to NBT when saving the block entity.\n\n@see #readNbt
+		p	1			nbt
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005		method_11005
 		p	0			p_0
 		p	1			p_1
@@ -813,11 +814,11 @@ c	net/minecraft/class_2671
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2672
-	f	Ljava/util/List;	field_12238	field_12238	
+	f	Ljava/util/List;	field_12238	blockEntities	
 	m	(Lnet/minecraft/class_2818;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Ljava/util/List;	method_11525	method_11525	
+	m	()Ljava/util/List;	method_11525	getBlockEntityTagList	
 	m	(Lnet/minecraft/class_2540;Lnet/minecraft/class_2818;ZI)I	method_11529	method_11529	
 		p	1		p_1	
 		p	2		p_2	
@@ -978,7 +979,7 @@ c	net/minecraft/class_310$18	18
 		p	1		p_1	
 	m	()Ljava/lang/String;	method_0_2320	method_0_2320	
 	m	()Ljava/lang/Object;	call	call	
-c	net/minecraft/class_3136	net/minecraft/class_3136	
+c	net/minecraft/class_3136	net/minecraft/server/command/StopSoundCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_0_5966	method_0_5966	
 	m	()I	method_0_5757	method_0_5757	
@@ -1005,8 +1006,8 @@ c	net/minecraft/class_3218
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_3499
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_15175	method_15175	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_15175	writeNbt	
+		p	1		nbt	
 	m	(Lnet/minecraft/class_2487;)V	method_15175		method_15175
 		p	1			p_1
 c	net/minecraft/class_412

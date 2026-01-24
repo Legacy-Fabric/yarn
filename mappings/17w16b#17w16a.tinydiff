@@ -1,6 +1,6 @@
 tiny	2	0
 c	net/minecraft/class_1153
-	f	I	field_5635	field_5635	
+	f	I	field_5635	punches	
 c	net/minecraft/class_1661
 	m	(Lnet/minecraft/class_1799;)I	method_0_11589		method_0_11589
 		p	1			p_1
@@ -8,12 +8,12 @@ c	net/minecraft/class_1661
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_174
-	f	Lnet/minecraft/class_2069;	field_1185	field_1185	
+	f	Lnet/minecraft/class_2069;	field_1185	ITEM_DURABILITY_CHANGED	
 c	net/minecraft/class_1799
-	m	(ILjava/util/Random;Lnet/minecraft/class_3222;)Z	method_7970	method_7970	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(ILjava/util/Random;Lnet/minecraft/class_3222;)Z	method_7970	damage	
+		p	1		amount	
+		p	2		random	
+		p	3		player	
 	m	(ILjava/util/Random;)Z	method_7970		method_7970
 		p	1			p_1
 		p	2			p_2
@@ -25,9 +25,9 @@ c	net/minecraft/class_1860
 c	net/minecraft/class_1869
 	m	(Lcom/google/gson/JsonElement;)[Lnet/minecraft/class_1799;	method_0_11683	method_0_11683	
 		p	0		p_0	
-c	net/minecraft/class_2069	net/minecraft/class_2069	
-	f	Lnet/minecraft/class_2960;	field_9633	field_9633	
-	f	Ljava/util/Map;	field_9634	field_9634	
+c	net/minecraft/class_2069	net/minecraft/advancement/criterion/ItemDurabilityChangedCriterion	
+	f	Lnet/minecraft/class_2960;	field_9633	ID	
+	f	Ljava/util/Map;	field_9634	handlers	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2960;	method_794	method_794	
 	m	(Lnet/minecraft/class_2985;Lnet/minecraft/class_179$class_180;)V	method_792	method_792	
@@ -41,35 +41,35 @@ c	net/minecraft/class_2069	net/minecraft/class_2069
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_2069$class_2071;	method_8962	method_8962	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;I)V	method_8960	method_8960	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_3222;Lnet/minecraft/class_1799;I)V	method_8960	trigger	
+		p	1		player	
+		p	2		stack	
+		p	3		durability	
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/class_184;	method_795	method_795	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lnet/minecraft/class_2960;	method_8961	method_8961	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_2069$class_2070	class_2070	
-	f	Lnet/minecraft/class_2985;	field_9636	field_9636	
-	f	Ljava/util/Set;	field_9635	field_9635	
+c	net/minecraft/class_2069$class_2070	Handler	
+	f	Lnet/minecraft/class_2985;	field_9636	manager	
+	f	Ljava/util/Set;	field_9635	conditions	
 	m	(Lnet/minecraft/class_2985;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Z	method_8964	method_8964	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8963	method_8963	
+	m	()Z	method_8964	isEmpty	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8963	addCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_179$class_180;)V	method_8966	method_8966	
+	m	(Lnet/minecraft/class_179$class_180;)V	method_8966	removeCondition	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_1799;I)V	method_8965	method_8965	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/class_2069$class_2071	class_2071	
-	f	Lnet/minecraft/class_2073;	field_9637	field_9637	
+	m	(Lnet/minecraft/class_1799;I)V	method_8965	handle	
+		p	1		stack	
+		p	2		durability	
+c	net/minecraft/class_2069$class_2071	Conditions	
+	f	Lnet/minecraft/class_2073;	field_9637	item	
 	f	Lnet/minecraft/class_2096;	field_9638	field_9638	
 	f	Lnet/minecraft/class_2096;	field_9639	field_9639	
-	m	(Lnet/minecraft/class_1799;I)Z	method_8968	method_8968	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1799;I)Z	method_8968	matches	
+		p	1		stack	
+		p	2		durability	
 	m	(Lnet/minecraft/class_2073;Lnet/minecraft/class_2096;Lnet/minecraft/class_2096;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -101,7 +101,7 @@ c	net/minecraft/class_2423
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_2593
-	m	()Z	method_11045	method_11045	
+	m	()Z	method_11045	updateConditionMet	
 	m	(Z)V	method_11045		method_11045
 		p	1			p_1
 c	net/minecraft/class_508
@@ -118,8 +118,8 @@ c	net/minecraft/class_508$1	1
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_515
-	m	(Ljava/util/List;)V	method_2646	method_2646	
-		p	1		p_1	
+	m	(Ljava/util/List;)V	method_2646	onRecipesDisplayed	
+		p	1		recipes	
 	m	(Lnet/minecraft/class_2960;)V	method_2646		method_2646
 		p	1			p_1
 c	net/minecraft/class_516

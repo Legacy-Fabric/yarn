@@ -3,7 +3,7 @@ c	net/minecraft/class_1132
 	m	(Lnet/minecraft/class_1132;)Lnet/minecraft/class_310;	method_0_10837	method_0_10837	
 		p	0		p_0	
 c	net/minecraft/class_1282
-	f	Lnet/minecraft/class_1282;	field_5844	field_5844	
+	f	Lnet/minecraft/class_1282;	field_5844	CRAMMING	
 c	net/minecraft/class_1411
 	m	(IZDDDDDD[I)V	method_8568	method_8568	
 		p	1		p_1	
@@ -39,12 +39,12 @@ c	net/minecraft/class_1411
 c	net/minecraft/class_1510
 	m	()Lnet/minecraft/class_2960;	method_5991	method_5991	
 c	net/minecraft/class_1536
-	f	I	field_7166	field_7166	
-	f	I	field_7173	field_7173	
-	f	I	field_7174	field_7174	
-	f	I	field_7172	field_7172	
-	f	F	field_7169	field_7169	
-	f	Lnet/minecraft/class_1536$class_1537;	field_7175	field_7175	
+	f	I	field_7166	selfHitTimer	
+	f	I	field_7173	hookCountdown	
+	f	I	field_7174	waitCountdown	
+	f	I	field_7172	fishTravelCountdown	
+	f	F	field_7169	fishAngle	
+	f	Lnet/minecraft/class_1536$class_1537;	field_7175	state	
 	f	Lnet/minecraft/class_1657;	field_0_12038	field_0_12038	
 	f	Lnet/minecraft/class_1657;	field_0_8080		field_0_8080
 	f	I	field_0_8073		field_0_8073
@@ -63,13 +63,13 @@ c	net/minecraft/class_1536
 	f	D	field_0_8068		field_0_8068
 	f	D	field_0_8069		field_0_8069
 	m	()V	method_6953	method_6953	
-	m	()V	method_6952	method_6952	
-	m	()V	method_6958	method_6958	
-	m	()V	method_6951	method_6951	
-	m	(Lnet/minecraft/class_2338;)V	method_6949	method_6949	
-		p	1		p_1	
+	m	()V	method_6952	smoothenMovement	
+	m	()V	method_6958	checkForCollision	
+	m	()V	method_6951	updateHookedEntityId	
+	m	(Lnet/minecraft/class_2338;)V	method_6949	tickFishingLogic	
+		p	1		pos	
 	m	()Z	method_5658	method_5658	
-	m	()Lnet/minecraft/class_1657;	method_6947	method_6947	
+	m	()Lnet/minecraft/class_1657;	method_6947	getPlayerOwner	
 	m	(Lnet/minecraft/class_1937;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_1937;DDDLnet/minecraft/class_1657;)V	<init>		<init>
@@ -88,7 +88,7 @@ c	net/minecraft/class_1536
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
-c	net/minecraft/class_1536$class_1537	class_1537	
+c	net/minecraft/class_1536$class_1537	State	
 	f	Lnet/minecraft/class_1536$class_1537;	field_7180	field_7180	
 	f	Lnet/minecraft/class_1536$class_1537;	field_7178	field_7178	
 	f	Lnet/minecraft/class_1536$class_1537;	field_7179	field_7179	
@@ -107,9 +107,9 @@ c	net/minecraft/class_1634
 		p	3		p_3	
 		p	5		p_5	
 c	net/minecraft/class_1669
-	f	Ljava/util/UUID;	field_7606	field_7606	
-	m	(Lnet/minecraft/class_1309;)V	method_7473	method_7473	
-		p	1		p_1	
+	f	Ljava/util/UUID;	field_7606	ownerUuid	
+	m	(Lnet/minecraft/class_1309;)V	method_7473	setOwner	
+		p	1		owner	
 	m	()Lnet/minecraft/class_1309;	method_7470	method_7470	
 c	net/minecraft/class_1690
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_0_105;Lnet/minecraft/class_2338;)F	method_0_10089		method_0_10089
@@ -215,14 +215,14 @@ c	net/minecraft/class_3471$class_3472
 	m	(Ljava/util/Random;)Ljava/lang/String;	method_15036	method_15036	
 		p	1		p_1	
 c	net/minecraft/class_3471$class_3473
-	m	(Ljava/util/Random;)Ljava/lang/String;	method_15036	method_15036	
-		p	1		p_1	
+	m	(Ljava/util/Random;)Ljava/lang/String;	method_15036	getBigSecretRoom	
+		p	1		random	
 c	net/minecraft/class_3471$class_3475
-	m	(Ljava/util/List;Lnet/minecraft/class_2338;Lnet/minecraft/class_2470;Lnet/minecraft/class_3471$class_3473;)V	method_15053	method_15053	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Ljava/util/List;Lnet/minecraft/class_2338;Lnet/minecraft/class_2470;Lnet/minecraft/class_3471$class_3473;)V	method_15053	addBigSecretRoom	
+		p	1		pieces	
+		p	2		pos	
+		p	3		rotation	
+		p	4		pool	
 c	net/minecraft/class_3471$class_3477
 	m	(Ljava/util/Random;)Ljava/lang/String;	method_15036	method_15036	
 		p	1		p_1	
@@ -284,9 +284,9 @@ c	net/minecraft/class_761
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-	m	(IZDDDDDD[I)Lnet/minecraft/class_703;	method_3288		method_3288
+	m	(IZDDDDDD[I)Lnet/minecraft/class_703;	method_3288		spawnParticle
 		p	1			p_1
-		p	2			p_2
+		p	2			alwaysSpawn
 		p	3			p_3
 		p	5			p_5
 		p	7			p_7

@@ -4,23 +4,23 @@ c	net/minecraft/class_1064
 c	net/minecraft/class_1067
 	m	()Ljava/io/File;	method_0_9795	method_0_9795	
 c	net/minecraft/class_1140
-	f	Ljava/util/List;	field_5558	field_5558	
-	m	(Lnet/minecraft/class_1145;)V	method_4855	method_4855	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1145;)V	method_4847	method_4847	
-		p	1		p_1	
+	f	Ljava/util/List;	field_5558	listeners	
+	m	(Lnet/minecraft/class_1145;)V	method_4855	registerListener	
+		p	1		listener	
+	m	(Lnet/minecraft/class_1145;)V	method_4847	unregisterListener	
+		p	1		listener	
 c	net/minecraft/class_1144
-	m	(Lnet/minecraft/class_1145;)V	method_4878	method_4878	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1145;)V	method_4866	method_4866	
-		p	1		p_1	
-c	net/minecraft/class_1145	net/minecraft/class_1145	
-	m	(Lnet/minecraft/class_1113;Lnet/minecraft/class_1146;)V	method_4884	method_4884	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1145;)V	method_4878	registerListener	
+		p	1		listener	
+	m	(Lnet/minecraft/class_1145;)V	method_4866	unregisterListener	
+		p	1		listener	
+c	net/minecraft/class_1145	net/minecraft/client/sound/SoundInstanceListener	
+	m	(Lnet/minecraft/class_1113;Lnet/minecraft/class_1146;)V	method_4884	onSoundPlayed	
+		p	1		sound	
+		p	2		soundSet	
 c	net/minecraft/class_1146
-	f	Lnet/minecraft/class_2561;	field_5599	field_5599	
-	m	()Lnet/minecraft/class_2561;	method_4886	method_4886	
+	f	Lnet/minecraft/class_2561;	field_5599	subtitle	
+	m	()Lnet/minecraft/class_2561;	method_4886	getSubtitle	
 	m	(Lnet/minecraft/class_2960;DDLnet/minecraft/class_3419;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -34,17 +34,17 @@ c	net/minecraft/class_1146
 		p	6			p_6
 c	net/minecraft/class_1959
 	m	()Z	method_0_9783	method_0_9783	
-c	net/minecraft/class_199	net/minecraft/class_199	
-	f	Ljava/util/Map;	field_1279	field_1279	
-	f	Lnet/minecraft/class_47$class_50;	field_1278	field_1278	
+c	net/minecraft/class_199	net/minecraft/loot/condition/EntityScoresLootCondition	
+	f	Ljava/util/Map;	field_1279	scores	
+	f	Lnet/minecraft/class_47$class_50;	field_1278	target	
 	m	(Ljava/util/Map;Lnet/minecraft/class_47$class_50;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_269;Ljava/lang/String;Lnet/minecraft/class_61;)Z	method_865	method_865	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_1297;Lnet/minecraft/class_269;Ljava/lang/String;Lnet/minecraft/class_61;)Z	method_865	entityScoreIsInRange	
+		p	1		entity	
+		p	2		scoreboard	
+		p	3		objective	
+		p	4		scoreRange	
 	m	(Lnet/minecraft/class_199;)Ljava/util/Map;	method_866	method_866	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_199;)Lnet/minecraft/class_47$class_50;	method_863	method_863	
@@ -52,7 +52,7 @@ c	net/minecraft/class_199	net/minecraft/class_199
 	m	(Ljava/util/Random;Lnet/minecraft/class_47;)Z	method_0_9713	method_0_9713	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_199$class_200	class_200	
+c	net/minecraft/class_199$class_200	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_199;Lcom/google/gson/JsonSerializationContext;)V	method_868	method_868	
 		p	1		p_1	
@@ -80,7 +80,7 @@ c	net/minecraft/class_2404
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_287
-	f	Lorg/apache/logging/log4j/Logger;	field_1557	field_1557	
+	f	Lorg/apache/logging/log4j/Logger;	field_1557	LOGGER	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2966
 c	net/minecraft/class_2966$10
@@ -187,18 +187,18 @@ c	net/minecraft/class_2966$19		19
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_315
-	f	Z	field_1818	field_1818	
+	f	Z	field_1818	showSubtitles	
 c	net/minecraft/class_315$class_316
 	f	Lnet/minecraft/class_315$class_316;	field_1951	field_1951	
 c	net/minecraft/class_3262
 	f	Lnet/minecraft/class_2960;	field_0_10573		field_0_10573
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_329
-	f	Lnet/minecraft/class_359;	field_2027	field_2027	
-c	net/minecraft/class_359	net/minecraft/class_359	
-	f	Lnet/minecraft/class_310;	field_2182	field_2182	
-	f	Ljava/util/List;	field_2183	field_2183	
-	f	Z	field_2184	field_2184	
+	f	Lnet/minecraft/class_359;	field_2027	subtitlesHud	
+c	net/minecraft/class_359	net/minecraft/client/gui/hud/SubtitlesHud	
+	f	Lnet/minecraft/class_310;	field_2182	client	
+	f	Ljava/util/List;	field_2183	entries	
+	f	Z	field_2184	enabled	
 	m	(Lnet/minecraft/class_310;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1113;Lnet/minecraft/class_1146;)V	method_4884	method_4884	
@@ -206,27 +206,27 @@ c	net/minecraft/class_359	net/minecraft/class_359
 		p	2		p_2	
 	m	(Lnet/minecraft/class_0_686;)V	method_1957	method_1957	
 		p	1		p_1	
-c	net/minecraft/class_359$class_360	class_360	
-	f	Ljava/lang/String;	field_2188	field_2188	
-	f	J	field_2185	field_2185	
-	f	Lnet/minecraft/class_243;	field_2186	field_2186	
+c	net/minecraft/class_359$class_360	SubtitleEntry	
+	f	Ljava/lang/String;	field_2188	text	
+	f	J	field_2185	time	
+	f	Lnet/minecraft/class_243;	field_2186	pos	
 	f	Lnet/minecraft/class_359;	field_2187	field_2187	
 	f	Lnet/minecraft/class_1146;	field_0_10972	field_0_10972	
-	m	()Ljava/lang/String;	method_1960	method_1960	
-	m	()J	method_1961	method_1961	
-	m	()Lnet/minecraft/class_243;	method_1959	method_1959	
-	m	(Lnet/minecraft/class_243;)V	method_1958	method_1958	
-		p	1		p_1	
+	m	()Ljava/lang/String;	method_1960	getText	
+	m	()J	method_1961	getTime	
+	m	()Lnet/minecraft/class_243;	method_1959	getPosition	
+	m	(Lnet/minecraft/class_243;)V	method_1958	reset	
+		p	1		pos	
 	m	(Lnet/minecraft/class_359;Ljava/lang/String;Lnet/minecraft/class_1146;Lnet/minecraft/class_243;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_61
-	m	(I)Z	method_376	method_376	
-		p	1		p_1	
+	m	(I)Z	method_376	contains	
+		p	1		value	
 c	net/minecraft/class_775
-	f	Lnet/minecraft/class_1058;	field_4164	field_4164	
+	f	Lnet/minecraft/class_1058;	field_4164	waterOverlaySprite	
 c	net/minecraft/class_0_1309
 	f	Ljava/lang/String;	field_0_10977	field_0_10977	
 	m	()Ljava/lang/String;	method_0_9797	method_0_9797	

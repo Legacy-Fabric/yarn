@@ -9,10 +9,10 @@ c	net/minecraft/class_1366
 	f	Lnet/minecraft/class_1937;	field_0_7662		field_0_7662
 c	net/minecraft/class_1472
 	m	(Ljava/util/EnumMap;)V	method_6637	method_6637	
-		p	0		p_0	
+		p	0		map	
 	m	()Ljava/util/Map;	method_0_14528		method_0_14528
 c	net/minecraft/class_1481
-	f	Ljava/util/function/Predicate;	field_6921	field_6921	
+	f	Ljava/util/function/Predicate;	field_6921	BABY_TURTLE_ON_LAND_FILTER	
 	f	Lcom/google/common/base/Predicate;	field_6921		field_6921
 c	net/minecraft/class_1481$1
 	m	(Ljava/lang/Object;)Z	test	test	
@@ -49,7 +49,7 @@ c	net/minecraft/class_1900$class_1901
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_1936
-	m	()Lnet/minecraft/server/MinecraftServer;	method_8503		method_8503
+	m	()Lnet/minecraft/server/MinecraftServer;	method_8503		getServer
 c	net/minecraft/class_1967
 c	net/minecraft/class_1967$class_1968
 	f	I	field_0_447		field_0_447
@@ -66,8 +66,8 @@ c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_0_16240	field_0_16240	
 	f	Lnet/minecraft/class_2258;	field_0_16240		field_0_16240
 c	net/minecraft/class_2248
-	m	(Lnet/minecraft/class_3494;)Z	method_9525	method_9525	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3494;)Z	method_9525	isIn	
+		p	1		tag	
 	m	(Ljava/util/EnumMap;)V	method_0_15754	method_0_15754	
 		p	0		p_0	
 	m	()Ljava/util/Map;	method_0_14342		method_0_14342
@@ -103,9 +103,9 @@ c	net/minecraft/class_2325
 c	net/minecraft/class_2344
 	f	Lnet/minecraft/class_238;	field_0_13251		field_0_13251
 c	net/minecraft/class_2387
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_10277	method_10277	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_10277	removeRecord	
+		p	1		world	
+		p	2		pos	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_0_378;)V	method_10277		method_10277
 		p	1			p_1
 		p	2			p_2
@@ -114,19 +114,19 @@ c	net/minecraft/class_2393
 	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_0_378;	method_9605	method_9605	
 		p	1		p_1	
 c	net/minecraft/class_2426
-	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)V	method_10366	method_10366	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)V	method_10366	scheduleTick	
+		p	1		world	
+		p	2		pos	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;)V	method_10366		method_10366
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2429
 	m	(Ljava/util/EnumMap;)V	method_10369	method_10369	
-		p	0		p_0	
+		p	0		directions	
 	m	()Ljava/util/EnumMap;	method_0_14346		method_0_14346
 c	net/minecraft/class_2471
-	f	Lorg/apache/logging/log4j/Logger;	field_11469	field_11469	
+	f	Lorg/apache/logging/log4j/Logger;	field_11469	LOG	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2492
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_0_15708		method_0_15708
@@ -142,7 +142,7 @@ c	net/minecraft/class_2573
 	m	(Lnet/minecraft/class_1937;)V	method_0_10448		method_0_10448
 		p	1			p_1
 c	net/minecraft/class_2586
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005	method_11005	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005	createFromTag	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2586;	method_11005		method_11005
 		p	0			p_0
@@ -199,7 +199,7 @@ c	net/minecraft/class_3096
 c	net/minecraft/class_310
 	f	Lcom/mojang/authlib/properties/PropertyMap;	field_0_2523		field_0_2523
 	f	J	field_0_2518		field_0_2518
-	m	()V	method_1492	method_1492	
+	m	()V	method_1492	drawProfilerResults	
 	m	(J)V	method_1492		method_1492
 		p	1			p_1
 c	net/minecraft/class_314
@@ -216,8 +216,8 @@ c	net/minecraft/class_3233
 c	net/minecraft/class_3304
 	f	Lcom/google/common/base/Joiner;	field_0_5252		field_0_5252
 c	net/minecraft/class_3439
-	m	(Lnet/minecraft/class_1729;)Z	method_14880	method_14880	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1729;)Z	method_14880	isFilteringCraftable	
+		p	1		handler	
 c	net/minecraft/class_3481
 	f	Lnet/minecraft/class_3494;	field_15466	field_15466	
 	f	Lnet/minecraft/class_3494;	field_15463	field_15463	
@@ -237,7 +237,7 @@ c	net/minecraft/class_3521
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	field_0_7085		field_0_7085
 c	net/minecraft/class_3532
 	m	([F)V	method_15376	method_15376	
-		p	0		p_0	
+		p	0		sineTable	
 	m	()[F	method_0_14476		method_0_14476
 c	net/minecraft/class_3535
 	f	Lnet/minecraft/class_0_378;	field_0_15806		field_0_15806
@@ -251,13 +251,13 @@ c	net/minecraft/class_3541
 c	net/minecraft/class_507
 	m	()Z	method_0_15435		method_0_15435
 c	net/minecraft/class_513
-	m	()Lnet/minecraft/class_310;	method_2637	method_2637	
-	m	()Lnet/minecraft/class_3439;	method_2633	method_2633	
+	m	()Lnet/minecraft/class_310;	method_2637	getClient	
+	m	()Lnet/minecraft/class_3439;	method_2633	getRecipeBook	
 c	net/minecraft/class_514
-	f	Lnet/minecraft/class_1729;	field_3137	field_3137	
-	m	(Lnet/minecraft/class_516;Lnet/minecraft/class_513;)V	method_2640	method_2640	
-		p	1		p_1	
-		p	2		p_2	
+	f	Lnet/minecraft/class_1729;	field_3137	craftingScreenHandler	
+	m	(Lnet/minecraft/class_516;Lnet/minecraft/class_513;)V	method_2640	showResultCollection	
+		p	1		resultCollection	
+		p	2		results	
 	m	(Lnet/minecraft/class_516;Lnet/minecraft/class_513;Lnet/minecraft/class_3439;)V	method_2640		method_2640
 		p	1			p_1
 		p	2			p_2
@@ -270,10 +270,10 @@ c	net/minecraft/class_634
 	f	I	field_0_3952		field_0_3952
 	f	Z	field_0_3961		field_0_3961
 c	net/minecraft/class_636
-	m	(ILnet/minecraft/class_1860;Z)V	method_2912	method_2912	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(ILnet/minecraft/class_1860;Z)V	method_2912	clickRecipe	
+		p	1		syncId	
+		p	2		recipe	
+		p	3		craftAll	
 	m	(ILnet/minecraft/class_1860;ZLnet/minecraft/class_1657;)V	method_2912		method_2912
 		p	1			p_1
 		p	2			p_2

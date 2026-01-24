@@ -2,12 +2,14 @@ tiny	2	0
 c	net/minecraft/class_1132
 	m	()V	method_0_6491	method_0_6491	
 c	net/minecraft/class_1297
-	m	()D	method_5824	method_5824	
-	m	(D)V	method_5840	method_5840	
-		p	0		p_0	
+	m	()D	method_5824	getRenderDistanceMultiplier	
+		c	{@return the entity render distance multiplier}\n\n<p>This is only usable on the client.	
+	m	(D)V	method_5840	setRenderDistanceMultiplier	
+		c	Sets the render distance multiplier.\n\n<p>This is only used on the client.	
+		p	0		value	
 c	net/minecraft/class_1405
-	f	Lnet/minecraft/class_1309;	field_6664	field_6664	
-	f	I	field_6657	field_6657	
+	f	Lnet/minecraft/class_1309;	field_6664	target	
+	f	I	field_6657	maxTimeWithoutVisibility	
 c	net/minecraft/class_1642
 	m	()I	method_0_9293	method_0_9293	
 	m	(I)V	method_0_7894	method_0_7894	
@@ -19,25 +21,25 @@ c	net/minecraft/class_1665
 	m	(D)Z	method_5640	method_5640	
 		p	1		p_1	
 c	net/minecraft/class_2288
-	f	Lnet/minecraft/class_2746;	field_10793	field_10793	
+	f	Lnet/minecraft/class_2746;	field_10793	CONDITIONAL	
 c	net/minecraft/class_2540
 	m	([I)V	method_0_9253		method_0_9253
 		p	1			p_1
 	m	()[I	method_0_9255		method_0_9255
 c	net/minecraft/class_2593
-	f	Z	field_11918	field_11918	
-	m	(Z)V	method_11041	method_11041	
-		p	1		p_1	
-	m	()Z	method_11036	method_11036	
-	m	()Z	method_11046	method_11046	
+	f	Z	field_11918	auto	
+	m	(Z)V	method_11041	setAuto	
+		p	1		auto	
+	m	()Z	method_11036	needsUpdatePacket	
+	m	()Z	method_11046	isConditionalCommandBlock	
 c	net/minecraft/class_2602
-	m	(Lnet/minecraft/class_2666;)V	method_11107	method_11107	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2666;)V	method_11107	onUnloadChunk	
+		p	1		packet	
 	m	(Lnet/minecraft/class_0_1499;)V	method_0_5268		method_0_5268
 		p	1			p_1
-c	net/minecraft/class_2666	net/minecraft/class_2666	
-	f	I	field_12195	field_12195	
-	f	I	field_12194	field_12194	
+c	net/minecraft/class_2666	net/minecraft/network/packet/s2c/play/UnloadChunkS2CPacket	
+	f	I	field_12195	x	
+	f	I	field_12194	z	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_2540;)V	method_11053	method_11053	
 		p	1		p_1	
@@ -45,8 +47,8 @@ c	net/minecraft/class_2666	net/minecraft/class_2666
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2602;)V	method_11486	method_11486	
 		p	1		p_1	
-	m	()I	method_11487	method_11487	
-	m	()I	method_11485	method_11485	
+	m	()I	method_11487	getX	
+	m	()I	method_11485	getZ	
 	m	(Lnet/minecraft/class_2547;)V	method_11054	method_11054	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2818;)V	<init>	<init>	
@@ -57,7 +59,7 @@ c	net/minecraft/class_2672
 		p	1		p_1	
 c	net/minecraft/class_2814
 	f	Lnet/minecraft/class_2814$class_0_2249;	field_12824	field_12824	
-	f	Lnet/minecraft/class_3513;	field_12824		field_12824
+	f	Lnet/minecraft/class_3513;	field_12824		map
 c	net/minecraft/class_2814$class_0_2249	class_0_2249	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_0_378;I)V	method_0_9276	method_0_9276	
@@ -68,9 +70,9 @@ c	net/minecraft/class_2814$class_0_2249	class_0_2249
 	m	(I)Lnet/minecraft/class_0_378;	method_0_9274	method_0_9274	
 		p	1		p_1	
 c	net/minecraft/class_2877
-	f	[Ljava/lang/String;	field_13100	field_13100	
+	f	[Ljava/lang/String;	field_13100	text	
 	f	[Lnet/minecraft/class_2561;	field_13100		field_13100
-	m	()[Ljava/lang/String;	method_12508	method_12508	
+	m	()[Ljava/lang/String;	method_12508	getText	
 	m	()[Lnet/minecraft/class_2561;	method_12508		method_12508
 c	net/minecraft/class_2943
 	f	I	field_0_9928	field_0_9928	
@@ -80,36 +82,36 @@ c	net/minecraft/class_3222
 c	net/minecraft/class_3231
 	m	()Lnet/minecraft/class_1297;	method_14305	method_14305	
 c	net/minecraft/class_3513
-	f	Ljava/lang/Object;	field_15650	field_15650	
-	f	[Ljava/lang/Object;	field_15651	field_15651	
-	f	[I	field_15646	field_15646	
-	f	[Ljava/lang/Object;	field_15647	field_15647	
-	f	I	field_15649	field_15649	
-	f	I	field_15648	field_15648	
+	f	Ljava/lang/Object;	field_15650	EMPTY	
+	f	[Ljava/lang/Object;	field_15651	values	
+	f	[I	field_15646	ids	
+	f	[Ljava/lang/Object;	field_15647	idToValues	
+	f	I	field_15649	nextId	
+	f	I	field_15648	size	
 	f	Ljava/util/IdentityHashMap;	field_0_5823		field_0_5823
 	f	Ljava/util/List;	field_0_5824		field_0_5824
-	m	(I)I	method_15222	method_15222	
-		p	1		p_1	
-	m	(I)V	method_15224	method_15224	
-		p	1		p_1	
-	m	(Ljava/lang/Object;)I	method_15228	method_15228	
-		p	1		p_1	
-	m	(Ljava/lang/Object;I)I	method_15232	method_15232	
-		p	1		p_1	
-		p	2		p_2	
-	m	(I)I	method_15223	method_15223	
-		p	1		p_1	
+	m	(I)I	method_15222	getIdFromIndex	
+		p	1		index	
+	m	(I)V	method_15224	resize	
+		p	1		newSize	
+	m	(Ljava/lang/Object;)I	method_15228	getIdealIndex	
+		p	1		value	
+	m	(Ljava/lang/Object;I)I	method_15232	findIndex	
+		p	1		value	
+		p	2		id	
+	m	(I)I	method_15223	findFree	
+		p	1		size	
 	m	()V	<clinit>	<clinit>	
 	m	()V	<init>		<init>
 	m	()I	method_0_9136		method_0_9136
 c	net/minecraft/class_3532
-	m	(I)I	method_15354	method_15354	
-		p	0		p_0	
+	m	(I)I	method_15354	idealHash	
+		p	0		value	
 c	net/minecraft/class_477
 	f	Lnet/minecraft/class_339;	field_2866	field_2866	
-	f	Z	field_2867	field_2867	
-	m	()V	method_2457	method_2457	
-	m	()V	method_2454	method_2454	
+	f	Z	field_2867	autoActivate	
+	m	()V	method_2457	updateCommandBlock	
+	m	()V	method_2454	updateActivationMode	
 c	net/minecraft/class_634
 	m	(Lnet/minecraft/class_2666;)V	method_11107	method_11107	
 		p	1		p_1	

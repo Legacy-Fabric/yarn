@@ -325,13 +325,13 @@ c	net/minecraft/class_14
 	f	Z	field_0_2306		field_0_2306
 	f	Z	field_0_2307		field_0_2307
 	f	Z	field_0_2309		field_0_2309
-	m	(IIIIDLnet/minecraft/class_2350;)Lnet/minecraft/class_9;	method_62	method_62	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	7		p_7	
+	m	(IIIIDLnet/minecraft/class_2350;)Lnet/minecraft/class_9;	method_62	getPathNode	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		maxYStep	
+		p	5		height	
+		p	7		direction	
 	m	(Lnet/minecraft/class_0_105;III)Lnet/minecraft/class_7;	method_58	method_58	
 		p	1		p_1	
 		p	2		p_2	
@@ -376,8 +376,9 @@ c	net/minecraft/class_14
 	m	()Z	method_0_1880		method_0_1880
 	m	()Z	method_0_1883		method_0_1883
 c	net/minecraft/class_1408
-	f	F	field_6683	field_6683	
-	f	Lnet/minecraft/class_8;	field_6678	field_6678	
+	f	F	field_6683	nodeReachProximity	
+		c	If the Chebyshev distance from the entity to the next node is less than\nor equal to this value, the entity is considered "reached" the node.	
+	f	Lnet/minecraft/class_8;	field_6678	nodeMaker	
 	m	()Lnet/minecraft/class_8;	method_0_10006	method_0_10006	
 c	net/minecraft/class_1409
 	f	Lnet/minecraft/class_14;	field_0_7814		field_0_7814
@@ -430,36 +431,36 @@ c	net/minecraft/class_7
 	f	Lnet/minecraft/class_7;	field_23	field_23	
 	f	Lnet/minecraft/class_7;	field_8	field_8	
 c	net/minecraft/class_8
-	f	Z	field_29	field_29	
-	f	Z	field_27	field_27	
-	f	Z	field_25	field_25	
-	m	(Z)V	method_15	method_15	
-		p	1		p_1	
-	m	(Z)V	method_20	method_20	
-		p	1		p_1	
-	m	(Z)V	method_14	method_14	
-		p	1		p_1	
-	m	()Z	method_23	method_23	
-	m	()Z	method_22	method_22	
+	f	Z	field_29	canEnterOpenDoors	
+	f	Z	field_27	canOpenDoors	
+	f	Z	field_25	canSwim	
+	m	(Z)V	method_15	setCanEnterOpenDoors	
+		p	1		canEnterOpenDoors	
+	m	(Z)V	method_20	setCanOpenDoors	
+		p	1		canOpenDoors	
+	m	(Z)V	method_14	setCanSwim	
+		p	1		canSwim	
+	m	()Z	method_23	canEnterOpenDoors	
+	m	()Z	method_22	canSwim	
 	m	(Lnet/minecraft/class_0_105;III)Lnet/minecraft/class_7;	method_17	method_17	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_868
-	f	Ljava/util/Map;	field_4617	field_4617	
+	f	Ljava/util/Map;	field_4617	nodeSizes	
 	f	F	field_0_11228	field_0_11228	
-	m	(ILnet/minecraft/class_11;F)V	method_3869	method_3869	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(ILnet/minecraft/class_11;F)V	method_3869	addPath	
+		p	1		id	
+		p	2		path	
+		p	3		nodeSize	
 	m	()V	<clinit>	<clinit>	
 	m	(ILnet/minecraft/class_11;)V	method_3869		method_3869
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/server/MinecraftServer
-	m	(Lnet/minecraft/class_3218;)I	method_3829	method_3829	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3218;)I	method_3829	getSpawnRadius	
+		p	1		world	
 c	net/minecraft/class_0_2371
 	m	()Z	method_0_9954	method_0_9954	
 c	net/minecraft/class_0_819

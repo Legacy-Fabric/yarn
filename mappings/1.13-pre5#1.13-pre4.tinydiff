@@ -13,7 +13,7 @@ c	net/minecraft/class_1088
 		p	8		p_8	
 		p	9		p_9	
 	m	(Lnet/minecraft/class_3298;)Lcom/mojang/datafixers/util/Pair;	method_4737	method_4737	
-		p	1		p_1	
+		p	1		resource	
 	m	(Lcom/google/common/collect/ImmutableList;Lnet/minecraft/class_2689;Ljava/util/Map;Lnet/minecraft/class_1100;Lnet/minecraft/class_790;Lnet/minecraft/class_2960;Lnet/minecraft/class_0_3806;Ljava/lang/String;Lnet/minecraft/class_807;)V	method_4731		method_4731
 		p	1			p_1
 		p	2			p_2
@@ -56,12 +56,12 @@ c	net/minecraft/class_1166
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/TypeRewriteRule;	method_4978	method_4978	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/TypeRewriteRule;	method_4978	fixEntityTree	
+		p	1		inputSchema	
+		p	2		outputSchema	
+		p	3		inputEntityTreeType	
+		p	4		outputEntityTreeType	
+		p	5		inputEntityType	
 	m	(Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/DynamicOps;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_4977	method_4977	
 		p	0		p_0	
 		p	1		p_1	
@@ -120,12 +120,12 @@ c	net/minecraft/class_1166
 		p	4			p_4
 c	net/minecraft/class_1167
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Ljava/lang/Object;Lcom/mojang/datafixers/types/DynamicOps;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/Typed;	method_4983	method_4983	
+	m	(Ljava/lang/Object;Lcom/mojang/datafixers/types/DynamicOps;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/Typed;	method_4983	makeTyped	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Ljava/lang/String;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/util/Pair;	method_4982	method_4982	
-		p	1		p_1	
+	m	(Ljava/lang/String;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/util/Pair;	method_4982	transform	
+		p	1		choice	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;Lcom/mojang/datafixers/types/DynamicOps;Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_4984	method_4984	
 		p	1		p_1	
@@ -187,10 +187,10 @@ c	net/minecraft/class_1169
 		p	1			p_1
 	m	(Lnet/minecraft/class_0_3808;)Lnet/minecraft/class_0_3808;	method_5105		method_5105
 		p	1			p_1
-c	net/minecraft/class_1170	net/minecraft/class_1170	
-	f	Ljava/util/Map;	field_5671	field_5671	
-	f	Ljava/util/Map;	field_5672	field_5672	
-	f	Ljava/util/Map;	field_5673	field_5673	
+c	net/minecraft/class_1170	net/minecraft/datafixer/fix/EntityTheRenameningBlockFix	
+	f	Ljava/util/Map;	field_5671	ENTITIES	
+	f	Ljava/util/Map;	field_5672	BLOCKS	
+	f	Ljava/util/Map;	field_5673	ITEMS	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -220,8 +220,8 @@ c	net/minecraft/class_1172
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4988	method_4988	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4988	fixCollarColor	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4989	method_4989	
@@ -252,8 +252,8 @@ c	net/minecraft/class_1174
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4990	method_4990	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4990	fixZombieType	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
@@ -281,8 +281,8 @@ c	net/minecraft/class_1177
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4998	method_4998	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_4998	renameHeightmapTags	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_4999	method_4999	
 		p	1		p_1	
 		p	2		p_2	
@@ -303,8 +303,8 @@ c	net/minecraft/class_1178
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5001	method_5001	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5001	fixCustomName	
+		p	1		tag	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5002	method_5002	
 		p	1		p_1	
@@ -375,10 +375,10 @@ c	net/minecraft/class_1182
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/DataFix;	method_5019	method_5019	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/DataFix;	method_5019	create	
+		p	0		outputSchema	
+		p	1		name	
+		p	2		rename	
 	m	(Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_5021	method_5021	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/FunctionType;	method_5020	method_5020	
@@ -503,8 +503,8 @@ c	net/minecraft/class_1187
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5035	method_5035	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5035	fixEnchantments	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5040	method_5040	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5038	method_5038	
@@ -705,8 +705,8 @@ c	net/minecraft/class_1194
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5085	method_5085	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5085	fixBookPages	
+		p	1		tag	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5086	method_5086	
 		p	1		p_1	
@@ -733,8 +733,8 @@ c	net/minecraft/class_1195
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5090	method_5090	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5090	fixGeneratorOptions	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5092	method_5092	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5093	method_5093	
@@ -749,19 +749,19 @@ c	net/minecraft/class_1195
 		p	1			p_1
 	m	(Lnet/minecraft/class_0_3808;)Lnet/minecraft/class_0_3808;	method_5093		method_5093
 		p	1			p_1
-c	net/minecraft/class_1196	net/minecraft/class_1196	
-	f	Ljava/util/Map;	field_5702	field_5702	
+c	net/minecraft/class_1196	net/minecraft/datafixer/fix/LevelDataGeneratorOptionsFix	
+	f	Ljava/util/Map;	field_5702	NUMERICAL_IDS_TO_BIOME_IDS	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Ljava/lang/String;Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_5100	method_5100	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/String;)Lcom/mojang/datafixers/util/Pair;	method_5099	method_5099	
-		p	0		p_0	
-	m	(Ljava/lang/String;)Ljava/util/List;	method_5103	method_5103	
-		p	0		p_0	
+	m	(Ljava/lang/String;Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_5100	fixGeneratorOptions	
+		p	0		generatorOptions	
+		p	1		ops	
+	m	(Ljava/lang/String;)Lcom/mojang/datafixers/util/Pair;	method_5099	parseFlatLayer	
+		p	0		layer	
+	m	(Ljava/lang/String;)Ljava/util/List;	method_5103	parseFlatLayers	
+		p	0		layers	
 	m	(Lcom/mojang/datafixers/types/DynamicOps;Ljava/util/Map$Entry;)Lcom/mojang/datafixers/util/Pair;	method_5095	method_5095	
 		p	0		p_0	
 		p	1		p_1	
@@ -776,10 +776,10 @@ c	net/minecraft/class_1196	net/minecraft/class_1196
 		p	1		p_1	
 	m	()Ljava/lang/IllegalStateException;	method_5097	method_5097	
 	m	(Ljava/util/HashMap;)V	method_5101	method_5101	
-		p	0		p_0	
+		p	0		map	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_1197
-	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_5704	field_5704	
+	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_5704	type	
 	f	Lnet/minecraft/class_0_3809$class_0_3811;	field_5704		field_5704
 	m	(Lcom/mojang/datafixers/schemas/Schema;ZLjava/lang/String;Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
@@ -788,8 +788,8 @@ c	net/minecraft/class_1197
 		p	4		p_4	
 		p	5		p_5	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	transform	
+		p	1		inputType	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5104	method_5104	
 		p	1		p_1	
 		p	2		p_2	
@@ -809,8 +809,8 @@ c	net/minecraft/class_1198
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5106	method_5106	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5106	fixSpawner	
+		p	1		tag	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5107	method_5107	
 		p	1		p_1	
@@ -829,7 +829,7 @@ c	net/minecraft/class_1198
 	m	(Lnet/minecraft/class_0_3954;)Lnet/minecraft/class_0_3954;	method_5108		method_5108
 		p	0			p_0
 c	net/minecraft/class_1201
-	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_5706	field_5706	
+	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_5706	NUMERICAL_KEY_IDS_TO_KEY_NAMES	
 	f	Lnet/minecraft/class_3525;	field_5706		field_5706
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
@@ -845,7 +845,7 @@ c	net/minecraft/class_1201
 	m	(Ljava/util/Map$Entry;)Lcom/mojang/datafixers/util/Pair;	method_5122	method_5122	
 		p	0		p_0	
 	m	(Lit/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap;)V	method_5118	method_5118	
-		p	0		p_0	
+		p	0		map	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -947,16 +947,16 @@ c	net/minecraft/class_1209
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5152	method_5152	
-		p	1		p_1	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5157	method_5157	
-		p	0		p_0	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5154	method_5154	
-		p	0		p_0	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5155	method_5155	
-		p	0		p_0	
-	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_5156	method_5156	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		tag	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5154	fixSmallPlotCropIds	
+		p	0		tag	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5155	fixLargePlotCropIds	
+		p	0		tag	
+	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_5156	fixCropId	
+		p	0		tag	
+		p	1		cropId	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_5153	method_5153	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
@@ -978,9 +978,9 @@ c	net/minecraft/class_1212
 	m	(Ljava/lang/String;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/util/Pair;	method_4982	method_4982	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Ljava/lang/String;Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/util/Pair;	method_5164	method_5164	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/util/Pair;	method_5164	transform	
+		p	1		choice	
+		p	2		tag	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1014,9 +1014,9 @@ c	net/minecraft/class_1214
 	m	(Lnet/minecraft/class_0_3954;Lnet/minecraft/class_0_3954;)Lnet/minecraft/class_0_3954;	method_5171		method_5171
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/class_1218	net/minecraft/class_1218	
-	f	Ljava/lang/String;	field_5742	field_5742	
-	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_5743	field_5743	
+c	net/minecraft/class_1218	net/minecraft/datafixer/fix/WriteAndReadFix	
+	f	Ljava/lang/String;	field_5742	name	
+	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_5743	type	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Lcom/mojang/datafixers/DSL$TypeReference;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1028,7 +1028,7 @@ c	net/minecraft/class_1219
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
-	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5187	method_5187	
+	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5187	fixPumpkinTrade	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_5190	method_5190	
@@ -1095,11 +1095,11 @@ c	net/minecraft/class_1220
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Ljava/lang/String;)Ljava/lang/String;	method_5193	method_5193	
-		p	0		p_0	
+	m	(Ljava/lang/String;)Ljava/lang/String;	method_5193	normalize	
+		p	0		id	
 	m	(Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;	getChoiceType	getChoiceType	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		choiceName	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1111,9 +1111,9 @@ c	net/minecraft/class_1221
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5194	method_5194	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1129,29 +1129,29 @@ c	net/minecraft/class_1222
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5196	method_5196	
-		p	0		p_0	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5195	method_5195	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5196	targetItems	
+		p	0		schema	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5195	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5201	method_5201	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5199	method_5199	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5197	method_5197	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5198	method_5198	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5200	method_5200	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1187,9 +1187,9 @@ c	net/minecraft/class_1223
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5202	method_5202	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1206,9 +1206,9 @@ c	net/minecraft/class_1224
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5203	method_5203	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5205	method_5205	
@@ -1231,11 +1231,11 @@ c	net/minecraft/class_1225
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	()Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5207	method_5207	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5206	method_5206	
 		p	0		p_0	
@@ -1253,7 +1253,7 @@ c	net/minecraft/class_1226
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1264,7 +1264,7 @@ c	net/minecraft/class_1227
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1275,9 +1275,9 @@ c	net/minecraft/class_1228
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5209	method_5209	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5210	method_5210	
@@ -1298,9 +1298,9 @@ c	net/minecraft/class_1229
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5211	method_5211	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1317,7 +1317,7 @@ c	net/minecraft/class_1230
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5212	method_5212	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1332,7 +1332,7 @@ c	net/minecraft/class_1231
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5221	method_5221	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5224	method_5224	
@@ -1357,7 +1357,7 @@ c	net/minecraft/class_1231
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5217	method_5217	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1393,10 +1393,10 @@ c	net/minecraft/class_1232
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5225	method_5225	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1410,7 +1410,7 @@ c	net/minecraft/class_1233
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1421,9 +1421,9 @@ c	net/minecraft/class_1234
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	()Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5226	method_5226	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
@@ -1438,9 +1438,9 @@ c	net/minecraft/class_1235
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5227	method_5227	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1457,9 +1457,9 @@ c	net/minecraft/class_1236
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/function/Supplier;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5229	method_5229	
 		p	0		p_0	
 		p	1		p_1	
@@ -1482,11 +1482,11 @@ c	net/minecraft/class_1237
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5230	method_5230	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5231	method_5231	
@@ -1506,22 +1506,22 @@ c	net/minecraft/class_1238
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5232	method_5232	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5232	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5273	method_5273	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		schema	
+		p	1		map	
+		p	2		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	()Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5251	method_5251	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5240	method_5240	
 		p	0		p_0	
@@ -1557,79 +1557,79 @@ c	net/minecraft/class_1238
 	m	()Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5268	method_5268	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5270	method_5270	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5250	method_5250	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5241	method_5241	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5271	method_5271	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5256	method_5256	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5244	method_5244	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5277	method_5277	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5262	method_5262	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5247	method_5247	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5279	method_5279	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5249	method_5249	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5263	method_5263	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5278	method_5278	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5245	method_5245	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5258	method_5258	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5272	method_5272	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5238	method_5238	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5252	method_5252	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5275	method_5275	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5233	method_5233	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5255	method_5255	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5264	method_5264	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5234	method_5234	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5246	method_5246	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5265	method_5265	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5267	method_5267	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5242	method_5242	
@@ -1767,7 +1767,7 @@ c	net/minecraft/class_1239
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1777,15 +1777,15 @@ c	net/minecraft/class_1240
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5280	method_5280	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5280	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5282	method_5282	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5281	method_5281	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1807,7 +1807,7 @@ c	net/minecraft/class_1241
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1818,28 +1818,28 @@ c	net/minecraft/class_1242
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/class_0_3705;)Ljava/util/Map;	method_0_17611		method_0_17611
 		p	1			p_1
-c	net/minecraft/class_1243	net/minecraft/class_1243	
+c	net/minecraft/class_1243	net/minecraft/datafixer/schema/Schema1510	
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 c	net/minecraft/class_1246
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5288	method_5288	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5288	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5289	method_5289	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1857,12 +1857,12 @@ c	net/minecraft/class_1247
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5290	method_5290	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5290	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5291	method_5291	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1880,12 +1880,12 @@ c	net/minecraft/class_1248
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5292	method_5292	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5292	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5293	method_5293	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1903,12 +1903,12 @@ c	net/minecraft/class_1249
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5294	method_5294	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5294	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5295	method_5295	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1928,32 +1928,32 @@ c	net/minecraft/class_1250
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5296	method_5296	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5296	targetItems	
+		p	0		schema	
+		p	1		map	
+		p	2		blockEntityId	
 	m	(Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;	getChoiceType	getChoiceType	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		choiceName	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5300	method_5300	
 		p	0		p_0	
 	m	(Ljava/util/Map;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5299	method_5299	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5298	method_5298	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5301	method_5301	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5302	method_5302	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5303	method_5303	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -1999,7 +1999,7 @@ c	net/minecraft/class_1251
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5304	method_5304	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5308	method_5308	
@@ -2029,12 +2029,12 @@ c	net/minecraft/class_1252
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5309	method_5309	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5309	targetItems	
+		p	0		schema	
+		p	1		map	
+		p	2		blockEntityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5310	method_5310	
 		p	0		p_0	
 	m	(ILnet/minecraft/class_0_3705;)V	<init>		<init>
@@ -2054,90 +2054,90 @@ c	net/minecraft/class_1253
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5311	method_5311	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5330	method_5330	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5311	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5330	targetInTile	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5319	method_5319	
 		p	0		p_0	
 	m	(Ljava/util/Map;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5315	method_5315	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5326	method_5326	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5332	method_5332	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5320	method_5320	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5327	method_5327	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5312	method_5312	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5322	method_5322	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5333	method_5333	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5316	method_5316	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5324	method_5324	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5337	method_5337	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5325	method_5325	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5318	method_5318	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5335	method_5335	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5323	method_5323	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5313	method_5313	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5328	method_5328	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5317	method_5317	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5334	method_5334	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5331	method_5331	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5314	method_5314	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5338	method_5338	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5321	method_5321	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5336	method_5336	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5329	method_5329	
@@ -2246,32 +2246,32 @@ c	net/minecraft/class_1254
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5353	method_5353	
-		p	0		p_0	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5339	method_5339	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5368	method_5368	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5377	method_5377	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5346	method_5346	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5353	targetEquipment	
+		p	0		schema	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5339	targetEquipment	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5368	targetInTile	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5377	targetDisplayTile	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_5346	targetItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/util/Map;)V	registerTypes	registerTypes	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		schema	
+		p	2		entityTypes	
+		p	3		blockEntityTypes	
 	m	(Lcom/mojang/datafixers/Dynamic;Ljava/util/Map;Ljava/lang/String;)Ljava/lang/Object;	method_5359	method_5359	
 		p	0		p_0	
 		p	1		p_1	
@@ -2307,56 +2307,56 @@ c	net/minecraft/class_1254
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5365	method_5365	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5372	method_5372	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5354	method_5354	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5366	method_5366	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5340	method_5340	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5356	method_5356	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5374	method_5374	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5350	method_5350	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5349	method_5349	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5343	method_5343	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5362	method_5362	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5381	method_5381	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5363	method_5363	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5351	method_5351	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5376	method_5376	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5358	method_5358	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5342	method_5342	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5367	method_5367	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5360	method_5360	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_5352	method_5352	
@@ -2495,7 +2495,7 @@ c	net/minecraft/class_1254$1
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1291
-	m	()Ljava/lang/String;	method_5559	method_5559	
+	m	()Ljava/lang/String;	method_5559	loadTranslationKey	
 	m	(ILjava/lang/String;Lnet/minecraft/class_1291;)V	method_0_18797	method_0_18797	
 		p	0		p_0	
 		p	1		p_1	
@@ -2504,12 +2504,12 @@ c	net/minecraft/class_1291
 		p	1			p_1
 c	net/minecraft/class_1297
 	f	Ljava/lang/String;	field_0_15188		field_0_15188
-	m	(Lnet/minecraft/class_3494;)Z	method_5692	method_5692	
-		p	1		p_1	
-	m	()Z	method_0_6892		method_0_6892
+	m	(Lnet/minecraft/class_3494;)Z	method_5692	updateMovementInFluid	
+		p	1		tag	
+	m	()Z	method_0_6892		checkWaterState
 	m	()Ljava/lang/String;	method_0_14750		method_0_14750
 c	net/minecraft/class_1299
-	f	Ljava/lang/String;	field_6106	field_6106	
+	f	Ljava/lang/String;	field_6106	translationKey	
 	f	Lcom/mojang/datafixers/types/Type;	field_6141	field_6141	
 	f	Lnet/minecraft/class_0_3735;	field_6141		field_6141
 	m	(Ljava/lang/Class;Ljava/util/function/Function;ZZLcom/mojang/datafixers/types/Type;)V	<init>	<init>	
@@ -2526,7 +2526,7 @@ c	net/minecraft/class_1299
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-	m	()Ljava/lang/String;	method_5882	method_5882	
+	m	()Ljava/lang/String;	method_5882	getTranslationKey	
 	m	(Ljava/lang/Class;Ljava/util/function/Function;ZZLnet/minecraft/class_0_3735;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -2537,7 +2537,7 @@ c	net/minecraft/class_1303
 	m	()V	method_5746	method_5746	
 	m	()Z	method_0_6892		method_0_6892
 c	net/minecraft/class_1322
-	f	Ljava/util/function/Supplier;	field_6326	field_6326	
+	f	Ljava/util/function/Supplier;	field_6326	nameGetter	
 	f	Ljava/lang/String;	field_6326		field_6326
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_6183	method_6183	
 		p	0		p_0	
@@ -2624,7 +2624,7 @@ c	net/minecraft/class_1802
 c	net/minecraft/class_1882
 	m	()Ljava/lang/String;	method_8184		method_8184
 c	net/minecraft/class_1887
-	m	()Ljava/lang/String;	method_8190	method_8190	
+	m	()Ljava/lang/String;	method_8190	getOrCreateTranslationKey	
 	m	(Ljava/lang/String;Lnet/minecraft/class_1887;)V	method_0_18805	method_0_18805	
 		p	0		p_0	
 		p	1		p_1	
@@ -2642,51 +2642,51 @@ c	net/minecraft/class_1937
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1959
-	m	()Lnet/minecraft/class_2561;	method_8693	method_8693	
-	m	()Ljava/lang/String;	method_8689	method_8689	
+	m	()Lnet/minecraft/class_2561;	method_8693	getName	
+	m	()Ljava/lang/String;	method_8689	getTranslationKey	
 	m	()Lnet/minecraft/class_2561;	method_8689		method_8689
 c	net/minecraft/class_2172
-	m	(Ljava/lang/Iterable;Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Consumer;)V	method_9268	method_9268	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/lang/Iterable;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Consumer;)V	method_9250	method_9250	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;	method_9258	method_9258	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;	method_9255	method_9255	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/util/stream/Stream;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;	method_9271	method_9271	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Ljava/lang/Iterable;Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Consumer;)V	method_9268	forEachMatching	
+		p	0		candidates	
+		p	1		remaining	
+		p	2		identifier	
+		p	3		action	
+	m	(Ljava/lang/Iterable;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Consumer;)V	method_9250	forEachMatching	
+		p	0		candidates	
+		p	1		remaining	
+		p	2		prefix	
+		p	3		identifier	
+		p	4		action	
+	m	(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;	method_9258	suggestIdentifiers	
+		p	0		candidates	
+		p	1		builder	
+		p	2		prefix	
+	m	(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;	method_9255	suggestFromIdentifier	
+		p	0		candidates	
+		p	1		builder	
+		p	2		identifier	
+		p	3		tooltip	
+	m	(Ljava/util/stream/Stream;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;	method_9271	suggestFromIdentifier	
+		p	0		candidates	
+		p	1		builder	
+		p	2		identifier	
+		p	3		tooltip	
 	m	(Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/lang/Object;)V	method_9256	method_9256	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		object	
 	m	(Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/class_2960;)V	method_9275	method_9275	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		id	
 	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2960;	method_9263	method_9263	
-		p	0		p_0	
+		p	0		id	
 	m	(Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/lang/String;Lnet/minecraft/class_2960;)V	method_9266	method_9266	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		id	
 	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2960;	method_9251	method_9251	
-		p	0		p_0	
+		p	0		id	
 	m	(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;	method_0_13660		method_0_13660
 		p	0			p_0
 		p	1			p_1
@@ -2742,10 +2742,10 @@ c	net/minecraft/class_2315
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2350
-	m	(DDD)Lnet/minecraft/class_2350;	method_10142	method_10142	
-		p	0		p_0	
-		p	2		p_2	
-		p	4		p_4	
+	m	(DDD)Lnet/minecraft/class_2350;	method_10142	getFacing	
+		p	0		x	
+		p	2		y	
+		p	4		z	
 c	net/minecraft/class_2355
 	m	(ZZZZ)I	method_0_17903		method_0_17903
 		p	0			p_0
@@ -2753,10 +2753,10 @@ c	net/minecraft/class_2355
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2360
-	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;I)Z	method_10202	method_10202	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;I)Z	method_10202	canMelt	
+		p	1		world	
+		p	2		pos	
+		p	3		maxNeighbors	
 	m	(Lnet/minecraft/class_0_378;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V	method_9612	method_9612	
 		p	1		p_1	
 		p	2		p_2	
@@ -2788,7 +2788,7 @@ c	net/minecraft/class_2459
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2477
-	m	(Ljava/lang/String;)Z	method_10516	method_10516	
+	m	(Ljava/lang/String;)Z	method_10516	hasTranslation_10516	
 		p	1		p_1	
 c	net/minecraft/class_25
 	m	(Ljava/io/File;Ljava/lang/String;Lnet/minecraft/server/MinecraftServer;Lcom/mojang/datafixers/DataFixer;)V	<init>	<init>	
@@ -2801,8 +2801,10 @@ c	net/minecraft/class_25
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/class_2509	net/minecraft/class_2509	
-	f	Lnet/minecraft/class_2509;	field_11560	field_11560	
+c	net/minecraft/class_2509	net/minecraft/nbt/NbtOps	
+	c	Used to handle Minecraft NBTs within {@link com.mojang.serialization.Dynamic\ndynamics} for DataFixerUpper, allowing generalized serialization logic\nshared across different type of data structures. Use {@link NbtOps#INSTANCE}\nfor the ops singleton.\n\n<p>For instance, dimension data may be stored as JSON in data packs, but\nthey will be transported in packets as NBT. DataFixerUpper allows\ngeneralizing the dimension serialization logic to prevent duplicate code,\nwhere the NBT ops allow the DataFixerUpper dimension serialization logic\nto interact with Minecraft NBTs.\n\n@see NbtOps#INSTANCE	
+	f	Lnet/minecraft/class_2509;	field_11560	INSTANCE	
+		c	An singleton of the NBT dynamic ops.\n\n<p>This ops does not compress maps (replace field name to value pairs\nwith an ordered list of values in serialization). In fact, since\nMinecraft NBT lists can only contain elements of the same type, this op\ncannot compress maps.	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/class_2520;	method_10668	method_10668	
 	m	(Lnet/minecraft/class_2520;)Lcom/mojang/datafixers/types/Type;	method_10642	method_10642	
@@ -2859,22 +2861,22 @@ c	net/minecraft/class_2509	net/minecraft/class_2509
 		p	2		p_2	
 	m	()Ljava/lang/String;	toString	toString	
 	m	(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;	remove	remove	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		element	
+		p	2		key	
 	m	(Ljava/util/stream/LongStream;)Ljava/lang/Object;	createLongList	createLongList	
-		p	1		p_1	
+		p	1		stream	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getLongStream	getLongStream	
 		p	1		p_1	
 	m	(Ljava/util/stream/IntStream;)Ljava/lang/Object;	createIntList	createIntList	
-		p	1		p_1	
+		p	1		stream	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getIntStream	getIntStream	
 		p	1		p_1	
 	m	(Ljava/nio/ByteBuffer;)Ljava/lang/Object;	createByteList	createByteList	
-		p	1		p_1	
+		p	1		buf	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getByteBuffer	getByteBuffer	
 		p	1		p_1	
 	m	(Ljava/util/stream/Stream;)Ljava/lang/Object;	createList	createList	
-		p	1		p_1	
+		p	1		stream	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getStream	getStream	
 		p	1		p_1	
 	m	(Ljava/util/Map;)Ljava/lang/Object;	createMap	createMap	
@@ -2889,39 +2891,39 @@ c	net/minecraft/class_2509	net/minecraft/class_2509
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/String;)Ljava/lang/Object;	createString	createString	
-		p	1		p_1	
+		p	1		string	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getStringValue	getStringValue	
 		p	1		p_1	
 	m	(D)Ljava/lang/Object;	createDouble	createDouble	
-		p	1		p_1	
+		p	1		value	
 	m	(F)Ljava/lang/Object;	createFloat	createFloat	
-		p	1		p_1	
+		p	1		value	
 	m	(J)Ljava/lang/Object;	createLong	createLong	
-		p	1		p_1	
+		p	1		value	
 	m	(I)Ljava/lang/Object;	createInt	createInt	
-		p	1		p_1	
+		p	1		value	
 	m	(S)Ljava/lang/Object;	createShort	createShort	
-		p	1		p_1	
+		p	1		value	
 	m	(B)Ljava/lang/Object;	createByte	createByte	
-		p	1		p_1	
+		p	1		value	
 	m	(Ljava/lang/Number;)Ljava/lang/Object;	createNumeric	createNumeric	
-		p	1		p_1	
+		p	1		value	
 	m	(Ljava/lang/Object;)Ljava/util/Optional;	getNumberValue	getNumberValue	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Lcom/mojang/datafixers/types/Type;	getType	getType	
 		p	1		p_1	
 	m	()Ljava/lang/Object;	empty	empty	
 	m	(Lnet/minecraft/class_2520;)Ljava/lang/Long;	method_10649	method_10649	
-		p	0		p_0	
+		p	0		nbt	
 	m	(Lnet/minecraft/class_2520;)Ljava/lang/Integer;	method_10658	method_10658	
-		p	0		p_0	
+		p	0		nbt	
 	m	(Lnet/minecraft/class_2520;)Ljava/lang/Byte;	method_10659	method_10659	
-		p	0		p_0	
+		p	0		nbt	
 	m	(Lnet/minecraft/class_2520;)Lnet/minecraft/class_2520;	method_10667	method_10667	
-		p	0		p_0	
+		p	0		nbt	
 	m	(Lnet/minecraft/class_2487;Ljava/lang/String;)Lcom/mojang/datafixers/util/Pair;	method_10638	method_10638	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		key	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_2512
 	m	(Lcom/mojang/datafixers/DataFixer;Lcom/mojang/datafixers/DSL$TypeReference;Lnet/minecraft/class_2487;I)Lnet/minecraft/class_2487;	method_10688	method_10688	
@@ -2948,7 +2950,7 @@ c	net/minecraft/class_2538
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2591
-	f	Lcom/mojang/datafixers/types/Type;	field_11909	field_11909	
+	f	Lcom/mojang/datafixers/types/Type;	field_11909	type	
 	f	Lnet/minecraft/class_0_3735;	field_11909		field_11909
 	m	(Ljava/util/function/Supplier;Lcom/mojang/datafixers/types/Type;)V	<init>	<init>	
 		p	1		p_1	
@@ -2957,8 +2959,10 @@ c	net/minecraft/class_2591
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2591$class_2592
-	m	(Lcom/mojang/datafixers/types/Type;)Lnet/minecraft/class_2591;	method_11034	method_11034	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/types/Type;)Lnet/minecraft/class_2591;	method_11034	build	
+		c	Builds the block entity type.\n\n@return the built block entity type	
+		p	1		type	
+			c	the datafixer type of the block entity, or {@code null} if there is none	
 	m	(Lnet/minecraft/class_0_3735;)Lnet/minecraft/class_2591;	method_11034		method_11034
 		p	1			p_1
 c	net/minecraft/class_28
@@ -2979,7 +2983,7 @@ c	net/minecraft/class_28
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_2841
-	f	Ljava/util/concurrent/locks/ReentrantLock;	field_12937	field_12937	
+	f	Ljava/util/concurrent/locks/ReentrantLock;	field_12937	writeLock	
 	f	Lnet/minecraft/class_2841$class_0_3959;	field_12937		field_12937
 c	net/minecraft/class_2841$1		1
 c	net/minecraft/class_2841$class_0_3959		class_0_3959
@@ -2997,8 +3001,8 @@ c	net/minecraft/class_2852
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2881
-	m	()V	method_12515	method_12515	
-	m	()V	method_12525	method_12525	
+	m	()V	method_12515	convertFromLegacy	
+	m	()V	method_12525	checkDragonSeen	
 	m	(IIII)Z	method_12537	method_12537	
 		p	1		p_1	
 		p	2		p_2	
@@ -3046,7 +3050,7 @@ c	net/minecraft/class_2881$class_2883	class_2883
 	m	(Lnet/minecraft/class_2881$class_2883;)Z	method_12540	method_12540	
 		p	0		p_0	
 c	net/minecraft/class_29
-	f	Lcom/mojang/datafixers/DataFixer;	field_148	field_148	
+	f	Lcom/mojang/datafixers/DataFixer;	field_148	dataFixer	
 	f	Lnet/minecraft/class_0_2204;	field_148		field_148
 	m	(Ljava/io/File;Ljava/lang/String;Lnet/minecraft/server/MinecraftServer;Lcom/mojang/datafixers/DataFixer;)V	<init>	<init>	
 		p	1		p_1	
@@ -3075,7 +3079,7 @@ c	net/minecraft/class_30
 	m	()Lcom/mojang/datafixers/DataFixer;	method_130	method_130	
 	m	()Lnet/minecraft/class_0_2204;	method_130		method_130
 c	net/minecraft/class_302
-	f	Lcom/mojang/datafixers/DataFixer;	field_1648	field_1648	
+	f	Lcom/mojang/datafixers/DataFixer;	field_1648	dataFixer	
 	f	Lnet/minecraft/class_0_2204;	field_1648		field_1648
 	m	(Ljava/io/File;Lcom/mojang/datafixers/DataFixer;)V	<init>	<init>	
 		p	1		p_1	
@@ -3084,8 +3088,8 @@ c	net/minecraft/class_302
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_31
-	f	Lnet/minecraft/class_2487;	field_166	field_166	
-	f	Lcom/mojang/datafixers/DataFixer;	field_184	field_184	
+	f	Lnet/minecraft/class_2487;	field_166	generatorOptions	
+	f	Lcom/mojang/datafixers/DataFixer;	field_184	dataFixer	
 	f	Lcom/google/gson/JsonElement;	field_166		field_166
 	f	Lnet/minecraft/class_0_2204;	field_184		field_184
 	m	(Lnet/minecraft/class_2487;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/class_2487;)V	<init>	<init>	
@@ -3093,8 +3097,8 @@ c	net/minecraft/class_31
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	()Lnet/minecraft/class_2487;	method_169	method_169	
-	m	(Lnet/minecraft/class_2487;)V	method_175	method_175	
+	m	()Lnet/minecraft/class_2487;	method_169	getGeneratorOptions	
+	m	(Lnet/minecraft/class_2487;)V	method_175	setGeneratorOptions	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;Lnet/minecraft/class_0_2204;ILnet/minecraft/class_2487;)V	<init>		<init>
 		p	1			p_1
@@ -3105,9 +3109,9 @@ c	net/minecraft/class_31
 	m	(Lcom/google/gson/JsonElement;)V	method_175		method_175
 		p	1			p_1
 c	net/minecraft/class_310
-	f	Lcom/mojang/datafixers/DataFixer;	field_1768	field_1768	
+	f	Lcom/mojang/datafixers/DataFixer;	field_1768	dataFixer	
 	f	Lnet/minecraft/class_0_2204;	field_1768		field_1768
-	m	()Lcom/mojang/datafixers/DataFixer;	method_1543	method_1543	
+	m	()Lcom/mojang/datafixers/DataFixer;	method_1543	getDataFixer	
 	m	()Lnet/minecraft/class_0_2204;	method_0_14250		method_0_14250
 	m	()Lnet/minecraft/class_0_2204;	method_1543		method_1543
 c	net/minecraft/class_3176
@@ -3126,15 +3130,15 @@ c	net/minecraft/class_3176
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_3232
-	f	Lnet/minecraft/class_1959;	field_14081	field_14081	
+	f	Lnet/minecraft/class_1959;	field_14081	biome	
 	f	I	field_14081		field_14081
-	m	()Lnet/minecraft/class_1959;	method_14326	method_14326	
-	m	(Lnet/minecraft/class_1959;)V	method_14325	method_14325	
+	m	()Lnet/minecraft/class_1959;	method_14326	getBiome	
+	m	(Lnet/minecraft/class_1959;)V	method_14325	setBiome	
 		p	1		p_1	
-	m	(Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_14313	method_14313	
-		p	1		p_1	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lnet/minecraft/class_3232;	method_14323	method_14323	
-		p	0		p_0	
+	m	(Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_14313	toDynamic	
+		p	1		dynamicOps	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lnet/minecraft/class_3232;	method_14323	fromDynamic	
+		p	0		dynamic	
 	m	(Lcom/mojang/datafixers/types/DynamicOps;Ljava/util/Map$Entry;)Lcom/mojang/datafixers/util/Pair;	method_14308	method_14308	
 		p	0		p_0	
 		p	1		p_1	
@@ -3152,14 +3156,14 @@ c	net/minecraft/class_3232
 	m	(Lcom/google/gson/JsonElement;)Lnet/minecraft/class_3232;	method_0_16365		method_0_16365
 		p	0			p_0
 c	net/minecraft/class_3442
-	m	(Lcom/mojang/datafixers/DataFixer;Ljava/lang/String;)V	method_14906	method_14906	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/DataFixer;Ljava/lang/String;)V	method_14906	parse	
+		p	1		dataFixer	
+		p	2		json	
 	m	(Lnet/minecraft/class_0_2204;Ljava/lang/String;)V	method_14906		method_14906
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3485
-	f	Lcom/mojang/datafixers/DataFixer;	field_15515	field_15515	
+	f	Lcom/mojang/datafixers/DataFixer;	field_15515	dataFixer	
 	f	Lnet/minecraft/class_0_2204;	field_15515		field_15515
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/io/File;Lcom/mojang/datafixers/DataFixer;)V	<init>	<init>	
 		p	1		p_1	
@@ -3170,7 +3174,7 @@ c	net/minecraft/class_3485
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3551
-	f	Lcom/mojang/datafixers/DataFixer;	field_15777	field_15777	
+	f	Lcom/mojang/datafixers/DataFixer;	field_15777	FIXER	
 	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectSortedMap;	field_0_17472		field_0_17472
 	f	Ljava/util/concurrent/CompletableFuture;	field_0_17473		field_0_17473
 	f	Lnet/minecraft/class_0_3677;	field_0_17470		field_0_17470
@@ -3241,10 +3245,10 @@ c	net/minecraft/class_3551
 	f	Lnet/minecraft/class_0_3705;	field_0_17964		field_0_17964
 	f	Lnet/minecraft/class_0_3705;	field_0_18069		field_0_18069
 	f	Lnet/minecraft/class_0_3705;	field_0_18070		field_0_18070
-	m	()Lcom/mojang/datafixers/DataFixer;	method_15471	method_15471	
-	m	()Lcom/mojang/datafixers/DataFixer;	method_15450	method_15450	
-	m	(Lcom/mojang/datafixers/DataFixerBuilder;)V	method_15451	method_15451	
-		p	0		p_0	
+	m	()Lcom/mojang/datafixers/DataFixer;	method_15471	create	
+	m	()Lcom/mojang/datafixers/DataFixer;	method_15450	getFixer	
+	m	(Lcom/mojang/datafixers/DataFixerBuilder;)V	method_15451	build	
+		p	0		builder	
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_15463	method_15463	
 		p	0		p_0	
 	m	(Ljava/lang/String;)Ljava/lang/String;	method_15464	method_15464	
@@ -3326,17 +3330,17 @@ c	net/minecraft/class_3551$2
 	m	(Lnet/minecraft/class_0_3808;)Lnet/minecraft/class_0_3808;	method_5105		method_5105
 		p	1			p_1
 c	net/minecraft/class_3553
-	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_15780	field_15780	
+	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_15780	types	
 	f	Lnet/minecraft/class_0_3809$class_0_3811;	field_15780		field_15780
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Lcom/mojang/datafixers/DSL$TypeReference;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Ljava/lang/String;Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15476	method_15476	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Ljava/lang/String;Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15476	fixChoiceTypes	
+		p	1		name	
+		p	2		inputChoiceType	
+		p	3		outputChoiceType	
 	m	(Lcom/mojang/datafixers/types/templates/TaggedChoice$TaggedChoiceType;Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_15475	method_15475	
 		p	1		p_1	
 		p	2		p_2	
@@ -3396,9 +3400,9 @@ c	net/minecraft/class_3557
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/templates/List$ListType;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15506	method_15506	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/templates/List$ListType;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15506	fix	
+		p	1		level	
+		p	2		blockEntities	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15510	method_15510	
 		p	0		p_0	
 		p	1		p_1	
@@ -3443,8 +3447,8 @@ c	net/minecraft/class_3559
 	m	(Lnet/minecraft/class_0_3823;Lnet/minecraft/class_0_3808;)Lnet/minecraft/class_0_3808;	method_15521		method_15521
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/class_3561	net/minecraft/class_3561	
-	f	Ljava/util/Map;	field_15810	field_15810	
+c	net/minecraft/class_3561	net/minecraft/datafixer/fix/BiomesFix	
+	f	Ljava/util/Map;	field_15810	RENAMED_BIOMES	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3460,8 +3464,8 @@ c	net/minecraft/class_3564
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15546	method_15546	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15546	fixBannerColor	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15550	method_15550	
@@ -3469,9 +3473,9 @@ c	net/minecraft/class_3564
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15548	method_15548	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15549	method_15549	
-		p	0		p_0	
+		p	0		tag	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15547	method_15547	
-		p	0		p_0	
+		p	0		tag	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -3553,8 +3557,8 @@ c	net/minecraft/class_3574
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15579	method_15579	
-		p	0		p_0	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15579	keepPacked	
+		p	0		tag	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
@@ -3583,9 +3587,9 @@ c	net/minecraft/class_3577
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_15582	method_15582	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_15582	fix	
+		p	1		tag	
+		p	2		lineName	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15581	method_15581	
@@ -3626,10 +3630,10 @@ c	net/minecraft/class_3579
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/DataFix;	method_15589	method_15589	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/DataFix;	method_15589	create	
+		p	0		oldSchema	
+		p	1		name	
+		p	2		rename	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15592	method_15592	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15588	method_15588	
@@ -3664,14 +3668,14 @@ c	net/minecraft/class_3579$1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3580
-	f	[Lcom/mojang/datafixers/Dynamic;	field_15830	field_15830	
+	f	[Lcom/mojang/datafixers/Dynamic;	field_15830	ID_TO_NEW_STATE	
 	f	[Lnet/minecraft/class_0_3954;	field_15830		field_15830
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15597	method_15597	
-		p	0		p_0	
-	m	(Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_15598	method_15598	
-		p	0		p_0	
-	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15594	method_15594	
-		p	0		p_0	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15597	lookupState	
+		p	0		oldState	
+	m	(Ljava/lang/String;)Lcom/mojang/datafixers/Dynamic;	method_15598	parseState	
+		p	0		stateStr	
+	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15594	lookupState	
+		p	0		stateId	
 	m	(Lnet/minecraft/class_0_3954;)Lnet/minecraft/class_0_3954;	method_15597		method_15597
 		p	0			p_0
 	m	(Ljava/lang/String;)Lnet/minecraft/class_0_3954;	method_15598		method_15598
@@ -3692,17 +3696,17 @@ c	net/minecraft/class_3581
 	m	(Lnet/minecraft/class_0_3808;)Lnet/minecraft/class_0_3808;	method_15602		method_15602
 		p	0			p_0
 c	net/minecraft/class_3582
-	f	Lcom/mojang/datafixers/Dynamic;	field_15840	field_15840	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15852	field_15852	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15838	field_15838	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15850	field_15850	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15839	field_15839	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15848	field_15848	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15834	field_15834	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15845	field_15845	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15835	field_15835	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15847	field_15847	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15843	field_15843	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15840	pumpkin	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15852	podzol	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15838	snowyGrass	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15850	snowyMycelium	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15839	sunflowerUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15848	lilacUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15834	grassUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15845	fernUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15835	roseUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15847	peonyUpper	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15843	air	
 	f	Lnet/minecraft/class_0_3954;	field_15840		field_15840
 	f	Lnet/minecraft/class_0_3954;	field_15852		field_15852
 	f	Lnet/minecraft/class_0_3954;	field_15838		field_15838
@@ -3717,22 +3721,22 @@ c	net/minecraft/class_3582
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Ljava/lang/String;	method_15637	method_15637	
+	m	(Lcom/mojang/datafixers/Dynamic;)Ljava/lang/String;	method_15637	getName	
 		p	0		p_0	
-	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Ljava/lang/String;	method_15638	method_15638	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_3513;Lcom/mojang/datafixers/Dynamic;)I	method_15616	method_15616	
+	m	(Lcom/mojang/datafixers/Dynamic;Ljava/lang/String;)Ljava/lang/String;	method_15638	getProperty	
 		p	0		p_0	
 		p	1		p_1	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15633	method_15633	
+	m	(Lnet/minecraft/class_3513;Lcom/mojang/datafixers/Dynamic;)I	method_15616	addTo	
+		p	0		p_0	
+		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15633	fixChunk	
 		p	1		p_1	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(ZZZZ)I	method_15615	method_15615	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(ZZZZ)I	method_15615	getSideToUpgradeFlag	
+		p	0		west	
+		p	1		east	
+		p	2		north	
+		p	3		south	
 	m	(Ljava/lang/String;Lcom/mojang/datafixers/Dynamic;)Ljava/lang/String;	method_15635	method_15635	
 		p	0		p_0	
 		p	1		p_1	
@@ -3779,28 +3783,28 @@ c	net/minecraft/class_3582
 	m	()Lnet/minecraft/class_0_3954;	method_15625		method_15625
 	m	()Lnet/minecraft/class_0_3954;	method_15628		method_15628
 	m	()Lnet/minecraft/class_0_3954;	method_15624		method_15624
-c	net/minecraft/class_3582$class_3583	class_3583	
-	f	[B	field_15855	field_15855	
+c	net/minecraft/class_3582$class_3583	ChunkNibbleArray	
+	f	[B	field_15855	contents	
 	m	()V	<init>	<init>	
 	m	([B)V	<init>	<init>	
 		p	1		p_1	
-	m	(III)I	method_15640	method_15640	
-		p	1		p_1	
-		p	2		p_2	
+	m	(III)I	method_15640	get	
+		p	1		x	
+		p	2		y	
 		p	3		p_3	
-	m	(I)Z	method_15641	method_15641	
-		p	1		p_1	
-	m	(I)I	method_15642	method_15642	
-		p	1		p_1	
-c	net/minecraft/class_3582$class_3584	class_3584	
+	m	(I)Z	method_15641	usesLowNibble	
+		p	1		index	
+	m	(I)I	method_15642	getRawIndex	
+		p	1		index	
+c	net/minecraft/class_3582$class_3584	Facing	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15858	field_15858	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15863	field_15863	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15859	field_15859	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15862	field_15862	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15857	field_15857	
 	f	Lnet/minecraft/class_3582$class_3584;	field_15860	field_15860	
-	f	Lnet/minecraft/class_3582$class_3584$class_3585;	field_15864	field_15864	
-	f	Lnet/minecraft/class_3582$class_3584$class_3586;	field_15861	field_15861	
+	f	Lnet/minecraft/class_3582$class_3584$class_3585;	field_15864	axis	
+	f	Lnet/minecraft/class_3582$class_3584$class_3586;	field_15861	direction	
 	f	[Lnet/minecraft/class_3582$class_3584;	field_15865	field_15865	
 	m	()[Lnet/minecraft/class_3582$class_3584;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_3582$class_3584;	valueOf	valueOf	
@@ -3810,10 +3814,10 @@ c	net/minecraft/class_3582$class_3584	class_3584
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	()Lnet/minecraft/class_3582$class_3584$class_3586;	method_15643	method_15643	
-	m	()Lnet/minecraft/class_3582$class_3584$class_3585;	method_15644	method_15644	
+	m	()Lnet/minecraft/class_3582$class_3584$class_3586;	method_15643	getDirection	
+	m	()Lnet/minecraft/class_3582$class_3584$class_3585;	method_15644	getAxis	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3582$class_3584$class_3585	class_3585	
+c	net/minecraft/class_3582$class_3584$class_3585	Axis	
 	f	Lnet/minecraft/class_3582$class_3584$class_3585;	field_15869	field_15869	
 	f	Lnet/minecraft/class_3582$class_3584$class_3585;	field_15866	field_15866	
 	f	Lnet/minecraft/class_3582$class_3584$class_3585;	field_15867	field_15867	
@@ -3825,10 +3829,10 @@ c	net/minecraft/class_3582$class_3584$class_3585	class_3585
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3582$class_3584$class_3586	class_3586	
+c	net/minecraft/class_3582$class_3584$class_3586	Direction	
 	f	Lnet/minecraft/class_3582$class_3584$class_3586;	field_15873	field_15873	
 	f	Lnet/minecraft/class_3582$class_3584$class_3586;	field_15870	field_15870	
-	f	I	field_15872	field_15872	
+	f	I	field_15872	offset	
 	f	[Lnet/minecraft/class_3582$class_3584$class_3586;	field_15871	field_15871	
 	m	()[Lnet/minecraft/class_3582$class_3584$class_3586;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_3582$class_3584$class_3586;	valueOf	valueOf	
@@ -3837,21 +3841,21 @@ c	net/minecraft/class_3582$class_3584$class_3586	class_3586
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()I	method_15645	method_15645	
+	m	()I	method_15645	getOffset	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_3582$class_3587
-	f	Lcom/mojang/datafixers/Dynamic;	field_15880	field_15880	
-	f	Lcom/mojang/datafixers/Dynamic;	field_15878	field_15878	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15880	paletteData	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15878	section	
 	f	Lnet/minecraft/class_0_3954;	field_15880		field_15880
 	f	Lnet/minecraft/class_0_3954;	field_15878		field_15878
 	m	(Lcom/mojang/datafixers/Dynamic;)V	<init>	<init>	
 		p	1		p_1	
-	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15649	method_15649	
-		p	1		p_1	
-	m	(ILcom/mojang/datafixers/Dynamic;)V	method_15647	method_15647	
-		p	1		p_1	
+	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15649	getBlock	
+		p	1		index	
+	m	(ILcom/mojang/datafixers/Dynamic;)V	method_15647	setBlock	
+		p	1		pos	
 		p	2		p_2	
-	m	()Lcom/mojang/datafixers/Dynamic;	method_15651	method_15651	
+	m	()Lcom/mojang/datafixers/Dynamic;	method_15651	transform	
 	m	(Ljava/nio/ByteBuffer;)Lnet/minecraft/class_3582$class_3583;	method_15654	method_15654	
 		p	0		p_0	
 	m	(Ljava/nio/ByteBuffer;)Lnet/minecraft/class_3582$class_3583;	method_15646	method_15646	
@@ -3869,23 +3873,23 @@ c	net/minecraft/class_3582$class_3587
 	m	(Ljava/nio/ByteBuffer;)Lnet/minecraft/class_2804;	method_15646		method_15646
 		p	0			p_0
 c	net/minecraft/class_3582$class_3588
-	f	Lcom/mojang/datafixers/Dynamic;	field_15886	field_15886	
+	f	Lcom/mojang/datafixers/Dynamic;	field_15886	level	
 	f	Lnet/minecraft/class_0_3954;	field_15886		field_15886
 	m	(Lcom/mojang/datafixers/Dynamic;)V	<init>	<init>	
 		p	1		p_1	
-	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15655	method_15655	
+	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15655	getBlockEntity	
 		p	1		p_1	
-	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15660	method_15660	
+	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15660	removeBlockEntity	
 		p	1		p_1	
-	m	(ILnet/minecraft/class_3582$class_3584;)I	method_15663	method_15663	
+	m	(ILnet/minecraft/class_3582$class_3584;)I	method_15663	adjacentTo	
 		p	0		p_0	
-		p	1		p_1	
-	m	(ILcom/mojang/datafixers/Dynamic;)V	method_15657	method_15657	
+		p	1		direction	
+	m	(ILcom/mojang/datafixers/Dynamic;)V	method_15657	setBlock	
 		p	1		p_1	
 		p	2		p_2	
-	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15662	method_15662	
+	m	(I)Lcom/mojang/datafixers/Dynamic;	method_15662	getBlock	
 		p	1		p_1	
-	m	()Lcom/mojang/datafixers/Dynamic;	method_15664	method_15664	
+	m	()Lcom/mojang/datafixers/Dynamic;	method_15664	transform	
 	m	(Lcom/mojang/datafixers/Dynamic;)V	method_15656	method_15656	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Dynamic;)V	method_15665	method_15665	
@@ -3947,10 +3951,10 @@ c	net/minecraft/class_3591
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(III)S	method_15675	method_15675	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(III)S	method_15675	packChunkSectionPos	
+		p	0		x	
+		p	1		y	
+		p	2		z	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15676	method_15676	
 		p	1		p_1	
 		p	2		p_2	
@@ -4018,8 +4022,8 @@ c	net/minecraft/class_3594
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15679	method_15679	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15679	fixSilent	
+		p	1		tag	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
@@ -4064,8 +4068,8 @@ c	net/minecraft/class_3597
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15697	method_15697	
-		p	0		p_0	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15697	fixCustomName	
+		p	0		tag	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15698	method_15698	
 		p	0		p_0	
 		p	1		p_1	
@@ -4104,7 +4108,7 @@ c	net/minecraft/class_3599
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15703	method_15703	
+	m	(Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/TypeRewriteRule;	method_15703	fixEquipment	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15700	method_15700	
 		p	0		p_0	
@@ -4131,8 +4135,8 @@ c	net/minecraft/class_3600
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15704	method_15704	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15704	fixHealth	
+		p	1		tag	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15705	method_15705	
 		p	1		p_1	
@@ -4189,11 +4193,11 @@ c	net/minecraft/class_3604
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15711	method_15711	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15711	fixDirection	
 		p	1		p_1	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
-	m	(B)B	method_15712	method_15712	
+	m	(B)B	method_15712	updateDirection	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
 		p	1			p_1
@@ -4230,14 +4234,14 @@ c	net/minecraft/class_3605
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3606
-	f	[[I	field_15897	field_15897	
+	f	[[I	field_15897	OFFSETS	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;ZZ)Lcom/mojang/datafixers/Dynamic;	method_15719	method_15719	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lcom/mojang/datafixers/Dynamic;ZZ)Lcom/mojang/datafixers/Dynamic;	method_15719	fixDecorationPosition	
+		p	1		tag	
+		p	2		isPainting	
+		p	3		isItemFrame	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_15716	method_15716	
 		p	1		p_1	
@@ -4284,8 +4288,8 @@ c	net/minecraft/class_3607
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15723	method_15723	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_15723	renameMotive	
+		p	1		dynamic	
 	m	(Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_5105	method_5105	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_0_3705;Z)V	<init>		<init>
@@ -4312,12 +4316,12 @@ c	net/minecraft/class_413
 	m	(Lnet/minecraft/class_525;Lnet/minecraft/class_2487;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Ljava/lang/String;	method_2138	method_2138	
-	m	()Lnet/minecraft/class_2487;	method_2140	method_2140	
-	m	(Ljava/lang/String;)V	method_2139	method_2139	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2487;)V	method_2144	method_2144	
-		p	1		p_1	
+	m	()Ljava/lang/String;	method_2138	getConfigString	
+	m	()Lnet/minecraft/class_2487;	method_2140	getConfigTag	
+	m	(Ljava/lang/String;)V	method_2139	setConfigString	
+		p	1		config	
+	m	(Lnet/minecraft/class_2487;)V	method_2144	setConfigTag	
+		p	1		config	
 	m	(Lnet/minecraft/class_525;Lcom/google/gson/JsonElement;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -4330,7 +4334,7 @@ c	net/minecraft/class_415
 		p	2		p_2	
 	m	(Lnet/minecraft/class_2487;)V	method_2161	method_2161	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_2487;	method_2153	method_2153	
+	m	()Lnet/minecraft/class_2487;	method_2153	getGeneratorTag	
 	m	(Lnet/minecraft/class_415;)Lnet/minecraft/class_2487;	method_2159	method_2159	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_525;Lcom/google/gson/JsonElement;)V	<init>		<init>
@@ -4342,12 +4346,12 @@ c	net/minecraft/class_415
 	m	(Lnet/minecraft/class_415;)Lcom/google/gson/JsonElement;	method_2159		method_2159
 		p	0			p_0
 c	net/minecraft/class_430
-	m	(Ljava/lang/String;Lnet/minecraft/class_1935;Lnet/minecraft/class_1959;Ljava/util/List;[Lnet/minecraft/class_3229;)V	method_2195	method_2195	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Ljava/lang/String;Lnet/minecraft/class_1935;Lnet/minecraft/class_1959;Ljava/util/List;[Lnet/minecraft/class_3229;)V	method_2195	addPreset	
+		p	0		name	
+		p	1		icon	
+		p	2		biome	
+		p	3		structures	
+		p	4		layers	
 	m	(Ljava/lang/String;Lnet/minecraft/class_1935;Lnet/minecraft/class_1959;Ljava/util/List;[Lnet/minecraft/class_3229;)V	method_0_15431		method_0_15431
 		p	0			p_0
 		p	1			p_1
@@ -4365,7 +4369,7 @@ c	net/minecraft/class_525
 	f	Lnet/minecraft/class_2487;	field_3200	field_3200	
 	f	Lcom/google/gson/JsonElement;	field_3200		field_3200
 c	net/minecraft/server/MinecraftServer
-	f	Lcom/mojang/datafixers/DataFixer;	field_4587	field_4587	
+	f	Lcom/mojang/datafixers/DataFixer;	field_4587	dataFixer	
 	f	Lnet/minecraft/class_0_2204;	field_4587		field_4587
 	m	(Ljava/io/File;Ljava/net/Proxy;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_2170;Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/class_3312;)V	<init>	<init>	
 		p	1		p_1	
@@ -4376,7 +4380,7 @@ c	net/minecraft/server/MinecraftServer
 		p	6		p_6	
 		p	7		p_7	
 		p	8		p_8	
-	m	()Lcom/mojang/datafixers/DataFixer;	method_3855	method_3855	
+	m	()Lcom/mojang/datafixers/DataFixer;	method_3855	getDataFixer	
 	m	(Ljava/io/File;Ljava/net/Proxy;Lnet/minecraft/class_0_2204;Lnet/minecraft/class_2170;Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/class_3312;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2

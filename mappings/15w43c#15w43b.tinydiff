@@ -1,8 +1,8 @@
 tiny	2	0
 c	net/minecraft/class_1058
-	m	(F)F	method_4582	method_4582	
+	m	(F)F	method_4582	getXFromU	
 		p	1		p_1	
-	m	(F)F	method_4572	method_4572	
+	m	(F)F	method_4572	getYFromV	
 		p	1		p_1	
 c	net/minecraft/class_1309
 	m	()V	method_0_7119		method_0_7119
@@ -53,9 +53,9 @@ c	net/minecraft/class_1477
 	m	(ZI)V	method_6042		method_6042
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_149	net/minecraft/class_149	
-	f	Lorg/apache/logging/log4j/Logger;	field_1121	field_1121	
-	f	Lnet/minecraft/class_61;	field_1120	field_1120	
+c	net/minecraft/class_149	net/minecraft/loot/function/SetDamageLootFunction	
+	f	Lorg/apache/logging/log4j/Logger;	field_1121	LOGGER	
+	f	Lnet/minecraft/class_61;	field_1120	durabilityRange	
 	m	(Lnet/minecraft/class_149;)Lnet/minecraft/class_61;	method_632	method_632	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
@@ -66,7 +66,7 @@ c	net/minecraft/class_149	net/minecraft/class_149
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_149$class_150	class_150	
+c	net/minecraft/class_149$class_150	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_149;Lcom/google/gson/JsonSerializationContext;)V	method_636	method_636	
 		p	1		p_1	
@@ -153,7 +153,7 @@ c	net/minecraft/class_1642
 	m	()Lnet/minecraft/class_1792;	method_5981		method_5981
 	m	()V	method_0_7119		method_0_7119
 c	net/minecraft/class_3244
-	m	()V	method_14372	method_14372	
+	m	()V	method_14372	syncWithPlayerPosition	
 c	net/minecraft/class_39
 	f	Lnet/minecraft/class_2960;	field_693	field_693	
 	f	Lnet/minecraft/class_2960;	field_384	field_384	
@@ -163,15 +163,15 @@ c	net/minecraft/class_39
 	f	Lnet/minecraft/class_2960;	field_854	field_854	
 	f	Lnet/minecraft/class_2960;	field_0_10987	field_0_10987	
 c	net/minecraft/class_47
-	f	F	field_926	field_926	
-	f	Lnet/minecraft/class_60;	field_924	field_924	
-	f	Ljava/util/Set;	field_927	field_927	
+	f	F	field_926	luck	
+	f	Lnet/minecraft/class_60;	field_924	manager	
+	f	Ljava/util/Set;	field_927	activeTables	
 	f	Lnet/minecraft/class_47;	field_0_10522		field_0_10522
-	m	(Lnet/minecraft/class_52;)Z	method_298	method_298	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_52;)V	method_295	method_295	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_60;	method_301	method_301	
+	m	(Lnet/minecraft/class_52;)Z	method_298	markActive	
+		p	1		table	
+	m	(Lnet/minecraft/class_52;)V	method_295	markInactive	
+		p	1		table	
+	m	()Lnet/minecraft/class_60;	method_301	getLootManager	
 	m	(FLnet/minecraft/class_60;Lnet/minecraft/class_1297;Lnet/minecraft/class_1657;Lnet/minecraft/class_1282;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -184,13 +184,13 @@ c	net/minecraft/class_47
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/class_47$class_48
-	f	F	field_931	field_931	
+	f	F	field_931	luck	
 	f	Lnet/minecraft/class_60;	field_930	field_930	
 	m	(Lnet/minecraft/class_60;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	<init>		<init>
 c	net/minecraft/class_52
-	f	Lorg/apache/logging/log4j/Logger;	field_946	field_946	
+	f	Lorg/apache/logging/log4j/Logger;	field_946	LOGGER	
 c	net/minecraft/class_55
 	m	(Ljava/util/Collection;Ljava/util/Random;FLnet/minecraft/class_47;)V	method_0_9648	method_0_9648	
 		p	1		p_1	
@@ -204,8 +204,8 @@ c	net/minecraft/class_55
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_61
-	f	F	field_977	field_977	
-	f	F	field_976	field_976	
+	f	F	field_977	min	
+	f	F	field_976	max	
 	f	I	field_977		field_977
 	f	I	field_976		field_976
 	m	(FF)V	<init>	<init>	
@@ -227,19 +227,19 @@ c	net/minecraft/class_61
 	m	(Lnet/minecraft/class_61;)I	method_375		method_375
 		p	0			p_0
 c	net/minecraft/class_777
-	f	Lnet/minecraft/class_1058;	field_4176	field_4176	
+	f	Lnet/minecraft/class_1058;	field_4176	sprite	
 	m	([IILnet/minecraft/class_2350;Lnet/minecraft/class_1058;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	()Lnet/minecraft/class_1058;	method_3356	method_3356	
+	m	()Lnet/minecraft/class_1058;	method_3356	getSprite	
 	m	([IILnet/minecraft/class_2350;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_798
-	m	()V	method_3471	method_3471	
+	m	()V	method_3471	recalculateUvs	
 	m	()V	method_0_3680		method_0_3680
 	m	(I)V	method_3471		method_3471
 		p	1			p_1
