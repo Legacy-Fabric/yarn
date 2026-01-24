@@ -13,10 +13,6 @@ jobs:
           '1.11,1.11.1,1.11.2',
           '1.12,1.12.1,1.12.2',
           '1.13,1.13.1,1.13.2',
-
-          # Upstream broken yarns
-#          '1.14',
-          '1.14.1,1.14.2,1.14.3,1.14.4'
         ]
     env: 
         MC_VERSION: ${{ matrix.mc_version }}
@@ -29,4 +25,6 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '21'
-      - run: python yarn.py clean build mapMinecraftToNamed ${{ matrix.mc_version }}
+      - run: python build_all.py
+        env:
+          MC_VERSIONS: ${{ matrix.mc_version }}
