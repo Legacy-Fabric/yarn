@@ -5,9 +5,8 @@ on:
     branches: 1.14.x-upstream
 
 jobs:
-  legacy_build:
+  build:
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
         mc_version: [
@@ -41,7 +40,7 @@ jobs:
         env:
           MC_VERSIONS: ${{ matrix.mc_version }}
   publish:
-   needs: legacy_build
+   needs: build
    runs-on: ubuntu-latest
    strategy:
      matrix:
