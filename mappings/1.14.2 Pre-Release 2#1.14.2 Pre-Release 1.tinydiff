@@ -1,20 +1,20 @@
 tiny	2	0
 c	net/minecraft/class_2564
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2561;Lnet/minecraft/class_1297;I)Lnet/minecraft/class_2561;	method_10881	method_10881	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2561;Lnet/minecraft/class_1297;)Lnet/minecraft/class_2561;	method_10881		method_10881
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2561;Lnet/minecraft/class_1297;I)Lnet/minecraft/class_2561;	method_10881	parse	
+		p	0		source	
+		p	1		text	
+		p	2		sender	
+		p	3		depth	
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2561;Lnet/minecraft/class_1297;)Lnet/minecraft/class_2561;	method_10881		parse
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2566
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_1297;I)Lnet/minecraft/class_2561;	method_10890	method_10890	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_1297;)Lnet/minecraft/class_2561;	method_10890		method_10890
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_1297;I)Lnet/minecraft/class_2561;	method_10890	parse	
+		p	1		source	
+		p	2		sender	
+		p	3		depth	
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_1297;)Lnet/minecraft/class_2561;	method_10890		parse
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2574
@@ -26,7 +26,7 @@ c	net/minecraft/class_2574
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		text	
 	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_1297;)Lnet/minecraft/class_2561;	method_10890		method_10890
 		p	1			p_1
 		p	2			p_2
@@ -59,23 +59,24 @@ c	net/minecraft/class_2588
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2806
-	f	Lnet/minecraft/class_2806$class_4305;	field_19345	field_19345	
-	f	Lnet/minecraft/class_2806$class_4305;	field_19346	field_19346	
-	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3227;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20610	method_20610	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;Lnet/minecraft/class_2806$class_4305;)Lnet/minecraft/class_2806;	method_20611	method_20611	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_2791;)Z	method_20608	method_20608	
-		p	0		p_0	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2806$class_4305;	field_19345	STATUS_BUMP_LOAD_TASK	
+		c	A load task which only bumps the chunk status of the chunk.	
+	f	Lnet/minecraft/class_2806$class_4305;	field_19346	loadTask	
+	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3227;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20610	getLightingFuture	
+		p	0		status	
+		p	1		lightingProvider	
+		p	2		chunk	
+	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;Lnet/minecraft/class_2806$class_4305;)Lnet/minecraft/class_2806;	method_20611	register	
+		p	0		id	
+		p	1		previous	
+		p	2		taskMargin	
+		p	3		heightMapTypes	
+		p	4		chunkType	
+		p	5		task	
+		p	6		loadTask	
+	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_2791;)Z	method_20608	shouldExcludeBlockLight	
+		p	0		status	
+		p	1		chunk	
 	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;Lnet/minecraft/class_2806$class_4305;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -84,42 +85,42 @@ c	net/minecraft/class_2806
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20612	method_20612	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20612	runLoadTask	
+		p	1		world	
+		p	2		structureTemplateManager	
+		p	3		lightingProvider	
+		p	4		fullChunkConverter	
+		p	5		chunk	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20609	method_20609	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	0		status	
+		p	1		world	
+		p	2		structureManager	
+		p	3		lightingProvider	
+		p	4		convertCallback	
+		p	5		chunk	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20614	method_20614	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		status	
+		p	1		world	
+		p	2		structureManager	
+		p	3		lightingProvider	
 		p	4		p_4	
-		p	5		p_5	
+		p	5		chunk	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_2794;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20613	method_20613	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		targetStatus	
+		p	1		world	
+		p	2		generator	
+		p	3		structureManager	
+		p	4		lightingProvider	
 		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	6		surroundingChunks	
+		p	7		chunk	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20615	method_20615	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	0		targetStatus	
+		p	1		world	
+		p	2		structureTemplateManager	
+		p	3		lightingProvider	
+		p	4		fullChunkConverter	
+		p	5		chunk	
 	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -136,23 +137,25 @@ c	net/minecraft/class_2806
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/class_2806$class_4305	class_4305	
+c	net/minecraft/class_2806$class_4305	LoadTask	
+	c	A task called when a chunk is loaded but does not need to be generated.	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_3218;Lnet/minecraft/class_3485;Lnet/minecraft/class_3227;Ljava/util/function/Function;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	doWork	doWork	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		targetStatus	
+		p	2		world	
+		p	3		structureTemplateManager	
+		p	4		lightingProvider	
+		p	5		fullChunkConverter	
+			c	a function that can convert a raw chunk to a full chunk	
+		p	6		chunk	
 c	net/minecraft/class_3193
 	m	(Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_13997		method_13997
 		p	1			p_1
 c	net/minecraft/class_3898
-	m	(Lnet/minecraft/class_1923;)Ljava/util/concurrent/CompletableFuture;	method_20619	method_20619	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_3193;Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_20617	method_20617	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1923;)Ljava/util/concurrent/CompletableFuture;	method_20619	loadChunk	
+		p	1		pos	
+	m	(Lnet/minecraft/class_3193;Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_20617	upgradeChunk	
+		p	1		holder	
+		p	2		requiredStatus	
 	m	(Lnet/minecraft/class_2806;Lnet/minecraft/class_1923;Lnet/minecraft/class_3193;Lcom/mojang/datafixers/util/Either;)Ljava/util/concurrent/CompletionStage;	method_20616	method_20616	
 		p	1		p_1	
 		p	2		p_2	
@@ -160,4 +163,4 @@ c	net/minecraft/class_3898
 		p	4		p_4	
 	m	(Lnet/minecraft/class_3193;Lnet/minecraft/class_2791;)Ljava/util/concurrent/CompletableFuture;	method_20618	method_20618	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		chunk	

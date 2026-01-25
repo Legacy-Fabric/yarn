@@ -30,14 +30,14 @@ c	net/minecraft/class_1290
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1291
-	f	Lnet/minecraft/class_4081;	field_18270	field_18270	
+	f	Lnet/minecraft/class_4081;	field_18270	category	
 	f	Z	field_5887		field_5887
 	f	D	field_5888		field_5888
 	f	Z	field_5882		field_5882
 	m	(Lnet/minecraft/class_4081;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Lnet/minecraft/class_4081;	method_18792	method_18792	
+	m	()Lnet/minecraft/class_4081;	method_18792	getCategory	
 	m	(ZI)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -46,42 +46,44 @@ c	net/minecraft/class_1291
 		p	1			p_1
 	m	()Lnet/minecraft/class_1291;	method_5557		method_5557
 c	net/minecraft/class_1297
-	f	Lnet/minecraft/class_243;	field_18276	field_18276	
-	f	D	field_5967		field_5967
-	f	D	field_5984		field_5984
-	f	D	field_6006		field_6006
+	f	Lnet/minecraft/class_243;	field_18276	velocity	
+	f	D	field_5967		velocityX
+	f	D	field_5984		velocityY
+	f	D	field_6006		velocityZ
 	f	Z	field_5970		field_5970
-	m	(Lnet/minecraft/class_1313;Lnet/minecraft/class_243;)V	method_5784	method_5784	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_243;Lnet/minecraft/class_1313;)Lnet/minecraft/class_243;	method_18796	method_18796	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18794	method_18794	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2350$class_2351;D)D	method_18797	method_18797	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FLnet/minecraft/class_243;)V	method_5724	method_5724	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_243;FF)Lnet/minecraft/class_243;	method_18795	method_18795	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Lnet/minecraft/class_243;	method_18798	method_18798	
-	m	(Lnet/minecraft/class_243;)V	method_18799	method_18799	
-		p	1		p_1	
-	m	(DDD)V	method_18800	method_18800	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(Lnet/minecraft/class_1313;DDD)V	method_5784		method_5784
+	m	(Lnet/minecraft/class_1313;Lnet/minecraft/class_243;)V	method_5784	move	
+		p	1		movementType	
+		p	2		movement	
+	m	(Lnet/minecraft/class_243;Lnet/minecraft/class_1313;)Lnet/minecraft/class_243;	method_18796	adjustMovementForSneaking	
+		p	1		movement	
+		p	2		type	
+	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18794	adjustMovementForPiston	
+		p	1		movement	
+	m	(Lnet/minecraft/class_2350$class_2351;D)D	method_18797	calculatePistonMovementFactor	
+		p	1		axis	
+		p	2		offsetFactor	
+	m	(FLnet/minecraft/class_243;)V	method_5724	updateVelocity	
+		c	Updates the entity's velocity to add a vector in the direction of the entity's yaw\nwhose absolute value is {@code movementInput} normalized and multiplied by {@code speed}.\n\n<p>This is usually called inside overridden {@link LivingEntity#travel} if the entity is\ntouching water; see {@link net.minecraft.entity.passive.FishEntity} for an example.	
+		p	1		speed	
+		p	2		movementInput	
+	m	(Lnet/minecraft/class_243;FF)Lnet/minecraft/class_243;	method_18795	movementInputToVelocity	
+		c	{@return a vector with the horizontal direction being {@code yaw} degrees and the\nabsolute value being {@code movementInput} normalized and multiplied by {@code speed}}	
+		p	0		movementInput	
+		p	1		speed	
+		p	2		yaw	
+	m	()Lnet/minecraft/class_243;	method_18798	getVelocity	
+	m	(Lnet/minecraft/class_243;)V	method_18799	setVelocity	
+		p	1		velocity	
+	m	(DDD)V	method_18800	setVelocity	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+	m	(Lnet/minecraft/class_1313;DDD)V	method_5784		move
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
-	m	(FFFF)V	method_5724		method_5724
+	m	(FFFF)V	method_5724		updateVelocity
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -94,13 +96,15 @@ c	net/minecraft/class_1307
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1309
-	m	(Lnet/minecraft/class_243;)V	method_6091	method_6091	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18801	method_18801	
-		p	1		p_1	
-	m	(F)F	method_18802	method_18802	
-		p	1		p_1	
-	m	(FFF)V	method_6091		method_6091
+	m	(Lnet/minecraft/class_243;)V	method_6091	travel	
+		c	Allows you to do certain speed and velocity calculations. This is useful for custom vehicle behavior, or custom entity movement. This is not to be confused with AI.\n\n<p>See vanilla examples of {@linkplain net.minecraft.entity.passive.AbstractHorseEntity#travel\ncustom horse vehicle} and {@linkplain net.minecraft.entity.mob.FlyingEntity#travel\nflying entities}.	
+		p	1		movementInput	
+			c	represents the sidewaysSpeed, upwardSpeed, and forwardSpeed of the entity in that order	
+	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18801	applyClimbingSpeed	
+		p	1		motion	
+	m	(F)F	method_18802	getMovementSpeed	
+		p	1		slipperiness	
+	m	(FFF)V	method_6091		travel
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -119,7 +123,7 @@ c	net/minecraft/class_1433
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1440
-	f	Lnet/minecraft/class_243;	field_18277	field_18277	
+	f	Lnet/minecraft/class_243;	field_18277	playingJump	
 	f	D	field_6776		field_6776
 	f	D	field_6778		field_6778
 c	net/minecraft/class_1452
@@ -175,10 +179,10 @@ c	net/minecraft/class_1551
 		p	3			p_3
 c	net/minecraft/class_1571
 c	net/minecraft/class_1571$class_1573
-	m	(Lnet/minecraft/class_243;I)Z	method_7051	method_7051	
-		p	1		p_1	
-		p	2		p_2	
-	m	(DDDD)Z	method_7051		method_7051
+	m	(Lnet/minecraft/class_243;I)Z	method_7051	willCollide	
+		p	1		direction	
+		p	2		steps	
+	m	(DDDD)Z	method_7051		willCollide
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
@@ -212,11 +216,11 @@ c	net/minecraft/class_1634
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_1656
-	f	F	field_7481	field_7481	
-	f	D	field_7481		field_7481
-	m	(F)V	method_7248	method_7248	
-		p	1		p_1	
-	m	(D)V	method_7248		method_7248
+	f	F	field_7481	flySpeed	
+	f	D	field_7481		flySpeed
+	m	(F)V	method_7248	setFlySpeed	
+		p	1		flySpeed	
+	m	(D)V	method_7248		setFlySpeed
 		p	1			p_1
 c	net/minecraft/class_1657
 	m	(Lnet/minecraft/class_243;)V	method_6091	method_6091	
@@ -235,22 +239,24 @@ c	net/minecraft/class_1665
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_1688
-	m	(Lnet/minecraft/class_2338;)Z	method_18803	method_18803	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2338;)Z	method_18803	willHitBlockAt	
+		p	1		pos	
 	m	(DDD)V	method_5814		method_5814
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_238
-	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_238;	method_18804	method_18804	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_238;	method_18804	stretch	
+		p	1		scale	
 c	net/minecraft/class_243
-	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18806	method_18806	
-		p	1		p_1	
-	m	(DDD)Lnet/minecraft/class_243;	method_18805	method_18805	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(Lnet/minecraft/class_243;)Lnet/minecraft/class_243;	method_18806	multiply	
+		c	Returns a vector whose coordinates are the product of each pair of\ncoordinates in this vector and the given vector.\n\n@see #multiply(double, double, double)\n@see #multiply(double)	
+		p	1		vec	
+	m	(DDD)Lnet/minecraft/class_243;	method_18805	multiply	
+		c	Returns a vector whose coordinates are the product of each pair of\ncoordinates in this vector and the given vector.\n\n@see #multiply(Vec3d)\n@see #multiply(double)	
+		p	1		x	
+		p	3		y	
+		p	5		z	
 c	net/minecraft/class_2604
 	m	(ILjava/util/UUID;DDDFFLnet/minecraft/class_1299;ILnet/minecraft/class_243;)V	<init>	<init>	
 		p	1		p_1	
@@ -286,15 +292,15 @@ c	net/minecraft/class_2743
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_3231
-	f	Lnet/minecraft/class_243;	field_18278	field_18278	
+	f	Lnet/minecraft/class_243;	field_18278	velocity	
 	f	D	field_14046		field_14046
 	f	D	field_14057		field_14057
 	f	D	field_14044		field_14044
-c	net/minecraft/class_4081	net/minecraft/class_4081	
+c	net/minecraft/class_4081	net/minecraft/entity/effect/StatusEffectCategory	
 	f	Lnet/minecraft/class_4081;	field_18271	field_18271	
 	f	Lnet/minecraft/class_4081;	field_18272	field_18272	
 	f	Lnet/minecraft/class_4081;	field_18273	field_18273	
-	f	Lnet/minecraft/class_124;	field_18274	field_18274	
+	f	Lnet/minecraft/class_124;	field_18274	formatting	
 	f	[Lnet/minecraft/class_4081;	field_18275	field_18275	
 	m	()[Lnet/minecraft/class_4081;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_4081;	valueOf	valueOf	
@@ -303,7 +309,7 @@ c	net/minecraft/class_4081	net/minecraft/class_4081
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lnet/minecraft/class_124;	method_18793	method_18793	
+	m	()Lnet/minecraft/class_124;	method_18793	getFormatting	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_693
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_1297;Lnet/minecraft/class_1297;FLnet/minecraft/class_243;)V	<init>	<init>	

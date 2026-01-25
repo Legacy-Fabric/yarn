@@ -3,26 +3,26 @@ c	net/minecraft/class_1925
 	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
 		p	1		p_1	
 c	net/minecraft/class_1946
-	f	Lorg/apache/logging/log4j/Logger;	field_19277	field_19277	
-	f	Ljava/util/Map;	field_19278	field_19278	
-	f	Lit/unimi/dsi/fastutil/objects/Object2LongMap;	field_9287	field_9287	
-	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	field_9287		field_9287
-	m	(J)V	method_20464	method_20464	
-		p	1		p_1	
-	m	(J)V	method_20467	method_20467	
-		p	1		p_1	
+	f	Lorg/apache/logging/log4j/Logger;	field_19277	LOGGER	
+	f	Ljava/util/Map;	field_19278	ticketInfos	
+	f	Lit/unimi/dsi/fastutil/objects/Object2LongMap;	field_9287	activePortals	
+	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	field_9287		activePortals
+	m	(J)V	method_20464	tick	
+		p	1		time	
+	m	(J)V	method_20467	removeOldTickets	
+		p	1		time	
 	m	(Lnet/minecraft/class_2265;)Ljava/lang/Object;	method_20465	method_20465	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_2265;)Ljava/lang/Object;	method_20466	method_20466	
 		p	0		p_0	
-	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_243;Lnet/minecraft/class_2350;DDZ)Lcom/mojang/datafixers/util/Pair;	method_18475	method_18475	
+	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_243;Lnet/minecraft/class_2350;DDZ)Lcom/mojang/datafixers/util/Pair;	method_18475	getPortal	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	6		p_6	
 		p	8		p_8	
-	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_243;JLnet/minecraft/class_2350;DD)Lcom/mojang/datafixers/util/Pair;	method_18475		method_18475
+	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_243;JLnet/minecraft/class_2350;DD)Lcom/mojang/datafixers/util/Pair;	method_18475		getPortal
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -30,71 +30,71 @@ c	net/minecraft/class_1946
 		p	6			p_6
 		p	8			p_8
 c	net/minecraft/class_1946$class_1947
-	f	Lnet/minecraft/class_2338;	field_19279	field_19279	
+	f	Lnet/minecraft/class_2338;	field_19279	pos	
 c	net/minecraft/class_1949
 	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
 		p	1		p_1	
-	m	(Ljava/util/function/Function;Ljava/lang/Iterable;J)Lnet/minecraft/class_2499;	method_20469	method_20469	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/util/function/Function;Ljava/lang/Iterable;J)Lnet/minecraft/class_2499;	method_20469	serializeScheduledTicks	
+		p	0		identifierProvider	
+		p	1		scheduledTicks	
+		p	2		time	
 	m	(Lnet/minecraft/class_1954;)V	method_20468	method_20468	
 		p	1		p_1	
 c	net/minecraft/class_1951
-	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
+	m	(Ljava/util/stream/Stream;)V	method_20470	scheduleAll	
 		p	1		p_1	
 c	net/minecraft/class_2264
-	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/class_2265;	method_9702	method_9702	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/class_2264$class_2265;	method_9702		method_9702
+	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/class_2265;	method_9702	getColumnPos	
+		p	0		context	
+		p	1		name	
+	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/class_2264$class_2265;	method_9702		getColumnPos
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/class_2264$class_2265		class_2265
-	f	I	field_10708		field_10708
-	f	I	field_10707		field_10707
+c	net/minecraft/class_2264$class_2265		ColumnPos
+	f	I	field_10708		x
+	f	I	field_10707		z
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()Ljava/lang/String;	toString		toString
-c	net/minecraft/class_2265	net/minecraft/class_2265	
-	f	I	field_10708	field_10708	
-	f	I	field_10707	field_10707	
+c	net/minecraft/class_2265	net/minecraft/util/math/ColumnPos	
+	f	I	field_10708	x	
+	f	I	field_10707	z	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/class_2338;)V	<init>	<init>	
 		p	1		p_1	
-	m	()J	method_20475	method_20475	
-	m	(II)J	method_20474	method_20474	
-		p	0		p_0	
-		p	1		p_1	
+	m	()J	method_20475	toLong	
+	m	(II)J	method_20474	toLong	
+		p	0		x	
+		p	1		z	
 	m	()Ljava/lang/String;	toString	toString	
 	m	()I	hashCode	hashCode	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()Lnet/minecraft/class_1923;	method_20473	method_20473	
 c	net/minecraft/class_2818
-	m	(Lnet/minecraft/class_3218;)V	method_20471	method_20471	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3218;)V	method_20471	enableTickSchedulers	
+		p	1		world	
 c	net/minecraft/class_2850
 	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1954;)V	method_20472	method_20472	
 		p	1		p_1	
 c	net/minecraft/class_3060
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2265;)I	method_13374	method_13374	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2265;Lnet/minecraft/class_2265;Z)I	method_13372	method_13372	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2264$class_2265;)I	method_13374		method_13374
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2265;)I	method_13374	executeQuery	
+		p	0		source	
+		p	1		pos	
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2265;Lnet/minecraft/class_2265;Z)I	method_13372	executeChange	
+		p	0		source	
+		p	1		from	
+		p	2		to	
+		p	3		forceLoaded	
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2264$class_2265;)I	method_13374		executeQuery
 		p	0			p_0
 		p	1			p_1
-	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2264$class_2265;Lnet/minecraft/class_2264$class_2265;Z)I	method_13372		method_13372
+	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2264$class_2265;Lnet/minecraft/class_2264$class_2265;Z)I	method_13372		executeChange
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -109,7 +109,8 @@ c	net/minecraft/class_3227
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3230
-	f	Lnet/minecraft/class_3230;	field_19280	field_19280	
+	f	Lnet/minecraft/class_3230;	field_19280	PORTAL	
+		c	Used by a nether portal to load chunks in the other dimension.	
 c	net/minecraft/class_3235
 	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
 		p	1		p_1	
@@ -118,9 +119,9 @@ c	net/minecraft/class_3235
 c	net/minecraft/class_3569
 	m	(J)Lnet/minecraft/class_2804;	method_15529	method_15529	
 		p	1		p_1	
-c	net/minecraft/class_4296	net/minecraft/class_4296	
-	f	Ljava/util/Set;	field_19275	field_19275	
-	f	Ljava/util/function/Function;	field_19276	field_19276	
+c	net/minecraft/class_4296	net/minecraft/world/tick/SimpleTickScheduler	
+	f	Ljava/util/Set;	field_19275	scheduledTicks	
+	f	Ljava/util/function/Function;	field_19276	identifierProvider	
 	m	(Ljava/util/function/Function;Ljava/util/List;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -137,9 +138,9 @@ c	net/minecraft/class_4296	net/minecraft/class_4296
 		p	2		p_2	
 	m	(Ljava/util/stream/Stream;)V	method_20470	method_20470	
 		p	1		p_1	
-	m	()Ljava/util/stream/Stream;	method_20462	method_20462	
-	m	(J)Lnet/minecraft/class_2499;	method_20463	method_20463	
-		p	1		p_1	
+	m	()Ljava/util/stream/Stream;	method_20462	stream	
+	m	(J)Lnet/minecraft/class_2499;	method_20463	toNbt	
+		p	1		time	
 c	net/minecraft/realms/Realms
 	m	(Ljava/lang/Iterable;)Ljava/lang/String;	joinNarrations	joinNarrations	
 		p	0		p_0	

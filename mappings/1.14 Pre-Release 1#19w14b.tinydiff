@@ -1,16 +1,17 @@
 tiny	2	0
 c	net/minecraft/class_11
-	f	Ljava/util/List;	field_52	field_52	
-	f	[Lnet/minecraft/class_9;	field_52		field_52
+	f	Ljava/util/List;	field_52	nodes	
+	f	[Lnet/minecraft/class_9;	field_52		nodes
 	f	I	field_53		field_53
-	m	()Ljava/util/List;	method_19314	method_19314	
+	m	()Ljava/util/List;	method_19314	getNodes	
 	m	(Ljava/util/List;)V	<init>	<init>	
 		p	1		p_1	
 	m	([Lnet/minecraft/class_9;)V	<init>		<init>
 		p	1			p_1
-	m	()[Lnet/minecraft/class_9;	method_19314		method_19314
+	m	()[Lnet/minecraft/class_9;	method_19314		getNodes
 c	net/minecraft/class_1208
-	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_19224	field_19224	
+	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_19224	POI_CHUNK	
+		c	A type reference which refers to the point of interest data in a chunk.	
 	m	()Ljava/lang/String;	method_20330	method_20330	
 	m	()Ljava/lang/String;	method_20331	method_20331	
 	m	()Ljava/lang/String;	method_20332	method_20332	
@@ -22,7 +23,7 @@ c	net/minecraft/class_1208
 	m	()Ljava/lang/String;	method_20338	method_20338	
 	m	()Ljava/lang/String;	method_20339	method_20339	
 c	net/minecraft/class_1257
-	f	Z	field_19225	field_19225	
+	f	Z	field_19225	eraseCache	
 	m	(Ljava/lang/String;Lnet/minecraft/class_32;Lnet/minecraft/class_31;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -33,12 +34,12 @@ c	net/minecraft/class_1257
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_1297
-	m	(Lnet/minecraft/class_4050;)Lnet/minecraft/class_238;	method_20343	method_20343	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_4050;)Lnet/minecraft/class_238;	method_20343	calculateBoundsForPose	
+		p	1		pos	
 c	net/minecraft/class_13
-	m	(Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55	method_55	
+	m	(Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55	createPath	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55		method_55
+	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55		createPath
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1308
@@ -62,49 +63,60 @@ c	net/minecraft/class_1577
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/class_1747
-	m	()Z	method_20360	method_20360	
+	m	()Z	method_20360	checkStatePlacement	
 c	net/minecraft/class_1845
-	m	(Lnet/minecraft/class_1842;)Z	method_20361	method_20361	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_1842;)Z	method_20361	isBrewable	
+		p	0		potion	
 c	net/minecraft/class_2512
-	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_4284;Lnet/minecraft/class_2487;I)Lnet/minecraft/class_2487;	method_10688	method_10688	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_4284;Lnet/minecraft/class_2487;II)Lnet/minecraft/class_2487;	method_10693	method_10693	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lcom/mojang/datafixers/DataFixer;Lcom/mojang/datafixers/DSL$TypeReference;Lnet/minecraft/class_2487;I)Lnet/minecraft/class_2487;	method_10688		method_10688
+	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_4284;Lnet/minecraft/class_2487;I)Lnet/minecraft/class_2487;	method_10688	update	
+		c	Uses the data fixer to update an NBT compound object to the latest data version.	
+		p	0		fixer	
+			c	the data fixer	
+		p	1		fixTypes	
+			c	the fix types	
+		p	2		compound	
+			c	the NBT compound object to fix	
+		p	3		oldVersion	
+			c	the data version of the NBT compound object	
+	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_4284;Lnet/minecraft/class_2487;II)Lnet/minecraft/class_2487;	method_10693	update	
+		c	Uses the data fixer to update an NBT compound object.	
+		p	0		fixer	
+			c	the data fixer	
+		p	1		fixTypes	
+			c	the fix types	
+		p	2		compound	
+			c	the NBT compound object to fix	
+		p	3		oldVersion	
+			c	the data version of the NBT compound object	
+		p	4		targetVersion	
+			c	the data version to update the NBT compound object to	
+	m	(Lcom/mojang/datafixers/DataFixer;Lcom/mojang/datafixers/DSL$TypeReference;Lnet/minecraft/class_2487;I)Lnet/minecraft/class_2487;	method_10688		update
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lcom/mojang/datafixers/DataFixer;Lcom/mojang/datafixers/DSL$TypeReference;Lnet/minecraft/class_2487;II)Lnet/minecraft/class_2487;	method_10693		method_10693
+	m	(Lcom/mojang/datafixers/DataFixer;Lcom/mojang/datafixers/DSL$TypeReference;Lnet/minecraft/class_2487;II)Lnet/minecraft/class_2487;	method_10693		update
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_2595
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;IIIII)I	method_20364	method_20364	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;III)I	method_17765	method_17765	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;IIIII)I	method_17765		method_17765
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;IIIII)I	method_20364	tickViewerCount	
+		p	0		world	
+		p	1		inventory	
+		p	2		ticksOpen	
+		p	3		x	
+		p	4		y	
+		p	5		z	
+		p	6		viewerCount	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;III)I	method_17765	countViewers	
+		p	0		world	
+		p	1		inventory	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2624;IIIII)I	method_17765		countViewers
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -134,19 +146,19 @@ c	net/minecraft/class_309
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_3193
-	f	Z	field_19238	field_19238	
-	m	()Z	method_20384	method_20384	
-	m	()V	method_20385	method_20385	
+	f	Z	field_19238	accessible	
+	m	()Z	method_20384	isAccessible	
+	m	()V	method_20385	updateAccessibleStatus	
 c	net/minecraft/class_3227
-	m	(Lnet/minecraft/class_1923;)V	method_20386	method_20386	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1923;)V	method_20386	updateChunkStatus	
+		p	1		pos	
 	m	(Lnet/minecraft/class_1923;)Ljava/lang/String;	method_20387	method_20387	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_1923;)V	method_20388	method_20388	
 		p	1		p_1	
 	m	()I	method_20389	method_20389	
 c	net/minecraft/class_333
-	m	()V	method_20371	method_20371	
+	m	()V	method_20371	destroy	
 c	net/minecraft/class_3481
 	f	Lnet/minecraft/class_3494;	field_18830		field_18830
 	f	Lnet/minecraft/class_3494;	field_18831		field_18831
@@ -167,9 +179,9 @@ c	net/minecraft/class_3481
 	f	Lnet/minecraft/class_3494;	field_18846		field_18846
 	f	Lnet/minecraft/class_3494;	field_18847		field_18847
 c	net/minecraft/class_3532
-	m	(DD)Z	method_20390	method_20390	
-		p	0		p_0	
-		p	2		p_2	
+	m	(DD)Z	method_20390	approximatelyEquals	
+		p	0		a	
+		p	2		b	
 c	net/minecraft/class_3708
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Ljava/util/Random;)V	method_9588	method_9588	
 		p	1		p_1	
@@ -178,8 +190,8 @@ c	net/minecraft/class_3708
 		p	4		p_4	
 c	net/minecraft/class_3719
 	f	I	field_17585		field_17585
-	m	()V	method_20363	method_20363	
-	m	()V	method_20362	method_20362	
+	m	()V	method_20363	scheduleUpdate	
+	m	()V	method_20362	tick	
 	m	()V	method_16896		method_16896
 c	net/minecraft/class_3734
 	m	()Z	method_20360	method_20360	
@@ -189,14 +201,14 @@ c	net/minecraft/class_3736
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)I	method_16372
-		p	0		p_0	
+		p	0		world	
 		p	2			p_2
 c	net/minecraft/class_4048
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/class_405
-	f	Z	field_19232	field_19232	
-	f	Ljava/lang/String;	field_19233	field_19233	
-	f	Lnet/minecraft/class_4286;	field_19234	field_19234	
+	f	Z	field_19232	showEraseCacheCheckbox	
+	f	Ljava/lang/String;	field_19233	eraseCacheText	
+	f	Lnet/minecraft/class_4286;	field_19234	eraseCacheCheckbox	
 	m	(Lnet/minecraft/class_437;Lnet/minecraft/class_405$class_406;Lnet/minecraft/class_2561;Lnet/minecraft/class_2561;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -210,8 +222,8 @@ c	net/minecraft/class_405
 		p	4			p_4
 c	net/minecraft/class_405$class_406
 	m	(ZZ)V	proceed	proceed	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		backup	
+		p	2		eraseCache	
 	m	(Z)V	proceed		proceed
 		p	1			p_1
 c	net/minecraft/class_407
@@ -225,8 +237,8 @@ c	net/minecraft/class_407
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_410
-	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_2403	field_2403	
-	f	Lnet/minecraft/class_411;	field_2403		field_2403
+	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_2403	callback	
+	f	Lnet/minecraft/class_411;	field_2403		callback
 	f	I	field_2398		field_2398
 	m	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lnet/minecraft/class_2561;Lnet/minecraft/class_2561;)V	<init>	<init>	
 		p	1		p_1	
@@ -254,20 +266,20 @@ c	net/minecraft/class_4153
 	m	(Ljava/io/File;Lcom/mojang/datafixers/DataFixer;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_2826;)Z	method_20345	method_20345	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_2826;Lnet/minecraft/class_4076;Ljava/util/function/BiConsumer;)V	method_20348	method_20348	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_2826;)Z	method_20345	shouldScan	
+		p	0		chunkSection	
+	m	(Lnet/minecraft/class_2826;Lnet/minecraft/class_4076;Ljava/util/function/BiConsumer;)V	method_20348	scanAndPopulate	
+		p	1		chunkSection	
+		p	2		sectionPos	
+		p	3		populator	
 	m	(Lnet/minecraft/class_2826;Ljava/util/function/BiConsumer;Lnet/minecraft/class_2338;)V	method_19511	method_19511	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		pos	
 	m	(Ljava/util/function/BiConsumer;Lnet/minecraft/class_2338;Lnet/minecraft/class_4158;)V	method_19512	method_19512	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		poiType	
 	m	(Lnet/minecraft/class_2826;Lnet/minecraft/class_4076;)V	method_20346	method_20346	
 		p	1		p_1	
 		p	2		p_2	
@@ -278,7 +290,7 @@ c	net/minecraft/class_4153
 	m	(Lnet/minecraft/class_2826;Lnet/minecraft/class_4076;Ljava/util/function/BiConsumer;)V	method_20349	method_20349	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		populator	
 	m	(Ljava/io/File;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_2826;Lnet/minecraft/class_2338;)V	method_19511		method_19511
@@ -288,15 +300,15 @@ c	net/minecraft/class_4153
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_4157
-	f	Z	field_19226	field_19226	
-	m	(Lnet/minecraft/class_4156;)Z	method_20350	method_20350	
-		p	1		p_1	
-	m	(Ljava/util/function/Consumer;)V	method_20353	method_20353	
-		p	1		p_1	
+	f	Z	field_19226	valid	
+	m	(Lnet/minecraft/class_4156;)Z	method_20350	add	
+		p	1		poi	
+	m	(Ljava/util/function/Consumer;)V	method_20353	updatePointsOfInterest	
+		p	1		updater	
 	m	(Lit/unimi/dsi/fastutil/shorts/Short2ObjectMap;Lnet/minecraft/class_2338;Lnet/minecraft/class_4158;)V	method_20352	method_20352	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	2		pos	
+		p	3		poiType	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_4158;I)Lnet/minecraft/class_4156;	method_20351	method_20351	
 		p	1		p_1	
 		p	2		p_2	
@@ -304,17 +316,17 @@ c	net/minecraft/class_4157
 	m	(Lnet/minecraft/class_4158;)Ljava/util/Set;	method_19152		method_19152
 		p	0			p_0
 c	net/minecraft/class_4158
-	f	Ljava/util/Set;	field_19227	field_19227	
+	f	Ljava/util/Set;	field_19227	BED_STATES	
 	f	Lnet/minecraft/class_3494;	field_18520		field_18520
-	m	(Lnet/minecraft/class_2248;)Ljava/util/Set;	method_20356	method_20356	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_4158;)Lnet/minecraft/class_4158;	method_20354	method_20354	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_2248;)Ljava/util/Set;	method_20356	getAllStatesOf	
+		p	0		block	
+	m	(Lnet/minecraft/class_4158;)Lnet/minecraft/class_4158;	method_20354	setup	
+		p	0		poiType	
 	m	(Lnet/minecraft/class_4158;Lnet/minecraft/class_2680;)V	method_20355	method_20355	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		state	
 	m	(Lnet/minecraft/class_2248;)Ljava/util/stream/Stream;	method_20359	method_20359	
-		p	0		p_0	
+		p	0		block	
 	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -326,12 +338,12 @@ c	net/minecraft/class_4158
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;)Lnet/minecraft/class_4158;	method_20357	method_20357	
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;)Lnet/minecraft/class_4158;	method_20357	register	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;)Lnet/minecraft/class_4158;	method_20358	method_20358	
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;)Lnet/minecraft/class_4158;	method_20358	register	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
@@ -380,14 +392,14 @@ c	net/minecraft/class_4158
 	m	(Lnet/minecraft/class_4158;)V	method_19513		method_19513
 		p	0			p_0
 c	net/minecraft/class_418
-	m	(Z)V	method_20373	method_20373	
-		p	1		p_1	
+	m	(Z)V	method_20373	onConfirmQuit	
+		p	1		quit	
 	m	(ZI)V	confirmResult		confirmResult
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_4180
-	f	Lcom/mojang/datafixers/DataFixer;	field_19228	field_19228	
-	f	Lnet/minecraft/class_4284;	field_19229	field_19229	
+	f	Lcom/mojang/datafixers/DataFixer;	field_19228	dataFixer	
+	f	Lnet/minecraft/class_4284;	field_19229	dataFixTypes	
 	m	(Ljava/io/File;Ljava/util/function/BiFunction;Ljava/util/function/Function;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_4284;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -398,12 +410,12 @@ c	net/minecraft/class_4180
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_1923;)V	method_20370	method_20370	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1923;)V	method_20370	save	
+		p	1		pos	
 	m	(Lnet/minecraft/class_1923;Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_20367	method_20367	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)I	method_20369	method_20369	
+	m	(Lcom/mojang/datafixers/Dynamic;)I	method_20369	getDataVersion	
 		p	0		p_0	
 	m	(JZLnet/minecraft/class_4213;)V	method_20366	method_20366	
 		p	1		p_1	
@@ -417,7 +429,7 @@ c	net/minecraft/class_4180
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_420
-	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_19235	field_19235	
+	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_19235	callback	
 	f	Lnet/minecraft/class_437;	field_2461		field_2461
 	m	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lnet/minecraft/class_642;)V	<init>	<init>	
 		p	1		p_1	
@@ -426,7 +438,7 @@ c	net/minecraft/class_420
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_422
-	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_19236	field_19236	
+	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_19236	callback	
 	f	Lnet/minecraft/class_437;	field_2470		field_2470
 	m	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lnet/minecraft/class_642;)V	<init>	<init>	
 		p	1		p_1	
@@ -434,7 +446,7 @@ c	net/minecraft/class_422
 	m	(Lnet/minecraft/class_437;Lnet/minecraft/class_642;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/class_4284	net/minecraft/class_4284	
+c	net/minecraft/class_4284	net/minecraft/datafixer/DataFixTypes	
 	f	Lnet/minecraft/class_4284;	field_19212	field_19212	
 	f	Lnet/minecraft/class_4284;	field_19213	field_19213	
 	f	Lnet/minecraft/class_4284;	field_19214	field_19214	
@@ -445,7 +457,7 @@ c	net/minecraft/class_4284	net/minecraft/class_4284
 	f	Lnet/minecraft/class_4284;	field_19219	field_19219	
 	f	Lnet/minecraft/class_4284;	field_19220	field_19220	
 	f	Lnet/minecraft/class_4284;	field_19221	field_19221	
-	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_19222	field_19222	
+	f	Lcom/mojang/datafixers/DSL$TypeReference;	field_19222	typeReference	
 	f	[Lnet/minecraft/class_4284;	field_19223	field_19223	
 	m	()[Lnet/minecraft/class_4284;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_4284;	valueOf	valueOf	
@@ -454,22 +466,22 @@ c	net/minecraft/class_4284	net/minecraft/class_4284
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lcom/mojang/datafixers/DSL$TypeReference;	method_20329	method_20329	
+	m	()Lcom/mojang/datafixers/DSL$TypeReference;	method_20329	getTypeReference	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_4285	net/minecraft/class_4285	
+c	net/minecraft/class_4285	net/minecraft/datafixer/fix/PointOfInterestReorganizationFix	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_20340	method_20340	
-		p	0		p_0	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_20340	reorganize	
+		p	0		tag	
 	m	(Lcom/mojang/datafixers/types/DynamicOps;)Ljava/util/function/Function;	method_20341	method_20341	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;	method_20342	method_20342	
 		p	0		p_0	
-c	net/minecraft/class_4286	net/minecraft/class_4286	
-	f	Lnet/minecraft/class_2960;	field_19231	field_19231	
-	f	Z	field_19230	field_19230	
+c	net/minecraft/class_4286	net/minecraft/client/gui/widget/CheckboxWidget	
+	f	Lnet/minecraft/class_2960;	field_19231	TEXTURE	
+	f	Z	field_19230	checked	
 	m	(IIIILjava/lang/String;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -478,21 +490,21 @@ c	net/minecraft/class_4286	net/minecraft/class_4286
 		p	5		p_5	
 		p	6		p_6	
 	m	()V	onPress	onPress	
-	m	()Z	method_20372	method_20372	
+	m	()Z	method_20372	isChecked	
 	m	(IIF)V	renderButton	renderButton	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_429
-	m	(Z)V	method_20374	method_20374	
-		p	1		p_1	
+	m	(Z)V	method_20374	lockDifficulty	
+		p	1		difficultyLocked	
 	m	(ZI)V	confirmResult		confirmResult
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_433
 	m	(Z)V	method_19837	method_19837	
-		p	1		p_1	
+		p	1		confirmed	
 	m	(Z)V	method_19839	method_19839	
 		p	1		p_1	
 	m	(ZI)V	method_19837		method_19837
@@ -504,13 +516,13 @@ c	net/minecraft/class_433
 c	net/minecraft/class_437
 	f	I	CONFIRM_URL_BUTTON_ID		CONFIRM_URL_BUTTON_ID
 	m	(Z)V	confirmLink	confirmLink	
-		p	1		p_1	
+		p	1		open	
 	m	(ZI)V	confirmResult		confirmResult
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_442
-	m	(Z)V	method_20375	method_20375	
-		p	1		p_1	
+	m	(Z)V	method_20375	onDemoDeletionConfirmed	
+		p	1		delete	
 	m	(Z)V	method_20376	method_20376	
 		p	1		p_1	
 	m	(ZI)V	confirmResult		confirmResult
@@ -521,41 +533,41 @@ c	net/minecraft/class_500
 	f	Z	field_3038		field_3038
 	f	Z	field_3036		field_3036
 	f	Z	field_3035		field_3035
-	m	(Z)V	method_20377	method_20377	
-		p	1		p_1	
-	m	(Z)V	method_20378	method_20378	
-		p	1		p_1	
-	m	(Z)V	method_20379	method_20379	
-		p	1		p_1	
-	m	(Z)V	method_20380	method_20380	
-		p	1		p_1	
+	m	(Z)V	method_20377	removeEntry	
+		p	1		confirmedAction	
+	m	(Z)V	method_20378	editEntry	
+		p	1		confirmedAction	
+	m	(Z)V	method_20379	addEntry	
+		p	1		confirmedAction	
+	m	(Z)V	method_20380	directConnect	
+		p	1		confirmedAction	
 	m	(ZI)V	confirmResult		confirmResult
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_521
 c	net/minecraft/class_521$class_4271
 	m	(Z)V	method_20146	method_20146	
-		p	1		p_1	
+		p	1		confirmed	
 	m	(ZI)V	method_20146		method_20146
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_524
-	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_3169	field_3169	
-	f	Lnet/minecraft/class_411;	field_3169		field_3169
+	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_3169	callback	
+	f	Lnet/minecraft/class_411;	field_3169		callback
 	m	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(ZZ)V	method_19931	method_19931	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		backup	
+		p	2		eraseCache	
 	m	(Lnet/minecraft/class_411;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(Z)V	method_19931		method_19931
 		p	1			p_1
 c	net/minecraft/class_527
-	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_3233	field_3233	
-	f	Lnet/minecraft/class_411;	field_3233		field_3233
+	f	Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;	field_3233	callback	
+	f	Lnet/minecraft/class_411;	field_3233		callback
 	m	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Ljava/lang/String;Lnet/minecraft/class_32;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -573,12 +585,12 @@ c	net/minecraft/class_528$class_4272
 	m	(Z)V	method_20168	method_20168	
 		p	1		p_1	
 	m	(Z)V	method_20170	method_20170	
-		p	1		p_1	
+		p	1		confirmed	
 	m	(Z)V	method_20172	method_20172	
-		p	1		p_1	
+		p	1		confirmed	
 	m	(ZZ)V	method_20167	method_20167	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		backup	
+		p	2		eraseCache	
 	m	(Lnet/minecraft/class_525;ZI)V	method_20165		method_20165
 		p	1			p_1
 		p	2			p_2
@@ -621,9 +633,9 @@ c	net/minecraft/class_743
 		p	1		p_1	
 	m	()V	method_3129		method_3129
 c	net/minecraft/class_744
-	m	(Z)V	method_3129	method_3129	
+	m	(Z)V	method_3129	tick	
 		p	1		p_1	
-	m	()V	method_3129		method_3129
+	m	()V	method_3129		tick
 c	net/minecraft/class_745
 	m	()V	method_7318		method_7318
 c	net/minecraft/realms/Realms
@@ -686,9 +698,9 @@ c	net/minecraft/realms/pluginapi/RealmsPlugin	net/minecraft/realms/pluginapi/Rea
 	m	(Ljava/lang/String;)Lcom/mojang/datafixers/util/Either;	tryLoad	tryLoad	
 		p	1		p_1	
 c	net/minecraft/server/MinecraftServer
-	f	Z	field_19237	field_19237	
-	m	(Z)V	method_20383	method_20383	
-		p	1		p_1	
+	f	Z	field_19237	eraseCache	
+	m	(Z)V	method_20383	setEraseCache	
+		p	1		eraseCache	
 c	net/minecraft/class_411		net/minecraft/class_411
 	m	(ZI)V	confirmResult		confirmResult
 		p	1			p_1

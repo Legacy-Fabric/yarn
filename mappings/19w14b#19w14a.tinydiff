@@ -1,8 +1,8 @@
 tiny	2	0
 c	net/minecraft/class_1366
-	f	J	field_19200	field_19200	
+	f	J	field_19200	lastUpdateTime	
 c	net/minecraft/class_1382
-	m	()Z	method_20307	method_20307	
+	m	()Z	method_20307	hasAvailableTarget	
 	m	(Lnet/minecraft/class_1314;)I	method_6293		method_6293
 		p	1			p_1
 	m	()Z	method_6266		method_6266
@@ -22,13 +22,13 @@ c	net/minecraft/class_1642$class_1643
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_1671
-	m	()Z	method_20308	method_20308	
+	m	()Z	method_20308	hasExplosionEffects	
 c	net/minecraft/class_1764
 	m	()Ljava/util/function/Predicate;	method_20310	method_20310	
-	m	(Lnet/minecraft/class_1799;)F	method_20309	method_20309	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_1799;)F	method_20309	getSpeed	
+		p	0		stack	
 c	net/minecraft/class_1811
-	m	()Ljava/util/function/Predicate;	method_20310	method_20310	
+	m	()Ljava/util/function/Predicate;	method_20310	getHeldProjectiles	
 c	net/minecraft/class_1920
 	m	(Lnet/minecraft/class_1944;Lnet/minecraft/class_2338;)I	method_8312		method_8312
 		p	1			p_1
@@ -36,25 +36,25 @@ c	net/minecraft/class_1920
 c	net/minecraft/class_1937
 	m	()Lnet/minecraft/class_2806;	method_20311	method_20311	
 c	net/minecraft/class_1941
-	m	()Lnet/minecraft/class_2806;	method_20311	method_20311	
+	m	()Lnet/minecraft/class_2806;	method_20311	getLeastChunkStatusForCollisionCalculation	
 c	net/minecraft/class_2248
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z	method_9599		method_9599
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2602
-	m	(Lnet/minecraft/class_4282;)V	method_20320	method_20320	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_4282;)V	method_20320	onChunkRenderDistanceCenter	
+		p	1		packet	
 c	net/minecraft/class_2680
 	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)Z	method_11593		method_11593
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_2794
-	m	(Lnet/minecraft/class_3218;ZZ)V	method_12099	method_12099	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;ZZ)V	method_12099		method_12099
+	m	(Lnet/minecraft/class_3218;ZZ)V	method_12099	spawnEntities	
+		p	1		world	
+		p	2		spawnMonsters	
+		p	3		spawnAnimals	
+	m	(Lnet/minecraft/class_1937;ZZ)V	method_12099		spawnEntities
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -68,11 +68,11 @@ c	net/minecraft/class_2897
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2910
-	m	(Lnet/minecraft/class_3218;ZZ)I	method_12639	method_12639	
+	m	(Lnet/minecraft/class_3218;ZZ)I	method_12639	spawn	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;ZZ)I	method_12639		method_12639
+		p	2		spawnMonsters	
+		p	3		spawnAnimals	
+	m	(Lnet/minecraft/class_1937;ZZ)I	method_12639		spawn
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -88,8 +88,8 @@ c	net/minecraft/class_2912
 c	net/minecraft/class_3031
 	f	Lnet/minecraft/class_3031;	field_19201	field_19201	
 c	net/minecraft/class_3232
-	m	(I)V	method_20314	method_20314	
-		p	1		p_1	
+	m	(I)V	method_20314	removeLayerBlock	
+		p	1		layer	
 c	net/minecraft/class_339
 	m	(Z)Z	changeFocus	changeFocus	
 		p	1		p_1	
@@ -98,10 +98,10 @@ c	net/minecraft/class_339
 		p	2			p_2
 	m	()Z	isPartOfFocusCycle		isPartOfFocusCycle
 c	net/minecraft/class_342
-	m	()Z	method_20315	method_20315	
+	m	()Z	method_20315	isActive	
 	m	(Z)Z	changeFocus	changeFocus	
 		p	1		p_1	
-	m	()Z	method_20316	method_20316	
+	m	()Z	method_20316	isEditable	
 	m	(ZZ)V	onFocusChanged		onFocusChanged
 		p	1			p_1
 		p	2			p_2
@@ -135,54 +135,54 @@ c	net/minecraft/class_350
 	f	Z	field_19095		field_19095
 	f	Lnet/minecraft/class_350$class_351;	field_19096		field_19096
 	m	(Z)V	setRenderSelection	setRenderSelection	
-		p	1		p_1	
+		p	1		renderSelection	
 	m	(ZI)V	setRenderHeader	setRenderHeader	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		renderHeader	
+		p	2		headerHeight	
 	m	()I	getRowWidth	getRowWidth	
 	m	()Lnet/minecraft/class_350$class_351;	getSelected	getSelected	
 	m	(Lnet/minecraft/class_350$class_351;)V	setSelected	setSelected	
-		p	1		p_1	
+		p	1		entry	
 	m	()Lnet/minecraft/class_350$class_351;	getFocused	getFocused	
 	m	()V	clearEntries	clearEntries	
 	m	(I)Lnet/minecraft/class_350$class_351;	getEntry	getEntry	
-		p	1		p_1	
+		p	1		index	
 	m	(Lnet/minecraft/class_350$class_351;)I	addEntry	addEntry	
-		p	1		p_1	
+		p	1		entry	
 	m	()I	getItemCount	getItemCount	
 	m	(I)Z	isSelectedItem	isSelectedItem	
-		p	1		p_1	
+		p	1		index	
 	m	(DD)Lnet/minecraft/class_350$class_351;	getEntryAtPosition	getEntryAtPosition	
-		p	1		p_1	
-		p	3		p_3	
+		p	1		x	
+		p	3		y	
 	m	(IIII)V	updateSize	updateSize	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		width	
+		p	2		height	
+		p	3		top	
+		p	4		bottom	
 	m	(I)V	setLeftPos	setLeftPos	
-		p	1		p_1	
+		p	1		left	
 	m	()I	getMaxPosition	getMaxPosition	
 	m	(II)V	clickedHeader	clickedHeader	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		x	
+		p	2		y	
 	m	(IILnet/minecraft/class_289;)V	renderHeader	renderHeader	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		tessellator	
 	m	()V	renderBackground	renderBackground	
 	m	(II)V	renderDecorations	renderDecorations	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		mouseX	
+		p	2		mouseY	
 	m	(Lnet/minecraft/class_350$class_351;)V	centerScrollOn	centerScrollOn	
-		p	1		p_1	
+		p	1		entry	
 	m	(Lnet/minecraft/class_350$class_351;)V	ensureVisible	ensureVisible	
-		p	1		p_1	
+		p	1		entry	
 	m	(I)V	scroll	scroll	
-		p	1		p_1	
+		p	1		amount	
 	m	()D	getScrollAmount	getScrollAmount	
 	m	(D)V	setScrollAmount	setScrollAmount	
-		p	1		p_1	
+		p	1		amount	
 	m	()I	getMaxScroll	getMaxScroll	
 	m	()I	getScrollBottom	getScrollBottom	
 	m	(DDI)V	updateScrollingState	updateScrollingState	
@@ -191,24 +191,24 @@ c	net/minecraft/class_350
 		p	5		p_5	
 	m	()I	getScrollbarPosition	getScrollbarPosition	
 	m	(I)V	moveSelection	moveSelection	
-		p	1		p_1	
+		p	1		amount	
 	m	(IIIIF)V	renderList	renderList	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		x	
+		p	2		y	
+		p	3		mouseX	
+		p	4		mouseY	
+		p	5		delta	
 	m	()I	getRowLeft	getRowLeft	
 	m	(I)I	getRowTop	getRowTop	
-		p	1		p_1	
+		p	1		index	
 	m	()Z	isFocused	isFocused	
 	m	(IIII)V	renderHoleBackground	renderHoleBackground	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		top	
+		p	2		bottom	
+		p	3		alphaTop	
+		p	4		alphaBottom	
 	m	(I)Lnet/minecraft/class_350$class_351;	remove	remove	
-		p	1		p_1	
+		p	1		index	
 	m	(ZI)V	method_20063		method_20063
 		p	1			p_1
 		p	2			p_2
@@ -288,15 +288,15 @@ c	net/minecraft/class_350$class_351
 	f	Lnet/minecraft/class_350;	list	list	
 	f	Lnet/minecraft/class_350;	field_2144		field_2144
 	m	(IIIIIIIZF)V	render	render	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		index	
+		p	2		y	
+		p	3		x	
+		p	4		width	
+		p	5		height	
+		p	6		mouseX	
+		p	7		mouseY	
+		p	8		hovering	
+		p	9		delta	
 	m	(F)V	method_1904		method_1904
 		p	1			p_1
 	m	(IIIIIIIZF)V	method_1903		method_1903
@@ -338,7 +338,7 @@ c	net/minecraft/class_353$class_354
 		p	9			p_9
 c	net/minecraft/class_364
 	m	(Z)Z	changeFocus	changeFocus	
-		p	1		p_1	
+		p	1		lookForwards	
 	m	(Z)Z	method_20087		method_20087
 		p	1			p_1
 	m	(ZZ)V	onFocusChanged		onFocusChanged
@@ -346,11 +346,11 @@ c	net/minecraft/class_364
 		p	2			p_2
 	m	()Z	isPartOfFocusCycle		isPartOfFocusCycle
 c	net/minecraft/class_3769
-	m	(Lnet/minecraft/class_3218;ZZ)I	method_16574	method_16574	
+	m	(Lnet/minecraft/class_3218;ZZ)I	method_16574	spawn	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;ZZ)I	method_16574		method_16574
+		p	2		spawnMonsters	
+		p	3		spawnAnimals	
+	m	(Lnet/minecraft/class_1937;ZZ)I	method_16574		spawn
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -582,15 +582,15 @@ c	net/minecraft/class_4267$class_4270
 		p	8			p_8
 		p	9			p_9
 c	net/minecraft/class_4274
-	m	(Lnet/minecraft/class_3218;ZZ)I	method_20261	method_20261	
+	m	(Lnet/minecraft/class_3218;ZZ)I	method_20261	spawn	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_1937;ZZ)I	method_20261		method_20261
+		p	2		spawnMonsters	
+		p	3		spawnAnimals	
+	m	(Lnet/minecraft/class_1937;ZZ)I	method_20261		spawn
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/class_4278	net/minecraft/class_4278	
+c	net/minecraft/class_4278	net/minecraft/world/gen/feature/FillLayerFeature	
 	m	(Ljava/util/function/Function;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2794;Ljava/util/Random;Lnet/minecraft/class_2338;Lnet/minecraft/class_4279;)Z	method_20312	method_20312	
@@ -605,17 +605,17 @@ c	net/minecraft/class_4278	net/minecraft/class_4278
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/class_4279	net/minecraft/class_4279	
-	f	I	field_19202	field_19202	
-	f	Lnet/minecraft/class_2680;	field_19203	field_19203	
+c	net/minecraft/class_4279	net/minecraft/world/gen/feature/FillLayerFeatureConfig	
+	f	I	field_19202	height	
+	f	Lnet/minecraft/class_2680;	field_19203	state	
 	m	(ILnet/minecraft/class_2680;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/types/DynamicOps;)Lcom/mojang/datafixers/Dynamic;	method_16587	method_16587	
 		p	1		p_1	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lnet/minecraft/class_4279;	method_20313	method_20313	
-		p	0		p_0	
-c	net/minecraft/class_4280	net/minecraft/class_4280	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lnet/minecraft/class_4279;	method_20313	deserialize	
+		p	0		dynamic	
+c	net/minecraft/class_4280	net/minecraft/client/gui/widget/AlwaysSelectedEntryListWidget	
 	f	Z	inFocus	inFocus	
 	m	(Lnet/minecraft/class_310;IIIII)V	<init>	<init>	
 		p	1		p_1	
@@ -626,13 +626,13 @@ c	net/minecraft/class_4280	net/minecraft/class_4280
 		p	6		p_6	
 	m	(Z)Z	changeFocus	changeFocus	
 		p	1		p_1	
-c	net/minecraft/class_4280$class_4281	class_4281	
+c	net/minecraft/class_4280$class_4281	Entry	
 	m	()V	<init>	<init>	
 	m	(Z)Z	changeFocus	changeFocus	
 		p	1		p_1	
-c	net/minecraft/class_4282	net/minecraft/class_4282	
-	f	I	field_19206	field_19206	
-	f	I	field_19207	field_19207	
+c	net/minecraft/class_4282	net/minecraft/network/packet/s2c/play/ChunkRenderDistanceCenterS2CPacket	
+	f	I	field_19206	chunkX	
+	f	I	field_19207	chunkZ	
 	m	()V	<init>	<init>	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
@@ -643,8 +643,8 @@ c	net/minecraft/class_4282	net/minecraft/class_4282
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2602;)V	method_20321	method_20321	
 		p	1		p_1	
-	m	()I	method_20322	method_20322	
-	m	()I	method_20323	method_20323	
+	m	()I	method_20322	getChunkX	
+	m	()I	method_20323	getChunkZ	
 	m	(Lnet/minecraft/class_2547;)V	method_11054	method_11054	
 		p	1		p_1	
 c	net/minecraft/class_430
@@ -683,13 +683,13 @@ c	net/minecraft/class_430$class_4196$class_432
 c	net/minecraft/class_442
 	f	Lnet/minecraft/class_4185;	field_2602		field_2602
 c	net/minecraft/class_447
-	f	Lnet/minecraft/class_4280;	field_2643	field_2643	
-	f	Lnet/minecraft/class_350;	field_2643		field_2643
-	m	()Lnet/minecraft/class_4280;	method_19399	method_19399	
-	m	(Lnet/minecraft/class_4280;)V	method_19390	method_19390	
-		p	1		p_1	
-	m	()Lnet/minecraft/class_350;	method_19399		method_19399
-	m	(Lnet/minecraft/class_350;)V	method_19390		method_19390
+	f	Lnet/minecraft/class_4280;	field_2643	selectedList	
+	f	Lnet/minecraft/class_350;	field_2643		selectedList
+	m	()Lnet/minecraft/class_4280;	method_19399	getSelectedStatList	
+	m	(Lnet/minecraft/class_4280;)V	method_19390	selectStatList	
+		p	1		list	
+	m	()Lnet/minecraft/class_350;	method_19399		getSelectedStatList
+	m	(Lnet/minecraft/class_350;)V	method_19390		selectStatList
 		p	1			p_1
 c	net/minecraft/class_447$class_4198
 	m	()V	renderBackground	renderBackground	
@@ -928,17 +928,17 @@ c	net/minecraft/class_631
 	f	Lnet/minecraft/class_310;	field_16250		field_16250
 	f	I	field_16249		field_16249
 	f	I	field_16247		field_16247
-	m	(II)V	method_20317	method_20317	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)V	method_20317	setChunkMapCenter	
+		p	1		x	
+		p	2		z	
 	m	()V	method_16026		method_16026
 	m	(Lnet/minecraft/class_631;)I	method_16022		method_16022
 		p	0			p_0
 	m	(Lnet/minecraft/class_631;)I	method_16023		method_16023
 		p	0			p_0
 c	net/minecraft/class_631$class_3681
-	f	I	field_19204	field_19204	
-	f	I	field_19205	field_19205	
+	f	I	field_19204	centerChunkX	
+	f	I	field_19205	centerChunkZ	
 	m	(Lnet/minecraft/class_631$class_3681;I)I	method_20318	method_20318	
 		p	0		p_0	
 		p	1		p_1	
@@ -949,10 +949,10 @@ c	net/minecraft/class_634
 	m	(Lnet/minecraft/class_4282;)V	method_20320	method_20320	
 		p	1		p_1	
 c	net/minecraft/class_846
-	m	(Lnet/minecraft/class_287;I)V	method_3623	method_3623	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_287;ILnet/minecraft/class_851;)V	method_3623		method_3623
+	m	(Lnet/minecraft/class_287;I)V	method_3623	uploadDisplayList	
+		p	1		bufferBuilder	
+		p	2		index	
+	m	(Lnet/minecraft/class_287;ILnet/minecraft/class_851;)V	method_3623		uploadDisplayList
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1214,9 +1214,9 @@ c	net/minecraft/realms/RepeatedNarrator	net/minecraft/realms/RepeatedNarrator
 	m	(Ljava/lang/String;Lnet/minecraft/realms/RepeatedNarrator$class_4283;)Lnet/minecraft/realms/RepeatedNarrator$class_4283;	lambda$narrate$0	lambda$narrate$0	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/realms/RepeatedNarrator$class_4283	class_4283	
-	f	Ljava/lang/String;	field_19210	field_19210	
-	f	Lcom/google/common/util/concurrent/RateLimiter;	field_19211	field_19211	
+c	net/minecraft/realms/RepeatedNarrator$class_4283	Parameters	
+	f	Ljava/lang/String;	field_19210	message	
+	f	Lcom/google/common/util/concurrent/RateLimiter;	field_19211	rateLimiter	
 	m	(Ljava/lang/String;Lcom/google/common/util/concurrent/RateLimiter;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	

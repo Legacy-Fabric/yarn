@@ -84,39 +84,39 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 	m	()Z	isNextGen	isNextGen	
 	m	()Ljava/lang/String;	getCapsString	getCapsString	
 	m	(II)I	glGetProgrami	glGetProgrami	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		program	
+		p	1		programName	
 	m	(II)V	glAttachShader	glAttachShader	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		program	
+		p	1		shader	
 	m	(I)V	glDeleteShader	glDeleteShader	
-		p	0		p_0	
+		p	0		shader	
 	m	(I)I	glCreateShader	glCreateShader	
-		p	0		p_0	
+		p	0		type	
 	m	(ILjava/lang/CharSequence;)V	glShaderSource	glShaderSource	
 		p	0		p_0	
 		p	1		p_1	
 	m	(I)V	glCompileShader	glCompileShader	
-		p	0		p_0	
+		p	0		shader	
 	m	(II)I	glGetShaderi	glGetShaderi	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		shader	
+		p	1		programName	
 	m	(II)Ljava/lang/String;	glGetShaderInfoLog	glGetShaderInfoLog	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		shader	
+		p	1		maxLength	
 	m	(II)Ljava/lang/String;	glGetProgramInfoLog	glGetProgramInfoLog	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		program	
+		p	1		maxLength	
 	m	(I)V	glUseProgram	glUseProgram	
-		p	0		p_0	
+		p	0		program	
 	m	()I	glCreateProgram	glCreateProgram	
 	m	(I)V	glDeleteProgram	glDeleteProgram	
-		p	0		p_0	
+		p	0		program	
 	m	(I)V	glLinkProgram	glLinkProgram	
-		p	0		p_0	
+		p	0		program	
 	m	(ILjava/lang/CharSequence;)I	glGetUniformLocation	glGetUniformLocation	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		program	
+		p	1		name	
 	m	(ILjava/nio/IntBuffer;)V	glUniform1	glUniform1	
 		p	0		p_0	
 		p	1		p_1	
@@ -124,26 +124,26 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 		p	0		p_0	
 		p	1		p_1	
 	m	(ILjava/nio/FloatBuffer;)V	glUniform1	glUniform1	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		location	
+		p	1		values	
 	m	(ILjava/nio/IntBuffer;)V	glUniform2	glUniform2	
 		p	0		p_0	
 		p	1		p_1	
 	m	(ILjava/nio/FloatBuffer;)V	glUniform2	glUniform2	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		location	
+		p	1		values	
 	m	(ILjava/nio/IntBuffer;)V	glUniform3	glUniform3	
 		p	0		p_0	
 		p	1		p_1	
 	m	(ILjava/nio/FloatBuffer;)V	glUniform3	glUniform3	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		location	
+		p	1		values	
 	m	(ILjava/nio/IntBuffer;)V	glUniform4	glUniform4	
 		p	0		p_0	
 		p	1		p_1	
 	m	(ILjava/nio/FloatBuffer;)V	glUniform4	glUniform4	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		location	
+		p	1		values	
 	m	(IZLjava/nio/FloatBuffer;)V	glUniformMatrix2	glUniformMatrix2	
 		p	0		p_0	
 		p	1		p_1	
@@ -157,14 +157,14 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 		p	1		p_1	
 		p	2		p_2	
 	m	(ILjava/lang/CharSequence;)I	glGetAttribLocation	glGetAttribLocation	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		program	
+		p	1		name	
 	m	()I	glGenBuffers	glGenBuffers	
 	m	(Ljava/nio/IntBuffer;)V	glGenBuffers	glGenBuffers	
 		p	0		p_0	
 	m	(II)V	glBindBuffer	glBindBuffer	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		target	
+		p	1		bufferId	
 	m	(ILjava/nio/ByteBuffer;I)V	glBufferData	glBufferData	
 		p	0		p_0	
 		p	1		p_1	
@@ -175,49 +175,49 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 		p	0		p_0	
 	m	()Z	useVbo	useVbo	
 	m	(II)V	glBindFramebuffer	glBindFramebuffer	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		target	
+		p	1		framebuffer	
 	m	(II)V	glBindRenderbuffer	glBindRenderbuffer	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		target	
+		p	1		renderbuffer	
 	m	(I)V	glDeleteRenderbuffers	glDeleteRenderbuffers	
-		p	0		p_0	
+		p	0		renderbuffer	
 	m	(I)V	glDeleteFramebuffers	glDeleteFramebuffers	
-		p	0		p_0	
+		p	0		framebuffer	
 	m	()I	glGenFramebuffers	glGenFramebuffers	
 	m	()I	glGenRenderbuffers	glGenRenderbuffers	
 	m	(IIII)V	glRenderbufferStorage	glRenderbufferStorage	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		target	
+		p	1		internalFormat	
+		p	2		width	
+		p	3		height	
 	m	(IIII)V	glFramebufferRenderbuffer	glFramebufferRenderbuffer	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		target	
+		p	1		attachment	
+		p	2		renderbufferTarget	
+		p	3		renderbuffer	
 	m	(I)I	glCheckFramebufferStatus	glCheckFramebufferStatus	
-		p	0		p_0	
+		p	0		target	
 	m	(IIIII)V	glFramebufferTexture2D	glFramebufferTexture2D	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		target	
+		p	1		attachment	
+		p	2		texTarget	
+		p	3		texture	
+		p	4		level	
 	m	()I	getBoundFramebuffer	getBoundFramebuffer	
 	m	(I)V	glActiveTexture	glActiveTexture	
-		p	0		p_0	
+		p	0		texture	
 	m	(I)V	glClientActiveTexture	glClientActiveTexture	
-		p	0		p_0	
+		p	0		texture	
 	m	(IFF)V	glMultiTexCoord2f	glMultiTexCoord2f	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 	m	(IIII)V	glBlendFuncSeparate	glBlendFuncSeparate	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		sFactorRGB	
+		p	1		dFactorRGB	
+		p	2		sFactorAlpha	
+		p	3		dFactorAlpha	
 	m	()Z	isUsingFBOs	isUsingFBOs	
 	m	()Ljava/lang/String;	getCpuInfo	getCpuInfo	
 	m	(I)V	renderCrosshair	renderCrosshair	
@@ -228,12 +228,12 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 		p	2		p_2	
 		p	3		p_3	
 	m	(I)Ljava/lang/String;	getErrorString	getErrorString	
-		p	0		p_0	
+		p	0		code	
 	m	(Ljava/util/function/Supplier;)Ljava/lang/Object;	make	make	
-		p	0		p_0	
+		p	0		factory	
 	m	(Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;	make	make	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		object	
+		p	1		initializer	
 	m	(Ljava/util/HashMap;)V	lambda$static$3	lambda$static$3	
 		p	0		p_0	
 	m	()J	lambda$initGlfw$2	lambda$initGlfw$2	
@@ -248,7 +248,7 @@ c	com/mojang/blaze3d/platform/GLX	com/mojang/blaze3d/platform/GLX
 c	com/mojang/blaze3d/platform/GLX$1	1	
 	f	[I	field_4985	field_4985	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GLX$class_1010	class_1010	
+c	com/mojang/blaze3d/platform/GLX$class_1010	FBOMode	
 	f	Lcom/mojang/blaze3d/platform/GLX$class_1010;	field_4981	field_4981	
 	f	Lcom/mojang/blaze3d/platform/GLX$class_1010;	field_4983	field_4983	
 	f	Lcom/mojang/blaze3d/platform/GLX$class_1010;	field_4984	field_4984	
@@ -293,8 +293,8 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	()V	disableAlphaTest	disableAlphaTest	
 	m	()V	enableAlphaTest	enableAlphaTest	
 	m	(IF)V	alphaFunc	alphaFunc	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		func	
+		p	1		ref	
 	m	()V	enableLighting	enableLighting	
 	m	()V	disableLighting	disableLighting	
 	m	(I)V	enableLight	enableLight	
@@ -304,39 +304,39 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	()V	enableColorMaterial	enableColorMaterial	
 	m	()V	disableColorMaterial	disableColorMaterial	
 	m	(II)V	colorMaterial	colorMaterial	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		face	
+		p	1		mode	
 	m	(IILjava/nio/FloatBuffer;)V	light	light	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		light	
+		p	1		pname	
+		p	2		params	
 	m	(ILjava/nio/FloatBuffer;)V	lightModel	lightModel	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		pname	
+		p	1		params	
 	m	(FFF)V	normal3f	normal3f	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		nx	
+		p	1		ny	
+		p	2		nz	
 	m	()V	disableDepthTest	disableDepthTest	
 	m	()V	enableDepthTest	enableDepthTest	
 	m	(I)V	depthFunc	depthFunc	
-		p	0		p_0	
+		p	0		func	
 	m	(Z)V	depthMask	depthMask	
-		p	0		p_0	
+		p	0		mask	
 	m	()V	disableBlend	disableBlend	
 	m	()V	enableBlend	enableBlend	
 	m	(II)V	blendFunc	blendFunc	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		sfactor	
+		p	1		dfactor	
 	m	(IIII)V	blendFuncSeparate	blendFuncSeparate	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		sFactorRGB	
+		p	1		dFactorRGB	
+		p	2		sFactorAlpha	
+		p	3		dFactorAlpha	
 	m	(I)V	blendEquation	blendEquation	
-		p	0		p_0	
+		p	0		mode	
 	m	(I)V	setupSolidRenderingTextureCombine	setupSolidRenderingTextureCombine	
-		p	0		p_0	
+		p	0		color	
 	m	()V	tearDownSolidRenderingTextureCombine	tearDownSolidRenderingTextureCombine	
 	m	()V	enableFog	enableFog	
 	m	()V	disableFog	disableFog	
@@ -370,8 +370,8 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	()V	enableLineOffset	enableLineOffset	
 	m	()V	disableLineOffset	disableLineOffset	
 	m	(FF)V	polygonOffset	polygonOffset	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		factor	
+		p	1		units	
 	m	()V	enableColorLogicOp	enableColorLogicOp	
 	m	()V	disableColorLogicOp	disableColorLogicOp	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;)V	logicOp	logicOp	
@@ -423,27 +423,27 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	(I)V	deleteTexture	deleteTexture	
 		p	0		p_0	
 	m	(I)V	bindTexture	bindTexture	
-		p	0		p_0	
+		p	0		texture	
 	m	(IIIIIIIILjava/nio/IntBuffer;)V	texImage2D	texImage2D	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
+		p	0		target	
+		p	1		level	
+		p	2		internalFormat	
+		p	3		width	
+		p	4		height	
+		p	5		border	
+		p	6		format	
+		p	7		type	
+		p	8		pixels	
 	m	(IIIIIIIIJ)V	texSubImage2D	texSubImage2D	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
+		p	0		target	
+		p	1		level	
+		p	2		xOffset	
+		p	3		yOffset	
+		p	4		width	
+		p	5		height	
+		p	6		format	
+		p	7		type	
+		p	8		pixels	
 	m	(IIIIIIII)V	copyTexSubImage2D	copyTexSubImage2D	
 		p	0		p_0	
 		p	1		p_1	
@@ -515,10 +515,10 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 		p	8		p_8	
 		p	10		p_10	
 	m	(FFFF)V	rotatef	rotatef	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		angle	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(DDDD)V	rotated	rotated	
 		p	0		p_0	
 		p	2		p_2	
@@ -545,14 +545,14 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	(Lnet/minecraft/class_1159;)V	multMatrix	multMatrix	
 		p	0		p_0	
 	m	(FFFF)V	color4f	color4f	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		red	
+		p	1		green	
+		p	2		blue	
+		p	3		alpha	
 	m	(FFF)V	color3f	color3f	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		red	
+		p	1		green	
+		p	2		blue	
 	m	(FF)V	texCoord2f	texCoord2f	
 		p	0		p_0	
 		p	1		p_1	
@@ -607,9 +607,9 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 		p	0		p_0	
 	m	()V	end	end	
 	m	(III)V	drawArrays	drawArrays	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		mode	
+		p	1		first	
+		p	2		count	
 	m	(F)V	lineWidth	lineWidth	
 		p	0		p_0	
 	m	(I)V	callList	callList	
@@ -624,8 +624,8 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 	m	(I)I	genLists	genLists	
 		p	0		p_0	
 	m	(II)V	pixelStore	pixelStore	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		pname	
+		p	1		param	
 	m	(IF)V	pixelTransfer	pixelTransfer	
 		p	0		p_0	
 		p	1		p_1	
@@ -681,75 +681,75 @@ c	com/mojang/blaze3d/platform/GlStateManager	com/mojang/blaze3d/platform/GlState
 c	com/mojang/blaze3d/platform/GlStateManager$1	1	
 	f	[I	field_5129	field_5129	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1016	class_1016	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5042	field_5042	
-	f	I	field_5044	field_5044	
-	f	F	field_5043	field_5043	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1016	AlphaTestState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5042	capState	
+	f	I	field_5044	func	
+	f	F	field_5043	ref	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1017	class_1017	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5045	field_5045	
-	f	I	field_5049	field_5049	
-	f	I	field_5048	field_5048	
-	f	I	field_5047	field_5047	
-	f	I	field_5046	field_5046	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1017	BlendFuncState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5045	capState	
+	f	I	field_5049	srcFactorRGB	
+	f	I	field_5048	dstFactorRGB	
+	f	I	field_5047	srcFactorAlpha	
+	f	I	field_5046	dstFactorAlpha	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1018	class_1018	
-	f	I	field_5050	field_5050	
-	f	Z	field_5051	field_5051	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1018	CapabilityTracker	
+	f	I	field_5050	cap	
+	f	Z	field_5051	state	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
-	m	()V	method_4469	method_4469	
-	m	()V	method_4471	method_4471	
-	m	(Z)V	method_4470	method_4470	
-		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1019	class_1019	
-	f	D	field_5053	field_5053	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1020;	field_5052	field_5052	
+	m	()V	method_4469	disable	
+	m	()V	method_4471	enable	
+	m	(Z)V	method_4470	setState	
+		p	1		state	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1019	ClearState	
+	f	D	field_5053	clearDepth	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1020;	field_5052	clearColor	
 	f	I	field_16202	field_16202	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1020	class_1020	
-	f	F	field_5057	field_5057	
-	f	F	field_5056	field_5056	
-	f	F	field_5055	field_5055	
-	f	F	field_5054	field_5054	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1020	Color4	
+	f	F	field_5057	red	
+	f	F	field_5056	green	
+	f	F	field_5055	blue	
+	f	F	field_5054	alpha	
 	m	()V	<init>	<init>	
 	m	(FFFF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1021	class_1021	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5058	field_5058	
-	f	I	field_5059	field_5059	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1021	LogicOpState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5058	capState	
+	f	I	field_5059	op	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1022	class_1022	
-	f	Z	field_5063	field_5063	
-	f	Z	field_5062	field_5062	
-	f	Z	field_5061	field_5061	
-	f	Z	field_5060	field_5060	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1022	ColorMask	
+	f	Z	field_5063	red	
+	f	Z	field_5062	green	
+	f	Z	field_5061	blue	
+	f	Z	field_5060	alpha	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1023	class_1023	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5064	field_5064	
-	f	I	field_5066	field_5066	
-	f	I	field_5065	field_5065	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1023	ColorMaterialState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5064	capState	
+	f	I	field_5066	face	
+	f	I	field_5065	mode	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1024	class_1024	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1024	FaceSides	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	field_5068	field_5068	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	field_5070	field_5070	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	field_5071	field_5071	
-	f	I	field_5069	field_5069	
+	f	I	field_5069	glValue	
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	field_5067	field_5067	
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	values	values	
 	m	(Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$class_1024;	valueOf	valueOf	
@@ -759,24 +759,24 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1024	class_1024
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1025	class_1025	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5072	field_5072	
-	f	I	field_5073	field_5073	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1025	CullFaceState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5072	capState	
+	f	I	field_5073	mode	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1026	class_1026	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5074	field_5074	
-	f	Z	field_5076	field_5076	
-	f	I	field_5075	field_5075	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1026	DepthTestState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5074	capState	
+	f	Z	field_5076	mask	
+	f	I	field_5075	func	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1028	class_1028	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1028	FogMode	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	field_5095	field_5095	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	field_5096	field_5096	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	field_5097	field_5097	
-	f	I	field_5093	field_5093	
+	f	I	field_5093	glValue	
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	field_5094	field_5094	
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	values	values	
 	m	(Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$class_1028;	valueOf	valueOf	
@@ -786,16 +786,16 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1028	class_1028
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1029	class_1029	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5100	field_5100	
-	f	I	field_5102	field_5102	
-	f	F	field_5101	field_5101	
-	f	F	field_5099	field_5099	
-	f	F	field_5098	field_5098	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1029	FogState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5100	capState	
+	f	I	field_5102	mode	
+	f	F	field_5101	density	
+	f	F	field_5099	start	
+	f	F	field_5098	end	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1030	class_1030	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1030	LogicOp	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5120	field_5120	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5112	field_5112	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5117	field_5117	
@@ -812,7 +812,7 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1030	class_1030
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5110	field_5110	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5107	field_5107	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5111	field_5111	
-	f	I	field_5108	field_5108	
+	f	I	field_5108	value	
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	field_5106	field_5106	
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	values	values	
 	m	(Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$class_1030;	valueOf	valueOf	
@@ -822,15 +822,15 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1030	class_1030
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1031	class_1031	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5123	field_5123	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5121	field_5121	
-	f	F	field_5124	field_5124	
-	f	F	field_5122	field_5122	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1031	PolygonOffsetState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5123	capFill	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5121	capLine	
+	f	F	field_5124	factor	
+	f	F	field_5122	units	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1032	class_1032	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1032	RenderMode	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1032;	field_5127	field_5127	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1032;	field_5128	field_5128	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1032;	field_5125	field_5125	
@@ -841,8 +841,8 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1032	class_1032
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()V	method_4472	method_4472	
-	m	()V	method_4473	method_4473	
+	m	()V	method_4472	begin	
+	m	()V	method_4473	end	
 	m	(Ljava/lang/String;ILcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -866,23 +866,23 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1032$3	3
 		p	2		p_2	
 	m	()V	method_4472	method_4472	
 	m	()V	method_4473	method_4473	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1034	class_1034	
-	f	I	field_5148	field_5148	
-	f	I	field_16203	field_16203	
-	f	I	field_5147	field_5147	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1034	StencilSubState	
+	f	I	field_5148	func	
+	f	I	field_16203	ref	
+	f	I	field_5147	mask	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1035	class_1035	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1034;	field_5149	field_5149	
-	f	I	field_5153	field_5153	
-	f	I	field_5152	field_5152	
-	f	I	field_5151	field_5151	
-	f	I	field_5150	field_5150	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1035	StencilState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1034;	field_5149	subState	
+	f	I	field_5153	mask	
+	f	I	field_5152	sfail	
+	f	I	field_5151	dpfail	
+	f	I	field_5150	dppass	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1036	class_1036	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1036	TexCoord	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1036;	field_5154	field_5154	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1036;	field_5155	field_5155	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1036;	field_5156	field_5156	
@@ -895,33 +895,33 @@ c	com/mojang/blaze3d/platform/GlStateManager$class_1036	class_1036
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1037	class_1037	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5159	field_5159	
-	f	I	field_5161	field_5161	
-	f	I	field_5160	field_5160	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1037	TexGenCoordState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5159	capState	
+	f	I	field_5161	coord	
+	f	I	field_5160	mode	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1038	class_1038	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5162	field_5162	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5163	field_5163	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5164	field_5164	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5165	field_5165	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1038	TexGenState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5162	s	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5163	t	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5164	r	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1037;	field_5165	q	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1039	class_1039	
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5166	field_5166	
-	f	I	field_5167	field_5167	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1039	Texture2DState	
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;	field_5166	capState	
+	f	I	field_5167	boundTexture	
 	m	()V	<init>	<init>	
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/blaze3d/platform/GlStateManager$class_1040	class_1040	
+c	com/mojang/blaze3d/platform/GlStateManager$class_1040	Viewport	
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$class_1040;	field_5169	field_5169	
-	f	I	field_5172	field_5172	
-	f	I	field_5171	field_5171	
-	f	I	field_5170	field_5170	
-	f	I	field_5168	field_5168	
+	f	I	field_5172	x	
+	f	I	field_5171	y	
+	f	I	field_5170	width	
+	f	I	field_5168	height	
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$class_1040;	field_5173	field_5173	
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$class_1040;	values	values	
 	m	(Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$class_1040;	valueOf	valueOf	
@@ -988,57 +988,57 @@ c	com/mojang/blaze3d/platform/TextureUtil	com/mojang/blaze3d/platform/TextureUti
 	m	()V	<init>	<init>	
 	m	()I	generateTextureId	generateTextureId	
 	m	(I)V	releaseTextureId	releaseTextureId	
-		p	0		p_0	
+		p	0		id	
 	m	(III)V	prepareImage	prepareImage	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		id	
+		p	1		width	
+		p	2		height	
 	m	(Lnet/minecraft/class_1011$class_1013;III)V	prepareImage	prepareImage	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		internalFormat	
+		p	1		id	
+		p	2		width	
+		p	3		height	
 	m	(IIII)V	prepareImage	prepareImage	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		id	
+		p	1		maxLevel	
+		p	2		width	
+		p	3		height	
 	m	(Lnet/minecraft/class_1011$class_1013;IIII)V	prepareImage	prepareImage	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		internalFormat	
+		p	1		id	
+		p	2		maxLevel	
+		p	3		width	
+		p	4		height	
 	m	(I)V	bind	bind	
-		p	0		p_0	
+		p	0		id	
 	m	(Ljava/io/InputStream;)Ljava/nio/ByteBuffer;	readResource	readResource	
-		p	0		p_0	
+		p	0		inputStream	
 	m	(Ljava/io/InputStream;)Ljava/lang/String;	readResourceAsString	readResourceAsString	
-		p	0		p_0	
+		p	0		inputStream	
 	m	(Ljava/lang/String;IIII)V	writeAsPNG	writeAsPNG	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		filename	
+		p	1		id	
+		p	2		scales	
+		p	3		width	
+		p	4		height	
 	m	(Ljava/nio/IntBuffer;II)V	initTexture	initTexture	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		imageData	
+		p	1		width	
+		p	2		height	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_1008
-	m	(IZ)V	method_4227	method_4227	
-		p	0		p_0	
-		p	1		p_1	
-	m	(I)V	method_4227		method_4227
+	m	(IZ)V	method_4227	enableDebug	
+		p	0		verbosity	
+		p	1		sync	
+	m	(I)V	method_4227		enableDebug
 		p	0			p_0
 c	net/minecraft/class_1011
-	m	(Ljava/lang/String;)Lnet/minecraft/class_1011;	method_15990	method_15990	
-		p	0		p_0	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_1011;	method_15990	read	
+		p	0		dataUri	
 c	net/minecraft/class_1041
-	f	Lnet/minecraft/class_3678;	field_5176	field_5176	
-	f	I	field_16238	field_16238	
-	f	Lnet/minecraft/class_310;	field_5176		field_5176
+	f	Lnet/minecraft/class_3678;	field_5176	eventHandler	
+	f	I	field_16238	framerateLimit	
+	f	Lnet/minecraft/class_310;	field_5176		eventHandler
 	m	(Lnet/minecraft/class_3678;Lnet/minecraft/class_323;Lnet/minecraft/class_543;Ljava/lang/String;Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1047,40 +1047,40 @@ c	net/minecraft/class_1041
 		p	5		p_5	
 	m	(Z)V	method_4493	method_4493	
 		p	1		p_1	
-	m	(Ljava/io/InputStream;Ljava/io/InputStream;)V	method_4491	method_4491	
+	m	(Ljava/io/InputStream;Ljava/io/InputStream;)V	method_4491	setIcon	
+		p	1		icon16	
+		p	2		icon32	
+	m	(Z)V	method_4497	setVsync	
+		p	1		vsync	
+	m	(I)V	method_15999	setFramerateLimit	
+		p	1		framerateLimit	
+	m	()I	method_16000	getFramerateLimit	
+	m	(Z)V	method_15998	setFullscreen	
 		p	1		p_1	
-		p	2		p_2	
-	m	(Z)V	method_4497	method_4497	
-		p	1		p_1	
-	m	(I)V	method_15999	method_15999	
-		p	1		p_1	
-	m	()I	method_16000	method_16000	
-	m	(Z)V	method_15998	method_15998	
-		p	1		p_1	
-	m	()V	method_15996	method_15996	
-	m	(Z)V	method_4485	method_4485	
-		p	1		p_1	
-	m	(IZ)I	method_4476	method_4476	
-		p	1		p_1	
-		p	2		p_2	
-	m	(D)V	method_15997	method_15997	
-		p	1		p_1	
-	m	()V	method_16001	method_16001	
+	m	()V	method_15996	waitForFramerateLimit	
+	m	(Z)V	method_4485	updateFullscreen	
+		p	1		vsync	
+	m	(IZ)I	method_4476	calculateScaleFactor	
+		p	1		guiScale	
+		p	2		forceUnicodeFont	
+	m	(D)V	method_15997	setScaleFactor	
+		p	1		scaleFactor	
+	m	()V	method_16001	pollEvents	
 	m	(Lnet/minecraft/class_310;Lnet/minecraft/class_323;Lnet/minecraft/class_542$class_543;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 	m	()V	method_4493		method_4493
-	m	()V	method_4491		method_4491
-	m	()V	method_4497		method_4497
+	m	()V	method_4491		setIcon
+	m	()V	method_4497		setVsync
 	m	()I	method_4509		method_4509
 	m	()Z	method_4512		method_4512
 	m	(Z)V	method_4484		method_4484
 		p	1			p_1
-	m	()V	method_4485		method_4485
+	m	()V	method_4485		updateFullscreen
 	m	()V	method_4496		method_4496
-	m	(I)I	method_4476		method_4476
+	m	(I)I	method_4476		calculateScaleFactor
 		p	1			p_1
 c	net/minecraft/class_1050
 	m	(Ljava/lang/String;Ljava/io/InputStream;)V	<init>	<init>	
@@ -1089,8 +1089,8 @@ c	net/minecraft/class_1050
 	m	(Lnet/minecraft/class_3298;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/class_1066
-	f	Lnet/minecraft/class_1064;	field_16263	field_16263	
-	m	(Ljava/io/File;)Lnet/minecraft/class_3262;	method_16048	method_16048	
+	f	Lnet/minecraft/class_1064;	field_16263	index	
+	m	(Ljava/io/File;)Lnet/minecraft/class_3262;	method_16048	getProgrammerArtResourcePackFromZipFile	
 		p	1		p_1	
 c	net/minecraft/class_1066$1	1	
 	f	Lnet/minecraft/class_1066;	field_16264	field_16264	
@@ -1099,22 +1099,22 @@ c	net/minecraft/class_1066$1	1
 		p	2		p_2	
 	m	()Ljava/lang/String;	method_14409	method_14409	
 c	net/minecraft/class_1158
-	m	(F)F	method_16003	method_16003	
-		p	0		p_0	
-	m	(F)F	method_16002	method_16002	
-		p	0		p_0	
+	m	(F)F	method_16003	cos	
+		p	0		value	
+	m	(F)F	method_16002	sin	
+		p	0		value	
 c	net/minecraft/class_1160
-	m	(FFF)F	method_16004	method_16004	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(FFF)F	method_16004	clampFloat	
+		p	0		v	
+		p	1		min	
+		p	2		max	
 	m	(Lnet/minecraft/class_2350;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/class_1162
 	m	(Lnet/minecraft/class_1162;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/class_1255
-	m	()Z	method_16075	method_16075	
+	m	()Z	method_16075	runTask	
 	m	()I	method_16076	method_16076	
 c	net/minecraft/class_1299
 	f	Lnet/minecraft/class_1299;	field_16281	field_16281	
@@ -1141,97 +1141,100 @@ c	net/minecraft/class_1308
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1309
-	m	(Lnet/minecraft/class_1282;)V	method_16080	method_16080	
-		p	1		p_1	
-	m	()V	method_16078	method_16078	
-	m	(Lnet/minecraft/class_1282;IZ)V	method_6099	method_6099	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()Lnet/minecraft/class_2960;	method_5989	method_5989	
-	m	(Lnet/minecraft/class_1282;Z)V	method_16077	method_16077	
-		p	1		p_1	
-		p	2		p_2	
-	m	(ZLnet/minecraft/class_1282;)Lnet/minecraft/class_47$class_48;	method_16079	method_16079	
-		p	1		p_1	
-		p	2		p_2	
-	m	(DDDZ)Z	method_6082	method_6082	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
+	m	(Lnet/minecraft/class_1282;)V	method_16080	drop	
+		p	1		source	
+	m	()V	method_16078	dropInventory	
+	m	(Lnet/minecraft/class_1282;IZ)V	method_6099	dropEquipment	
+		p	1		source	
+		p	2		lootingMultiplier	
+		p	3		allowDrops	
+	m	()Lnet/minecraft/class_2960;	method_5989	getLootTable	
+	m	(Lnet/minecraft/class_1282;Z)V	method_16077	dropLoot	
+		p	1		source	
+		p	2		causedByPlayer	
+	m	(ZLnet/minecraft/class_1282;)Lnet/minecraft/class_47$class_48;	method_16079	getLootContextBuilder	
+		p	1		causedByPlayer	
+		p	2		source	
+	m	(DDDZ)Z	method_6082	teleport	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		particleEffects	
 	m	(ZILnet/minecraft/class_1282;)V	method_6004		method_6004
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(ZI)V	method_6099		method_6099
+	m	(ZI)V	method_6099		dropEquipment
 		p	1			p_1
 		p	2			p_2
 	m	(ZI)V	method_6042		method_6042
 		p	1			p_1
 		p	2			p_2
-	m	(DDD)Z	method_6082		method_6082
+	m	(DDD)Z	method_6082		teleport
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_1355
-	f	Lnet/minecraft/class_3695;	field_6463	field_6463	
-	f	Lnet/minecraft/class_3533;	field_6463		field_6463
+	f	Lnet/minecraft/class_3695;	field_6463	profiler	
+	f	Lnet/minecraft/class_3533;	field_6463		profiler
 	m	(Lnet/minecraft/class_3695;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_3533;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/class_1391
-	m	()Z	method_16081	method_16081	
+	m	()Z	method_16081	canBeScared	
 c	net/minecraft/class_1440
-	m	(Lnet/minecraft/class_1799;)Z	method_16106	method_16106	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1799;)Z	method_16106	canEat	
+		p	1		stack	
 	m	(Lnet/minecraft/class_1936;Z)Z	method_5979		method_5979
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1440$class_1449
 	m	()V	method_6268	method_6268	
 c	net/minecraft/class_1451
-	f	Lnet/minecraft/class_2940;	field_16284	field_16284	
-	f	Lnet/minecraft/class_2940;	field_16292	field_16292	
-	f	Lnet/minecraft/class_2940;	field_16285	field_16285	
-	f	Ljava/util/Map;	field_16283	field_16283	
-	f	Lnet/minecraft/class_1451$class_3698;	field_6808	field_6808	
-	f	F	field_16290	field_16290	
-	f	F	field_16291	field_16291	
-	f	F	field_16288	field_16288	
-	f	F	field_16289	field_16289	
-	f	F	field_16286	field_16286	
-	f	F	field_16287	field_16287	
+	f	Lnet/minecraft/class_2940;	field_16284	IN_SLEEPING_POSE	
+	f	Lnet/minecraft/class_2940;	field_16292	HEAD_DOWN	
+	f	Lnet/minecraft/class_2940;	field_16285	COLLAR_COLOR	
+	f	Ljava/util/Map;	field_16283	TEXTURES	
+	f	Lnet/minecraft/class_1451$class_3698;	field_6808	fleeGoal	
+	f	F	field_16290	sleepAnimation	
+	f	F	field_16291	prevSleepAnimation	
+	f	F	field_16288	tailCurlAnimation	
+	f	F	field_16289	prevTailCurlAnimation	
+	f	F	field_16286	headDownAnimation	
+	f	F	field_16287	prevHeadDownAnimation	
 	f	Lnet/minecraft/class_2960;	field_6807		field_6807
-	f	Lnet/minecraft/class_1338;	field_6808		field_6808
-	m	()Lnet/minecraft/class_2960;	method_16092	method_16092	
-	m	(Z)V	method_16088	method_16088	
-		p	1		p_1	
-	m	()Z	method_16086	method_16086	
-	m	(Z)V	method_16087	method_16087	
-		p	1		p_1	
-	m	()Z	method_16093	method_16093	
-	m	()Lnet/minecraft/class_1767;	method_16096	method_16096	
-	m	(Lnet/minecraft/class_1767;)V	method_16094	method_16094	
-		p	1		p_1	
+	f	Lnet/minecraft/class_1338;	field_6808		fleeGoal
+	m	()Lnet/minecraft/class_2960;	method_16092	getTexture	
+	m	(Z)V	method_16088	setInSleepingPose	
+		c	Sets whether this cat is in a sleeping pose or not.	
+		p	1		sleeping	
+			c	{@code true} if this cat is in a sleeping pose, otherwise {@code false}	
+	m	()Z	method_16086	isInSleepingPose	
+		c	{@return whether this cat is in a sleeping pose}	
+	m	(Z)V	method_16087	setHeadDown	
+		p	1		headDown	
+	m	()Z	method_16093	isHeadDown	
+	m	()Lnet/minecraft/class_1767;	method_16096	getCollarColor	
+	m	(Lnet/minecraft/class_1767;)V	method_16094	setCollarColor	
+		p	1		color	
 	m	()I	method_5970	method_5970	
-	m	()V	method_16089	method_16089	
+	m	()V	method_16089	hiss	
 	m	(Lnet/minecraft/class_1657;Lnet/minecraft/class_1799;)V	method_6475	method_6475	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	method_5773	method_5773	
-	m	()V	method_16085	method_16085	
-	m	()V	method_16090	method_16090	
-	m	()V	method_16084	method_16084	
-	m	(F)F	method_16082	method_16082	
-		p	1		p_1	
-	m	(F)F	method_16091	method_16091	
-		p	1		p_1	
-	m	(F)F	method_16095	method_16095	
-		p	1		p_1	
+	m	()V	method_16085	updateAnimations	
+	m	()V	method_16090	updateSleepAnimation	
+	m	()V	method_16084	updateHeadDownAnimation	
+	m	(F)F	method_16082	getSleepAnimation	
+		p	1		tickDelta	
+	m	(F)F	method_16091	getTailCurlAnimation	
+		p	1		tickDelta	
+	m	(F)F	method_16095	getHeadDownAnimation	
+		p	1		tickDelta	
 	m	(Ljava/util/HashMap;)V	method_16083	method_16083	
-		p	0		p_0	
+		p	0		map	
 	m	()F	method_5751	method_5751	
 	m	()F	method_6107		method_6107
 	m	(Lnet/minecraft/class_1282;F)Z	method_5643		method_5643
@@ -1243,8 +1246,8 @@ c	net/minecraft/class_1451
 	m	(Lnet/minecraft/class_1941;)Z	method_5957		method_5957
 		p	1			p_1
 	m	()Lnet/minecraft/class_2561;	method_5477		method_5477
-c	net/minecraft/class_1451$class_3698	class_3698	
-	f	Lnet/minecraft/class_1451;	field_16293	field_16293	
+c	net/minecraft/class_1451$class_3698	CatFleeGoal	
+	f	Lnet/minecraft/class_1451;	field_16293	cat	
 	m	(Lnet/minecraft/class_1451;Ljava/lang/Class;FDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1253,22 +1256,22 @@ c	net/minecraft/class_1451$class_3698	class_3698
 		p	6		p_6	
 	m	()Z	method_6264	method_6264	
 	m	()Z	method_6266	method_6266	
-c	net/minecraft/class_1451$class_3699	class_3699	
-	f	Lnet/minecraft/class_1451;	field_16297	field_16297	
-	f	Lnet/minecraft/class_1657;	field_16295	field_16295	
-	f	Lnet/minecraft/class_2338;	field_16294	field_16294	
-	f	I	field_16296	field_16296	
+c	net/minecraft/class_1451$class_3699	SleepWithOwnerGoal	
+	f	Lnet/minecraft/class_1451;	field_16297	cat	
+	f	Lnet/minecraft/class_1657;	field_16295	owner	
+	f	Lnet/minecraft/class_2338;	field_16294	bedPos	
+	f	I	field_16296	ticksOnBed	
 	m	(Lnet/minecraft/class_1451;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	method_6264	method_6264	
-	m	()Z	method_16098	method_16098	
+	m	()Z	method_16098	cannotSleep	
 	m	()Z	method_6266	method_6266	
 	m	()V	method_6269	method_6269	
 	m	()V	method_6270	method_6270	
-	m	()V	method_16097	method_16097	
+	m	()V	method_16097	dropMorningGifts	
 	m	()V	method_6268	method_6268	
-c	net/minecraft/class_1451$class_3700	class_3700	
-	f	Lnet/minecraft/class_1657;	field_16298	field_16298	
+c	net/minecraft/class_1451$class_3700	TemptGoal	
+	f	Lnet/minecraft/class_1657;	field_16298	player	
 	m	()V	method_6268	method_6268	
 	m	()Z	method_16081	method_16081	
 	m	(Lnet/minecraft/class_1314;DLnet/minecraft/class_1856;Z)V	<init>	<init>	
@@ -1298,18 +1301,18 @@ c	net/minecraft/class_1528
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_1531
-	m	(Lnet/minecraft/class_1282;F)V	method_6905	method_6905	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1282;)V	method_6924	method_6924	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1282;)V	method_6908	method_6908	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1282;F)V	method_6905	updateHealth	
+		p	1		damageSource	
+		p	2		amount	
+	m	(Lnet/minecraft/class_1282;)V	method_6924	breakAndDropItem	
+		p	1		damageSource	
+	m	(Lnet/minecraft/class_1282;)V	method_6908	onBreak	
+		p	1		damageSource	
 	m	()Lnet/minecraft/class_2960;	method_5989	method_5989	
-	m	(F)V	method_6905		method_6905
+	m	(F)V	method_6905		updateHealth
 		p	1			p_1
-	m	()V	method_6924		method_6924
-	m	()V	method_6908		method_6908
+	m	()V	method_6924		breakAndDropItem
+	m	()V	method_6908		onBreak
 c	net/minecraft/class_1548
 	m	(Lnet/minecraft/class_1282;IZ)V	method_6099	method_6099	
 		p	1		p_1	
@@ -1354,34 +1357,35 @@ c	net/minecraft/class_1657
 c	net/minecraft/class_173
 	f	Lnet/minecraft/class_176;	field_16235	field_16235	
 	m	(Lnet/minecraft/class_176$class_177;)V	method_15971	method_15971	
-		p	0		p_0	
+		p	0		builder	
 	m	(Lnet/minecraft/class_176$class_177;)V	method_15970	method_15970	
-		p	0		p_0	
+		p	0		builder	
 	m	(Lnet/minecraft/class_176$class_177;)V	method_761		method_761
 		p	0			p_0
 c	net/minecraft/class_1767
-	m	(Ljava/lang/String;Lnet/minecraft/class_1767;)Lnet/minecraft/class_1767;	method_7793	method_7793	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/String;)Lnet/minecraft/class_1767;	method_7793		method_7793
+	m	(Ljava/lang/String;Lnet/minecraft/class_1767;)Lnet/minecraft/class_1767;	method_7793	byName	
+		c	{@return the dye color whose name is {@code name}, or {@code defaultColor} if\nthere is no such color}\n\n@apiNote This returns {@code null} only if {@code defaultColor} is {@code null}.	
+		p	0		name	
+		p	1		defaultColor	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_1767;	method_7793		byName
 		p	0			p_0
 c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_16314	field_16314	
-	f	Lnet/minecraft/class_1792;	field_16307	field_16307	
-	f	Lnet/minecraft/class_1792;	field_16309	field_16309	
-	f	Lnet/minecraft/class_1792;	field_16306	field_16306	
-	f	Lnet/minecraft/class_1792;	field_16313	field_16313	
-	f	Lnet/minecraft/class_1792;	field_16310	field_16310	
-	f	Lnet/minecraft/class_1792;	field_16311	field_16311	
-	f	Lnet/minecraft/class_1792;	field_16312	field_16312	
-	f	Lnet/minecraft/class_1792;	field_16308	field_16308	
-	f	Lnet/minecraft/class_1792;	field_16305	field_16305	
-	f	Lnet/minecraft/class_1792;	field_16315	field_16315	
+	f	Lnet/minecraft/class_1792;	field_16307	BARREL	
+	f	Lnet/minecraft/class_1792;	field_16309	SMOKER	
+	f	Lnet/minecraft/class_1792;	field_16306	BLAST_FURNACE	
+	f	Lnet/minecraft/class_1792;	field_16313	CARTOGRAPHY_TABLE	
+	f	Lnet/minecraft/class_1792;	field_16310	FLETCHING_TABLE	
+	f	Lnet/minecraft/class_1792;	field_16311	GRINDSTONE	
+	f	Lnet/minecraft/class_1792;	field_16312	LECTERN	
+	f	Lnet/minecraft/class_1792;	field_16308	SMITHING_TABLE	
+	f	Lnet/minecraft/class_1792;	field_16305	STONECUTTER	
+	f	Lnet/minecraft/class_1792;	field_16315	BELL	
 c	net/minecraft/class_1937
-	f	Lnet/minecraft/class_3695;	field_16316	field_16316	
-	f	Lnet/minecraft/class_3533;	field_9255		field_9255
-	m	()Lnet/minecraft/class_3695;	method_16107	method_16107	
-	m	(Lnet/minecraft/class_2338;)V	method_16109	method_16109	
+	f	Lnet/minecraft/class_3695;	field_16316	profiler	
+	f	Lnet/minecraft/class_3533;	field_9255		profiler
+	m	()Lnet/minecraft/class_3695;	method_16107	getProfiler	
+	m	(Lnet/minecraft/class_2338;)V	method_16109	scheduleBlockRerenderIfNeeded	
 		p	1		p_1	
 	m	(III)V	method_16108	method_16108	
 		p	1		p_1	
@@ -1414,7 +1418,7 @@ c	net/minecraft/class_1937
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_2048
-	f	Lnet/minecraft/class_2960;	field_16317	field_16317	
+	f	Lnet/minecraft/class_2960;	field_16317	catType	
 	m	(Lnet/minecraft/class_2050;Lnet/minecraft/class_2025;Lnet/minecraft/class_2090;Lnet/minecraft/class_2102;Lnet/minecraft/class_2105;Lnet/minecraft/class_2040;Lnet/minecraft/class_2960;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1448,18 +1452,18 @@ c	net/minecraft/class_2048
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/class_2048$class_2049
-	f	Lnet/minecraft/class_2960;	field_16318	field_16318	
-	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2048$class_2049;	method_16113	method_16113	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2048$class_2049;	method_16112	method_16112	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2960;	field_16318	catType	
+	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2048$class_2049;	method_16113	type	
+		p	1		catType	
+	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_2048$class_2049;	method_16112	catType	
+		p	1		catType	
 c	net/minecraft/class_2131
 c	net/minecraft/class_2131$class_2133
-	m	(Lnet/minecraft/class_2048;)Lnet/minecraft/class_2131$class_2133;	method_16114	method_16114	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_2048;)Lnet/minecraft/class_2131$class_2133;	method_16114	create	
+		p	0		entity	
 c	net/minecraft/class_215
-	m	(Lnet/minecraft/class_47$class_50;)Lnet/minecraft/class_209$class_210;	method_15972	method_15972	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_47$class_50;)Lnet/minecraft/class_209$class_210;	method_15972	create	
+		p	0		entity	
 c	net/minecraft/class_2202
 	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)Lnet/minecraft/class_1799;	method_9574	method_9574	
 		p	1		p_1	
@@ -1471,13 +1475,13 @@ c	net/minecraft/class_2202
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/class_2203
-	m	(Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/class_2203$class_2210;	method_9361	method_9361	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/class_2203$class_2210;	method_9361		method_9361
+	m	(Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/class_2203$class_2210;	method_9361	parseNode	
+		p	0		reader	
+		p	1		root	
+	m	(Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/class_2203$class_2210;	method_9361		parseNode
 		p	0			p_0
-c	net/minecraft/class_2203$class_3707	class_3707	
-	f	Ljava/util/function/Predicate;	field_16319	field_16319	
+c	net/minecraft/class_2203$class_3707	FilteredRootNode	
+	f	Ljava/util/function/Predicate;	field_16319	matcher	
 	m	(Lnet/minecraft/class_2487;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2520;Ljava/util/List;)V	method_9378	method_9378	
@@ -1505,18 +1509,18 @@ c	net/minecraft/class_2246
 	f	Lnet/minecraft/class_2248;	field_16335	field_16335	
 	f	Lnet/minecraft/class_2248;	field_16332	field_16332	
 c	net/minecraft/class_2259
-	m	(Lnet/minecraft/class_2680;)Ljava/lang/String;	method_9685	method_9685	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)Ljava/lang/String;	method_9685		method_9685
+	m	(Lnet/minecraft/class_2680;)Ljava/lang/String;	method_9685	stringifyBlockState	
+		p	0		state	
+	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;)Ljava/lang/String;	method_9685		stringifyBlockState
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_2414
-	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_16118	method_16118	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_161$class_162;)Lnet/minecraft/class_161$class_162;	method_16118	requireAllCatsTamed	
+		p	1		builder	
 	m	(Lnet/minecraft/class_161$class_162;Ljava/lang/Integer;Lnet/minecraft/class_2960;)V	method_16117	method_16117	
 		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		id	
 c	net/minecraft/class_2490
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)I	method_9505		method_9505
 		p	1			p_1
@@ -1540,9 +1544,9 @@ c	net/minecraft/class_2574
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_2574$class_2575
-	f	Ljava/lang/String;	field_11780	field_11780	
-	f	Lnet/minecraft/class_2267;	field_16408	field_16408	
-	f	Lnet/minecraft/class_2338;	field_11780		field_11780
+	f	Ljava/lang/String;	field_11780	rawPos	
+	f	Lnet/minecraft/class_2267;	field_16408	pos	
+	f	Lnet/minecraft/class_2338;	field_11780		rawPos
 	m	(Ljava/lang/String;ZLjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1555,7 +1559,7 @@ c	net/minecraft/class_2574$class_2575
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	()Ljava/lang/String;	method_10922	method_10922	
+	m	()Ljava/lang/String;	method_10922	getPos	
 	m	(Ljava/lang/String;ZLnet/minecraft/class_2338;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1565,7 +1569,7 @@ c	net/minecraft/class_2574$class_2575
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	()Lnet/minecraft/class_2338;	method_10922		method_10922
+	m	()Lnet/minecraft/class_2338;	method_10922		getPos
 c	net/minecraft/class_2591
 	f	Lnet/minecraft/class_2591;	field_16411	field_16411	
 	f	Lnet/minecraft/class_2591;	field_16414	field_16414	
@@ -1576,63 +1580,63 @@ c	net/minecraft/class_2609
 	m	(Lnet/minecraft/class_2591;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/class_2625
-	f	Lnet/minecraft/class_1767;	field_16419	field_16419	
-	m	()Lnet/minecraft/class_1767;	method_16126	method_16126	
-	m	(Lnet/minecraft/class_1767;)Z	method_16127	method_16127	
-		p	1		p_1	
+	f	Lnet/minecraft/class_1767;	field_16419	textColor	
+	m	()Lnet/minecraft/class_1767;	method_16126	getTextColor	
+	m	(Lnet/minecraft/class_1767;)Z	method_16127	setTextColor	
+		p	1		value	
 c	net/minecraft/class_2665
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;)I	method_9505		method_9505
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2672
-	f	Lnet/minecraft/class_2487;	field_16416	field_16416	
-	m	()Lnet/minecraft/class_2487;	method_16123	method_16123	
+	f	Lnet/minecraft/class_2487;	field_16416	heightmaps	
+	m	()Lnet/minecraft/class_2487;	method_16123	getHeightmaps	
 c	net/minecraft/class_2676
-	f	I	field_16418	field_16418	
-	f	I	field_16417	field_16417	
-	m	()I	method_16124	method_16124	
-	m	()I	method_16125	method_16125	
+	f	I	field_16418	filledSkyLightMask	
+	f	I	field_16417	filledBlockLightMask	
+	m	()I	method_16124	getFilledSkyLightMask	
+	m	()I	method_16125	getFilledBlockLightMask	
 c	net/minecraft/class_276
 	m	(IIZZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(IIZ)V	method_1234	method_1234	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(IIZ)V	method_1231	method_1231	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Z)V	method_1230	method_1230	
-		p	1		p_1	
+	m	(IIZ)V	method_1234	resize	
+		p	1		width	
+		p	2		height	
+		p	3		getError	
+	m	(IIZ)V	method_1231	initFbo	
+		p	1		width	
+		p	2		height	
+		p	3		getError	
+	m	(Z)V	method_1230	clear	
+		p	1		getError	
 	m	(IIZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(II)V	method_1234		method_1234
+	m	(II)V	method_1234		resize
 		p	1			p_1
 		p	2			p_2
-	m	(II)V	method_1231		method_1231
+	m	(II)V	method_1231		initFbo
 		p	1			p_1
 		p	2			p_2
-	m	()V	method_1230		method_1230
+	m	()V	method_1230		clear
 c	net/minecraft/class_277
 	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_277;	method_1246		method_1246
 		p	0			p_0
 c	net/minecraft/class_2791
-	m	()Ljava/util/Collection;	method_12011	method_12011	
-	m	()Ljava/util/Set;	method_12011		method_12011
+	m	()Ljava/util/Collection;	method_12011	getHeightmaps	
+	m	()Ljava/util/Set;	method_12011		getHeightmaps
 c	net/minecraft/class_2794
 	f	Lorg/apache/logging/log4j/Logger;	field_16420	field_16420	
-	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2791;Lnet/minecraft/class_2796;)V	method_16129	method_16129	
+	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2791;Lnet/minecraft/class_2796;)V	method_16129	setStructureStarts	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2791;Lnet/minecraft/class_2796;)V	method_16130	method_16130	
+	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2791;Lnet/minecraft/class_2796;)V	method_16130	addStructureReferences	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -1642,12 +1646,12 @@ c	net/minecraft/class_2794
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_280
-	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_281$class_282;Ljava/lang/String;)Lnet/minecraft/class_281;	method_16036	method_16036	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_277;	method_16035	method_16035	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_281$class_282;Ljava/lang/String;)Lnet/minecraft/class_281;	method_16036	getShader	
+		p	0		resourceManager	
+		p	1		type	
+		p	2		name	
+	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_277;	method_16035	deserializeBlendState	
+		p	0		json	
 c	net/minecraft/class_2806
 	f	Lnet/minecraft/class_2806;	field_16423	field_16423	
 	f	Lnet/minecraft/class_2806;	field_16422	field_16422	
@@ -1702,15 +1706,15 @@ c	net/minecraft/class_2806
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_281
-	m	(Lnet/minecraft/class_3679;)V	method_1281	method_1281	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_281$class_282;Ljava/lang/String;Ljava/io/InputStream;)Lnet/minecraft/class_281;	method_1283	method_1283	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_280;)V	method_1281		method_1281
+	m	(Lnet/minecraft/class_3679;)V	method_1281	attachTo	
+		p	1		program	
+	m	(Lnet/minecraft/class_281$class_282;Ljava/lang/String;Ljava/io/InputStream;)Lnet/minecraft/class_281;	method_1283	createFromResource	
+		p	0		type	
+		p	1		name	
+		p	2		sourceCode	
+	m	(Lnet/minecraft/class_280;)V	method_1281		attachTo
 		p	1			p_1
-	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_281$class_282;Ljava/lang/String;)Lnet/minecraft/class_281;	method_1283		method_1283
+	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_281$class_282;Ljava/lang/String;)Lnet/minecraft/class_281;	method_1283		createFromResource
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -1720,13 +1724,13 @@ c	net/minecraft/class_281$class_282
 	m	(Lnet/minecraft/class_281$class_282;)Ljava/lang/String;	method_1290		method_1290
 		p	0			p_0
 c	net/minecraft/class_2818
-	m	(Lnet/minecraft/class_2540;Lnet/minecraft/class_2487;IZ)V	method_12224	method_12224	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_2540;Lnet/minecraft/class_2487;IZ)V	method_12224	loadFromPacket	
+		p	1		data	
+		p	2		nbt	
+		p	3		updatedSectionsBits	
+		p	4		clearOld	
 	m	()Ljava/util/Collection;	method_12011	method_12011	
-	m	(Lnet/minecraft/class_2540;IZ)V	method_12224		method_12224
+	m	(Lnet/minecraft/class_2540;IZ)V	method_12224		loadFromPacket
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1735,8 +1739,8 @@ c	net/minecraft/class_2839
 	m	()Ljava/util/Collection;	method_12011	method_12011	
 	m	()Ljava/util/Set;	method_12011		method_12011
 c	net/minecraft/class_284
-	f	Lnet/minecraft/class_3679;	field_1541	field_1541	
-	f	Lnet/minecraft/class_280;	field_1541		field_1541
+	f	Lnet/minecraft/class_3679;	field_1541	program	
+	f	Lnet/minecraft/class_280;	field_1541		program
 	m	(Ljava/lang/String;IILnet/minecraft/class_3679;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1748,30 +1752,30 @@ c	net/minecraft/class_284
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_285
-	m	(Lnet/minecraft/class_3679;)V	method_1304	method_1304	
+	m	(Lnet/minecraft/class_3679;)V	method_1304	deleteProgram	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3679;)V	method_1307	method_1307	
+	m	(Lnet/minecraft/class_3679;)V	method_1307	linkProgram	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_280;)V	method_1304		method_1304
+	m	(Lnet/minecraft/class_280;)V	method_1304		deleteProgram
 		p	1			p_1
-	m	(Lnet/minecraft/class_280;)V	method_1307		method_1307
+	m	(Lnet/minecraft/class_280;)V	method_1307		linkProgram
 		p	1			p_1
 c	net/minecraft/class_287
-	m	(I)I	method_16005	method_16005	
-		p	0		p_0	
-	m	(III)I	method_16006	method_16006	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(I)I	method_16005	roundBufferSize	
+		p	0		amount	
+	m	(III)I	method_16006	clamp	
+		p	0		value	
+		p	1		min	
+		p	2		max	
 c	net/minecraft/class_2902
 c	net/minecraft/class_2902$class_2903
-	m	()Z	method_16137	method_16137	
+	m	()Z	method_16137	shouldSendToClient	
 	m	()Z	method_16136	method_16136	
 	m	()Lnet/minecraft/class_2902$class_2904;	method_12607		method_12607
 c	net/minecraft/class_2902$class_2904
 	f	Lnet/minecraft/class_2902$class_2904;	field_16424	field_16424	
 c	net/minecraft/class_2936
-	m	(Lnet/minecraft/class_2939;Lnet/minecraft/class_1936;IILjava/util/BitSet;Ljava/util/Random;Lnet/minecraft/class_2338$class_2339;IIIII)Z	method_16138	method_16138	
+	m	(Lnet/minecraft/class_2939;Lnet/minecraft/class_1936;IILjava/util/BitSet;Ljava/util/Random;Lnet/minecraft/class_2338$class_2339;IIIII)Z	method_16138	carveAtPoint	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
@@ -1799,35 +1803,35 @@ c	net/minecraft/class_3032
 		p	3			p_3
 	m	()Ljava/lang/String;	method_13160		method_13160
 c	net/minecraft/class_3039
-	m	(Lnet/minecraft/class_1297;Ljava/util/List;IILjava/util/List;)V	method_16139	method_16139	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_2168;Ljava/util/List;)V	method_13213	method_13213	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2168;Ljava/util/List;Lnet/minecraft/class_2960;)V	method_13212	method_13212	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1297;Ljava/util/List;IILjava/util/List;)V	method_16139	replace	
+		p	0		entity	
+		p	1		stacks	
+		p	2		slot	
+		p	3		stackCount	
+		p	4		addedStacks	
+	m	(Lnet/minecraft/class_2168;Ljava/util/List;)V	method_13213	sendDroppedFeedback	
+		p	0		source	
+		p	1		stacks	
+	m	(Lnet/minecraft/class_2168;Ljava/util/List;Lnet/minecraft/class_2960;)V	method_13212	sendDroppedFeedback	
+		p	0		source	
+		p	1		stacks	
+		p	2		lootTable	
 	m	(Lnet/minecraft/class_2168;Ljava/util/List;)V	method_13184	method_13184	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		stacks	
 	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2960;Ljava/util/List;)V	method_13185	method_13185	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		stacks	
 	m	(Lnet/minecraft/class_2168;Lnet/minecraft/class_2680;Ljava/util/List;)V	method_13224	method_13224	
 		p	0		p_0	
 		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2168;Ljava/util/List;I)V	method_13213		method_13213
+		p	2		stacks	
+	m	(Lnet/minecraft/class_2168;Ljava/util/List;I)V	method_13213		sendDroppedFeedback
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/class_2168;Ljava/util/List;ILnet/minecraft/class_2960;)V	method_13212		method_13212
+	m	(Lnet/minecraft/class_2168;Ljava/util/List;ILnet/minecraft/class_2960;)V	method_13212		sendDroppedFeedback
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -1855,31 +1859,31 @@ c	net/minecraft/class_3039
 		p	1			p_1
 c	net/minecraft/class_3039$class_3040
 	m	(Ljava/util/List;)V	accept	accept	
-		p	1		p_1	
+		p	1		items	
 	m	(I)V	accept		accept
 		p	1			p_1
 c	net/minecraft/class_304
-	f	Lnet/minecraft/class_3675$class_306;	field_1654	field_1654	
-	f	Lnet/minecraft/class_3675$class_306;	field_1655	field_1655	
-	f	Lnet/minecraft/class_305$class_306;	field_1654		field_1654
-	f	Lnet/minecraft/class_305$class_306;	field_1655		field_1655
-	m	(Lnet/minecraft/class_3675$class_306;)V	method_1420	method_1420	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_3675$class_306;Z)V	method_1416	method_1416	
-		p	0		p_0	
-		p	1		p_1	
+	f	Lnet/minecraft/class_3675$class_306;	field_1654	defaultKey	
+	f	Lnet/minecraft/class_3675$class_306;	field_1655	boundKey	
+	f	Lnet/minecraft/class_305$class_306;	field_1654		defaultKey
+	f	Lnet/minecraft/class_305$class_306;	field_1655		boundKey
+	m	(Lnet/minecraft/class_3675$class_306;)V	method_1420	onKeyPressed	
+		p	0		key	
+	m	(Lnet/minecraft/class_3675$class_306;Z)V	method_1416	setKeyPressed	
+		p	0		key	
+		p	1		pressed	
 	m	(Ljava/lang/String;Lnet/minecraft/class_3675$class_307;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	()Lnet/minecraft/class_3675$class_306;	method_1429	method_1429	
-	m	(Lnet/minecraft/class_3675$class_306;)V	method_1422	method_1422	
-		p	1		p_1	
-	m	()Ljava/lang/String;	method_16007	method_16007	
-	m	(Lnet/minecraft/class_305$class_306;)V	method_1420		method_1420
+	m	()Lnet/minecraft/class_3675$class_306;	method_1429	getDefaultKey	
+	m	(Lnet/minecraft/class_3675$class_306;)V	method_1422	setBoundKey	
+		p	1		boundKey	
+	m	()Ljava/lang/String;	method_16007	getLocalizedName	
+	m	(Lnet/minecraft/class_305$class_306;)V	method_1420		onKeyPressed
 		p	0			p_0
-	m	(Lnet/minecraft/class_305$class_306;Z)V	method_1416		method_1416
+	m	(Lnet/minecraft/class_305$class_306;Z)V	method_1416		setKeyPressed
 		p	0			p_0
 		p	1			p_1
 	m	(Ljava/lang/String;Lnet/minecraft/class_305$class_307;ILjava/lang/String;)V	<init>		<init>
@@ -1887,19 +1891,19 @@ c	net/minecraft/class_304
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	()Lnet/minecraft/class_305$class_306;	method_1429		method_1429
-	m	(Lnet/minecraft/class_305$class_306;)V	method_1422		method_1422
+	m	()Lnet/minecraft/class_305$class_306;	method_1429		getDefaultKey
+	m	(Lnet/minecraft/class_305$class_306;)V	method_1422		setBoundKey
 		p	1			p_1
 	m	()Ljava/lang/String;	method_1421		method_1421
 c	net/minecraft/class_304$1	1	
 	f	[I	field_16239	field_16239	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_308
-	f	Lnet/minecraft/class_1160;	field_1677	field_1677	
-	f	Lnet/minecraft/class_1160;	field_1676	field_1676	
-	f	Lnet/minecraft/class_243;	field_1677		field_1677
-	f	Lnet/minecraft/class_243;	field_1676		field_1676
-	m	(FFF)Lnet/minecraft/class_1160;	method_15980	method_15980	
+	f	Lnet/minecraft/class_1160;	field_1677	towardLight	
+	f	Lnet/minecraft/class_1160;	field_1676	oppositeLight	
+	f	Lnet/minecraft/class_243;	field_1677		towardLight
+	f	Lnet/minecraft/class_243;	field_1676		oppositeLight
+	m	(FFF)Lnet/minecraft/class_1160;	method_15980	createNormalVector	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
@@ -1909,26 +1913,26 @@ c	net/minecraft/class_308
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/class_309
-	f	Lnet/minecraft/class_3674;	field_16241	field_16241	
+	f	Lnet/minecraft/class_3674;	field_16241	clipboard	
 	f	Ljava/nio/ByteBuffer;	field_1684		field_1684
 	m	(Ljava/nio/ByteBuffer;Ljava/lang/String;)V	method_1470		method_1470
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_310
-	f	Lnet/minecraft/class_543;	field_1725	field_1725	
-	f	Lnet/minecraft/class_3682;	field_1686	field_1686	
-	f	Lnet/minecraft/class_3689;	field_16240	field_16240	
-	f	Lnet/minecraft/class_542$class_543;	field_1725		field_1725
-	f	Lnet/minecraft/class_323;	field_1686		field_1686
-	f	Lnet/minecraft/class_3533;	field_1716		field_1716
+	f	Lnet/minecraft/class_543;	field_1725	windowSettings	
+	f	Lnet/minecraft/class_3682;	field_1686	windowProvider	
+	f	Lnet/minecraft/class_3689;	field_16240	profiler	
+	f	Lnet/minecraft/class_542$class_543;	field_1725		windowSettings
+	f	Lnet/minecraft/class_323;	field_1686		windowProvider
+	f	Lnet/minecraft/class_3533;	field_1716		tickProfilerResult
 	m	(Z)V	method_15994	method_15994	
 		p	1		p_1	
 	m	()V	method_15993	method_15993	
-	m	()I	method_16009	method_16009	
-	m	()Z	method_16008	method_16008	
+	m	()I	method_16009	getFramerateLimit	
+	m	()Z	method_16008	isFramerateLimited	
 	m	(Z)V	method_15995	method_15995	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_3695;	method_16011	method_16011	
+	m	()Lnet/minecraft/class_3695;	method_16011	getProfiler	
 	m	()Ljava/lang/String;	method_16012	method_16012	
 	m	()I	method_16010	method_16010	
 	m	()V	af_	af_	
@@ -1952,33 +1956,33 @@ c	net/minecraft/class_3145
 c	net/minecraft/class_315
 	f	Z	field_1902		field_1902
 	f	Z	field_1899		field_1899
-	m	(Lnet/minecraft/class_304;Lnet/minecraft/class_3675$class_306;)V	method_1641	method_1641	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_304;Lnet/minecraft/class_305$class_306;)V	method_1641		method_1641
+	m	(Lnet/minecraft/class_304;Lnet/minecraft/class_3675$class_306;)V	method_1641	setKeyCode	
+		p	1		key	
+		p	2		code	
+	m	(Lnet/minecraft/class_304;Lnet/minecraft/class_305$class_306;)V	method_1641		setKeyCode
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_315$class_316
 	f	Lnet/minecraft/class_315$class_316;	field_1936		field_1936
 	f	Lnet/minecraft/class_315$class_316;	field_1929		field_1929
 c	net/minecraft/class_3193
-	f	Lcom/mojang/datafixers/util/Either;	field_16426	field_16426	
-	f	Ljava/util/concurrent/CompletableFuture;	field_16430	field_16430	
-	f	Lcom/mojang/datafixers/util/Either;	field_16427	field_16427	
-	f	Ljava/util/concurrent/CompletableFuture;	field_16429	field_16429	
-	f	Ljava/util/concurrent/atomic/AtomicReferenceArray;	field_16425	field_16425	
-	f	Ljava/util/concurrent/CompletableFuture;	field_16431	field_16431	
-	f	Ljava/util/concurrent/CompletableFuture;	field_16428	field_16428	
-	f	I	field_16432	field_16432	
+	f	Lcom/mojang/datafixers/util/Either;	field_16426	UNLOADED_CHUNK	
+	f	Ljava/util/concurrent/CompletableFuture;	field_16430	UNLOADED_CHUNK_FUTURE	
+	f	Lcom/mojang/datafixers/util/Either;	field_16427	UNLOADED_WORLD_CHUNK	
+	f	Ljava/util/concurrent/CompletableFuture;	field_16429	UNLOADED_WORLD_CHUNK_FUTURE	
+	f	Ljava/util/concurrent/atomic/AtomicReferenceArray;	field_16425	futuresByStatus	
+	f	Ljava/util/concurrent/CompletableFuture;	field_16431	accessibleFuture	
+	f	Ljava/util/concurrent/CompletableFuture;	field_16428	savingFuture	
+	f	I	field_16432	lastTickLevel	
 	f	Ljava/util/Map;	field_13867		field_13867
 	f	Ljava/util/concurrent/CompletableFuture;	field_13866		field_13866
-	m	(Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_16146	method_16146	
-		p	1		p_1	
-	m	()Ljava/util/concurrent/CompletableFuture;	method_16145	method_16145	
-	m	()Lnet/minecraft/class_2818;	method_16144	method_16144	
-	m	()Lnet/minecraft/class_2806;	method_16141	method_16141	
-	m	(Ljava/util/concurrent/CompletableFuture;)V	method_16143	method_16143	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_16146	getFutureFor	
+		p	1		leastStatus	
+	m	()Ljava/util/concurrent/CompletableFuture;	method_16145	getTickingFuture	
+	m	()Lnet/minecraft/class_2818;	method_16144	getWorldChunk	
+	m	()Lnet/minecraft/class_2806;	method_16141	getCompletedStatus	
+	m	(Ljava/util/concurrent/CompletableFuture;)V	method_16143	combineSavingFuture	
+		p	1		then	
 	m	(Lnet/minecraft/class_2791;Lcom/mojang/datafixers/util/Either;)Lnet/minecraft/class_2791;	method_16147	method_16147	
 		p	0		p_0	
 		p	1		p_1	
@@ -1997,8 +2001,9 @@ c	net/minecraft/class_3193
 	m	(Ljava/util/concurrent/CompletableFuture;Lnet/minecraft/class_2806;)Ljava/util/concurrent/CompletableFuture;	method_13998		method_13998
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/class_3193$class_3724	class_3724	
-	f	Lnet/minecraft/class_3193$class_3724;	field_16433	field_16433	
+c	net/minecraft/class_3193$class_3724	Unloaded	
+	c	Used to represent a chunk that has not been loaded yet.	
+	f	Lnet/minecraft/class_3193$class_3724;	field_16433	INSTANCE	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_3193$class_3724$1	1	
 	m	()V	<init>	<init>	
@@ -2010,7 +2015,7 @@ c	net/minecraft/class_3195
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_3197
-	f	Ljava/util/List;	field_16435	field_16435	
+	f	Ljava/util/List;	field_16435	CREATURE_SPAWNS	
 	m	()Ljava/util/List;	method_16140	method_16140	
 c	net/minecraft/class_3202
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/class_30;Lnet/minecraft/class_2874;Lnet/minecraft/class_3218;Lnet/minecraft/class_3695;)V	<init>	<init>	
@@ -2026,9 +2031,9 @@ c	net/minecraft/class_3202
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_3204
-	m	(Lnet/minecraft/class_3215;)Z	method_15892	method_15892	
+	m	(Lnet/minecraft/class_3215;)Z	method_15892	tick	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_3215;)V	method_15892		method_15892
+	m	(Lnet/minecraft/class_3215;)V	method_15892		tick
 		p	1			p_1
 c	net/minecraft/class_3211
 	f	Ljava/util/List;	field_16436	field_16436	
@@ -2038,12 +2043,12 @@ c	net/minecraft/class_3215
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;	field_16434	field_16434	
 	f	Ljava/util/function/BooleanSupplier;	field_13931		field_13931
 	f	Ljava/util/Queue;	field_13937		field_13937
-	m	()Z	method_16155	method_16155	
+	m	()Z	method_16155	tick	
 	m	(ZLnet/minecraft/class_3193$class_3724;)Lnet/minecraft/class_2791;	method_16173	method_16173	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		unloaded	
 	m	(Lnet/minecraft/class_2791;)Lnet/minecraft/class_2791;	method_16150	method_16150	
-		p	0		p_0	
+		p	0		chunk	
 	m	(Lnet/minecraft/class_1923;)Ljava/util/concurrent/CompletableFuture;	method_16175	method_16175	
 		p	1		p_1	
 	m	(J)Lnet/minecraft/class_3193;	method_16174	method_16174	
@@ -2233,15 +2238,15 @@ c	net/minecraft/class_3222
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_323
-	f	Lnet/minecraft/class_3676;	field_1991	field_1991	
-	f	Lnet/minecraft/class_310;	field_1991		field_1991
+	f	Lnet/minecraft/class_3676;	field_1991	monitorFactory	
+	f	Lnet/minecraft/class_310;	field_1991		monitorFactory
 	m	(Lnet/minecraft/class_3676;)V	<init>	<init>	
 		p	1		p_1	
-	m	(III)I	method_15991	method_15991	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	method_15992	method_15992	
+	m	(III)I	method_15991	clamp	
+		p	0		value	
+		p	1		min	
+		p	2		max	
+	m	()V	method_15992	stop	
 	m	(Lnet/minecraft/class_310;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_542$class_543;Ljava/lang/String;)Lnet/minecraft/class_1041;	method_1682		method_1682
@@ -2261,7 +2266,7 @@ c	net/minecraft/class_342
 	m	()Z	method_16015	method_16015	
 	m	()Z	af_		af_
 c	net/minecraft/class_3447
-	f	Z	field_16445	field_16445	
+	f	Z	field_16445	hasCat	
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_3341;)V	method_16181	method_16181	
 		p	1		p_1	
 		p	2		p_2	
@@ -2292,22 +2297,22 @@ c	net/minecraft/class_3488
 c	net/minecraft/class_3489
 	f	Lnet/minecraft/class_3494;	field_16444	field_16444	
 c	net/minecraft/class_3491
-	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_3499$class_3501;Lnet/minecraft/class_3492;)Lnet/minecraft/class_3499$class_3501;	method_15110	method_15110	
+	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;Lnet/minecraft/class_3499$class_3501;Lnet/minecraft/class_3492;)Lnet/minecraft/class_3499$class_3501;	method_15110	process	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_3499$class_3501;)Lnet/minecraft/class_3499$class_3501;	method_15110		method_15110
+	m	(Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_3499$class_3501;)Lnet/minecraft/class_3499$class_3501;	method_15110		process
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3492
-	f	Ljava/util/List;	field_16446	field_16446	
+	f	Ljava/util/List;	field_16446	processors	
 	f	F	field_15576		field_15576
-	m	()Lnet/minecraft/class_3492;	method_16183	method_16183	
-	m	(Lnet/minecraft/class_3491;)Lnet/minecraft/class_3492;	method_16184	method_16184	
-		p	1		p_1	
-	m	()Ljava/util/List;	method_16182	method_16182	
+	m	()Lnet/minecraft/class_3492;	method_16183	clearProcessors	
+	m	(Lnet/minecraft/class_3491;)Lnet/minecraft/class_3492;	method_16184	addProcessor	
+		p	1		processor	
+	m	()Ljava/util/List;	method_16182	getProcessors	
 	m	(F)Lnet/minecraft/class_3492;	method_15127		method_15127
 		p	1			p_1
 	m	()F	method_15129		method_15129
@@ -2317,23 +2322,23 @@ c	net/minecraft/class_3499
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_3492;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3341;	method_16187	method_16187	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2470;IILnet/minecraft/class_3341;Lnet/minecraft/class_2350;Lnet/minecraft/class_2350;)V	method_16186	method_16186	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_3492;Lnet/minecraft/class_2338;)Lnet/minecraft/class_3341;	method_16187	calculateBoundingBox	
+		p	1		placementData	
+		p	2		pos	
+	m	(Lnet/minecraft/class_2470;IILnet/minecraft/class_3341;Lnet/minecraft/class_2350;Lnet/minecraft/class_2350;)V	method_16186	mirrorBoundingBox	
+		p	1		rotation	
+		p	2		offsetX	
+		p	3		offsetZ	
+		p	4		boundingBox	
 		p	5		p_5	
 		p	6		p_6	
 	m	(Lnet/minecraft/class_3499$class_3501;)I	method_16185	method_16185	
-		p	0		p_0	
-	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;Lnet/minecraft/class_2248;)Ljava/util/List;	method_15165	method_15165	
+		p	0		blockInfo	
+	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;Lnet/minecraft/class_2248;)Ljava/util/List;	method_15165	getInfosForBlock	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;)Ljava/util/Map;	method_15165		method_15165
+	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;)Ljava/util/Map;	method_15165		getInfosForBlock
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/class_1936;Lnet/minecraft/class_2338;Lnet/minecraft/class_3492;I)Z	method_15170		method_15170
@@ -2350,8 +2355,8 @@ c	net/minecraft/class_3499
 c	net/minecraft/class_3499$class_3501
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/class_3533
-	f	J	field_16267	field_16267	
-	f	Ljava/util/function/IntSupplier;	field_16266	field_16266	
+	f	J	field_16267	TIMEOUT_NANOSECONDS	
+	f	Ljava/util/function/IntSupplier;	field_16266	endTickGetter	
 	m	(JLjava/util/function/IntSupplier;)V	<init>	<init>	
 		p	1		p_1	
 		p	3		p_3	
@@ -2365,38 +2370,38 @@ c	net/minecraft/class_3533
 	m	()I	method_15398		method_15398
 	m	(I)V	method_15397		method_15397
 		p	1			p_1
-	m	(Ljava/lang/String;)Ljava/util/List;	method_15401		method_15401
+	m	(Ljava/lang/String;)Ljava/util/List;	method_15401		getTimings
 		p	1			p_1
 	m	()Ljava/lang/String;	method_15402		method_15402
-c	net/minecraft/class_3533$class_3534		class_3534
-	f	D	field_15739		field_15739
-	f	D	field_15737		field_15737
-	f	Ljava/lang/String;	field_15738		field_15738
+c	net/minecraft/class_3533$class_3534		ProfilerTiming
+	f	D	field_15739		parentSectionUsagePercentage
+	f	D	field_15737		totalUsagePercentage
+	f	Ljava/lang/String;	field_15738		name
 	m	(Ljava/lang/String;DD)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 	m	(Lnet/minecraft/class_3533$class_3534;)I	method_15408		method_15408
 		p	1			p_1
-	m	()I	method_15409		method_15409
+	m	()I	method_15409		getColor
 	m	(Ljava/lang/Object;)I	compareTo		compareTo
 		p	1			p_1
-c	net/minecraft/class_3534	net/minecraft/class_3534	
-	f	D	field_15739	field_15739	
-	f	D	field_15737	field_15737	
-	f	Ljava/lang/String;	field_15738	field_15738	
+c	net/minecraft/class_3534	net/minecraft/util/profiler/ProfilerTiming	
+	f	D	field_15739	parentSectionUsagePercentage	
+	f	D	field_15737	totalUsagePercentage	
+	f	Ljava/lang/String;	field_15738	name	
 	m	(Lnet/minecraft/class_3534;)I	method_15408	method_15408	
 		p	1		p_1	
-	m	()I	method_15409	method_15409	
+	m	()I	method_15409	getColor	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		p_1	
+		p	1		other	
 	m	(Ljava/lang/String;DD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 c	net/minecraft/class_3556
-	f	Z	field_16447	field_16447	
-	m	()V	method_16188	method_16188	
+	f	Z	field_16447	cacheEnabled	
+	m	()V	method_16188	disableCache	
 c	net/minecraft/class_3558
 	m	(III)Lnet/minecraft/class_2804;	method_15544	method_15544	
 		p	1		p_1	
@@ -2407,15 +2412,15 @@ c	net/minecraft/class_3558
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_3560
-	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_16448	field_16448	
+	f	Lit/unimi/dsi/fastutil/longs/LongSet;	field_16448	notifySections	
 	m	(J)[B	method_15531		method_15531
 		p	1			p_1
 c	net/minecraft/class_3562
-	m	(III)Lnet/minecraft/class_2804;	method_15544	method_15544	
+	m	(III)Lnet/minecraft/class_2804;	method_15544	getLightSection	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(III)[B	method_15544		method_15544
+	m	(III)[B	method_15544		getLightSection
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -2429,13 +2434,16 @@ c	net/minecraft/class_3562$class_3563
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_364
-	m	(DD)V	method_16014	method_16014	
-		p	1		p_1	
-		p	3		p_3	
+	m	(DD)V	method_16014	mouseMoved	
+		c	Callback for when a mouse move event has been captured.\n\n@see net.minecraft.client.Mouse#onCursorPos	
+		p	1		mouseX	
+			c	the X coordinate of the mouse	
+		p	3		mouseY	
+			c	the Y coordinate of the mouse	
 	m	()Z	method_16015	method_16015	
 	m	()Z	af_		af_
-c	net/minecraft/class_3668	net/minecraft/class_3668	
-	f	Lnet/minecraft/class_47$class_50;	field_16227	field_16227	
+c	net/minecraft/class_3668	net/minecraft/loot/function/FillPlayerHeadLootFunction	
+	f	Lnet/minecraft/class_47$class_50;	field_16227	entity	
 	m	([Lnet/minecraft/class_209;Lnet/minecraft/class_47$class_50;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -2445,7 +2453,7 @@ c	net/minecraft/class_3668	net/minecraft/class_3668
 		p	2		p_2	
 	m	(Lnet/minecraft/class_3668;)Lnet/minecraft/class_47$class_50;	method_15956	method_15956	
 		p	0		p_0	
-c	net/minecraft/class_3668$class_3669	class_3669	
+c	net/minecraft/class_3668$class_3669	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_3668;Lcom/google/gson/JsonSerializationContext;)V	method_15957	method_15957	
 		p	1		p_1	
@@ -2467,10 +2475,10 @@ c	net/minecraft/class_3668$class_3669	class_3669
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_3670	net/minecraft/class_3670	
-	f	Lorg/apache/logging/log4j/Logger;	field_16230	field_16230	
-	f	Lnet/minecraft/class_2561;	field_16228	field_16228	
-	f	Lnet/minecraft/class_47$class_50;	field_16229	field_16229	
+c	net/minecraft/class_3670	net/minecraft/loot/function/SetNameLootFunction	
+	f	Lorg/apache/logging/log4j/Logger;	field_16230	LOGGER	
+	f	Lnet/minecraft/class_2561;	field_16228	name	
+	f	Lnet/minecraft/class_47$class_50;	field_16229	entity	
 	m	([Lnet/minecraft/class_209;Lnet/minecraft/class_2561;Lnet/minecraft/class_47$class_50;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -2490,7 +2498,7 @@ c	net/minecraft/class_3670	net/minecraft/class_3670
 		p	4		p_4	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_3670$1	1	
-c	net/minecraft/class_3670$class_147	class_147	
+c	net/minecraft/class_3670$class_147	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_3670;Lcom/google/gson/JsonSerializationContext;)V	method_630	method_630	
 		p	1		p_1	
@@ -2512,10 +2520,10 @@ c	net/minecraft/class_3670$class_147	class_147
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_3671	net/minecraft/class_3671	
-	f	Z	field_16232	field_16232	
-	f	Ljava/util/List;	field_16231	field_16231	
-	f	Lnet/minecraft/class_47$class_50;	field_16233	field_16233	
+c	net/minecraft/class_3671	net/minecraft/loot/function/SetLoreLootFunction	
+	f	Z	field_16232	replace	
+	f	Ljava/util/List;	field_16231	lore	
+	f	Lnet/minecraft/class_47$class_50;	field_16233	entity	
 	f	Lorg/apache/logging/log4j/Logger;	field_16234	field_16234	
 	m	([Lnet/minecraft/class_209;ZLjava/util/List;Lnet/minecraft/class_47$class_50;)V	<init>	<init>	
 		p	1		p_1	
@@ -2526,9 +2534,9 @@ c	net/minecraft/class_3671	net/minecraft/class_3671
 	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_47;)Lnet/minecraft/class_1799;	method_522	method_522	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1799;Z)Lnet/minecraft/class_2499;	method_15964	method_15964	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_1799;Z)Lnet/minecraft/class_2499;	method_15964	getLoreForMerge	
+		p	1		stack	
+		p	2		otherLoreExists	
 	m	(Lnet/minecraft/class_3671;)Z	method_15961	method_15961	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_3671;)Ljava/util/List;	method_15963	method_15963	
@@ -2543,7 +2551,7 @@ c	net/minecraft/class_3671	net/minecraft/class_3671
 		p	0		p_0	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3671$class_3672	class_3672	
+c	net/minecraft/class_3671$class_3672	Serializer	
 	m	()V	<init>	<init>	
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_3671;Lcom/google/gson/JsonSerializationContext;)V	method_15969	method_15969	
 		p	1		p_1	
@@ -2565,66 +2573,66 @@ c	net/minecraft/class_3671$class_3672	class_3672
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_3673	net/minecraft/class_3673	
-	m	()V	method_15973	method_15973	
-	m	()D	method_15974	method_15974	
-c	net/minecraft/class_3674	net/minecraft/class_3674	
-	f	Ljava/nio/ByteBuffer;	field_16236	field_16236	
+c	net/minecraft/class_3673	net/minecraft/client/util/GlfwUtil	
+	m	()V	method_15973	makeJvmCrash	
+	m	()D	method_15974	getTime	
+c	net/minecraft/class_3674	net/minecraft/client/util/Clipboard	
+	f	Ljava/nio/ByteBuffer;	field_16236	clipboardBuffer	
 	m	()V	<init>	<init>	
-	m	(JLorg/lwjgl/glfw/GLFWErrorCallbackI;)Ljava/lang/String;	method_15977	method_15977	
-		p	1		p_1	
-		p	3		p_3	
-	m	(JLjava/nio/ByteBuffer;Ljava/lang/String;)V	method_15978	method_15978	
-		p	1		p_1	
-		p	3		p_3	
-		p	4		p_4	
-	m	(JLjava/lang/String;)V	method_15979	method_15979	
-		p	1		p_1	
-		p	3		p_3	
-c	net/minecraft/class_3675	net/minecraft/class_3675	
-	f	Lnet/minecraft/class_3675$class_306;	field_16237	field_16237	
-	m	(II)Lnet/minecraft/class_3675$class_306;	method_15985	method_15985	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/String;)Lnet/minecraft/class_3675$class_306;	method_15981	method_15981	
-		p	0		p_0	
-	m	(JI)Z	method_15987	method_15987	
-		p	0		p_0	
-		p	2		p_2	
-	m	(JLorg/lwjgl/glfw/GLFWKeyCallbackI;Lorg/lwjgl/glfw/GLFWCharModsCallbackI;)V	method_15986	method_15986	
-		p	0		p_0	
-		p	2		p_2	
-		p	3		p_3	
-	m	(JLorg/lwjgl/glfw/GLFWCursorPosCallbackI;Lorg/lwjgl/glfw/GLFWMouseButtonCallbackI;Lorg/lwjgl/glfw/GLFWScrollCallbackI;)V	method_15983	method_15983	
-		p	0		p_0	
-		p	2		p_2	
+	m	(JLorg/lwjgl/glfw/GLFWErrorCallbackI;)Ljava/lang/String;	method_15977	getClipboard	
+		p	1		window	
+		p	3		errorCallback	
+	m	(JLjava/nio/ByteBuffer;Ljava/lang/String;)V	method_15978	setClipboard	
+		p	1		window	
 		p	3		p_3	
 		p	4		p_4	
-	m	(JIDD)V	method_15984	method_15984	
-		p	0		p_0	
+	m	(JLjava/lang/String;)V	method_15979	setClipboard	
+		p	1		window	
+		p	3		string	
+c	net/minecraft/class_3675	net/minecraft/client/util/InputUtil	
+	f	Lnet/minecraft/class_3675$class_306;	field_16237	UNKNOWN_KEY	
+	m	(II)Lnet/minecraft/class_3675$class_306;	method_15985	fromKeyCode	
+		p	0		keyCode	
+		p	1		scanCode	
+	m	(Ljava/lang/String;)Lnet/minecraft/class_3675$class_306;	method_15981	fromTranslationKey	
+		p	0		translationKey	
+	m	(JI)Z	method_15987	isKeyPressed	
+		p	0		handle	
+		p	2		code	
+	m	(JLorg/lwjgl/glfw/GLFWKeyCallbackI;Lorg/lwjgl/glfw/GLFWCharModsCallbackI;)V	method_15986	setKeyboardCallbacks	
+		p	0		handle	
+		p	2		keyCallback	
+		p	3		charModsCallback	
+	m	(JLorg/lwjgl/glfw/GLFWCursorPosCallbackI;Lorg/lwjgl/glfw/GLFWMouseButtonCallbackI;Lorg/lwjgl/glfw/GLFWScrollCallbackI;)V	method_15983	setMouseCallbacks	
+		p	0		handle	
 		p	2		p_2	
 		p	3		p_3	
-		p	5		p_5	
-	m	(I)Ljava/lang/String;	method_15988	method_15988	
+		p	4		p_4	
+	m	(JIDD)V	method_15984	setCursorParameters	
+		p	0		handler	
+		p	2		inputModeValue	
+		p	3		x	
+		p	5		y	
+	m	(I)Ljava/lang/String;	method_15988	getKeycodeName	
 		p	0		p_0	
-	m	(I)Ljava/lang/String;	method_15982	method_15982	
+	m	(I)Ljava/lang/String;	method_15982	getScancodeName	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_3675$1	1	
-c	net/minecraft/class_3675$class_306	class_306	
-	f	Ljava/lang/String;	field_1663	field_1663	
-	f	Lnet/minecraft/class_3675$class_307;	field_1666	field_1666	
-	f	I	field_1665	field_1665	
-	f	Ljava/util/Map;	field_1664	field_1664	
+c	net/minecraft/class_3675$class_306	Key	
+	f	Ljava/lang/String;	field_1663	translationKey	
+	f	Lnet/minecraft/class_3675$class_307;	field_1666	type	
+	f	I	field_1665	code	
+	f	Ljava/util/Map;	field_1664	KEYS	
 	m	(Ljava/lang/String;Lnet/minecraft/class_3675$class_307;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lnet/minecraft/class_3675$class_307;	method_1442	method_1442	
-	m	()I	method_1444	method_1444	
-	m	()Ljava/lang/String;	method_1441	method_1441	
+	m	()Lnet/minecraft/class_3675$class_307;	method_1442	getCategory	
+	m	()I	method_1444	getCode	
+	m	()Ljava/lang/String;	method_1441	getTranslationKey	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		p_1	
+		p	1		o	
 	m	()I	hashCode	hashCode	
 	m	()Ljava/lang/String;	toString	toString	
 	m	(Ljava/lang/String;Lnet/minecraft/class_3675$class_307;ILnet/minecraft/class_3675$1;)V	<init>	<init>	
@@ -2634,59 +2642,61 @@ c	net/minecraft/class_3675$class_306	class_306
 		p	4		p_4	
 	m	()Ljava/util/Map;	method_1445	method_1445	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3675$class_307	class_307	
+c	net/minecraft/class_3675$class_307	Type	
 	f	Lnet/minecraft/class_3675$class_307;	field_1668	field_1668	
 	f	Lnet/minecraft/class_3675$class_307;	field_1671	field_1671	
 	f	Lnet/minecraft/class_3675$class_307;	field_1672	field_1672	
-	f	[Ljava/lang/String;	field_1669	field_1669	
-	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_1674	field_1674	
-	f	Ljava/lang/String;	field_1673	field_1673	
+	f	[Ljava/lang/String;	field_1669	mouseButtons	
+	f	Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;	field_1674	map	
+	f	Ljava/lang/String;	field_1673	name	
 	f	[Lnet/minecraft/class_3675$class_307;	field_1670	field_1670	
 	m	()[Lnet/minecraft/class_3675$class_307;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/class_3675$class_307;	valueOf	valueOf	
 		p	0		p_0	
-	m	(Lnet/minecraft/class_3675$class_307;Ljava/lang/String;I)V	method_1446	method_1446	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/class_3675$class_307;Ljava/lang/String;I)V	method_1446	mapKey	
+		p	0		type	
+		p	1		translationKey	
+		p	2		keyCode	
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(I)Lnet/minecraft/class_3675$class_306;	method_1447	method_1447	
-		p	1		p_1	
-	m	()Ljava/lang/String;	method_15989	method_15989	
+	m	(I)Lnet/minecraft/class_3675$class_306;	method_1447	createFromCode	
+		p	1		code	
+	m	()Ljava/lang/String;	method_15989	getName	
 	m	(Lnet/minecraft/class_3675$class_307;)Ljava/lang/String;	method_1448	method_1448	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3676	net/minecraft/class_3676	
+c	net/minecraft/class_3676	net/minecraft/client/util/MonitorFactory	
 	m	(J)Lnet/minecraft/class_313;	createMonitor	createMonitor	
-		p	1		p_1	
-c	net/minecraft/class_3677	net/minecraft/class_3677	
+		p	1		pointer	
+c	net/minecraft/class_3677	net/minecraft/client/util/Snooper	
 	m	(Ljava/lang/String;Ljava/lang/Object;)V	setFixedData	setFixedData	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3678	net/minecraft/class_3678	
-	m	(Z)V	method_15995	method_15995	
-		p	1		p_1	
-	m	(Z)V	method_15994	method_15994	
-		p	1		p_1	
-	m	()V	method_15993	method_15993	
-c	net/minecraft/class_3679	net/minecraft/class_3679	
-	m	()I	method_1270	method_1270	
-	m	()V	method_1279	method_1279	
-	m	()Lnet/minecraft/class_281;	method_1274	method_1274	
-	m	()Lnet/minecraft/class_281;	method_1278	method_1278	
-c	net/minecraft/class_3680	net/minecraft/class_3680	
-	f	F	field_16245	field_16245	
-	f	F	field_16244	field_16244	
-	f	F	field_16243	field_16243	
+c	net/minecraft/class_3678	net/minecraft/client/WindowEventHandler	
+	m	(Z)V	method_15995	onWindowFocusChanged	
+		p	1		focused	
+	m	(Z)V	method_15994	updateDisplay	
+		p	1		respectFramerateLimit	
+	m	()V	method_15993	onResolutionChanged	
+c	net/minecraft/class_3679	net/minecraft/client/gl/ShaderProgramSetupView	
+	c	A superinterface of {@link ShaderProgram} that exposes methods necessary\nfor linking or deleting this shader program.	
+	m	()I	method_1270	getGlRef	
+	m	()V	method_1279	markUniformsDirty	
+	m	()Lnet/minecraft/class_281;	method_1274	getVertexShader	
+	m	()Lnet/minecraft/class_281;	method_1278	getFragmentShader	
+c	net/minecraft/class_3680	net/minecraft/client/render/entity/model/CatEntityModel	
+	c	Represents the model of a {@linkplain CatEntity}.\n\n<p>Inherits the {@link OcelotEntityModel}.	
+	f	F	field_16245	sleepAnimation	
+	f	F	field_16244	tailCurlAnimation	
+	f	F	field_16243	headDownAnimation	
 	m	(F)V	<init>	<init>	
 		p	1		p_1	
-	m	(FFF)F	method_16018	method_16018	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(FFF)F	method_16018	lerpAngle	
+		p	1		from	
+		p	2		to	
+		p	3		intermediate	
 	m	(Lnet/minecraft/class_1309;FFF)V	method_2816	method_2816	
 		p	1		p_1	
 		p	2		p_2	
@@ -2700,20 +2710,20 @@ c	net/minecraft/class_3680	net/minecraft/class_3680
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/class_3682	net/minecraft/class_3682	
-	f	Lnet/minecraft/class_310;	field_16256	field_16256	
-	f	Lnet/minecraft/class_323;	field_16255	field_16255	
+c	net/minecraft/class_3682	net/minecraft/client/util/WindowProvider	
+	f	Lnet/minecraft/class_310;	field_16256	client	
+	f	Lnet/minecraft/class_323;	field_16255	monitorTracker	
 	m	(Lnet/minecraft/class_310;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_543;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/class_1041;	method_16038	method_16038	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_543;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/class_1041;	method_16038	createWindow	
+		p	1		settings	
+		p	2		videoMode	
+		p	3		title	
 	m	()V	close	close	
 	m	(J)Lnet/minecraft/class_313;	method_16039	method_16039	
 		p	1		p_1	
-c	net/minecraft/class_3683	net/minecraft/class_3683	
-	f	Lnet/minecraft/class_2960;	field_16259	field_16259	
+c	net/minecraft/class_3683	net/minecraft/client/render/entity/OcelotEntityRenderer	
+	f	Lnet/minecraft/class_2960;	field_16259	TEXTURE	
 	m	(Lnet/minecraft/class_898;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_3701;)Lnet/minecraft/class_2960;	method_16046	method_16046	
@@ -2721,9 +2731,9 @@ c	net/minecraft/class_3683	net/minecraft/class_3683
 	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_2960;	method_3931	method_3931	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3684	net/minecraft/class_3684	
-	f	Lnet/minecraft/class_2960;	field_16260	field_16260	
-	f	Lnet/minecraft/class_3680;	field_16261	field_16261	
+c	net/minecraft/class_3684	net/minecraft/client/render/entity/feature/CatCollarFeatureRenderer	
+	f	Lnet/minecraft/class_2960;	field_16260	SKIN	
+	f	Lnet/minecraft/class_3680;	field_16261	model	
 	f	Lnet/minecraft/class_929;	field_16262	field_16262	
 	m	(Lnet/minecraft/class_1451;FFFFFFF)V	method_16047	method_16047	
 		p	1		p_1	
@@ -2747,39 +2757,39 @@ c	net/minecraft/class_3684	net/minecraft/class_3684
 		p	6		p_6	
 		p	7		p_7	
 		p	8		p_8	
-c	net/minecraft/class_3685	net/minecraft/class_3685	
-	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_2960;)[I	method_16049	method_16049	
-		p	0		p_0	
-		p	1		p_1	
-c	net/minecraft/class_3686	net/minecraft/class_3686	
+c	net/minecraft/class_3685	net/minecraft/client/util/RawTextureDataLoader	
+	m	(Lnet/minecraft/class_3300;Lnet/minecraft/class_2960;)[I	method_16049	loadRawTextureData	
+		p	0		resourceManager	
+		p	1		id	
+c	net/minecraft/class_3686	net/minecraft/datafixer/schema/Schema1904	
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_16050	method_16050	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_16050	targetEntityItems	
+		p	0		schema	
+		p	1		map	
+		p	2		entityId	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerEntities	registerEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_16051	method_16051	
 		p	0		p_0	
-c	net/minecraft/class_3687	net/minecraft/class_3687	
+c	net/minecraft/class_3687	net/minecraft/datafixer/schema/Schema1906	
 	m	(ILcom/mojang/datafixers/schemas/Schema;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;	registerBlockEntities	registerBlockEntities	
-		p	1		p_1	
+		p	1		schema	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V	method_16052	method_16052	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+		p	0		schema	
+		p	1		map	
+		p	2		name	
 	m	(Lcom/mojang/datafixers/schemas/Schema;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_16053	method_16053	
 		p	0		p_0	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)Lcom/mojang/datafixers/types/templates/TypeTemplate;	method_16054	method_16054	
 		p	0		p_0	
-		p	1		p_1	
-c	net/minecraft/class_3688	net/minecraft/class_3688	
-	f	Lnet/minecraft/class_3688;	field_16265	field_16265	
+		p	1		name	
+c	net/minecraft/class_3688	net/minecraft/util/profiler/EmptyProfileResult	
+	f	Lnet/minecraft/class_3688;	field_16265	INSTANCE	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Ljava/util/List;	method_16067	method_16067	
 		p	1		p_1	
@@ -2790,14 +2800,14 @@ c	net/minecraft/class_3688	net/minecraft/class_3688
 	m	()J	method_16073	method_16073	
 	m	()I	method_16070	method_16070	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3689	net/minecraft/class_3689	
+c	net/minecraft/class_3689	net/minecraft/util/profiler/DisableableProfiler	
 	f	J	field_16268	field_16268	
-	f	Ljava/util/function/IntSupplier;	field_16269	field_16269	
-	f	Lnet/minecraft/class_3689$class_3691;	field_16270	field_16270	
+	f	Ljava/util/function/IntSupplier;	field_16269	tickSupplier	
+	f	Lnet/minecraft/class_3689$class_3691;	field_16270	controller	
 	f	Lnet/minecraft/class_3689$class_3691;	field_16271	field_16271	
 	m	(Ljava/util/function/IntSupplier;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_3689$class_3690;	method_16055	method_16055	
+	m	()Lnet/minecraft/class_3689$class_3690;	method_16055	getController	
 	m	()V	method_16065	method_16065	
 	m	()V	method_16066	method_16066	
 	m	(Ljava/lang/String;)V	method_15396	method_15396	
@@ -2813,13 +2823,13 @@ c	net/minecraft/class_3689	net/minecraft/class_3689
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_3689$1	1	
-c	net/minecraft/class_3689$class_3690	class_3690	
-	m	()Z	method_16057	method_16057	
-	m	()Lnet/minecraft/class_3696;	method_16058	method_16058	
-	m	()Lnet/minecraft/class_3696;	method_16059	method_16059	
-	m	()V	method_16060	method_16060	
-c	net/minecraft/class_3689$class_3691	class_3691	
-	f	Lnet/minecraft/class_3693;	field_16272	field_16272	
+c	net/minecraft/class_3689$class_3690	Controller	
+	m	()Z	method_16057	isEnabled	
+	m	()Lnet/minecraft/class_3696;	method_16058	disable	
+	m	()Lnet/minecraft/class_3696;	method_16059	getResults	
+	m	()V	method_16060	enable	
+c	net/minecraft/class_3689$class_3691	ControllerImpl	
+	f	Lnet/minecraft/class_3693;	field_16272	profiler	
 	f	Lnet/minecraft/class_3689;	field_16273	field_16273	
 	m	(Lnet/minecraft/class_3689;)V	<init>	<init>	
 		p	1		p_1	
@@ -2830,13 +2840,13 @@ c	net/minecraft/class_3689$class_3691	class_3691
 	m	(Lnet/minecraft/class_3689;Lnet/minecraft/class_3689$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3692	net/minecraft/class_3692	
-	f	Lorg/apache/logging/log4j/Logger;	field_16279	field_16279	
-	f	Ljava/util/Map;	field_16277	field_16277	
-	f	J	field_16278	field_16278	
-	f	I	field_16275	field_16275	
-	f	J	field_16276	field_16276	
-	f	I	field_16274	field_16274	
+c	net/minecraft/class_3692	net/minecraft/util/profiler/ProfileResultImpl	
+	f	Lorg/apache/logging/log4j/Logger;	field_16279	LOGGER	
+	f	Ljava/util/Map;	field_16277	timings	
+	f	J	field_16278	startTime	
+	f	I	field_16275	startTick	
+	f	J	field_16276	endTime	
+	f	I	field_16274	endTick	
 	m	(Ljava/lang/String;)Ljava/util/List;	method_16067	method_16067	
 		p	1		p_1	
 	m	()J	method_16068	method_16068	
@@ -2845,14 +2855,14 @@ c	net/minecraft/class_3692	net/minecraft/class_3692
 	m	()I	method_16070	method_16070	
 	m	(Ljava/io/File;)Z	method_16069	method_16069	
 		p	1		p_1	
-	m	(JI)Ljava/lang/String;	method_16063	method_16063	
-		p	1		p_1	
-		p	3		p_3	
-	m	(ILjava/lang/String;Ljava/lang/StringBuilder;)V	method_16061	method_16061	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()Ljava/lang/String;	method_16062	method_16062	
+	m	(JI)Ljava/lang/String;	method_16063	asString	
+		p	1		timeSpan	
+		p	3		tickSpan	
+	m	(ILjava/lang/String;Ljava/lang/StringBuilder;)V	method_16061	appendTiming	
+		p	1		level	
+		p	2		name	
+		p	3		sb	
+	m	()Ljava/lang/String;	method_16062	generateWittyComment	
 	m	()V	<clinit>	<clinit>	
 	m	(Ljava/util/Map;JIJI)V	<init>	<init>	
 		p	1		p_1	
@@ -2860,7 +2870,7 @@ c	net/minecraft/class_3692	net/minecraft/class_3692
 		p	4		p_4	
 		p	5		p_5	
 		p	7		p_7	
-c	net/minecraft/class_3693	net/minecraft/class_3693	
+c	net/minecraft/class_3693	net/minecraft/util/profiler/ReadableProfiler	
 	m	(Ljava/lang/String;)V	method_15396	method_15396	
 		p	1		p_1	
 	m	(Ljava/util/function/Supplier;)V	method_15400	method_15400	
@@ -2870,9 +2880,9 @@ c	net/minecraft/class_3693	net/minecraft/class_3693
 		p	1		p_1	
 	m	(Ljava/util/function/Supplier;)V	method_15403	method_15403	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_3696;	method_16064	method_16064	
-c	net/minecraft/class_3694	net/minecraft/class_3694	
-	f	Lnet/minecraft/class_3694;	field_16280	field_16280	
+	m	()Lnet/minecraft/class_3696;	method_16064	getResult	
+c	net/minecraft/class_3694	net/minecraft/util/profiler/DummyProfiler	
+	f	Lnet/minecraft/class_3694;	field_16280	INSTANCE	
 	m	()V	<init>	<init>	
 	m	()V	method_16065	method_16065	
 	m	()V	method_16066	method_16066	
@@ -2887,31 +2897,32 @@ c	net/minecraft/class_3694	net/minecraft/class_3694
 		p	1		p_1	
 	m	()Lnet/minecraft/class_3696;	method_16064	method_16064	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3695	net/minecraft/class_3695	
-	m	()V	method_16065	method_16065	
-	m	()V	method_16066	method_16066	
-	m	(Ljava/lang/String;)V	method_15396	method_15396	
-		p	1		p_1	
-	m	(Ljava/util/function/Supplier;)V	method_15400	method_15400	
-		p	1		p_1	
-	m	()V	method_15407	method_15407	
-	m	(Ljava/lang/String;)V	method_15405	method_15405	
-		p	1		p_1	
-	m	(Ljava/util/function/Supplier;)V	method_15403	method_15403	
-		p	1		p_1	
-c	net/minecraft/class_3696	net/minecraft/class_3696	
-	m	(Ljava/lang/String;)Ljava/util/List;	method_16067	method_16067	
-		p	1		p_1	
-	m	(Ljava/io/File;)Z	method_16069	method_16069	
-		p	1		p_1	
-	m	()J	method_16068	method_16068	
-	m	()I	method_16072	method_16072	
-	m	()J	method_16073	method_16073	
-	m	()I	method_16070	method_16070	
-	m	()J	method_16071	method_16071	
-	m	()I	method_16074	method_16074	
-c	net/minecraft/class_3697	net/minecraft/class_3697	
-	f	Lnet/minecraft/class_1451;	field_16282	field_16282	
+c	net/minecraft/class_3695	net/minecraft/util/profiler/Profiler	
+	m	()V	method_16065	startTick	
+	m	()V	method_16066	endTick	
+	m	(Ljava/lang/String;)V	method_15396	push	
+		p	1		location	
+	m	(Ljava/util/function/Supplier;)V	method_15400	push	
+		p	1		locationGetter	
+	m	()V	method_15407	pop	
+	m	(Ljava/lang/String;)V	method_15405	swap	
+		p	1		location	
+	m	(Ljava/util/function/Supplier;)V	method_15403	swap	
+		p	1		locationGetter	
+c	net/minecraft/class_3696	net/minecraft/util/profiler/ProfileResult	
+	m	(Ljava/lang/String;)Ljava/util/List;	method_16067	getTimings	
+		p	1		parentPath	
+	m	(Ljava/io/File;)Z	method_16069	save	
+		p	1		file	
+	m	()J	method_16068	getStartTime	
+	m	()I	method_16072	getStartTick	
+	m	()J	method_16073	getEndTime	
+	m	()I	method_16070	getEndTick	
+	m	()J	method_16071	getTimeSpan	
+	m	()I	method_16074	getTickSpan	
+c	net/minecraft/class_3697	net/minecraft/entity/ai/goal/GoToBedAndSleepGoal	
+	c	Makes a {@link CatEntity} go to a bed and sleep.	
+	f	Lnet/minecraft/class_1451;	field_16282	cat	
 	m	(Lnet/minecraft/class_1451;DI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -2925,14 +2936,14 @@ c	net/minecraft/class_3697	net/minecraft/class_3697
 	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z	method_6296	method_6296	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3701	net/minecraft/class_3701	
-	f	Lnet/minecraft/class_1856;	field_16299	field_16299	
-	f	Lnet/minecraft/class_2940;	field_16301	field_16301	
-	f	Lnet/minecraft/class_3701$class_3702;	field_16300	field_16300	
-	f	Lnet/minecraft/class_3701$class_3703;	field_16302	field_16302	
-	m	()Z	method_16099	method_16099	
-	m	(Z)V	method_16102	method_16102	
-		p	1		p_1	
+c	net/minecraft/class_3701	net/minecraft/entity/passive/OcelotEntity	
+	f	Lnet/minecraft/class_1856;	field_16299	TAMING_INGREDIENT	
+	f	Lnet/minecraft/class_2940;	field_16301	TRUSTING	
+	f	Lnet/minecraft/class_3701$class_3702;	field_16300	fleeGoal	
+	f	Lnet/minecraft/class_3701$class_3703;	field_16302	temptGoal	
+	m	()Z	method_16099	isTrusting	
+	m	(Z)V	method_16102	setTrusting	
+		p	1		trusting	
 	m	(Lnet/minecraft/class_2487;)V	method_5652	method_5652	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2487;)V	method_5749	method_5749	
@@ -2959,16 +2970,16 @@ c	net/minecraft/class_3701	net/minecraft/class_3701
 		p	2		p_2	
 	m	(B)V	method_5711	method_5711	
 		p	1		p_1	
-	m	(Z)V	method_16100	method_16100	
-		p	1		p_1	
-	m	()V	method_16103	method_16103	
+	m	(Z)V	method_16100	showEmoteParticle	
+		p	1		positive	
+	m	()V	method_16103	updateFleeing	
 	m	(Lnet/minecraft/class_1296;)Lnet/minecraft/class_3701;	method_16104	method_16104	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1799;)Z	method_6481	method_6481	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1941;)Z	method_5957	method_5957	
 		p	1		p_1	
-	m	()V	method_16105	method_16105	
+	m	()V	method_16105	spawnKittens	
 	m	(Lnet/minecraft/class_1296;)Lnet/minecraft/class_1296;	method_5613	method_5613	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_3701;)Z	method_16101	method_16101	
@@ -2986,8 +2997,8 @@ c	net/minecraft/class_3701	net/minecraft/class_3701
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/class_3701$class_3702	class_3702	
-	f	Lnet/minecraft/class_3701;	field_16303	field_16303	
+c	net/minecraft/class_3701$class_3702	FleeGoal	
+	f	Lnet/minecraft/class_3701;	field_16303	ocelot	
 	m	(Lnet/minecraft/class_3701;Ljava/lang/Class;FDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -2996,24 +3007,24 @@ c	net/minecraft/class_3701$class_3702	class_3702
 		p	6		p_6	
 	m	()Z	method_6264	method_6264	
 	m	()Z	method_6266	method_6266	
-c	net/minecraft/class_3701$class_3703	class_3703	
-	f	Lnet/minecraft/class_3701;	field_16304	field_16304	
+c	net/minecraft/class_3701$class_3703	OcelotTemptGoal	
+	f	Lnet/minecraft/class_3701;	field_16304	ocelot	
 	m	(Lnet/minecraft/class_3701;DLnet/minecraft/class_1856;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	5		p_5	
 	m	()Z	method_16081	method_16081	
-c	net/minecraft/class_3705	net/minecraft/class_3705	
+c	net/minecraft/class_3705	net/minecraft/screen/BlastFurnaceScreenHandler	
 	m	(Lnet/minecraft/class_1661;Lnet/minecraft/class_1263;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3706	net/minecraft/class_3706	
+c	net/minecraft/class_3706	net/minecraft/screen/SmokerScreenHandler	
 	m	(Lnet/minecraft/class_1661;Lnet/minecraft/class_1263;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3708	net/minecraft/class_3708	
-	f	Lnet/minecraft/class_2753;	field_16320	field_16320	
+c	net/minecraft/class_3708	net/minecraft/block/BarrelBlock	
+	f	Lnet/minecraft/class_2753;	field_16320	FACING	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1922;)Lnet/minecraft/class_2586;	method_10123	method_10123	
@@ -3037,17 +3048,17 @@ c	net/minecraft/class_3708	net/minecraft/class_3708
 	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_2680;	method_9605	method_9605	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3709	net/minecraft/class_3709	
-	f	Lnet/minecraft/class_2753;	field_16324	field_16324	
-	f	Lnet/minecraft/class_2754;	field_16326	field_16326	
-	f	Lnet/minecraft/class_265;	field_16325	field_16325	
-	f	Lnet/minecraft/class_265;	field_16322	field_16322	
-	f	Lnet/minecraft/class_265;	field_16321	field_16321	
-	f	Lnet/minecraft/class_265;	field_16323	field_16323	
+c	net/minecraft/class_3709	net/minecraft/block/BellBlock	
+	f	Lnet/minecraft/class_2753;	field_16324	FACING	
+	f	Lnet/minecraft/class_2754;	field_16326	ATTACHMENT	
+	f	Lnet/minecraft/class_265;	field_16325	NORTH_SOUTH_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16322	EAST_WEST_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16321	EAST_WEST_WALLS_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16323	NORTH_WALL_SHAPE	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_265;	method_16116	method_16116	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_265;	method_16116	getShape	
+		p	1		state	
 	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2464;	method_9604	method_9604	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1750;)Lnet/minecraft/class_2680;	method_9605	method_9605	
@@ -3063,8 +3074,8 @@ c	net/minecraft/class_3709	net/minecraft/class_3709
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2350;	method_16115	method_16115	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2350;	method_16115	getPlacementSide	
+		p	0		state	
 	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_3619;	method_9527	method_9527	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2689$class_2690;)V	method_9515	method_9515	
@@ -3090,7 +3101,7 @@ c	net/minecraft/class_3709	net/minecraft/class_3709
 c	net/minecraft/class_3709$1	1	
 	f	[I	field_16327	field_16327	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3710	net/minecraft/class_3710	
+c	net/minecraft/class_3710	net/minecraft/block/BlastFurnaceBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1922;)Lnet/minecraft/class_2586;	method_10123	method_10123	
@@ -3110,7 +3121,7 @@ c	net/minecraft/class_3710	net/minecraft/class_3710
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_3711	net/minecraft/class_3711	
+c	net/minecraft/class_3711	net/minecraft/block/CartographyTableBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_2350;FFF)Z	method_9534	method_9534	
@@ -3123,7 +3134,7 @@ c	net/minecraft/class_3711	net/minecraft/class_3711
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_3712	net/minecraft/class_3712	
+c	net/minecraft/class_3712	net/minecraft/block/FletchingTableBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_2350;FFF)Z	method_9534	method_9534	
@@ -3136,77 +3147,77 @@ c	net/minecraft/class_3712	net/minecraft/class_3712
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_3713	net/minecraft/class_3713	
-	f	Lnet/minecraft/class_265;	field_16379	field_16379	
-	f	Lnet/minecraft/class_265;	field_16392	field_16392	
-	f	Lnet/minecraft/class_265;	field_16366	field_16366	
-	f	Lnet/minecraft/class_265;	field_16339	field_16339	
-	f	Lnet/minecraft/class_265;	field_16348	field_16348	
-	f	Lnet/minecraft/class_265;	field_16365	field_16365	
-	f	Lnet/minecraft/class_265;	field_16385	field_16385	
-	f	Lnet/minecraft/class_265;	field_16380	field_16380	
-	f	Lnet/minecraft/class_265;	field_16373	field_16373	
-	f	Lnet/minecraft/class_265;	field_16346	field_16346	
-	f	Lnet/minecraft/class_265;	field_16343	field_16343	
-	f	Lnet/minecraft/class_265;	field_16374	field_16374	
-	f	Lnet/minecraft/class_265;	field_16386	field_16386	
-	f	Lnet/minecraft/class_265;	field_16378	field_16378	
-	f	Lnet/minecraft/class_265;	field_16362	field_16362	
-	f	Lnet/minecraft/class_265;	field_16338	field_16338	
-	f	Lnet/minecraft/class_265;	field_16352	field_16352	
-	f	Lnet/minecraft/class_265;	field_16377	field_16377	
-	f	Lnet/minecraft/class_265;	field_16393	field_16393	
-	f	Lnet/minecraft/class_265;	field_16371	field_16371	
-	f	Lnet/minecraft/class_265;	field_16340	field_16340	
-	f	Lnet/minecraft/class_265;	field_16354	field_16354	
-	f	Lnet/minecraft/class_265;	field_16369	field_16369	
-	f	Lnet/minecraft/class_265;	field_16399	field_16399	
-	f	Lnet/minecraft/class_265;	field_16363	field_16363	
-	f	Lnet/minecraft/class_265;	field_16347	field_16347	
-	f	Lnet/minecraft/class_265;	field_16401	field_16401	
-	f	Lnet/minecraft/class_265;	field_16367	field_16367	
-	f	Lnet/minecraft/class_265;	field_16388	field_16388	
-	f	Lnet/minecraft/class_265;	field_16396	field_16396	
-	f	Lnet/minecraft/class_265;	field_16368	field_16368	
-	f	Lnet/minecraft/class_265;	field_16356	field_16356	
-	f	Lnet/minecraft/class_265;	field_16342	field_16342	
-	f	Lnet/minecraft/class_265;	field_16358	field_16358	
-	f	Lnet/minecraft/class_265;	field_16390	field_16390	
-	f	Lnet/minecraft/class_265;	field_16382	field_16382	
-	f	Lnet/minecraft/class_265;	field_16359	field_16359	
-	f	Lnet/minecraft/class_265;	field_16351	field_16351	
-	f	Lnet/minecraft/class_265;	field_16344	field_16344	
-	f	Lnet/minecraft/class_265;	field_16376	field_16376	
-	f	Lnet/minecraft/class_265;	field_16394	field_16394	
-	f	Lnet/minecraft/class_265;	field_16375	field_16375	
-	f	Lnet/minecraft/class_265;	field_16345	field_16345	
-	f	Lnet/minecraft/class_265;	field_16350	field_16350	
-	f	Lnet/minecraft/class_265;	field_16372	field_16372	
-	f	Lnet/minecraft/class_265;	field_16381	field_16381	
-	f	Lnet/minecraft/class_265;	field_16391	field_16391	
-	f	Lnet/minecraft/class_265;	field_16370	field_16370	
-	f	Lnet/minecraft/class_265;	field_16341	field_16341	
-	f	Lnet/minecraft/class_265;	field_16355	field_16355	
-	f	Lnet/minecraft/class_265;	field_16384	field_16384	
-	f	Lnet/minecraft/class_265;	field_16400	field_16400	
-	f	Lnet/minecraft/class_265;	field_16364	field_16364	
-	f	Lnet/minecraft/class_265;	field_16349	field_16349	
-	f	Lnet/minecraft/class_265;	field_16397	field_16397	
-	f	Lnet/minecraft/class_265;	field_16361	field_16361	
-	f	Lnet/minecraft/class_265;	field_16387	field_16387	
-	f	Lnet/minecraft/class_265;	field_16398	field_16398	
-	f	Lnet/minecraft/class_265;	field_16357	field_16357	
-	f	Lnet/minecraft/class_265;	field_16353	field_16353	
-	f	Lnet/minecraft/class_265;	field_16395	field_16395	
-	f	Lnet/minecraft/class_265;	field_16360	field_16360	
-	f	Lnet/minecraft/class_265;	field_16389	field_16389	
-	f	Lnet/minecraft/class_265;	field_16383	field_16383	
+c	net/minecraft/class_3713	net/minecraft/block/GrindstoneBlock	
+	f	Lnet/minecraft/class_265;	field_16379	WEST_FLOOR_LEG	
+	f	Lnet/minecraft/class_265;	field_16392	EAST_FLOOR_LEG	
+	f	Lnet/minecraft/class_265;	field_16366	WEST_FLOOR_HINGE	
+	f	Lnet/minecraft/class_265;	field_16339	EAST_FLOOR_HINGE	
+	f	Lnet/minecraft/class_265;	field_16348	WEST_FLOOR_SIDE	
+	f	Lnet/minecraft/class_265;	field_16365	EAST_FLOOR_SIDE	
+	f	Lnet/minecraft/class_265;	field_16385	Z_FLOOR_SIDES	
+	f	Lnet/minecraft/class_265;	field_16380	Z_FLOOR_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16373	NORTH_FLOOR_LEG	
+	f	Lnet/minecraft/class_265;	field_16346	SOUTH_FLOOR_LEG	
+	f	Lnet/minecraft/class_265;	field_16343	NORTH_FLOOR_HINGE	
+	f	Lnet/minecraft/class_265;	field_16374	SOUTH_FLOOR_HINGE	
+	f	Lnet/minecraft/class_265;	field_16386	NORTH_FLOOR_SIDE	
+	f	Lnet/minecraft/class_265;	field_16378	SOUTH_FLOOR_SIDE	
+	f	Lnet/minecraft/class_265;	field_16362	X_FLOOR_SIDES	
+	f	Lnet/minecraft/class_265;	field_16338	X_FLOOR_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16352	SOUTH_WALL_WEST_LEG	
+	f	Lnet/minecraft/class_265;	field_16377	SOUTH_WALL_EAST_LEG	
+	f	Lnet/minecraft/class_265;	field_16393	SOUTH_WALL_WEST_HINGE	
+	f	Lnet/minecraft/class_265;	field_16371	SOUTH_WALL_EAST_HINGE	
+	f	Lnet/minecraft/class_265;	field_16340	SOUTH_WALL_WEST_SIDE	
+	f	Lnet/minecraft/class_265;	field_16354	SOUTH_WALL_EAST_SIDE	
+	f	Lnet/minecraft/class_265;	field_16369	SOUTH_WALL_SIDES	
+	f	Lnet/minecraft/class_265;	field_16399	SOUTH_WALL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16363	NORTH_WALL_WEST_LEG	
+	f	Lnet/minecraft/class_265;	field_16347	NORTH_WALL_EAST_LEG	
+	f	Lnet/minecraft/class_265;	field_16401	NORTH_WALL_WEST_HINGE	
+	f	Lnet/minecraft/class_265;	field_16367	NORTH_WALL_EAST_HINGE	
+	f	Lnet/minecraft/class_265;	field_16388	NORTH_WALL_WEST_SIDE	
+	f	Lnet/minecraft/class_265;	field_16396	NORTH_WALL_EAST_SIDE	
+	f	Lnet/minecraft/class_265;	field_16368	NORTH_WALL_SIDES	
+	f	Lnet/minecraft/class_265;	field_16356	NORTH_WALL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16342	WEST_WALL_NORTH_LEG	
+	f	Lnet/minecraft/class_265;	field_16358	WEST_WALL_SOUTH_LEG	
+	f	Lnet/minecraft/class_265;	field_16390	WEST_WALL_NORTH_HINGE	
+	f	Lnet/minecraft/class_265;	field_16382	WEST_WALL_SOUTH_HINGE	
+	f	Lnet/minecraft/class_265;	field_16359	WEST_WALL_NORTH_SIDE	
+	f	Lnet/minecraft/class_265;	field_16351	WEST_WALL_SOUTH_SIDE	
+	f	Lnet/minecraft/class_265;	field_16344	WEST_WALL_SIDES	
+	f	Lnet/minecraft/class_265;	field_16376	WEST_WALL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16394	EAST_WALL_NORTH_LEG	
+	f	Lnet/minecraft/class_265;	field_16375	EAST_WALL_SOUTH_LEG	
+	f	Lnet/minecraft/class_265;	field_16345	EAST_WALL_NORTH_HINGE	
+	f	Lnet/minecraft/class_265;	field_16350	EAST_WALL_SOUTH_HINGE	
+	f	Lnet/minecraft/class_265;	field_16372	EAST_WALL_NORTH_SIDE	
+	f	Lnet/minecraft/class_265;	field_16381	EAST_WALL_SOUTH_SIDE	
+	f	Lnet/minecraft/class_265;	field_16391	EAST_WALL_SIDES	
+	f	Lnet/minecraft/class_265;	field_16370	EAST_WALL_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16341	WEST_CEILING_LEG	
+	f	Lnet/minecraft/class_265;	field_16355	EAST_CEILING_LEG	
+	f	Lnet/minecraft/class_265;	field_16384	WEST_CEILING_HINGE	
+	f	Lnet/minecraft/class_265;	field_16400	EAST_CEILING_HINGE	
+	f	Lnet/minecraft/class_265;	field_16364	WEST_CEILING_SIDE	
+	f	Lnet/minecraft/class_265;	field_16349	EAST_CEILING_SIDE	
+	f	Lnet/minecraft/class_265;	field_16397	Z_CEILING_SIDES	
+	f	Lnet/minecraft/class_265;	field_16361	Z_CEILING_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16387	NORTH_CEILING_LEG	
+	f	Lnet/minecraft/class_265;	field_16398	SOUTH_CEILING_LEG	
+	f	Lnet/minecraft/class_265;	field_16357	NORTH_CEILING_HINGE	
+	f	Lnet/minecraft/class_265;	field_16353	SOUTH_CEILING_HINGE	
+	f	Lnet/minecraft/class_265;	field_16395	NORTH_CEILING_SIDE	
+	f	Lnet/minecraft/class_265;	field_16360	SOUTH_CEILING_SIDE	
+	f	Lnet/minecraft/class_265;	field_16389	X_CEILING_SIDES	
+	f	Lnet/minecraft/class_265;	field_16383	X_CEILING_SHAPE	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2464;	method_9604	method_9604	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_265;	method_16119	method_16119	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_265;	method_16119	getShape	
+		p	1		state	
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1941;Lnet/minecraft/class_2338;)Z	method_9558	method_9558	
 		p	1		p_1	
 		p	2		p_2	
@@ -3238,17 +3249,17 @@ c	net/minecraft/class_3713	net/minecraft/class_3713
 c	net/minecraft/class_3713$1	1	
 	f	[I	field_16402	field_16402	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/class_3714	net/minecraft/class_3714	
+c	net/minecraft/class_3714	net/minecraft/data/server/loottable/vanilla/VanillaGiftLootTableGenerator	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/Object;)V	accept	accept	
-		p	1		p_1	
+		p	1		exporter	
 	m	(Ljava/util/function/BiConsumer;)V	method_16120	method_16120	
 		p	1		p_1	
-c	net/minecraft/class_3715	net/minecraft/class_3715	
-	f	Lnet/minecraft/class_2753;	field_16404	field_16404	
-	f	Lnet/minecraft/class_265;	field_16406	field_16406	
-	f	Lnet/minecraft/class_265;	field_16405	field_16405	
-	f	Lnet/minecraft/class_265;	field_16403	field_16403	
+c	net/minecraft/class_3715	net/minecraft/block/LecternBlock	
+	f	Lnet/minecraft/class_2753;	field_16404	FACING	
+	f	Lnet/minecraft/class_265;	field_16406	BOTTOM_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16405	MIDDLE_SHAPE	
+	f	Lnet/minecraft/class_265;	field_16403	BASE_SHAPE	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2464;	method_9604	method_9604	
@@ -3281,7 +3292,7 @@ c	net/minecraft/class_3715	net/minecraft/class_3715
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_3716	net/minecraft/class_3716	
+c	net/minecraft/class_3716	net/minecraft/block/SmokerBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1922;)Lnet/minecraft/class_2586;	method_10123	method_10123	
@@ -3301,7 +3312,7 @@ c	net/minecraft/class_3716	net/minecraft/class_3716
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_3717	net/minecraft/class_3717	
+c	net/minecraft/class_3717	net/minecraft/block/SmithingTableBlock	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;Lnet/minecraft/class_2350;FFF)Z	method_9534	method_9534	
@@ -3314,8 +3325,8 @@ c	net/minecraft/class_3717	net/minecraft/class_3717
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-c	net/minecraft/class_3718	net/minecraft/class_3718	
-	f	Lnet/minecraft/class_265;	field_16407	field_16407	
+c	net/minecraft/class_3718	net/minecraft/block/StonecutterBlock	
+	f	Lnet/minecraft/class_265;	field_16407	SHAPE	
 	m	(Lnet/minecraft/class_2248$class_2251;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2680;)Lnet/minecraft/class_2464;	method_9604	method_9604	
@@ -3328,8 +3339,8 @@ c	net/minecraft/class_3718	net/minecraft/class_3718
 		p	3		p_3	
 	m	(Lnet/minecraft/class_2680;)Z	method_9526	method_9526	
 		p	1		p_1	
-c	net/minecraft/class_3719	net/minecraft/class_3719	
-	f	Lnet/minecraft/class_2371;	field_16410	field_16410	
+c	net/minecraft/class_3719	net/minecraft/block/entity/BarrelBlockEntity	
+	f	Lnet/minecraft/class_2371;	field_16410	inventory	
 	f	Lnet/minecraft/class_2561;	field_16409	field_16409	
 	m	(Lnet/minecraft/class_2591;)V	<init>	<init>	
 		p	1		p_1	
@@ -3375,23 +3386,23 @@ c	net/minecraft/class_3719	net/minecraft/class_3719
 	m	()Z	method_5478	method_5478	
 	m	(Lnet/minecraft/class_2561;)V	method_16122	method_16122	
 		p	1		p_1	
-c	net/minecraft/class_3720	net/minecraft/class_3720	
+c	net/minecraft/class_3720	net/minecraft/block/entity/BlastFurnaceBlockEntity	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_5464	method_5464	
 	m	(Lnet/minecraft/class_1661;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1703;	method_5465	method_5465	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3721	net/minecraft/class_3721	
+c	net/minecraft/class_3721	net/minecraft/block/entity/BellBlockEntity	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_3722	net/minecraft/class_3722	
+c	net/minecraft/class_3722	net/minecraft/block/entity/LecternBlockEntity	
 	m	()V	<init>	<init>	
-c	net/minecraft/class_3723	net/minecraft/class_3723	
+c	net/minecraft/class_3723	net/minecraft/block/entity/SmokerBlockEntity	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	method_5464	method_5464	
 	m	(Lnet/minecraft/class_1661;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1703;	method_5465	method_5465	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/class_3725	net/minecraft/class_3725	
+c	net/minecraft/class_3725	net/minecraft/datafixer/fix/EntityCatSplitFix	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3422,19 +3433,19 @@ c	net/minecraft/class_39
 	f	Lnet/minecraft/class_2960;	field_16219	field_16219	
 	f	Lnet/minecraft/class_2960;	field_16215	field_16215	
 c	net/minecraft/class_395
-	m	(Ljava/nio/ByteBuffer;)Lorg/lwjgl/stb/STBTTFontinfo;	method_15975	method_15975	
-		p	0		p_0	
+	m	(Ljava/nio/ByteBuffer;)Lorg/lwjgl/stb/STBTTFontinfo;	method_15975	getSTBTTFontInfo	
+		p	0		font	
 	m	()Lorg/apache/logging/log4j/Logger;	method_2056		method_2056
 c	net/minecraft/class_395$class_397
 	m	()F	method_15976	method_15976	
 	m	()F	getBearingY		getBearingY
-c	net/minecraft/class_395$class_396		class_396
-	f	Lnet/minecraft/class_2960;	field_2330		field_2330
-	f	F	field_2329		field_2329
-	f	F	field_2328		field_2328
-	f	F	field_2327		field_2327
-	f	F	field_2326		field_2326
-	f	Ljava/lang/String;	field_2331		field_2331
+c	net/minecraft/class_395$class_396		TrueTypeFontLoader
+	f	Lnet/minecraft/class_2960;	field_2330		filename
+	f	F	field_2329		size
+	f	F	field_2328		oversample
+	f	F	field_2327		shiftX
+	f	F	field_2326		shiftY
+	f	Ljava/lang/String;	field_2331		excludedCharacters
 	m	(Lnet/minecraft/class_2960;FFFFLjava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -3442,18 +3453,18 @@ c	net/minecraft/class_395$class_396		class_396
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
-	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_389;	method_2059		method_2059
+	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_389;	method_2059		fromJson
 		p	0			p_0
 	m	(Lnet/minecraft/class_3300;)Lnet/minecraft/class_390;	method_2039		method_2039
 		p	1			p_1
-c	net/minecraft/class_396	net/minecraft/class_396	
-	f	Lorg/apache/logging/log4j/Logger;	field_16242	field_16242	
-	f	Lnet/minecraft/class_2960;	field_2330	field_2330	
-	f	F	field_2329	field_2329	
-	f	F	field_2328	field_2328	
-	f	F	field_2327	field_2327	
-	f	F	field_2326	field_2326	
-	f	Ljava/lang/String;	field_2331	field_2331	
+c	net/minecraft/class_396	net/minecraft/client/font/TrueTypeFontLoader	
+	f	Lorg/apache/logging/log4j/Logger;	field_16242	LOGGER	
+	f	Lnet/minecraft/class_2960;	field_2330	filename	
+	f	F	field_2329	size	
+	f	F	field_2328	oversample	
+	f	F	field_2327	shiftX	
+	f	F	field_2326	shiftY	
+	f	Ljava/lang/String;	field_2331	excludedCharacters	
 	m	(Lnet/minecraft/class_2960;FFFFLjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3461,8 +3472,8 @@ c	net/minecraft/class_396	net/minecraft/class_396
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_389;	method_2059	method_2059	
-		p	0		p_0	
+	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/class_389;	method_2059	fromJson	
+		p	0		json	
 	m	(Lnet/minecraft/class_3300;)Lnet/minecraft/class_390;	method_2039	method_2039	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
@@ -3490,8 +3501,8 @@ c	net/minecraft/class_519
 		p	1		p_1	
 		p	3		p_3	
 c	net/minecraft/class_542
-	f	Lnet/minecraft/class_543;	field_3279	field_3279	
-	f	Lnet/minecraft/class_542$class_543;	field_3279		field_3279
+	f	Lnet/minecraft/class_543;	field_3279	windowSettings	
+	f	Lnet/minecraft/class_542$class_543;	field_3279		windowSettings
 	m	(Lnet/minecraft/class_542$class_547;Lnet/minecraft/class_543;Lnet/minecraft/class_542$class_544;Lnet/minecraft/class_542$class_545;Lnet/minecraft/class_542$class_546;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3504,24 +3515,24 @@ c	net/minecraft/class_542
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/class_542$class_543		class_543
-	f	I	field_3285		field_3285
-	f	I	field_3284		field_3284
+c	net/minecraft/class_542$class_543		WindowSettings
+	f	I	field_3285		width
+	f	I	field_3284		height
 	f	Ljava/util/Optional;	field_3282		field_3282
 	f	Ljava/util/Optional;	field_3286		field_3286
-	f	Z	field_3283		field_3283
+	f	Z	field_3283		fullscreen
 	m	(IILjava/util/Optional;Ljava/util/Optional;Z)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/class_543	net/minecraft/class_543	
-	f	I	field_3285	field_3285	
-	f	I	field_3284	field_3284	
-	f	Z	field_3283	field_3283	
-	f	Ljava/util/Optional;	field_3282	field_3282	
-	f	Ljava/util/Optional;	field_3286	field_3286	
+c	net/minecraft/class_543	net/minecraft/client/WindowSettings	
+	f	I	field_3285	width	
+	f	I	field_3284	height	
+	f	Z	field_3283	fullscreen	
+	f	Ljava/util/Optional;	field_3282	fullscreenWidth	
+	f	Ljava/util/Optional;	field_3286	fullscreenHeight	
 	m	(IILjava/util/Optional;Ljava/util/Optional;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3541,7 +3552,7 @@ c	net/minecraft/class_630
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-	m	(Ljava/lang/String;FFFIIIF)Lnet/minecraft/class_630;	method_2848	method_2848	
+	m	(Ljava/lang/String;FFFIIIF)Lnet/minecraft/class_630;	method_2848	addCuboid	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -3550,7 +3561,7 @@ c	net/minecraft/class_630
 		p	6		p_6	
 		p	7		p_7	
 		p	8		p_8	
-	m	(Ljava/lang/String;FFFIII)Lnet/minecraft/class_630;	method_2848		method_2848
+	m	(Ljava/lang/String;FFFIII)Lnet/minecraft/class_630;	method_2848		addCuboid
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -3559,7 +3570,7 @@ c	net/minecraft/class_630
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/class_631
-	f	Lnet/minecraft/class_631$class_3681;	field_16246	field_16246	
+	f	Lnet/minecraft/class_631$class_3681;	field_16246	chunks	
 	f	Lnet/minecraft/class_310;	field_16250	field_16250	
 	f	I	field_16249	field_16249	
 	f	I	field_16247	field_16247	
@@ -3584,7 +3595,7 @@ c	net/minecraft/class_631
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_1937;IILnet/minecraft/class_2540;Lnet/minecraft/class_2487;IZ)V	method_16020	method_16020	
+	m	(Lnet/minecraft/class_1937;IILnet/minecraft/class_2540;Lnet/minecraft/class_2487;IZ)V	method_16020	loadChunkFromPacket	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -3611,20 +3622,20 @@ c	net/minecraft/class_631$1
 		p	2			p_2
 	m	(I)V	rehash		rehash
 		p	1			p_1
-c	net/minecraft/class_631$class_3681	class_3681	
-	f	Ljava/util/concurrent/atomic/AtomicReferenceArray;	field_16251	field_16251	
-	f	I	field_16253	field_16253	
-	f	I	field_16252	field_16252	
+c	net/minecraft/class_631$class_3681	ClientChunkMap	
+	f	Ljava/util/concurrent/atomic/AtomicReferenceArray;	field_16251	chunks	
+	f	I	field_16253	radius	
+	f	I	field_16252	diameter	
 	f	Lnet/minecraft/class_631;	field_16254	field_16254	
 	m	(Lnet/minecraft/class_631;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)I	method_16027	method_16027	
-		p	1		p_1	
-		p	2		p_2	
-	m	(II)Z	method_16034	method_16034	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)I	method_16027	getIndex	
+		p	1		chunkX	
+		p	2		chunkZ	
+	m	(II)Z	method_16034	isInRadius	
+		p	1		chunkX	
+		p	2		chunkZ	
 	m	(Lnet/minecraft/class_631;ILnet/minecraft/class_631$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3641,22 +3652,22 @@ c	net/minecraft/class_631$class_3681	class_3681
 		p	0		p_0	
 	m	(Lnet/minecraft/class_631$class_3681;)I	method_16030	method_16030	
 		p	0		p_0	
-	m	(II)Lnet/minecraft/class_2818;	method_16033	method_16033	
+	m	(II)Lnet/minecraft/class_2818;	method_16033	getChunk	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)V	method_16031	method_16031	
+	m	(II)V	method_16031	set	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_634
-	m	(IILnet/minecraft/class_3568;Lnet/minecraft/class_1944;IILjava/util/Iterator;)V	method_2870	method_2870	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-	m	(IILnet/minecraft/class_3568;Lnet/minecraft/class_1944;ILjava/util/Iterator;)V	method_2870		method_2870
+	m	(IILnet/minecraft/class_3568;Lnet/minecraft/class_1944;IILjava/util/Iterator;)V	method_2870	updateLighting	
+		p	1		chunkX	
+		p	2		chunkZ	
+		p	3		provider	
+		p	4		type	
+		p	5		mask	
+		p	6		filledMask	
+		p	7		updates	
+	m	(IILnet/minecraft/class_3568;Lnet/minecraft/class_1944;ILjava/util/Iterator;)V	method_2870		updateLighting
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -3678,19 +3689,19 @@ c	net/minecraft/class_638
 		p	5			p_5
 c	net/minecraft/class_761
 	f	Ljava/util/Set;	field_4093		field_4093
-	m	(Lnet/minecraft/class_2338;Z)V	method_16037	method_16037	
-		p	1		p_1	
-		p	2		p_2	
-	m	(III)V	method_8571	method_8571	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(IIIZ)V	method_3295	method_3295	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(IIIIIIZ)V	method_3295		method_3295
+	m	(Lnet/minecraft/class_2338;Z)V	method_16037	scheduleSectionRender	
+		p	1		pos	
+		p	2		important	
+	m	(III)V	method_8571	scheduleBlockRender	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(IIIZ)V	method_3295	scheduleChunkRender	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		important	
+	m	(IIIIIIZ)V	method_3295		scheduleChunkRender
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -3698,7 +3709,7 @@ c	net/minecraft/class_761
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-	m	(IIIIII)V	method_8571		method_8571
+	m	(IIIIII)V	method_8571		scheduleBlockRender
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -3706,11 +3717,11 @@ c	net/minecraft/class_761
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/class_769
-	m	(IIIZ)V	method_16040	method_16040	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(IIIZ)V	method_16040	scheduleRebuild	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		important	
 	m	(IIIIIIZ)V	method_3329		method_3329
 		p	1			p_1
 		p	2			p_2
@@ -3738,13 +3749,13 @@ c	net/minecraft/class_929
 		p	4		p_4	
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/server/MinecraftServer
-	f	Lnet/minecraft/class_3689;	field_16258	field_16258	
-	f	Ljava/lang/Thread;	field_16257	field_16257	
+	f	Lnet/minecraft/class_3689;	field_16258	profiler	
+	f	Ljava/lang/Thread;	field_16257	serverThread	
 	f	Lnet/minecraft/class_3533;	field_4598		field_4598
-	f	Ljava/lang/Thread;	field_4559		field_4559
+	f	Ljava/lang/Thread;	field_4559		thread
 	m	()Z	method_16075	method_16075	
-	m	()Z	method_16043	method_16043	
-	m	()Lnet/minecraft/class_3689;	method_16044	method_16044	
+	m	()Z	method_16043	isStopping	
+	m	()Lnet/minecraft/class_3689;	method_16044	getProfiler	
 	m	(Ljava/lang/Thread;)V	method_16041	method_16041	
 		p	0		p_0	
 	m	()I	method_16076	method_16076	
@@ -3842,7 +3853,7 @@ c	net/minecraft/class_146		net/minecraft/class_146
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_146$1		1
-c	net/minecraft/class_146$class_147		class_147
+c	net/minecraft/class_146$class_147		Serializer
 	m	()V	<init>		<init>
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/class_146;Lcom/google/gson/JsonSerializationContext;)V	method_630		method_630
 		p	1			p_1
@@ -3912,19 +3923,19 @@ c	net/minecraft/class_305		net/minecraft/class_305
 c	net/minecraft/class_305$1		1
 	f	[I	field_1667		field_1667
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_305$class_306		class_306
-	f	Ljava/lang/String;	field_1663		field_1663
-	f	Lnet/minecraft/class_305$class_307;	field_1666		field_1666
-	f	I	field_1665		field_1665
-	f	Ljava/util/Map;	field_1664		field_1664
+c	net/minecraft/class_305$class_306		Key
+	f	Ljava/lang/String;	field_1663		translationKey
+	f	Lnet/minecraft/class_305$class_307;	field_1666		type
+	f	I	field_1665		code
+	f	Ljava/util/Map;	field_1664		KEYS
 	m	(Ljava/lang/String;Lnet/minecraft/class_305$class_307;I)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	()Ljava/lang/String;	method_1443		method_1443
-	m	()Lnet/minecraft/class_305$class_307;	method_1442		method_1442
-	m	()I	method_1444		method_1444
-	m	()Ljava/lang/String;	method_1441		method_1441
+	m	()Lnet/minecraft/class_305$class_307;	method_1442		getCategory
+	m	()I	method_1444		getCode
+	m	()Ljava/lang/String;	method_1441		getTranslationKey
 	m	(Ljava/lang/Object;)Z	equals		equals
 		p	1			p_1
 	m	()I	hashCode		hashCode
@@ -3936,18 +3947,18 @@ c	net/minecraft/class_305$class_306		class_306
 		p	4			p_4
 	m	()Ljava/util/Map;	method_1445		method_1445
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/class_305$class_307		class_307
+c	net/minecraft/class_305$class_307		Type
 	f	Lnet/minecraft/class_305$class_307;	field_1668		field_1668
 	f	Lnet/minecraft/class_305$class_307;	field_1671		field_1671
 	f	Lnet/minecraft/class_305$class_307;	field_1672		field_1672
-	f	[Ljava/lang/String;	field_1669		field_1669
-	f	Lnet/minecraft/class_3525;	field_1674		field_1674
-	f	Ljava/lang/String;	field_1673		field_1673
+	f	[Ljava/lang/String;	field_1669		mouseButtons
+	f	Lnet/minecraft/class_3525;	field_1674		map
+	f	Ljava/lang/String;	field_1673		name
 	f	[Lnet/minecraft/class_305$class_307;	field_1670		field_1670
 	m	()[Lnet/minecraft/class_305$class_307;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/class_305$class_307;	valueOf		valueOf
 		p	0			p_0
-	m	(Lnet/minecraft/class_305$class_307;Ljava/lang/String;I)V	method_1446		method_1446
+	m	(Lnet/minecraft/class_305$class_307;Ljava/lang/String;I)V	method_1446		mapKey
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -3955,7 +3966,7 @@ c	net/minecraft/class_305$class_307		class_307
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(I)Lnet/minecraft/class_305$class_306;	method_1447		method_1447
+	m	(I)Lnet/minecraft/class_305$class_306;	method_1447		createFromCode
 		p	1			p_1
 	m	(Lnet/minecraft/class_305$class_307;)Ljava/lang/String;	method_1448		method_1448
 		p	0			p_0
@@ -4200,7 +4211,7 @@ c	net/minecraft/client/renderer/system/GLX		net/minecraft/client/renderer/system
 c	net/minecraft/client/renderer/system/GLX$1		1
 	f	[I	field_4985		field_4985
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GLX$class_1010		class_1010
+c	net/minecraft/client/renderer/system/GLX$class_1010		FBOMode
 	f	Lnet/minecraft/client/renderer/system/GLX$class_1010;	field_4981		field_4981
 	f	Lnet/minecraft/client/renderer/system/GLX$class_1010;	field_4983		field_4983
 	f	Lnet/minecraft/client/renderer/system/GLX$class_1010;	field_4984		field_4984
@@ -5059,75 +5070,75 @@ c	net/minecraft/client/renderer/system/GlStateManager		net/minecraft/client/rend
 c	net/minecraft/client/renderer/system/GlStateManager$1		1
 	f	[I	field_5129		field_5129
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1016		class_1016
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5042		field_5042
-	f	I	field_5044		field_5044
-	f	F	field_5043		field_5043
+c	net/minecraft/client/renderer/system/GlStateManager$class_1016		AlphaTestState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5042		capState
+	f	I	field_5044		func
+	f	F	field_5043		ref
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1017		class_1017
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5045		field_5045
-	f	I	field_5049		field_5049
-	f	I	field_5048		field_5048
-	f	I	field_5047		field_5047
-	f	I	field_5046		field_5046
+c	net/minecraft/client/renderer/system/GlStateManager$class_1017		BlendFuncState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5045		capState
+	f	I	field_5049		srcFactorRGB
+	f	I	field_5048		dstFactorRGB
+	f	I	field_5047		srcFactorAlpha
+	f	I	field_5046		dstFactorAlpha
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1018		class_1018
-	f	I	field_5050		field_5050
-	f	Z	field_5051		field_5051
+c	net/minecraft/client/renderer/system/GlStateManager$class_1018		CapabilityTracker
+	f	I	field_5050		cap
+	f	Z	field_5051		state
 	m	(I)V	<init>		<init>
 		p	1			p_1
-	m	()V	method_4469		method_4469
-	m	()V	method_4471		method_4471
-	m	(Z)V	method_4470		method_4470
+	m	()V	method_4469		disable
+	m	()V	method_4471		enable
+	m	(Z)V	method_4470		setState
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1019		class_1019
-	f	D	field_5053		field_5053
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1020;	field_5052		field_5052
+c	net/minecraft/client/renderer/system/GlStateManager$class_1019		ClearState
+	f	D	field_5053		clearDepth
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1020;	field_5052		clearColor
 	f	I	field_16202		field_16202
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1020		class_1020
-	f	F	field_5057		field_5057
-	f	F	field_5056		field_5056
-	f	F	field_5055		field_5055
-	f	F	field_5054		field_5054
+c	net/minecraft/client/renderer/system/GlStateManager$class_1020		Color4
+	f	F	field_5057		red
+	f	F	field_5056		green
+	f	F	field_5055		blue
+	f	F	field_5054		alpha
 	m	()V	<init>		<init>
 	m	(FFFF)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/client/renderer/system/GlStateManager$class_1021		class_1021
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5058		field_5058
-	f	I	field_5059		field_5059
+c	net/minecraft/client/renderer/system/GlStateManager$class_1021		LogicOpState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5058		capState
+	f	I	field_5059		op
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1022		class_1022
-	f	Z	field_5063		field_5063
-	f	Z	field_5062		field_5062
-	f	Z	field_5061		field_5061
-	f	Z	field_5060		field_5060
+c	net/minecraft/client/renderer/system/GlStateManager$class_1022		ColorMask
+	f	Z	field_5063		red
+	f	Z	field_5062		green
+	f	Z	field_5061		blue
+	f	Z	field_5060		alpha
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1023		class_1023
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5064		field_5064
-	f	I	field_5066		field_5066
-	f	I	field_5065		field_5065
+c	net/minecraft/client/renderer/system/GlStateManager$class_1023		ColorMaterialState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5064		capState
+	f	I	field_5066		face
+	f	I	field_5065		mode
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1024		class_1024
+c	net/minecraft/client/renderer/system/GlStateManager$class_1024		FaceSides
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	field_5068		field_5068
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	field_5070		field_5070
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	field_5071		field_5071
-	f	I	field_5069		field_5069
+	f	I	field_5069		glValue
 	f	[Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	field_5067		field_5067
 	m	()[Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/client/renderer/system/GlStateManager$class_1024;	valueOf		valueOf
@@ -5137,16 +5148,16 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1024		class_1024
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1025		class_1025
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5072		field_5072
-	f	I	field_5073		field_5073
+c	net/minecraft/client/renderer/system/GlStateManager$class_1025		CullFaceState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5072		capState
+	f	I	field_5073		mode
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1026		class_1026
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5074		field_5074
-	f	Z	field_5076		field_5076
-	f	I	field_5075		field_5075
+c	net/minecraft/client/renderer/system/GlStateManager$class_1026		DepthTestState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5074		capState
+	f	Z	field_5076		mask
+	f	I	field_5075		func
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
@@ -5175,11 +5186,11 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1027		class_1027
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1028		class_1028
+c	net/minecraft/client/renderer/system/GlStateManager$class_1028		FogMode
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	field_5095		field_5095
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	field_5096		field_5096
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	field_5097		field_5097
-	f	I	field_5093		field_5093
+	f	I	field_5093		glValue
 	f	[Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	field_5094		field_5094
 	m	()[Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/client/renderer/system/GlStateManager$class_1028;	valueOf		valueOf
@@ -5189,16 +5200,16 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1028		class_1028
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1029		class_1029
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5100		field_5100
-	f	I	field_5102		field_5102
-	f	F	field_5101		field_5101
-	f	F	field_5099		field_5099
-	f	F	field_5098		field_5098
+c	net/minecraft/client/renderer/system/GlStateManager$class_1029		FogState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5100		capState
+	f	I	field_5102		mode
+	f	F	field_5101		density
+	f	F	field_5099		start
+	f	F	field_5098		end
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1030		class_1030
+c	net/minecraft/client/renderer/system/GlStateManager$class_1030		LogicOp
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5120		field_5120
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5112		field_5112
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5117		field_5117
@@ -5215,7 +5226,7 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1030		class_1030
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5110		field_5110
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5107		field_5107
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5111		field_5111
-	f	I	field_5108		field_5108
+	f	I	field_5108		value
 	f	[Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	field_5106		field_5106
 	m	()[Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/client/renderer/system/GlStateManager$class_1030;	valueOf		valueOf
@@ -5225,15 +5236,15 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1030		class_1030
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1031		class_1031
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5123		field_5123
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5121		field_5121
-	f	F	field_5124		field_5124
-	f	F	field_5122		field_5122
+c	net/minecraft/client/renderer/system/GlStateManager$class_1031		PolygonOffsetState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5123		capFill
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5121		capLine
+	f	F	field_5124		factor
+	f	F	field_5122		units
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1032		class_1032
+c	net/minecraft/client/renderer/system/GlStateManager$class_1032		RenderMode
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1032;	field_5127		field_5127
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1032;	field_5128		field_5128
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1032;	field_5125		field_5125
@@ -5244,8 +5255,8 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1032		class_1032
 	m	(Ljava/lang/String;I)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	()V	method_4472		method_4472
-	m	()V	method_4473		method_4473
+	m	()V	method_4472		begin
+	m	()V	method_4473		end
 	m	(Ljava/lang/String;ILnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -5295,23 +5306,23 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1033		class_1033
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1034		class_1034
-	f	I	field_5148		field_5148
+c	net/minecraft/client/renderer/system/GlStateManager$class_1034		StencilSubState
+	f	I	field_5148		func
 	f	I	field_16203		field_16203
-	f	I	field_5147		field_5147
+	f	I	field_5147		mask
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1035		class_1035
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1034;	field_5149		field_5149
-	f	I	field_5153		field_5153
-	f	I	field_5152		field_5152
-	f	I	field_5151		field_5151
-	f	I	field_5150		field_5150
+c	net/minecraft/client/renderer/system/GlStateManager$class_1035		StencilState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1034;	field_5149		subState
+	f	I	field_5153		mask
+	f	I	field_5152		sfail
+	f	I	field_5151		dpfail
+	f	I	field_5150		dppass
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1036		class_1036
+c	net/minecraft/client/renderer/system/GlStateManager$class_1036		TexCoord
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1036;	field_5154		field_5154
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1036;	field_5155		field_5155
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1036;	field_5156		field_5156
@@ -5324,33 +5335,33 @@ c	net/minecraft/client/renderer/system/GlStateManager$class_1036		class_1036
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/client/renderer/system/GlStateManager$class_1037		class_1037
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5159		field_5159
-	f	I	field_5161		field_5161
-	f	I	field_5160		field_5160
+c	net/minecraft/client/renderer/system/GlStateManager$class_1037		TexGenCoordState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5159		capState
+	f	I	field_5161		coord
+	f	I	field_5160		mode
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/client/renderer/system/GlStateManager$class_1038		class_1038
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5162		field_5162
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5163		field_5163
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5164		field_5164
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5165		field_5165
+c	net/minecraft/client/renderer/system/GlStateManager$class_1038		TexGenState
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5162		s
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5163		t
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5164		r
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1037;	field_5165		q
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1039		class_1039
+c	net/minecraft/client/renderer/system/GlStateManager$class_1039		Texture2DState
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1018;	field_5166		field_5166
-	f	I	field_5167		field_5167
+	f	I	field_5167		boundTexture
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/client/renderer/system/GlStateManager$class_1040		class_1040
+c	net/minecraft/client/renderer/system/GlStateManager$class_1040		Viewport
 	f	Lnet/minecraft/client/renderer/system/GlStateManager$class_1040;	field_5169		field_5169
-	f	I	field_5172		field_5172
-	f	I	field_5171		field_5171
-	f	I	field_5170		field_5170
-	f	I	field_5168		field_5168
+	f	I	field_5172		x
+	f	I	field_5171		y
+	f	I	field_5170		width
+	f	I	field_5168		height
 	f	[Lnet/minecraft/client/renderer/system/GlStateManager$class_1040;	field_5173		field_5173
 	m	()[Lnet/minecraft/client/renderer/system/GlStateManager$class_1040;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/client/renderer/system/GlStateManager$class_1040;	valueOf		valueOf

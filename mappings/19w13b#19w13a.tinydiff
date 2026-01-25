@@ -1,16 +1,16 @@
 tiny	2	0
 c	net/minecraft/class_1299
-	m	(Lnet/minecraft/class_3494;)Z	method_20210	method_20210	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_3494;)Z	method_20210	isIn	
+		p	1		tag	
 c	net/minecraft/class_1728
-	m	(I)V	method_20215	method_20215	
-		p	1		p_1	
-	m	(ILnet/minecraft/class_1799;)V	method_20214	method_20214	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z	method_20213	method_20213	
-		p	1		p_1	
-		p	2		p_2	
+	m	(I)V	method_20215	switchTo	
+		p	1		recipeIndex	
+	m	(ILnet/minecraft/class_1799;)V	method_20214	autofill	
+		p	1		slot	
+		p	2		stack	
+	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1799;)Z	method_20213	equals	
+		p	1		itemStack	
+		p	2		otherItemStack	
 c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2338;Z)Z	method_8650	method_8650	
 		p	1		p_1	
@@ -18,10 +18,12 @@ c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2338;)Z	method_8650		method_8650
 		p	1			p_1
 c	net/minecraft/class_1945
-	m	(Lnet/minecraft/class_2338;Z)Z	method_8650	method_8650	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2338;)Z	method_8650		method_8650
+	m	(Lnet/minecraft/class_2338;Z)Z	method_8650	removeBlock	
+		c	Removes the block and replaces it with the fluid occupying the block\n(such as water inside kelp), or air if it does not exist.\n\n@implNote This does not emit the {@linkplain WorldEvents#BLOCK_BROKEN world event}\nor the {@linkplain net.minecraft.world.event.GameEvent#BLOCK_DESTROY game event}.\n\n@return whether the block was removed successfully\n\n@see #breakBlock(BlockPos, boolean)	
+		p	1		pos	
+		p	2		move	
+			c	whether the block was removed as part of piston moving blocks	
+	m	(Lnet/minecraft/class_2338;)Z	method_8650		removeBlock
 		p	1			p_1
 c	net/minecraft/class_2241
 	m	(Lnet/minecraft/class_2680;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V	method_9615	method_9615	
@@ -639,46 +641,46 @@ c	net/minecraft/class_2671
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/class_2680
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Z)V	method_11622	method_11622	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;Z)V	method_11622	neighborUpdate	
+		p	1		world	
+		p	2		pos	
+		p	3		neighborBlock	
+		p	4		neighborPos	
 		p	5		p_5	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V	method_11580	method_11580	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V	method_11622		method_11622
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)V	method_11580	onBlockAdded	
+		p	1		world	
+		p	2		pos	
+		p	3		oldState	
+		p	4		moved	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2248;Lnet/minecraft/class_2338;)V	method_11622		neighborUpdate
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V	method_11580		method_11580
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;)V	method_11580		onBlockAdded
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_2806
-	f	Ljava/util/EnumSet;	field_19159	field_19159	
-	f	Ljava/util/EnumSet;	field_19160	field_19160	
-	f	Ljava/util/EnumSet;	field_12793	field_12793	
-	f	Z	field_12793		field_12793
-	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_3768;)Lnet/minecraft/class_2806;	method_16555	method_16555	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)Lnet/minecraft/class_2806;	method_16557	method_16557	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	()Ljava/util/EnumSet;	method_12160	method_12160	
+	f	Ljava/util/EnumSet;	field_19159	PRE_CARVER_HEIGHTMAPS	
+	f	Ljava/util/EnumSet;	field_19160	POST_CARVER_HEIGHTMAPS	
+	f	Ljava/util/EnumSet;	field_12793	heightMapTypes	
+	f	Z	field_12793		heightMapTypes
+	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_3768;)Lnet/minecraft/class_2806;	method_16555	register	
+		p	0		id	
+		p	1		previous	
+		p	2		taskMargin	
+		p	3		heightMapTypes	
+		p	4		chunkType	
+		p	5		task	
+	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)Lnet/minecraft/class_2806;	method_16557	register	
+		p	0		id	
+		p	1		previous	
+		p	2		taskMargin	
+		p	3		heightMapTypes	
+		p	4		chunkType	
+		p	5		task	
+	m	()Ljava/util/EnumSet;	method_12160	getHeightmapTypes	
 	m	(Ljava/lang/String;Lnet/minecraft/class_2806;ILjava/util/EnumSet;Lnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -686,14 +688,14 @@ c	net/minecraft/class_2806
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-	m	(Ljava/lang/String;Lnet/minecraft/class_2806;IZLnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_3768;)Lnet/minecraft/class_2806;	method_16555		method_16555
+	m	(Ljava/lang/String;Lnet/minecraft/class_2806;IZLnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_3768;)Lnet/minecraft/class_2806;	method_16555		register
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Ljava/lang/String;Lnet/minecraft/class_2806;IZLnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)Lnet/minecraft/class_2806;	method_16557		method_16557
+	m	(Ljava/lang/String;Lnet/minecraft/class_2806;IZLnet/minecraft/class_2806$class_2808;Lnet/minecraft/class_2806$class_2807;)Lnet/minecraft/class_2806;	method_16557		register
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -707,7 +709,7 @@ c	net/minecraft/class_2806
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
-	m	()Z	method_12160		method_12160
+	m	()Z	method_12160		getHeightmapTypes
 c	net/minecraft/class_2902
 c	net/minecraft/class_2902$class_2903
 	m	()Z	method_16136		method_16136
@@ -735,18 +737,19 @@ c	net/minecraft/class_3709
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_3721
-	f	J	field_19155	field_19155	
-	f	Ljava/util/List;	field_19156	field_19156	
-	f	Z	field_19157	field_19157	
-	f	I	field_19158	field_19158	
-	m	()V	method_20219	method_20219	
+	f	J	field_19155	lastRingTime	
+	f	Ljava/util/List;	field_19156	hearingEntities	
+	f	Z	field_19157	resonating	
+	f	I	field_19158	resonateTime	
+	m	()V	method_20219	notifyMemoriesOfBell	
+		c	Makes living entities within 48 blocks remember that they heard a bell at the current world time.	
 	m	(Lnet/minecraft/class_2338;Lnet/minecraft/class_1309;)Z	method_20217	method_20217	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		entity	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_20216	method_20216	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_20218	method_20218	
+	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_20218	applyParticlesToRaiders	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/class_3736
@@ -784,9 +787,9 @@ c	net/minecraft/class_4246
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/class_2338;)Z	method_20211	method_20211	
-		p	0		p_0	
+		p	0		pos	
 	m	(Lnet/minecraft/class_2338;)Z	method_20212	method_20212	
-		p	0		p_0	
+		p	0		pos	
 	m	(IFIZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -795,17 +798,17 @@ c	net/minecraft/class_4246
 	m	(Lnet/minecraft/class_2338;)Z	method_19984		method_19984
 		p	1			p_1
 c	net/minecraft/class_4252
-	f	I	field_19154	field_19154	
+	f	I	field_19154	distance	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	(I)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/class_492
-	f	I	field_19161	field_19161	
-	f	[Lnet/minecraft/class_492$class_493;	field_19162	field_19162	
-	f	I	field_19163	field_19163	
-	f	Z	field_19164	field_19164	
+	f	I	field_19161	selectedIndex	
+	f	[Lnet/minecraft/class_492$class_493;	field_19162	offers	
+	f	I	field_19163	indexStartOffset	
+	f	Z	field_19164	scrolling	
 	f	Lnet/minecraft/class_492$class_493;	field_2946		field_2946
 	f	Lnet/minecraft/class_492$class_493;	field_2944		field_2944
 	f	I	field_2947		field_2947
@@ -822,8 +825,8 @@ c	net/minecraft/class_492
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(I)Z	method_20220	method_20220	
-		p	1		p_1	
+	m	(I)Z	method_20220	canScroll	
+		p	1		listSize	
 	m	(DDD)Z	mouseScrolled	mouseScrolled	
 		p	1		p_1	
 		p	3		p_3	
@@ -860,7 +863,7 @@ c	net/minecraft/class_492
 		p	1			p_1
 	m	()Lnet/minecraft/class_2960;	method_2489		method_2489
 c	net/minecraft/class_492$class_493
-	f	I	field_19165	field_19165	
+	f	I	field_19165	index	
 	f	Lnet/minecraft/class_492;	field_19166	field_19166	
 	f	Z	field_2952		field_2952
 	m	(Lnet/minecraft/class_492;IIILnet/minecraft/class_4185$class_4241;)V	<init>	<init>	
@@ -869,7 +872,7 @@ c	net/minecraft/class_492$class_493
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	()I	method_20228	method_20228	
+	m	()I	method_20228	getIndex	
 	m	(II)V	renderToolTip	renderToolTip	
 		p	1		p_1	
 		p	2		p_2	
@@ -888,5 +891,5 @@ c	net/minecraft/class_521$class_4271
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_631
-	m	(I)I	method_20230	method_20230	
-		p	0		p_0	
+	m	(I)I	method_20230	getChunkMapRadius	
+		p	0		loadDistance	

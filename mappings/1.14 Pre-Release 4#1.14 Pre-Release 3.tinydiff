@@ -1,8 +1,9 @@
 tiny	2	0
 c	net/minecraft/class_1297
-	f	Z	field_19271	field_19271	
-	m	()V	method_20447	method_20447	
-	m	()Z	method_20448	method_20448	
+	f	Z	field_19271	inLava	
+	m	()V	method_20447	setInLava	
+	m	()Z	method_20448	isCrawling	
+		c	{@return whether the entity is crawling}\n\n<p>An entity is crawling if it is in swimming pose, but is not touching water.\nPlayers start crawling if they would otherwise collide with blocks (for example,\nwhen the player is in a 1 block tall tunnel).\n\n@see #isInSwimmingPose	
 c	net/minecraft/class_1937
 	m	(Lnet/minecraft/class_2710;Lnet/minecraft/class_2338;)Z	method_20452	method_20452	
 		p	1		p_1	
@@ -20,54 +21,54 @@ c	net/minecraft/class_2404
 		p	4		p_4	
 c	net/minecraft/class_2459
 	m	(Lnet/minecraft/class_1922;)Ljava/util/List;	method_20453	method_20453	
-		p	0		p_0	
+		p	0		world	
 c	net/minecraft/class_2902
 c	net/minecraft/class_2902$class_2903
-	m	()Z	method_20454	method_20454	
+	m	()Z	method_20454	isStoredServerSide	
 c	net/minecraft/class_3193
-	m	(Lnet/minecraft/class_2821;)V	method_20456	method_20456	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2821;)V	method_20456	setCompletedChunk	
+		p	1		chunk	
 	m	(Lnet/minecraft/class_3898;Lcom/mojang/datafixers/util/Either;)V	method_20457	method_20457	
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/class_340
-	f	Ljava/util/Map;	field_19274	field_19274	
+	f	Ljava/util/Map;	field_19274	HEIGHT_MAP_TYPES	
 	m	(Ljava/util/EnumMap;)V	method_20455	method_20455	
-		p	0		p_0	
+		p	0		types	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/class_350
 	m	(Ljava/util/Collection;)V	replaceEntries	replaceEntries	
-		p	1		p_1	
+		p	1		newEntries	
 c	net/minecraft/class_357
 	m	(D)V	setValue	setValue	
-		p	1		p_1	
+		p	1		mouseX	
 c	net/minecraft/class_3898
-	m	(JLnet/minecraft/class_3193;)V	method_20458	method_20458	
-		p	1		p_1	
-		p	3		p_3	
-	m	(Lnet/minecraft/class_3193;)Ljava/util/concurrent/CompletableFuture;	method_17226	method_17226	
-		p	1		p_1	
+	m	(JLnet/minecraft/class_3193;)V	method_20458	tryUnloadChunk	
+		p	1		pos	
+		p	3		holder	
+	m	(Lnet/minecraft/class_3193;)Ljava/util/concurrent/CompletableFuture;	method_17226	convertToFullChunk	
+		p	1		chunkHolder	
 	m	(Lnet/minecraft/class_2818;)V	method_20461	method_20461	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_3193;Ljava/lang/Runnable;)V	method_17252	method_17252	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		task	
 	m	(Lnet/minecraft/class_3193;Lcom/mojang/datafixers/util/Either;)Lcom/mojang/datafixers/util/Either;	method_20460	method_20460	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		either	
 	m	(Lnet/minecraft/class_3193;Lnet/minecraft/class_2791;)Lnet/minecraft/class_2791;	method_17227	method_17227	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		protoChunk	
 	m	(Lnet/minecraft/class_3193;)Lnet/minecraft/class_3193$class_3194;	method_17251	method_17251	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_3193;Ljava/util/concurrent/CompletableFuture;JLnet/minecraft/class_2791;)V	method_18843	method_18843	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-		p	5		p_5	
+		p	5		chunk	
 	m	(Lnet/minecraft/class_2818;)V	method_20459	method_20459	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2791;Ljava/util/function/IntSupplier;)Ljava/util/concurrent/CompletableFuture;	method_17226		method_17226
+	m	(Lnet/minecraft/class_2791;Ljava/util/function/IntSupplier;)Ljava/util/concurrent/CompletableFuture;	method_17226		convertToFullChunk
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/class_1923;Ljava/util/function/IntSupplier;Ljava/lang/Runnable;)V	method_17252		method_17252
@@ -85,7 +86,7 @@ c	net/minecraft/class_3898
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_3910
-	f	Lnet/minecraft/class_1731;	field_19272	field_19272	
+	f	Lnet/minecraft/class_1731;	field_19272	resultInventory	
 c	net/minecraft/class_3910$2
 	f	Lnet/minecraft/class_3910;	field_19273	field_19273	
 	f	Lnet/minecraft/class_3910;	field_17299		field_17299
@@ -157,7 +158,7 @@ c	net/minecraft/class_3910$5	5
 		p	2		p_2	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)V	method_17387	method_17387	
 		p	0		p_0	
-		p	1		p_1	
+		p	1		world	
 	m	(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;)Lnet/minecraft/class_1799;	method_17386	method_17386	
 		p	1		p_1	
 		p	2		p_2	
@@ -165,18 +166,18 @@ c	net/minecraft/class_3910$5	5
 c	net/minecraft/class_4019
 	m	(Lnet/minecraft/class_1309;)Z	method_20451	method_20451	
 		p	0		p_0	
-c	net/minecraft/class_4294	net/minecraft/class_4294	
+c	net/minecraft/class_4294	net/minecraft/datafixer/fix/OminousBannerItemRenameFix	
 	m	(Lcom/mojang/datafixers/schemas/Schema;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_20445	method_20445	
-		p	1		p_1	
+	m	(Lcom/mojang/datafixers/Dynamic;)Lcom/mojang/datafixers/Dynamic;	method_20445	fixBannerName	
+		p	1		tag	
 	m	()Lcom/mojang/datafixers/TypeRewriteRule;	makeRule	makeRule	
 	m	(Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;	method_20446	method_20446	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/class_4295	net/minecraft/class_4295	
+c	net/minecraft/class_4295	net/minecraft/entity/ai/brain/task/LoseJobOnSiteLossTask	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_1646;)Z	method_20449	method_20449	
 		p	1		p_1	
@@ -196,10 +197,10 @@ c	net/minecraft/class_4295	net/minecraft/class_4295
 c	net/minecraft/class_433
 	m	(Ljava/lang/String;Lnet/minecraft/class_4185;)V	method_19842	method_19842	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		button	
 	m	(Ljava/lang/String;Z)V	method_19839	method_19839	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		confirmed	
 	m	(Lnet/minecraft/class_4185;)V	method_19842		method_19842
 		p	1			p_1
 	m	(Z)V	method_19839		method_19839

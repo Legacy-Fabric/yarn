@@ -28,15 +28,15 @@ c	net/minecraft/class_1255
 c	net/minecraft/class_1282
 	f	Lnet/minecraft/class_1282;	field_19169		field_19169
 c	net/minecraft/class_1297
-	m	()Z	method_5709	method_5709	
+	m	()Z	method_5709	isLiving	
 c	net/minecraft/class_1548
 	f	Lnet/minecraft/class_2940;	field_19170		field_19170
 	m	()Z	method_20232		method_20232
 	m	()V	method_20233		method_20233
 c	net/minecraft/class_1764
-	m	(Ljava/util/Random;)[F	method_7780	method_7780	
-		p	0		p_0	
-	m	(Ljava/util/Random;)F	method_7780		method_7780
+	m	(Ljava/util/Random;)[F	method_7780	getSoundPitches	
+		p	0		random	
+	m	(Ljava/util/Random;)F	method_7780		getSoundPitches
 		p	0			p_0
 c	net/minecraft/class_1802
 	f	Lnet/minecraft/class_1792;	field_19171		field_19171
@@ -46,7 +46,7 @@ c	net/minecraft/class_1802
 c	net/minecraft/class_1898
 	m	()I	method_8187		method_8187
 c	net/minecraft/class_285
-	m	()V	method_1305	method_1305	
+	m	()V	method_1305	init	
 c	net/minecraft/class_3031
 	f	Lnet/minecraft/class_3031;	field_19178		field_19178
 c	net/minecraft/class_304
@@ -55,10 +55,10 @@ c	net/minecraft/class_304
 c	net/minecraft/class_309
 	f	Ljava/lang/String;	field_19182		field_19182
 	f	Ljava/util/Random;	field_19183		field_19183
-	m	(JII)V	method_1457	method_1457	
-		p	1		p_1	
-		p	3		p_3	
-		p	4		p_4	
+	m	(JII)V	method_1457	onChar	
+		p	1		window	
+		p	3		codePoint	
+		p	4		modifiers	
 	m	(Lnet/minecraft/class_1937;Lnet/minecraft/class_2338;I)Lnet/minecraft/class_2338;	method_20248		method_20248
 		p	0			p_0
 		p	1			p_1
@@ -95,20 +95,20 @@ c	net/minecraft/class_315
 	f	Lnet/minecraft/class_304;	field_19190		field_19190
 	f	Lnet/minecraft/class_304;	field_19191		field_19191
 c	net/minecraft/class_329
-	f	I	field_2014	field_2014	
-	f	I	field_2033	field_2033	
-	f	J	field_2012	field_2012	
-	f	J	field_2032	field_2032	
+	f	I	field_2014	lastHealthValue	
+	f	I	field_2033	renderHealthValue	
+	f	J	field_2012	lastHealthCheckTime	
+	f	J	field_2032	heartJumpEndTick	
 	f	Lnet/minecraft/class_2960;	field_19192		field_19192
-	m	(I)V	method_1754	method_1754	
+	m	(I)V	method_1754	renderExperienceBar	
 		p	1		p_1	
-	m	()Lnet/minecraft/class_1309;	method_1734	method_1734	
-	m	(Lnet/minecraft/class_1309;)I	method_1744	method_1744	
-		p	1		p_1	
-	m	(I)I	method_1733	method_1733	
-		p	1		p_1	
-	m	()V	method_1760	method_1760	
-	m	()V	method_1741	method_1741	
+	m	()Lnet/minecraft/class_1309;	method_1734	getRiddenEntity	
+	m	(Lnet/minecraft/class_1309;)I	method_1744	getHeartCount	
+		p	1		entity	
+	m	(I)I	method_1733	getHeartRows	
+		p	1		heartCount	
+	m	()V	method_1760	renderStatusBars	
+	m	()V	method_1741	renderMountHealth	
 	m	()V	method_20259		method_20259
 c	net/minecraft/class_3417
 	f	Lnet/minecraft/class_3414;	field_19260		field_19260
@@ -134,13 +134,13 @@ c	net/minecraft/class_39
 c	net/minecraft/class_417
 	m	()Z	shouldCloseOnEsc		shouldCloseOnEsc
 c	net/minecraft/class_4237
-	m	(Lnet/minecraft/class_2960;)Ljava/util/concurrent/CompletableFuture;	method_19743	method_19743	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_2960;)Ljava/util/concurrent/CompletableFuture;	method_19743	loadStatic	
+		p	1		id	
 	m	(Lnet/minecraft/class_2960;)Ljava/util/concurrent/CompletableFuture;	method_19746	method_19746	
-		p	1		p_1	
+		p	1		id2	
 	m	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_4231;	method_19747	method_19747	
 		p	1		p_1	
-	m	(Lnet/minecraft/class_2960;Z)Ljava/util/concurrent/CompletableFuture;	method_19743		method_19743
+	m	(Lnet/minecraft/class_2960;Z)Ljava/util/concurrent/CompletableFuture;	method_19743		loadStatic
 		p	1			p_1
 		p	2			p_2
 	m	(ZLnet/minecraft/class_2960;)Ljava/util/concurrent/CompletableFuture;	method_19746		method_19746
@@ -158,7 +158,7 @@ c	net/minecraft/class_425$class_4070
 		p	1			p_1
 c	net/minecraft/class_433
 	m	(Lnet/minecraft/class_4185;)V	method_19841	method_19841	
-		p	1		p_1	
+		p	1		button	
 	m	(Lnet/minecraft/class_4185;)V	method_19842	method_19842	
 		p	1		p_1	
 	m	(ZI)V	method_19837	method_19837	
@@ -186,7 +186,7 @@ c	net/minecraft/class_922
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/server/MinecraftServer
-	f	Lnet/minecraft/class_1940;	field_17704	field_17704	
+	f	Lnet/minecraft/class_1940;	field_17704	DEMO_LEVEL_INFO	
 	f	Z	field_19259		field_19259
 	m	(Z)V	method_20288		method_20288
 		p	1			p_1

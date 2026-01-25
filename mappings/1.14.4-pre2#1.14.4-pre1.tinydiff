@@ -1,25 +1,25 @@
 tiny	2	0
 c	net/minecraft/class_1041
-	m	(Z)V	method_21668	method_21668	
-		p	1		p_1	
+	m	(Z)V	method_21668	setRawMouseMotion	
+		p	1		rawMouseMotion	
 c	net/minecraft/class_11
-	f	Ljava/util/Set;	field_20300	field_20300	
-	f	Lnet/minecraft/class_2338;	field_20301	field_20301	
-	f	F	field_20302	field_20302	
-	f	Z	field_20303	field_20303	
+	f	Ljava/util/Set;	field_20300	debugTargetNodes	
+	f	Lnet/minecraft/class_2338;	field_20301	target	
+	f	F	field_20302	manhattanDistanceFromTarget	
+	f	Z	field_20303	reachesTarget	
 	f	Lnet/minecraft/class_9;	field_56		field_56
 	m	(Ljava/util/List;Lnet/minecraft/class_2338;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Z	method_21655	method_21655	
-	m	()Lnet/minecraft/class_2338;	method_48	method_48	
-	m	()F	method_21656	method_21656	
+	m	()Z	method_21655	reachesTarget	
+	m	()Lnet/minecraft/class_2338;	method_48	getTarget	
+	m	()F	method_21656	getManhattanDistanceFromTarget	
 	m	(Ljava/util/List;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_2338;)Z	method_19313		method_19313
 		p	1			p_1
-	m	()Lnet/minecraft/class_9;	method_48		method_48
+	m	()Lnet/minecraft/class_9;	method_48		getTarget
 c	net/minecraft/class_1161
 	m	(DDD)V	<init>	<init>	
 		p	1		p_1	
@@ -36,48 +36,48 @@ c	net/minecraft/class_12
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_13
-	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_1308;Ljava/util/Set;FI)Lnet/minecraft/class_11;	method_52	method_52	
+	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_1308;Ljava/util/Set;FI)Lnet/minecraft/class_11;	method_52	pathfind	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/class_9;Ljava/util/Map;FI)Lnet/minecraft/class_11;	method_54	method_54	
+	m	(Lnet/minecraft/class_9;Ljava/util/Map;FI)Lnet/minecraft/class_11;	method_54	pathfind	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/class_9;Ljava/util/Set;)F	method_21658	method_21658	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_2338;Z)Lnet/minecraft/class_11;	method_55	method_55	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/class_9;Ljava/util/Set;)F	method_21658	calculateDistances	
+		p	1		node	
+		p	2		targets	
+	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_2338;Z)Lnet/minecraft/class_11;	method_55	createPath	
+		p	1		endNode	
+		p	2		target	
+		p	3		reachesTarget	
 	m	(Ljava/util/Map;Lnet/minecraft/class_4459;)Lnet/minecraft/class_11;	method_21660	method_21660	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/util/Map;Lnet/minecraft/class_4459;)Lnet/minecraft/class_11;	method_21661	method_21661	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		node	
 	m	(Lnet/minecraft/class_9;ILnet/minecraft/class_4459;)Z	method_21657	method_21657	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_4459;	method_21659	method_21659	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_1308;DDDF)Lnet/minecraft/class_11;	method_52		method_52
+		p	1		pos	
+	m	(Lnet/minecraft/class_1941;Lnet/minecraft/class_1308;DDDF)Lnet/minecraft/class_11;	method_52		pathfind
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	5			p_5
 		p	7			p_7
 		p	9			p_9
-	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_9;F)Lnet/minecraft/class_11;	method_54		method_54
+	m	(Lnet/minecraft/class_9;Lnet/minecraft/class_9;F)Lnet/minecraft/class_11;	method_54		pathfind
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55		method_55
+	m	(Lnet/minecraft/class_9;)Lnet/minecraft/class_11;	method_55		createPath
 		p	1			p_1
 c	net/minecraft/class_14
 	m	(DDD)Lnet/minecraft/class_4459;	method_16	method_16	
@@ -95,37 +95,37 @@ c	net/minecraft/class_1407
 	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_11;	method_6349		method_6349
 		p	1			p_1
 c	net/minecraft/class_1408
-	f	Lnet/minecraft/class_2338;	field_20293	field_20293	
-	f	I	field_20294	field_20294	
+	f	Lnet/minecraft/class_2338;	field_20293	currentTarget	
+	f	I	field_20294	currentDistance	
 	f	Lnet/minecraft/class_2338;	field_6676		field_6676
-	m	(DDDI)Lnet/minecraft/class_11;	method_6352	method_6352	
-		p	1		p_1	
+	m	(DDDI)Lnet/minecraft/class_11;	method_6352	findPathTo	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		distance	
+	m	(Ljava/util/stream/Stream;I)Lnet/minecraft/class_11;	method_21643	findPathToAny	
+		p	1		positions	
+		p	2		distance	
+	m	(Lnet/minecraft/class_2338;I)Lnet/minecraft/class_11;	method_6348	findPathTo	
+		p	1		target	
+		p	2		distance	
+	m	(Lnet/minecraft/class_1297;I)Lnet/minecraft/class_11;	method_6349	findPathTo	
+		p	1		entity	
+		p	2		distance	
+	m	(Ljava/util/Set;IZI)Lnet/minecraft/class_11;	method_18416	findPathToAny	
+		p	1		positions	
+		p	2		range	
 		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-	m	(Ljava/util/stream/Stream;I)Lnet/minecraft/class_11;	method_21643	method_21643	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_2338;I)Lnet/minecraft/class_11;	method_6348	method_6348	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/class_1297;I)Lnet/minecraft/class_11;	method_6349	method_6349	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/util/Set;IZI)Lnet/minecraft/class_11;	method_18416	method_18416	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(DDD)Lnet/minecraft/class_11;	method_6352		method_6352
+		p	4		distance	
+	m	(DDD)Lnet/minecraft/class_11;	method_6352		findPathTo
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
-	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_11;	method_6348		method_6348
+	m	(Lnet/minecraft/class_2338;)Lnet/minecraft/class_11;	method_6348		findPathTo
 		p	1			p_1
-	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_11;	method_6349		method_6349
+	m	(Lnet/minecraft/class_1297;)Lnet/minecraft/class_11;	method_6349		findPathTo
 		p	1			p_1
-	m	(Lnet/minecraft/class_2338;DDDIZ)Lnet/minecraft/class_11;	method_18416		method_18416
+	m	(Lnet/minecraft/class_2338;DDDIZ)Lnet/minecraft/class_11;	method_18416		findPathToAny
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
@@ -164,41 +164,41 @@ c	net/minecraft/class_15
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_1641
-	f	Lnet/minecraft/class_2520;	field_20299	field_20299	
-	m	(Lnet/minecraft/class_2520;)V	method_21649	method_21649	
-		p	1		p_1	
+	f	Lnet/minecraft/class_2520;	field_20299	gossipData	
+	m	(Lnet/minecraft/class_2520;)V	method_21649	setGossipData	
+		p	1		gossipData	
 c	net/minecraft/class_1646
-	m	()Lnet/minecraft/class_4136;	method_21651	method_21651	
-	m	(Lnet/minecraft/class_2520;)V	method_21650	method_21650	
-		p	1		p_1	
+	m	()Lnet/minecraft/class_4136;	method_21651	getGossip	
+	m	(Lnet/minecraft/class_2520;)V	method_21650	readGossipDataNbt	
+		p	1		nbt	
 c	net/minecraft/class_2463
-	f	Ljava/util/List;	field_20309	field_20309	
-	m	(Lnet/minecraft/class_2463$class_4460;)Lnet/minecraft/class_2463;	method_21672	method_21672	
-		p	1		p_1	
-	m	(Ljava/lang/String;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_21673	method_21673	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/class_2463$class_4460	class_4460	
-	m	(Ljava/lang/String;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_21674	method_21674	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/util/List;	field_20309	write	
+	m	(Lnet/minecraft/class_2463$class_4460;)Lnet/minecraft/class_2463;	method_21672	addWriter	
+		p	1		tweaker	
+	m	(Ljava/lang/String;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_21673	write	
+		p	1		key	
+		p	2		compound	
+c	net/minecraft/class_2463$class_4460	Tweaker	
+	m	(Ljava/lang/String;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_21674	write	
+		p	1		name	
+		p	2		nbt	
 c	net/minecraft/class_3032
-	f	Ljava/nio/file/spi/FileSystemProvider;	field_20310	field_20310	
+	f	Ljava/nio/file/spi/FileSystemProvider;	field_20310	FILE_SYSTEM_PROVIDER	
 	m	(Ljava/nio/file/spi/FileSystemProvider;)Z	method_21675	method_21675	
 		p	0		p_0	
 c	net/minecraft/class_315
-	f	Z	field_20308	field_20308	
+	f	Z	field_20308	rawMouseInput	
 c	net/minecraft/class_316
-	f	Lnet/minecraft/class_4062;	field_20307	field_20307	
+	f	Lnet/minecraft/class_4062;	field_20307	RAW_MOUSE_INPUT	
 	m	(Lnet/minecraft/class_315;Ljava/lang/Boolean;)V	method_21669	method_21669	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		gameOptions	
+		p	1		rawMouseInput	
 	m	(Lnet/minecraft/class_315;)Z	method_21670	method_21670	
-		p	0		p_0	
+		p	0		gameOptions	
 c	net/minecraft/class_3204
-	f	Lnet/minecraft/class_3900;	field_17456	field_17456	
-	f	Lnet/minecraft/class_3193$class_3896;	field_17456		field_17456
-	m	()Ljava/lang/String;	method_21683	method_21683	
+	f	Lnet/minecraft/class_3900;	field_17456	levelUpdateListener	
+	f	Lnet/minecraft/class_3193$class_3896;	field_17456		levelUpdateListener
+	m	()Ljava/lang/String;	method_21683	toDumpString	
 	m	(Lnet/minecraft/class_3204;)Lnet/minecraft/class_3900;	method_17651	method_17651	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_3204;)Lnet/minecraft/class_3193$class_3896;	method_17651		method_17651
@@ -211,8 +211,8 @@ c	net/minecraft/class_3843
 	m	(Ljava/lang/String;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_21674	method_21674	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_16878	method_16878	
-		p	0		p_0	
+	m	(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_16878	update	
+		p	0		nbt	
 	m	(Lnet/minecraft/class_2403;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/class_2408;)V	method_10319		method_10319
@@ -230,7 +230,7 @@ c	net/minecraft/class_3843
 	m	(Lcom/mojang/datafixers/DataFixer;Ljava/nio/file/Path;)V	method_16883		method_16883
 		p	0			p_0
 		p	1			p_1
-	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_16878		method_16878
+	m	(Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;	method_16878		update
 		p	0			p_0
 		p	1			p_1
 	m	(Lcom/mojang/datafixers/DataFixer;Ljava/nio/file/Path;)V	method_16884		method_16884
@@ -241,22 +241,22 @@ c	net/minecraft/class_3843$class_3844		class_3844
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3898
-	m	(Ljava/util/concurrent/CompletableFuture;)Ljava/lang/String;	method_21676	method_21676	
-		p	0		p_0	
+	m	(Ljava/util/concurrent/CompletableFuture;)Ljava/lang/String;	method_21676	getFutureStatus	
+		p	0		future	
 	m	(Lnet/minecraft/class_3193$class_3724;)Ljava/lang/String;	method_21677	method_21677	
 		p	0		p_0	
 	m	(Lnet/minecraft/class_2818;)Ljava/lang/String;	method_21678	method_21678	
 		p	0		p_0	
 c	net/minecraft/class_3899
-	m	()Lit/unimi/dsi/fastutil/longs/LongSet;	method_21679	method_21679	
+	m	()Lit/unimi/dsi/fastutil/longs/LongSet;	method_21679	getBlockingChunks	
 c	net/minecraft/class_3900
-	m	()Ljava/lang/String;	method_21680	method_21680	
+	m	()Ljava/lang/String;	method_21680	getDebugString	
 	m	(Ljava/util/Map$Entry;)Ljava/lang/String;	method_21682	method_21682	
-		p	0		p_0	
+		p	0		entry	
 	m	(Ljava/lang/Long;)Ljava/lang/String;	method_21681	method_21681	
-		p	0		p_0	
+		p	0		pos	
 c	net/minecraft/class_4096
-	f	Lnet/minecraft/class_4140;	field_20287	field_20287	
+	f	Lnet/minecraft/class_4140;	field_20287	targetMemoryModuleType	
 	f	Lnet/minecraft/class_4140;	field_19288		field_19288
 	m	(Lnet/minecraft/class_4153;Lnet/minecraft/class_2338;Lnet/minecraft/class_1314;Lnet/minecraft/class_3218;Lnet/minecraft/class_4158;)V	method_21633	method_21633	
 		p	1		p_1	
@@ -279,8 +279,8 @@ c	net/minecraft/class_4096
 c	net/minecraft/class_4099
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/class_4102
-	f	Lnet/minecraft/class_1297;	field_18342	field_18342	
-	f	Lnet/minecraft/class_1309;	field_18342		field_18342
+	f	Lnet/minecraft/class_1297;	field_18342	entity	
+	f	Lnet/minecraft/class_1309;	field_18342		entity
 	m	(Lnet/minecraft/class_1297;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_1309;)V	<init>		<init>
@@ -327,12 +327,12 @@ c	net/minecraft/class_4133
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/class_4153
-	m	(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/class_2338;ILnet/minecraft/class_4153$class_4155;)Ljava/util/stream/Stream;	method_21647	method_21647	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/class_2338;ILnet/minecraft/class_4153$class_4155;)Ljava/util/stream/Stream;	method_21647	getPositions	
+		p	1		typePredicate	
+		p	2		posPredicate	
+		p	3		pos	
+		p	4		radius	
+		p	5		occupationStatus	
 	m	(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/class_2338;I)Ljava/util/Optional;	method_19131		method_19131
 		p	1			p_1
 		p	2			p_2
@@ -347,7 +347,7 @@ c	net/minecraft/class_4153
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_4158
-	f	I	field_20298	field_20298	
+	f	I	field_20298	searchDistance	
 	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -361,15 +361,15 @@ c	net/minecraft/class_4158
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	()I	method_21648	method_21648	
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;I)Lnet/minecraft/class_4158;	method_20357	method_20357	
-		p	0		p_0	
+	m	()I	method_21648	getSearchDistance	
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;I)Lnet/minecraft/class_4158;	method_20357	register	
+		p	0		id	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;I)Lnet/minecraft/class_4158;	method_20358	method_20358	
-		p	0		p_0	
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;I)Lnet/minecraft/class_4158;	method_20358	register	
+		p	0		id	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -386,28 +386,28 @@ c	net/minecraft/class_4158
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;)Lnet/minecraft/class_4158;	method_20357		method_20357
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;)Lnet/minecraft/class_4158;	method_20357		register
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;)Lnet/minecraft/class_4158;	method_20358		method_20358
+	m	(Ljava/lang/String;Ljava/util/Set;ILnet/minecraft/class_3414;Ljava/util/function/Predicate;)Lnet/minecraft/class_4158;	method_20358		register
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/class_4256
-	f	Lit/unimi/dsi/fastutil/longs/Long2LongMap;	field_20295	field_20295	
-	f	I	field_20296	field_20296	
-	f	J	field_20297	field_20297	
+	f	Lit/unimi/dsi/fastutil/longs/Long2LongMap;	field_20295	positionToExpiryTime	
+	f	I	field_20296	tries	
+	f	J	field_20297	expiryTime	
 	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_1308;)V	method_21646	method_21646	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lit/unimi/dsi/fastutil/longs/Long2LongMap$Entry;)Z	method_21645	method_21645	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2338;)Z	method_21644	method_21644	
-		p	1		p_1	
+		p	1		pos	
 	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_1308;)V	method_19998		method_19998
 		p	1			p_1
 		p	2			p_2
@@ -421,14 +421,14 @@ c	net/minecraft/class_4288
 	m	(I)[Lnet/minecraft/class_316;	method_21671	method_21671	
 		p	0		p_0	
 c	net/minecraft/class_4290
-	f	F	field_20290	field_20290	
-	f	Lit/unimi/dsi/fastutil/longs/Long2LongMap;	field_20291	field_20291	
-	f	I	field_20292	field_20292	
+	f	F	field_20290	speed	
+	f	Lit/unimi/dsi/fastutil/longs/Long2LongMap;	field_20291	positionToExpiry	
+	f	I	field_20292	tries	
 	f	F	field_19259		field_19259
 	m	(Lit/unimi/dsi/fastutil/longs/Long2LongMap$Entry;)Z	method_21640	method_21640	
 		p	1		p_1	
 	m	(Lnet/minecraft/class_2338;)Z	method_21639	method_21639	
-		p	1		p_1	
+		p	1		pos	
 	m	(Lnet/minecraft/class_1309;Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;)V	method_20426		method_20426
 		p	1			p_1
 		p	2			p_2
@@ -461,9 +461,9 @@ c	net/minecraft/class_4406$5		5
 		p	6			p_6
 		p	7			p_7
 	m	()V	onPress		onPress
-c	net/minecraft/class_4458	net/minecraft/class_4458	
-	f	F	field_20288	field_20288	
-	f	I	field_20289	field_20289	
+c	net/minecraft/class_4458	net/minecraft/entity/ai/brain/task/GoToPointOfInterestTask	
+	f	F	field_20288	speed	
+	f	I	field_20289	completionRange	
 	m	(FI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -484,24 +484,24 @@ c	net/minecraft/class_4458	net/minecraft/class_4458
 	m	(Lnet/minecraft/class_3218;Lnet/minecraft/class_2338;)D	method_21638	method_21638	
 		p	0		p_0	
 		p	1		p_1	
-c	net/minecraft/class_4459	net/minecraft/class_4459	
-	f	F	field_20304	field_20304	
-	f	Lnet/minecraft/class_9;	field_20305	field_20305	
-	f	Z	field_20306	field_20306	
+c	net/minecraft/class_4459	net/minecraft/entity/ai/pathing/TargetPathNode	
+	f	F	field_20304	nearestNodeDistance	
+	f	Lnet/minecraft/class_9;	field_20305	nearestNode	
+	f	Z	field_20306	reached	
 	m	(Lnet/minecraft/class_9;)V	<init>	<init>	
 		p	1		p_1	
 	m	(III)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(FLnet/minecraft/class_9;)V	method_21662	method_21662	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Lnet/minecraft/class_9;	method_21664	method_21664	
-	m	()V	method_21665	method_21665	
-	m	()Z	method_21666	method_21666	
-	m	(Lnet/minecraft/class_2540;)Lnet/minecraft/class_4459;	method_21663	method_21663	
-		p	0		p_0	
+	m	(FLnet/minecraft/class_9;)V	method_21662	updateNearestNode	
+		p	1		distance	
+		p	2		node	
+	m	()Lnet/minecraft/class_9;	method_21664	getNearestNode	
+	m	()V	method_21665	markReached	
+	m	()Z	method_21666	isReached	
+	m	(Lnet/minecraft/class_2540;)Lnet/minecraft/class_4459;	method_21663	fromBuffer	
+		p	0		buffer	
 c	net/minecraft/class_6
 	m	(DDD)Lnet/minecraft/class_4459;	method_16	method_16	
 		p	1		p_1	
@@ -512,11 +512,11 @@ c	net/minecraft/class_6
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/class_8
-	m	(DDD)Lnet/minecraft/class_4459;	method_16	method_16	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(DDD)Lnet/minecraft/class_9;	method_16		method_16
+	m	(DDD)Lnet/minecraft/class_4459;	method_16	getNode	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+	m	(DDD)Lnet/minecraft/class_9;	method_16		getNode
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
@@ -528,10 +528,10 @@ c	net/minecraft/class_868
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/class_9
-	m	(Lnet/minecraft/class_9;)F	method_21653	method_21653	
-		p	1		p_1	
-	m	(Lnet/minecraft/class_2338;)F	method_21654	method_21654	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_9;)F	method_21653	getManhattanDistance	
+		p	1		node	
+	m	(Lnet/minecraft/class_2338;)F	method_21654	getManhattanDistance	
+		p	1		pos	
 	m	()Lnet/minecraft/class_2338;	method_21652	method_21652	
 c	net/minecraft/class_4372		net/minecraft/class_4372
 	f	Lorg/apache/logging/log4j/Logger;	field_19694		field_19694

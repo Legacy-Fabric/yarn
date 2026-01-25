@@ -1,9 +1,10 @@
 tiny	2	0
 c	net/minecraft/class_1297
-	m	(DDD)V	method_20620	method_20620	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(DDD)V	method_20620	teleport	
+		c	Teleports the entity to the given position, loading the chunk with\n{@link net.minecraft.server.world.ChunkTicketType#POST_TELEPORT}.\n\n@see #requestTeleportAndDismount\n@see #requestTeleport\n@see #teleport(ServerWorld, double, double, double, Set, float, float)\n@see #refreshPositionAndAngles(double, double, double, float, float)	
+		p	1		destX	
+		p	3		destY	
+		p	5		destZ	
 c	net/minecraft/class_2357
 c	net/minecraft/class_2357$18
 c	net/minecraft/class_2357$18$1
@@ -36,30 +37,33 @@ c	net/minecraft/class_3227
 		p	2		p_2	
 	m	()I	method_20625	method_20625	
 c	net/minecraft/class_3228
-	m	(J)Z	method_20627	method_20627	
-		p	1		p_1	
+	m	(J)Z	method_20627	isExpired	
+		p	1		currentTick	
 	m	()J	method_14284		method_14284
 c	net/minecraft/class_3230
-	f	J	field_19348	field_19348	
-	f	Lnet/minecraft/class_3230;	field_19347	field_19347	
-	m	(Ljava/lang/String;Ljava/util/Comparator;I)Lnet/minecraft/class_3230;	method_20628	method_20628	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	f	J	field_19348	expiryTicks	
+	f	Lnet/minecraft/class_3230;	field_19347	POST_TELEPORT	
+		c	Used to load the chunks at the destination of teleportation.	
+	m	(Ljava/lang/String;Ljava/util/Comparator;I)Lnet/minecraft/class_3230;	method_20628	create	
+		c	Create a new ticket type that expires after an amount of ticks.	
+		p	0		name	
+		p	1		argumentComparator	
+		p	2		expiryTicks	
+			c	the expiry time in ticks, does not expire if 0	
 	m	(Ljava/lang/String;Ljava/util/Comparator;J)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()J	method_20629	method_20629	
+	m	()J	method_20629	getExpiryTicks	
 	m	(Ljava/lang/String;Ljava/util/Comparator;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/class_3898
-	m	()Z	method_17244	method_17244	
-	m	()V	method_17244		method_17244
+	m	()Z	method_17244	updateHolderMap	
+	m	()V	method_17244		updateHolderMap
 c	net/minecraft/class_4180
-	m	(Lnet/minecraft/class_1923;)Lnet/minecraft/class_2487;	method_20621	method_20621	
-		p	1		p_1	
+	m	(Lnet/minecraft/class_1923;)Lnet/minecraft/class_2487;	method_20621	loadNbt	
+		p	1		pos	
 c	net/minecraft/class_631
 	m	(Lnet/minecraft/class_2338;)Z	method_20529	method_20529	
 		p	1		p_1	
@@ -68,6 +72,6 @@ c	net/minecraft/class_631
 	m	(Lnet/minecraft/class_1297;)Z	method_12125	method_12125	
 		p	1		p_1	
 c	net/minecraft/class_744
-	m	()Z	method_20622	method_20622	
+	m	()Z	method_20622	hasForwardMovement	
 c	net/minecraft/class_746
-	m	()Z	method_20623	method_20623	
+	m	()Z	method_20623	isWalking	
