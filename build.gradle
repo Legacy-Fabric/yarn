@@ -16,23 +16,23 @@ repositories {
 }
 
 keratin {
-	mavenSourcedIntermediaryArtifacts {
-		groupId = 'net.legacyfabric.v2'
-		artifactId = 'intermediary'
-		repositoryUrl = 'https://maven.legacyfabric.net/'
+	metaSourcedIntermediaryArtifacts {
+		metaUrl = 'https://meta.fabricmc.net'
+		metaEndpoint = '/v2/versions/intermediary'
 		classifier = 'v2'
+		repositoryUrl = 'https://maven.fabricmc.net/'
 	}
 
 	mavenSourcedNamedMappingsArtifacts {
-		groupId = 'net.legacyfabric.v2'
-		artifactId = 'yarn'
+		groupId = 'net.legacyfabric'
+		artifactId = 'old-yarn'
 		repositoryUrl = 'https://maven.legacyfabric.net/'
 		classifier = 'mergedv2'
 	}
 
 	publications {
-		it.groupId = 'net.legacyfabric.v2'
-		it.artifactId = 'yarn'
+		it.groupId = 'net.legacyfabric'
+		it.artifactId = 'old-yarn'
 	}
 
 	if (ENV.MC_VERSION) {
@@ -41,7 +41,7 @@ keratin {
 		minecraftVersions ENV.MC_VERSIONS.split('[,]')
 	}
 
-	intermediaryGen = 2
+	intermediaryGen = 0
 
 	tasks TaskSelection.MAPPINGS
 }
