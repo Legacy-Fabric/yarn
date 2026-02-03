@@ -6,7 +6,7 @@ import net.fabricmc.filament.task.MappingPoetTask
 plugins {
 	id 'java'
 	id 'maven-publish'
-	id 'lf-keratin' version '41.2.27'
+	id 'keratin' version '41.2'
 }
 
 def ENV = System.getenv()
@@ -16,23 +16,16 @@ repositories {
 }
 
 keratin {
-	metaSourcedIntermediaryArtifacts {
-		metaUrl = 'https://meta.legacyfabric.net'
-		metaEndpoint = '/v2/versions/intermediary'
-		repositoryUrl = 'https://maven.legacyfabric.net'
-		classifier = 'v2'
-	}
-
-	metaSourcedNamedMappingsArtifacts {
-		metaUrl = 'https://meta.legacyfabric.net'
-		metaEndpoint = '/v2/versions/yarn'
-		repositoryUrl = 'https://maven.legacyfabric.net'
+	mavenSourcedNamedMappingsArtifacts {
+		groupId = 'net.legacyfabric'
+		artifactId = 'legacy-yarn'
+		repositoryUrl = 'https://maven.legacyfabric.net/'
 		classifier = 'mergedv2'
 	}
 
 	publications {
 		it.groupId = 'net.legacyfabric'
-		it.artifactId = 'yarn'
+		it.artifactId = 'legacy-yarn'
 	}
 
 	if (ENV.MC_VERSION) {
@@ -41,7 +34,7 @@ keratin {
 		minecraftVersions ENV.MC_VERSIONS.split('[,]')
 	}
 
-	intermediaryGen = 1
+	intermediaryGen = 2
 
 	tasks TaskSelection.MAPPINGS
 }
